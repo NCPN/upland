@@ -717,15 +717,26 @@ Err_Handler:
     End Select
 
 End Function
-Public Function TestMoreDuplicateSpecies(Species As String, SpeciesIndex As Integer, AnimationState As Boolean) As Boolean
-' Test for duplicate species in a point - 2/26/2009 - Russ DenBleyker
-' Northern Colorado Plateau Network
-' Called from lower canopy updates to check for duplication of species
-' Species = Species code to test
-' SpeciesIndex = Index of the calling field
-' Animation State = Alive (-1) or Dead (0)
-' Returns true if species exists and animation state is equal
 
+' ---------------------------------
+' FUNCTION:     TestMoreDuplicateSpecies
+' Description:  Test for duplicate species in a point
+'               Called from lower canopy updates to check for duplication of species
+' Assumptions:  -
+' Parameters:   Species - species to check (string)
+'               SpeciesIndex - index of the calling field (integer)
+'               AnimationState - Alive (-1) or Dead (0) (boolean)
+' Returns:      Returns true if species exists and animation state is equal, false if not
+' Throws:       none
+' References:   -
+' Source/date:  Russ DenBleyker, February 26, 2009, Northern Colorado Plateau Network
+' Adapted:      -
+' Revisions:
+'   RD  - 2/26/2009 - initial version
+'   BLC - 5/27/2015 - fixed bug causing top canopy check (exiting procedure vs. loop),
+'                     updated error handling & added documentation
+' ---------------------------------
+Public Function TestMoreDuplicateSpecies(Species As String, SpeciesIndex As Integer, AnimationState As Boolean) As Boolean
     Dim LCIndex As Integer
     Dim SpeciesColumn As String
     Dim AliveColumn As String
@@ -734,38 +745,49 @@ Public Function TestMoreDuplicateSpecies(Species As String, SpeciesIndex As Inte
     TestMoreDuplicateSpecies = False  ' Assume it is not a duplicate
     LCIndex = 1
     SpeciesColumn = "LCS" & LCIndex
+    
+    '-------------------------
+    ' lower canopy duplicates?
+    '-------------------------
     Do Until IsNull(Me(SpeciesColumn))    ' Check for duplicate species in Lower Canopy.
       If LCIndex <> SpeciesIndex Then     ' Do not test calling field
         If Me(SpeciesColumn) = Species Then
           AliveColumn = "LCA" & LCIndex
           If Me(AliveColumn) = AnimationState Then
             TestMoreDuplicateSpecies = True
-            GoTo Exit_Procedure_TMDS
+            GoTo Exit_Function 'Exit_Procedure_TMDS
           End If
         End If
       End If
       LCIndex = LCIndex + 1
       If LCIndex > 10 Then  ' Do not go past the end
-        GoTo Exit_Procedure_TMDS
+        'GoTo Exit_Procedure_TMDS
+        'exit loop vs. procedure to avoid missing comparison to top canopy species
+        Exit Do
       End If
       SpeciesColumn = "LCS" & LCIndex
     Loop
+    
+    '-------------------------
+    ' top canopy duplicates?
+    '-------------------------
     If Me!Top = Species And Me!Alive = AnimationState Then  ' Test top canopy
       TestMoreDuplicateSpecies = True
     End If
 
-Exit_Procedure_TMDS:
+'Exit_Procedure_TMDS:
+Exit_Function:
     Exit Function
-
+    
 Err_Handler:
     Select Case Err.Number
-        Case Else
-            MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-                "Error encountered (TestMoreDuplicatespecies)"
-            Resume Exit_Procedure_TMDS
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - TestMoreDuplicatespecies[frm_More_LC])"
     End Select
-
+    Resume Exit_Function
 End Function
+
 Private Sub ButtonClose_Click()
 On Error GoTo Err_ButtonClose_Click
 

@@ -14,10 +14,10 @@ Begin Form
     Width =7740
     DatasheetFontHeight =9
     ItemSuffix =51
-    Left =6180
-    Top =75
-    Right =13665
-    Bottom =4350
+    Left =7332
+    Top =1440
+    Right =15084
+    Bottom =5700
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -34,6 +34,8 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -43,54 +45,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -100,9 +113,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =780
@@ -274,6 +289,11 @@ Begin Form
                     Name ="ButtonMaster"
                     Caption ="Master "
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -286,6 +306,11 @@ Begin Form
                     Name ="ButtonUnknown"
                     Caption ="Unknown"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -306,6 +331,7 @@ Begin Form
                     Name ="Shrub_ID"
                     ControlSource ="Exotic_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -320,6 +346,7 @@ Begin Form
                     Name ="Transect_ID"
                     ControlSource ="Transect_ID"
                     StatusBarText ="Foreign key to tbl_Canopy_Transect"
+
                 End
                 Begin ComboBox
                     OverlapFlags =247
@@ -340,6 +367,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
+
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -352,6 +380,11 @@ Begin Form
                     Name ="ButtonDelete"
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -361,6 +394,7 @@ Begin Form
                     Name ="M0"
                     ControlSource ="Oak0"
                     StatusBarText ="Zero point quadrat - species detected checkbox"
+
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -370,6 +404,7 @@ Begin Form
                     Name ="M5"
                     ControlSource ="Oak2"
                     StatusBarText ="5 meter quadrat"
+
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -379,6 +414,7 @@ Begin Form
                     Name ="M10"
                     ControlSource ="Oak4"
                     StatusBarText ="10 meter quadrat"
+
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -388,6 +424,7 @@ Begin Form
                     Name ="M15"
                     ControlSource ="Oak6"
                     StatusBarText ="15 meter quadrat"
+
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -397,6 +434,7 @@ Begin Form
                     Name ="M20"
                     ControlSource ="Oak8"
                     StatusBarText ="20 meter quadrat"
+
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -406,6 +444,7 @@ Begin Form
                     Name ="M25"
                     ControlSource ="Oak10"
                     StatusBarText ="25 meter quadrat"
+
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -415,6 +454,7 @@ Begin Form
                     Name ="M30"
                     ControlSource ="Oak12"
                     StatusBarText ="30 meter quadrat"
+
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -424,6 +464,7 @@ Begin Form
                     Name ="M35"
                     ControlSource ="Oak14"
                     StatusBarText ="35 meter quadrat"
+
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -433,6 +474,7 @@ Begin Form
                     Name ="M40"
                     ControlSource ="Oak16"
                     StatusBarText ="40 meter quadrat"
+
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -442,6 +484,7 @@ Begin Form
                     Name ="M45"
                     ControlSource ="Oak18"
                     StatusBarText ="45 meter quadrat"
+
                 End
             End
         End

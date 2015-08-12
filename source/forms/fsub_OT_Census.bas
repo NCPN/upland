@@ -644,8 +644,8 @@ Private Sub Form_Load()
     
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent!Location_ID & "'")
     If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
-      Me!Crown_Class.Visible = False
-      Me!Crown_Class_Label.Visible = False
+      Me!Crown_Class.visible = False
+      Me!Crown_Class_Label.visible = False
     End If
 End Sub
 Private Sub ButtonDelete_Click()

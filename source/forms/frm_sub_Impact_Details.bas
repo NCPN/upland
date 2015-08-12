@@ -15,9 +15,10 @@ Begin Form
     Width =7860
     DatasheetFontHeight =9
     ItemSuffix =22
-    Top =210
-    Right =8055
-    Bottom =4365
+    Left =2712
+    Top =1440
+    Right =10836
+    Bottom =4428
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xc48e9ef32e50e340
@@ -27,6 +28,8 @@ Begin Form
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -36,54 +39,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -93,9 +107,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =0
@@ -119,6 +135,7 @@ Begin Form
                     Name ="Impact_Details_ID"
                     ControlSource ="Impact_Details_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -133,6 +150,7 @@ Begin Form
                     Name ="Impact_ID"
                     ControlSource ="Impact_ID"
                     StatusBarText ="Foreign key to tbl_Site_Impact"
+
                 End
                 Begin TextBox
                     OverlapFlags =87
@@ -144,6 +162,7 @@ Begin Form
                     Name ="Disturbance_Size"
                     ControlSource ="Disturbance_Size"
                     StatusBarText ="Size of disturbance.  New field for 2008."
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -169,6 +188,7 @@ Begin Form
                     Name ="Disturbance_Position"
                     ControlSource ="Disturbance_Position"
                     StatusBarText ="Position of disturbance relative to transects.  New field for 2008."
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -195,6 +215,7 @@ Begin Form
                     ControlSource ="Disturbance_Description"
                     StatusBarText ="Description of disturbance including potential effects on fire or erosion proces"
                         "ses.  New field for 2008."
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -227,6 +248,7 @@ Begin Form
                     RowSource ="\"onsite\";\"offsite-upslope\";\"offsite-other\""
                     ColumnWidths ="1260"
                     AfterUpdate ="[Event Procedure]"
+
                     Begin
                         Begin Label
                             OverlapFlags =247
@@ -256,6 +278,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT tlu_Disturbance.Disturbance FROM tlu_Disturbance; "
                     ColumnWidths ="2160"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -283,6 +306,7 @@ Begin Form
                     Name ="Disturbance_Distance"
                     ControlSource ="Disturbance_Distance"
                     StatusBarText ="Position of disturbance relative to transects.  New field for 2008."
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -309,6 +333,7 @@ Begin Form
                     Name ="Disturbance_Direction"
                     ControlSource ="Disturbance_Direction"
                     StatusBarText ="Position of disturbance relative to transects.  New field for 2008."
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -341,19 +366,19 @@ Option Compare Database
 
 Private Sub Disturbance_Location_AfterUpdate()
   If IsNull(Me!Disturbance_Location) Or Me!Disturbance_Location = "Onsite" Then
-    Me!Disturbance_Position.Visible = True
-    Me!Disturbance_Distance.Visible = False
-    Me!Disturbance_Direction.Visible = False
+    Me!Disturbance_Position.visible = True
+    Me!Disturbance_Distance.visible = False
+    Me!Disturbance_Direction.visible = False
   ElseIf Me!Disturbance_Location = "offsite-upslope" Then
-    Me!Disturbance_Position.Visible = False
-    Me!Disturbance_Distance.Visible = True
+    Me!Disturbance_Position.visible = False
+    Me!Disturbance_Distance.visible = True
     Me!Distance_Label.Caption = "Distance Upslope from Macroplot (m)"
-    Me!Disturbance_Direction.Visible = False
+    Me!Disturbance_Direction.visible = False
   Else
-    Me!Disturbance_Position.Visible = False
-    Me!Disturbance_Distance.Visible = True
+    Me!Disturbance_Position.visible = False
+    Me!Disturbance_Distance.visible = True
     Me!Distance_Label.Caption = "Distance from Macroplot (m)"
-    Me!Disturbance_Direction.Visible = True
+    Me!Disturbance_Direction.visible = True
   End If
 End Sub
 
@@ -380,18 +405,18 @@ End Sub
 
 Private Sub Form_Current()
   If IsNull(Me!Disturbance_Location) Or Me!Disturbance_Location = "Onsite" Then
-    Me!Disturbance_Position.Visible = True
-    Me!Disturbance_Distance.Visible = False
-    Me!Disturbance_Direction.Visible = False
+    Me!Disturbance_Position.visible = True
+    Me!Disturbance_Distance.visible = False
+    Me!Disturbance_Direction.visible = False
   ElseIf Me!Disturbance_Location = "offsite-upslope" Then
-    Me!Disturbance_Position.Visible = False
-    Me!Disturbance_Distance.Visible = True
+    Me!Disturbance_Position.visible = False
+    Me!Disturbance_Distance.visible = True
     Me!Distance_Label.Caption = "Distance Upslope from Macroplot (m)"
-    Me!Disturbance_Direction.Visible = False
+    Me!Disturbance_Direction.visible = False
   Else
-    Me!Disturbance_Position.Visible = False
-    Me!Disturbance_Distance.Visible = True
+    Me!Disturbance_Position.visible = False
+    Me!Disturbance_Distance.visible = True
     Me!Distance_Label.Caption = "Distance from Macroplot (m)"
-    Me!Disturbance_Direction.Visible = True
+    Me!Disturbance_Direction.visible = True
   End If
 End Sub

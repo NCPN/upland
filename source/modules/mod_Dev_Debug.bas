@@ -40,6 +40,7 @@ Option Explicit
 ' Adapted:      Bonnie Campbell, May 27, 2015 - for NCPN tools
 ' Revisions:
 '   BLC - 5/27/2015 - initial version
+'   BLC - 8/10/2015 - fixed bug referencing TableName vs strTable
 ' ---------------------------------
 Public Sub ChangeMSysConnection(ByVal strTable As String, ByVal strConn As String)
 On Error GoTo Err_Handler
@@ -48,7 +49,7 @@ On Error GoTo Err_Handler
     Dim tdf As DAO.TableDef
 
     Set db = CurrentDb()
-    Set tdf = db.tabledefs(TableName)
+    Set tdf = db.tabledefs(strTable) 'TableName)
 
     'Change the connect value
     tdf.Connect = strConn '"ODBC;DATABASE=pubs;UID=sa;PWD=;DSN=Publishers"
@@ -229,6 +230,7 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 5/27/2015 - initial version
+'   BLC - 8/10/2015 - fixed compile bug defining i
 ' ---------------------------------
 Public Sub DebugTest()
 On Error GoTo Err_Handler
@@ -251,6 +253,7 @@ On Error GoTo Err_Handler
 
     'progress bar test
     DoCmd.OpenForm "frm_ProgressBar", acNormal
+    Dim i As Integer
     
     For i = 1 To 10
         
@@ -467,7 +470,9 @@ End Sub
 Public Sub moduletest()
 
     'AddModules ("C:\__git-projects\dev_modules - Copy\")
-    AddModules "C:\__git-projects\vcs_modules\"
+    'AddModules "C:\__git-projects\vcs_modules\"
+    AddModules "Z:\_____LIB\dev\git_projects\vcs_modules\"
+    
     'RemoveModules "VCS_"
     
 End Sub

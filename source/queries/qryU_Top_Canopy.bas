@@ -21,22 +21,4 @@ Begin
             0x67120e199fb13942a940862d8a20e80b
         End
     End
-    Begin
-        dbText "Name" ="Master_PLANT_Code"
-        dbBinary "GUID" = Begin
-            0x87a4f8ef99435c49aa15343bfbd65b60
-        End
-    End
-    Begin
-        dbText "Name" ="LU_Code"
-        dbBinary "GUID" = Begin
-            0x081536c5a19bcd4b8da9ee0fa4acbfaa
-        End
-    End
-    Begin
-        dbText "Name" ="Utah_Species"
-        dbBinary "GUID" = Begin
-            0x291c6834e5cc8e4fa24545c502620ff1
-        End
-    End
 End
