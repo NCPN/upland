@@ -2,7 +2,6 @@
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -12,10 +11,10 @@ Begin Form
     GridY =24
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =2145
-    Top =4005
-    Right =9630
-    Bottom =6720
+    Left =1050
+    Top =4020
+    Right =8535
+    Bottom =6705
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x718d0abeb2a7e340
@@ -28,6 +27,8 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -37,54 +38,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -94,9 +106,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =840
@@ -148,6 +162,11 @@ Begin Form
                     Name ="ButtonMaster"
                     Caption ="Master Species"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -159,6 +178,11 @@ Begin Form
                     Name ="ButtonUnknown"
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -179,6 +203,7 @@ Begin Form
                     Name ="Shrub_ID"
                     ControlSource ="Exotic_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -193,6 +218,7 @@ Begin Form
                     Name ="Transect_ID"
                     ControlSource ="Transect_ID"
                     StatusBarText ="Foreign key to tbl_Canopy_Transect"
+
                 End
                 Begin ComboBox
                     OverlapFlags =247
@@ -213,8 +239,10 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
+
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =6240
                     Top =60
@@ -225,6 +253,11 @@ Begin Form
                     Name ="ButtonDelete"
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin TextBox
                     EnterKeyBehavior = NotDefault
@@ -239,6 +272,7 @@ Begin Form
                     Name ="Notes"
                     ControlSource ="Notes"
                     StatusBarText ="Notes on species"
+
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -260,12 +294,15 @@ Begin Form
                         0x6666000066666666
                     End
                     ObjectPalette = Begin
-                        0x0003100000000000800000000080000080800000000080008000800000808000 ,
-                        0xc0c0c00080808000ff00000000ff0000ffff00000000ff00ff00ff0000ffff00 ,
-                        0xffffff0000000000
+                        0x000301000000000000000000
                     End
                     ControlTipText ="Zoom Caption"
-                    Picture ="C:\\arcgis\\arcexe9x\\odetools\\Bitmaps\\zoomin.bmp"
+                    Picture ="zoomin.bmp"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

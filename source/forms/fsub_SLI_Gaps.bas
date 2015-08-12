@@ -2,7 +2,6 @@
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -16,8 +15,8 @@ Begin Form
     ItemSuffix =13
     Left =690
     Top =360
-    Right =8895
-    Bottom =7845
+    Right =9150
+    Bottom =8100
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xe3687ae93287e340
@@ -34,6 +33,8 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -43,54 +44,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -100,9 +112,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =360
@@ -157,6 +171,11 @@ Begin Form
                     Name ="ButtonLookup"
                     Caption ="Master Lookup"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -167,6 +186,11 @@ Begin Form
                     Name ="ButtonUnknown"
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -188,6 +212,7 @@ Begin Form
                     ControlSource ="SLI_ID"
                     StatusBarText ="Unique record identifier - primary key"
                     FontName ="Tahoma"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -203,6 +228,7 @@ Begin Form
                     ControlSource ="Transect_ID"
                     StatusBarText ="Foreign key to tbl_SL_Transect"
                     FontName ="Tahoma"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -219,6 +245,7 @@ Begin Form
                     StatusBarText ="Start of shrub cover to nearest centimeter"
                     BeforeUpdate ="[Event Procedure]"
                     FontName ="Tahoma"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -235,6 +262,7 @@ Begin Form
                     StatusBarText ="End of shrub cover to nearest centimeter"
                     BeforeUpdate ="[Event Procedure]"
                     FontName ="Tahoma"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -255,8 +283,10 @@ Begin Form
                         "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code; "
                     ColumnWidths ="0;2160;4320"
                     OnGotFocus ="[Event Procedure]"
+
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =5940
                     Top =60
@@ -267,6 +297,11 @@ Begin Form
                     Name ="ButtonDelete"
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

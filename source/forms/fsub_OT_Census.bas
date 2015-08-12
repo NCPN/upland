@@ -17,7 +17,7 @@ Begin Form
     Left =255
     Top =75
     Right =13920
-    Bottom =7920
+    Bottom =7890
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x12768bfd3188e340
@@ -436,6 +436,7 @@ Begin Form
 
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =11340
                     Top =120

@@ -3,7 +3,6 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -15,10 +14,10 @@ Begin Form
     Width =9180
     DatasheetFontHeight =9
     ItemSuffix =34
-    Left =1995
-    Top =2640
-    Right =11700
-    Bottom =5940
+    Left =645
+    Top =2685
+    Right =10605
+    Bottom =5955
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xf02518bf4b1ee340
@@ -28,6 +27,12 @@ Begin Form
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
     DatasheetFontName ="Arial"
+    PrtMip = Begin
+        0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
+        0x010000006801000000000000a10700000100000001000000
+    End
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -38,54 +43,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -95,9 +111,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =540
@@ -222,6 +240,7 @@ Begin Form
                     Width =360
                     Height =300
                     Name ="State_Code"
+
                 End
             End
         End
@@ -242,6 +261,7 @@ Begin Form
                     Name ="Shrub_ID"
                     ControlSource ="Shrub_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -256,6 +276,7 @@ Begin Form
                     Name ="Quadrat_ID"
                     ControlSource ="Quadrat_ID"
                     StatusBarText ="Foreign key to tbl_Quadrat_Transect"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -270,6 +291,7 @@ Begin Form
                     ControlSource ="0cm"
                     StatusBarText ="number of shrubs 0-10 cm"
                     EventProcPrefix ="Ctl0cm"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -284,6 +306,7 @@ Begin Form
                     ControlSource ="10cm"
                     StatusBarText ="number of shrubs 10-25 cm"
                     EventProcPrefix ="Ctl10cm"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -298,6 +321,7 @@ Begin Form
                     ControlSource ="25cm"
                     StatusBarText ="number of shrubs 25-50 cm"
                     EventProcPrefix ="Ctl25cm"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -312,6 +336,7 @@ Begin Form
                     ControlSource ="50cm"
                     StatusBarText ="number of shrubs 50-100 cm"
                     EventProcPrefix ="Ctl50cm"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -326,6 +351,7 @@ Begin Form
                     ControlSource ="100cm"
                     StatusBarText ="number of shrubs 1-2 m"
                     EventProcPrefix ="Ctl100cm"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -340,8 +366,10 @@ Begin Form
                     ControlSource ="200cm"
                     StatusBarText ="number of shrubs >2 m"
                     EventProcPrefix ="Ctl200cm"
+
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =8220
                     Top =60
@@ -352,6 +380,11 @@ Begin Form
                     Name ="ButtonDelete"
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     ColumnHeads = NotDefault
@@ -376,6 +409,7 @@ Begin Form
                     ColumnWidths ="1800;3600;1800;3600"
                     OnGotFocus ="[Event Procedure]"
                     ControlTipText ="Select using State PLANTS Code here or State Species Code below."
+
                 End
                 Begin ComboBox
                     ColumnHeads = NotDefault
@@ -399,6 +433,7 @@ Begin Form
                     ColumnWidths ="3600;1800;1800;3600"
                     OnGotFocus ="[Event Procedure]"
                     ControlTipText ="Select using State Species Code here or State PLANTS Code above."
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -415,6 +450,7 @@ Begin Form
                     ForeColor =16711680
                     Name ="Master_Code"
                     ControlSource ="Plant_Code"
+
                     Begin
                         Begin Label
                             OldBorderStyle =0
@@ -445,6 +481,7 @@ Begin Form
                     Name ="Text31"
                     ControlSource ="=DLookUp(\"[Master_Species]\",\"tlu_NCPN_Plants\",\"[Master_PLANT_Code] = '\" & "
                         "[Master_Code] & \"'\")"
+
                     Begin
                         Begin Label
                             OldBorderStyle =0
@@ -470,6 +507,11 @@ Begin Form
                     Name ="Button_Master_Species"
                     Caption ="Master Lookup"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
