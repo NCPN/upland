@@ -20,9 +20,9 @@ Begin Form
     DatasheetFontHeight =9
     ItemSuffix =54
     Left =15060
-    Top =3630
-    Right =21150
-    Bottom =8190
+    Top =3636
+    Right =18612
+    Bottom =8196
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9becc7edac0fe340
@@ -34,6 +34,9 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -44,9 +47,11 @@ Begin Form
             FontWeight =400
             ForeColor =-2147483630
             FontName ="Tahoma"
+            BorderLineStyle =0
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
@@ -54,15 +59,18 @@ Begin Form
             FELineBreak = NotDefault
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             FontName ="Tahoma"
             AsianLineBreak =255
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             FontName ="Tahoma"
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -97,6 +105,7 @@ Begin Form
                     Name ="Location_ID"
                     ControlSource ="Location_ID"
                     StatusBarText ="M. Location identifier (Loc_ID)"
+
                 End
                 Begin TextBox
                     OldBorderStyle =1
@@ -113,6 +122,7 @@ Begin Form
                     Name ="Bearing_A"
                     ControlSource ="Bearing_A"
                     StatusBarText ="Bearing of the plot slope + 180 in degrees"
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -144,6 +154,7 @@ Begin Form
                     Name ="Bearing_B"
                     ControlSource ="Bearing_B"
                     StatusBarText ="Bearing of transect 1 in degrees"
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -175,6 +186,7 @@ Begin Form
                     Name ="Bearing_C"
                     ControlSource ="Bearing_C"
                     StatusBarText ="Bearing of transect 3 + 180"
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -206,6 +218,7 @@ Begin Form
                     Name ="Bearing_D"
                     ControlSource ="Bearing_D"
                     StatusBarText ="Bearing of the plot slope"
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -238,6 +251,7 @@ Begin Form
                     Name ="Slope_A"
                     ControlSource ="Slope_A"
                     StatusBarText ="Slope of transect A to nearest half percent"
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -270,6 +284,7 @@ Begin Form
                     Name ="Slope_B"
                     ControlSource ="Slope_B"
                     StatusBarText ="Slope of transect B to nearest half percent"
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -302,6 +317,7 @@ Begin Form
                     Name ="Slope_C"
                     ControlSource ="Slope_C"
                     StatusBarText ="Slope of transect C to nearest half percent"
+
                 End
                 Begin TextBox
                     DecimalPlaces =1
@@ -319,6 +335,7 @@ Begin Form
                     Name ="Slope_D"
                     ControlSource ="Slope_D"
                     StatusBarText ="Slope of transect C to nearest half percent"
+
                 End
                 Begin Label
                     OverlapFlags =85
@@ -344,6 +361,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -359,6 +381,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="qry_Contacts"
                     ColumnWidths ="0;735"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -383,6 +406,7 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
 
 Private Sub ButtonClose_Click()
 On Error GoTo Err_ButtonClose_Click
@@ -399,6 +423,22 @@ Err_ButtonClose_Click:
     
 End Sub
 
+' ---------------------------------
+' SUB:          Form_BeforeUpdate
+' Description:  Populate centroid UTMs from tbl_Location_History
+' Assumptions:  -
+' Parameters:   Cancel - species to check (string)
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Russ DenBleyker, date unkown, Northern Colorado Plateau Network
+' Adapted:      -
+' Revisions:
+'   RD  - ?         - initial version
+'   BLC - 8/11/2015 - fixed bug improperly populating plot centroid UTMs with
+'                     tbl_Location_History deprecated Plot_E_Coord & Plot_N_Coord vs.
+'                     E_Coord & N_Coord values, updated error handling & added documentation
+' ---------------------------------
 Private Sub Form_BeforeUpdate(Cancel As Integer)
     On Error GoTo Err_Handler
 
@@ -410,14 +450,14 @@ Private Sub Form_BeforeUpdate(Cancel As Integer)
     If IsNull(Me!Recorder) Then
       MsgBox "You must select a recorder name!"
       Me.Undo
-      GoTo Exit_Form_BeforeUpdate
+      GoTo Exit_Sub
     Else
       Set db = CurrentDb
       strSQL = "Select * from tbl_Locations WHERE Location_ID = '" & Me!Location_ID & "'"
       Set OldLocation = db.OpenRecordset(strSQL)  '  Get unmodified location record
       If OldLocation.EOF Then
         MsgBox "Location record not found."
-        GoTo Exit_Form_BeforeUpdate
+        GoTo Exit_Sub
       End If
       Set History = db.OpenRecordset("tbl_Location_History")
         History.AddNew                     ' Create a Location History record
@@ -427,8 +467,11 @@ Private Sub Form_BeforeUpdate(Cancel As Integer)
         History!Recorder = Me!Recorder     ' Person committing update
         History!Unit_Code = OldLocation!Unit_Code
         History!Plot_ID = OldLocation!Plot_ID
-        History!E_Coord = OldLocation!Plot_E_Coord
-        History!N_Coord = OldLocation!Plot_N_Coord
+        
+        'populate plot centroid UTMs E & N Coord
+        History!E_Coord = OldLocation!E_Coord
+        History!N_Coord = OldLocation!N_Coord
+        
         History!Plot_Slope = OldLocation!Plot_Slope
         History!Plot_Aspect = OldLocation!Plot_Aspect
         History!Azimuth = OldLocation!Azimuth
@@ -454,15 +497,20 @@ Private Sub Form_BeforeUpdate(Cancel As Integer)
         History!T3E_Rebar = OldLocation!T3E_Rebar
         History!T3_Elevation = OldLocation!T3_Elevation
         History!Plot_Directions = OldLocation!Plot_Directions
-        History!Bearing_A = OldLocation!Bearing_A  ' Fuels bearings and slopes
+        
+        ' Fuels bearings and slopes
+        History!Bearing_A = OldLocation!Bearing_A
         History!Bearing_B = OldLocation!Bearing_B
         History!Bearing_C = OldLocation!Bearing_C
         History!Bearing_D = OldLocation!Bearing_D
+        
         History!Slope_A = OldLocation!Slope_A
         History!Slope_B = OldLocation!Slope_B
         History!Slope_C = OldLocation!Slope_C
         History!Slope_D = OldLocation!Slope_D
-        History!SlopeA = OldLocation!SlopeA         ' Plot side slopes
+        
+        ' Plot side slopes
+        History!SlopeA = OldLocation!SlopeA
         History!SlopeAUD = OldLocation!SlopeAUD
         History!SlopeB = OldLocation!SlopeB
         History!SlopeBUD = OldLocation!SlopeBUD
@@ -477,11 +525,15 @@ Private Sub Form_BeforeUpdate(Cancel As Integer)
         Set OldLocation = Nothing
     End If
     
-Exit_Form_BeforeUpdate:
-  Exit Sub
-  
+Exit_Sub:
+    Exit Sub
+    
 Err_Handler:
-  MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-         "Error encountered (Update Location)"
-  Resume Exit_Form_BeforeUpdate
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - BeforeUpdate[Form_frm_Edit_Fuel_Transect])"
+    End Select
+    Resume Exit_Sub
+
 End Sub

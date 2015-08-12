@@ -2,7 +2,6 @@
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -13,10 +12,10 @@ Begin Form
     Width =11880
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =1440
-    Top =2325
-    Right =13605
-    Bottom =5880
+    Left =1860
+    Top =5715
+    Right =14025
+    Bottom =9270
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -29,6 +28,8 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -38,54 +39,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -95,9 +107,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =960
@@ -250,6 +264,7 @@ Begin Form
                     Name ="Shrub_ID"
                     ControlSource ="Shrub_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -264,6 +279,7 @@ Begin Form
                     Name ="Transect_ID"
                     ControlSource ="Transect_ID"
                     StatusBarText ="Foreign key to tbl_Canopy_Transect"
+
                 End
                 Begin TextBox
                     OverlapFlags =93
@@ -278,6 +294,7 @@ Begin Form
                     Name ="HC10"
                     ControlSource ="HC10"
                     StatusBarText ="0-10cm height class total"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -292,6 +309,7 @@ Begin Form
                     Name ="HC25"
                     ControlSource ="HC25"
                     StatusBarText ="10.1-25cm height class total"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -306,6 +324,7 @@ Begin Form
                     Name ="HC50"
                     ControlSource ="HC50"
                     StatusBarText ="25.1-50cm height class total"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -320,6 +339,7 @@ Begin Form
                     Name ="HC100"
                     ControlSource ="HC100"
                     StatusBarText ="50.1-100cm height class total"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -334,6 +354,7 @@ Begin Form
                     Name ="HC2m"
                     ControlSource ="HC2m"
                     StatusBarText ="1.01-2m height class total"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -348,6 +369,7 @@ Begin Form
                     Name ="HCGT2"
                     ControlSource ="HCGT2"
                     StatusBarText =">2.01m height class total"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -367,6 +389,7 @@ Begin Form
                     RowSource ="-1;\"Yes\";0;\"No\""
                     ColumnWidths ="0;375"
                     DefaultValue ="-1"
+
                 End
                 Begin ComboBox
                     OverlapFlags =247
@@ -387,6 +410,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
+
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -399,6 +423,11 @@ Begin Form
                     Name ="ButtonDelete"
                     Caption ="Delete Record"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -417,6 +446,11 @@ Begin Form
                     Caption ="+ 1"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -429,6 +463,11 @@ Begin Form
                     Caption ="+ 5"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -441,6 +480,11 @@ Begin Form
                     Caption ="- 1"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -453,6 +497,11 @@ Begin Form
                     Caption ="- 5"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -465,6 +514,11 @@ Begin Form
                     Caption ="0"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -590,7 +644,10 @@ Private Sub Species_BeforeUpdate(Cancel As Integer)
       DoCmd.CancelEvent
       SendKeys "{ESC}"
     End If
-
+    
+    'capture the CTRL+Z keystroke
+    
+    'note: watch out for SendKeys   http://access.mvps.org/access/api/api0046.htm
 End Sub
 
 Private Sub Species_GotFocus()

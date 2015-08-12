@@ -15,13 +15,13 @@ Begin Form
     Cycle =1
     GridX =24
     GridY =24
-    Width =13005
+    Width =13008
     DatasheetFontHeight =9
     ItemSuffix =67
-    Left =825
-    Top =240
-    Right =13785
-    Bottom =8865
+    Left =1215
+    Top =3870
+    Right =13920
+    Bottom =12240
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2518a6c77056e340
@@ -402,11 +402,15 @@ Begin Form
                     OverlapFlags =85
                     Left =45
                     Top =540
-                    Width =12960
+                    Width =12963
                     Height =7980
                     TabIndex =10
                     Name ="TabCtl49"
 
+                    LayoutCachedLeft =45
+                    LayoutCachedTop =540
+                    LayoutCachedWidth =13008
+                    LayoutCachedHeight =8520
                     Begin
                         Begin Page
                             OverlapFlags =87
@@ -416,6 +420,10 @@ Begin Form
                             Height =7440
                             Name ="pgBeltShrub"
                             Caption ="Density"
+                            LayoutCachedLeft =180
+                            LayoutCachedTop =945
+                            LayoutCachedWidth =12870
+                            LayoutCachedHeight =8385
                             WebImagePaddingLeft =2
                             WebImagePaddingTop =2
                             WebImagePaddingRight =2
@@ -439,6 +447,7 @@ Begin Form
                                     Top =5160
                                     Width =5610
                                     Height =2685
+                                    TabIndex =1
                                     Name ="fsub_LP_Seedling"
                                     SourceObject ="Form.fsub_LP_Seedling"
                                     LinkChildFields ="Transect_ID"
@@ -452,6 +461,7 @@ Begin Form
                                     Top =5160
                                     Width =6150
                                     Height =2685
+                                    TabIndex =2
                                     Name ="fsub_LP_Exotic"
                                     SourceObject ="Form.fsub_LP_Exotic"
                                     LinkChildFields ="Transect_ID"
@@ -461,6 +471,7 @@ Begin Form
                             End
                         End
                         Begin Page
+                            Visible = NotDefault
                             OverlapFlags =215
                             Left =180
                             Top =945
@@ -468,6 +479,10 @@ Begin Form
                             Height =7440
                             Name ="pgDensiometer"
                             Caption ="Spherical Densiometer"
+                            LayoutCachedLeft =180
+                            LayoutCachedTop =945
+                            LayoutCachedWidth =12870
+                            LayoutCachedHeight =8385
                             WebImagePaddingLeft =2
                             WebImagePaddingTop =2
                             WebImagePaddingRight =2
@@ -511,12 +526,17 @@ Begin Form
                             Height =7440
                             Name ="PgAdd"
                             Caption ="Exotic Frequency"
+                            LayoutCachedLeft =180
+                            LayoutCachedTop =945
+                            LayoutCachedWidth =12870
+                            LayoutCachedHeight =8385
                             WebImagePaddingLeft =2
                             WebImagePaddingTop =2
                             WebImagePaddingRight =2
                             WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
+                                    Visible = NotDefault
                                     OverlapFlags =247
                                     Left =180
                                     Top =1440
@@ -572,6 +592,7 @@ Begin Form
                                     End
                                 End
                                 Begin Subform
+                                    Visible = NotDefault
                                     OverlapFlags =247
                                     Left =4980
                                     Top =1440

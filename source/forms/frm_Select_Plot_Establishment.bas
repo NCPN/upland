@@ -25,6 +25,10 @@ Begin Form
     End
     Caption ="Select for Plot Revisit Data Sheet"
     DatasheetFontName ="Arial"
+    PrtMip = Begin
+        0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
+        0x010000006801000000000000a10700000100000001000000
+    End
     FilterOnLoad =0
     AllowLayoutView =0
     DatasheetGridlinesColor12 =12632256
@@ -162,6 +166,7 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
 
 Private Sub ButtonClose_Click()
 On Error GoTo Err_ButtonClose_Click
@@ -189,20 +194,37 @@ Private Sub Park_Code_AfterUpdate()
   End If
     
 End Sub
+
+' ---------------------------------
+' SUB:          Button_Print_Click
+' Description:  Generate Plot Establishment sheets for selected park
+' Assumptions:
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Russ DenBleyker, April, 2008
+' Adapted:      -
+' Revisions:
+'   Russ DenBleyker - Northern Colorado Plateau Network April, 2008.
+'   Added Forest Woodlands June, 2009.
+'   Added revisit comments, March, 2010.
+'   -----------------------------------------
+'   HT - 3/24/2015  - MArray adjustments to include missing monument tree entries for T2
+'   -----------------------------------------
+'   BLC - 8/10/2015 - specified recordset objects as ADODB.Recordset to avoid
+'                     compiler errors "method or object not found" on rst/Mrst/RevisitComments.Open
+' ---------------------------------
 Private Sub Button_Print_Click()
 On Error GoTo Err_Button_Print
-' Generate Plot Establishment sheets for selected park.
-' Russ DenBleyker - Northern Colorado Plateau Network April, 2008.
-' Added Forest Woodlands June, 2009.
-' Added revisit comments, March, 2010.
 
     Dim objWord As Word.Application
     Dim fld As Field
-    Dim rst As Recordset
-    Dim Mrst As Recordset
+    Dim rst As ADODB.Recordset
+    Dim Mrst As ADODB.Recordset
     Dim cat As ADOX.Catalog
     Dim tbl_Work_Surface_Type As ADOX.table
-    Dim RevisitComments As Recordset
+    Dim RevisitComments As ADODB.Recordset
     Dim strSQL As String
     ' Monument tree entries for T2 were inadvertently omitted from initial version of database.
     ' MArray was modified to accommodate these entries. [HT, 3/24/2015]
@@ -468,6 +490,4 @@ Exit_Button_Print:
 Err_Button_Print:
     MsgBox Err.Description
     Resume Exit_Button_Print
-   
-    
 End Sub

@@ -8,6 +8,13 @@
 Option Compare Database   'Use database order for string comparisons
 Option Explicit
 
+' ------------------------------------------
+' -------         REVISIONS           ------
+' ------------------------------------------
+'  BLC - 8/10/2015 - Vestigial, unused subroutines FindMatch & TableNamesAndIndexes
+'                    were removed since they caused the application to fail to compile.
+' ------------------------------------------
+
 Function IsLoaded(ByVal strFormName As String) As Integer
 ' From Northwind sample database:
 ' Returns True if the specified form is open in Form view or Datasheet view.
@@ -153,32 +160,6 @@ Dim frm As Form
         Application.Assistant.Help
     End If
 End Function
-
-Public Sub FindMatch(rstTemp As Recordset, _
-    strFind As String)
-
-    Dim varBookmark As Variant
-    Dim strMessage As String
-
-    With rstTemp
-        ' Store current record location.
-        varBookmark = .Bookmark
-        .FindFirst strFind
-
-        ' If Find method fails, notify user and return to the
-        ' last current record.
-        If .NoMatch Then
-            strMessage = _
-                "Not found! Returning to current record." & _
-                vbCr & vbCr & "NoMatch = " & .NoMatch
-
-MsgBox strMessage
-            .Bookmark = varBookmark
-        End If
-
-    End With
-
-End Sub
 
 Public Function FileExists(varFile As Variant) As Boolean
 'Return whether a file exists
@@ -479,10 +460,10 @@ Loop
 GetFileName = strFilePath
 End Function
 
-Public Function FileIsReadOnly(strFileName As String) As Boolean
+Public Function FileIsReadOnly(strFilename As String) As Boolean
 On Error GoTo Err_FileIsReadOnly
 
-FileIsReadOnly = ((GetAttr(strFileName) And vbReadOnly) <> 0)
+FileIsReadOnly = ((GetAttr(strFilename) And vbReadOnly) <> 0)
 
 Exit_FileIsReadOnly:
     Exit Function
@@ -490,7 +471,7 @@ Exit_FileIsReadOnly:
 Err_FileIsReadOnly:
     Select Case Err.Number
         Case 76  'file not found
-            MsgBox "Unable to locate file " & strFileName & "."
+            MsgBox "Unable to locate file " & strFilename & "."
         Case Else
             MsgBox Err.Number & " - " & Err.Description
             Resume Exit_FileIsReadOnly
@@ -588,12 +569,12 @@ strNewList = DelimiterCleanup(strListMain, strDelimiter)
 ListCompare = strNewList
 End Function
 
-Public Function UnrecognizedDatabaseFormat(strFileName As String) As Boolean
+Public Function UnrecognizedDatabaseFormat(strFilename As String) As Boolean
 Dim db As Database
 
 On Error GoTo Err_UnrecognizedDatabaseFormat
 
-Set db = OpenDatabase(strFileName)
+Set db = OpenDatabase(strFilename)
 
 UnrecognizedDatabaseFormat = False
 
@@ -777,53 +758,6 @@ Else
     ListItemGet = strOutput
 End If
 
-End Function
-
-Public Function TableNamesAndIndexes(Optional varFileType As Variant) As String
-Dim db As Database
-Dim tdf As TableDef
-Dim idx As index
-Dim fld As Field
-Dim rst As Recordset
-
-Set db = CurrentDb
-
-If IsMissing(varFileType) Then
-    For Each tdf In db.tabledefs
-        If Not Left(tdf.name, 4) = "MSys" Then
-            Debug.Print "Table: " & tdf.name
-            For Each idx In tdf.Indexes
-                Debug.Print vbTab & "Index: " & idx.name
-                For Each fld In idx.Fields
-                    Debug.Print vbTab & vbTab & "Field: " & fld.name
-                Next fld
-            Next idx
-        End If
-    Next tdf
-Else
-    Set rst = db.OpenRecordset("SELECT LinkTableName FROM tblLinkedTables WHERE LinkCategory='" & varFileType & "' ORDER BY LinkTableName;", dbOpenForwardOnly)
-    
-    Do Until rst.EOF
-        Set tdf = db.tabledefs(rst!LinkTableName)
-        Debug.Print "Table: " & tdf.name
-        For Each idx In tdf.Indexes
-            Debug.Print vbTab & "Index: " & idx.name
-            For Each fld In idx.Fields
-                Debug.Print vbTab & vbTab & "Field: " & fld.name
-            Next fld
-        Next idx
-        rst.MoveNext
-    Loop
-End If
-
-On Error Resume Next
-
-rst.Close
-Set rst = Nothing
-Set fld = Nothing
-Set idx = Nothing
-Set tdf = Nothing
-Set db = Nothing
 End Function
 
 Public Function CorrectText(strInputText As String, Optional strDelimiter As String = "'") As String
