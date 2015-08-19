@@ -3,7 +3,6 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =124
@@ -14,10 +13,10 @@ Begin Form
     Width =10080
     DatasheetFontHeight =9
     ItemSuffix =22
-    Left =1575
-    Top =300
-    Right =11640
-    Bottom =1800
+    Left =285
+    Top =1575
+    Right =10605
+    Bottom =3045
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x996fa5868b0fe340
@@ -26,6 +25,12 @@ Begin Form
     Caption ="fsub_Soil_Profile"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
+    PrtMip = Begin
+        0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
+        0x010000006801000000000000a10700000100000001000000
+    End
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -35,54 +40,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -92,9 +108,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =240
@@ -167,6 +185,7 @@ Begin Form
                     Name ="Soil_Profile_ID"
                     ControlSource ="Soil_Profile_ID"
                     StatusBarText ="Unique record identifier"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -182,6 +201,7 @@ Begin Form
                     ControlSource ="Location_ID"
                     StatusBarText ="M. Link to tbl_Locations (Loc_ID)"
                     FontName ="Tahoma"
+
                 End
                 Begin TextBox
                     EnterKeyBehavior = NotDefault
@@ -198,6 +218,7 @@ Begin Form
                     ControlSource ="Texture"
                     StatusBarText ="Soil texture"
                     FontName ="Tahoma"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -215,6 +236,7 @@ Begin Form
                     RowSource ="SELECT tlu_Profile_Depth.Depth FROM tlu_Profile_Depth; "
                     ColumnWidths ="840"
                     FontName ="Tahoma"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -234,6 +256,7 @@ Begin Form
                         "; "
                     ColumnWidths ="900;1185"
                     FontName ="Tahoma"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -252,6 +275,7 @@ Begin Form
                     RowSource ="SELECT tlu_Effervescence.Effervescence FROM tlu_Effervescence; "
                     ColumnWidths ="885"
                     FontName ="Tahoma"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -268,8 +292,10 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT tlu_Rock_Frag_Size.Size FROM tlu_Rock_Frag_Size; "
                     ColumnWidths ="795"
+
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =9180
                     Top =60
@@ -281,6 +307,11 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
                     FontName ="Tahoma"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

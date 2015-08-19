@@ -14,10 +14,10 @@ Begin Form
     Width =10080
     DatasheetFontHeight =9
     ItemSuffix =22
-    Left =2070
-    Top =300
-    Right =12885
-    Bottom =2535
+    Left =600
+    Top =780
+    Right =11415
+    Bottom =2985
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xfac8c09cb286e340
@@ -25,10 +25,16 @@ Begin Form
     RecordSource ="tbl_Monument"
     Caption ="fsub_FW_Monument"
     DatasheetFontName ="Arial"
+    PrtMip = Begin
+        0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
+        0x010000006801000000000000a10700000100000001000000
+    End
     AllowDatasheetView =0
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    FilterOnLoad =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -38,54 +44,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -95,9 +112,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =300
@@ -185,6 +204,11 @@ Begin Form
                     Name ="ButtonLookup"
                     Caption ="Lookup"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -196,6 +220,11 @@ Begin Form
                     Name ="ButtonUnknown"
                     Caption ="Unknown"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -216,6 +245,7 @@ Begin Form
                     Name ="Monument_ID"
                     ControlSource ="Monument_ID"
                     StatusBarText ="Master identifier"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -229,6 +259,7 @@ Begin Form
                     Name ="Tag_No"
                     ControlSource ="Tag_No"
                     StatusBarText ="F/W Tag number of monument tree"
+
                 End
                 Begin TextBox
                     DecimalPlaces =1
@@ -243,6 +274,7 @@ Begin Form
                     Name ="DBH"
                     ControlSource ="DBH"
                     StatusBarText ="F/W Diameter at breast height iin centimeters"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -256,6 +288,7 @@ Begin Form
                     Name ="Bearing"
                     ControlSource ="Bearing"
                     StatusBarText ="F/W Bearing from monument tree to plot corner in degrees"
+
                 End
                 Begin TextBox
                     DecimalPlaces =1
@@ -270,6 +303,7 @@ Begin Form
                     Name ="Rebar_Distance"
                     ControlSource ="Rebar_Distance"
                     StatusBarText ="F/W Distance from center point of minument tree to plot corner in meters"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -286,6 +320,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT tlu_Monument_Code.Monument_Code FROM tlu_Monument_Code; "
                     ColumnWidths ="615"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -305,6 +340,7 @@ Begin Form
                         "py.Utah_Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is N"
                         "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code; "
                     ColumnWidths ="0;2160;4320"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -317,8 +353,10 @@ Begin Form
                     Name ="Location_ID"
                     ControlSource ="Location_ID"
                     StatusBarText ="Foreign key to tbl_Locations"
+
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =9180
                     Top =60
@@ -329,6 +367,11 @@ Begin Form
                     Name ="ButtonDelete"
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

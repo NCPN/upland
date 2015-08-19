@@ -1588,33 +1588,33 @@ Private Sub Form_Load()
     DoCmd.Restore
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me!Location_ID & "'")
     If Not IsNull(Veg_Type) And (Veg_Type = "grassland/shrubland") Then
-      Me!fsub_FW_Monument.Form.Visible = False
+      Me!fsub_FW_Monument.Form.visible = False
     End If
     If Not IsNull(Veg_Type) And ((Veg_Type = "oak scrub") Or (Veg_Type = "grassland/shrubland")) Then
-      Me!SlopeA.Visible = False
-      Me!SlopeB.Visible = False
-      Me!SlopeC.Visible = False
-      Me!SlopeD.Visible = False
-      Me!SlopeAUD.Visible = False
-      Me!SlopeBUD.Visible = False
-      Me!SlopeCUD.Visible = False
-      Me!SlopeDUD.Visible = False
-      Me!LabelSlope.Visible = False
-      Me!Fuels_Transect_Label.Visible = False  ' Hide fuels fields
-      Me!Bearing_A_Label.Visible = False
-      Me!Bearing_B_Label.Visible = False
-      Me!Bearing_C_Label.Visible = False
-      Me!Bearing_D_Label.Visible = False
-      Me!Slope_A_Label.Visible = False
-      Me!Slope_B_Label.Visible = False
-      Me!Bearing_A.Visible = False
-      Me!Bearing_B.Visible = False
-      Me!Bearing_C.Visible = False
-      Me!Bearing_D.Visible = False
-      Me!Slope_A.Visible = False
-      Me!Slope_B.Visible = False
-      Me!Slope_C.Visible = False
-      Me!Slope_D.Visible = False
+      Me!SlopeA.visible = False
+      Me!SlopeB.visible = False
+      Me!SlopeC.visible = False
+      Me!SlopeD.visible = False
+      Me!SlopeAUD.visible = False
+      Me!SlopeBUD.visible = False
+      Me!SlopeCUD.visible = False
+      Me!SlopeDUD.visible = False
+      Me!LabelSlope.visible = False
+      Me!Fuels_Transect_Label.visible = False  ' Hide fuels fields
+      Me!Bearing_A_Label.visible = False
+      Me!Bearing_B_Label.visible = False
+      Me!Bearing_C_Label.visible = False
+      Me!Bearing_D_Label.visible = False
+      Me!Slope_A_Label.visible = False
+      Me!Slope_B_Label.visible = False
+      Me!Bearing_A.visible = False
+      Me!Bearing_B.visible = False
+      Me!Bearing_C.visible = False
+      Me!Bearing_D.visible = False
+      Me!Slope_A.visible = False
+      Me!Slope_B.visible = False
+      Me!Slope_C.visible = False
+      Me!Slope_D.visible = False
     End If
 '  Forms![frm_Plot_Revisit]![fsub_FW_Monument].Form.AllowEdits = False
 End Sub

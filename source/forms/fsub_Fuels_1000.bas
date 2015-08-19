@@ -14,10 +14,10 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =705
-    Top =255
-    Right =14370
-    Bottom =8100
+    Left =825
+    Top =540
+    Right =14490
+    Bottom =8355
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x99c2faf85388e340
@@ -34,6 +34,8 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    FilterOnLoad =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -43,54 +45,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -100,9 +113,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =840
@@ -192,6 +207,7 @@ Begin Form
                     Name ="Fuels_1000_ID"
                     ControlSource ="Fuels_1000_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -206,6 +222,7 @@ Begin Form
                     Name ="Event_ID"
                     ControlSource ="Event_ID"
                     StatusBarText ="Foreign key to tbl_Events"
+
                 End
                 Begin TextBox
                     DecimalPlaces =1
@@ -223,6 +240,7 @@ Begin Form
                     StatusBarText ="Diameter to nearest .5 inch"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -239,8 +257,10 @@ Begin Form
                     RowSource ="\"sound\";\"rotten\";\"Not recorded\""
                     ColumnWidths ="1125"
                     OnKeyDown ="[Event Procedure]"
+
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =4680
                     Top =60
@@ -252,6 +272,11 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
                     FontName ="Tahoma"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -272,6 +297,7 @@ Begin Form
                     BeforeUpdate ="[Event Procedure]"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
+
                 End
             End
         End

@@ -1203,8 +1203,8 @@ Function fxnFormDefaults(strFormMode As String)
     Case "new"
     ' Modify the form properties to allow new records
         Me.cmdClose.SetFocus    ' Must do this before turning off new button
-        Me.cmdUndo.Visible = True
-        Me.cmdSubmit.Visible = True
+        Me.cmdUndo.visible = True
+        Me.cmdSubmit.visible = True
         Me.cmdEdit.Enabled = False
         Me.cmdNew.Enabled = False
         Me.AllowAdditions = True
@@ -1218,8 +1218,8 @@ Function fxnFormDefaults(strFormMode As String)
     Case "edit"
     ' Modify the form properties to allow edits
         Me.cmdClose.SetFocus    ' Must do this before turning off edit button
-        Me.cmdUndo.Visible = True
-        Me.cmdSubmit.Visible = True
+        Me.cmdUndo.visible = True
+        Me.cmdSubmit.visible = True
         Me.cmdEdit.Enabled = False
         Me.cmdNew.Enabled = False
         Me.AllowAdditions = True
@@ -1231,8 +1231,8 @@ Function fxnFormDefaults(strFormMode As String)
     Case "view"
     ' Set the form to the default form view
         Me.cmdClose.SetFocus    ' Must do this before disabling ctls
-        Me.cmdUndo.Visible = False
-        Me.cmdSubmit.Visible = False
+        Me.cmdUndo.visible = False
+        Me.cmdSubmit.visible = False
         Me.cmdEdit.Enabled = True
         Me.cmdNew.Enabled = True
         Me.DataEntry = False

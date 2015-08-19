@@ -277,7 +277,7 @@ On Error GoTo Err_Button_Print
     Set objWord = New Word.Application
     objWord.Documents.Add _
      Application.CurrentProject.Path & "\Plot_Establishment.dot"
-    objWord.Visible = True
+    objWord.visible = True
     
     ' Build main SQL string for details
      

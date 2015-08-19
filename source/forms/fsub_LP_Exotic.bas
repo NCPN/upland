@@ -14,8 +14,8 @@ Begin Form
     ItemSuffix =28
     Left =270
     Top =210
-    Right =13575
-    Bottom =4110
+    Right =13830
+    Bottom =4080
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x45e116d57156e340
@@ -228,6 +228,7 @@ Begin Form
 
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =3600
                     Top =60

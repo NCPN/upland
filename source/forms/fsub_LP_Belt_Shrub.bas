@@ -12,10 +12,10 @@ Begin Form
     Width =11880
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =1860
-    Top =5715
-    Right =14025
-    Bottom =9270
+    Left =1545
+    Top =3495
+    Right =13710
+    Bottom =7020
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -413,6 +413,7 @@ Begin Form
 
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =10080
                     Top =60
