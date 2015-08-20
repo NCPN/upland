@@ -13,11 +13,11 @@ Begin Report
     GridY =24
     Width =10080
     DatasheetFontHeight =9
-    ItemSuffix =38
-    Left =705
-    Top =645
-    Right =12570
-    Bottom =7830
+    ItemSuffix =40
+    Left =936
+    Top =516
+    Right =10200
+    Bottom =9036
     DatasheetGridlinesColor =12632256
     Filter ="([Unit_Code] = 'ARCH' AND [Plot_Id] = 1AND [Visit_Year] = '2011')"
     RecSrcDt = Begin
@@ -30,6 +30,8 @@ Begin Report
         0x40020000d002000040020000d002000000000000602700006801000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    FilterOnLoad =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -41,12 +43,18 @@ Begin Report
         End
         Begin Rectangle
             BackStyle =0
+            BorderLineStyle =0
+        End
+        Begin Line
+            BorderLineStyle =0
         End
         Begin Image
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CheckBox
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
@@ -54,6 +62,7 @@ Begin Report
             FELineBreak = NotDefault
             OldBorderStyle =0
             TextFontFamily =18
+            BorderLineStyle =0
             BackStyle =0
             FontName ="Times New Roman"
             AsianLineBreak =255
@@ -61,16 +70,19 @@ Begin Report
         Begin ListBox
             TextFontFamily =18
             OldBorderStyle =0
+            BorderLineStyle =0
             FontName ="Times New Roman"
         End
         Begin ComboBox
             OldBorderStyle =0
             TextFontFamily =18
+            BorderLineStyle =0
             BackStyle =0
             FontName ="Times New Roman"
         End
         Begin Subform
             OldBorderStyle =0
+            BorderLineStyle =0
         End
         Begin BreakLevel
             GroupHeader = NotDefault
@@ -89,7 +101,7 @@ Begin Report
         End
         Begin FormHeader
             KeepTogether = NotDefault
-            Height =900
+            Height =912
             Name ="ReportHeader"
             Begin
                 Begin Label
@@ -132,6 +144,7 @@ Begin Report
                     Name ="Unit_Code"
                     ControlSource ="Unit_Code"
                     StatusBarText ="Park Code."
+
                     Begin
                         Begin Label
                             Left =60
@@ -160,6 +173,7 @@ Begin Report
                     Name ="Plot_ID"
                     ControlSource ="Plot_ID"
                     StatusBarText ="Plot identifier"
+
                     Begin
                         Begin Label
                             Left =60
@@ -176,7 +190,7 @@ Begin Report
         End
         Begin BreakHeader
             KeepTogether = NotDefault
-            Height =720
+            Height =780
             BreakLevel =2
             Name ="GroupHeader2"
             Begin
@@ -189,8 +203,9 @@ Begin Report
                     Height =300
                     FontSize =10
                     Name ="Quad"
-                    ControlSource ="Quad"
+                    ControlSource ="=IIf(IsNull([tbxQuadCheck]),\"-\",[tbxQuadCheck])"
                     StatusBarText ="Quadrat number"
+
                     Begin
                         Begin Label
                             Left =60
@@ -283,6 +298,27 @@ Begin Report
                     Width =9900
                     Name ="Line36"
                 End
+                Begin TextBox
+                    Visible = NotDefault
+                    Enabled = NotDefault
+                    TabStop = NotDefault
+                    DecimalPlaces =0
+                    IMESentenceMode =3
+                    Left =1200
+                    Top =60
+                    Width =420
+                    Height =300
+                    FontSize =10
+                    TabIndex =1
+                    Name ="tbxQuadCheck"
+                    ControlSource ="Quad"
+                    StatusBarText ="Quadrat number"
+
+                    LayoutCachedLeft =1200
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =1620
+                    LayoutCachedHeight =360
+                End
             End
         End
         Begin Section
@@ -300,6 +336,7 @@ Begin Report
                     Name ="Tag_No"
                     ControlSource ="Tag_No"
                     StatusBarText ="Tag number"
+
                 End
                 Begin TextBox
                     TextAlign =2
@@ -312,6 +349,7 @@ Begin Report
                     Name ="Species"
                     ControlSource ="Species"
                     StatusBarText ="Species code"
+
                 End
                 Begin TextBox
                     TextAlign =1
@@ -325,6 +363,7 @@ Begin Report
                     Name ="Utah_Species"
                     ControlSource ="Utah_Species"
                     StatusBarText ="Utah Species (Welsh et al 2003)"
+
                 End
                 Begin TextBox
                     DecimalPlaces =1
@@ -338,6 +377,7 @@ Begin Report
                     Name ="DBH"
                     ControlSource ="DBH"
                     StatusBarText ="Diameter at breast height in centimeters"
+
                 End
                 Begin TextBox
                     TextAlign =2
@@ -350,6 +390,7 @@ Begin Report
                     Name ="Crown_Class"
                     ControlSource ="Crown_Class"
                     StatusBarText ="Crown class"
+
                 End
                 Begin TextBox
                     IMESentenceMode =3
@@ -362,6 +403,7 @@ Begin Report
                     Name ="Class_Description"
                     ControlSource ="Class_Description"
                     StatusBarText ="Health class description"
+
                 End
                 Begin TextBox
                     IMESentenceMode =3
@@ -373,6 +415,7 @@ Begin Report
                     Name ="Notes"
                     ControlSource ="Notes"
                     StatusBarText ="Notes about any significant damage to a living tree"
+
                 End
                 Begin TextBox
                     IMESentenceMode =3
@@ -384,6 +427,7 @@ Begin Report
                     Name ="DType"
                     ControlSource ="DType"
                     StatusBarText ="Diameter type indicator - dbh or DRC"
+
                 End
             End
         End
@@ -401,6 +445,7 @@ Begin Report
                     Name ="Text21"
                     ControlSource ="=Now()"
                     Format ="Long Date"
+
                 End
                 Begin TextBox
                     TextAlign =3
@@ -412,6 +457,7 @@ Begin Report
                     TabIndex =1
                     Name ="Text22"
                     ControlSource ="=\"Page \" & [Page] & \" of \" & [Pages]"
+
                 End
                 Begin Line
                     Width =9360

@@ -366,19 +366,19 @@ Option Compare Database
 
 Private Sub Disturbance_Location_AfterUpdate()
   If IsNull(Me!Disturbance_Location) Or Me!Disturbance_Location = "Onsite" Then
-    Me!Disturbance_Position.visible = True
-    Me!Disturbance_Distance.visible = False
-    Me!Disturbance_Direction.visible = False
+    Me!Disturbance_Position.Visible = True
+    Me!Disturbance_Distance.Visible = False
+    Me!Disturbance_Direction.Visible = False
   ElseIf Me!Disturbance_Location = "offsite-upslope" Then
-    Me!Disturbance_Position.visible = False
-    Me!Disturbance_Distance.visible = True
+    Me!Disturbance_Position.Visible = False
+    Me!Disturbance_Distance.Visible = True
     Me!Distance_Label.Caption = "Distance Upslope from Macroplot (m)"
-    Me!Disturbance_Direction.visible = False
+    Me!Disturbance_Direction.Visible = False
   Else
-    Me!Disturbance_Position.visible = False
-    Me!Disturbance_Distance.visible = True
+    Me!Disturbance_Position.Visible = False
+    Me!Disturbance_Distance.Visible = True
     Me!Distance_Label.Caption = "Distance from Macroplot (m)"
-    Me!Disturbance_Direction.visible = True
+    Me!Disturbance_Direction.Visible = True
   End If
 End Sub
 
@@ -405,18 +405,18 @@ End Sub
 
 Private Sub Form_Current()
   If IsNull(Me!Disturbance_Location) Or Me!Disturbance_Location = "Onsite" Then
-    Me!Disturbance_Position.visible = True
-    Me!Disturbance_Distance.visible = False
-    Me!Disturbance_Direction.visible = False
+    Me!Disturbance_Position.Visible = True
+    Me!Disturbance_Distance.Visible = False
+    Me!Disturbance_Direction.Visible = False
   ElseIf Me!Disturbance_Location = "offsite-upslope" Then
-    Me!Disturbance_Position.visible = False
-    Me!Disturbance_Distance.visible = True
+    Me!Disturbance_Position.Visible = False
+    Me!Disturbance_Distance.Visible = True
     Me!Distance_Label.Caption = "Distance Upslope from Macroplot (m)"
-    Me!Disturbance_Direction.visible = False
+    Me!Disturbance_Direction.Visible = False
   Else
-    Me!Disturbance_Position.visible = False
-    Me!Disturbance_Distance.visible = True
+    Me!Disturbance_Position.Visible = False
+    Me!Disturbance_Distance.Visible = True
     Me!Distance_Label.Caption = "Distance from Macroplot (m)"
-    Me!Disturbance_Direction.visible = True
+    Me!Disturbance_Direction.Visible = True
   End If
 End Sub

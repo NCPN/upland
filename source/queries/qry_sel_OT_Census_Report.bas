@@ -1,6 +1,6 @@
 ﻿Operation =1
 Option =0
-Where ="(((tbl_OT_Census.Quad) Is Not Null) AND ((tbl_OT_Census.Crown_Health)<>6))"
+Where ="(((tbl_OT_Census.Crown_Health)<>6))"
 Begin InputTables
     Name ="tbl_Locations"
     Name ="tbl_Events"
@@ -113,21 +113,17 @@ Begin
         dbText "Name" ="tbl_OT_Census.DType"
         dbLong "AggregateType" ="-1"
     End
-    Begin
-        dbText "Name" ="tbl_OT_Census.Crown_Health"
-        dbLong "AggregateType" ="-1"
-    End
 End
 Begin
     State =0
-    Left =47
-    Top =69
-    Right =1308
-    Bottom =393
+    Left =78
+    Top =169
+    Right =923
+    Bottom =670
     Left =-1
     Top =-1
     Right =1229
-    Bottom =127
+    Bottom =110
     Left =0
     Top =0
     ColumnsShown =539

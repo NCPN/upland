@@ -305,8 +305,8 @@ Err_ButtonClose_Click:
 End Sub
 
 Private Sub Form_Close()
-  Forms!frm_Data_Entry.visible = True
-  Forms!frm_Data_Gateway.visible = True
+  Forms!frm_Data_Entry.Visible = True
+  Forms!frm_Data_Gateway.Visible = True
 End Sub
 
 Private Sub Form_Load()
@@ -329,8 +329,8 @@ Private Sub Form_Load()
     RevisitComments.Close
     Set RevisitComments = Nothing
   End If
-  Forms!frm_Data_Entry.visible = False
-  Forms!frm_Data_Gateway.visible = False
+  Forms!frm_Data_Entry.Visible = False
+  Forms!frm_Data_Gateway.Visible = False
   
 End Sub
 

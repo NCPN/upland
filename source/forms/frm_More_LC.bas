@@ -25,9 +25,9 @@ Begin Form
     DatasheetFontHeight =9
     ItemSuffix =59
     Left =5340
-    Top =3735
-    Right =10125
-    Bottom =8625
+    Top =3732
+    Right =10128
+    Bottom =8628
     DatasheetGridlinesColor =12632256
     Filter ="[Intercept_ID]='{9EF6C165-5AFC-42C5-BB3F-B92C765F933B}'"
     RecSrcDt = Begin
@@ -224,10 +224,10 @@ Begin Form
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -600,10 +600,10 @@ Begin Form
                     Caption ="Master Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -616,10 +616,10 @@ Begin Form
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -733,7 +733,7 @@ End Function
 ' Adapted:      -
 ' Revisions:
 '   RD  - 2/26/2009 - initial version
-'   BLC - 5/27/2015 - fixed bug causing top canopy check (exiting procedure vs. loop),
+'   BLC - 8/13/2015 - fixed bug causing top canopy check (exiting procedure vs. loop),
 '                     updated error handling & added documentation
 ' ---------------------------------
 Public Function TestMoreDuplicateSpecies(Species As String, SpeciesIndex As Integer, AnimationState As Boolean) As Boolean

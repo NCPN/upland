@@ -14,10 +14,10 @@ Begin Form
     Width =12240
     DatasheetFontHeight =9
     ItemSuffix =35
-    Left =255
-    Top =75
+    Left =252
+    Top =72
     Right =13920
-    Bottom =7890
+    Bottom =7872
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x12768bfd3188e340
@@ -237,10 +237,10 @@ Begin Form
                     Caption ="Master Lookup"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -252,10 +252,10 @@ Begin Form
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Label
                     OverlapFlags =85
@@ -448,10 +448,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     RowSourceTypeInt =1
@@ -645,8 +645,8 @@ Private Sub Form_Load()
     
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent!Location_ID & "'")
     If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
-      Me!Crown_Class.visible = False
-      Me!Crown_Class_Label.visible = False
+      Me!Crown_Class.Visible = False
+      Me!Crown_Class_Label.Visible = False
     End If
 End Sub
 Private Sub ButtonDelete_Click()

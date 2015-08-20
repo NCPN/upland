@@ -5,6 +5,7 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =0
@@ -17,10 +18,10 @@ Begin Form
     Width =7380
     DatasheetFontHeight =9
     ItemSuffix =16
-    Left =270
-    Top =210
-    Right =14595
-    Bottom =8370
+    Left =5244
+    Top =1716
+    Right =12384
+    Bottom =3000
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x1dcf8f960f51e340
@@ -31,6 +32,8 @@ Begin Form
     BeforeInsert ="[Event Procedure]"
     OnOpen ="[Event Procedure]"
     DatasheetFontName ="Arial"
+    FilterOnLoad =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -40,54 +43,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -97,9 +111,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =0
@@ -122,6 +138,7 @@ Begin Form
                     Name ="Event_ID"
                     ControlSource ="Event_ID"
                     StatusBarText ="M. Event identifier (Event_ID)"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -135,6 +152,7 @@ Begin Form
                     Name ="Location_ID"
                     ControlSource ="Location_ID"
                     StatusBarText ="M. Link to tbl_Locations (Loc_ID)"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -148,6 +166,7 @@ Begin Form
                     Name ="version_key_number"
                     ControlSource ="version_key_number"
                     StatusBarText ="Master protocol version key"
+
                 End
                 Begin TextBox
                     OverlapFlags =247
@@ -163,6 +182,7 @@ Begin Form
                     Format ="Short Date"
                     StatusBarText ="M. Starting date for the event (Start_Date) - date of revisit."
                     InputMask ="99/99/0000;0;_"
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -190,6 +210,7 @@ Begin Form
                     Name ="Comments"
                     ControlSource ="Comments"
                     StatusBarText ="Plot revisit comments."
+
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -221,6 +242,11 @@ Begin Form
                     RowSource ="SELECT tlu_Contacts.Contact_ID, tlu_Contacts.Last_Name, tlu_Contacts.First_Name "
                         "FROM tlu_Contacts WHERE (((tlu_Contacts.Active)=1)); "
                     ColumnWidths ="0;1440;1440"
+
+                    LayoutCachedLeft =3960
+                    LayoutCachedTop =180
+                    LayoutCachedWidth =5580
+                    LayoutCachedHeight =420
                     Begin
                         Begin Label
                             OverlapFlags =247
@@ -232,6 +258,10 @@ Begin Form
                             FontWeight =700
                             Name ="Observer_Label"
                             Caption ="Observer"
+                            LayoutCachedLeft =3060
+                            LayoutCachedTop =180
+                            LayoutCachedWidth =3900
+                            LayoutCachedHeight =425
                         End
                     End
                 End
@@ -245,6 +275,7 @@ Begin Form
                     Height =180
                     TabIndex =6
                     Name ="Event_Save"
+
                 End
             End
         End

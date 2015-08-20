@@ -8,6 +8,7 @@ Begin Form
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
+    FilterOn = NotDefault
     DefaultView =0
     ScrollBars =0
     TabularFamily =127
@@ -18,12 +19,12 @@ Begin Form
     Width =10800
     DatasheetFontHeight =9
     ItemSuffix =53
-    Left =5832
-    Top =3108
-    Right =16632
+    Left =5988
+    Top =2064
+    Right =16788
     Bottom =11172
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='{7EA92962-EF5B-4753-A542-6A754C5EEB62}'"
+    Filter ="[Location_ID]='{0A0952FE-C4D0-49C5-B3DA-72D48B7EFC2B}'"
     RecSrcDt = Begin
         0x9becc7edac0fe340
     End
@@ -1485,6 +1486,7 @@ End Sub
 '   BLC - 8/11/2015 - fixed bug improperly populating plot centroid UTMs with
 '                     tbl_Location_History deprecated Plot_E_Coord & Plot_N_Coord vs.
 '                     E_Coord & N_Coord values, updated error handling & added documentation
+'   BLC - 8/19/2015 - fixed bug improperly populating recorder (Me!fsub_Revisit.Form!Observer vs. Me!Recorder)
 ' ---------------------------------
 Private Sub Form_BeforeUpdate(Cancel As Integer)
     On Error GoTo Err_Handler
@@ -1512,7 +1514,11 @@ Private Sub Form_BeforeUpdate(Cancel As Integer)
         History!Location_History_ID = fxnGUIDGen
         History!Location_ID = Me!Location_ID
         History!Modify_Date = Now()        ' Date of update
-        History!Recorder = Me!Recorder     ' Person committing update
+        
+        'populate individual committing update
+        History!Recorder = Me!fsub_Revisit.Form!Observer
+        'History!Recorder = Me!Recorder     ' Person committing update
+        
         History!Unit_Code = Me!Unit_Code
         History!Plot_ID = Me!Plot_ID
         
@@ -1588,33 +1594,33 @@ Private Sub Form_Load()
     DoCmd.Restore
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me!Location_ID & "'")
     If Not IsNull(Veg_Type) And (Veg_Type = "grassland/shrubland") Then
-      Me!fsub_FW_Monument.Form.visible = False
+      Me!fsub_FW_Monument.Form.Visible = False
     End If
     If Not IsNull(Veg_Type) And ((Veg_Type = "oak scrub") Or (Veg_Type = "grassland/shrubland")) Then
-      Me!SlopeA.visible = False
-      Me!SlopeB.visible = False
-      Me!SlopeC.visible = False
-      Me!SlopeD.visible = False
-      Me!SlopeAUD.visible = False
-      Me!SlopeBUD.visible = False
-      Me!SlopeCUD.visible = False
-      Me!SlopeDUD.visible = False
-      Me!LabelSlope.visible = False
-      Me!Fuels_Transect_Label.visible = False  ' Hide fuels fields
-      Me!Bearing_A_Label.visible = False
-      Me!Bearing_B_Label.visible = False
-      Me!Bearing_C_Label.visible = False
-      Me!Bearing_D_Label.visible = False
-      Me!Slope_A_Label.visible = False
-      Me!Slope_B_Label.visible = False
-      Me!Bearing_A.visible = False
-      Me!Bearing_B.visible = False
-      Me!Bearing_C.visible = False
-      Me!Bearing_D.visible = False
-      Me!Slope_A.visible = False
-      Me!Slope_B.visible = False
-      Me!Slope_C.visible = False
-      Me!Slope_D.visible = False
+      Me!SlopeA.Visible = False
+      Me!SlopeB.Visible = False
+      Me!SlopeC.Visible = False
+      Me!SlopeD.Visible = False
+      Me!SlopeAUD.Visible = False
+      Me!SlopeBUD.Visible = False
+      Me!SlopeCUD.Visible = False
+      Me!SlopeDUD.Visible = False
+      Me!LabelSlope.Visible = False
+      Me!Fuels_Transect_Label.Visible = False  ' Hide fuels fields
+      Me!Bearing_A_Label.Visible = False
+      Me!Bearing_B_Label.Visible = False
+      Me!Bearing_C_Label.Visible = False
+      Me!Bearing_D_Label.Visible = False
+      Me!Slope_A_Label.Visible = False
+      Me!Slope_B_Label.Visible = False
+      Me!Bearing_A.Visible = False
+      Me!Bearing_B.Visible = False
+      Me!Bearing_C.Visible = False
+      Me!Bearing_D.Visible = False
+      Me!Slope_A.Visible = False
+      Me!Slope_B.Visible = False
+      Me!Slope_C.Visible = False
+      Me!Slope_D.Visible = False
     End If
 '  Forms![frm_Plot_Revisit]![fsub_FW_Monument].Form.AllowEdits = False
 End Sub
