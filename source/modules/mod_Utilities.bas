@@ -365,9 +365,9 @@ For Each ctl In frm.Controls
     If ctl.tag = strTag Then
         Select Case strOperation
             Case "Hide"
-                ctl.visible = False
+                ctl.Visible = False
             Case "Unhide"
-                ctl.visible = True
+                ctl.Visible = True
             Case "Disable"
                 ctl.Enabled = False
             Case "Enable"

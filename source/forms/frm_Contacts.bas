@@ -1203,12 +1203,12 @@ Function fxnFormDefaults(strFormMode As String)
     Case "new"
     ' Modify the form properties to allow new records
         Me.cmdClose.SetFocus    ' Must do this before turning off new button
-        Me.cmdUndo.visible = True
-        Me.cmdSubmit.visible = True
+        Me.cmdUndo.Visible = True
+        Me.cmdSubmit.Visible = True
         Me.cmdEdit.Enabled = False
         Me.cmdNew.Enabled = False
         Me.AllowAdditions = True
-        Me.Detail.BackColor = 12574431 ' haystack
+        Me.Detail.backcolor = 12574431 ' haystack
         DoCmd.GoToRecord , , acNewRec
         Me.txtFirstName.SetFocus    ' Needed on new record before disabling ctls
     ' Unlock fields
@@ -1218,12 +1218,12 @@ Function fxnFormDefaults(strFormMode As String)
     Case "edit"
     ' Modify the form properties to allow edits
         Me.cmdClose.SetFocus    ' Must do this before turning off edit button
-        Me.cmdUndo.visible = True
-        Me.cmdSubmit.visible = True
+        Me.cmdUndo.Visible = True
+        Me.cmdSubmit.Visible = True
         Me.cmdEdit.Enabled = False
         Me.cmdNew.Enabled = False
         Me.AllowAdditions = True
-        Me.Detail.BackColor = 12574431 ' haystack
+        Me.Detail.backcolor = 12574431 ' haystack
     ' Unlock fields
         bLockState = False
         GoTo Change_Ctl_State
@@ -1231,13 +1231,13 @@ Function fxnFormDefaults(strFormMode As String)
     Case "view"
     ' Set the form to the default form view
         Me.cmdClose.SetFocus    ' Must do this before disabling ctls
-        Me.cmdUndo.visible = False
-        Me.cmdSubmit.visible = False
+        Me.cmdUndo.Visible = False
+        Me.cmdSubmit.Visible = False
         Me.cmdEdit.Enabled = True
         Me.cmdNew.Enabled = True
         Me.DataEntry = False
         Me.AllowAdditions = False
-        Me.Detail.BackColor = 14541277 ' light blue (default)
+        Me.Detail.backcolor = 14541277 ' light blue (default)
     ' Lock fields
         bLockState = True
         GoTo Change_Ctl_State

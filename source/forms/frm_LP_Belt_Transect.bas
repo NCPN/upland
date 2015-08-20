@@ -18,10 +18,10 @@ Begin Form
     Width =13008
     DatasheetFontHeight =9
     ItemSuffix =67
-    Left =1215
-    Top =3870
-    Right =13920
-    Bottom =12240
+    Left =-150
+    Top =1530
+    Right =12555
+    Bottom =11175
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2518a6c77056e340
@@ -471,7 +471,6 @@ Begin Form
                             End
                         End
                         Begin Page
-                            Visible = NotDefault
                             OverlapFlags =215
                             Left =180
                             Top =945
@@ -763,7 +762,7 @@ Private Sub Form_Load()
   Dim Veg_Type As Variant
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent!Location_ID & "'")
     If Not IsNull(Veg_Type) And (Veg_Type = "woodland" Or Veg_Type = "grassland/shrubland") Then
-      Me!pgDensiometer.visible = False
+      Me!pgDensiometer.Visible = False
     End If
 '    Additional species tab visible for all plots 2/15/2011 RD
 '    If Not IsNull(Veg_Type) And (Veg_Type <> "forest") Then
@@ -772,24 +771,24 @@ Private Sub Form_Load()
 
 '    No species richness form unless CEBR or TICA plot 1  3/9/2012 RD
     If Me.Parent!Unit_Code = "CEBR" Then
-      Me!fsub_LP_Add_Species.visible = True
+      Me!fsub_LP_Add_Species.Visible = True
     ElseIf (Me.Parent!Unit_Code = "TICA") And (Me.Parent!Plot_ID = 1) Then
-      Me!fsub_LP_Add_Species.visible = True
+      Me!fsub_LP_Add_Species.Visible = True
     Else
-      Me!fsub_LP_Add_Species.visible = False
+      Me!fsub_LP_Add_Species.Visible = False
     End If
     
 '    Set up correct exotic species frequency form
     If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
-      Me!fsub_LP_Exotic_Frequency.Form.visible = False
-      Me!fsub_LP_Exotic_Freq_Oak.Form.visible = True
+      Me!fsub_LP_Exotic_Frequency.Form.Visible = False
+      Me!fsub_LP_Exotic_Freq_Oak.Form.Visible = True
  '     Me!fsub_LP_Add_Species.SetFocus  ' Set focus to richness tab so we can hide belt-shrub tab
       Me!Visit_Date.SetFocus
-      Me!pgBeltShrub.visible = False
-      Me!pgDensiometer.visible = False
+      Me!pgBeltShrub.Visible = False
+      Me!pgDensiometer.Visible = False
     Else
-      Me!fsub_LP_Exotic_Frequency.Form.visible = True
-      Me!fsub_LP_Exotic_Freq_Oak.Form.visible = False
+      Me!fsub_LP_Exotic_Frequency.Form.Visible = True
+      Me!fsub_LP_Exotic_Freq_Oak.Form.Visible = False
     End If
 
 End Sub
