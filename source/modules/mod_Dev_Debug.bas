@@ -470,9 +470,12 @@ End Sub
 Public Sub moduletest()
 
     'AddModules ("C:\__git-projects\dev_modules - Copy\")
-    AddModules "C:\__git-projects\vcs_modules\"
+    'AddModules "C:\__git-projects\vcs_modules\"
     'AddModules "Z:\_____LIB\dev\git_projects\vcs_modules\"
     
     'RemoveModules "VCS_"
+    
+    'run SQL query
+    DoCmd.OpenQuery "qry_Sp_Rpt_by_Park_Rollup"
     
 End Sub

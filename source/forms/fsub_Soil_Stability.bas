@@ -5,6 +5,7 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
+    KeyPreview = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =0
@@ -17,10 +18,9 @@ Begin Form
     Width =13680
     DatasheetFontHeight =9
     ItemSuffix =298
-    Left =300
-    Top =510
-    Right =14325
-    Bottom =8685
+    Top =30
+    Right =11610
+    Bottom =7215
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x49aadcf15012e340
@@ -33,6 +33,7 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    OnKeyDown ="[Event Procedure]"
     FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -2698,12 +2699,33 @@ Attribute VB_Exposed = False
 Option Compare Database
 Option Explicit
 
-Private Sub Comments_KeyDown(KeyCode As Integer, Shift As Integer)
-  ' Ignore Page Down and Page Up keys for they will cycle through records
-  Select Case KeyCode
-    Case 33, 34
-      KeyCode = 0
+' ---------------------------------
+' SUB:          Form_KeyDown
+' Description:  handles form's key down actions
+' Parameters:
+' Returns:      -
+' Assumptions:  -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, August 2015
+' Revisions:    BLC, 8/21/2014 - initial version
+' ---------------------------------
+Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+On Error GoTo Err_Handler
+
+    'capture ESC & let user determine if fields should be cleared
+    CaptureEscapeKey KeyCode
+    
+Exit_Sub:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_KeyDown[Form_fsub_Soil_Stability])"
     End Select
+    Resume Exit_Sub
 End Sub
 
 Private Sub Form_BeforeInsert(Cancel As Integer)
@@ -2739,6 +2761,7 @@ Err_Handler:
     MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
     Resume Exit_Procedure
 End Sub
+
 Private Sub ButtonPrevious_Click()
 On Error GoTo Err_ButtonPrevious_Click
 
@@ -2753,6 +2776,7 @@ Err_ButtonPrevious_Click:
     Resume Exit_ButtonPrevious_Click
     
 End Sub
+
 Private Sub ButtonNext_Click()
 On Error GoTo Err_ButtonNext_Click
 
@@ -2767,8 +2791,6 @@ Err_ButtonNext_Click:
     Resume Exit_ButtonNext_Click
     
 End Sub
-
-
 
 Private Sub Observer_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records
@@ -3371,6 +3393,14 @@ Private Sub T3915_Veg_KeyDown(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub Visit_Date_KeyDown(KeyCode As Integer, Shift As Integer)
+  ' Ignore Page Down and Page Up keys for they will cycle through records
+  Select Case KeyCode
+    Case 33, 34
+      KeyCode = 0
+    End Select
+End Sub
+
+Private Sub Comments_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records
   Select Case KeyCode
     Case 33, 34

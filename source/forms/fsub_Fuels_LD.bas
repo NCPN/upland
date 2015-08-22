@@ -6,6 +6,7 @@ Begin Form
     NavigationButtons = NotDefault
     AllowDeletions = NotDefault
     DividingLines = NotDefault
+    KeyPreview = NotDefault
     DefaultView =0
     ScrollBars =0
     ViewsAllowed =1
@@ -20,7 +21,7 @@ Begin Form
     ItemSuffix =140
     Left =705
     Top =255
-    Right =13845
+    Right =11430
     Bottom =6030
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
@@ -34,6 +35,7 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    OnKeyDown ="[Event Procedure]"
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
     AllowPivotTableView =0
@@ -2122,6 +2124,36 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
+
+' ---------------------------------
+' SUB:          Form_KeyDown
+' Description:  handles form's key down actions
+' Parameters:
+' Returns:      -
+' Assumptions:  -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, August 2015
+' Revisions:    BLC, 8/21/2014 - initial version
+' ---------------------------------
+Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+On Error GoTo Err_Handler
+
+    'capture ESC & let user determine if fields should be cleared
+    CaptureEscapeKey KeyCode
+    
+Exit_Sub:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_KeyDown[Form_fsub_Fuels_LD])"
+    End Select
+    Resume Exit_Sub
+End Sub
 
 Private Sub Bearing_A_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records
@@ -2788,13 +2820,13 @@ Private Sub Form_Load()
     Me!Slope_C = Locations!Slope_C
     Me!Slope_D = Locations!Slope_D
     If Not IsNull(Locations!Vegetation_Type) And Locations!Vegetation_Type = "oak scrub" Then
-      Me!Bearing_D_Label.Visible = False
-      Me!Bearing_D.Visible = False
-      Me!Slope_D.Visible = False
-      Me!DI_1HR.Visible = False
-      Me!DI_10HR.Visible = False
-      Me!DI_100HR.Visible = False
-      Me!LabelD10.Visible = False
+      Me!Bearing_D_Label.visible = False
+      Me!Bearing_D.visible = False
+      Me!Slope_D.visible = False
+      Me!DI_1HR.visible = False
+      Me!DI_10HR.visible = False
+      Me!DI_100HR.visible = False
+      Me!LabelD10.visible = False
       Me!Label120.Caption = " "
       Me!Litter_D_Label.Caption = " "
       Me!Duff_D_Label.Caption = " "

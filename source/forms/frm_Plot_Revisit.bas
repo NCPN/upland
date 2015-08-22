@@ -8,7 +8,6 @@ Begin Form
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     DefaultView =0
     ScrollBars =0
     TabularFamily =127
@@ -1487,6 +1486,15 @@ End Sub
 '                     tbl_Location_History deprecated Plot_E_Coord & Plot_N_Coord vs.
 '                     E_Coord & N_Coord values, updated error handling & added documentation
 '   BLC - 8/19/2015 - fixed bug improperly populating recorder (Me!fsub_Revisit.Form!Observer vs. Me!Recorder)
+'                     NOTE:
+'                     While old field datasheets display the term "Observers" where the data is collected,
+'                     by the user workflow, the form (frm_Plot_Revisit) should display "Recorder" vs. "Observer".
+'                     It is the individual actually *recording* the data (the recorder) which is captured
+'                     in the field modified by this change.
+'                     Two sub-form fields require name changes: label_Observer & Observer on fsub_Revisit
+'                     should change to lblRecorder & cbxRecorder respectively.
+'                     Modifying these names is deferred until discussions between data manager and ecologist/field lead occur
+'                     to ensure concurrence with the change.
 ' ---------------------------------
 Private Sub Form_BeforeUpdate(Cancel As Integer)
     On Error GoTo Err_Handler
@@ -1517,7 +1525,8 @@ Private Sub Form_BeforeUpdate(Cancel As Integer)
         
         'populate individual committing update
         History!Recorder = Me!fsub_Revisit.Form!Observer
-        'History!Recorder = Me!Recorder     ' Person committing update
+        'DEFERRED CODE (with Observer renamed to cbxRecorder)
+        'History!Recorder = Me!fsub_Revisit.Form!cbxRecorder
         
         History!Unit_Code = Me!Unit_Code
         History!Plot_ID = Me!Plot_ID
@@ -1594,33 +1603,33 @@ Private Sub Form_Load()
     DoCmd.Restore
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me!Location_ID & "'")
     If Not IsNull(Veg_Type) And (Veg_Type = "grassland/shrubland") Then
-      Me!fsub_FW_Monument.Form.Visible = False
+      Me!fsub_FW_Monument.Form.visible = False
     End If
     If Not IsNull(Veg_Type) And ((Veg_Type = "oak scrub") Or (Veg_Type = "grassland/shrubland")) Then
-      Me!SlopeA.Visible = False
-      Me!SlopeB.Visible = False
-      Me!SlopeC.Visible = False
-      Me!SlopeD.Visible = False
-      Me!SlopeAUD.Visible = False
-      Me!SlopeBUD.Visible = False
-      Me!SlopeCUD.Visible = False
-      Me!SlopeDUD.Visible = False
-      Me!LabelSlope.Visible = False
-      Me!Fuels_Transect_Label.Visible = False  ' Hide fuels fields
-      Me!Bearing_A_Label.Visible = False
-      Me!Bearing_B_Label.Visible = False
-      Me!Bearing_C_Label.Visible = False
-      Me!Bearing_D_Label.Visible = False
-      Me!Slope_A_Label.Visible = False
-      Me!Slope_B_Label.Visible = False
-      Me!Bearing_A.Visible = False
-      Me!Bearing_B.Visible = False
-      Me!Bearing_C.Visible = False
-      Me!Bearing_D.Visible = False
-      Me!Slope_A.Visible = False
-      Me!Slope_B.Visible = False
-      Me!Slope_C.Visible = False
-      Me!Slope_D.Visible = False
+      Me!SlopeA.visible = False
+      Me!SlopeB.visible = False
+      Me!SlopeC.visible = False
+      Me!SlopeD.visible = False
+      Me!SlopeAUD.visible = False
+      Me!SlopeBUD.visible = False
+      Me!SlopeCUD.visible = False
+      Me!SlopeDUD.visible = False
+      Me!LabelSlope.visible = False
+      Me!Fuels_Transect_Label.visible = False  ' Hide fuels fields
+      Me!Bearing_A_Label.visible = False
+      Me!Bearing_B_Label.visible = False
+      Me!Bearing_C_Label.visible = False
+      Me!Bearing_D_Label.visible = False
+      Me!Slope_A_Label.visible = False
+      Me!Slope_B_Label.visible = False
+      Me!Bearing_A.visible = False
+      Me!Bearing_B.visible = False
+      Me!Bearing_C.visible = False
+      Me!Bearing_D.visible = False
+      Me!Slope_A.visible = False
+      Me!Slope_B.visible = False
+      Me!Slope_C.visible = False
+      Me!Slope_D.visible = False
     End If
 '  Forms![frm_Plot_Revisit]![fsub_FW_Monument].Form.AllowEdits = False
 End Sub

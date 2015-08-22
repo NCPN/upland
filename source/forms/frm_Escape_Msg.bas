@@ -1659,7 +1659,7 @@ On Error GoTo Err_Handler
     'defaults
     strMsg = ""
     keys = ""
-    imgUndoRedo.Visible = False
+    imgUndoRedo.visible = False
     
     If Not IsNull(Me.OpenArgs) Then keys = Me.OpenArgs
     
@@ -1674,7 +1674,7 @@ On Error GoTo Err_Handler
             strMsg = "Sorry, CTRL+Z has been disabled in this application" & vbCrLf & vbCrLf & _
                     "to prevent inadvertently deleting data." & vbCrLf & vbCrLf & _
                     "Please use the undo buttons in the main Access toolbar in the upper left."
-            imgUndoRedo.Visible = True
+            imgUndoRedo.visible = True
     End Select
     
     'skip if message isn't populated
