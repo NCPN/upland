@@ -6,6 +6,7 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
+    KeyPreview = NotDefault
     DefaultView =0
     ScrollBars =0
     TabularFamily =0
@@ -17,10 +18,10 @@ Begin Form
     Width =13080
     DatasheetFontHeight =9
     ItemSuffix =127
-    Left =4860
-    Top =2805
-    Right =18150
-    Bottom =9705
+    Left =3570
+    Top =4035
+    Right =15000
+    Bottom =10935
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{7EA92962-EF5B-4753-A542-6A754C5EEB62}'"
     RecSrcDt = Begin
@@ -36,6 +37,7 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    OnKeyDown ="[Event Procedure]"
     OnLoad ="[Event Procedure]"
     FilterOnLoad =0
     AllowLayoutView =0
@@ -1529,6 +1531,35 @@ Attribute VB_Exposed = False
 Option Compare Database
 Option Explicit
 
+' ---------------------------------
+' SUB:          Form_KeyDown
+' Description:  handles form's key down actions
+' Parameters:
+' Returns:      -
+' Assumptions:  -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, August 2015
+' Revisions:    BLC, 8/21/2014 - initial version
+' ---------------------------------
+Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+On Error GoTo Err_Handler
+
+    'capture ESC & let user determine if fields should be cleared
+    CaptureEscapeKey KeyCode
+    
+Exit_Sub:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_KeyDown[Form_frm_Locations])"
+    End Select
+    Resume Exit_Sub
+End Sub
+
 Private Sub ButtonZoomDominantVegetation_Click()
 On Error GoTo Err_ButtonDominantVegetation_Click
 
@@ -1558,8 +1589,6 @@ Err_ButtonSiteSelectionComments_Click:
     Resume Exit_ButtonSiteSelectionComments_Click
 
 End Sub
-
-
 
 ' =================================
 ' Description:  Locations entry form
@@ -1605,6 +1634,7 @@ Private Sub Form_Current()
     Me.Other_Eco_Site.Requery
   End If
 End Sub
+
 Private Sub Button_Plots_Click()
 On Error GoTo Err_Button_Plots_Click
 Dim stDocName As String

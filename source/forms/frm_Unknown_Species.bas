@@ -7,6 +7,7 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
+    KeyPreview = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =0
@@ -21,7 +22,7 @@ Begin Form
     ItemSuffix =46
     Left =4245
     Top =2805
-    Right =16125
+    Right =15000
     Bottom =11100
     DatasheetGridlinesColor =12632256
     Filter ="[Unknown_ID]='20110415113257-756092607.975006'"
@@ -36,6 +37,7 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    OnKeyDown ="[Event Procedure]"
     FilterOnLoad =0
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -825,6 +827,36 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
+
+' ---------------------------------
+' SUB:          Form_KeyDown
+' Description:  handles form's key down actions
+' Parameters:
+' Returns:      -
+' Assumptions:  -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, August 2015
+' Revisions:    BLC, 8/21/2014 - initial version
+' ---------------------------------
+Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+On Error GoTo Err_Handler
+
+    'capture ESC & let user determine if fields should be cleared
+    CaptureEscapeKey KeyCode
+    
+Exit_Sub:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_KeyDown[Form_frm_Unknown_Species])"
+    End Select
+    Resume Exit_Sub
+End Sub
 
 Private Sub ButtonClose_Click()
 On Error GoTo Err_ButtonClose_Click

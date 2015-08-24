@@ -456,16 +456,16 @@ Private Sub Form_Load()
   Me!Unit_Code = Me.OpenArgs
   Me!Unit_Desc.Caption = DLookup("[ParkName]", "tlu_Parks", "[ParkCode] = '" & Me.OpenArgs & "'")
   If DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me.OpenArgs & "'") = "WY" Then
-    Me!Wy_PLANT_code.Visible = True
-    Me!Wy_Species.Visible = True
+    Me!Wy_PLANT_code.visible = True
+    Me!Wy_Species.visible = True
     Me!State_Heading.Caption = "WY PLANT Code - Species"
   ElseIf DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me.OpenArgs & "'") = "CO" Then
-    Me!Co_PLANT_Code.Visible = True
-    Me!Co_Species.Visible = True
+    Me!Co_PLANT_Code.visible = True
+    Me!Co_Species.visible = True
     Me!State_Heading.Caption = "CO PLANT Code - Species"
   Else
     Me!State_Heading.Caption = "Utah PLANT Code - Species"
-    Me!Utah_PLANT_Code.Visible = True
-    Me!Utah_Species.Visible = True
+    Me!Utah_PLANT_Code.visible = True
+    Me!Utah_Species.visible = True
   End If
 End Sub

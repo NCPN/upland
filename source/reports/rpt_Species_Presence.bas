@@ -454,7 +454,7 @@ Private Sub Report_Open(Cancel As Integer)
   FieldIndex = FieldIndex + 1
   Do Until FieldIndex > 10
     ControlName = "P" & FieldIndex
-    Me.Controls(ControlName).Visible = False  ' dont show unused controls
+    Me.Controls(ControlName).visible = False  ' dont show unused controls
     FieldIndex = FieldIndex + 1
   Loop
   

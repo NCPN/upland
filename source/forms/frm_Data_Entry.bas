@@ -1156,25 +1156,25 @@ Private Sub Form_Load()
   ' Display the proper tabs
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me!Location_ID & "'")
     If Not IsNull(Veg_Type) And (Veg_Type = "forest" Or Veg_Type = "oak scrub") Then
-      Me!pgSS.Visible = False
-      Me!pgGaps.Visible = False
+      Me!pgSS.visible = False
+      Me!pgGaps.visible = False
     End If
     If Not IsNull(Veg_Type) And (Veg_Type = "grassland/shrubland" Or Veg_Type = "oak scrub") Then
-      Me!pgFuels.Visible = False
+      Me!pgFuels.visible = False
     End If
     If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
   '    Me!pgBeltShrub.Visible = False  1m belt tab visible for oak plots - 2/15/2011 - RD
-      Me!fsub_OT_Tree_Saplings.Form.Visible = False
-      Me!Sapling_Date.Visible = False
-      Me!Sapling_Observer.Visible = False
-      Me!Sapling_Recorder.Visible = False
+      Me!fsub_OT_Tree_Saplings.Form.visible = False
+      Me!Sapling_Date.visible = False
+      Me!Sapling_Observer.visible = False
+      Me!Sapling_Recorder.visible = False
     Else
-      Me!pgSLIntercept.Visible = False
+      Me!pgSLIntercept.visible = False
     End If
     If Not IsNull(Veg_Type) And Veg_Type = "woodland" Then
-      Me!pgGaps.Visible = False
-      Me!fsub_OT_Census.Form!Crown_Class.Visible = False
-      Me!fsub_OT_Census.Form!Crown_Class_Label.Visible = False
+      Me!pgGaps.visible = False
+      Me!fsub_OT_Census.Form!Crown_Class.visible = False
+      Me!fsub_OT_Census.Form!Crown_Class_Label.visible = False
     End If
     If Not IsNull(Me!txtStart_date) Then
       If IsNull(Me!Fuels_Date) Then
@@ -1190,7 +1190,7 @@ Private Sub Form_Load()
     ' Modified to hide fuels form for TICA 1 [HMT, 3/13/2015]
     ' TICA 1 is a special case of a forest plot that does not have fuels data collected.
     If (Me!Unit_Code = "TICA") And (Me!Plot_ID = 1) Then
-      Me!pgFuels.Visible = False
+      Me!pgFuels.visible = False
     End If
 End Sub
 

@@ -15,15 +15,22 @@ Begin Form
     DatasheetFontHeight =9
     ItemSuffix =6
     Left =2100
-    Top =2430
-    Right =7605
-    Bottom =7200
+    Top =2436
+    Right =7608
+    Bottom =7212
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x3b0b2d760f50e340
     End
     OnOpen ="[Event Procedure]"
     DatasheetFontName ="Arial"
+    PrtMip = Begin
+        0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
+        0x010000006801000000000000a10700000100000001000000
+    End
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -34,6 +41,7 @@ Begin Form
             FontWeight =400
             ForeColor =-2147483630
             FontName ="Tahoma"
+            BorderLineStyle =0
         End
         Begin Section
             Height =5040
@@ -62,6 +70,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -72,6 +85,11 @@ Begin Form
                     Name ="ButtonPE"
                     Caption ="Plot Revisit Data Sheet"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -83,6 +101,11 @@ Begin Form
                     Name ="ButtonNP"
                     Caption ="Not Present in Park Report"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -93,6 +116,11 @@ Begin Form
                     Name ="ButtonSpeciesPresence"
                     Caption ="Species Presence by Plot"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -102,6 +130,11 @@ Begin Form
                     Name ="ButtonOverstory"
                     Caption ="Overstory Plot Revisit"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
