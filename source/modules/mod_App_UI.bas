@@ -9,11 +9,14 @@ Option Explicit
 '
 ' Source/date:  Bonnie Campbell, April 2015
 ' Revisions:    BLC, 4/30/2015 - 1.00 - initial version
+'               ----------- invasives reports -----------------
 '               BLC, 5/26/2015 - 1.01 - added PopulateSpeciesPriorities function from mod_Species
 '               BLC, 6/1/2015  - 1.02 - changed View to Search tab
 '               BLC, 6/12/2015 - 1.03 - added EnableTargetTool button
+'               ----------- big rivers ------------------------
 '               BLC, 6/30/2015 - 1.04 - added ClearFields()
 '               BLC, 7/27/2015 - 1.05 - added SetHints()
+'               ----------- uplands ---------------------------
 '               BLC, 8/21/2015 - 1.06 - added CaptureEscapeKey
 ' =================================
 
