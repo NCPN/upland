@@ -140,13 +140,13 @@ Else
             MsgBox "A table with the name " & strTableName & " already exists in the database.  That table will not be linked.", vbInformation + vbOKOnly, "Cannot Link Table"
         Else
             Set dbExternal = DBEngine.OpenDatabase(strFilename)
-            Set tdfExternal = dbExternal.tabledefs(strTableName)
+            Set tdfExternal = dbExternal.TableDefs(strTableName)
             strDescription = Nz(tdfExternal.Properties("Description"), "")
             'add table link
             Set tdf = CurrentDb.CreateTableDef(strTableName)
             tdf.SourceTableName = strTableName
             tdf.Connect = ";DATABASE=" & strFilename
-            CurrentDb.tabledefs.Append tdf
+            CurrentDb.TableDefs.Append tdf
             
             'add table link record to link table
             strSQL = "INSERT INTO tsys_Link_Tables (Link_type,Link_table"

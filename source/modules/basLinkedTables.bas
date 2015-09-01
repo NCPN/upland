@@ -153,7 +153,7 @@ Public Function fxnCheckLink(strTable As String) As Boolean
     On Error Resume Next
     ' Check for failure.  If can't determine the name of
     ' the first field in the table, the link must be bad.
-    varRet = CurrentDb.tabledefs(strTable).Fields(0).name
+    varRet = CurrentDb.TableDefs(strTable).Fields(0).name
     If Err <> 0 Then
         fxnCheckLink = False
     Else
@@ -271,7 +271,7 @@ Public Function fxnRefreshLinks(strSQL As String, varFileName As Variant) As Boo
         intI = intI + 1
         varReturn = SysCmd(acSysCmdUpdateMeter, intI)
         strLinkTableName = rst![Link_table]
-        varReturn = dbGet.tabledefs(strLinkTableName).Fields(0).name
+        varReturn = dbGet.TableDefs(strLinkTableName).Fields(0).name
         rst.MoveNext
     Loop
 
@@ -284,7 +284,7 @@ Public Function fxnRefreshLinks(strSQL As String, varFileName As Variant) As Boo
         intI = intI + 1
         varReturn = SysCmd(acSysCmdUpdateMeter, intI)
         strLinkTableName = rst![Link_table]
-        Set tdf = db.tabledefs(strLinkTableName)
+        Set tdf = db.TableDefs(strLinkTableName)
         tdf.Connect = ";DATABASE=" & varFileName
         tdf.RefreshLink
         rst.MoveNext

@@ -49,7 +49,7 @@ On Error GoTo Err_Handler
     Dim tdf As DAO.TableDef
 
     Set db = CurrentDb()
-    Set tdf = db.tabledefs(strTable) 'TableName)
+    Set tdf = db.TableDefs(strTable) 'TableName)
 
     'Change the connect value
     tdf.Connect = strConn '"ODBC;DATABASE=pubs;UID=sa;PWD=;DSN=Publishers"
@@ -93,7 +93,7 @@ On Error GoTo Err_Handler
     Dim tdf As DAO.TableDef
 
     Set db = CurrentDb()
-    Set tdf = db.tabledefs(strTable)
+    Set tdf = db.TableDefs(strTable)
 
     'Change the database value
     tdf.Connect = ";DATABASE=" & strDbPath
@@ -471,11 +471,13 @@ Public Sub moduletest()
 
     'AddModules ("C:\__git-projects\dev_modules - Copy\")
     'AddModules "C:\__git-projects\vcs_modules\"
-    AddModules "Z:\_____LIB\dev\git_projects\vcs_modules\"
+    'AddModules "Z:\_____LIB\dev\git_projects\vcs_modules\"
     
     'RemoveModules "VCS_"
     
     'run SQL query
     'DoCmd.OpenQuery "qry_Sp_Rpt_by_Park_Rollup"
     
+    'generate the rollup by park data
+    RollupReportbyPark
 End Sub

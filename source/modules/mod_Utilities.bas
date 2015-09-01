@@ -600,7 +600,7 @@ Dim tdf As TableDef
 
 Set db = CurrentDb
 
-For Each tdf In db.tabledefs
+For Each tdf In db.TableDefs
     If Not Left(tdf.name, 4) = "MSys" Then
         Debug.Print tdf.name & ": " & tdf.RecordCount
     End If
@@ -643,7 +643,7 @@ Dim strOutput As String
 On Error Resume Next
 
 Set db = CurrentDb
-Set tdf = db.tabledefs(strObjectName)
+Set tdf = db.TableDefs(strObjectName)
 
 If Err.Number = 3265 Then
     Err.Clear
@@ -1084,7 +1084,7 @@ Dim intResult As Integer
 
 On Error Resume Next
 
-intResult = CurrentDb.tabledefs(strTableName)(strFieldName).Type
+intResult = CurrentDb.TableDefs(strTableName)(strFieldName).Type
 GetDataType = intResult
 End Function
 
