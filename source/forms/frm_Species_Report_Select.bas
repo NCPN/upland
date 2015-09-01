@@ -13,10 +13,10 @@ Begin Form
     GridY =24
     DatasheetFontHeight =9
     ItemSuffix =12
-    Left =2532
+    Left =2535
     Top =300
-    Right =9984
-    Bottom =6300
+    Right =9735
+    Bottom =6045
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x1385341e7574e340
@@ -95,10 +95,10 @@ Begin Form
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     OverlapFlags =85
@@ -151,10 +151,10 @@ Begin Form
                     Caption ="Report by Park"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     OverlapFlags =85
@@ -222,21 +222,23 @@ End Sub
 ' Revisions:
 '   RD - ?          - initial version
 '   BLC - 8/21/2015 - added update for underlying qry's table (temp_Sp_Rpt_by_Park_Complete)
+'   BLC - 9/1/2015  - updated comment reference since underlying query qry_Sp_Rpt_by_Park_Rollup was
+'                     replaced by the table temp_Sp_Rpt_by_Park_Rollup, added temporary revision
+'                     of qry_Sp_Rpt_by_Park_Complete_Create_Table for filtered data (added appropriate
+'                     WHERE clause) & reverted to original qdf SQL after running (for next time)
 ' ---------------------------------
 Private Sub Button_rpt_by_Park_Click()
 On Error GoTo Err_Handler
 
-    'update underlying table (temp_Sp_Rpt_by_Park_Complete is used in report's underlying query qry_Sp_Rpt_by_Park_Rollup)
-    DoCmd.SetWarnings False
-    DoCmd.OpenQuery "qry_Sp_Rpt_by_Park_Complete_Create_Table", acViewNormal
-    DoCmd.SetWarnings True
-        
     'set statusbar notice
     SysCmd acSysCmdSetStatus, "Running report ..."
     Screen.MousePointer = 11 'Hour Glass
 
     Dim strWhere As String
     Dim stDocName As String
+
+    'defaults
+    strWhere = ""
 
     stDocName = "rpt_Species_by_Park"
     ' Set where condition if needed
@@ -259,8 +261,34 @@ On Error GoTo Err_Handler
         strWhere = "Len(SpeciesYears) > Len(Replace(SpeciesYears, CStr(" & Me!Visit_Date & "), ''))"
       End If
     End If
+    
+    'retrieve querydef
+    Dim qdf As QueryDef
+    Dim strSQL As String
+    
+    Set qdf = CurrentDb.QueryDefs("qry_Sp_Rpt_by_Park_Complete_Create_Table")
+    strSQL = qdf.sql
+    
+    'update the SQL if parameters exist
+    If Len(strWhere) > 0 Then
+        Dim iOrderBy As Integer
+        Dim strSQLNew As String
+        
+        'replace ORDER with WHERE clause + ORDER
+        strSQLNew = Replace(strSQL, "ORDER", " WHERE " & strWhere & " ORDER")
+        qdf.sql = strSQL
+    End If
+    
+    'update underlying table (temp_Sp_Rpt_by_Park_Complete is used in report's underlying table temp_Sp_Rpt_by_Park_Rollup)
+    DoCmd.SetWarnings False
+    DoCmd.OpenQuery "qry_Sp_Rpt_by_Park_Complete_Create_Table", acViewNormal
+    DoCmd.SetWarnings True
+    
+    'reset qdf SQL
+    qdf.sql = strSQL
+    
+    'open report
     DoCmd.OpenReport stDocName, acViewPreview, , strWhere
-
 
     SysCmd acSysCmdSetStatus, "Report complete."
     
@@ -268,6 +296,7 @@ On Error GoTo Err_Handler
     Screen.MousePointer = 1 'Standard Cursor
     
 Exit_Sub:
+    Set qdf = Nothing
     Exit Sub
 
 Err_Handler:

@@ -66,7 +66,12 @@ End Sub
 ' =================================
 ' SUB:          RollupReportbyPark
 ' Description:  Prepares concatenated report data
-' Assumptions:
+'               Looks for the number of records (years) for each ParkPlotSpecies (species found on a given park plot)
+'               and concatenates the years (e.g. 2008|2009|2013 ) so that a species only takes up a single
+'               row for a specific park plot in the report. This reduces report length by 50% or more.
+' Assumptions:  Assumes that tlu_NCPN_Plants contains Utah_Species names for all species
+'               identified in the plots. Also assumes temp_Sp_Rpt_by_Park_Complete has been run prior to
+'               running this so the report is updated with the most recent data.
 ' Note:         -
 ' Parameters:   -
 ' Returns:      -
@@ -82,8 +87,8 @@ On Error GoTo Err_Handler
     Dim strPark As String, strFamily As String, strUtah_Species As String, strParkPlot As String
     Dim intPlotID As Integer, i As Integer, iCount As Integer
     Dim rs As DAO.Recordset, rsTemp As DAO.Recordset, rsCount As DAO.Recordset
-    Dim blnAdd As Boolean
-    Dim strSpeciesYr As String
+    'Dim blnAdd As Boolean
+    'Dim strSpeciesYr As String
     Dim strSQL As String
     
     Dim strPrevParkPlotSpecies As String
@@ -102,7 +107,7 @@ On Error GoTo Err_Handler
     'default
     strParkPlotSpecies = ""
     strSpeciesYears = ""
-    blnAdd = False
+    'blnAdd = False
     
     If Not (rs.EOF And rs.BOF) Then
         rs.MoveFirst
@@ -116,7 +121,7 @@ On Error GoTo Err_Handler
             strUtah_Species = rs("Utah_Species")
             strParkPlotSpecies = rs("ParkPlotSpecies")
             strParkPlot = rs("ParkPlot")
-            strSpeciesYr = rs("Year")
+            'strSpeciesYr = rs("Year")
             
             If Not iCount > 0 Then
               'determine how many have the same ParkPlotSpecies
@@ -133,7 +138,7 @@ On Error GoTo Err_Handler
               rs.MoveNext
             Next
             
-            'add new record
+            ' add new record
             With rsTemp
                 .AddNew
                 !Unit_Code = strPark
@@ -151,199 +156,6 @@ On Error GoTo Err_Handler
             iCount = 0
         Loop
     End If
-            
-'            'rs.FindFirst "[ParkPlotSpecies] = ' & strParkPlotSpecies & '"
-'            rs.Seek "=", strParkPlotSpecies
-'
-'            If rs.NoMatch Then
-'                'go to next record
-'                rs.MoveNext
-'            Else
-'                Do While Not rs.NoMatch
-'
-'                    rs.FindNext "[ParkPlotSpecies] = ' & strParkPlotSpecies & '"
-'
-'                    'add year if it's a new year
-'                    If Len(strSpeciesYears) = Len(Replace(strSpeciesYears, CStr(rs("Year")), "")) Then
-'                        strSpeciesYears = IIf(Len(strSpeciesYears) > 0, strSpeciesYears & "|" & rs("Year"), rs("Year"))
-'                    End If
-'                Loop
-'
-'                'once no more are found add to rsTemp
-'                With rsTemp
-'                    .AddNew
-'                    !Unit_Code = strPark
-'                    !Plot_ID = intPlotID
-'                    !Master_Family = strFamily
-'                    !Utah_Species = strUtah_Species
-'                    !SpeciesYears = IIf(Len(strSpeciesYears) > 0, strSpeciesYears, rs!Year)
-'                    !PlotParkSpecies = strParkPlotSpecies
-'                    !ParkPlot = strParkPlot
-'                    'update when rs!ParkPlotSpecies <> strParkPlotSpecies
-'                    .Update
-'                End With
-'
-'                rs.MoveNext
-''                rs.FindNext "[ParkPlotSpecies] = ' & strParkPlotSpecies & '"
-'            End If
-'        Loop
-'    End If
-
-'            '---------------------------------
-'            '  NEW PARK-PLOT-SPECIES
-'            '---------------------------------
-'            'check if it's a new park-plot-species
-'            If rs("ParkPlotSpecies") <> strPrevParkPlotSpecies Then
-'
-'                'check for first record
-'                If i > 0 Then
-'                '---------------------------------
-'                ' AFTER 1st RECORD --> ADD NEW RECORD
-'                '---------------------------------
-'
-'                Else
-'                '---------------------------------
-'                ' FIRST RECORD ONLY
-'                '---------------------------------
-'                    'first year
-'                    strSpeciesYears = rs("Year")
-'
-'                    'set values
-'                    strPark = rs("Unit_Code")
-'                    intPlotID = rs("Plot_ID")
-'                    strFamily = rs("Master_Family")
-'                    strUtah_Species = rs("Utah_Species")
-'                    strParkPlotSpecies = rs("ParkPlotSpecies")
-'                    strParkPlot = rs("ParkPlot")
-'                End If
-'
-'            '---------------------------------
-'            '  SAME PARK-PLOT-SPECIES --> Update strSpeciesYears & Set Values
-'            '---------------------------------
-'            Else
-'
-'                'add year if it's a new year
-'                If Len(strSpeciesYears) = Len(Replace(strSpeciesYears, CStr(rs("Year")), "")) Then
-'                    strSpeciesYears = IIf(Len(strSpeciesYears) > 0, strSpeciesYears & "|" & rs("Year"), rs("Year"))
-'                'Else
-'                '    strSpeciesYears = rs("Year")
-'                End If
-'
-'                'set values
-'                strPark = rs("Unit_Code")
-'                intPlotID = rs("Plot_ID")
-'                strFamily = rs("Master_Family")
-'                strUtah_Species = rs("Utah_Species")
-'                strParkPlotSpecies = rs("ParkPlotSpecies")
-'                strParkPlot = rs("ParkPlot")
-'
-'                'blnAdd
-'                blnAdd = True
-'
-'            End If
-                
-                
-                
-                
-'            If blnAdd = True Then
-'            '---------------------------------
-'            ' ADD NEW RECORD
-'            '---------------------------------
-'                'add the new record (prior record's values)
-'                With rsTemp
-'                    .AddNew
-'                    !Unit_Code = strPark
-'                    !Plot_ID = intPlotID
-'                    !Master_Family = strFamily
-'                    !Utah_Species = strUtah_Species
-'                    !SpeciesYears = IIf(Len(strSpeciesYears) > 0, strSpeciesYears, rs!Year)
-'                    !PlotParkSpecies = strParkPlotSpecies
-'                    !ParkPlot = strParkPlot
-'                    'update when rs!ParkPlotSpecies <> strParkPlotSpecies
-'                    .Update
-'                End With
-'
-'                'clear speciesyears
-'                strSpeciesYears = ""
-'
-'                'reset add flag
-'                blnAdd = False
-'
-'                'set comparison value
-'                strPrevParkPlotSpecies = rs("ParkPlotSpecies")
-'            End If
-'
-'            i = i + 1
-'            rs.MoveNext
-'        Loop
-'    End If
-        
-        
-        
-'        Do Until rs.EOF
-'
-'            'check if it's a new park-plot-species
-'            If rs("ParkPlotSpecies") <> strParkPlotSpecies Then
-'
-'                'check for first record
-'                If i > 0 Then
-'                    'add the new record (prior record's values)
-'                    With rsTemp
-'                        .AddNew
-'                        !Unit_Code = strPark
-'                        !Plot_ID = intPlotID
-'                        !Master_Family = strFamily
-'                        !Utah_Species = strUtah_Species
-'                        !SpeciesYears = IIf(Len(strSpeciesYears) > 0, strSpeciesYears, rs!Year)
-'                        !PlotParkSpecies = strParkPlotSpecies
-'                        !ParkPlot = strParkPlot
-'                        'update when rs!ParkPlotSpecies <> strParkPlotSpecies
-'                        '.Update
-'                    End With
-'
-'                    'clear speciesyears
-'                    strSpeciesYears = ""
-'
-'                Else
-'                    'first year
-'                    strSpeciesYears = rs("Year")
-'
-'                    'set values
-'                    strPark = rs("Unit_Code")
-'                    intPlotID = rs("Plot_ID")
-'                    strFamily = rs("Master_Family")
-'                    strUtah_Species = rs("Utah_Species")
-'                    strParkPlotSpecies = rs("ParkPlotSpecies")
-'                    strParkPlot = rs("ParkPlot")
-'                End If
-'
-'            Else
-'
-'                'add year if it's a new year
-'                If Len(strSpeciesYears) = Len(Replace(strSpeciesYears, CStr(rs("Year")), "")) Then
-'                    strSpeciesYears = IIf(Len(strSpeciesYears) > 0, strSpeciesYears & "|" & rs("Year"), rs("Year"))
-'                Else
-'                    strSpeciesYears = rs("Year")
-'                End If
-'
-'                'set values
-'                strPark = rs("Unit_Code")
-'                intPlotID = rs("Plot_ID")
-'                strFamily = rs("Master_Family")
-'                strUtah_Species = rs("Utah_Species")
-'                strParkPlotSpecies = rs("ParkPlotSpecies")
-'                strParkPlot = rs("ParkPlot")
-'
-'            End If
-'
-'            'set comparison value
-'            strParkPlotSpecies = rs("ParkPlotSpecies")
-'
-'            i = i + 1
-'            rs.MoveNext
-'        Loop
-'    End If
-    
     
 Exit_Sub:
     Set rs = Nothing
