@@ -296,8 +296,8 @@ Private Sub Form_Delete(Cancel As Integer)
 Dim strSQL As String
 
 If MsgBox("This action will delete the table link from the database! Are you sure you wish to continue?", vbYesNo + vbExclamation, "Delete Table Link?") = vbYes Then
-    CurrentDb.tabledefs.Delete Me.Link_table
-    CurrentDb.tabledefs.Refresh
+    CurrentDb.TableDefs.Delete Me.Link_table
+    CurrentDb.TableDefs.Refresh
     strSQL = "DELETE * FROM tsys_Link_Tables WHERE Link_Table=" & CorrectText(Me!Link_table) & " AND Link_Type=" & CorrectText(Me!Link_type) & ";"
     CurrentDb.Execute strSQL
     Cancel = True

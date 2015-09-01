@@ -22,5 +22,31 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0xa90257f87b78964c9e47c7bf82ce4bff
 End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
 Begin
+    Begin
+        dbText "Name" ="qry_Sp_Rpt_BT_Add_Sp.tbl_Locations.Unit_Code"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="qry_Sp_Rpt_BT_Add_Sp.tbl_Locations.Plot_ID"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="qry_Sp_Rpt_BT_Add_Sp.tlu_NCPN_Plants.Master_Family"
+        dbInteger "ColumnWidth" ="1848"
+        dbBoolean "ColumnHidden" ="0"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="qry_Sp_Rpt_BT_Add_Sp.tlu_NCPN_Plants.Utah_Species"
+        dbInteger "ColumnWidth" ="2448"
+        dbBoolean "ColumnHidden" ="0"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="qry_Sp_Rpt_BT_Add_Sp.Year"
+        dbLong "AggregateType" ="-1"
+    End
 End

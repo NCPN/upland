@@ -21,7 +21,7 @@ Begin Form
     Left =5988
     Top =2064
     Right =16788
-    Bottom =11172
+    Bottom =11592
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{0A0952FE-C4D0-49C5-B3DA-72D48B7EFC2B}'"
     RecSrcDt = Begin
@@ -1495,6 +1495,7 @@ End Sub
 '                     should change to lblRecorder & cbxRecorder respectively.
 '                     Modifying these names is deferred until discussions between data manager and ecologist/field lead occur
 '                     to ensure concurrence with the change.
+'   BLC - 8/24/2015 - fixed bug which improperly saved 2 records to tbl_Location_History
 ' ---------------------------------
 Private Sub Form_BeforeUpdate(Cancel As Integer)
     On Error GoTo Err_Handler

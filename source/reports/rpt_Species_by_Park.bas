@@ -2,6 +2,7 @@
 VersionRequired =20
 Begin Report
     LayoutForPrint = NotDefault
+    FilterOn = NotDefault
     OrderByOn = NotDefault
     DefaultView =0
     TabularFamily =0
@@ -14,13 +15,12 @@ Begin Report
     Width =9360
     DatasheetFontHeight =9
     ItemSuffix =18
-    Left =276
-    Top =216
-    Right =11364
-    Bottom =8220
+    Left =270
+    Top =210
+    Right =11205
+    Bottom =11430
     DatasheetGridlinesColor =12632256
-    Filter ="((([qry_Sp_Rpt_by_Park_Rollup].[Master_Family]=\"Chenopodiaceae\"))) AND ([qry_S"
-        "p_Rpt_by_Park_Rollup].[Unit_Code]=\"DINO\")"
+    Filter ="Unit_Code = 'DINO'"
     OrderBy ="[qry_Sp_Rpt_by_Park_Rollup].[Plot_ID], [qry_Sp_Rpt_by_Park_Rollup].[Utah_Species"
         "], [qry_Sp_Rpt_by_Park_Rollup].[Unit_Code], [qry_Sp_Rpt_by_Park_Rollup].[Master_"
         "Family]"
@@ -136,13 +136,13 @@ Begin Report
             End
         End
         Begin PageHeader
-            Height =840
+            Height =975
             Name ="PageHeaderSection"
             Begin
                 Begin Label
                     TextFontFamily =34
                     Left =60
-                    Top =420
+                    Top =300
                     Width =1080
                     Height =270
                     FontSize =10
@@ -151,16 +151,16 @@ Begin Report
                     FontName ="Calibri"
                     Tag ="DetachedLabel"
                     LayoutCachedLeft =60
-                    LayoutCachedTop =420
+                    LayoutCachedTop =300
                     LayoutCachedWidth =1140
-                    LayoutCachedHeight =690
+                    LayoutCachedHeight =570
                     ThemeFontIndex =1
                 End
                 Begin Label
                     TextAlign =2
                     TextFontFamily =34
-                    Left =1365
-                    Top =420
+                    Left =420
+                    Top =600
                     Width =735
                     Height =270
                     FontSize =10
@@ -168,15 +168,15 @@ Begin Report
                     Caption ="Plot"
                     FontName ="Calibri"
                     Tag ="DetachedLabel"
-                    LayoutCachedLeft =1365
-                    LayoutCachedTop =420
-                    LayoutCachedWidth =2100
-                    LayoutCachedHeight =690
+                    LayoutCachedLeft =420
+                    LayoutCachedTop =600
+                    LayoutCachedWidth =1155
+                    LayoutCachedHeight =870
                 End
                 Begin Label
                     TextFontFamily =34
-                    Left =5160
-                    Top =420
+                    Left =3960
+                    Top =600
                     Width =960
                     Height =270
                     FontSize =10
@@ -184,16 +184,16 @@ Begin Report
                     Caption ="Species"
                     FontName ="Calibri"
                     Tag ="DetachedLabel"
-                    LayoutCachedLeft =5160
-                    LayoutCachedTop =420
-                    LayoutCachedWidth =6120
-                    LayoutCachedHeight =690
+                    LayoutCachedLeft =3960
+                    LayoutCachedTop =600
+                    LayoutCachedWidth =4920
+                    LayoutCachedHeight =870
                 End
                 Begin Label
                     TextAlign =2
                     TextFontFamily =34
-                    Left =8460
-                    Top =420
+                    Left =7515
+                    Top =600
                     Width =600
                     Height =270
                     FontSize =10
@@ -201,15 +201,15 @@ Begin Report
                     Caption ="Years"
                     FontName ="Calibri"
                     Tag ="DetachedLabel"
-                    LayoutCachedLeft =8460
-                    LayoutCachedTop =420
-                    LayoutCachedWidth =9060
-                    LayoutCachedHeight =690
+                    LayoutCachedLeft =7515
+                    LayoutCachedTop =600
+                    LayoutCachedWidth =8115
+                    LayoutCachedHeight =870
                 End
                 Begin Label
                     TextFontFamily =34
-                    Left =2280
-                    Top =420
+                    Left =1335
+                    Top =600
                     Width =840
                     Height =270
                     FontSize =10
@@ -217,21 +217,10 @@ Begin Report
                     Caption ="Family"
                     FontName ="Calibri"
                     Tag ="DetachedLabel"
-                    LayoutCachedLeft =2280
-                    LayoutCachedTop =420
-                    LayoutCachedWidth =3120
-                    LayoutCachedHeight =690
-                End
-                Begin Line
-                    BorderWidth =2
-                    Left =60
-                    Top =768
-                    Width =9240
-                    Name ="Line13"
-                    LayoutCachedLeft =60
-                    LayoutCachedTop =768
-                    LayoutCachedWidth =9300
-                    LayoutCachedHeight =768
+                    LayoutCachedLeft =1335
+                    LayoutCachedTop =600
+                    LayoutCachedWidth =2175
+                    LayoutCachedHeight =870
                 End
                 Begin TextBox
                     CanGrow = NotDefault
@@ -254,6 +243,17 @@ Begin Report
                     ForeThemeColorIndex =0
                     ForeTint =50.0
                 End
+                Begin Line
+                    BorderWidth =2
+                    Left =60
+                    Top =960
+                    Width =9240
+                    Name ="Line13"
+                    LayoutCachedLeft =60
+                    LayoutCachedTop =960
+                    LayoutCachedWidth =9300
+                    LayoutCachedHeight =960
+                End
             End
         End
         Begin BreakHeader
@@ -264,9 +264,7 @@ Begin Report
             Height =432
             BackColor =14211288
             Name ="GroupHeader0"
-            AlternateBackColor =15921906
-            AlternateBackThemeColorIndex =1
-            AlternateBackShade =95.0
+            AlternateBackColor =14211288
             Begin
                 Begin TextBox
                     HideDuplicates = NotDefault
@@ -302,21 +300,21 @@ Begin Report
             BreakLevel =2
             BackColor =15858167
             Name ="GroupHeader1"
-            AlternateBackColor =14151142
+            AlternateBackColor =8965045
             Begin
                 Begin TextBox
                     TextAlign =2
                     TextFontFamily =34
                     IMESentenceMode =3
-                    Left =1440
+                    Left =360
                     Width =600
                     Height =270
                     Name ="Plot_ID"
                     ControlSource ="Plot_ID"
                     FontName ="Calibri"
 
-                    LayoutCachedLeft =1440
-                    LayoutCachedWidth =2040
+                    LayoutCachedLeft =360
+                    LayoutCachedWidth =960
                     LayoutCachedHeight =270
                     ThemeFontIndex =1
                 End
@@ -343,14 +341,15 @@ Begin Report
         End
         Begin Section
             KeepTogether = NotDefault
+            CanGrow = NotDefault
             Height =330
             Name ="Detail"
-            AlternateBackColor =-2147483610
+            AlternateBackColor =12566463
             Begin
                 Begin TextBox
                     TextFontFamily =34
                     IMESentenceMode =3
-                    Left =4740
+                    Left =3300
                     Top =60
                     Width =3120
                     Height =270
@@ -359,25 +358,27 @@ Begin Report
                     ControlSource ="Utah_Species"
                     FontName ="Calibri"
 
-                    LayoutCachedLeft =4740
+                    LayoutCachedLeft =3300
                     LayoutCachedTop =60
-                    LayoutCachedWidth =7860
+                    LayoutCachedWidth =6420
                     LayoutCachedHeight =330
                 End
                 Begin TextBox
+                    CanGrow = NotDefault
+                    CanShrink = NotDefault
                     TextAlign =2
                     TextFontFamily =34
                     IMESentenceMode =3
-                    Left =7920
+                    Left =6480
                     Top =60
-                    Width =1380
+                    Width =2820
                     Height =270
                     TabIndex =1
                     Name ="tbxYear"
                     ControlSource ="SpeciesYears"
                     FontName ="Calibri"
 
-                    LayoutCachedLeft =7920
+                    LayoutCachedLeft =6480
                     LayoutCachedTop =60
                     LayoutCachedWidth =9300
                     LayoutCachedHeight =330
@@ -385,7 +386,7 @@ Begin Report
                 Begin TextBox
                     TextFontFamily =34
                     IMESentenceMode =3
-                    Left =1860
+                    Left =600
                     Top =60
                     Width =2640
                     Height =270
@@ -395,9 +396,9 @@ Begin Report
                     ControlSource ="Master_Family"
                     FontName ="Calibri"
 
-                    LayoutCachedLeft =1860
+                    LayoutCachedLeft =600
                     LayoutCachedTop =60
-                    LayoutCachedWidth =4500
+                    LayoutCachedWidth =3240
                     LayoutCachedHeight =330
                 End
             End
