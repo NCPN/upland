@@ -11,13 +11,13 @@ Begin Form
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
-    Width =10080
+    Width =11340
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =270
-    Top =210
-    Right =13575
-    Bottom =4080
+    Left =1260
+    Top =2010
+    Right =12930
+    Bottom =5520
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x384b3f359387e340
@@ -120,10 +120,24 @@ Begin Form
             BorderLineStyle =0
         End
         Begin FormHeader
-            Height =960
+            Height =1200
             BackColor =-2147483633
             Name ="FormHeader"
             Begin
+                Begin Rectangle
+                    BackStyle =1
+                    OverlapFlags =93
+                    Left =4725
+                    Top =660
+                    Width =1008
+                    Height =540
+                    BackColor =13434828
+                    Name ="rct2"
+                    LayoutCachedLeft =4725
+                    LayoutCachedTop =660
+                    LayoutCachedWidth =5733
+                    LayoutCachedHeight =1200
+                End
                 Begin Label
                     OverlapFlags =85
                     TextAlign =2
@@ -149,55 +163,71 @@ Begin Form
                     Tag ="DetachedLabel"
                 End
                 Begin Label
-                    OldBorderStyle =1
                     OverlapFlags =93
                     TextAlign =2
-                    Left =3600
-                    Top =720
-                    Width =1080
+                    Left =3660
+                    Top =960
+                    Width =930
                     Height =240
                     FontWeight =700
                     Name ="HC25_Label"
                     Caption ="2.5-5.0cm"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =3660
+                    LayoutCachedTop =960
+                    LayoutCachedWidth =4590
+                    LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OldBorderStyle =1
-                    OverlapFlags =93
+                    OverlapFlags =223
                     TextAlign =2
-                    Left =4695
-                    Top =720
-                    Width =1080
+                    Left =4703
+                    Top =960
+                    Width =1035
                     Height =240
                     FontWeight =700
                     Name ="HC50_Label"
                     Caption ="5.1-10.0cm"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =4703
+                    LayoutCachedTop =960
+                    LayoutCachedWidth =5738
+                    LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OldBorderStyle =1
-                    OverlapFlags =95
+                    OverlapFlags =223
                     TextAlign =2
-                    Left =5775
-                    Top =720
-                    Width =1080
+                    Left =5730
+                    Top =960
+                    Width =1140
                     Height =240
                     FontWeight =700
                     Name ="HC100_Label"
                     Caption ="10.1-15.0cm"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =5730
+                    LayoutCachedTop =960
+                    LayoutCachedWidth =6870
+                    LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OldBorderStyle =1
-                    OverlapFlags =87
+                    BackStyle =1
+                    OverlapFlags =215
                     TextAlign =2
                     Left =3600
                     Top =480
                     Width =3255
                     Height =240
                     FontWeight =700
+                    BackColor =14277081
                     Name ="Label22"
                     Caption ="Diameter Class Totals"
+                    LayoutCachedLeft =3600
+                    LayoutCachedTop =480
+                    LayoutCachedWidth =6855
+                    LayoutCachedHeight =720
+                    BackThemeColorIndex =1
+                    BackShade =85.0
                 End
                 Begin Label
                     OverlapFlags =85
@@ -213,7 +243,7 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =7860
+                    Left =7500
                     Top =120
                     Width =1545
                     Height =300
@@ -221,6 +251,10 @@ Begin Form
                     Caption ="Master Lookup"
                     OnClick ="[Event Procedure]"
 
+                    LayoutCachedLeft =7500
+                    LayoutCachedTop =120
+                    LayoutCachedWidth =9045
+                    LayoutCachedHeight =420
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
@@ -228,7 +262,7 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =7860
+                    Left =7500
                     Top =540
                     Width =1545
                     Height =300
@@ -237,18 +271,134 @@ Begin Form
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
+                    LayoutCachedLeft =7500
+                    LayoutCachedTop =540
+                    LayoutCachedWidth =9045
+                    LayoutCachedHeight =840
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
                 End
+                Begin Rectangle
+                    SpecialEffect =0
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =93
+                    Left =9180
+                    Top =240
+                    Width =2100
+                    Height =480
+                    BackColor =6750207
+                    Name ="rctNoData"
+                    OnClick ="[Event Procedure]"
+                    LayoutCachedLeft =9180
+                    LayoutCachedTop =240
+                    LayoutCachedWidth =11280
+                    LayoutCachedHeight =720
+                End
+                Begin CheckBox
+                    OverlapFlags =215
+                    Left =9300
+                    Top =390
+                    Width =300
+                    TabIndex =2
+                    Name ="cbxNoData"
+                    ControlTipText ="No tree saplings found"
+
+                    LayoutCachedLeft =9300
+                    LayoutCachedTop =390
+                    LayoutCachedWidth =9600
+                    LayoutCachedHeight =630
+                    Begin
+                        Begin Label
+                            OverlapFlags =247
+                            Left =9530
+                            Top =360
+                            Width =1650
+                            Height =240
+                            FontWeight =600
+                            Name ="lblNoData"
+                            Caption ="No Species Found"
+                            ControlTipText ="No tree saplings found"
+                            LayoutCachedLeft =9530
+                            LayoutCachedTop =360
+                            LayoutCachedWidth =11180
+                            LayoutCachedHeight =600
+                        End
+                    End
+                End
+                Begin Label
+                    OverlapFlags =215
+                    TextAlign =2
+                    Left =4020
+                    Top =735
+                    Width =195
+                    Height =240
+                    FontSize =5
+                    FontWeight =700
+                    Name ="lbl1"
+                    Caption ="1"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =4020
+                    LayoutCachedTop =735
+                    LayoutCachedWidth =4215
+                    LayoutCachedHeight =975
+                End
+                Begin Label
+                    OverlapFlags =215
+                    TextAlign =2
+                    Left =5100
+                    Top =735
+                    Width =195
+                    Height =240
+                    FontSize =5
+                    FontWeight =700
+                    BackColor =13434828
+                    Name ="lbl2"
+                    Caption ="2"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =5100
+                    LayoutCachedTop =735
+                    LayoutCachedWidth =5295
+                    LayoutCachedHeight =975
+                End
+                Begin Label
+                    OverlapFlags =215
+                    TextAlign =2
+                    Left =6180
+                    Top =735
+                    Width =195
+                    Height =240
+                    FontSize =5
+                    FontWeight =700
+                    Name ="lbl3"
+                    Caption ="3"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =6180
+                    LayoutCachedTop =735
+                    LayoutCachedWidth =6375
+                    LayoutCachedHeight =975
+                End
             End
         End
         Begin Section
-            Height =360
+            Height =420
             BackColor =-2147483633
             Name ="Detail"
             Begin
+                Begin Rectangle
+                    BackStyle =1
+                    OverlapFlags =93
+                    Left =4740
+                    Width =1008
+                    Height =420
+                    BackColor =13434828
+                    Name ="rct2data"
+                    LayoutCachedLeft =4740
+                    LayoutCachedWidth =5748
+                    LayoutCachedHeight =420
+                End
                 Begin TextBox
                     Visible = NotDefault
                     OverlapFlags =93
@@ -294,7 +444,7 @@ Begin Form
 
                 End
                 Begin TextBox
-                    OverlapFlags =85
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =4995
@@ -357,8 +507,8 @@ Begin Form
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is N"
-                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code; "
+                        "py.Utah_Species, Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Spe"
+                        "cies) Is Not Null)) AND Lifeform = 'Tree' ORDER BY qryU_Top_Canopy.LU_Code;"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
 

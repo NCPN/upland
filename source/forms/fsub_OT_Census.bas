@@ -11,13 +11,13 @@ Begin Form
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
-    Width =12240
+    Width =14160
     DatasheetFontHeight =9
     ItemSuffix =35
-    Left =252
-    Top =72
-    Right =13920
-    Bottom =7872
+    Left =255
+    Top =2235
+    Right =12540
+    Bottom =5520
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x12768bfd3188e340
@@ -230,32 +230,40 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =10680
-                    Top =60
+                    Left =10440
+                    Top =300
                     Height =300
                     Name ="ButtonMaster"
                     Caption ="Master Lookup"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    LayoutCachedLeft =10440
+                    LayoutCachedTop =300
+                    LayoutCachedWidth =11880
+                    LayoutCachedHeight =600
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =10680
-                    Top =420
+                    Left =10440
+                    Top =660
                     Height =300
                     TabIndex =1
                     Name ="ButtonUnknown"
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    LayoutCachedLeft =10440
+                    LayoutCachedTop =660
+                    LayoutCachedWidth =11880
+                    LayoutCachedHeight =960
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -269,6 +277,55 @@ Begin Form
                     Caption ="Indicator"
                     FontName ="Tahoma"
                     Tag ="DetachedLabel"
+                End
+                Begin Rectangle
+                    SpecialEffect =0
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =93
+                    Left =12000
+                    Top =540
+                    Width =2100
+                    Height =480
+                    BackColor =6750207
+                    Name ="rctNoData"
+                    LayoutCachedLeft =12000
+                    LayoutCachedTop =540
+                    LayoutCachedWidth =14100
+                    LayoutCachedHeight =1020
+                End
+                Begin CheckBox
+                    OverlapFlags =215
+                    Left =12120
+                    Top =690
+                    Width =300
+                    ColumnOrder =0
+                    TabIndex =2
+                    Name ="cbxNoData"
+                    OnClick ="[Event Procedure]"
+                    ControlTipText ="No overstory species"
+
+                    LayoutCachedLeft =12120
+                    LayoutCachedTop =690
+                    LayoutCachedWidth =12420
+                    LayoutCachedHeight =930
+                    Begin
+                        Begin Label
+                            OverlapFlags =247
+                            Left =12350
+                            Top =660
+                            Width =1650
+                            Height =240
+                            FontWeight =600
+                            Name ="lblNoData"
+                            Caption ="No Species Found"
+                            ControlTipText ="No overstory species"
+                            LayoutCachedLeft =12350
+                            LayoutCachedTop =660
+                            LayoutCachedWidth =14000
+                            LayoutCachedHeight =900
+                        End
+                    End
                 End
             End
         End
@@ -392,8 +449,8 @@ Begin Form
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is N"
-                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code; "
+                        "py.Utah_Species, Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Spe"
+                        "cies) Is Not Null)) AND Lifeform = 'Tree' ORDER BY qryU_Top_Canopy.LU_Code;"
                     ColumnWidths ="0;2160;4320"
 
                 End
@@ -448,12 +505,13 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
+                    LimitToList = NotDefault
                     RowSourceTypeInt =1
                     OverlapFlags =85
                     IMESentenceMode =3
@@ -484,6 +542,128 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
+
+' =================================
+' MODULE:       Form_fsub_OT_Census
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to overstory census monitoring
+'
+' Source/date:  Bonnie Campbell, 2/2/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/2/2016 - 1.01 - added documentation, set checkbox for no species found
+' =================================
+
+' ---------------------------------
+' SUB:          Form_Load
+' Description:  Handles form loading actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   RDB, unknown   - ?
+'   BLC, 2/2/2016  - added documentation
+' ---------------------------------
+Private Sub Form_Load()
+On Error GoTo Err_Handler
+
+    Dim Veg_Type As Variant
+    
+    ' set no data checkboxes
+    SetNoDataCheckbox Me
+    
+    Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent!Location_ID & "'")
+    If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
+      Me!Crown_Class.Visible = False
+      Me!Crown_Class_Label.Visible = False
+    End If
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_OT_Census])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Form_BeforeInsert
+' Description:  Handles form pre-insert actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/2/2016  - initial version
+'   BLC, 2/2/2016  - initial version
+' ---------------------------------
+Private Sub Form_BeforeInsert(Cancel As Integer)
+    On Error GoTo Err_Handler
+
+    ' Make sure there is an events record
+    If IsNull(Me.Parent!Start_Date) Then
+      MsgBox "Missing site visit date."
+      DoCmd.CancelEvent
+      SendKeys "{ESC}"
+      Exit Sub
+    End If
+
+    ' Create the GUID primary key value
+    If IsNull(Me!Census_ID) Then
+        If GetDataType("tbl_OT_Census", "Census_ID") = dbText Then
+            Me.Census_ID = fxnGUIDGen
+        End If
+    End If
+
+Exit_Procedure:
+    Exit Sub
+
+Err_Handler:
+    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
+    Resume Exit_Procedure
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNoSpecies_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/2/2016  - initial version
+' ---------------------------------
+Private Sub cbxNoSpecies_Click()
+On Error GoTo Err_Handler
+
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoSpecies_Click[Form_fsub_OT_Census])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
 
 Private Sub ButtonMaster_Click()
@@ -614,41 +794,7 @@ Private Sub DBH_BeforeUpdate(Cancel As Integer)
   
 End Sub
 
-Private Sub Form_BeforeInsert(Cancel As Integer)
-    On Error GoTo Err_Handler
 
-    ' Make sure there is an events record
-    If IsNull(Me.Parent!Start_Date) Then
-      MsgBox "Missing site visit date."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-      Exit Sub
-    End If
-
-    ' Create the GUID primary key value
-    If IsNull(Me!Census_ID) Then
-        If GetDataType("tbl_OT_Census", "Census_ID") = dbText Then
-            Me.Census_ID = fxnGUIDGen
-        End If
-    End If
-
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-End Sub
-
-Private Sub Form_Load()
-    Dim Veg_Type As Variant
-    
-    Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent!Location_ID & "'")
-    If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
-      Me!Crown_Class.visible = False
-      Me!Crown_Class_Label.visible = False
-    End If
-End Sub
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_ButtonDelete_Click
 

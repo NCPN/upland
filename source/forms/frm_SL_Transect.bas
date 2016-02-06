@@ -5,6 +5,7 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =0
@@ -17,9 +18,10 @@ Begin Form
     Width =11520
     DatasheetFontHeight =9
     ItemSuffix =51
-    Left =705
-    Right =14130
-    Bottom =8430
+    Left =-750
+    Top =-3315
+    Right =10770
+    Bottom =5310
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xef3436320d89e340
@@ -403,26 +405,85 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
 
-Private Sub ButtonNext_KeyDown(KeyCode As Integer, Shift As Integer)
-  ' Ignore Page Down and Page Up keys for they will cycle through records
-  Select Case KeyCode
-    Case 33, 34
-      KeyCode = 0
+' =================================
+' MODULE:       frm_Canopy_Transect
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to canopy transect data entry
+'
+' Source/date:  John R. Boetsch, June 2006
+' Adapted:      Bonnie Campbell, 2/3/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/3/2016 - 1.01 - added documentation, adjusted to use transect # overlay
+'                                       vs. message box
+' =================================
+
+' ---------------------------------
+' SUB:          Form_BeforeInsert
+' Description:  Handles form opening actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   RDB, unknown   - ?
+'   BLC, 2/3/2016  - added documentation, updated error handling
+' ---------------------------------
+Private Sub Form_BeforeInsert(Cancel As Integer)
+    On Error GoTo Err_Handler
+
+    ' Default to Events Start Date if visit date is null
+    If IsNull(Me.Parent!Start_Date) Then
+      MsgBox "Missing site visit date."
+      DoCmd.CancelEvent
+      SendKeys "{ESC}"
+      GoTo Exit_Handler
+    ElseIf IsNull(Me!Visit_Date) Then
+      Me!Visit_Date = Me.Parent!Start_Date
+    End If
+    ' Create the GUID primary key value
+    If IsNull(Me!Transect_ID) Then
+        If GetDataType("tbl_LP_Belt_Transect", "Transect_ID") = dbText Then
+            Me.Transect_ID = fxnGUIDGen
+ '           Forms!frm_Data_Entry!frm_LP_Transect.Form!fsub_Lower_Canopy.Form!Transect_ID = Me!Transect_ID
+        End If
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_frm_SL_Transect])"
     End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonPrevious_KeyDown(KeyCode As Integer, Shift As Integer)
-  ' Ignore Page Down and Page Up keys for they will cycle through records
-  Select Case KeyCode
-    Case 33, 34
-      KeyCode = 0
-    End Select
-End Sub
-
-
+' ---------------------------------
+' SUB:          ButtonPrevious_Click
+' Description:  Handles previous click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   RDB, unknown   - ?
+'   BLC, 2/3/2016  - added documentation & revised to use transect overlay vs. message box
+' ---------------------------------
 Private Sub ButtonPrevious_Click()
-On Error GoTo Err_ButtonPrevious_Click
+On Error GoTo Err_Handler
   Dim intTransect As Byte
   
   ' Disabled 3/20/09 on demand of ecologists
@@ -437,19 +498,45 @@ On Error GoTo Err_ButtonPrevious_Click
     DoCmd.GoToRecord , , acPrevious
 '    DoCmd.GoToRecord , , 2
     Me!Transect = intTransect - 1
-    MsgBox "You are on transect " & Me!Transect & ".", 0, "Transect Verify"
+    
+    '---------------------------
+    'display overlay - 2/3/2016 - BLC
+    '---------------------------
+'    MsgBox "You are on transect " & Me!Transect & ".", 0, "Transect Verify"
+    DoCmd.OpenForm "frm_Transect_Overlay", OpenArgs:=Me!Transect
+    '---------------------------
+  
   End If
   
-Exit_ButtonPrevious_Click:
+Exit_Handler:
     Exit Sub
-
-Err_ButtonPrevious_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonPrevious_Click
     
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ButtonPrevious_Click[Form_frm_SL_Transect])"
+    End Select
+    Resume Exit_Handler
 End Sub
+
+' ---------------------------------
+' SUB:          ButtonNext_Click
+' Description:  Handles next button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   RDB, unknown   - ?
+'   BLC, 2/3/2016  - added documentation & revised to use transect overlay vs. message box
+' ---------------------------------
 Private Sub ButtonNext_Click()
-On Error GoTo Err_ButtonNext_Click
+On Error GoTo Err_Handler
 
 ' Disabled 3/20/09 on demand of ecologists.
 '  If IsNull(Me!Recorder) And IsNull(Me!Observer) Then
@@ -466,44 +553,41 @@ On Error GoTo Err_ButtonNext_Click
     intTransect = Me!Transect
     DoCmd.GoToRecord , , acNext
     Me!Transect = intTransect + 1
-    MsgBox "You are on transect " & Me!Transect & ".", 0, "Transect Verify"
+    '---------------------------
+    'display overlay - 2/3/2016 - BLC
+    '---------------------------
+    'MsgBox "You are on transect " & Me!Transect & ".", 0, "Transect Verify"
+    DoCmd.OpenForm "frm_Transect_Overlay", OpenArgs:=Me!Transect
+    '---------------------------
+    
   End If
 
-Exit_ButtonNext_Click:
+Exit_Handler:
     Exit Sub
-
-Err_ButtonNext_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonNext_Click
     
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ButtonNext_Click[Form_frm_SL_Transect])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub Form_BeforeInsert(Cancel As Integer)
-    On Error GoTo Err_Handler
+Private Sub ButtonNext_KeyDown(KeyCode As Integer, Shift As Integer)
+  ' Ignore Page Down and Page Up keys for they will cycle through records
+  Select Case KeyCode
+    Case 33, 34
+      KeyCode = 0
+    End Select
+End Sub
 
-    ' Default to Events Start Date if visit date is null
-    If IsNull(Me.Parent!Start_Date) Then
-      MsgBox "Missing site visit date."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-      GoTo Exit_Procedure
-    ElseIf IsNull(Me!Visit_Date) Then
-      Me!Visit_Date = Me.Parent!Start_Date
-    End If
-    ' Create the GUID primary key value
-    If IsNull(Me!Transect_ID) Then
-        If GetDataType("tbl_LP_Belt_Transect", "Transect_ID") = dbText Then
-            Me.Transect_ID = fxnGUIDGen
- '           Forms!frm_Data_Entry!frm_LP_Transect.Form!fsub_Lower_Canopy.Form!Transect_ID = Me!Transect_ID
-        End If
-    End If
-
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
+Private Sub ButtonPrevious_KeyDown(KeyCode As Integer, Shift As Integer)
+  ' Ignore Page Down and Page Up keys for they will cycle through records
+  Select Case KeyCode
+    Case 33, 34
+      KeyCode = 0
+    End Select
 End Sub
 
 Private Sub Observer_KeyDown(KeyCode As Integer, Shift As Integer)

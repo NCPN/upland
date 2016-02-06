@@ -17,10 +17,10 @@ Begin Form
     Width =13680
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =570
-    Top =285
-    Right =14085
-    Bottom =6405
+    Left =3528
+    Top =3228
+    Right =16968
+    Bottom =14964
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xb5100b474c2ee340
@@ -252,10 +252,10 @@ Begin Form
                     End
                     ControlTipText ="Previous Record"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -291,10 +291,10 @@ Begin Form
                     End
                     ControlTipText ="Next Record"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Subform
                     OverlapFlags =85
@@ -308,6 +308,10 @@ Begin Form
                     LinkChildFields ="Transect_ID"
                     LinkMasterFields ="Transect_ID"
 
+                    LayoutCachedLeft =60
+                    LayoutCachedTop =480
+                    LayoutCachedWidth =13590
+                    LayoutCachedHeight =12375
                 End
             End
         End

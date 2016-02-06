@@ -11,13 +11,13 @@ Begin Form
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
-    Width =5760
+    Width =6660
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =825
+    Left =828
     Top =540
-    Right =14490
-    Bottom =8355
+    Right =9180
+    Bottom =7656
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x99c2faf85388e340
@@ -30,6 +30,7 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
     AllowPivotTableView =0
     AllowPivotChartView =0
@@ -188,6 +189,54 @@ Begin Form
                     Caption ="(> 3 in)"
                     FontName ="Tahoma"
                 End
+                Begin Rectangle
+                    SpecialEffect =0
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =93
+                    Left =4500
+                    Top =300
+                    Width =2100
+                    Height =480
+                    BackColor =6750207
+                    Name ="rctNoData"
+                    OnClick ="[Event Procedure]"
+                    LayoutCachedLeft =4500
+                    LayoutCachedTop =300
+                    LayoutCachedWidth =6600
+                    LayoutCachedHeight =780
+                End
+                Begin CheckBox
+                    OverlapFlags =215
+                    Left =4620
+                    Top =450
+                    Width =300
+                    Name ="cbxNoData"
+                    OnClick ="[Event Procedure]"
+                    ControlTipText ="No 1000-hr fuels found"
+
+                    LayoutCachedLeft =4620
+                    LayoutCachedTop =450
+                    LayoutCachedWidth =4920
+                    LayoutCachedHeight =690
+                    Begin
+                        Begin Label
+                            OverlapFlags =247
+                            Left =4850
+                            Top =420
+                            Width =1650
+                            Height =240
+                            FontWeight =600
+                            Name ="lblNoData"
+                            Caption ="No Species Found"
+                            ControlTipText ="No 1000-hr fuels found"
+                            LayoutCachedLeft =4850
+                            LayoutCachedTop =420
+                            LayoutCachedWidth =6500
+                            LayoutCachedHeight =660
+                        End
+                    End
+                End
             End
         End
         Begin Section
@@ -273,10 +322,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Tahoma"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -314,6 +363,80 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
+
+' =================================
+' MODULE:       Form_fsub_Fuels_1000
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to exotic frequency monitoring
+'
+' Source/date:  Bonnie Campbell, 2/2/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+' =================================
+
+' ---------------------------------
+' SUB:          Form_Load
+' Description:  Handles form loading actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/2/2016  - initial version
+' ---------------------------------
+Private Sub Form_Load()
+On Error GoTo Err_Handler
+
+' set rectangle color
+' enable checkbox if there are no species
+' disable checkbox if there are species
+    SetNoDataCheckbox Me
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_Fuels_1000])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNoSpecies_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/2/2016  - initial version
+' ---------------------------------
+Private Sub cbxNoSpecies_Click()
+On Error GoTo Err_Handler
+
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoSpecies_Click[Form_fsub_Fuels_1000])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
 Private Sub Decay_Class_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records

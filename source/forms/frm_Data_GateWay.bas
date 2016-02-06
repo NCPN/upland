@@ -10,6 +10,7 @@ Begin Form
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
+    FilterOn = NotDefault
     OrderByOn = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -21,13 +22,13 @@ Begin Form
     Width =10560
     DatasheetFontHeight =10
     ItemSuffix =37
-    Left =5175
-    Top =2235
-    Right =15735
-    Bottom =8085
+    Left =6048
+    Top =744
+    Right =16608
+    Bottom =6600
     DatasheetGridlinesColor =12632256
-    Filter ="Unit_code = 'BRCA' AND Site_Selection = -1"
-    OrderBy ="Plot_ID"
+    Filter ="Unit_code = 'BLCA' AND Site_Selection = -1"
+    OrderBy ="Plot_ID DESC, Unit_Code"
     RecSrcDt = Begin
         0x29b5dcdf75fbe240
     End
@@ -42,6 +43,9 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -51,54 +55,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -108,9 +123,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =1248
@@ -157,6 +174,11 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
                     ControlTipText ="Close the data entry form"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Label
                     OverlapFlags =85
@@ -179,6 +201,7 @@ Begin Form
                     Left =1500
                     Top =660
                     Width =960
+                    ColumnOrder =1
                     TabIndex =1
                     ColumnInfo ="\"\";\"\";\"10\";\"8\""
                     Name ="selPark"
@@ -188,6 +211,7 @@ Begin Form
                     StatusBarText ="Park code"
                     AfterUpdate ="[Event Procedure]"
                     FontName ="Arial"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -209,6 +233,7 @@ Begin Form
                     Top =660
                     Width =480
                     Height =300
+                    ColumnOrder =0
                     Name ="togFilterByPark"
                     AfterUpdate ="[Event Procedure]"
                     Caption ="Filter on"
@@ -232,11 +257,14 @@ Begin Form
                     End
                     FontName ="Arial"
                     ObjectPalette = Begin
-                        0x0003100000000000800000000080000080800000000080008000800000808000 ,
-                        0x80808000c0c0c000ff000000c0c0c000ffff00000000ff00c0c0c00000ffff00 ,
-                        0xffffff0000000000
+                        0x000301000000000000000000
                     End
                     ControlTipText ="Turn the park filter on or off"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Label
                     OverlapFlags =85
@@ -262,6 +290,11 @@ Begin Form
                     Caption ="Add a new site"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Label
                     OverlapFlags =87
@@ -287,6 +320,11 @@ Begin Form
                     Caption ="Refresh"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -297,6 +335,7 @@ Begin Form
                     Left =4680
                     Top =660
                     Width =720
+                    ColumnOrder =2
                     TabIndex =5
                     Name ="selMon"
                     RowSourceType ="Value List"
@@ -304,6 +343,7 @@ Begin Form
                     ColumnWidths ="390"
                     AfterUpdate ="[Event Procedure]"
                     DefaultValue ="\"On\""
+
                 End
                 Begin Label
                     OverlapFlags =215
@@ -340,6 +380,7 @@ Begin Form
                     Format ="yyyy mmm dd hh:nn"
                     StatusBarText ="Date on which data entry occurred"
                     FontName ="Arial"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -355,6 +396,7 @@ Begin Form
                     ControlSource ="Unit_Code"
                     StatusBarText ="Unit code"
                     FontName ="Arial"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -371,6 +413,7 @@ Begin Form
                     ControlSource ="Location_ID"
                     StatusBarText ="Name of the location"
                     FontName ="Arial"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -384,6 +427,7 @@ Begin Form
                     Name ="txtPlot_ID"
                     ControlSource ="Plot_ID"
                     StatusBarText ="Plot identifier"
+
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -396,6 +440,11 @@ Begin Form
                     Caption ="View Visits"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CheckBox
                     Enabled = NotDefault
@@ -407,6 +456,7 @@ Begin Form
                     Name ="Site_Selection"
                     ControlSource ="Site_Selection"
                     StatusBarText ="Site accepted or rejected"
+
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -419,6 +469,11 @@ Begin Form
                     Caption ="Add New Visit"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -431,6 +486,11 @@ Begin Form
                     Caption ="Site Characterization"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End

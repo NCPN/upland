@@ -11,11 +11,10 @@ Begin Form
     GridY =24
     Width =11880
     DatasheetFontHeight =9
-    ItemSuffix =28
-    Left =1545
-    Top =3495
-    Right =13710
-    Bottom =7020
+    ItemSuffix =43
+    Top =876
+    Right =8460
+    Bottom =4380
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -28,6 +27,7 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    OnLoad ="[Event Procedure]"
     FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -114,10 +114,87 @@ Begin Form
             BorderLineStyle =0
         End
         Begin FormHeader
-            Height =960
+            Height =1200
             BackColor =-2147483633
             Name ="FormHeader"
             Begin
+                Begin Rectangle
+                    BackStyle =1
+                    OverlapFlags =93
+                    Left =6300
+                    Top =660
+                    Width =1008
+                    Height =540
+                    BackColor =13434828
+                    Name ="rct4"
+                    LayoutCachedLeft =6300
+                    LayoutCachedTop =660
+                    LayoutCachedWidth =7308
+                    LayoutCachedHeight =1200
+                End
+                Begin Rectangle
+                    BackStyle =1
+                    OverlapFlags =93
+                    Left =8580
+                    Top =660
+                    Width =1008
+                    Height =540
+                    BackColor =13434828
+                    Name ="rct6"
+                    LayoutCachedLeft =8580
+                    LayoutCachedTop =660
+                    LayoutCachedWidth =9588
+                    LayoutCachedHeight =1200
+                End
+                Begin Label
+                    OverlapFlags =223
+                    TextAlign =2
+                    Left =6735
+                    Top =735
+                    Width =195
+                    Height =240
+                    FontSize =5
+                    FontWeight =700
+                    BackColor =13434828
+                    Name ="lbl4"
+                    Caption ="4"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =6735
+                    LayoutCachedTop =735
+                    LayoutCachedWidth =6930
+                    LayoutCachedHeight =975
+                End
+                Begin Rectangle
+                    BackStyle =1
+                    OverlapFlags =93
+                    Left =4200
+                    Top =660
+                    Width =1008
+                    Height =540
+                    BackColor =13434828
+                    Name ="rct2"
+                    LayoutCachedLeft =4200
+                    LayoutCachedTop =660
+                    LayoutCachedWidth =5208
+                    LayoutCachedHeight =1200
+                End
+                Begin Rectangle
+                    SpecialEffect =0
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =93
+                    Left =9720
+                    Top =420
+                    Width =2100
+                    Height =480
+                    BackColor =6750207
+                    Name ="rctNoData"
+                    OnClick ="[Event Procedure]"
+                    LayoutCachedLeft =9720
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =11820
+                    LayoutCachedHeight =900
+                End
                 Begin Label
                     OverlapFlags =85
                     TextAlign =2
@@ -144,94 +221,128 @@ Begin Form
                     Tag ="DetachedLabel"
                 End
                 Begin Label
-                    OldBorderStyle =1
-                    OverlapFlags =223
+                    OverlapFlags =93
                     TextAlign =2
-                    Left =3060
-                    Top =720
-                    Width =1080
+                    Left =3300
+                    Top =960
+                    Width =705
                     Height =240
+                    FontSize =5
                     FontWeight =700
                     Name ="HC10_Label"
                     Caption ="0-10cm"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =3300
+                    LayoutCachedTop =960
+                    LayoutCachedWidth =4005
+                    LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OldBorderStyle =1
-                    OverlapFlags =95
+                    OverlapFlags =223
                     TextAlign =2
-                    Left =4140
-                    Top =720
-                    Width =1080
+                    Left =4200
+                    Top =960
+                    Width =975
                     Height =240
+                    FontSize =5
                     FontWeight =700
+                    BackColor =13434828
                     Name ="HC25_Label"
                     Caption ="10.1-25cm"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =4200
+                    LayoutCachedTop =960
+                    LayoutCachedWidth =5175
+                    LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OldBorderStyle =1
-                    OverlapFlags =95
+                    OverlapFlags =93
                     TextAlign =2
-                    Left =5220
-                    Top =720
-                    Width =1080
+                    Left =5265
+                    Top =960
+                    Width =975
                     Height =240
+                    FontSize =5
                     FontWeight =700
                     Name ="HC50_Label"
                     Caption ="25.1-50cm"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =5265
+                    LayoutCachedTop =960
+                    LayoutCachedWidth =6240
+                    LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OldBorderStyle =1
-                    OverlapFlags =95
+                    OverlapFlags =215
                     TextAlign =2
-                    Left =6300
-                    Top =720
+                    Left =6292
+                    Top =960
                     Width =1080
                     Height =240
+                    FontSize =5
                     FontWeight =700
+                    BackColor =13434828
                     Name ="HC100_Label"
                     Caption ="50.1-100cm"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =6292
+                    LayoutCachedTop =960
+                    LayoutCachedWidth =7372
+                    LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OldBorderStyle =1
-                    OverlapFlags =95
+                    OverlapFlags =93
                     TextAlign =2
-                    Left =7380
-                    Top =720
-                    Width =1080
+                    Left =7530
+                    Top =960
+                    Width =765
                     Height =240
+                    FontSize =5
                     FontWeight =700
                     Name ="HC2m_Label"
                     Caption ="1.01-2m"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =7530
+                    LayoutCachedTop =960
+                    LayoutCachedWidth =8295
+                    LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OldBorderStyle =1
-                    OverlapFlags =95
+                    OverlapFlags =223
                     TextAlign =2
-                    Left =8460
-                    Top =720
-                    Width =1080
+                    Left =8640
+                    Top =960
+                    Width =705
                     Height =240
+                    FontSize =5
                     FontWeight =700
+                    BackColor =13434828
                     Name ="HCGT2_Label"
                     Caption =">2.01m"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =8640
+                    LayoutCachedTop =960
+                    LayoutCachedWidth =9345
+                    LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OldBorderStyle =1
-                    OverlapFlags =87
+                    BackStyle =1
+                    OverlapFlags =215
                     TextAlign =2
                     Left =3060
                     Top =480
                     Width =6480
                     Height =240
                     FontWeight =700
-                    Name ="Label22"
+                    BackColor =14277081
+                    Name ="lblHeightClassTotals"
                     Caption ="Height Class Totals"
+                    LayoutCachedLeft =3060
+                    LayoutCachedTop =480
+                    LayoutCachedWidth =9540
+                    LayoutCachedHeight =720
+                    BackThemeColorIndex =1
+                    BackShade =85.0
                 End
                 Begin Label
                     OverlapFlags =85
@@ -245,13 +356,168 @@ Begin Form
                     Name ="Label23"
                     Caption ="Number of Live Shrubs Rooted in 1 Meter Belt Transect"
                 End
+                Begin CheckBox
+                    OverlapFlags =215
+                    Left =9840
+                    Top =570
+                    Width =300
+                    ColumnOrder =0
+                    Name ="cbxNoData"
+                    OnClick ="[Event Procedure]"
+                    ControlTipText ="No live shrubs rooted in the 1m belt transect were found"
+
+                    LayoutCachedLeft =9840
+                    LayoutCachedTop =570
+                    LayoutCachedWidth =10140
+                    LayoutCachedHeight =810
+                    Begin
+                        Begin Label
+                            OverlapFlags =247
+                            Left =10070
+                            Top =540
+                            Width =1650
+                            Height =240
+                            FontWeight =600
+                            Name ="lblNoData"
+                            Caption ="No Species Found"
+                            ControlTipText ="No live rooted shrub species found"
+                            LayoutCachedLeft =10070
+                            LayoutCachedTop =540
+                            LayoutCachedWidth =11720
+                            LayoutCachedHeight =780
+                        End
+                    End
+                End
+                Begin Label
+                    OverlapFlags =215
+                    TextAlign =2
+                    Left =3495
+                    Top =735
+                    Width =195
+                    Height =240
+                    FontSize =5
+                    FontWeight =700
+                    Name ="lbl1"
+                    Caption ="1"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =3495
+                    LayoutCachedTop =735
+                    LayoutCachedWidth =3690
+                    LayoutCachedHeight =975
+                End
+                Begin Label
+                    OverlapFlags =215
+                    TextAlign =2
+                    Left =4575
+                    Top =735
+                    Width =195
+                    Height =240
+                    FontSize =5
+                    FontWeight =700
+                    BackColor =13434828
+                    Name ="lbl2"
+                    Caption ="2"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =4575
+                    LayoutCachedTop =735
+                    LayoutCachedWidth =4770
+                    LayoutCachedHeight =975
+                End
+                Begin Label
+                    OverlapFlags =215
+                    TextAlign =2
+                    Left =5655
+                    Top =735
+                    Width =195
+                    Height =240
+                    FontSize =5
+                    FontWeight =700
+                    Name ="lbl3"
+                    Caption ="3"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =5655
+                    LayoutCachedTop =735
+                    LayoutCachedWidth =5850
+                    LayoutCachedHeight =975
+                End
+                Begin Label
+                    OverlapFlags =215
+                    TextAlign =2
+                    Left =7815
+                    Top =735
+                    Width =195
+                    Height =240
+                    FontSize =5
+                    FontWeight =700
+                    Name ="lbl5"
+                    Caption ="5"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =7815
+                    LayoutCachedTop =735
+                    LayoutCachedWidth =8010
+                    LayoutCachedHeight =975
+                End
+                Begin Label
+                    OverlapFlags =215
+                    TextAlign =2
+                    Left =8895
+                    Top =735
+                    Width =195
+                    Height =240
+                    FontSize =5
+                    FontWeight =700
+                    BackColor =13434828
+                    Name ="lbl6"
+                    Caption ="6"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =8895
+                    LayoutCachedTop =735
+                    LayoutCachedWidth =9090
+                    LayoutCachedHeight =975
+                End
             End
         End
         Begin Section
-            Height =360
+            Height =420
             BackColor =-2147483633
             Name ="Detail"
             Begin
+                Begin Rectangle
+                    BackStyle =1
+                    OverlapFlags =93
+                    Left =8580
+                    Width =1008
+                    Height =420
+                    BackColor =13434828
+                    Name ="rct6data"
+                    LayoutCachedLeft =8580
+                    LayoutCachedWidth =9588
+                    LayoutCachedHeight =420
+                End
+                Begin Rectangle
+                    BackStyle =1
+                    OverlapFlags =93
+                    Left =6300
+                    Width =1008
+                    Height =420
+                    BackColor =13434828
+                    Name ="rct4data"
+                    LayoutCachedLeft =6300
+                    LayoutCachedWidth =7308
+                    LayoutCachedHeight =420
+                End
+                Begin Rectangle
+                    BackStyle =1
+                    OverlapFlags =93
+                    Left =4200
+                    Width =1008
+                    Height =420
+                    BackColor =13434828
+                    Name ="rct2data"
+                    LayoutCachedLeft =4200
+                    LayoutCachedWidth =5208
+                    LayoutCachedHeight =420
+                End
                 Begin TextBox
                     Visible = NotDefault
                     OverlapFlags =93
@@ -282,10 +548,10 @@ Begin Form
 
                 End
                 Begin TextBox
-                    OverlapFlags =93
+                    OverlapFlags =85
                     TextAlign =2
                     IMESentenceMode =3
-                    Left =3300
+                    Left =3360
                     Top =60
                     Width =540
                     Height =255
@@ -295,9 +561,13 @@ Begin Form
                     ControlSource ="HC10"
                     StatusBarText ="0-10cm height class total"
 
+                    LayoutCachedLeft =3360
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =3900
+                    LayoutCachedHeight =315
                 End
                 Begin TextBox
-                    OverlapFlags =85
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =4380
@@ -327,7 +597,7 @@ Begin Form
 
                 End
                 Begin TextBox
-                    OverlapFlags =85
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =6540
@@ -357,7 +627,7 @@ Begin Form
 
                 End
                 Begin TextBox
-                    OverlapFlags =85
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =8760
@@ -375,7 +645,7 @@ Begin Form
                     LimitToList = NotDefault
                     Visible = NotDefault
                     RowSourceTypeInt =1
-                    OverlapFlags =87
+                    OverlapFlags =85
                     IMESentenceMode =3
                     ColumnCount =2
                     ListWidth =375
@@ -405,8 +675,10 @@ Begin Form
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is N"
-                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code; "
+                        "py.Utah_Species, Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Spe"
+                        "cies) Is Not Null)) AND Lifeform IN ('Shrub','DwarfShrub') AND tlu_NCPN_Plants.M"
+                        "aster_PLANT_Code NOT IN (SELECT Master_PLANT_Code FROM qry_ShrubExclusionList)  "
+                        "ORDER BY qryU_Top_Canopy.LU_Code;"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
@@ -425,10 +697,10 @@ Begin Form
                     Caption ="Delete Record"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -448,10 +720,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -465,10 +737,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -482,10 +754,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -499,10 +771,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -516,10 +788,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -531,6 +803,82 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
+
+' =================================
+' MODULE:       Form_fsub_LP_Belt_Shrub
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to LP belt shrub monitoring
+'
+' Source/date:  Bonnie Campbell, 2/2/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+' =================================
+
+' ---------------------------------
+' SUB:          Form_Load
+' Description:  Handles form loading actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/2/2016  - initial version
+' ---------------------------------
+Private Sub Form_Load()
+On Error GoTo Err_Handler
+
+' set rectangle color
+' enable checkbox if there are no species
+' disable checkbox if there are species
+    SetNoDataCheckbox Me
+
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_LP_Belt_Shrub])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNoSpecies_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/2/2016  - initial version
+' ---------------------------------
+Private Sub cbxNoSpecies_Click()
+On Error GoTo Err_Handler
+
+
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoSpecies_Click[Form_fsub_LP_Belt_Shrub])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
 Private Sub Button_Master_Species_Click()
 On Error GoTo Err_Button_Master_Species_Click
@@ -638,7 +986,22 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
 Exit_Procedure:
 End Sub
 
+' ---------------------------------
+' SUB:          Species_BeforeUpdate
+' Description:  Handles species pre-update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/2/2016  - added documentation, disable checkbox if species exist
+' ---------------------------------
 Private Sub Species_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
 
     If Not IsNull(DLookup("[Shrub_ID]", "tbl_LP_Shrub", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
       MsgBox "This species is already recorded for this transect."
@@ -646,9 +1009,25 @@ Private Sub Species_BeforeUpdate(Cancel As Integer)
       SendKeys "{ESC}"
     End If
     
+    'if species is added disable checkbox & change color of rectangle background
+    If Not IsNull(Me.Species) Then
+        cbxNoData.Enabled = False
+        rctNoData.BackStyle = "Transparent"
+    End If
+    
     'capture the CTRL+Z keystroke
     
     'note: watch out for SendKeys   http://access.mvps.org/access/api/api0046.htm
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_BeforeUpdate[Form_fsub_LP_Belt_Shrub])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 Private Sub Species_GotFocus()
@@ -659,6 +1038,7 @@ Private Sub Species_GotFocus()
     End If
    
 End Sub
+
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_ButtonDelete_Click
   Dim intReply As Integer

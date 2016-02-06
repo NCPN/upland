@@ -1091,7 +1091,7 @@ Private Sub LCS1_AfterUpdate()
   Dim ResultFlag As Boolean
   Dim lngPosition As Long
   
-  lngPosition = Me.currentRecord ' capture index position of record currently selected
+  lngPosition = Me.CurrentRecord ' capture index position of record currently selected
   If lngPosition > 1 Then
     lngPosition = lngPosition - 1
   End If
@@ -1162,7 +1162,7 @@ Private Sub LCS2_AfterUpdate()
   Dim ResultFlag As Boolean
   Dim lngPosition As Long
   
-  lngPosition = Me.currentRecord ' capture index position of record currently selected
+  lngPosition = Me.CurrentRecord ' capture index position of record currently selected
   If lngPosition > 1 Then
     lngPosition = lngPosition - 1
   End If
@@ -1240,7 +1240,7 @@ Private Sub LCS3_AfterUpdate()
   Dim ResultFlag As Boolean
   Dim lngPosition As Long
   
-  lngPosition = Me.currentRecord ' capture index position of record currently selected
+  lngPosition = Me.CurrentRecord ' capture index position of record currently selected
   If lngPosition > 1 Then
     lngPosition = lngPosition - 1
   End If

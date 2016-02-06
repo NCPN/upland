@@ -18,10 +18,10 @@ Begin Form
     Width =13080
     DatasheetFontHeight =9
     ItemSuffix =127
-    Left =3570
-    Top =4035
-    Right =15000
-    Bottom =10935
+    Left =3810
+    Top =5490
+    Right =15240
+    Bottom =12390
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{7EA92962-EF5B-4753-A542-6A754C5EEB62}'"
     RecSrcDt = Begin

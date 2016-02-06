@@ -17,10 +17,10 @@ Begin Form
     Width =12600
     DatasheetFontHeight =9
     ItemSuffix =62
-    Left =570
-    Top =285
-    Right =14085
-    Bottom =9975
+    Left =1380
+    Top =2784
+    Right =13740
+    Bottom =9108
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xd4e1e7326d12e340
@@ -34,6 +34,7 @@ Begin Form
         0x010000006801000000000000a10700000100000001000000
     End
     OnKeyDown ="[Event Procedure]"
+    OnLoad ="[Event Procedure]"
     FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -221,35 +222,43 @@ Begin Form
                 Begin CommandButton
                     OverlapFlags =85
                     Left =4080
-                    Top =4980
+                    Top =5460
                     Width =2220
                     TabIndex =7
                     Name ="ButtonSiteSketch"
                     Caption ="Disturbance sketch/photo"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    LayoutCachedLeft =4080
+                    LayoutCachedTop =5460
+                    LayoutCachedWidth =6300
+                    LayoutCachedHeight =5820
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Subform
                     OverlapFlags =87
-                    Left =900
+                    Left =840
                     Top =1440
-                    Width =8145
-                    Height =3285
+                    Width =8517
+                    Height =3837
                     TabIndex =6
                     Name ="Disturbance Details"
-                    SourceObject ="Form.frm_sub_Impact_Details"
+                    SourceObject ="Form.fsub_Impact_Details"
                     LinkChildFields ="Impact_ID"
                     LinkMasterFields ="Impact_ID"
                     EventProcPrefix ="Disturbance_Details"
 
+                    LayoutCachedLeft =840
+                    LayoutCachedTop =1440
+                    LayoutCachedWidth =9357
+                    LayoutCachedHeight =5277
                     Begin
                         Begin Label
                             OverlapFlags =93
-                            Left =900
+                            Left =840
                             Top =1200
                             Width =1920
                             Height =240
@@ -257,6 +266,10 @@ Begin Form
                             Name ="Disturbance Details Label"
                             Caption ="Disturbance Details"
                             EventProcPrefix ="Disturbance_Details_Label"
+                            LayoutCachedLeft =840
+                            LayoutCachedTop =1200
+                            LayoutCachedWidth =2760
+                            LayoutCachedHeight =1440
                         End
                     End
                 End
@@ -319,8 +332,8 @@ Begin Form
                 Begin Subform
                     OverlapFlags =85
                     Left =1080
-                    Top =5640
-                    Width =7770
+                    Top =6120
+                    Width =8934
                     Height =3000
                     TabIndex =8
                     Name ="fsub_Dist_Exotic"
@@ -328,6 +341,10 @@ Begin Form
                     LinkChildFields ="Impact_ID"
                     LinkMasterFields ="Impact_ID"
 
+                    LayoutCachedLeft =1080
+                    LayoutCachedTop =6120
+                    LayoutCachedWidth =10014
+                    LayoutCachedHeight =9120
                 End
             End
         End
@@ -344,6 +361,80 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
+
+' =================================
+' MODULE:       Form_frm_Site_Impact
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to site impact monitoring
+'
+' Source/date:  Bonnie Campbell, 2/2/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+' =================================
+
+' ---------------------------------
+' SUB:          Form_Load
+' Description:  Handles form loading actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/2/2016  - initial version
+' ---------------------------------
+Private Sub Form_Load()
+On Error GoTo Err_Handler
+
+' set rectangle color
+' enable checkbox if there are no species
+' disable checkbox if there are species
+    'SetNoDataCheckbox Me
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_frm_Site_Impact])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNoSpecies_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/2/2016  - initial version
+' ---------------------------------
+Private Sub cbxNoSpecies_Click()
+On Error GoTo Err_Handler
+
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoSpecies_Click[Form_frm_Site_Impact])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
 Private Sub Form_BeforeInsert(Cancel As Integer)
     On Error GoTo Err_Handler
