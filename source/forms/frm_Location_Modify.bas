@@ -17,13 +17,13 @@ Begin Form
     GridY =24
     Width =10080
     DatasheetFontHeight =9
-    ItemSuffix =45
-    Left =5685
-    Top =3195
-    Right =14325
-    Bottom =8880
+    ItemSuffix =52
+    Left =2145
+    Top =5295
+    Right =12225
+    Bottom =12480
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20090910180136-103022634.983063'"
+    Filter ="[Location_ID]='{F4CE3EAB-E640-4E3F-8343-008314E75F39}'"
     RecSrcDt = Begin
         0x527962004c51e340
     End
@@ -34,6 +34,7 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    OnLoad ="[Event Procedure]"
     FilterOnLoad =0
     AllowLayoutView =0
     DatasheetGridlinesColor12 =12632256
@@ -750,7 +751,8 @@ Begin Form
 
                 End
                 Begin ComboBox
-                    OverlapFlags =87
+                    ColumnHeads = NotDefault
+                    OverlapFlags =85
                     IMESentenceMode =3
                     ColumnCount =2
                     ListWidth =735
@@ -763,18 +765,29 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="qry_Contacts"
                     ColumnWidths ="0;735"
+                    AfterUpdate ="[Event Procedure]"
+                    ControlTipText ="Person making changes (required)"
 
+                    LayoutCachedLeft =7440
+                    LayoutCachedTop =780
+                    LayoutCachedWidth =9540
+                    LayoutCachedHeight =1020
                     Begin
                         Begin Label
                             OverlapFlags =93
                             TextAlign =3
-                            Left =4800
+                            Left =5820
                             Top =780
-                            Width =2640
-                            Height =245
+                            Width =1560
+                            Height =228
                             FontWeight =700
                             Name ="Observer_Label"
-                            Caption ="Changes made by (Required):"
+                            Caption ="Changes made by:"
+                            ControlTipText ="Person making changes (required)"
+                            LayoutCachedLeft =5820
+                            LayoutCachedTop =780
+                            LayoutCachedWidth =7380
+                            LayoutCachedHeight =1008
                         End
                     End
                 End
@@ -839,15 +852,19 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =4560
+                    Left =5220
                     Top =6540
-                    Width =1035
-                    Height =300
+                    Width =1575
+                    Height =330
                     TabIndex =31
-                    Name ="ButtonClose"
-                    Caption ="Close Form"
+                    Name ="btnClose"
+                    Caption ="Exit Without Saving"
                     OnClick ="[Event Procedure]"
 
+                    LayoutCachedLeft =5220
+                    LayoutCachedTop =6540
+                    LayoutCachedWidth =6795
+                    LayoutCachedHeight =6870
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
@@ -1078,6 +1095,90 @@ Begin Form
                     ColumnWidths ="570"
 
                 End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =3600
+                    Top =6540
+                    Width =1335
+                    Height =330
+                    TabIndex =41
+                    Name ="btnUpdate"
+                    Caption ="Update Location"
+                    OnClick ="[Event Procedure]"
+
+                    LayoutCachedLeft =3600
+                    LayoutCachedTop =6540
+                    LayoutCachedWidth =4935
+                    LayoutCachedHeight =6870
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
+                End
+                Begin TextBox
+                    Visible = NotDefault
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =7380
+                    Top =1260
+                    Width =1320
+                    TabIndex =42
+                    Name ="tbxRecorderID"
+                    ControlSource ="Recorder"
+
+                    LayoutCachedLeft =7380
+                    LayoutCachedTop =1260
+                    LayoutCachedWidth =8700
+                    LayoutCachedHeight =1500
+                End
+                Begin Label
+                    OverlapFlags =215
+                    Left =5640
+                    Top =720
+                    Width =240
+                    Height =240
+                    FontSize =12
+                    ForeColor =2366701
+                    Name ="lblReqd"
+                    Caption ="*"
+                    ControlTipText ="Reqiured field"
+                    LayoutCachedLeft =5640
+                    LayoutCachedTop =720
+                    LayoutCachedWidth =5880
+                    LayoutCachedHeight =960
+                End
+                Begin Label
+                    OverlapFlags =93
+                    Left =8280
+                    Top =120
+                    Width =240
+                    Height =240
+                    FontSize =12
+                    ForeColor =2366701
+                    Name ="lblKeyReqd"
+                    Caption ="*"
+                    ControlTipText ="Reqiured field"
+                    LayoutCachedLeft =8280
+                    LayoutCachedTop =120
+                    LayoutCachedWidth =8520
+                    LayoutCachedHeight =360
+                End
+                Begin Label
+                    OverlapFlags =87
+                    Left =8520
+                    Top =120
+                    Width =1392
+                    Height =252
+                    FontSize =9
+                    Name ="lblKeyReqdField"
+                    Caption ="= Required Field"
+                    ControlTipText ="Reqiured field"
+                    LayoutCachedLeft =8520
+                    LayoutCachedTop =120
+                    LayoutCachedWidth =9912
+                    LayoutCachedHeight =372
+                    ForeThemeColorIndex =0
+                End
             End
         End
     End
@@ -1088,20 +1189,356 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
 
-Private Sub ButtonClose_Click()
-On Error GoTo Err_ButtonClose_Click
+' =================================
+' MODULE:       frm_Location_Modify
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to location modifications
+'
+' Source/date:  John R. Boetsch, June 2006
+' Adapted:      Bonnie Campbell, 2/4/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/4/2016 - 1.01 - added documentation, adjusted form to require
+'                                       recorder before save button enabled
+' =================================
 
-
-    DoCmd.Close
-
-Exit_ButtonClose_Click:
-    Exit Sub
-
-Err_ButtonClose_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonClose_Click
+' ---------------------------------
+' SUB:          Form_Load
+' Description:  Handles form loading actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 4, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/4/2016  - initial version
+' ---------------------------------
+Private Sub Form_Load()
+    On Error GoTo Err_Handler
+       
+    'set the value based on tbl_Locations.Recorder for this record
+    If Not IsNull(Me.tbxRecorderID.Value) Then
+        Me.Recorder.Value = Me.tbxRecorderID.Value
+    End If
+       
+    'enable the update button only if the recorder is entered
+    btnUpdate.Enabled = False
+    If Not IsNull(Me.Recorder) Then
+        btnUpdate.Enabled = True
+        Me.Recorder.BackColor = RGB(255, 255, 255) 'set background to white
+    Else
+        Me.Recorder.SetFocus
+        Me.Recorder.BackColor = RGB(255, 255, 51) 'set background to yellow
+    End If
     
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_frm_Location_Modify])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Form_BeforeUpdate
+' Description:  Handles form pre-update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 4, 2016 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   RDB, unknown   - ?
+'   BLC, 2/4/2016  - added documentation, removed undo on recorder name reminder
+' ---------------------------------
+Private Sub Form_BeforeUpdate(Cancel As Integer)
+    On Error GoTo Err_Handler
+'    Dim strMsg As String
+'    Dim db As Database
+'    Dim History As DAO.Recordset
+'    Dim OldLocation As DAO.Recordset
+'    Dim strSQL As String
+'
+'    strMsg = "Are you sure you want to update location coordinates?"
+'    strMsg = strMsg & chr(13) & chr(10) & "Click Yes to Save or No to Discard changes."
+'
+'    If MsgBox(strMsg, vbQuestion + vbYesNo, "Update Location?") = vbNo Then
+'    '---------------- Cancel Location Update -----------
+'      Me.Undo
+'      GoTo Exit_Handler
+'
+'    ElseIf IsNull(Me!Recorder) Then
+'    '---------------- Require Recorder -----------------
+'      MsgBox "You must select a recorder name!"
+'      Me.Recorder.SetFocus
+'      Me.Recorder.BackColor = RGB(255, 255, 51) 'set background to yellow
+'      'Me.Undo
+'      'GoTo Exit_Handler
+'
+'    Else
+'    '---------------- Process Changes ------------------
+'      Set db = CurrentDb
+'      strSQL = "Select * from tbl_Locations WHERE Location_ID = '" & Me!Location_ID & "'"
+'
+'      Set OldLocation = db.OpenRecordset(strSQL)  '  Get unmodified location record
+'      If OldLocation.EOF Then
+'        MsgBox "Location record not found."
+'        GoTo Exit_Handler
+'      Else
+'        OldLocation.MoveFirst
+'      End If
+'
+'      Set History = db.OpenRecordset("tbl_Location_History")
+'      With History
+'        .AddNew                     ' Create a Location History record
+'        !Location_History_ID = fxnGUIDGen
+'        !Location_ID = Me!Location_ID
+'        !Modify_Date = Now()        ' Date of update
+'        !Recorder = Me!Recorder     ' Person committing update
+'        !Unit_Code = Me!Unit_Code
+'        !Plot_ID = Me!Plot_ID
+'        ' Modified to populate plot centroid coordinates (E_Coord, N_Coord) correctly. [HMT, 3/16/2015]
+'        ' Plot_E_Coord, Plot_N_Coord are no longer used.
+'        ' !E_Coord = OldLocation!Plot_E_Coord
+'        ' !N_Coord = OldLocation!Plot_N_Coord
+'        !E_Coord = OldLocation!E_Coord            ' UTM easting of plot centroid
+'        !N_Coord = OldLocation!N_Coord            ' UTM northing of plot centroid
+'        !Plot_Slope = OldLocation!Plot_Slope
+'        !Plot_Aspect = OldLocation!Plot_Aspect
+'        !Azimuth = OldLocation!Azimuth
+'        !T1O_UTME = OldLocation!T1O_UTME
+'        !T1O_UTMN = OldLocation!T1O_UTMN
+'        !T1O_Rebar = OldLocation!T1O_Rebar
+'        !T1E_UTME = OldLocation!T1E_UTME
+'        !T1E_UTMN = OldLocation!T1E_UTMN
+'        !T1E_Rebar = OldLocation!T1E_Rebar
+'        !T1_Elevation = OldLocation!T1_Elevation
+'        !T2O_UTME = OldLocation!T2O_UTME
+'        !T2O_UTMN = OldLocation!T2O_UTMN
+'        !T2O_Rebar = OldLocation!T2O_Rebar
+'        !T2E_UTME = OldLocation!T2E_UTME
+'        !T2E_UTMN = OldLocation!T2E_UTMN
+'        !T2E_Rebar = OldLocation!T2E_Rebar
+'        !T2_Elevation = OldLocation!T2_Elevation
+'        !T3O_UTME = OldLocation!T3O_UTME
+'        !T3O_UTMN = OldLocation!T3O_UTMN
+'        !T3O_Rebar = OldLocation!T3O_Rebar
+'        !T3E_UTME = OldLocation!T3E_UTME
+'        !T3E_UTMN = OldLocation!T3E_UTMN
+'        !T3E_Rebar = OldLocation!T3E_Rebar
+'        !T3_Elevation = OldLocation!T3_Elevation
+'        !Bearing_A = OldLocation!Bearing_A   ' Fuels bearings and slopes
+'        !Bearing_B = OldLocation!Bearing_B
+'        !Bearing_C = OldLocation!Bearing_C
+'        !Bearing_D = OldLocation!Bearing_D
+'        !Slope_A = OldLocation!Slope_A
+'        !Slope_B = OldLocation!Slope_B
+'        !Slope_C = OldLocation!Slope_C
+'        !Slope_D = OldLocation!Slope_D
+'        !SlopeA = OldLocation!SlopeA         ' Plot side slopes
+'        !SlopeAUD = OldLocation!SlopeAUD
+'        !SlopeB = OldLocation!SlopeB
+'        !SlopeBUD = OldLocation!SlopeBUD
+'        !SlopeC = OldLocation!SlopeC
+'        !SlopeCUD = OldLocation!SlopeCUD
+'        !SlopeD = OldLocation!SlopeD
+'        !SlopeDUD = OldLocation!SlopeDUD
+'        !Plot_Directions = OldLocation!Plot_Directions
+'        .Update
+'        .Close
+'        End With
+'        OldLocation.Close
+'    End If
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeUpdate[Form_frm_Location_Modify])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnUpdate_Click
+' Description:  Handles form update button actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 4, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/4/2016  - initial version
+' ---------------------------------
+Private Sub btnUpdate_Click()
+On Error GoTo Err_Handler
+
+    Dim strMsg As String
+    Dim db As Database
+    Dim History As DAO.Recordset
+    Dim OldLocation As DAO.Recordset
+    Dim strSQL As String
+    
+    strMsg = "Are you sure you want to update location coordinates?"
+    strMsg = strMsg & chr(13) & chr(10) & "Click Yes to Save or No to Discard changes."
+    
+    If MsgBox(strMsg, vbQuestion + vbYesNo, "Update Location?") = vbNo Then
+    '---------------- Cancel Location Update -----------
+      Me.Undo
+      GoTo Exit_Handler
+    
+'    ElseIf IsNull(Me!Recorder) Then
+'    '---------------- Require Recorder -----------------
+'      MsgBox "You must select a recorder name!"
+'      Me.Recorder.SetFocus
+'      Me.Recorder.BackColor = RGB(255, 255, 51) 'set background to yellow
+'      'Me.Undo
+'      'GoTo Exit_Handler
+    
+    Else
+    '---------------- Process Changes ------------------
+      Set db = CurrentDb
+      strSQL = "Select * from tbl_Locations WHERE Location_ID = '" & Me!Location_ID & "'"
+      
+      Set OldLocation = db.OpenRecordset(strSQL)  '  Get unmodified location record
+      If OldLocation.EOF Then
+        MsgBox "Location record not found."
+        GoTo Exit_Handler
+      Else
+        OldLocation.MoveFirst
+      End If
+      
+      Set History = db.OpenRecordset("tbl_Location_History")
+      With History
+        .AddNew                     ' Create a Location History record
+        !Location_History_ID = fxnGUIDGen
+        !Location_ID = Me!Location_ID
+        !Modify_Date = Now()        ' Date of update
+        !Recorder = Me!Recorder     ' Person committing update
+        !Unit_Code = Me!Unit_Code
+        !Plot_ID = Me!Plot_ID
+        ' Modified to populate plot centroid coordinates (E_Coord, N_Coord) correctly. [HMT, 3/16/2015]
+        ' Plot_E_Coord, Plot_N_Coord are no longer used.
+        ' !E_Coord = OldLocation!Plot_E_Coord
+        ' !N_Coord = OldLocation!Plot_N_Coord
+        !E_Coord = OldLocation!E_Coord            ' UTM easting of plot centroid
+        !N_Coord = OldLocation!N_Coord            ' UTM northing of plot centroid
+        !Plot_Slope = OldLocation!Plot_Slope
+        !Plot_Aspect = OldLocation!Plot_Aspect
+        !Azimuth = OldLocation!Azimuth
+        !T1O_UTME = OldLocation!T1O_UTME
+        !T1O_UTMN = OldLocation!T1O_UTMN
+        !T1O_Rebar = OldLocation!T1O_Rebar
+        !T1E_UTME = OldLocation!T1E_UTME
+        !T1E_UTMN = OldLocation!T1E_UTMN
+        !T1E_Rebar = OldLocation!T1E_Rebar
+        !T1_Elevation = OldLocation!T1_Elevation
+        !T2O_UTME = OldLocation!T2O_UTME
+        !T2O_UTMN = OldLocation!T2O_UTMN
+        !T2O_Rebar = OldLocation!T2O_Rebar
+        !T2E_UTME = OldLocation!T2E_UTME
+        !T2E_UTMN = OldLocation!T2E_UTMN
+        !T2E_Rebar = OldLocation!T2E_Rebar
+        !T2_Elevation = OldLocation!T2_Elevation
+        !T3O_UTME = OldLocation!T3O_UTME
+        !T3O_UTMN = OldLocation!T3O_UTMN
+        !T3O_Rebar = OldLocation!T3O_Rebar
+        !T3E_UTME = OldLocation!T3E_UTME
+        !T3E_UTMN = OldLocation!T3E_UTMN
+        !T3E_Rebar = OldLocation!T3E_Rebar
+        !T3_Elevation = OldLocation!T3_Elevation
+        !Bearing_A = OldLocation!Bearing_A   ' Fuels bearings and slopes
+        !Bearing_B = OldLocation!Bearing_B
+        !Bearing_C = OldLocation!Bearing_C
+        !Bearing_D = OldLocation!Bearing_D
+        !Slope_A = OldLocation!Slope_A
+        !Slope_B = OldLocation!Slope_B
+        !Slope_C = OldLocation!Slope_C
+        !Slope_D = OldLocation!Slope_D
+        !SlopeA = OldLocation!SlopeA         ' Plot side slopes
+        !SlopeAUD = OldLocation!SlopeAUD
+        !SlopeB = OldLocation!SlopeB
+        !SlopeBUD = OldLocation!SlopeBUD
+        !SlopeC = OldLocation!SlopeC
+        !SlopeCUD = OldLocation!SlopeCUD
+        !SlopeD = OldLocation!SlopeD
+        !SlopeDUD = OldLocation!SlopeDUD
+        !Plot_Directions = OldLocation!Plot_Directions
+        .Update
+        .Close
+        End With
+        OldLocation.Close
+    End If
+
+Exit_Handler:
+    'close form
+    DoCmd.Close
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnUpdate_Click[Form_frm_Location_Modify])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Recorder_AfterUpdate
+' Description:  Handles form post-update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 4, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/4/2016  - initial version
+' ---------------------------------
+Private Sub Recorder_AfterUpdate()
+On Error GoTo Err_Handler
+    
+    'set the bound tbxRecorderID to update the record
+    Me.tbxRecorderID.Value = Me.Recorder.Value
+
+    'enable save when recorder isn't null
+    If Not IsNull(Me!Recorder) Then
+        Me.btnUpdate.Enabled = True
+        Me.Recorder.BackColor = RGB(255, 255, 255) 'set background to white
+    Else
+        Me.btnUpdate.Enabled = False
+        Me.Recorder.SetFocus
+        Me.Recorder.BackColor = RGB(255, 255, 51) 'set background to yellow
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Recorder_AfterUpdate[Form_frm_Location_Modify])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 Private Sub ButtonZoomPlotDirections_Click()
@@ -1119,99 +1556,36 @@ Err_ButtonPlotDirections_Click:
 
 End Sub
 
-Private Sub Form_BeforeUpdate(Cancel As Integer)
+' ---------------------------------
+' SUB:          btnClose_Click
+' Description:  Handles form button close actions (exit without saving)
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 4, 2016 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   RDB, unknown   - ?
+'   BLC, 2/4/2016  - added documentation, revised name to btnClose vs. ButtonClose
+' ---------------------------------
+Private Sub btnClose_Click()
+On Error GoTo Err_Handler
 
-    On Error GoTo Err_Handler
-    Dim strMsg As String
-    Dim db As Database
-    Dim History As DAO.Recordset
-    Dim OldLocation As DAO.Recordset
-    Dim strSQL As String
+    Me.Undo
+    DoCmd.Close
+
+Exit_Handler:
+    Exit Sub
     
-    strMsg = "Are you sure you want to update location coordinates?"
-    strMsg = strMsg & chr(13) & chr(10) & "Click Yes to Save or No to Discard changes."
-    If MsgBox(strMsg, vbQuestion + vbYesNo, "Update Location?") = vbNo Then
-      Me.Undo
-      GoTo Exit_Form_BeforeUpdate
-    ElseIf IsNull(Me!Recorder) Then
-      MsgBox "You must select a recorder name!"
-      Me.Undo
-      GoTo Exit_Form_BeforeUpdate
-    Else
-      Set db = CurrentDb
-      strSQL = "Select * from tbl_Locations WHERE Location_ID = '" & Me!Location_ID & "'"
-      Set OldLocation = db.OpenRecordset(strSQL)  '  Get unmodified location record
-      If OldLocation.EOF Then
-        MsgBox "Location record not found."
-        GoTo Exit_Form_BeforeUpdate
-      Else
-        OldLocation.MoveFirst
-      End If
-      Set History = db.OpenRecordset("tbl_Location_History")
-        History.AddNew                     ' Create a Location History record
-        History!Location_History_ID = fxnGUIDGen
-        History!Location_ID = Me!Location_ID
-        History!Modify_Date = Now()        ' Date of update
-        History!Recorder = Me!Recorder     ' Person committing update
-        History!Unit_Code = Me!Unit_Code
-        History!Plot_ID = Me!Plot_ID
-        ' Modified to populate plot centroid coordinates (E_Coord, N_Coord) correctly. [HMT, 3/16/2015]
-        ' Plot_E_Coord, Plot_N_Coord are no longer used.
-        ' History!E_Coord = OldLocation!Plot_E_Coord
-        ' History!N_Coord = OldLocation!Plot_N_Coord
-        History!E_Coord = OldLocation!E_Coord            ' UTM easting of plot centroid
-        History!N_Coord = OldLocation!N_Coord            ' UTM northing of plot centroid
-        History!Plot_Slope = OldLocation!Plot_Slope
-        History!Plot_Aspect = OldLocation!Plot_Aspect
-        History!Azimuth = OldLocation!Azimuth
-        History!T1O_UTME = OldLocation!T1O_UTME
-        History!T1O_UTMN = OldLocation!T1O_UTMN
-        History!T1O_Rebar = OldLocation!T1O_Rebar
-        History!T1E_UTME = OldLocation!T1E_UTME
-        History!T1E_UTMN = OldLocation!T1E_UTMN
-        History!T1E_Rebar = OldLocation!T1E_Rebar
-        History!T1_Elevation = OldLocation!T1_Elevation
-        History!T2O_UTME = OldLocation!T2O_UTME
-        History!T2O_UTMN = OldLocation!T2O_UTMN
-        History!T2O_Rebar = OldLocation!T2O_Rebar
-        History!T2E_UTME = OldLocation!T2E_UTME
-        History!T2E_UTMN = OldLocation!T2E_UTMN
-        History!T2E_Rebar = OldLocation!T2E_Rebar
-        History!T2_Elevation = OldLocation!T2_Elevation
-        History!T3O_UTME = OldLocation!T3O_UTME
-        History!T3O_UTMN = OldLocation!T3O_UTMN
-        History!T3O_Rebar = OldLocation!T3O_Rebar
-        History!T3E_UTME = OldLocation!T3E_UTME
-        History!T3E_UTMN = OldLocation!T3E_UTMN
-        History!T3E_Rebar = OldLocation!T3E_Rebar
-        History!T3_Elevation = OldLocation!T3_Elevation
-        History!Bearing_A = OldLocation!Bearing_A   ' Fuels bearings and slopes
-        History!Bearing_B = OldLocation!Bearing_B
-        History!Bearing_C = OldLocation!Bearing_C
-        History!Bearing_D = OldLocation!Bearing_D
-        History!Slope_A = OldLocation!Slope_A
-        History!Slope_B = OldLocation!Slope_B
-        History!Slope_C = OldLocation!Slope_C
-        History!Slope_D = OldLocation!Slope_D
-        History!SlopeA = OldLocation!SlopeA         ' Plot side slopes
-        History!SlopeAUD = OldLocation!SlopeAUD
-        History!SlopeB = OldLocation!SlopeB
-        History!SlopeBUD = OldLocation!SlopeBUD
-        History!SlopeC = OldLocation!SlopeC
-        History!SlopeCUD = OldLocation!SlopeCUD
-        History!SlopeD = OldLocation!SlopeD
-        History!SlopeDUD = OldLocation!SlopeDUD
-        History!Plot_Directions = OldLocation!Plot_Directions
-        History.Update
-        History.Close
-        OldLocation.Close
-    End If
-    
-Exit_Form_BeforeUpdate:
-  Exit Sub
-  
 Err_Handler:
-  MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-         "Error encountered (Update Location)"
-  Resume Exit_Form_BeforeUpdate
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnClose_Click[Form_frm_Location_Modify])"
+    End Select
+    Resume Exit_Handler
+    
 End Sub

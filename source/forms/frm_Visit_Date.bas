@@ -19,18 +19,24 @@ Begin Form
     Width =4680
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =9165
-    Top =3825
-    Right =13845
-    Bottom =7110
+    Left =6780
+    Top =5700
+    Right =11715
+    Bottom =8985
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20100715151932-709037899.971008'"
+    Filter ="[Location_ID]='20081016093629-468700110.912323'"
     RecSrcDt = Begin
         0x5bd611c7ad13e340
     End
     RecordSource ="qfrm_Visit_Date"
     Caption ="Select a Visit"
     DatasheetFontName ="Arial"
+    PrtMip = Begin
+        0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
+        0x010000006801000000000000a10700000100000001000000
+    End
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -40,54 +46,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -97,9 +114,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =1140
@@ -149,6 +168,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -167,6 +191,7 @@ Begin Form
                     Name ="Unit_Code"
                     ControlSource ="Unit_Code"
                     StatusBarText ="Park Code."
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -186,6 +211,7 @@ Begin Form
                     Name ="Plot_ID"
                     ControlSource ="Plot_ID"
                     StatusBarText ="Plot identifier"
+
                 End
                 Begin Label
                     OverlapFlags =85
@@ -217,6 +243,7 @@ Begin Form
                     Name ="Event_ID"
                     ControlSource ="Event_ID"
                     StatusBarText ="M. Event identifier (Event_ID)"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -236,6 +263,7 @@ Begin Form
                     Name ="Location_ID"
                     ControlSource ="Location_ID"
                     StatusBarText ="M. Link to tbl_Locations (Loc_ID)"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -255,6 +283,7 @@ Begin Form
                     ControlSource ="Start_Date"
                     Format ="Short Date"
                     StatusBarText ="M. Starting date for the event (Start_Date)"
+
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -266,6 +295,11 @@ Begin Form
                     Name ="ButtonEdit"
                     Caption ="Edit Visit"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

@@ -9,12 +9,13 @@ Begin Form
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
+    Width =8280
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =1050
-    Top =4020
-    Right =8535
-    Bottom =6705
+    Left =675
+    Top =4260
+    Right =8160
+    Bottom =6945
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x718d0abeb2a7e340
@@ -27,6 +28,7 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    OnLoad ="[Event Procedure]"
     FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -155,7 +157,7 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =5340
+                    Left =4440
                     Top =60
                     Width =1545
                     Height =300
@@ -163,6 +165,10 @@ Begin Form
                     Caption ="Master Species"
                     OnClick ="[Event Procedure]"
 
+                    LayoutCachedLeft =4440
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =5985
+                    LayoutCachedHeight =360
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
@@ -170,7 +176,7 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =5340
+                    Left =4440
                     Top =480
                     Width =1545
                     Height =300
@@ -179,10 +185,63 @@ Begin Form
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
+                    LayoutCachedLeft =4440
+                    LayoutCachedTop =480
+                    LayoutCachedWidth =5985
+                    LayoutCachedHeight =780
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
+                End
+                Begin Rectangle
+                    SpecialEffect =0
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =93
+                    Left =6120
+                    Top =180
+                    Width =2100
+                    Height =480
+                    BackColor =6750207
+                    Name ="rctNoData"
+                    OnClick ="[Event Procedure]"
+                    LayoutCachedLeft =6120
+                    LayoutCachedTop =180
+                    LayoutCachedWidth =8220
+                    LayoutCachedHeight =660
+                End
+                Begin CheckBox
+                    OverlapFlags =215
+                    Left =6240
+                    Top =330
+                    Width =300
+                    TabIndex =2
+                    Name ="cbxNoData"
+                    OnClick ="[Event Procedure]"
+                    ControlTipText ="No exotic species found"
+
+                    LayoutCachedLeft =6240
+                    LayoutCachedTop =330
+                    LayoutCachedWidth =6540
+                    LayoutCachedHeight =570
+                    Begin
+                        Begin Label
+                            OverlapFlags =247
+                            Left =6470
+                            Top =300
+                            Width =1650
+                            Height =240
+                            FontWeight =600
+                            Name ="lblNoData"
+                            Caption ="No Species Found"
+                            ControlTipText ="No exotic species found"
+                            LayoutCachedLeft =6470
+                            LayoutCachedTop =300
+                            LayoutCachedWidth =8120
+                            LayoutCachedHeight =540
+                        End
+                    End
                 End
             End
         End
@@ -234,8 +293,9 @@ Begin Form
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is N"
-                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code; "
+                        "py.Utah_Species,qryU_Top_Canopy.Nativity FROM qryU_Top_Canopy WHERE (((qryU_Top_"
+                        "Canopy.Utah_Species) Is Not Null)) AND Nativity = 'NonNative' ORDER BY qryU_Top_"
+                        "Canopy.LU_Code;"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
@@ -319,6 +379,79 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
+
+' =================================
+' MODULE:       Form_fsub_Dist_Exotic
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to exotics impact monitoring
+'
+' Source/date:  Bonnie Campbell, 2/2/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+' =================================
+
+' ---------------------------------
+' SUB:          Form_Load
+' Description:  Handles form loading actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/2/2016  - initial version
+' ---------------------------------
+Private Sub Form_Load()
+On Error GoTo Err_Handler
+
+' set rectangle color
+' enable checkbox if there are no species
+' disable checkbox if there are species
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_Dist_Exotic])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNoSpecies_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/2/2016  - initial version
+' ---------------------------------
+Private Sub cbxNoSpecies_Click()
+On Error GoTo Err_Handler
+
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoSpecies_Click[Form_fsub_Dist_Exotic])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
 Private Sub Button_Master_Species_Click()
 On Error GoTo Err_Button_Master_Species_Click

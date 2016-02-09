@@ -3,7 +3,6 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -15,10 +14,10 @@ Begin Form
     Width =7860
     DatasheetFontHeight =9
     ItemSuffix =22
-    Left =2712
-    Top =1440
-    Right =10836
-    Bottom =4428
+    Left =2568
+    Top =5100
+    Right =10812
+    Bottom =8664
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xc48e9ef32e50e340
@@ -28,6 +27,11 @@ Begin Form
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
+    PrtMip = Begin
+        0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
+        0x010000006801000000000000a10700000100000001000000
+    End
+    OnLoad ="[Event Procedure]"
     FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -114,9 +118,59 @@ Begin Form
             BorderLineStyle =0
         End
         Begin FormHeader
-            Height =0
+            Height =600
             BackColor =-2147483633
             Name ="FormHeader"
+            Begin
+                Begin Rectangle
+                    SpecialEffect =0
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =93
+                    Left =5340
+                    Top =60
+                    Width =2460
+                    Height =480
+                    BackColor =6750207
+                    Name ="rctNoData"
+                    OnClick ="[Event Procedure]"
+                    LayoutCachedLeft =5340
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =7800
+                    LayoutCachedHeight =540
+                End
+                Begin CheckBox
+                    OverlapFlags =215
+                    Left =5460
+                    Top =210
+                    Width =300
+                    Name ="cbxNoData"
+                    ControlTipText ="No disturbances found"
+
+                    LayoutCachedLeft =5460
+                    LayoutCachedTop =210
+                    LayoutCachedWidth =5760
+                    LayoutCachedHeight =450
+                    Begin
+                        Begin Label
+                            OverlapFlags =247
+                            TextFontFamily =0
+                            Left =5690
+                            Top =180
+                            Width =2016
+                            Height =228
+                            FontWeight =600
+                            Name ="lblNoData"
+                            Caption ="No Disturbances Found"
+                            ControlTipText ="No disturbances found"
+                            LayoutCachedLeft =5690
+                            LayoutCachedTop =180
+                            LayoutCachedWidth =7706
+                            LayoutCachedHeight =408
+                        End
+                    End
+                End
+            End
         End
         Begin Section
             Height =3000
@@ -276,7 +330,7 @@ Begin Form
                     Name ="Disturbance_Type"
                     ControlSource ="Disturbance_Type"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT tlu_Disturbance.Disturbance FROM tlu_Disturbance; "
+                    RowSource ="SELECT tlu_Disturbance.Disturbance FROM tlu_Disturbance;"
                     ColumnWidths ="2160"
 
                     Begin
@@ -363,22 +417,67 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
 
-Private Sub Disturbance_Location_AfterUpdate()
+' =================================
+' MODULE:       Form_fsub_Impact_Details
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to impact details monitoring
+'
+' Source/date:  Bonnie Campbell, 2/2/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+' =================================
+
+' ---------------------------------
+' SUB:          Form_Load
+' Description:  Handles form loading actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/2/2016  - initial version
+' ---------------------------------
+Private Sub Form_Load()
+On Error GoTo Err_Handler
+
+' set rectangle color
+' enable checkbox if there are no species
+' disable checkbox if there are species
+    SetNoDataCheckbox Me
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_Impact_Details])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub Form_Current()
   If IsNull(Me!Disturbance_Location) Or Me!Disturbance_Location = "Onsite" Then
-    Me!Disturbance_Position.visible = True
-    Me!Disturbance_Distance.visible = False
-    Me!Disturbance_Direction.visible = False
+    Me!Disturbance_Position.Visible = True
+    Me!Disturbance_Distance.Visible = False
+    Me!Disturbance_Direction.Visible = False
   ElseIf Me!Disturbance_Location = "offsite-upslope" Then
-    Me!Disturbance_Position.visible = False
-    Me!Disturbance_Distance.visible = True
+    Me!Disturbance_Position.Visible = False
+    Me!Disturbance_Distance.Visible = True
     Me!Distance_Label.Caption = "Distance Upslope from Macroplot (m)"
-    Me!Disturbance_Direction.visible = False
+    Me!Disturbance_Direction.Visible = False
   Else
-    Me!Disturbance_Position.visible = False
-    Me!Disturbance_Distance.visible = True
+    Me!Disturbance_Position.Visible = False
+    Me!Disturbance_Distance.Visible = True
     Me!Distance_Label.Caption = "Distance from Macroplot (m)"
-    Me!Disturbance_Direction.visible = True
+    Me!Disturbance_Direction.Visible = True
   End If
 End Sub
 
@@ -403,20 +502,20 @@ Err_Handler:
     Resume Exit_Procedure
 End Sub
 
-Private Sub Form_Current()
+Private Sub Disturbance_Location_AfterUpdate()
   If IsNull(Me!Disturbance_Location) Or Me!Disturbance_Location = "Onsite" Then
-    Me!Disturbance_Position.visible = True
-    Me!Disturbance_Distance.visible = False
-    Me!Disturbance_Direction.visible = False
+    Me!Disturbance_Position.Visible = True
+    Me!Disturbance_Distance.Visible = False
+    Me!Disturbance_Direction.Visible = False
   ElseIf Me!Disturbance_Location = "offsite-upslope" Then
-    Me!Disturbance_Position.visible = False
-    Me!Disturbance_Distance.visible = True
+    Me!Disturbance_Position.Visible = False
+    Me!Disturbance_Distance.Visible = True
     Me!Distance_Label.Caption = "Distance Upslope from Macroplot (m)"
-    Me!Disturbance_Direction.visible = False
+    Me!Disturbance_Direction.Visible = False
   Else
-    Me!Disturbance_Position.visible = False
-    Me!Disturbance_Distance.visible = True
+    Me!Disturbance_Position.Visible = False
+    Me!Disturbance_Distance.Visible = True
     Me!Distance_Label.Caption = "Distance from Macroplot (m)"
-    Me!Disturbance_Direction.visible = True
+    Me!Disturbance_Direction.Visible = True
   End If
 End Sub

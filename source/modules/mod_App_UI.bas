@@ -18,6 +18,7 @@ Option Explicit
 '               BLC, 7/27/2015 - 1.05 - added SetHints()
 '               ----------- uplands ---------------------------
 '               BLC, 8/21/2015 - 1.06 - added CaptureEscapeKey
+'               BLC, 2/3/2016  - 1.07 - added SetNoDataCheckbox()
 ' =================================
 
 ' =================================
@@ -213,4 +214,52 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - CreateRollupTable[mod_App_UI])"
     End Select
     Resume Exit_Sub
+End Sub
+
+' ---------------------------------
+' SUB:          SetNoDataCheckbox
+' Description:  Evaluates form records and sets no data checkbox
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/3/2016  - initial version
+' ---------------------------------
+Public Sub SetNoDataCheckbox(frm As Form)
+On Error GoTo Err_Handler
+
+    ' set rectangle color
+    ' enable checkbox if there are no species
+    ' disable checkbox if there are species
+'    MsgBox Me.RecordsetClone.RecordCount
+    
+    With frm
+    
+        .Controls("cbxNoData").Value = True
+        .Controls("cbxNoData").Enabled = True
+        .Controls("rctNoData").Visible = True
+        
+        If .RecordsetClone.RecordCount > 0 Then
+            .Controls("cbxNoData").Value = False
+            .Controls("cbxNoData").Enabled = False
+            '.Controls("rctNoData").BackColor = RGB(255, 255, 255)
+            .Controls("rctNoData").Visible = False
+        End If
+    
+    End With
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetCheckbox[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
 End Sub

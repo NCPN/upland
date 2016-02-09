@@ -1,8 +1,0 @@
-﻿Cover_Class	Cover_Description
-F	forb
-G	grass or grass/shrub mix
-M	moss
-NC	no perennial canopy
-nr	not recorded
-Sh	shrub
-T	tree
