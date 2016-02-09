@@ -12,10 +12,10 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =540
-    Top =1230
-    Right =5880
-    Bottom =3645
+    Left =1440
+    Top =8655
+    Right =7515
+    Bottom =11055
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x73776174d27ce340
@@ -488,6 +488,52 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub Species_GotFocus()
+On Error GoTo Err_Handler
+
+    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
+      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
+      Me.Parent.Refresh   ' Force save of transect record
+    End If
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub Species_BeforeUpdate(Cancel As Integer)
+    If Not IsNull(DLookup("[Seedling_ID]", "tbl_LP_Seedling", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
+      MsgBox "This species is already recorded for this transect."
+      DoCmd.CancelEvent
+      SendKeys "{ESC}"
+      Me.Undo
+    End If
+End Sub
+
 Private Sub ButtonA1_Click()
   If Screen.PreviousControl.name = "SeedTotal" And Not IsNull(Me!Species) Then
     Screen.PreviousControl.Value = Screen.PreviousControl.Value + 1
@@ -531,25 +577,6 @@ Private Sub ButtonZero_Click()
     Screen.PreviousControl.Value = 0
   End If
   Screen.PreviousControl.SetFocus
-End Sub
-
-Private Sub Species_BeforeUpdate(Cancel As Integer)
-    If Not IsNull(DLookup("[Seedling_ID]", "tbl_LP_Seedling", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
-      MsgBox "This species is already recorded for this transect."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-      Me.Undo
-    End If
-End Sub
-
-
-Private Sub Species_GotFocus()
-
-    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
-      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
-      Me.Parent.Refresh   ' Force save of transect record
-    End If
-   
 End Sub
 
 Private Sub ButtonDelete_Click()

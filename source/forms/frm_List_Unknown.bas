@@ -7,7 +7,6 @@ Begin Form
     AllowDeletions = NotDefault
     AllowAdditions = NotDefault
     FilterOn = NotDefault
-    OrderByOn = NotDefault
     ScrollBars =2
     ViewsAllowed =1
     TabularFamily =127
@@ -18,14 +17,13 @@ Begin Form
     Width =8640
     DatasheetFontHeight =9
     ItemSuffix =14
-    Left =8670
-    Top =3555
-    Right =17310
-    Bottom =9660
+    Left =5100
+    Top =2610
+    Right =13995
+    Bottom =8715
     DatasheetGridlinesColor =12632256
-    Filter ="IsNull(confirmed_code)"
     RecSrcDt = Begin
-        0x1518d9d0f07ae340
+        0xedda7c0f2fb5e440
     End
     RecordSource ="qry_Unknown_species"
     Caption ="Unknown Species List"
@@ -39,6 +37,9 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    FilterOnLoad =255
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -48,54 +49,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -105,9 +117,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =1080
@@ -159,6 +173,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -170,6 +189,11 @@ Begin Form
                     Name ="ButtonNew"
                     Caption ="Add New"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -198,6 +222,7 @@ Begin Form
                     RowSource ="\"Not Confirmed\";\"Confirmed\";\"All\""
                     ColumnWidths ="1215"
                     AfterUpdate ="[Event Procedure]"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -231,6 +256,7 @@ Begin Form
                     Name ="Unknown_ID"
                     ControlSource ="Unknown_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -246,6 +272,7 @@ Begin Form
                     Name ="Unknown_Code"
                     ControlSource ="Unknown_Code"
                     StatusBarText ="Temporary code for unknown species - Line point form"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -263,6 +290,7 @@ Begin Form
                     Name ="Plant_Description"
                     ControlSource ="Plant_Description"
                     StatusBarText ="General description"
+
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -274,6 +302,11 @@ Begin Form
                     Name ="ButtonDetails"
                     Caption ="Details"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -288,6 +321,7 @@ Begin Form
                     Name ="Confirmed_Code"
                     ControlSource ="Confirmed_Code"
                     StatusBarText ="Confirmed species code"
+
                 End
             End
         End
@@ -305,39 +339,10 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
 
-Private Sub ButtonDetails_Click()
-On Error GoTo Err_ButtonDetails_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-
-    stDocName = "frm_Unknown_Species"
-    
-    stLinkCriteria = "[Unknown_ID]=" & "'" & Me![Unknown_ID] & "'"
-    DoCmd.OpenForm stDocName, , , stLinkCriteria
-
-Exit_ButtonDetails_Click:
-    Exit Sub
-
-Err_ButtonDetails_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonDetails_Click
-    
+Private Sub Form_Load()
+  DoCmd.ApplyFilter "", "IsNull(confirmed_code)"
 End Sub
-Private Sub ButtonClose_Click()
-On Error GoTo Err_ButtonClose_Click
 
-
-    DoCmd.Close
-
-Exit_ButtonClose_Click:
-    Exit Sub
-
-Err_ButtonClose_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonClose_Click
-    
-End Sub
 Private Sub ButtonNew_Click()
 On Error GoTo Err_ButtonNew_Click
 
@@ -367,6 +372,36 @@ Else
 End If
 End Sub
 
-Private Sub Form_Load()
-  DoCmd.ApplyFilter "", "IsNull(confirmed_code)"
+Private Sub ButtonDetails_Click()
+On Error GoTo Err_ButtonDetails_Click
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+
+    stDocName = "frm_Unknown_Species"
+    
+    stLinkCriteria = "[Unknown_ID]=" & "'" & Me![Unknown_ID] & "'"
+    DoCmd.OpenForm stDocName, , , stLinkCriteria
+
+Exit_ButtonDetails_Click:
+    Exit Sub
+
+Err_ButtonDetails_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonDetails_Click
+    
+End Sub
+
+Private Sub ButtonClose_Click()
+On Error GoTo Err_ButtonClose_Click
+
+    DoCmd.Close
+
+Exit_ButtonClose_Click:
+    Exit Sub
+
+Err_ButtonClose_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonClose_Click
+    
 End Sub

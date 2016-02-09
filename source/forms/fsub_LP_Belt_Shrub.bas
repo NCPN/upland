@@ -12,9 +12,10 @@ Begin Form
     Width =11880
     DatasheetFontHeight =9
     ItemSuffix =43
-    Top =876
-    Right =8460
-    Bottom =4380
+    Left =1320
+    Top =4635
+    Right =13485
+    Bottom =8190
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -675,10 +676,11 @@ Begin Form
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species, Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Spe"
-                        "cies) Is Not Null)) AND Lifeform IN ('Shrub','DwarfShrub') AND tlu_NCPN_Plants.M"
-                        "aster_PLANT_Code NOT IN (SELECT Master_PLANT_Code FROM qry_ShrubExclusionList)  "
-                        "ORDER BY qryU_Top_Canopy.LU_Code;"
+                        "py.Utah_Species, qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top"
+                        "_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifeform]) In ('Shrub'"
+                        ",'DwarfShrub')) AND ((qryU_Top_Canopy.[tlu_NCPN_Plants].[Master_PLANT_Code]) Not"
+                        " In (SELECT Master_PLANT_Code FROM ShrubExclusionList))) ORDER BY qryU_Top_Canop"
+                        "y.LU_Code;"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
@@ -697,10 +699,10 @@ Begin Form
                     Caption ="Delete Record"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -720,10 +722,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -737,10 +739,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -754,10 +756,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -771,10 +773,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -788,10 +790,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -837,7 +839,6 @@ On Error GoTo Err_Handler
 ' disable checkbox if there are species
     SetNoDataCheckbox Me
 
-
 Exit_Handler:
     Exit Sub
     
@@ -848,6 +849,23 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_LP_Belt_Shrub])"
     End Select
     Resume Exit_Handler
+End Sub
+
+Private Sub Form_BeforeInsert(Cancel As Integer)
+
+  '  If IsNull(Me.Parent!Observer) And IsNull(Me.Parent!Recorder) Then
+  '    MsgBox "You must enter an observer or recorder first."
+  '    DoCmd.CancelEvent
+  '    SendKeys "{ESC}"
+  '    GoTo Exit_Procedure
+  '  End If
+    ' Create the GUID primary key value
+    If IsNull(Me!Shrub_ID) Then
+        If GetDataType("tbl_LP_Shrub", "Shrub_ID") = dbText Then
+            Me.Shrub_ID = fxnGUIDGen
+        End If
+    End If
+Exit_Procedure:
 End Sub
 
 ' ---------------------------------
@@ -867,7 +885,6 @@ Private Sub cbxNoSpecies_Click()
 On Error GoTo Err_Handler
 
 
-
 Exit_Handler:
     Exit Sub
     
@@ -876,6 +893,87 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - cbxNoSpecies_Click[Form_fsub_LP_Belt_Shrub])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub Species_GotFocus()
+On Error GoTo Err_Handler
+
+    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
+      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
+      Me.Parent.Refresh   ' Force save of transect record
+    End If
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_LP_Belt_Shrub])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Species_BeforeUpdate
+' Description:  Handles species pre-update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/2/2016  - added documentation, disable checkbox if species exist
+' ---------------------------------
+Private Sub Species_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+
+    If Not IsNull(DLookup("[Shrub_ID]", "tbl_LP_Shrub", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
+      MsgBox "This species is already recorded for this transect."
+      DoCmd.CancelEvent
+      SendKeys "{ESC}"
+    End If
+    
+    'if species is added disable checkbox & change color of rectangle background
+    If Not IsNull(Me.Species) Then
+        cbxNoData.Enabled = False
+        rctNoData.BackStyle = "Transparent"
+    End If
+    
+    'capture the CTRL+Z keystroke
+    
+    'note: watch out for SendKeys   http://access.mvps.org/access/api/api0046.htm
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_BeforeUpdate[Form_fsub_LP_Belt_Shrub])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -967,76 +1065,6 @@ Private Sub ButtonZero_Click()
       Screen.PreviousControl.Value = 0
   End If
   Screen.PreviousControl.SetFocus
-End Sub
-
-Private Sub Form_BeforeInsert(Cancel As Integer)
-
-  '  If IsNull(Me.Parent!Observer) And IsNull(Me.Parent!Recorder) Then
-  '    MsgBox "You must enter an observer or recorder first."
-  '    DoCmd.CancelEvent
-  '    SendKeys "{ESC}"
-  '    GoTo Exit_Procedure
-  '  End If
-    ' Create the GUID primary key value
-    If IsNull(Me!Shrub_ID) Then
-        If GetDataType("tbl_LP_Shrub", "Shrub_ID") = dbText Then
-            Me.Shrub_ID = fxnGUIDGen
-        End If
-    End If
-Exit_Procedure:
-End Sub
-
-' ---------------------------------
-' SUB:          Species_BeforeUpdate
-' Description:  Handles species pre-update actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
-' Revisions:
-'   RDB, unknown  - initial version
-'   BLC, 2/2/2016  - added documentation, disable checkbox if species exist
-' ---------------------------------
-Private Sub Species_BeforeUpdate(Cancel As Integer)
-On Error GoTo Err_Handler
-
-    If Not IsNull(DLookup("[Shrub_ID]", "tbl_LP_Shrub", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
-      MsgBox "This species is already recorded for this transect."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-    End If
-    
-    'if species is added disable checkbox & change color of rectangle background
-    If Not IsNull(Me.Species) Then
-        cbxNoData.Enabled = False
-        rctNoData.BackStyle = "Transparent"
-    End If
-    
-    'capture the CTRL+Z keystroke
-    
-    'note: watch out for SendKeys   http://access.mvps.org/access/api/api0046.htm
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Species_BeforeUpdate[Form_fsub_LP_Belt_Shrub])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-Private Sub Species_GotFocus()
-
-    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
-      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
-      Me.Parent.Refresh   ' Force save of transect record
-    End If
-   
 End Sub
 
 Private Sub ButtonDelete_Click()

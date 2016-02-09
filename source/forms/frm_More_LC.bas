@@ -25,9 +25,9 @@ Begin Form
     DatasheetFontHeight =9
     ItemSuffix =59
     Left =5340
-    Top =3732
-    Right =10128
-    Bottom =8628
+    Top =3735
+    Right =10125
+    Bottom =8625
     DatasheetGridlinesColor =12632256
     Filter ="[Intercept_ID]='{9EF6C165-5AFC-42C5-BB3F-B92C765F933B}'"
     RecSrcDt = Begin
@@ -224,10 +224,10 @@ Begin Form
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -249,6 +249,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin Label
@@ -322,6 +323,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin Label
@@ -373,6 +375,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin Label
@@ -424,6 +427,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin Label
@@ -475,6 +479,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin Label
@@ -526,6 +531,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin Label
@@ -577,6 +583,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin Label
@@ -600,10 +607,10 @@ Begin Form
                     Caption ="Master Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -616,10 +623,10 @@ Begin Form
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -636,6 +643,892 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
+
+' =================================
+' MODULE:       Form_frm_More_LC
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to more lower canopy monitoring
+'
+' Source/date:  Bonnie Campbell, 2/09/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/9/2016 - 1.01 - added documentation, checkbox for no species found
+' =================================
+
+'---------------
+' LCS (species)
+'---------------
+
+' ---------------------------------
+' SUB:          LCS4_GotFocus
+' Description:  Handles lower canopy 4 species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub LCS4_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - LCS4_GotFocus[Form_frm_More_LC])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub LCS4_BeforeUpdate(Cancel As Integer)
+  Dim Reply As Integer
+  Dim AorD As Boolean
+  Dim TextMsg As String
+  Dim GapColumn As String
+  
+   GapColumn = TestMoreGaps(4)
+   If GapColumn > 0 Then  ' First check to see if they're making gaps
+     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     Exit Sub
+   End If
+   Select Case Me!LCS4  ' If it's surface crud, its dead
+     Case "L", "SL", "SW", "WD"
+       Me!LCA4 = 0
+   End Select
+  If Not IsNull(Me!LCS4) Then
+   AorD = Me!LCA4
+   If TestMoreDuplicateSpecies([LCS4], 4, AorD) Then
+     Select Case Me!LCS4
+       Case "L", "SL", "SW", "WD"
+         MsgBox "This surface is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+     End Select
+     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
+     ' -- Begin commented code [HT, 3-24-15]
+     ' If AorD Then
+     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
+     ' Else
+     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
+     ' End If
+     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
+     ' If Reply = vbYes Then
+     ' -- End commented code [HT, 3-24-15]
+       AorD = IIf(AorD = True, False, True)
+       If TestMoreDuplicateSpecies([LCS4], 4, AorD) Then
+         MsgBox "This species is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+       End If
+     ' -- Begin commented code [HT, 3-24-15]
+     ' Else
+'       MsgBox "This species is already recorded for this point."
+     '   DoCmd.CancelEvent
+     '   SendKeys "{ESC}"
+     '   GoTo Exit_Sub
+     ' End If
+     ' -- End commented code [HT, 3-24-15]
+   End If
+   Me!LCA4 = AorD  ' Make sure alive or dead field is correct
+  End If
+Exit_Sub:
+End Sub
+
+Private Sub LCS4_AfterUpdate()
+  Dim ResultFlag As Boolean
+  
+  If IsNull(Me!LCS4) Then
+    ResultFlag = ClearMoreLCGaps(4)    '  eliminate the gap if they deleted the entry
+  End If
+  
+End Sub
+
+' ---------------------------------
+' SUB:          LCS5_GotFocus
+' Description:  Handles lower canopy 5 species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub LCS5_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - LCS5_GotFocus[Form_frm_More_LC])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub LCS5_BeforeUpdate(Cancel As Integer)
+  Dim Reply As Integer
+  Dim AorD As Boolean
+  Dim TextMsg As String
+  Dim GapColumn As Integer
+  
+   GapColumn = TestMoreGaps(5)
+   If GapColumn > 0 Then  ' First check to see if they're making gaps
+     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   Select Case Me!LCS5  ' If it's surface crud, its dead
+     Case "L", "SL", "SW", "WD"
+       Me!LCA5 = 0
+   End Select
+  If Not IsNull(Me!LCS5) Then
+   AorD = Me!LCA5
+   If TestMoreDuplicateSpecies([LCS5], 5, AorD) Then
+     Select Case Me!LCS5
+       Case "L", "SL", "SW", "WD"
+         MsgBox "This surface is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+     End Select
+     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
+     ' -- Begin commented code [HT, 3-24-15]
+     ' If AorD Then
+     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
+     ' Else
+     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
+     ' End If
+     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
+     ' If Reply = vbYes Then
+     ' -- End commented code [HT, 3-24-15]
+       AorD = IIf(AorD = True, False, True)
+       If TestMoreDuplicateSpecies([LCS5], 5, AorD) Then
+         MsgBox "This species is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+       End If
+     ' -- Begin commented code [HT, 3-24-15]
+     ' Else
+'       MsgBox "This species is already recorded for this point."
+     '   DoCmd.CancelEvent
+     '   SendKeys "{ESC}"
+     '   GoTo Exit_Sub
+     ' End If
+     ' -- End commented code [HT, 3-24-15]
+   End If
+   Me!LCA5 = AorD  ' Make sure alive or dead field is correct
+  End If
+Exit_Sub:
+End Sub
+
+Private Sub LCS5_AfterUpdate()
+  Dim ResultFlag As Boolean
+  
+  If IsNull(Me!LCS5) Then
+    ResultFlag = ClearMoreLCGaps(5)    '  eliminate the gap if they deleted the entry
+  End If
+  
+End Sub
+
+' ---------------------------------
+' SUB:          LCS6_GotFocus
+' Description:  Handles lower canopy 6 species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub LCS6_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - LCS6_GotFocus[Form_frm_More_LC])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub LCS6_BeforeUpdate(Cancel As Integer)
+  Dim Reply As Integer
+  Dim AorD As Boolean
+  Dim TextMsg As String
+  Dim GapColumn As Integer
+  
+   GapColumn = TestMoreGaps(6)
+   If GapColumn > 0 Then  ' First check to see if they're making gaps
+     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   Select Case Me!LCS6  ' If it's surface crud, its dead
+     Case "L", "SL", "SW", "WD"
+       Me!LCA6 = 0
+   End Select
+  If Not IsNull(Me!LCS6) Then
+   AorD = Me!LCA6
+   If TestMoreDuplicateSpecies([LCS6], 6, AorD) Then
+     Select Case Me!LCS6
+       Case "L", "SL", "SW", "WD"
+         MsgBox "This surface is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+     End Select
+     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
+     ' -- Begin commented code [HT, 3-24-15]
+     ' If AorD Then
+     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
+     ' Else
+     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
+     ' End If
+     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
+     ' If Reply = vbYes Then
+     ' -- End commented code [HT, 3-24-15]
+       AorD = IIf(AorD = True, False, True)
+       If TestMoreDuplicateSpecies([LCS6], 6, AorD) Then
+         MsgBox "This species is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+       End If
+     ' -- Begin commented code [HT, 3-24-15]
+     ' Else
+'       MsgBox "This species is already recorded for this point."
+     '   DoCmd.CancelEvent
+     '   SendKeys "{ESC}"
+     '   GoTo Exit_Sub
+     ' End If
+     ' -- End commented code [HT, 3-24-15]
+   End If
+   Me!LCA6 = AorD  ' Make sure alive or dead field is correct
+  End If
+Exit_Sub:
+End Sub
+
+Private Sub LCS6_AfterUpdate()
+  Dim ResultFlag As Boolean
+  
+  If IsNull(Me!LCS6) Then
+    ResultFlag = ClearMoreLCGaps(6)    '  eliminate the gap if they deleted the entry
+  End If
+  
+End Sub
+
+' ---------------------------------
+' SUB:          LCS7_GotFocus
+' Description:  Handles lower canopy 7 species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub LCS7_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - LCS7_GotFocus[Form_frm_More_LC])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub LCS7_BeforeUpdate(Cancel As Integer)
+  Dim Reply As Integer
+  Dim AorD As Boolean
+  Dim TextMsg As String
+  Dim GapColumn As Integer
+  
+   GapColumn = TestMoreGaps(7)
+   If GapColumn > 0 Then  ' First check to see if they're making gaps
+     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   Select Case Me!LCS7  ' If it's surface crud, its dead
+     Case "L", "SL", "SW", "WD"
+       Me!LCA7 = 0
+   End Select
+  If Not IsNull(Me!LCS7) Then
+   AorD = Me!LCA7
+   If TestMoreDuplicateSpecies([LCS7], 7, AorD) Then
+     Select Case Me!LCS7
+       Case "L", "SL", "SW", "WD"
+         MsgBox "This surface is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+     End Select
+     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
+     ' -- Begin commented code [HT, 3-24-15]
+     ' If AorD Then
+     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
+     ' Else
+     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
+     ' End If
+     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
+     ' If Reply = vbYes Then
+     ' -- End commented code [HT, 3-24-15]
+       AorD = IIf(AorD = True, False, True)
+       If TestMoreDuplicateSpecies([LCS7], 7, AorD) Then
+         MsgBox "This species is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+       End If
+     ' -- Begin commented code [HT, 3-24-15]
+     ' Else
+'       MsgBox "This species is already recorded for this point."
+     '   DoCmd.CancelEvent
+     '   SendKeys "{ESC}"
+     '   GoTo Exit_Sub
+     ' End If
+     ' -- End commented code [HT, 3-24-15]
+   End If
+   Me!LCA7 = AorD  ' Make sure alive or dead field is correct
+  End If
+Exit_Sub:
+End Sub
+
+Private Sub LCS7_AfterUpdate()
+  Dim ResultFlag As Boolean
+  
+  If IsNull(Me!LCS7) Then
+    ResultFlag = ClearMoreLCGaps(7)    '  eliminate the gap if they deleted the entry
+  End If
+  
+End Sub
+
+' ---------------------------------
+' SUB:          LCS8_GotFocus
+' Description:  Handles lower canopy 8 species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub LCS8_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - LCS8_GotFocus[Form_frm_More_LC])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub LCS8_BeforeUpdate(Cancel As Integer)
+  Dim Reply As Integer
+  Dim AorD As Boolean
+  Dim TextMsg As String
+  Dim GapColumn As Integer
+  
+   GapColumn = TestMoreGaps(8)
+   If GapColumn > 0 Then  ' First check to see if they're making gaps
+     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   Select Case Me!LCS8  ' If it's surface crud, its dead
+     Case "L", "SL", "SW", "WD"
+       Me!LCA8 = 0
+   End Select
+  If Not IsNull(Me!LCS8) Then
+   AorD = Me!LCA8
+   If TestMoreDuplicateSpecies([LCS8], 8, AorD) Then
+     Select Case Me!LCS8
+       Case "L", "SL", "SW", "WD"
+         MsgBox "This surface is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+     End Select
+     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
+     ' -- Begin commented code [HT, 3-24-15]
+     ' If AorD Then
+     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
+     ' Else
+     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
+     ' End If
+     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
+     ' If Reply = vbYes Then
+     ' -- End commented code [HT, 3-24-15]
+       AorD = IIf(AorD = True, False, True)
+       If TestMoreDuplicateSpecies([LCS8], 8, AorD) Then
+         MsgBox "This species is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+       End If
+     ' -- Begin commented code [HT, 3-24-15]
+     ' Else
+'       MsgBox "This species is already recorded for this point."
+     '   DoCmd.CancelEvent
+     '   SendKeys "{ESC}"
+     '   GoTo Exit_Sub
+     ' End If
+     ' -- End commented code [HT, 3-24-15]
+   End If
+   Me!LCA8 = AorD  ' Make sure alive or dead field is correct
+  End If
+Exit_Sub:
+End Sub
+
+Private Sub LCS8_AfterUpdate()
+  Dim ResultFlag As Boolean
+  
+  If IsNull(Me!LCS8) Then
+    ResultFlag = ClearMoreLCGaps(8)    '  eliminate the gap if they deleted the entry
+  End If
+  
+End Sub
+
+' ---------------------------------
+' SUB:          LCS9_GotFocus
+' Description:  Handles lower canopy 9 species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub LCS9_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - LCS9_GotFocus[Form_frm_More_LC])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+
+Private Sub LCS9_BeforeUpdate(Cancel As Integer)
+  Dim Reply As Integer
+  Dim AorD As Boolean
+  Dim TextMsg As String
+  Dim GapColumn As Integer
+  
+   GapColumn = TestMoreGaps(9)
+   If GapColumn > 0 Then  ' First check to see if they're making gaps
+     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   Select Case Me!LCS9  ' If it's surface crud, its dead
+     Case "L", "SL", "SW", "WD"
+       Me!LCA9 = 0
+   End Select
+  If Not IsNull(Me!LCS9) Then
+   AorD = Me!LCA9
+   If TestMoreDuplicateSpecies([LCS9], 9, AorD) Then
+     Select Case Me!LCS9
+       Case "L", "SL", "SW", "WD"
+         MsgBox "This surface is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+     End Select
+     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
+     ' -- Begin commented code [HT, 3-24-15]
+     ' If AorD Then
+     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
+     ' Else
+     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
+     ' End If
+     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
+     ' If Reply = vbYes Then
+     ' -- End commented code [HT, 3-24-15]
+       AorD = IIf(AorD = True, False, True)
+       If TestMoreDuplicateSpecies([LCS9], 9, AorD) Then
+         MsgBox "This species is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+       End If
+     ' -- Begin commented code [HT, 3-24-15]
+     ' Else
+'       MsgBox "This species is already recorded for this point."
+     '   DoCmd.CancelEvent
+     '   SendKeys "{ESC}"
+     '   GoTo Exit_Sub
+     ' End If
+     ' -- End commented code [HT, 3-24-15]
+   End If
+   Me!LCA9 = AorD  ' Make sure alive or dead field is correct
+  End If
+Exit_Sub:
+End Sub
+
+Private Sub LCS9_AfterUpdate()
+  Dim ResultFlag As Boolean
+  
+  If IsNull(Me!LCS9) Then
+    ResultFlag = ClearMoreLCGaps(9)    '  eliminate the gap if they deleted the entry
+  End If
+  
+End Sub
+
+' ---------------------------------
+' SUB:          LCS10_GotFocus
+' Description:  Handles lower canopy 10 species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub LCS10_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - LCS10_GotFocus[Form_frm_More_LC])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub LCS10_BeforeUpdate(Cancel As Integer)
+  Dim Reply As Integer
+  Dim AorD As Boolean
+  Dim TextMsg As String
+  Dim GapColumn As Integer
+  
+   GapColumn = TestMoreGaps(10)
+   If GapColumn > 0 Then  ' First check to see if they're making gaps
+     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   Select Case Me!LCS10  ' If it's surface crud, its dead
+     Case "L", "SL", "SW", "WD"
+       Me!LCA10 = 0
+   End Select
+  If Not IsNull(Me!LCS10) Then
+   AorD = Me!LCA10
+   If TestMoreDuplicateSpecies([LCS10], 10, AorD) Then
+     Select Case Me!LCS10
+       Case "L", "SL", "SW", "WD"
+         MsgBox "This surface is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+     End Select
+     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
+     ' -- Begin commented code [HT, 3-24-15]
+     ' If AorD Then
+     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
+     ' Else
+     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
+     ' End If
+     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
+     ' If Reply = vbYes Then
+     ' -- End commented code [HT, 3-24-15]
+       AorD = IIf(AorD = True, False, True)
+       If TestMoreDuplicateSpecies([LCS10], 10, AorD) Then
+         MsgBox "This species is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+       End If
+     ' -- Begin commented code [HT, 3-24-15]
+     ' Else
+'       MsgBox "This species is already recorded for this point."
+     '   DoCmd.CancelEvent
+     '   SendKeys "{ESC}"
+     '   GoTo Exit_Sub
+     ' End If
+     ' -- End commented code [HT, 3-24-15]
+   End If
+   Me!LCA10 = AorD  ' Make sure alive or dead field is correct
+  End If
+Exit_Sub:
+End Sub
+
+Private Sub LCS10_AfterUpdate()
+  Dim ResultFlag As Boolean
+  
+  If IsNull(Me!LCS10) Then
+    Me!LCA10 = 0  ' Set default A/D flag.
+  End If
+  
+End Sub
+
+'---------------
+' LCA Alive/Dead
+'---------------
+Private Sub LCA4_BeforeUpdate(Cancel As Integer)
+  Dim AorD As Boolean
+  If IsNull(Me!LCS4) Then
+     MsgBox "Species cannot be null."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   AorD = Me!LCA4
+   If TestMoreDuplicateSpecies([LCS4], 4, AorD) Then
+     MsgBox "This species is already recorded for this point."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+   End If
+Exit_Sub:
+End Sub
+
+Private Sub LCA5_BeforeUpdate(Cancel As Integer)
+  Dim AorD As Boolean
+  If IsNull(Me!LCS5) Then
+     MsgBox "Species cannot be null."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   AorD = Me!LCA5
+   If TestMoreDuplicateSpecies([LCS5], 5, AorD) Then
+     MsgBox "This species is already recorded for this point."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+   End If
+Exit_Sub:
+End Sub
+
+Private Sub LCA6_BeforeUpdate(Cancel As Integer)
+  Dim AorD As Boolean
+  If IsNull(Me!LCS6) Then
+     MsgBox "Species cannot be null."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   AorD = Me!LCA6
+   If TestMoreDuplicateSpecies([LCS6], 6, AorD) Then
+     MsgBox "This species is already recorded for this point."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+   End If
+Exit_Sub:
+End Sub
+
+Private Sub LCA7_BeforeUpdate(Cancel As Integer)
+  Dim AorD As Boolean
+  If IsNull(Me!LCS7) Then
+     MsgBox "Species cannot be null."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   AorD = Me!LCA7
+   If TestMoreDuplicateSpecies([LCS7], 7, AorD) Then
+     MsgBox "This species is already recorded for this point."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+   End If
+Exit_Sub:
+End Sub
+
+Private Sub LCA8_BeforeUpdate(Cancel As Integer)
+  Dim AorD As Boolean
+  If IsNull(Me!LCS8) Then
+     MsgBox "Species cannot be null."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   AorD = Me!LCA8
+   If TestMoreDuplicateSpecies([LCS8], 8, AorD) Then
+     MsgBox "This species is already recorded for this point."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+   End If
+Exit_Sub:
+End Sub
+
+Private Sub LCA9_BeforeUpdate(Cancel As Integer)
+  Dim AorD As Boolean
+  If IsNull(Me!LCS9) Then
+     MsgBox "Species cannot be null."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   AorD = Me!LCA9
+   If TestMoreDuplicateSpecies([LCS9], 9, AorD) Then
+     MsgBox "This species is already recorded for this point."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+   End If
+Exit_Sub:
+End Sub
+
+Private Sub LCA10_BeforeUpdate(Cancel As Integer)
+  Dim AorD As Boolean
+  If IsNull(Me!LCS10) Then
+     MsgBox "Species cannot be null."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   AorD = Me!LCA10
+   If TestMoreDuplicateSpecies([LCS10], 10, AorD) Then
+     MsgBox "This species is already recorded for this point."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+   End If
+Exit_Sub:
+End Sub
+
+Private Sub ButtonMaster_Click()
+On Error GoTo Err_ButtonMaster_Click
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+    Dim strOpenArg As String
+
+    strOpenArg = "fsub_LP_Intercept"
+    stDocName = "frm_Master_Species"
+    DoCmd.OpenForm stDocName, , , stLinkCriteria, , , strOpenArg
+
+Exit_ButtonMaster_Click:
+    Exit Sub
+
+Err_ButtonMaster_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonMaster_Click
+    
+End Sub
+
+Private Sub ButtonUnknown_Click()
+On Error GoTo Err_ButtonUnknown_Click
+
+    DoCmd.OpenForm "frm_List_Unknown", , , , , acDialog
+    Me.Refresh
+
+Exit_ButtonUnknown_Click:
+    Exit Sub
+
+Err_ButtonUnknown_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonUnknown_Click
+    
+End Sub
+
+Private Sub ButtonClose_Click()
+On Error GoTo Err_ButtonClose_Click
+
+
+    DoCmd.Close
+
+Exit_ButtonClose_Click:
+    Exit Sub
+
+Err_ButtonClose_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonClose_Click
+    
+End Sub
+
+'---------------
+' Functions
+'---------------
 Public Function ClearMoreLCGaps(SpeciesIndex As Integer) As Boolean
 ' Clear gaps in lower canopy - 2/27/2009 - Russ DenBleyker
 ' Northern Colorado Plateau Network
@@ -683,6 +1576,7 @@ Err_Handler:
     End Select
 
 End Function
+
 Public Function TestMoreGaps(SpeciesIndex As Integer) As Integer
 ' Test for gaps in lower canopy - 2/27/2009 - Russ DenBleyker
 ' Northern Colorado Plateau Network
@@ -787,638 +1681,3 @@ Err_Handler:
     End Select
     Resume Exit_Function
 End Function
-
-Private Sub ButtonClose_Click()
-On Error GoTo Err_ButtonClose_Click
-
-
-    DoCmd.Close
-
-Exit_ButtonClose_Click:
-    Exit Sub
-
-Err_ButtonClose_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonClose_Click
-    
-End Sub
-Private Sub ButtonMaster_Click()
-On Error GoTo Err_ButtonMaster_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-
-    strOpenArg = "fsub_LP_Intercept"
-    stDocName = "frm_Master_Species"
-    DoCmd.OpenForm stDocName, , , stLinkCriteria, , , strOpenArg
-
-Exit_ButtonMaster_Click:
-    Exit Sub
-
-Err_ButtonMaster_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonMaster_Click
-    
-End Sub
-Private Sub ButtonUnknown_Click()
-On Error GoTo Err_ButtonUnknown_Click
-
-    DoCmd.OpenForm "frm_List_Unknown", , , , , acDialog
-    Me.Refresh
-
-Exit_ButtonUnknown_Click:
-    Exit Sub
-
-Err_ButtonUnknown_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonUnknown_Click
-    
-End Sub
-
-Private Sub LCA10_BeforeUpdate(Cancel As Integer)
-  Dim AorD As Boolean
-  If IsNull(Me!LCS10) Then
-     MsgBox "Species cannot be null."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   AorD = Me!LCA10
-   If TestMoreDuplicateSpecies([LCS10], 10, AorD) Then
-     MsgBox "This species is already recorded for this point."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-   End If
-Exit_Sub:
-End Sub
-
-Private Sub LCA4_BeforeUpdate(Cancel As Integer)
-  Dim AorD As Boolean
-  If IsNull(Me!LCS4) Then
-     MsgBox "Species cannot be null."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   AorD = Me!LCA4
-   If TestMoreDuplicateSpecies([LCS4], 4, AorD) Then
-     MsgBox "This species is already recorded for this point."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-   End If
-Exit_Sub:
-End Sub
-
-Private Sub LCA5_BeforeUpdate(Cancel As Integer)
-  Dim AorD As Boolean
-  If IsNull(Me!LCS5) Then
-     MsgBox "Species cannot be null."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   AorD = Me!LCA5
-   If TestMoreDuplicateSpecies([LCS5], 5, AorD) Then
-     MsgBox "This species is already recorded for this point."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-   End If
-Exit_Sub:
-End Sub
-
-Private Sub LCA6_BeforeUpdate(Cancel As Integer)
-  Dim AorD As Boolean
-  If IsNull(Me!LCS6) Then
-     MsgBox "Species cannot be null."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   AorD = Me!LCA6
-   If TestMoreDuplicateSpecies([LCS6], 6, AorD) Then
-     MsgBox "This species is already recorded for this point."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-   End If
-Exit_Sub:
-End Sub
-
-Private Sub LCA7_BeforeUpdate(Cancel As Integer)
-  Dim AorD As Boolean
-  If IsNull(Me!LCS7) Then
-     MsgBox "Species cannot be null."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   AorD = Me!LCA7
-   If TestMoreDuplicateSpecies([LCS7], 7, AorD) Then
-     MsgBox "This species is already recorded for this point."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-   End If
-Exit_Sub:
-End Sub
-
-Private Sub LCA8_BeforeUpdate(Cancel As Integer)
-  Dim AorD As Boolean
-  If IsNull(Me!LCS8) Then
-     MsgBox "Species cannot be null."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   AorD = Me!LCA8
-   If TestMoreDuplicateSpecies([LCS8], 8, AorD) Then
-     MsgBox "This species is already recorded for this point."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-   End If
-Exit_Sub:
-End Sub
-
-Private Sub LCA9_BeforeUpdate(Cancel As Integer)
-  Dim AorD As Boolean
-  If IsNull(Me!LCS9) Then
-     MsgBox "Species cannot be null."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   AorD = Me!LCA9
-   If TestMoreDuplicateSpecies([LCS9], 9, AorD) Then
-     MsgBox "This species is already recorded for this point."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-   End If
-Exit_Sub:
-End Sub
-
-Private Sub LCS10_AfterUpdate()
-  Dim ResultFlag As Boolean
-  
-  If IsNull(Me!LCS10) Then
-    Me!LCA10 = 0  ' Set default A/D flag.
-  End If
-  
-End Sub
-
-Private Sub LCS10_BeforeUpdate(Cancel As Integer)
-  Dim Reply As Integer
-  Dim AorD As Boolean
-  Dim TextMsg As String
-  Dim GapColumn As Integer
-  
-   GapColumn = TestMoreGaps(10)
-   If GapColumn > 0 Then  ' First check to see if they're making gaps
-     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   Select Case Me!LCS10  ' If it's surface crud, its dead
-     Case "L", "SL", "SW", "WD"
-       Me!LCA10 = 0
-   End Select
-  If Not IsNull(Me!LCS10) Then
-   AorD = Me!LCA10
-   If TestMoreDuplicateSpecies([LCS10], 10, AorD) Then
-     Select Case Me!LCS10
-       Case "L", "SL", "SW", "WD"
-         MsgBox "This surface is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-     End Select
-     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
-     ' -- Begin commented code [HT, 3-24-15]
-     ' If AorD Then
-     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
-     ' Else
-     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
-     ' End If
-     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
-     ' If Reply = vbYes Then
-     ' -- End commented code [HT, 3-24-15]
-       AorD = IIf(AorD = True, False, True)
-       If TestMoreDuplicateSpecies([LCS10], 10, AorD) Then
-         MsgBox "This species is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-       End If
-     ' -- Begin commented code [HT, 3-24-15]
-     ' Else
-'       MsgBox "This species is already recorded for this point."
-     '   DoCmd.CancelEvent
-     '   SendKeys "{ESC}"
-     '   GoTo Exit_Sub
-     ' End If
-     ' -- End commented code [HT, 3-24-15]
-   End If
-   Me!LCA10 = AorD  ' Make sure alive or dead field is correct
-  End If
-Exit_Sub:
-End Sub
-
-Private Sub LCS4_AfterUpdate()
-  Dim ResultFlag As Boolean
-  
-  If IsNull(Me!LCS4) Then
-    ResultFlag = ClearMoreLCGaps(4)    '  eliminate the gap if they deleted the entry
-  End If
-  
-End Sub
-
-Private Sub LCS4_BeforeUpdate(Cancel As Integer)
-  Dim Reply As Integer
-  Dim AorD As Boolean
-  Dim TextMsg As String
-  Dim GapColumn As String
-  
-   GapColumn = TestMoreGaps(4)
-   If GapColumn > 0 Then  ' First check to see if they're making gaps
-     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     Exit Sub
-   End If
-   Select Case Me!LCS4  ' If it's surface crud, its dead
-     Case "L", "SL", "SW", "WD"
-       Me!LCA4 = 0
-   End Select
-  If Not IsNull(Me!LCS4) Then
-   AorD = Me!LCA4
-   If TestMoreDuplicateSpecies([LCS4], 4, AorD) Then
-     Select Case Me!LCS4
-       Case "L", "SL", "SW", "WD"
-         MsgBox "This surface is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-     End Select
-     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
-     ' -- Begin commented code [HT, 3-24-15]
-     ' If AorD Then
-     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
-     ' Else
-     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
-     ' End If
-     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
-     ' If Reply = vbYes Then
-     ' -- End commented code [HT, 3-24-15]
-       AorD = IIf(AorD = True, False, True)
-       If TestMoreDuplicateSpecies([LCS4], 4, AorD) Then
-         MsgBox "This species is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-       End If
-     ' -- Begin commented code [HT, 3-24-15]
-     ' Else
-'       MsgBox "This species is already recorded for this point."
-     '   DoCmd.CancelEvent
-     '   SendKeys "{ESC}"
-     '   GoTo Exit_Sub
-     ' End If
-     ' -- End commented code [HT, 3-24-15]
-   End If
-   Me!LCA4 = AorD  ' Make sure alive or dead field is correct
-  End If
-Exit_Sub:
-End Sub
-
-Private Sub LCS5_AfterUpdate()
-  Dim ResultFlag As Boolean
-  
-  If IsNull(Me!LCS5) Then
-    ResultFlag = ClearMoreLCGaps(5)    '  eliminate the gap if they deleted the entry
-  End If
-  
-End Sub
-
-Private Sub LCS5_BeforeUpdate(Cancel As Integer)
-  Dim Reply As Integer
-  Dim AorD As Boolean
-  Dim TextMsg As String
-  Dim GapColumn As Integer
-  
-   GapColumn = TestMoreGaps(5)
-   If GapColumn > 0 Then  ' First check to see if they're making gaps
-     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   Select Case Me!LCS5  ' If it's surface crud, its dead
-     Case "L", "SL", "SW", "WD"
-       Me!LCA5 = 0
-   End Select
-  If Not IsNull(Me!LCS5) Then
-   AorD = Me!LCA5
-   If TestMoreDuplicateSpecies([LCS5], 5, AorD) Then
-     Select Case Me!LCS5
-       Case "L", "SL", "SW", "WD"
-         MsgBox "This surface is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-     End Select
-     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
-     ' -- Begin commented code [HT, 3-24-15]
-     ' If AorD Then
-     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
-     ' Else
-     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
-     ' End If
-     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
-     ' If Reply = vbYes Then
-     ' -- End commented code [HT, 3-24-15]
-       AorD = IIf(AorD = True, False, True)
-       If TestMoreDuplicateSpecies([LCS5], 5, AorD) Then
-         MsgBox "This species is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-       End If
-     ' -- Begin commented code [HT, 3-24-15]
-     ' Else
-'       MsgBox "This species is already recorded for this point."
-     '   DoCmd.CancelEvent
-     '   SendKeys "{ESC}"
-     '   GoTo Exit_Sub
-     ' End If
-     ' -- End commented code [HT, 3-24-15]
-   End If
-   Me!LCA5 = AorD  ' Make sure alive or dead field is correct
-  End If
-Exit_Sub:
-End Sub
-
-Private Sub LCS6_AfterUpdate()
-  Dim ResultFlag As Boolean
-  
-  If IsNull(Me!LCS6) Then
-    ResultFlag = ClearMoreLCGaps(6)    '  eliminate the gap if they deleted the entry
-  End If
-  
-End Sub
-
-Private Sub LCS6_BeforeUpdate(Cancel As Integer)
-  Dim Reply As Integer
-  Dim AorD As Boolean
-  Dim TextMsg As String
-  Dim GapColumn As Integer
-  
-   GapColumn = TestMoreGaps(6)
-   If GapColumn > 0 Then  ' First check to see if they're making gaps
-     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   Select Case Me!LCS6  ' If it's surface crud, its dead
-     Case "L", "SL", "SW", "WD"
-       Me!LCA6 = 0
-   End Select
-  If Not IsNull(Me!LCS6) Then
-   AorD = Me!LCA6
-   If TestMoreDuplicateSpecies([LCS6], 6, AorD) Then
-     Select Case Me!LCS6
-       Case "L", "SL", "SW", "WD"
-         MsgBox "This surface is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-     End Select
-     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
-     ' -- Begin commented code [HT, 3-24-15]
-     ' If AorD Then
-     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
-     ' Else
-     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
-     ' End If
-     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
-     ' If Reply = vbYes Then
-     ' -- End commented code [HT, 3-24-15]
-       AorD = IIf(AorD = True, False, True)
-       If TestMoreDuplicateSpecies([LCS6], 6, AorD) Then
-         MsgBox "This species is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-       End If
-     ' -- Begin commented code [HT, 3-24-15]
-     ' Else
-'       MsgBox "This species is already recorded for this point."
-     '   DoCmd.CancelEvent
-     '   SendKeys "{ESC}"
-     '   GoTo Exit_Sub
-     ' End If
-     ' -- End commented code [HT, 3-24-15]
-   End If
-   Me!LCA6 = AorD  ' Make sure alive or dead field is correct
-  End If
-Exit_Sub:
-End Sub
-
-Private Sub LCS7_AfterUpdate()
-  Dim ResultFlag As Boolean
-  
-  If IsNull(Me!LCS7) Then
-    ResultFlag = ClearMoreLCGaps(7)    '  eliminate the gap if they deleted the entry
-  End If
-  
-End Sub
-
-Private Sub LCS7_BeforeUpdate(Cancel As Integer)
-  Dim Reply As Integer
-  Dim AorD As Boolean
-  Dim TextMsg As String
-  Dim GapColumn As Integer
-  
-   GapColumn = TestMoreGaps(7)
-   If GapColumn > 0 Then  ' First check to see if they're making gaps
-     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   Select Case Me!LCS7  ' If it's surface crud, its dead
-     Case "L", "SL", "SW", "WD"
-       Me!LCA7 = 0
-   End Select
-  If Not IsNull(Me!LCS7) Then
-   AorD = Me!LCA7
-   If TestMoreDuplicateSpecies([LCS7], 7, AorD) Then
-     Select Case Me!LCS7
-       Case "L", "SL", "SW", "WD"
-         MsgBox "This surface is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-     End Select
-     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
-     ' -- Begin commented code [HT, 3-24-15]
-     ' If AorD Then
-     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
-     ' Else
-     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
-     ' End If
-     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
-     ' If Reply = vbYes Then
-     ' -- End commented code [HT, 3-24-15]
-       AorD = IIf(AorD = True, False, True)
-       If TestMoreDuplicateSpecies([LCS7], 7, AorD) Then
-         MsgBox "This species is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-       End If
-     ' -- Begin commented code [HT, 3-24-15]
-     ' Else
-'       MsgBox "This species is already recorded for this point."
-     '   DoCmd.CancelEvent
-     '   SendKeys "{ESC}"
-     '   GoTo Exit_Sub
-     ' End If
-     ' -- End commented code [HT, 3-24-15]
-   End If
-   Me!LCA7 = AorD  ' Make sure alive or dead field is correct
-  End If
-Exit_Sub:
-End Sub
-
-Private Sub LCS8_AfterUpdate()
-  Dim ResultFlag As Boolean
-  
-  If IsNull(Me!LCS8) Then
-    ResultFlag = ClearMoreLCGaps(8)    '  eliminate the gap if they deleted the entry
-  End If
-  
-End Sub
-
-Private Sub LCS8_BeforeUpdate(Cancel As Integer)
-  Dim Reply As Integer
-  Dim AorD As Boolean
-  Dim TextMsg As String
-  Dim GapColumn As Integer
-  
-   GapColumn = TestMoreGaps(8)
-   If GapColumn > 0 Then  ' First check to see if they're making gaps
-     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   Select Case Me!LCS8  ' If it's surface crud, its dead
-     Case "L", "SL", "SW", "WD"
-       Me!LCA8 = 0
-   End Select
-  If Not IsNull(Me!LCS8) Then
-   AorD = Me!LCA8
-   If TestMoreDuplicateSpecies([LCS8], 8, AorD) Then
-     Select Case Me!LCS8
-       Case "L", "SL", "SW", "WD"
-         MsgBox "This surface is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-     End Select
-     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
-     ' -- Begin commented code [HT, 3-24-15]
-     ' If AorD Then
-     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
-     ' Else
-     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
-     ' End If
-     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
-     ' If Reply = vbYes Then
-     ' -- End commented code [HT, 3-24-15]
-       AorD = IIf(AorD = True, False, True)
-       If TestMoreDuplicateSpecies([LCS8], 8, AorD) Then
-         MsgBox "This species is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-       End If
-     ' -- Begin commented code [HT, 3-24-15]
-     ' Else
-'       MsgBox "This species is already recorded for this point."
-     '   DoCmd.CancelEvent
-     '   SendKeys "{ESC}"
-     '   GoTo Exit_Sub
-     ' End If
-     ' -- End commented code [HT, 3-24-15]
-   End If
-   Me!LCA8 = AorD  ' Make sure alive or dead field is correct
-  End If
-Exit_Sub:
-End Sub
-
-Private Sub LCS9_AfterUpdate()
-  Dim ResultFlag As Boolean
-  
-  If IsNull(Me!LCS9) Then
-    ResultFlag = ClearMoreLCGaps(9)    '  eliminate the gap if they deleted the entry
-  End If
-  
-End Sub
-
-Private Sub LCS9_BeforeUpdate(Cancel As Integer)
-  Dim Reply As Integer
-  Dim AorD As Boolean
-  Dim TextMsg As String
-  Dim GapColumn As Integer
-  
-   GapColumn = TestMoreGaps(9)
-   If GapColumn > 0 Then  ' First check to see if they're making gaps
-     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   Select Case Me!LCS9  ' If it's surface crud, its dead
-     Case "L", "SL", "SW", "WD"
-       Me!LCA9 = 0
-   End Select
-  If Not IsNull(Me!LCS9) Then
-   AorD = Me!LCA9
-   If TestMoreDuplicateSpecies([LCS9], 9, AorD) Then
-     Select Case Me!LCS9
-       Case "L", "SL", "SW", "WD"
-         MsgBox "This surface is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-     End Select
-     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
-     ' -- Begin commented code [HT, 3-24-15]
-     ' If AorD Then
-     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
-     ' Else
-     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
-     ' End If
-     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
-     ' If Reply = vbYes Then
-     ' -- End commented code [HT, 3-24-15]
-       AorD = IIf(AorD = True, False, True)
-       If TestMoreDuplicateSpecies([LCS9], 9, AorD) Then
-         MsgBox "This species is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-       End If
-     ' -- Begin commented code [HT, 3-24-15]
-     ' Else
-'       MsgBox "This species is already recorded for this point."
-     '   DoCmd.CancelEvent
-     '   SendKeys "{ESC}"
-     '   GoTo Exit_Sub
-     ' End If
-     ' -- End commented code [HT, 3-24-15]
-   End If
-   Me!LCA9 = AorD  ' Make sure alive or dead field is correct
-  End If
-Exit_Sub:
-End Sub

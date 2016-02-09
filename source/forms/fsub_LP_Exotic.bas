@@ -12,10 +12,10 @@ Begin Form
     Width =5040
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =270
-    Top =210
-    Right =13830
-    Bottom =4080
+    Left =8040
+    Top =8655
+    Right =13695
+    Bottom =11055
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x45e116d57156e340
@@ -346,6 +346,100 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
+
+' =================================
+' MODULE:       Form_fsub_LP_Belt_Shrub
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to LP belt shrub monitoring
+'
+' Source/date:  Bonnie Campbell, 2/09/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/9/2016 - 1.01 - added documentation, checkbox for no species found
+' =================================
+
+' ---------------------------------
+' SUB:          Form_BeforeInsert
+' Description:  Handles form loading actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown   - initial version
+'   BLC, 2/9/2016  - added error handling, updated documentation
+' ---------------------------------
+Private Sub Form_BeforeInsert(Cancel As Integer)
+On Error GoTo Err_Handler
+
+    ' Create the GUID primary key value
+    If IsNull(Me!Exotic_ID) Then
+        If GetDataType("tbl_LP_Exotic", "Exotic_ID") = dbText Then
+            Me.Exotic_ID = fxnGUIDGen
+        End If
+    End If
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_LP_Exotic])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub Species_GotFocus()
+On Error GoTo Err_Handler
+
+    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
+      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
+      Me.Parent.Refresh   ' Force save of transect record
+    End If
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_LP_Exotic])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub Species_BeforeUpdate(Cancel As Integer)
+    If Not IsNull(DLookup("[Exotic_ID]", "tbl_LP_Exotic", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
+      MsgBox "This species is already recorded for this transect."
+      DoCmd.CancelEvent
+      SendKeys "{ESC}"
+      Me.Undo
+    End If
+End Sub
 
 Private Sub Button_Master_Species_Click()
 On Error GoTo Err_Button_Master_Species_Click
@@ -365,6 +459,29 @@ Err_Button_Master_Species_Click:
     MsgBox Err.Description
     Resume Exit_Button_Master_Species_Click
  
+End Sub
+
+Private Sub ButtonUnknown_Click()
+On Error GoTo Err_ButtonUnknown_Click
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+
+'    stDocName = "frm_LP_Unknown_Species"
+    
+ '   stLinkCriteria = "[Species_ID]=" & "'" & Me![Exotic_ID] & "'"
+ '   DoCmd.OpenForm stDocName, , , stLinkCriteria, , , Me![Exotic_ID]
+
+    DoCmd.OpenForm "frm_List_Unknown", , , , , acDialog
+    Me.Refresh
+
+Exit_ButtonUnknown_Click:
+    Exit Sub
+
+Err_ButtonUnknown_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonUnknown_Click
+    
 End Sub
 
 Private Sub ButtonA1_Click()
@@ -424,56 +541,6 @@ Private Sub ButtonZero_Click()
   Screen.PreviousControl.SetFocus
 End Sub
 
-Private Sub Form_BeforeInsert(Cancel As Integer)
-  
-    ' Create the GUID primary key value
-    If IsNull(Me!Exotic_ID) Then
-        If GetDataType("tbl_LP_Exotic", "Exotic_ID") = dbText Then
-            Me.Exotic_ID = fxnGUIDGen
-        End If
-    End If
-
-End Sub
-
-Private Sub Species_BeforeUpdate(Cancel As Integer)
-    If Not IsNull(DLookup("[Exotic_ID]", "tbl_LP_Exotic", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
-      MsgBox "This species is already recorded for this transect."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-      Me.Undo
-    End If
-End Sub
-Private Sub ButtonUnknown_Click()
-On Error GoTo Err_ButtonUnknown_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-
-'    stDocName = "frm_LP_Unknown_Species"
-    
- '   stLinkCriteria = "[Species_ID]=" & "'" & Me![Exotic_ID] & "'"
- '   DoCmd.OpenForm stDocName, , , stLinkCriteria, , , Me![Exotic_ID]
-
-    DoCmd.OpenForm "frm_List_Unknown", , , , , acDialog
-    Me.Refresh
-
-Exit_ButtonUnknown_Click:
-    Exit Sub
-
-Err_ButtonUnknown_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonUnknown_Click
-    
-End Sub
-
-Private Sub Species_GotFocus()
-
-    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
-      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
-      Me.Parent.Refresh   ' Force save of transect record
-    End If
-   
-End Sub
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_ButtonDelete_Click
 

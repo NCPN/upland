@@ -13,10 +13,10 @@ Begin Form
     Width =9540
     DatasheetFontHeight =9
     ItemSuffix =54
-    Left =1050
-    Top =1830
-    Right =10980
-    Bottom =6090
+    Left =6180
+    Top =4935
+    Right =15855
+    Bottom =9210
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -614,6 +614,17 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+Private Sub Form_BeforeInsert(Cancel As Integer)
+  
+    ' Create the GUID primary key value
+    If IsNull(Me!Exotic_ID) Then
+        If GetDataType("tbl_LP_Exotic_Freq", "Exotic_ID") = dbText Then
+            Me.Exotic_ID = fxnGUIDGen
+        End If
+    End If
+
+End Sub
+
 ' ---------------------------------
 ' SUB:          cbxNoSpecies_Click
 ' Description:  Handles checkbox click actions
@@ -663,17 +674,6 @@ Err_Button_Master_Species_Click:
  
 End Sub
 
-Private Sub Form_BeforeInsert(Cancel As Integer)
-  
-    ' Create the GUID primary key value
-    If IsNull(Me!Exotic_ID) Then
-        If GetDataType("tbl_LP_Exotic_Freq", "Exotic_ID") = dbText Then
-            Me.Exotic_ID = fxnGUIDGen
-        End If
-    End If
-
-End Sub
-
 Private Sub Species_BeforeUpdate(Cancel As Integer)
     If Not IsNull(DLookup("[Exotic_ID]", "tbl_LP_Exotic_Freq", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
       MsgBox "This species is already recorded for this transect."
@@ -682,6 +682,7 @@ Private Sub Species_BeforeUpdate(Cancel As Integer)
       Me.Undo
     End If
 End Sub
+
 Private Sub ButtonUnknown_Click()
 On Error GoTo Err_ButtonUnknown_Click
 
@@ -701,14 +702,43 @@ Err_ButtonUnknown_Click:
     
 End Sub
 
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
 Private Sub Species_GotFocus()
+On Error GoTo Err_Handler
 
     If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
       Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
       Me.Parent.Refresh   ' Force save of transect record
     End If
-   
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_Exotic_Freq_Oak])"
+    End Select
+    Resume Exit_Handler
 End Sub
+
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_ButtonDelete_Click
 
@@ -731,6 +761,7 @@ Err_ButtonDelete_Click:
     Resume Exit_ButtonDelete_Click
     
 End Sub
+
 Private Sub ButtonMaster_Click()
 On Error GoTo Err_ButtonMaster_Click
 

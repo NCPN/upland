@@ -14,10 +14,10 @@ Begin Form
     Width =4320
     DatasheetFontHeight =9
     ItemSuffix =19
-    Left =2640
-    Top =1245
-    Right =7320
-    Bottom =3870
+    Left =1380
+    Top =4935
+    Right =5715
+    Bottom =9180
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xa04a1bb3ac8ae340
@@ -256,6 +256,7 @@ Private Sub Point_GotFocus()
     End If
  
 End Sub
+
 Private Sub ButtonMaster_Click()
 On Error GoTo Err_ButtonMaster_Click
 
@@ -274,6 +275,43 @@ Err_ButtonMaster_Click:
     
 End Sub
 
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub Species_GotFocus()
+On Error GoTo Err_Handler
+
+    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
+      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
+      Me.Parent.Refresh   ' Force save of transect record
+    End If
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_LP_Add_Species])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
 Private Sub Species_BeforeUpdate(Cancel As Integer)
     If Not IsNull(DLookup("[Add_ID]", "tbl_LP_Add_Species", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
       MsgBox "This species is already recorded for this transect."
@@ -282,12 +320,6 @@ Private Sub Species_BeforeUpdate(Cancel As Integer)
     End If
 End Sub
 
-Private Sub Species_GotFocus()
-    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
-      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
-      Me.Parent.Refresh   ' Force save of transect record
-    End If
-End Sub
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_ButtonDelete_Click
 
@@ -310,6 +342,7 @@ Err_ButtonDelete_Click:
     Resume Exit_ButtonDelete_Click
     
 End Sub
+
 Private Sub ButtonUnknown_Click()
 On Error GoTo Err_ButtonUnknown_Click
 
