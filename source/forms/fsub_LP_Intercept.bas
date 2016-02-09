@@ -16,10 +16,10 @@ Begin Form
     Width =13980
     DatasheetFontHeight =9
     ItemSuffix =107
-    Left =1380
-    Top =225
-    Right =14895
-    Bottom =7410
+    Left =-4020
+    Top =4215
+    Right =9495
+    Bottom =12330
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xb0c0f4149355e340
@@ -424,10 +424,11 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
                         "py.Utah_Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is N"
-                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code; "
+                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code;"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin TextBox
@@ -500,6 +501,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin ComboBox
@@ -541,6 +543,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin ComboBox
@@ -582,6 +585,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin ComboBox
@@ -613,7 +617,7 @@ Begin Form
                     Top =60
                     Width =660
                     TabIndex =13
-                    ColumnInfo ="\"Disturbance code\";\"\";\"disturbance description\";\"\";\"10\";\"10\""
+                    ColumnInfo ="\"\";\"\";\"\";\"\";\"10\";\"10\""
                     Name ="D1"
                     ControlSource ="D1"
                     RowSourceType ="Table/Query"
@@ -640,7 +644,837 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
+
+' =================================
+' MODULE:       Form_fsub_LP_Intercept
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to LP intercept monitoring
+'
+' Source/date:  Bonnie Campbell, 2/09/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/9/2016 - 1.01 - added documentation, checkbox for no species found
+' =================================
+
+' ---------------------------------
+'  Declarations
+' ---------------------------------
 Public CurrentPointID As String
+
+' ---------------------------------
+' SUB:          Form_Current
+' Description:  Handles form current actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown   - initial version
+'   BLC, 2/9/2016  - added error handling, updated documentation
+' ---------------------------------
+Private Sub Form_Current()
+On Error GoTo Err_Handler
+
+    Dim db As DAO.Database
+    Dim Points As DAO.Recordset
+    Dim strSQL As String
+        
+    On Error GoTo Err_Handler
+    If IsNull(Me!Transect_ID) Then
+      Me!ButtonInitialize.ForeColor = 8421376
+      GoTo Exit_Handler
+    End If
+    CurrentPointID = Me!Transect_ID
+    ' Set SQL
+    Set db = CurrentDb
+    strSQL = "SELECT [Point] FROM [tbl_LP_Intercept] WHERE [Transect_ID] = '" & Me![Transect_ID] & "'"
+    Set Points = db.OpenRecordset(strSQL)
+    
+    If Points.EOF Or IsNull(Points!Point) Then
+      Me!ButtonInitialize.ForeColor = 8421376
+    Else
+      Me!ButtonInitialize.ForeColor = 255
+      If IsNull(Me!Top) Then
+        Me!Alive.Enabled = False
+      Else
+        Me!Alive.Enabled = True
+      End If  ' End if for top canopy test
+      If IsNull(Me!Surface) Or Me!Surface = "" Then
+        Me!Surface_Alive.Enabled = False
+      Else
+          If IsNull(DLookup("[Surface_Code]", "tlu_LP_Soil_Surface", "[Surface_Code] = '" & Me!Surface & "'")) Then
+            Me!Surface_Alive.Enabled = True
+          Else
+            Me!Surface_Alive.Enabled = False
+          End If
+      End If  ' End if for soil surface test
+    End If  ' End if for points eof test
+    Points.Close
+    If IsNull(Me!LCS1) Or Me!LCS1 = "" Then
+      Me!LCA1.Enabled = False
+    Else
+      Me!LCA1.Enabled = True
+      Select Case Me!LCS1  ' If it's surface crud, its dead
+        Case "L", "SL", "SW", "WD"
+          Me!LCA1 = 0
+          Me!LCA1.Enabled = False
+      End Select
+    End If
+    If IsNull(Me!LCS2) Or Me!LCS2 = "" Then
+      Me!LCA2.Enabled = False
+    Else
+      Me!LCA2.Enabled = True
+      Select Case Me!LCS2  ' If it's surface crud, its dead
+        Case "L", "SL", "SW", "WD"
+          Me!LCA2 = 0
+          Me!LCA2.Enabled = False
+      End Select
+    End If
+    If IsNull(Me!LCS3) Or Me!LCS3 = "" Then
+      Me!LCA3.Enabled = False
+    Else
+      Me!LCA3.Enabled = True
+      Select Case Me!LCS3  ' If it's surface crud, its dead
+        Case "L", "SL", "SW", "WD"
+          Me!LCA3 = 0
+          Me!LCA3.Enabled = False
+      End Select
+    End If
+    
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Current[Form_fsub_LP_Intercept])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub ButtonInitialize_Click()
+
+    Dim db As DAO.Database
+    Dim Points As DAO.Recordset
+    Dim PointCount As Single
+    Dim PointIncrement As Single
+    Dim PointLimit As Integer
+    Dim Veg_Type As Variant
+        
+    On Error GoTo Err_Handler
+    
+    If Me!ButtonInitialize.ForeColor = 255 Then
+      GoTo Exit_Procedure        ' Already initialized
+    End If
+    
+    ' Disabled 3/19/2009 as per ecologist demand - RD
+    ' If IsNull(Me.Parent!Recorder) And IsNull(Me.Parent!Observer) Then
+    '   MsgBox "You must enter Observer or Recorder first."
+    '   GoTo Exit_Procedure
+    ' End If
+    
+    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
+      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
+      Me.Parent.Refresh   ' Force save of transect record
+    End If
+    
+    ' Set point number
+    Set db = CurrentDb
+    Set Points = db.OpenRecordset("tbl_LP_Intercept")
+    Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent.Parent!Location_ID & "'")
+    If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
+      PointCount = 0.25
+      PointIncrement = 0.25
+      PointLimit = 20
+    Else
+      PointCount = 0.5
+      PointIncrement = 0.5
+      PointLimit = 50
+    End If
+    Do Until PointCount > PointLimit
+      Points.AddNew
+      Points!Intercept_ID = fxnGUIDGen  ' Generate an ID for it
+      Points!Transect_ID = Forms!frm_Data_Entry!frm_LP_Transect.Form!Transect_ID
+      Points!Point = PointCount
+      Points!Alive = -1
+      Points!Surface_Alive = 0
+      Points.Update  ' write the record
+      PointCount = PointCount + PointIncrement
+    Loop
+
+    Points.Close
+    Me!ButtonInitialize.ForeColor = 255
+    Me.Requery
+
+Exit_Procedure:
+
+    Exit Sub
+
+Err_Handler:
+    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
+    Resume Exit_Procedure
+End Sub
+
+'---------------
+' Top/LCS (species)
+'---------------
+' ---------------------------------
+' SUB:          Top_GotFocus
+' Description:  Handles top species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub Top_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Top_GotFocus[Form_fsub_LP_Intercept])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub Top_BeforeUpdate(Cancel As Integer)
+    Dim LCIndex As Integer
+    Dim SpeciesColumn As String
+    Dim AliveColumn As String
+    Dim AliveValue As Boolean
+    
+    On Error GoTo Err_Handler
+     
+    LCIndex = 1
+    SpeciesColumn = "LCS" & LCIndex
+    Do Until IsNull(Me(SpeciesColumn))    ' Check for duplicate species in Lower Canopy.
+      If Me(SpeciesColumn) = Me!Top Then
+        If Me!Alive.Enabled = False Then
+          AliveValue = vbYes  ' Top is going to default to alive if this is a new entry
+        Else
+          AliveValue = Me!Alive
+        End If
+        AliveColumn = "LCA" & LCIndex
+        If Me(AliveColumn) = AliveValue Then
+          MsgBox "This species is already recorded for this point."
+          DoCmd.CancelEvent
+          SendKeys "{ESC}"
+          GoTo Exit_Procedure
+        End If
+      End If
+      LCIndex = LCIndex + 1
+      If LCIndex > 10 Then  ' Do not go past the end
+        GoTo Exit_Procedure
+      End If
+      SpeciesColumn = "LCS" & LCIndex
+    Loop
+Exit_Procedure:
+    Exit Sub
+
+Err_Handler:
+    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
+    Resume Exit_Procedure
+ 
+End Sub
+
+Private Sub Top_AfterUpdate()
+      If IsNull(Me!Top) Or Me!Top = "" Then
+        Me!Alive.Enabled = False
+      Else
+        Me!Alive.Enabled = True
+        Me!Alive = vbYes
+      End If
+End Sub
+
+' ---------------------------------
+' SUB:          LCS1_GotFocus
+' Description:  Handles lower canopy 1 species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub LCS1_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - LCS1_GotFocus[Form_fsub_LP_Intercept])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub LCS1_BeforeUpdate(Cancel As Integer)
+  Dim Reply As Integer
+  Dim AorD As Boolean
+  Dim TextMsg As String
+  If Not IsNull(Me!LCS1) Then
+   Me!LCA1.Enabled = True
+   Select Case Me!LCS1
+     Case "L", "SL", "SW", "WD"
+       Me!LCA1 = 0
+       Me!LCA1.Enabled = False
+    '   Me.Refresh
+   End Select
+   
+   AorD = Me!LCA1
+   If TestDuplicateSpecies([LCS1], 1, AorD) Then
+     Select Case Me!LCS1
+       Case "L", "SL", "SW", "WD"
+         MsgBox "This surface is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+     End Select
+     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
+     ' -- Begin commented code [HT, 3-24-15]
+     ' If AorD Then
+     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
+     ' Else
+     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
+     ' End If
+     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
+     ' If Reply = vbYes Then
+     ' -- End commented code [HT, 3-24-15]
+       AorD = IIf(AorD = True, False, True)
+       If TestDuplicateSpecies([LCS1], 1, AorD) Then
+         MsgBox "This species is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+       End If
+     ' -- Begin commented code [HT, 3-24-15]
+     ' Else
+'       MsgBox "This species is already recorded for this point."
+      ' DoCmd.CancelEvent
+      ' SendKeys "{ESC}"
+      ' GoTo Exit_Sub
+     ' End If  ' End if for reply test
+     ' -- End commented code [HT, 3-24-15]
+   End If  '  End if for duplicate species test
+   Me!LCA1 = AorD  ' Make sure alive or dead field is correct
+  Else
+    Me!LCA1.Enabled = False
+  End If   ' End if for null field test
+Exit_Sub:
+End Sub
+
+Private Sub LCS1_AfterUpdate()
+  Dim ResultFlag As Boolean
+  Dim lngPosition As Long
+  
+  lngPosition = Me.CurrentRecord ' capture index position of record currently selected
+  If lngPosition > 1 Then
+    lngPosition = lngPosition - 1
+  End If
+  If IsNull(Me!LCS1) Then
+    ResultFlag = ClearLCGaps(1)
+    Me!LCS1.SetFocus   ' Reset focus
+    Me.Form.Recordset.Move lngPosition ' navigate back to original record position
+  End If
+  
+End Sub
+
+' ---------------------------------
+' SUB:          LCS2_GotFocus
+' Description:  Handles lower canopy 2 species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub LCS2_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - LCS2_GotFocus[Form_fsub_LP_Intercept])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub LCS2_BeforeUpdate(Cancel As Integer)
+  Dim Reply As Integer
+  Dim GapColumn As Integer
+  Dim AorD As Boolean
+  Dim TextMsg As String
+  
+  If Not IsNull(Me!LCS2) Then
+   Me!LCA2.Enabled = True
+   GapColumn = TestGaps(2)
+   If GapColumn > 0 Then  ' First check to see if they're making gaps
+     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   Select Case Me!LCS2  ' If it's surface crud, its dead
+     Case "L", "SL", "SW", "WD"
+       Me!LCA2 = 0
+       Me!LCA2.Enabled = False
+   End Select
+   AorD = Me!LCA2  ' Now check for duplicate species
+   If TestDuplicateSpecies([LCS2], 2, AorD) Then
+     Select Case Me!LCS2
+       Case "L", "SL", "SW", "WD"
+         MsgBox "This surface is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+     End Select
+     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
+     ' -- Begin commented code [HT, 3-24-15]
+     ' If AorD Then
+     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
+     ' Else
+     '  TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
+     ' End If
+     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
+     ' If Reply = vbYes Then
+     ' -- End commented code [HT, 3-24-15]
+       AorD = IIf(AorD = True, False, True)
+       If TestDuplicateSpecies([LCS2], 2, AorD) Then
+         MsgBox "This species is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+       End If
+     ' -- Begin commented code [HT, 3-24-15]
+     ' Else
+'       MsgBox "This species is already recorded for this point."
+     '  DoCmd.CancelEvent
+     '  SendKeys "{ESC}"
+     '  GoTo Exit_Sub
+     ' End If
+     ' -- End commented code [HT, 3-24-15]
+   End If
+   Me!LCA2 = AorD  ' Make sure alive or dead field is correct
+  Else
+   Me!LCA2.Enabled = False
+  End If
+Exit_Sub:
+End Sub
+
+Private Sub LCS2_AfterUpdate()
+  Dim ResultFlag As Boolean
+  Dim lngPosition As Long
+  
+  lngPosition = Me.CurrentRecord ' capture index position of record currently selected
+  If lngPosition > 1 Then
+    lngPosition = lngPosition - 1
+  End If
+  If IsNull(Me!LCS2) Then
+    ResultFlag = ClearLCGaps(2)
+    Me!LCS2.SetFocus   ' Reset focus
+    Me.Form.Recordset.Move lngPosition ' navigate back to original record position
+  End If
+  
+End Sub
+
+' ---------------------------------
+' SUB:          LCS3_GotFocus
+' Description:  Handles lower canopy 3 species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub LCS3_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - LCS3_GotFocus[Form_fsub_LP_Intercept])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub LCS3_BeforeUpdate(Cancel As Integer)
+  Dim Reply As Integer
+  Dim GapColumn As Integer
+  Dim AorD As Boolean
+  Dim TextMsg As String
+  
+  If Not IsNull(Me!LCS3) Then
+   Me!LCA3.Enabled = True
+   GapColumn = TestGaps(3)
+   If GapColumn > 0 Then  ' First check to see if they're making gaps
+     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   Select Case Me!LCS3  ' If it's surface crud, its dead
+     Case "L", "SL", "SW", "WD"
+       Me!LCA3 = 0
+       Me!LCA3.Enabled = False
+   End Select
+   AorD = Me!LCA3
+   If TestDuplicateSpecies([LCS3], 3, AorD) Then
+     Select Case Me!LCS3
+       Case "L", "SL", "SW", "WD"
+         MsgBox "This surface is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+     End Select
+     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
+     ' -- Begin commented code [HT, 3-24-15]
+     ' If AorD Then
+     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
+     ' Else
+     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
+     ' End If
+     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
+     ' If Reply = vbYes Then
+     ' -- End commented code [HT, 3-24-15]
+       AorD = IIf(AorD = True, False, True)
+       If TestDuplicateSpecies([LCS3], 3, AorD) Then
+         MsgBox "This species is already recorded for this point."
+         DoCmd.CancelEvent
+         SendKeys "{ESC}"
+         GoTo Exit_Sub
+       End If
+     ' -- Begin commented code [HT, 3-24-15]
+     ' Else
+'       MsgBox "This species is already recorded for this point."
+     '   DoCmd.CancelEvent
+     '   SendKeys "{ESC}"
+     '   GoTo Exit_Sub
+     ' End If
+     ' -- End commented code [HT, 3-24-15]
+   End If
+   Me!LCA3 = AorD  ' Make sure alive or dead field is correct
+  Else
+   Me!LCA3.Enabled = False
+  End If
+Exit_Sub:
+End Sub
+
+Private Sub LCS3_AfterUpdate()
+  Dim ResultFlag As Boolean
+  Dim lngPosition As Long
+  
+  lngPosition = Me.CurrentRecord ' capture index position of record currently selected
+  If lngPosition > 1 Then
+    lngPosition = lngPosition - 1
+  End If
+  If IsNull(Me!LCS3) Then
+    ResultFlag = ClearLCGaps(3)
+    Me!LCS3.SetFocus   ' Reset focus
+    Me.Form.Recordset.Move lngPosition ' navigate back to original record position
+  End If
+  
+End Sub
+
+Private Sub Surface_AfterUpdate()
+      If IsNull(Me!Surface) Or Me!Surface = "" Then
+        Me!Surface_Alive = 0
+        Me!Surface_Alive.Enabled = False
+      Else
+          If IsNull(DLookup("[Surface_Code]", "tlu_LP_Soil_Surface", "[Surface_Code] = '" & Me!Surface & "'")) Then
+            Me!Surface_Alive.Enabled = True
+            Me!Surface_Alive = -1
+          Else
+            Me!Surface_Alive = 0
+            Me!Surface_Alive.Enabled = False
+          End If
+      End If
+End Sub
+
+'---------------
+' LCA (Alive or Dead)
+'---------------
+
+Private Sub LCA1_BeforeUpdate(Cancel As Integer)
+  Dim AorD As Boolean
+  If IsNull(Me!LCS1) Then
+     MsgBox "Species cannot be null."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   AorD = Me!LCA1
+   If TestDuplicateSpecies([LCS1], 1, AorD) Then
+     MsgBox "This species is already recorded for this point."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+   End If
+Exit_Sub:
+End Sub
+
+Private Sub LCA2_BeforeUpdate(Cancel As Integer)
+  Dim AorD As Boolean
+  If IsNull(Me!LCS2) Then
+     MsgBox "Species cannot be null."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   AorD = Me!LCA2
+   If TestDuplicateSpecies([LCS2], 2, AorD) Then
+     MsgBox "This species is already recorded for this point."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+   End If
+Exit_Sub:
+End Sub
+
+Private Sub LCA3_BeforeUpdate(Cancel As Integer)
+  Dim AorD As Boolean
+  If IsNull(Me!LCS3) Then
+     MsgBox "Species cannot be null."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+     GoTo Exit_Sub
+   End If
+   AorD = Me!LCA3
+   If TestDuplicateSpecies([LCS3], 3, AorD) Then
+     MsgBox "This species is already recorded for this point."
+     DoCmd.CancelEvent
+     SendKeys "{ESC}"
+   End If
+Exit_Sub:
+End Sub
+
+Private Sub Alive_BeforeUpdate(Cancel As Integer)
+    Dim LCIndex As Integer
+    Dim SpeciesColumn As String
+    Dim AliveColumn As String
+    
+    On Error GoTo Err_Handler
+     
+    LCIndex = 1
+    SpeciesColumn = "LCS" & LCIndex
+    Do Until IsNull(Me(SpeciesColumn))    ' Check for duplicate species in Lower Canopy.
+      If Me(SpeciesColumn) = Me!Top Then
+        AliveColumn = "LCA" & LCIndex
+        If Me(AliveColumn) = Me!Alive Then
+          MsgBox "This species is already recorded for this point."
+          DoCmd.CancelEvent
+          SendKeys "{ESC}"
+          GoTo Exit_Procedure
+        End If
+      End If
+      LCIndex = LCIndex + 1
+      If LCIndex > 10 Then  ' Do not go past the end
+        GoTo Exit_Procedure
+      End If
+      SpeciesColumn = "LCS" & LCIndex
+    Loop
+Exit_Procedure:
+    Exit Sub
+
+Err_Handler:
+    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
+    Resume Exit_Procedure
+ 
+End Sub
+
+Private Sub D1_BeforeUpdate(Cancel As Integer)
+  
+  If Not IsNull(Me!D1) Then
+    If TestDuplicateDist([D1], 1) Then
+      MsgBox "This disturbance is already recorded for this point."
+      DoCmd.CancelEvent
+      SendKeys "{ESC}"
+    End If
+  End If
+  
+End Sub
+
+Private Sub D1_AfterUpdate()
+    Dim GapIndex As Integer
+    Dim NextIndex As Integer
+    Dim SpeciesColumn As String
+    Dim NextColumn As String
+    
+    On Error GoTo Err_Handler
+  If IsNull(Me!D1) Then   ' If they cleared it, we need to eliminate any gaps.
+    GapIndex = 1
+    NextIndex = 2
+    Do Until GapIndex > 4
+      NextColumn = "D" & NextIndex
+      If IsNull(Me(NextColumn)) Then    ' Check for disturbance in next entry.
+        GoTo Exit_Procedure   ' Nope - we are finished
+      Else
+        SpeciesColumn = "D" & GapIndex
+        Me(SpeciesColumn) = Me(NextColumn)   ' move the next column down.
+        Me(NextColumn) = Null                ' clear the old column
+      End If
+      GapIndex = GapIndex + 1
+      NextIndex = NextIndex + 1
+    Loop
+  End If
+Exit_Procedure:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+                "Error encountered (ClearDisturbanceGaps)"
+            Resume Exit_Procedure
+    End Select
+
+End Sub
+
+Private Sub ButtonLookup_Click()
+On Error GoTo Err_Button_Master_Species_Click
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+    Dim strOpenArg As String
+
+    strOpenArg = "fsub_LP_Intercept"
+    stDocName = "frm_Master_Species"
+    DoCmd.OpenForm stDocName, , , stLinkCriteria, , , strOpenArg
+
+Exit_Button_Master_Species_Click:
+    Exit Sub
+
+Err_Button_Master_Species_Click:
+    MsgBox Err.Description
+    Resume Exit_Button_Master_Species_Click
+     
+End Sub
+
+Private Sub ButtonUnknown_Click()
+
+On Error GoTo Err_ButtonUnknown_Click
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+
+    DoCmd.OpenForm "frm_List_Unknown", , , , , acDialog
+    Me.Refresh
+    
+Exit_ButtonUnknown_Click:
+    Exit Sub
+
+Err_ButtonUnknown_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonUnknown_Click
+    
+End Sub
+
+Private Sub ButtonLC_Click()
+On Error GoTo Err_ButtonLC_Click
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+   
+    If IsNull(Me!Intercept_ID) Then
+      MsgBox "No point has been slected.", , "More Lower Canopy"
+    ElseIf (IsNull(Me!LCS1) + IsNull(Me!LCS2) + IsNull(Me!LCS3)) <> 0 Then
+      MsgBox "There is space available in LC1, LC2, or LC3.", , "More Lower Canopy"
+    Else
+      DoCmd.RunCommand acCmdSaveRecord  ' Force a save so frm_More_LC can see any recent updates.
+      stDocName = "frm_More_LC"
+      stLinkCriteria = "[Intercept_ID]=" & "'" & Me![Intercept_ID] & "'"
+      DoCmd.OpenForm stDocName, , , stLinkCriteria
+    End If
+Exit_ButtonLC_Click:
+    Exit Sub
+
+Err_ButtonLC_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonLC_Click
+    
+End Sub
+
+Private Sub ButtonDisturbance_Click()
+On Error GoTo Err_ButtonDisturbance_Click
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+
+    If IsNull(Me!Intercept_ID) Then
+      MsgBox "No point has been slected.", , "More Disturbance"
+    ElseIf IsNull(Me!D1) Then
+      MsgBox "D1 is available.", , "More Disturbance"
+    Else
+      DoCmd.RunCommand acCmdSaveRecord  ' Force a save so frm_More_Disturbance can see D1 if it was just updated.
+      stDocName = "frm_More_Disturbance"
+      stLinkCriteria = "[Intercept_ID]=" & "'" & Me![Intercept_ID] & "'"
+      DoCmd.OpenForm stDocName, , , stLinkCriteria
+    End If
+
+Exit_ButtonDisturbance_Click:
+    Exit Sub
+
+Err_ButtonDisturbance_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonDisturbance_Click
+    
+End Sub
+
+
+'---------------
+' Functions
+'---------------
+
 Public Function ClearLCGaps(SpeciesIndex As Integer) As Boolean
 ' Clear gaps in lower canopy - 2/27/2009 - Russ DenBleyker
 ' Northern Colorado Plateau Network
@@ -689,6 +1523,7 @@ Err_Handler:
     End Select
 
 End Function
+
 Public Function TestGaps(SpeciesIndex As Integer) As Integer
 ' Test for gaps in lower canopy - 2/27/2009 - Russ DenBleyker
 ' Northern Colorado Plateau Network
@@ -723,6 +1558,7 @@ Err_Handler:
     End Select
 
 End Function
+
 Public Function TestDuplicateSpecies(Species As String, SpeciesIndex As Integer, AnimationState As Boolean) As Boolean
 ' Test for duplicate species in a point - 2/26/2009 - Russ DenBleyker
 ' Northern Colorado Plateau Network
@@ -813,653 +1649,3 @@ Err_Handler:
     End Select
 
 End Function
-Private Sub Alive_BeforeUpdate(Cancel As Integer)
-    Dim LCIndex As Integer
-    Dim SpeciesColumn As String
-    Dim AliveColumn As String
-    
-    On Error GoTo Err_Handler
-     
-    LCIndex = 1
-    SpeciesColumn = "LCS" & LCIndex
-    Do Until IsNull(Me(SpeciesColumn))    ' Check for duplicate species in Lower Canopy.
-      If Me(SpeciesColumn) = Me!Top Then
-        AliveColumn = "LCA" & LCIndex
-        If Me(AliveColumn) = Me!Alive Then
-          MsgBox "This species is already recorded for this point."
-          DoCmd.CancelEvent
-          SendKeys "{ESC}"
-          GoTo Exit_Procedure
-        End If
-      End If
-      LCIndex = LCIndex + 1
-      If LCIndex > 10 Then  ' Do not go past the end
-        GoTo Exit_Procedure
-      End If
-      SpeciesColumn = "LCS" & LCIndex
-    Loop
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
- 
-End Sub
-
-Private Sub ButtonInitialize_Click()
-
-    Dim db As DAO.Database
-    Dim Points As DAO.Recordset
-    Dim PointCount As Single
-    Dim PointIncrement As Single
-    Dim PointLimit As Integer
-    Dim Veg_Type As Variant
-        
-    On Error GoTo Err_Handler
-    
-    If Me!ButtonInitialize.ForeColor = 255 Then
-      GoTo Exit_Procedure        ' Already initialized
-    End If
-    
-    ' Disabled 3/19/2009 as per ecologist demand - RD
-    ' If IsNull(Me.Parent!Recorder) And IsNull(Me.Parent!Observer) Then
-    '   MsgBox "You must enter Observer or Recorder first."
-    '   GoTo Exit_Procedure
-    ' End If
-    
-    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
-      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
-      Me.Parent.Refresh   ' Force save of transect record
-    End If
-    
-    ' Set point number
-    Set db = CurrentDb
-    Set Points = db.OpenRecordset("tbl_LP_Intercept")
-    Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent.Parent!Location_ID & "'")
-    If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
-      PointCount = 0.25
-      PointIncrement = 0.25
-      PointLimit = 20
-    Else
-      PointCount = 0.5
-      PointIncrement = 0.5
-      PointLimit = 50
-    End If
-    Do Until PointCount > PointLimit
-      Points.AddNew
-      Points!Intercept_ID = fxnGUIDGen  ' Generate an ID for it
-      Points!Transect_ID = Forms!frm_Data_Entry!frm_LP_Transect.Form!Transect_ID
-      Points!Point = PointCount
-      Points!Alive = -1
-      Points!Surface_Alive = 0
-      Points.Update  ' write the record
-      PointCount = PointCount + PointIncrement
-    Loop
-
-    Points.Close
-    Me!ButtonInitialize.ForeColor = 255
-    Me.Requery
-
-Exit_Procedure:
-
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-End Sub
-
-Private Sub D1_AfterUpdate()
-    Dim GapIndex As Integer
-    Dim NextIndex As Integer
-    Dim SpeciesColumn As String
-    Dim NextColumn As String
-    
-    On Error GoTo Err_Handler
-  If IsNull(Me!D1) Then   ' If they cleared it, we need to eliminate any gaps.
-    GapIndex = 1
-    NextIndex = 2
-    Do Until GapIndex > 4
-      NextColumn = "D" & NextIndex
-      If IsNull(Me(NextColumn)) Then    ' Check for disturbance in next entry.
-        GoTo Exit_Procedure   ' Nope - we are finished
-      Else
-        SpeciesColumn = "D" & GapIndex
-        Me(SpeciesColumn) = Me(NextColumn)   ' move the next column down.
-        Me(NextColumn) = Null                ' clear the old column
-      End If
-      GapIndex = GapIndex + 1
-      NextIndex = NextIndex + 1
-    Loop
-  End If
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    Select Case Err.Number
-        Case Else
-            MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-                "Error encountered (ClearDisturbanceGaps)"
-            Resume Exit_Procedure
-    End Select
-
-End Sub
-
-Private Sub D1_BeforeUpdate(Cancel As Integer)
-  
-  If Not IsNull(Me!D1) Then
-    If TestDuplicateDist([D1], 1) Then
-      MsgBox "This disturbance is already recorded for this point."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-    End If
-  End If
-  
-End Sub
-
-Private Sub Form_Current()
-    Dim db As DAO.Database
-    Dim Points As DAO.Recordset
-    Dim strSQL As String
-        
-    On Error GoTo Err_Handler
-    If IsNull(Me!Transect_ID) Then
-      Me!ButtonInitialize.ForeColor = 8421376
-      GoTo Exit_Procedure
-    End If
-    CurrentPointID = Me!Transect_ID
-    ' Set SQL
-    Set db = CurrentDb
-    strSQL = "SELECT [Point] FROM [tbl_LP_Intercept] WHERE [Transect_ID] = '" & Me![Transect_ID] & "'"
-    Set Points = db.OpenRecordset(strSQL)
-    
-    If Points.EOF Or IsNull(Points!Point) Then
-      Me!ButtonInitialize.ForeColor = 8421376
-    Else
-      Me!ButtonInitialize.ForeColor = 255
-      If IsNull(Me!Top) Then
-        Me!Alive.Enabled = False
-      Else
-        Me!Alive.Enabled = True
-      End If  ' End if for top canopy test
-      If IsNull(Me!Surface) Or Me!Surface = "" Then
-        Me!Surface_Alive.Enabled = False
-      Else
-          If IsNull(DLookup("[Surface_Code]", "tlu_LP_Soil_Surface", "[Surface_Code] = '" & Me!Surface & "'")) Then
-            Me!Surface_Alive.Enabled = True
-          Else
-            Me!Surface_Alive.Enabled = False
-          End If
-      End If  ' End if for soil surface test
-    End If  ' End if for points eof test
-    Points.Close
-    If IsNull(Me!LCS1) Or Me!LCS1 = "" Then
-      Me!LCA1.Enabled = False
-    Else
-      Me!LCA1.Enabled = True
-      Select Case Me!LCS1  ' If it's surface crud, its dead
-        Case "L", "SL", "SW", "WD"
-          Me!LCA1 = 0
-          Me!LCA1.Enabled = False
-      End Select
-    End If
-    If IsNull(Me!LCS2) Or Me!LCS2 = "" Then
-      Me!LCA2.Enabled = False
-    Else
-      Me!LCA2.Enabled = True
-      Select Case Me!LCS2  ' If it's surface crud, its dead
-        Case "L", "SL", "SW", "WD"
-          Me!LCA2 = 0
-          Me!LCA2.Enabled = False
-      End Select
-    End If
-    If IsNull(Me!LCS3) Or Me!LCS3 = "" Then
-      Me!LCA3.Enabled = False
-    Else
-      Me!LCA3.Enabled = True
-      Select Case Me!LCS3  ' If it's surface crud, its dead
-        Case "L", "SL", "SW", "WD"
-          Me!LCA3 = 0
-          Me!LCA3.Enabled = False
-      End Select
-    End If
-    
-Exit_Procedure:
-
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-End Sub
-
-
-
-Private Sub LCA1_BeforeUpdate(Cancel As Integer)
-  Dim AorD As Boolean
-  If IsNull(Me!LCS1) Then
-     MsgBox "Species cannot be null."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   AorD = Me!LCA1
-   If TestDuplicateSpecies([LCS1], 1, AorD) Then
-     MsgBox "This species is already recorded for this point."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-   End If
-Exit_Sub:
-End Sub
-
-Private Sub LCA2_BeforeUpdate(Cancel As Integer)
-  Dim AorD As Boolean
-  If IsNull(Me!LCS2) Then
-     MsgBox "Species cannot be null."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   AorD = Me!LCA2
-   If TestDuplicateSpecies([LCS2], 2, AorD) Then
-     MsgBox "This species is already recorded for this point."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-   End If
-Exit_Sub:
-End Sub
-
-Private Sub LCA3_BeforeUpdate(Cancel As Integer)
-  Dim AorD As Boolean
-  If IsNull(Me!LCS3) Then
-     MsgBox "Species cannot be null."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   AorD = Me!LCA3
-   If TestDuplicateSpecies([LCS3], 3, AorD) Then
-     MsgBox "This species is already recorded for this point."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-   End If
-Exit_Sub:
-End Sub
-
-Private Sub LCS1_AfterUpdate()
-  Dim ResultFlag As Boolean
-  Dim lngPosition As Long
-  
-  lngPosition = Me.CurrentRecord ' capture index position of record currently selected
-  If lngPosition > 1 Then
-    lngPosition = lngPosition - 1
-  End If
-  If IsNull(Me!LCS1) Then
-    ResultFlag = ClearLCGaps(1)
-    Me!LCS1.SetFocus   ' Reset focus
-    Me.Form.Recordset.Move lngPosition ' navigate back to original record position
-  End If
-  
-End Sub
-
-Private Sub LCS1_BeforeUpdate(Cancel As Integer)
-  Dim Reply As Integer
-  Dim AorD As Boolean
-  Dim TextMsg As String
-  If Not IsNull(Me!LCS1) Then
-   Me!LCA1.Enabled = True
-   Select Case Me!LCS1
-     Case "L", "SL", "SW", "WD"
-       Me!LCA1 = 0
-       Me!LCA1.Enabled = False
-    '   Me.Refresh
-   End Select
-   
-   AorD = Me!LCA1
-   If TestDuplicateSpecies([LCS1], 1, AorD) Then
-     Select Case Me!LCS1
-       Case "L", "SL", "SW", "WD"
-         MsgBox "This surface is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-     End Select
-     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
-     ' -- Begin commented code [HT, 3-24-15]
-     ' If AorD Then
-     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
-     ' Else
-     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
-     ' End If
-     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
-     ' If Reply = vbYes Then
-     ' -- End commented code [HT, 3-24-15]
-       AorD = IIf(AorD = True, False, True)
-       If TestDuplicateSpecies([LCS1], 1, AorD) Then
-         MsgBox "This species is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-       End If
-     ' -- Begin commented code [HT, 3-24-15]
-     ' Else
-'       MsgBox "This species is already recorded for this point."
-      ' DoCmd.CancelEvent
-      ' SendKeys "{ESC}"
-      ' GoTo Exit_Sub
-     ' End If  ' End if for reply test
-     ' -- End commented code [HT, 3-24-15]
-   End If  '  End if for duplicate species test
-   Me!LCA1 = AorD  ' Make sure alive or dead field is correct
-  Else
-    Me!LCA1.Enabled = False
-  End If   ' End if for null field test
-Exit_Sub:
-End Sub
-
-Private Sub LCS2_AfterUpdate()
-  Dim ResultFlag As Boolean
-  Dim lngPosition As Long
-  
-  lngPosition = Me.CurrentRecord ' capture index position of record currently selected
-  If lngPosition > 1 Then
-    lngPosition = lngPosition - 1
-  End If
-  If IsNull(Me!LCS2) Then
-    ResultFlag = ClearLCGaps(2)
-    Me!LCS2.SetFocus   ' Reset focus
-    Me.Form.Recordset.Move lngPosition ' navigate back to original record position
-  End If
-  
-End Sub
-
-Private Sub LCS2_BeforeUpdate(Cancel As Integer)
-  Dim Reply As Integer
-  Dim GapColumn As Integer
-  Dim AorD As Boolean
-  Dim TextMsg As String
-  
-  If Not IsNull(Me!LCS2) Then
-   Me!LCA2.Enabled = True
-   GapColumn = TestGaps(2)
-   If GapColumn > 0 Then  ' First check to see if they're making gaps
-     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   Select Case Me!LCS2  ' If it's surface crud, its dead
-     Case "L", "SL", "SW", "WD"
-       Me!LCA2 = 0
-       Me!LCA2.Enabled = False
-   End Select
-   AorD = Me!LCA2  ' Now check for duplicate species
-   If TestDuplicateSpecies([LCS2], 2, AorD) Then
-     Select Case Me!LCS2
-       Case "L", "SL", "SW", "WD"
-         MsgBox "This surface is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-     End Select
-     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
-     ' -- Begin commented code [HT, 3-24-15]
-     ' If AorD Then
-     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
-     ' Else
-     '  TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
-     ' End If
-     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
-     ' If Reply = vbYes Then
-     ' -- End commented code [HT, 3-24-15]
-       AorD = IIf(AorD = True, False, True)
-       If TestDuplicateSpecies([LCS2], 2, AorD) Then
-         MsgBox "This species is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-       End If
-     ' -- Begin commented code [HT, 3-24-15]
-     ' Else
-'       MsgBox "This species is already recorded for this point."
-     '  DoCmd.CancelEvent
-     '  SendKeys "{ESC}"
-     '  GoTo Exit_Sub
-     ' End If
-     ' -- End commented code [HT, 3-24-15]
-   End If
-   Me!LCA2 = AorD  ' Make sure alive or dead field is correct
-  Else
-   Me!LCA2.Enabled = False
-  End If
-Exit_Sub:
-End Sub
-
-Private Sub LCS3_AfterUpdate()
-  Dim ResultFlag As Boolean
-  Dim lngPosition As Long
-  
-  lngPosition = Me.CurrentRecord ' capture index position of record currently selected
-  If lngPosition > 1 Then
-    lngPosition = lngPosition - 1
-  End If
-  If IsNull(Me!LCS3) Then
-    ResultFlag = ClearLCGaps(3)
-    Me!LCS3.SetFocus   ' Reset focus
-    Me.Form.Recordset.Move lngPosition ' navigate back to original record position
-  End If
-  
-End Sub
-
-Private Sub LCS3_BeforeUpdate(Cancel As Integer)
-  Dim Reply As Integer
-  Dim GapColumn As Integer
-  Dim AorD As Boolean
-  Dim TextMsg As String
-  
-  If Not IsNull(Me!LCS3) Then
-   Me!LCA3.Enabled = True
-   GapColumn = TestGaps(3)
-   If GapColumn > 0 Then  ' First check to see if they're making gaps
-     MsgBox "You cannot create gaps in LC.  LC" & GapColumn & " is available."
-     DoCmd.CancelEvent
-     SendKeys "{ESC}"
-     GoTo Exit_Sub
-   End If
-   Select Case Me!LCS3  ' If it's surface crud, its dead
-     Case "L", "SL", "SW", "WD"
-       Me!LCA3 = 0
-       Me!LCA3.Enabled = False
-   End Select
-   AorD = Me!LCA3
-   If TestDuplicateSpecies([LCS3], 3, AorD) Then
-     Select Case Me!LCS3
-       Case "L", "SL", "SW", "WD"
-         MsgBox "This surface is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-     End Select
-     ' The code below was commented to bypass the message requesting user input. [HT, 3-24-15]
-     ' -- Begin commented code [HT, 3-24-15]
-     ' If AorD Then
-     '   TextMsg = "This species already exists as alive on this point.  Would you like to set it to dead?"
-     ' Else
-     '   TextMsg = "This species already exists as dead on this point.  Would you like to set it to alive?"
-     ' End If
-     ' Reply = MsgBox(TextMsg, vbYesNo, "Species Verification")
-     ' If Reply = vbYes Then
-     ' -- End commented code [HT, 3-24-15]
-       AorD = IIf(AorD = True, False, True)
-       If TestDuplicateSpecies([LCS3], 3, AorD) Then
-         MsgBox "This species is already recorded for this point."
-         DoCmd.CancelEvent
-         SendKeys "{ESC}"
-         GoTo Exit_Sub
-       End If
-     ' -- Begin commented code [HT, 3-24-15]
-     ' Else
-'       MsgBox "This species is already recorded for this point."
-     '   DoCmd.CancelEvent
-     '   SendKeys "{ESC}"
-     '   GoTo Exit_Sub
-     ' End If
-     ' -- End commented code [HT, 3-24-15]
-   End If
-   Me!LCA3 = AorD  ' Make sure alive or dead field is correct
-  Else
-   Me!LCA3.Enabled = False
-  End If
-Exit_Sub:
-End Sub
-
-Private Sub Surface_AfterUpdate()
-      If IsNull(Me!Surface) Or Me!Surface = "" Then
-        Me!Surface_Alive = 0
-        Me!Surface_Alive.Enabled = False
-      Else
-          If IsNull(DLookup("[Surface_Code]", "tlu_LP_Soil_Surface", "[Surface_Code] = '" & Me!Surface & "'")) Then
-            Me!Surface_Alive.Enabled = True
-            Me!Surface_Alive = -1
-          Else
-            Me!Surface_Alive = 0
-            Me!Surface_Alive.Enabled = False
-          End If
-      End If
-End Sub
-
-Private Sub Top_AfterUpdate()
-      If IsNull(Me!Top) Or Me!Top = "" Then
-        Me!Alive.Enabled = False
-      Else
-        Me!Alive.Enabled = True
-        Me!Alive = vbYes
-      End If
-End Sub
-
-Private Sub Top_BeforeUpdate(Cancel As Integer)
-    Dim LCIndex As Integer
-    Dim SpeciesColumn As String
-    Dim AliveColumn As String
-    Dim AliveValue As Boolean
-    
-    On Error GoTo Err_Handler
-     
-    LCIndex = 1
-    SpeciesColumn = "LCS" & LCIndex
-    Do Until IsNull(Me(SpeciesColumn))    ' Check for duplicate species in Lower Canopy.
-      If Me(SpeciesColumn) = Me!Top Then
-        If Me!Alive.Enabled = False Then
-          AliveValue = vbYes  ' Top is going to default to alive if this is a new entry
-        Else
-          AliveValue = Me!Alive
-        End If
-        AliveColumn = "LCA" & LCIndex
-        If Me(AliveColumn) = AliveValue Then
-          MsgBox "This species is already recorded for this point."
-          DoCmd.CancelEvent
-          SendKeys "{ESC}"
-          GoTo Exit_Procedure
-        End If
-      End If
-      LCIndex = LCIndex + 1
-      If LCIndex > 10 Then  ' Do not go past the end
-        GoTo Exit_Procedure
-      End If
-      SpeciesColumn = "LCS" & LCIndex
-    Loop
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
- 
-End Sub
-Private Sub ButtonLookup_Click()
-On Error GoTo Err_Button_Master_Species_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-    Dim strOpenArg As String
-
-    strOpenArg = "fsub_LP_Intercept"
-    stDocName = "frm_Master_Species"
-    DoCmd.OpenForm stDocName, , , stLinkCriteria, , , strOpenArg
-
-Exit_Button_Master_Species_Click:
-    Exit Sub
-
-Err_Button_Master_Species_Click:
-    MsgBox Err.Description
-    Resume Exit_Button_Master_Species_Click
-     
-End Sub
-Private Sub ButtonUnknown_Click()
-
-On Error GoTo Err_ButtonUnknown_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-
-    DoCmd.OpenForm "frm_List_Unknown", , , , , acDialog
-    Me.Refresh
-    
-Exit_ButtonUnknown_Click:
-    Exit Sub
-
-Err_ButtonUnknown_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonUnknown_Click
-    
-End Sub
-Private Sub ButtonLC_Click()
-On Error GoTo Err_ButtonLC_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-   
-    If IsNull(Me!Intercept_ID) Then
-      MsgBox "No point has been slected.", , "More Lower Canopy"
-    ElseIf (IsNull(Me!LCS1) + IsNull(Me!LCS2) + IsNull(Me!LCS3)) <> 0 Then
-      MsgBox "There is space available in LC1, LC2, or LC3.", , "More Lower Canopy"
-    Else
-      DoCmd.RunCommand acCmdSaveRecord  ' Force a save so frm_More_LC can see any recent updates.
-      stDocName = "frm_More_LC"
-      stLinkCriteria = "[Intercept_ID]=" & "'" & Me![Intercept_ID] & "'"
-      DoCmd.OpenForm stDocName, , , stLinkCriteria
-    End If
-Exit_ButtonLC_Click:
-    Exit Sub
-
-Err_ButtonLC_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonLC_Click
-    
-End Sub
-Private Sub ButtonDisturbance_Click()
-On Error GoTo Err_ButtonDisturbance_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-
-    If IsNull(Me!Intercept_ID) Then
-      MsgBox "No point has been slected.", , "More Disturbance"
-    ElseIf IsNull(Me!D1) Then
-      MsgBox "D1 is available.", , "More Disturbance"
-    Else
-      DoCmd.RunCommand acCmdSaveRecord  ' Force a save so frm_More_Disturbance can see D1 if it was just updated.
-      stDocName = "frm_More_Disturbance"
-      stLinkCriteria = "[Intercept_ID]=" & "'" & Me![Intercept_ID] & "'"
-      DoCmd.OpenForm stDocName, , , stLinkCriteria
-    End If
-
-Exit_ButtonDisturbance_Click:
-    Exit Sub
-
-Err_ButtonDisturbance_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonDisturbance_Click
-    
-End Sub

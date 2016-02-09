@@ -20,9 +20,9 @@ Begin Form
     Width =11520
     DatasheetFontHeight =9
     ItemSuffix =46
-    Left =4245
+    Left =4365
     Top =2805
-    Right =15000
+    Right =14640
     Bottom =11100
     DatasheetGridlinesColor =12632256
     Filter ="[Unknown_ID]='20110415113257-756092607.975006'"
@@ -858,20 +858,6 @@ Err_Handler:
     Resume Exit_Sub
 End Sub
 
-Private Sub ButtonClose_Click()
-On Error GoTo Err_ButtonClose_Click
-
-    DoCmd.Close
-
-Exit_ButtonClose_Click:
-    Exit Sub
-
-Err_ButtonClose_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonClose_Click
-    
-End Sub
-
 Private Sub Form_BeforeInsert(Cancel As Integer)
     On Error GoTo Err_Handler
     ' Create the GUID primary key value
@@ -901,4 +887,18 @@ Private Sub Unknown_Code_AfterUpdate()
           Me.Undo
         End If
   End If
+End Sub
+
+Private Sub ButtonClose_Click()
+On Error GoTo Err_ButtonClose_Click
+
+    DoCmd.Close
+
+Exit_ButtonClose_Click:
+    Exit Sub
+
+Err_ButtonClose_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonClose_Click
+    
 End Sub
