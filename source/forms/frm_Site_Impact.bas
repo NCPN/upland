@@ -5,6 +5,7 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =0
@@ -17,10 +18,9 @@ Begin Form
     Width =12600
     DatasheetFontHeight =9
     ItemSuffix =62
-    Left =1380
-    Top =2784
-    Right =13740
-    Bottom =9108
+    Left =108
+    Right =12720
+    Bottom =9816
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xd4e1e7326d12e340
@@ -346,6 +346,106 @@ Begin Form
                     LayoutCachedWidth =10014
                     LayoutCachedHeight =9120
                 End
+                Begin Rectangle
+                    SpecialEffect =0
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =93
+                    Left =6780
+                    Top =900
+                    Width =2460
+                    Height =480
+                    BackColor =6750207
+                    Name ="rctNoDisturbance"
+                    OnClick ="[Event Procedure]"
+                    LayoutCachedLeft =6780
+                    LayoutCachedTop =900
+                    LayoutCachedWidth =9240
+                    LayoutCachedHeight =1380
+                End
+                Begin CheckBox
+                    OverlapFlags =215
+                    Left =6900
+                    Top =1050
+                    Width =300
+                    TabIndex =9
+                    Name ="cbxNoDisturbance"
+                    OnClick ="[Event Procedure]"
+                    ControlTipText ="No disturbances found"
+
+                    LayoutCachedLeft =6900
+                    LayoutCachedTop =1050
+                    LayoutCachedWidth =7200
+                    LayoutCachedHeight =1290
+                    Begin
+                        Begin Label
+                            OverlapFlags =247
+                            TextFontFamily =0
+                            Left =7130
+                            Top =1020
+                            Width =2016
+                            Height =228
+                            FontWeight =600
+                            Name ="lblNoDistubance"
+                            Caption ="No Disturbances Found"
+                            ControlTipText ="No disturbances found"
+                            LayoutCachedLeft =7130
+                            LayoutCachedTop =1020
+                            LayoutCachedWidth =9146
+                            LayoutCachedHeight =1248
+                        End
+                    End
+                End
+                Begin Rectangle
+                    SpecialEffect =0
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =93
+                    Left =7860
+                    Top =5580
+                    Width =2100
+                    Height =480
+                    BackColor =6750207
+                    Name ="rctNoSpecies"
+                    OnClick ="[Event Procedure]"
+                    LayoutCachedLeft =7860
+                    LayoutCachedTop =5580
+                    LayoutCachedWidth =9960
+                    LayoutCachedHeight =6060
+                End
+                Begin CheckBox
+                    OverlapFlags =215
+                    Left =7980
+                    Top =5730
+                    Width =300
+                    TabIndex =10
+                    Name ="cbxNoSpecies"
+                    OnClick ="[Event Procedure]"
+                    ControlTipText ="No exotic species found"
+
+                    LayoutCachedLeft =7980
+                    LayoutCachedTop =5730
+                    LayoutCachedWidth =8280
+                    LayoutCachedHeight =5970
+                    Begin
+                        Begin Label
+                            OverlapFlags =247
+                            TextFontFamily =0
+                            Left =8210
+                            Top =5700
+                            Width =1650
+                            Height =240
+                            FontWeight =600
+                            Name ="lblNoSpecies"
+                            Caption ="No Species Found"
+                            ControlTipText ="No exotic species found"
+                            LayoutCachedLeft =8210
+                            LayoutCachedTop =5700
+                            LayoutCachedWidth =9860
+                            LayoutCachedHeight =5940
+                        End
+                    End
+                End
             End
         End
         Begin FormFooter
@@ -366,12 +466,13 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_frm_Site_Impact
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.02
 ' Description:  data functions & procedures specific to site impact monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+'               BLC - 2/9/2016 - 1.02 - added NoDataCollected collection changes
 ' =================================
 
 ' ---------------------------------
@@ -386,15 +487,26 @@ Option Explicit
 ' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/2/2016  - initial version
+'   BLC, 2/10/2016 - add setting of public collection for NoDataCollected checkbox values
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
-' set rectangle color
-' enable checkbox if there are no species
-' disable checkbox if there are species
-    'SetNoDataCheckbox Me
+    Dim dNoData As Scripting.Dictionary
 
+    'fetch no data info & set checkboxes
+    Set dNoData = GetNoDataCollected(Me.Event_ID)
+    
+    With dNoData
+        Me.cbxNoDisturbance.Value = dNoData.item("SiteImpact-Disturbance")
+        Me.cbxNoSpecies.Value = dNoData.item("SiteImpact-Exotic")
+    End With
+    
+    'set the yellow rectangles visible if no records
+    Me.rctNoDisturbance.Visible = (Me.Disturbance_Details.Form.RecordsetClone.RecordCount = 0)
+    Me.rctNoSpecies.Visible = (Me.fsub_Dist_Exotic.Form.RecordsetClone.RecordCount = 0)
+    
+    
 Exit_Handler:
     Exit Sub
     
@@ -419,10 +531,12 @@ End Sub
 ' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/2/2016  - initial version
-' ---------------------------------
+' ----------------------------------
 Private Sub cbxNoSpecies_Click()
 On Error GoTo Err_Handler
 
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "SiteImpact-Exotic", Abs(Me.cbxNoSpecies.Value)
 
 Exit_Handler:
     Exit Sub
@@ -432,6 +546,97 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - cbxNoSpecies_Click[Form_frm_Site_Impact])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNoDisturbance_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/9/2016  - initial version
+' ----------------------------------
+Private Sub cbxNoDisturbance_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "SiteImpact-Disturbance", Abs(Me.cbxNoDisturbance.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoDisturbance_Click[Form_frm_Site_Impact])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNoSpecies_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/9/2016  - initial version
+' ----------------------------------
+Private Sub rctNoSpecies_Click()
+On Error GoTo Err_Handler
+
+    cbxNoSpecies_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNoSpecies_Click[Form_frm_Site_Impact])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNoDisturbance_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/9/2016  - initial version
+' ----------------------------------
+Private Sub rctNoDisturbance_Click()
+On Error GoTo Err_Handler
+
+    cbxNoDisturbance_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNoDisturbance_Click[Form_frm_Site_Impact])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -470,7 +675,6 @@ Err_Handler:
     Resume Exit_Procedure
 End Sub
 
-
 Private Sub ButtonSiteSketch_Click()
 On Error GoTo Err_ButtonSiteSketch_Click
 
@@ -491,8 +695,6 @@ Err_ButtonSiteSketch_Click:
     
 End Sub
 
-
-
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records
   Select Case KeyCode
@@ -500,8 +702,6 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
       KeyCode = 0
     End Select
 End Sub
-
-
 
 Private Sub Percent_Dead_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records

@@ -12,10 +12,10 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =1440
-    Top =8655
-    Right =7515
-    Bottom =11055
+    Left =1428
+    Top =6048
+    Right =7512
+    Bottom =8460
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x73776174d27ce340
@@ -156,55 +156,6 @@ Begin Form
                     Name ="Label23"
                     Caption ="Tree Seedlings"
                 End
-                Begin Rectangle
-                    SpecialEffect =0
-                    BackStyle =1
-                    OldBorderStyle =0
-                    OverlapFlags =93
-                    Left =3600
-                    Top =180
-                    Width =2100
-                    Height =480
-                    BackColor =6750207
-                    Name ="rctNoData"
-                    OnClick ="[Event Procedure]"
-                    LayoutCachedLeft =3600
-                    LayoutCachedTop =180
-                    LayoutCachedWidth =5700
-                    LayoutCachedHeight =660
-                End
-                Begin CheckBox
-                    OverlapFlags =215
-                    Left =3720
-                    Top =330
-                    Width =300
-                    ColumnOrder =0
-                    Name ="cbxNoData"
-                    OnClick ="[Event Procedure]"
-                    ControlTipText ="No tree seedlings found"
-
-                    LayoutCachedLeft =3720
-                    LayoutCachedTop =330
-                    LayoutCachedWidth =4020
-                    LayoutCachedHeight =570
-                    Begin
-                        Begin Label
-                            OverlapFlags =247
-                            Left =3950
-                            Top =300
-                            Width =1650
-                            Height =240
-                            FontWeight =600
-                            Name ="lblNoData"
-                            Caption ="No Species Found"
-                            ControlTipText ="No tree seedlings found"
-                            LayoutCachedLeft =3950
-                            LayoutCachedTop =300
-                            LayoutCachedWidth =5600
-                            LayoutCachedHeight =540
-                        End
-                    End
-                End
             End
         End
         Begin Section
@@ -290,10 +241,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -313,10 +264,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -330,10 +281,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -347,10 +298,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -364,10 +315,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -381,10 +332,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -525,13 +476,40 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          Species_BeforeUpdate
+' Description:  Handles species actions when control is updated
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/9/2016 - added error handling, documentation, refresh checkbox/no data collected
+' ---------------------------------
 Private Sub Species_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+
     If Not IsNull(DLookup("[Seedling_ID]", "tbl_LP_Seedling", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
       MsgBox "This species is already recorded for this transect."
       DoCmd.CancelEvent
       SendKeys "{ESC}"
       Me.Undo
     End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_BeforeUpdate[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 Private Sub ButtonA1_Click()

@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_UI
 ' Level:        Application module
-' Version:      1.06
+' Version:      1.08
 ' Description:  Application User Interface related functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, April 2015
@@ -19,7 +19,15 @@ Option Explicit
 '               ----------- uplands ---------------------------
 '               BLC, 8/21/2015 - 1.06 - added CaptureEscapeKey
 '               BLC, 2/3/2016  - 1.07 - added SetNoDataCheckbox()
+'               BLC - 2/9/2016 - 1.08 - added public dictionary for NoData checkboxes
+'                                       dictionary is used within subforms to identify if checkboxes
+'                                       should be checked
 ' =================================
+
+' ---------------------------------
+'  Declarations
+' ---------------------------------
+Public NoData As Scripting.Dictionary
 
 ' =================================
 ' SUB:          CaptureEscapeKey
@@ -237,20 +245,20 @@ On Error GoTo Err_Handler
     ' disable checkbox if there are species
 '    MsgBox Me.RecordsetClone.RecordCount
     
-    With frm
-    
-        .Controls("cbxNoData").Value = True
-        .Controls("cbxNoData").Enabled = True
-        .Controls("rctNoData").Visible = True
-        
-        If .RecordsetClone.RecordCount > 0 Then
-            .Controls("cbxNoData").Value = False
-            .Controls("cbxNoData").Enabled = False
-            '.Controls("rctNoData").BackColor = RGB(255, 255, 255)
-            .Controls("rctNoData").Visible = False
-        End If
-    
-    End With
+'    With frm
+'
+'        .Controls("cbxNoData").Value = True
+'        .Controls("cbxNoData").Enabled = True
+'        .Controls("rctNoData").Visible = True
+'
+'        If .RecordsetClone.RecordCount > 0 Then
+'            .Controls("cbxNoData").Value = False
+'            .Controls("cbxNoData").Enabled = False
+'            '.Controls("rctNoData").BackColor = RGB(255, 255, 255)
+'            .Controls("rctNoData").Visible = False
+'        End If
+'
+'    End With
     
 Exit_Handler:
     Exit Sub
@@ -263,3 +271,135 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
+
+' ---------------------------------
+' SUB:          GetNoDataCollected
+' Description:  Gets no data collected information from NoDataCollected table for event ID
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/9/2016  - initial version
+' ---------------------------------
+Public Function GetNoDataCollected(eventID As String) As Scripting.Dictionary
+On Error GoTo Err_Handler
+
+    Dim strSQL As String, strItem As String
+    Dim rs As DAO.Recordset
+    
+    Set NoData = New Scripting.Dictionary 'publicly set
+    
+    'prepare default dictionary
+    With NoData
+        .Add "1mBelt-Shrub", 0
+        .Add "1mBelt-TreeSeedling", 0
+        .Add "1mBelt-ExoticPerennial", 0
+        .Add "OverstoryTree-Sapling", 0
+        .Add "OverstoryTree-Census", 0
+        .Add "Fuel-1000hr", 0
+        .Add "SiteImpact-Disturbance", 0
+        .Add "SiteImpact-Exotic", 0
+    End With
+    
+    strSQL = "SELECT SampleType FROM NoDataCollected WHERE Event_ID = '" & eventID & "';"
+    
+    Set rs = CurrentDb.OpenRecordset(strSQL)
+    
+    'rs.MoveFirst
+    
+    If Not (rs.EOF And rs.BOF) Then
+    
+        Do Until rs.EOF
+    
+            strItem = rs("SampleType") 'cannot use directly in NoData.item(rs("SampleType")) -> adds new item
+            NoData.item(strItem) = 1
+            
+            rs.MoveNext
+            
+        Loop
+        
+    End If
+    
+    Set GetNoDataCollected = NoData
+    
+Exit_Handler:
+    Exit Function
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - GetNoDataCollected[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Function
+
+' ---------------------------------
+' FUNCTION:     SetNoDataCollected
+' Description:  Sets no data checkbox
+' Assumptions:  Absolute value of Access/VBA checkbox is sent to drive 1 = true, 0 = false
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/9/2016  - initial version
+' ---------------------------------
+Public Function SetNoDataCollected(eventID As String, SampleType As String, cbxValue As Integer) As Scripting.Dictionary
+On Error GoTo Err_Handler
+    
+    Dim strSQL As String, strItem As String
+    Dim rs As DAO.Recordset
+    
+    Set NoData = New Scripting.Dictionary 'publicly set
+    Set NoData = GetNoDataCollected(eventID)
+    
+    NoData.item(SampleType) = cbxValue
+    
+    'update the table appropriately
+    If cbxValue = 1 Then
+        strSQL = "INSERT INTO NoDataCollected(Event_ID, SampleType) VALUES ('" & eventID & "', '" & SampleType & "');"
+    ElseIf cbxValue = 0 Then
+        strSQL = "DELETE * FROM NoDataCollected WHERE Event_ID IN (SELECT TOP 1 Event_ID FROM NoDataCollected WHERE Event_ID = '" _
+                    & eventID & "' AND SampleType = '" & SampleType & "');"
+    End If
+    
+    DoCmd.SetWarnings (False)
+    DoCmd.RunSQL (strSQL)
+    DoCmd.SetWarnings (True)
+
+'
+'    With frm
+'
+'        .Controls("cbxNoData").Value = True
+'        .Controls("cbxNoData").Enabled = True
+'        .Controls("rctNoData").Visible = True
+'
+'        If .RecordsetClone.RecordCount > 0 Then
+'            .Controls("cbxNoData").Value = False
+'            .Controls("cbxNoData").Enabled = False
+'            '.Controls("rctNoData").BackColor = RGB(255, 255, 255)
+'            .Controls("rctNoData").Visible = False
+'        End If
+'
+'    End With
+    
+    Set SetNoDataCollected = NoData
+    
+Exit_Handler:
+    Exit Function
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetNoDataCollected[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Function

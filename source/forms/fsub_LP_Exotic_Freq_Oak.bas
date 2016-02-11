@@ -13,10 +13,10 @@ Begin Form
     Width =9540
     DatasheetFontHeight =9
     ItemSuffix =54
-    Left =6180
-    Top =4935
-    Right =15855
-    Bottom =9210
+    Left =6168
+    Top =5100
+    Right =13872
+    Bottom =9384
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -290,10 +290,10 @@ Begin Form
                     Caption ="Master "
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -307,59 +307,10 @@ Begin Form
                     Caption ="Unknown"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
-                End
-                Begin Rectangle
-                    SpecialEffect =0
-                    BackStyle =1
-                    OldBorderStyle =0
-                    OverlapFlags =93
-                    Left =7320
-                    Top =180
-                    Width =2100
-                    Height =480
-                    BackColor =6750207
-                    Name ="rctNoData"
-                    OnClick ="[Event Procedure]"
-                    LayoutCachedLeft =7320
-                    LayoutCachedTop =180
-                    LayoutCachedWidth =9420
-                    LayoutCachedHeight =660
-                End
-                Begin CheckBox
-                    OverlapFlags =215
-                    Left =7440
-                    Top =330
-                    Width =300
-                    TabIndex =2
-                    Name ="cbxNoData"
-                    OnClick ="[Event Procedure]"
-                    ControlTipText ="No exotic species found"
-
-                    LayoutCachedLeft =7440
-                    LayoutCachedTop =330
-                    LayoutCachedWidth =7740
-                    LayoutCachedHeight =570
-                    Begin
-                        Begin Label
-                            OverlapFlags =247
-                            Left =7670
-                            Top =300
-                            Width =1650
-                            Height =240
-                            FontWeight =600
-                            Name ="lblNoData"
-                            Caption ="No Species Found"
-                            ControlTipText ="No exotic species found"
-                            LayoutCachedLeft =7670
-                            LayoutCachedTop =300
-                            LayoutCachedWidth =9320
-                            LayoutCachedHeight =540
-                        End
-                    End
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -367,7 +318,7 @@ Begin Form
                     Left =600
                     Top =120
                     Width =600
-                    TabIndex =3
+                    TabIndex =2
                     Name ="tbxRecordCount"
 
                     LayoutCachedLeft =600
@@ -446,10 +397,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CheckBox
                     OverlapFlags =85

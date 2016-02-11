@@ -12,10 +12,10 @@ Begin Form
     Width =8280
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =675
-    Top =4260
-    Right =8160
-    Bottom =6945
+    Left =2175
+    Top =9780
+    Right =10830
+    Bottom =12495
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x718d0abeb2a7e340
@@ -193,55 +193,6 @@ Begin Form
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
-                End
-                Begin Rectangle
-                    SpecialEffect =0
-                    BackStyle =1
-                    OldBorderStyle =0
-                    OverlapFlags =93
-                    Left =6120
-                    Top =180
-                    Width =2100
-                    Height =480
-                    BackColor =6750207
-                    Name ="rctNoData"
-                    OnClick ="[Event Procedure]"
-                    LayoutCachedLeft =6120
-                    LayoutCachedTop =180
-                    LayoutCachedWidth =8220
-                    LayoutCachedHeight =660
-                End
-                Begin CheckBox
-                    OverlapFlags =215
-                    Left =6240
-                    Top =330
-                    Width =300
-                    TabIndex =2
-                    Name ="cbxNoData"
-                    OnClick ="[Event Procedure]"
-                    ControlTipText ="No exotic species found"
-
-                    LayoutCachedLeft =6240
-                    LayoutCachedTop =330
-                    LayoutCachedWidth =6540
-                    LayoutCachedHeight =570
-                    Begin
-                        Begin Label
-                            OverlapFlags =247
-                            Left =6470
-                            Top =300
-                            Width =1650
-                            Height =240
-                            FontWeight =600
-                            Name ="lblNoData"
-                            Caption ="No Species Found"
-                            ControlTipText ="No exotic species found"
-                            LayoutCachedLeft =6470
-                            LayoutCachedTop =300
-                            LayoutCachedWidth =8120
-                            LayoutCachedHeight =540
-                        End
-                    End
                 End
             End
         End

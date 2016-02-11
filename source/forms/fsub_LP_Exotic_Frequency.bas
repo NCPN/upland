@@ -10,12 +10,12 @@ Begin Form
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
-    Width =9420
+    Width =7320
     DatasheetFontHeight =9
     ItemSuffix =51
     Top =1020
-    Right =9285
-    Bottom =3555
+    Right =9288
+    Bottom =3552
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -289,10 +289,10 @@ Begin Form
                     Caption ="Master"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -306,59 +306,10 @@ Begin Form
                     Caption ="Unknown"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
-                End
-                Begin Rectangle
-                    SpecialEffect =0
-                    BackStyle =1
-                    OldBorderStyle =0
-                    OverlapFlags =93
-                    Left =7260
-                    Top =180
-                    Width =2100
-                    Height =480
-                    BackColor =6750207
-                    Name ="rctNoData"
-                    OnClick ="[Event Procedure]"
-                    LayoutCachedLeft =7260
-                    LayoutCachedTop =180
-                    LayoutCachedWidth =9360
-                    LayoutCachedHeight =660
-                End
-                Begin CheckBox
-                    OverlapFlags =215
-                    Left =7380
-                    Top =330
-                    Width =300
-                    TabIndex =2
-                    Name ="cbxNoData"
-                    OnClick ="[Event Procedure]"
-                    ControlTipText ="No exotic species found"
-
-                    LayoutCachedLeft =7380
-                    LayoutCachedTop =330
-                    LayoutCachedWidth =7680
-                    LayoutCachedHeight =570
-                    Begin
-                        Begin Label
-                            OverlapFlags =247
-                            Left =7610
-                            Top =300
-                            Width =1650
-                            Height =240
-                            FontWeight =600
-                            Name ="lblNoData"
-                            Caption ="No Species Found"
-                            ControlTipText ="No exotic species found"
-                            LayoutCachedLeft =7610
-                            LayoutCachedTop =300
-                            LayoutCachedWidth =9260
-                            LayoutCachedHeight =540
-                        End
-                    End
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -430,10 +381,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CheckBox
                     OverlapFlags =85

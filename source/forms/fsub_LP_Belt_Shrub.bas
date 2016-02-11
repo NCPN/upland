@@ -12,10 +12,10 @@ Begin Form
     Width =11880
     DatasheetFontHeight =9
     ItemSuffix =43
-    Left =1320
-    Top =4635
-    Right =13485
-    Bottom =8190
+    Left =1488
+    Top =5040
+    Right =13668
+    Bottom =8604
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -179,23 +179,6 @@ Begin Form
                     LayoutCachedWidth =5208
                     LayoutCachedHeight =1200
                 End
-                Begin Rectangle
-                    SpecialEffect =0
-                    BackStyle =1
-                    OldBorderStyle =0
-                    OverlapFlags =93
-                    Left =9720
-                    Top =420
-                    Width =2100
-                    Height =480
-                    BackColor =6750207
-                    Name ="rctNoData"
-                    OnClick ="[Event Procedure]"
-                    LayoutCachedLeft =9720
-                    LayoutCachedTop =420
-                    LayoutCachedWidth =11820
-                    LayoutCachedHeight =900
-                End
                 Begin Label
                     OverlapFlags =85
                     TextAlign =2
@@ -356,38 +339,6 @@ Begin Form
                     FontWeight =700
                     Name ="Label23"
                     Caption ="Number of Live Shrubs Rooted in 1 Meter Belt Transect"
-                End
-                Begin CheckBox
-                    OverlapFlags =215
-                    Left =9840
-                    Top =570
-                    Width =300
-                    ColumnOrder =0
-                    Name ="cbxNoData"
-                    OnClick ="[Event Procedure]"
-                    ControlTipText ="No live shrubs rooted in the 1m belt transect were found"
-
-                    LayoutCachedLeft =9840
-                    LayoutCachedTop =570
-                    LayoutCachedWidth =10140
-                    LayoutCachedHeight =810
-                    Begin
-                        Begin Label
-                            OverlapFlags =247
-                            Left =10070
-                            Top =540
-                            Width =1650
-                            Height =240
-                            FontWeight =600
-                            Name ="lblNoData"
-                            Caption ="No Species Found"
-                            ControlTipText ="No live rooted shrub species found"
-                            LayoutCachedLeft =10070
-                            LayoutCachedTop =540
-                            LayoutCachedWidth =11720
-                            LayoutCachedHeight =780
-                        End
-                    End
                 End
                 Begin Label
                     OverlapFlags =215
@@ -699,10 +650,10 @@ Begin Form
                     Caption ="Delete Record"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -722,10 +673,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -739,10 +690,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -756,10 +707,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -773,10 +724,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -790,10 +741,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -834,11 +785,18 @@ Option Explicit
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
-' set rectangle color
-' enable checkbox if there are no species
-' disable checkbox if there are species
-    SetNoDataCheckbox Me
-
+    Dim NoData As Scripting.Dictionary
+    
+    'set no data checkboxes/rectangles
+    Set NoData = GetNoDataCollected(Me.Parent.Form.Controls("Event_ID"))
+    
+    Me.Parent.Form.Controls("cbxNoShrubs").Value = NoData.item("1mBelt-Shrub")
+    Me.Parent.Form.Controls("cbxNoSeedlings").Value = NoData.item("1mBelt-TreeSeedling")
+        
+    'hide if checkbox is false
+    'Me.Parent.Form.Controls("rctNoShrubs").Visible = Abs(Me.Parent.Form.Controls("cbxNoShrubs").Value)
+    'Me.Parent.Form.Controls("rctNoSeedlings").Visible = Abs(Me.Parent.Form.Controls("cbxNoSeedlings").Value)
+    
 Exit_Handler:
     Exit Sub
     
@@ -959,8 +917,8 @@ On Error GoTo Err_Handler
     
     'if species is added disable checkbox & change color of rectangle background
     If Not IsNull(Me.Species) Then
-        cbxNoData.Enabled = False
-        rctNoData.BackStyle = "Transparent"
+        Me.Parent.Form.Controls("cbxNoShrubs").Enabled = False
+        Me.Parent.Form.Controls("rctNoShrubs").Visible = False
     End If
     
     'capture the CTRL+Z keystroke

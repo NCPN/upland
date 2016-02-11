@@ -14,10 +14,10 @@ Begin Form
     Width =14160
     DatasheetFontHeight =9
     ItemSuffix =35
-    Left =255
-    Top =2235
-    Right =12540
-    Bottom =5520
+    Left =-45
+    Top =7410
+    Right =14430
+    Bottom =10905
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x12768bfd3188e340
@@ -277,55 +277,6 @@ Begin Form
                     Caption ="Indicator"
                     FontName ="Tahoma"
                     Tag ="DetachedLabel"
-                End
-                Begin Rectangle
-                    SpecialEffect =0
-                    BackStyle =1
-                    OldBorderStyle =0
-                    OverlapFlags =93
-                    Left =12000
-                    Top =540
-                    Width =2100
-                    Height =480
-                    BackColor =6750207
-                    Name ="rctNoData"
-                    LayoutCachedLeft =12000
-                    LayoutCachedTop =540
-                    LayoutCachedWidth =14100
-                    LayoutCachedHeight =1020
-                End
-                Begin CheckBox
-                    OverlapFlags =215
-                    Left =12120
-                    Top =690
-                    Width =300
-                    ColumnOrder =0
-                    TabIndex =2
-                    Name ="cbxNoData"
-                    OnClick ="[Event Procedure]"
-                    ControlTipText ="No overstory species"
-
-                    LayoutCachedLeft =12120
-                    LayoutCachedTop =690
-                    LayoutCachedWidth =12420
-                    LayoutCachedHeight =930
-                    Begin
-                        Begin Label
-                            OverlapFlags =247
-                            Left =12350
-                            Top =660
-                            Width =1650
-                            Height =240
-                            FontWeight =600
-                            Name ="lblNoData"
-                            Caption ="No Species Found"
-                            ControlTipText ="No overstory species"
-                            LayoutCachedLeft =12350
-                            LayoutCachedTop =660
-                            LayoutCachedWidth =14000
-                            LayoutCachedHeight =900
-                        End
-                    End
                 End
             End
         End
