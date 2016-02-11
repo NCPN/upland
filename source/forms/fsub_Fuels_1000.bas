@@ -14,10 +14,10 @@ Begin Form
     Width =6660
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =828
-    Top =540
-    Right =9180
-    Bottom =7656
+    Left =3915
+    Top =8370
+    Right =9570
+    Bottom =12045
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x99c2faf85388e340
@@ -189,54 +189,6 @@ Begin Form
                     Caption ="(> 3 in)"
                     FontName ="Tahoma"
                 End
-                Begin Rectangle
-                    SpecialEffect =0
-                    BackStyle =1
-                    OldBorderStyle =0
-                    OverlapFlags =93
-                    Left =4500
-                    Top =300
-                    Width =2100
-                    Height =480
-                    BackColor =6750207
-                    Name ="rctNoData"
-                    OnClick ="[Event Procedure]"
-                    LayoutCachedLeft =4500
-                    LayoutCachedTop =300
-                    LayoutCachedWidth =6600
-                    LayoutCachedHeight =780
-                End
-                Begin CheckBox
-                    OverlapFlags =215
-                    Left =4620
-                    Top =450
-                    Width =300
-                    Name ="cbxNoData"
-                    OnClick ="[Event Procedure]"
-                    ControlTipText ="No 1000-hr fuels found"
-
-                    LayoutCachedLeft =4620
-                    LayoutCachedTop =450
-                    LayoutCachedWidth =4920
-                    LayoutCachedHeight =690
-                    Begin
-                        Begin Label
-                            OverlapFlags =247
-                            Left =4850
-                            Top =420
-                            Width =1650
-                            Height =240
-                            FontWeight =600
-                            Name ="lblNoData"
-                            Caption ="No Species Found"
-                            ControlTipText ="No 1000-hr fuels found"
-                            LayoutCachedLeft =4850
-                            LayoutCachedTop =420
-                            LayoutCachedWidth =6500
-                            LayoutCachedHeight =660
-                        End
-                    End
-                End
             End
         End
         Begin Section
@@ -322,10 +274,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Tahoma"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -392,10 +344,6 @@ Option Explicit
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
-' set rectangle color
-' enable checkbox if there are no species
-' disable checkbox if there are species
-    SetNoDataCheckbox Me
 
 Exit_Handler:
     Exit Sub

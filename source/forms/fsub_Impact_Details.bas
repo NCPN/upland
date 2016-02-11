@@ -14,16 +14,16 @@ Begin Form
     Width =7860
     DatasheetFontHeight =9
     ItemSuffix =22
-    Left =2568
+    Left =1935
     Top =5100
-    Right =10812
-    Bottom =8664
+    Right =10170
+    Bottom =8655
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xc48e9ef32e50e340
     End
     RecordSource ="tbl_Impact_Details"
-    Caption ="frm_sub_Impact_Details"
+    Caption ="fsub_Impact_Details"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
@@ -121,56 +121,6 @@ Begin Form
             Height =600
             BackColor =-2147483633
             Name ="FormHeader"
-            Begin
-                Begin Rectangle
-                    SpecialEffect =0
-                    BackStyle =1
-                    OldBorderStyle =0
-                    OverlapFlags =93
-                    Left =5340
-                    Top =60
-                    Width =2460
-                    Height =480
-                    BackColor =6750207
-                    Name ="rctNoData"
-                    OnClick ="[Event Procedure]"
-                    LayoutCachedLeft =5340
-                    LayoutCachedTop =60
-                    LayoutCachedWidth =7800
-                    LayoutCachedHeight =540
-                End
-                Begin CheckBox
-                    OverlapFlags =215
-                    Left =5460
-                    Top =210
-                    Width =300
-                    Name ="cbxNoData"
-                    ControlTipText ="No disturbances found"
-
-                    LayoutCachedLeft =5460
-                    LayoutCachedTop =210
-                    LayoutCachedWidth =5760
-                    LayoutCachedHeight =450
-                    Begin
-                        Begin Label
-                            OverlapFlags =247
-                            TextFontFamily =0
-                            Left =5690
-                            Top =180
-                            Width =2016
-                            Height =228
-                            FontWeight =600
-                            Name ="lblNoData"
-                            Caption ="No Disturbances Found"
-                            ControlTipText ="No disturbances found"
-                            LayoutCachedLeft =5690
-                            LayoutCachedTop =180
-                            LayoutCachedWidth =7706
-                            LayoutCachedHeight =408
-                        End
-                    End
-                End
-            End
         End
         Begin Section
             Height =3000

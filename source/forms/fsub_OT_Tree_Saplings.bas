@@ -14,10 +14,10 @@ Begin Form
     Width =11340
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =1260
-    Top =2010
-    Right =12930
-    Bottom =5520
+    Left =1335
+    Top =3150
+    Right =12990
+    Bottom =6645
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x384b3f359387e340
@@ -279,54 +279,6 @@ Begin Form
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
-                End
-                Begin Rectangle
-                    SpecialEffect =0
-                    BackStyle =1
-                    OldBorderStyle =0
-                    OverlapFlags =93
-                    Left =9180
-                    Top =240
-                    Width =2100
-                    Height =480
-                    BackColor =6750207
-                    Name ="rctNoData"
-                    OnClick ="[Event Procedure]"
-                    LayoutCachedLeft =9180
-                    LayoutCachedTop =240
-                    LayoutCachedWidth =11280
-                    LayoutCachedHeight =720
-                End
-                Begin CheckBox
-                    OverlapFlags =215
-                    Left =9300
-                    Top =390
-                    Width =300
-                    TabIndex =2
-                    Name ="cbxNoData"
-                    ControlTipText ="No tree saplings found"
-
-                    LayoutCachedLeft =9300
-                    LayoutCachedTop =390
-                    LayoutCachedWidth =9600
-                    LayoutCachedHeight =630
-                    Begin
-                        Begin Label
-                            OverlapFlags =247
-                            Left =9530
-                            Top =360
-                            Width =1650
-                            Height =240
-                            FontWeight =600
-                            Name ="lblNoData"
-                            Caption ="No Species Found"
-                            ControlTipText ="No tree saplings found"
-                            LayoutCachedLeft =9530
-                            LayoutCachedTop =360
-                            LayoutCachedWidth =11180
-                            LayoutCachedHeight =600
-                        End
-                    End
                 End
                 Begin Label
                     OverlapFlags =215
