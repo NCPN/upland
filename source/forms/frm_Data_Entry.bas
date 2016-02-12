@@ -22,10 +22,10 @@ Begin Form
     Width =16200
     DatasheetFontHeight =10
     ItemSuffix =200
-    Left =3492
-    Top =2064
-    Right =19692
-    Bottom =14424
+    Left =3804
+    Top =-180
+    Right =20004
+    Bottom =12180
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='20081016093629-468700110.912323' AND [Event_ID]='20160203131946-8"
         "62619340.419769'"
@@ -295,27 +295,27 @@ Begin Form
                 Begin Tab
                     MultiRow = NotDefault
                     OverlapFlags =85
-                    Top =1260
+                    Top =1212
                     Width =16035
-                    Height =13215
+                    Height =13263
                     TabIndex =6
                     Name ="pgTabs"
                     OnChange ="[Event Procedure]"
 
-                    LayoutCachedTop =1260
+                    LayoutCachedTop =1212
                     LayoutCachedWidth =16035
                     LayoutCachedHeight =14475
                     Begin
                         Begin Page
                             OverlapFlags =87
                             Left =108
-                            Top =1620
+                            Top =1572
                             Width =15816
-                            Height =12744
+                            Height =12792
                             Name ="pgPhotos"
                             Caption ="Photos"
                             LayoutCachedLeft =108
-                            LayoutCachedTop =1620
+                            LayoutCachedTop =1572
                             LayoutCachedWidth =15924
                             LayoutCachedHeight =14364
                             WebImagePaddingLeft =3
@@ -340,14 +340,14 @@ Begin Form
                         Begin Page
                             OverlapFlags =215
                             Left =108
-                            Top =1620
+                            Top =1572
                             Width =15816
-                            Height =12744
+                            Height =12792
                             Name ="Point Intercept"
                             EventProcPrefix ="Point_Intercept"
                             Caption ="Point Intercept"
                             LayoutCachedLeft =108
-                            LayoutCachedTop =1620
+                            LayoutCachedTop =1572
                             LayoutCachedWidth =15924
                             LayoutCachedHeight =14364
                             WebImagePaddingLeft =3
@@ -372,13 +372,13 @@ Begin Form
                         Begin Page
                             OverlapFlags =215
                             Left =108
-                            Top =1620
+                            Top =1572
                             Width =15816
-                            Height =12744
+                            Height =12792
                             Name ="pgBeltShrub"
                             Caption ="1-m Belt"
                             LayoutCachedLeft =108
-                            LayoutCachedTop =1620
+                            LayoutCachedTop =1572
                             LayoutCachedWidth =15924
                             LayoutCachedHeight =14364
                             WebImagePaddingLeft =3
@@ -407,13 +407,13 @@ Begin Form
                         Begin Page
                             OverlapFlags =215
                             Left =108
-                            Top =1620
+                            Top =1572
                             Width =15816
-                            Height =12744
+                            Height =12792
                             Name ="pgGaps"
                             Caption ="Gap Intercepts"
                             LayoutCachedLeft =108
-                            LayoutCachedTop =1620
+                            LayoutCachedTop =1572
                             LayoutCachedWidth =15924
                             LayoutCachedHeight =14364
                             WebImagePaddingLeft =3
@@ -440,13 +440,13 @@ Begin Form
                         Begin Page
                             OverlapFlags =215
                             Left =108
-                            Top =1620
+                            Top =1572
                             Width =15816
-                            Height =12744
+                            Height =12792
                             Name ="pgSS"
                             Caption ="Soil Stability"
                             LayoutCachedLeft =108
-                            LayoutCachedTop =1620
+                            LayoutCachedTop =1572
                             LayoutCachedWidth =15924
                             LayoutCachedHeight =14364
                             WebImagePaddingLeft =3
@@ -472,13 +472,13 @@ Begin Form
                             Visible = NotDefault
                             OverlapFlags =215
                             Left =108
-                            Top =1620
+                            Top =1572
                             Width =15816
-                            Height =12744
+                            Height =12792
                             Name ="pgSLIntercept"
                             Caption ="SL Intercept"
                             LayoutCachedLeft =108
-                            LayoutCachedTop =1620
+                            LayoutCachedTop =1572
                             LayoutCachedWidth =15924
                             LayoutCachedHeight =14364
                             WebImagePaddingLeft =3
@@ -503,13 +503,13 @@ Begin Form
                         Begin Page
                             OverlapFlags =215
                             Left =60
-                            Top =1620
+                            Top =1572
                             Width =15864
-                            Height =12744
+                            Height =12792
                             Name ="pgOT"
                             Caption ="Overstory Trees"
                             LayoutCachedLeft =60
-                            LayoutCachedTop =1620
+                            LayoutCachedTop =1572
                             LayoutCachedWidth =15924
                             LayoutCachedHeight =14364
                             WebImagePaddingLeft =3
@@ -788,7 +788,7 @@ Begin Form
                                     Width =2100
                                     Height =480
                                     BackColor =6750207
-                                    Name ="rctNoSapling"
+                                    Name ="rctNoSaplings"
                                     OnClick ="[Event Procedure]"
                                     LayoutCachedLeft =11220
                                     LayoutCachedTop =1620
@@ -818,7 +818,7 @@ Begin Form
                                             Width =1650
                                             Height =240
                                             FontWeight =600
-                                            Name ="lblNoSapling"
+                                            Name ="lblNoSaplings"
                                             Caption ="No Saplings Found"
                                             ControlTipText ="No tree saplings found"
                                             LayoutCachedLeft =11570
@@ -834,13 +834,13 @@ Begin Form
                             Visible = NotDefault
                             OverlapFlags =247
                             Left =108
-                            Top =1620
+                            Top =1572
                             Width =15816
-                            Height =12744
+                            Height =12792
                             Name ="pgFuels"
                             Caption ="Fuels"
                             LayoutCachedLeft =108
-                            LayoutCachedTop =1620
+                            LayoutCachedTop =1572
                             LayoutCachedWidth =15924
                             LayoutCachedHeight =14364
                             WebImagePaddingLeft =3
@@ -969,13 +969,13 @@ Begin Form
                         Begin Page
                             OverlapFlags =247
                             Left =108
-                            Top =1620
+                            Top =1572
                             Width =15816
-                            Height =12744
+                            Height =12792
                             Name ="pgImpact"
                             Caption ="Site Impact"
                             LayoutCachedLeft =108
-                            LayoutCachedTop =1620
+                            LayoutCachedTop =1572
                             LayoutCachedWidth =15924
                             LayoutCachedHeight =14364
                             WebImagePaddingLeft =3
@@ -1005,13 +1005,13 @@ Begin Form
                             Visible = NotDefault
                             OverlapFlags =247
                             Left =108
-                            Top =1620
+                            Top =1572
                             Width =15816
-                            Height =12744
+                            Height =12792
                             Name ="pgCoords_and_loc_details"
                             Caption ="Presence Cover Density"
                             LayoutCachedLeft =108
-                            LayoutCachedTop =1620
+                            LayoutCachedTop =1572
                             LayoutCachedWidth =15924
                             LayoutCachedHeight =14364
                             WebImagePaddingLeft =3
@@ -1358,61 +1358,60 @@ End Sub
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
-'        .Add "1mBelt-Shrub", 0
-'        .Add "1mBelt-TreeSeedling", 0
-'        .Add "1mBelt-ExoticPerennial", 0
-'        .Add "OverstoryTree-Sapling", 0
-'        .Add "OverstoryTree-Census", 0
-'        .Add "Fuel-1000hr", 0
-'        .Add "SiteImpact-Disturbance", 0
-'        .Add "SiteImpact-Exotic", 0
-
 '------------------------
 ' set no data checkboxes
 '------------------------
-    Dim dNoData As Scripting.Dictionary
+    Dim dNoDataEvent As Scripting.Dictionary
+    Dim dNoDataTransect As Scripting.Dictionary
 
     'fetch no data info & set checkboxes
-    Set dNoData = GetNoDataCollected(Me.Event_ID)
+    'event level values
+    Set dNoDataEvent = GetNoDataCollected(Me.Event_ID, "E")
     
-    With dNoData
-        
-        Me.frm_LP_Belt_Transect.Form.Controls("cbxNoShrubs").Value = dNoData.item("1mBelt-Shrub")
-        Me.frm_LP_Belt_Transect.Form.Controls("cbxNoSeedlings").Value = dNoData.item("1mBelt-TreeSeedling")
-        Me.frm_LP_Belt_Transect.Form.Controls("cbxNoExotics").Value = dNoData.item("1mBelt-ExoticPerennial")
-        
-'        Me.frm_Canopy_Transect.Form.Controls("cbxNoShrubs").Value = dNoData.item("1mBelt-Shrub")
-'        Me.frm_Canopy_Transect.Form.Controls("cbxNoSeedlings").Value = dNoData.item("1mBelt-TreeSeedling")
+    With dNoDataEvent
+        Me.cbxNoSaplings.Value = .item("OverstoryTree-Sapling")
+        Me.cbxNoCensus.Value = .item("OverstoryTree-Census")
     
-        Me.cbxNoSaplings.Value = dNoData.item("OverstoryTree-Sapling")
-        Me.cbxNoCensus.Value = dNoData.item("OverstoryTree-Census")
-    
-        Me.cbxNo1000hr.Value = dNoData.item("Fuel-1000hr")
+        Me.cbxNo1000hr.Value = .item("Fuel-1000hr")
         
-        Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Value = dNoData.item("SiteImpact-Disturbance")
-        Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Value = dNoData.item("SiteImpact-Exotic")
+        Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Value = .item("SiteImpact-Disturbance")
+        Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Value = .item("SiteImpact-Exotic")
     End With
     
-    'set the yellow rectangles visible if no records
-    Me.frm_LP_Belt_Transect.Form.Controls("rctNoSeedlings").Visible = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Belt_Shrub").Form.RecordsetClone.RecordCount = 0)
-    Me.frm_LP_Belt_Transect.Form.Controls("rctNoExotics").Visible = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Seedling").Form.RecordsetClone.RecordCount = 0)
+    'transect level values
+'    Set dNoDataTransect = GetNoDataCollected(Me.frm_LP_Belt_Transect.Form.Controls("Transect_ID"), "T")
+'
+'    With dNoDataTransect
+'        Me.frm_LP_Belt_Transect.Form.Controls("cbxNoShrubs").Value = .item("1mBelt-Shrub")
+'        Me.frm_LP_Belt_Transect.Form.Controls("cbxNoSeedlings").Value = .item("1mBelt-TreeSeedling")
+'        Me.frm_LP_Belt_Transect.Form.Controls("cbxNoExotics").Value = .item("1mBelt-ExoticPerennial")
+'    End With
     
-    Me.rctNoSapling.Visible = (Me.fsub_OT_Tree_Saplings.Form.RecordsetClone.RecordCount = 0)
+    'set the yellow rectangles visible if no records
+'    Me.frm_LP_Belt_Transect.Form.Controls("rctNoSeedlings").Visible = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Seedling").Form.RecordsetClone.RecordCount = 0)
+'    Me.frm_LP_Belt_Transect.Form.Controls("rctNoShrubs").Visible = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Belt_Shrub").Form.RecordsetClone.RecordCount = 0)
+'    Me.frm_LP_Belt_Transect.Form.Controls("rctNoExotics").Visible = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Exotic").Form.RecordsetClone.RecordCount = 0)
+    
+    Me.rctNoSaplings.Visible = (Me.fsub_OT_Tree_Saplings.Form.RecordsetClone.RecordCount = 0)
     Me.rctNoCensus.Visible = (Me.fsub_OT_Census.Form.RecordsetClone.RecordCount = 0)
     
     Me.rctNo1000hr.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
-    
-'    Me.frm_Site_Impact.Form.Controls("rctNoDisturbance").Visible = (Me.frm_Site_Impact.Form.Controls("Disturbance_Details").Form.RecordsetClone.RecordCount = 0)
-    
+       
     Me.frm_Site_Impact.Form.Controls("rctNoDisturbance").Visible = (Me.frm_Site_Impact.Form.Controls("Disturbance Details").Form.RecordsetClone.RecordCount = 0)
-    
     Me.frm_Site_Impact.Form.Controls("rctNoSpecies").Visible = (Me.frm_Site_Impact.Form.Controls("fsub_Dist_Exotic").Form.RecordsetClone.RecordCount = 0)
     
-    'Me.rctNoSpecies.Visible = (Me.fsub_Dist_Exotic.Form.RecordsetClone.RecordCount = 0)
-    
-'    Me.rctNoDisturbance.Visible = (Me.Disturbance_Details.Form.RecordsetClone.RecordCount = 0)
-'    Me.rctNoSpecies.Visible = (Me.fsub_Dist_Exotic.Form.RecordsetClone.RecordCount = 0)
-    
+    'disable checkboxes if records exist
+'    Me.frm_LP_Belt_Transect.Form.Controls("cbxNoSeedlings").Enabled = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Belt_Shrub").Form.RecordsetClone.RecordCount = 0)
+'    Me.frm_LP_Belt_Transect.Form.Controls("cbxNoExotics").Enabled = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Seedling").Form.RecordsetClone.RecordCount = 0)
+
+    Me.cbxNoSaplings.Enabled = (Me.fsub_OT_Tree_Saplings.Form.RecordsetClone.RecordCount = 0)
+    Me.cbxNoCensus.Enabled = (Me.fsub_OT_Census.Form.RecordsetClone.RecordCount = 0)
+
+    Me.cbxNo1000hr.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+
+    Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Enabled = (Me.frm_Site_Impact.Form.Controls("Disturbance Details").Form.RecordsetClone.RecordCount = 0)
+    Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Enabled = (Me.frm_Site_Impact.Form.Controls("fsub_Dist_Exotic").Form.RecordsetClone.RecordCount = 0)
+'------------------------
 
     Dim Veg_Type As Variant
 
@@ -1557,6 +1556,9 @@ End Sub
 Private Sub cbxNoSaplings_Click()
 On Error GoTo Err_Handler
 
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Sapling", Abs(Me.cbxNoSaplings.Value)
+
 Exit_Handler:
     Exit Sub
     
@@ -1570,7 +1572,7 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
-' SUB:          cbxNoOverstorySpecies_Click
+' SUB:          cbxNoCensus_Click
 ' Description:  Handles No Overstory Species checkbox actions
 ' Assumptions:  -
 ' Parameters:   -
@@ -1582,8 +1584,11 @@ End Sub
 ' Revisions:
 '   BLC, 2/3/2016  - initial version
 ' ---------------------------------
-Private Sub cbxNoOverstorySpecies_Click()
+Private Sub cbxNoCensus_Click()
 On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "E", "Overstory-Census", Abs(Me.cbxNoCensus.Value)
 
 Exit_Handler:
     Exit Sub
@@ -1593,6 +1598,37 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - cbxNoOverstorySpecies_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNo1000hr_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/9/2016  - initial version
+' ----------------------------------
+Private Sub cbxNo1000hr_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr", Abs(Me.cbxNo1000hr.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoDisturbance_Click[Form_frm_Site_Impact])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -1629,8 +1665,8 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
-' SUB:          rctNoOverstorySpecies_Click
-' Description:  Handles No Saplings rectangle actions
+' SUB:          rctNoCensus_Click
+' Description:  Handles No overstory census rectangle actions
 ' Assumptions:  -
 ' Parameters:   -
 ' Returns:      N/A
@@ -1641,11 +1677,11 @@ End Sub
 ' Revisions:
 '   BLC, 2/3/2016  - initial version
 ' ---------------------------------
-Private Sub rctNoOverstorySpecies_Click()
+Private Sub rctNoCensus_Click()
 On Error GoTo Err_Handler
 
     'activates No Overstory Species checkbox
-    cbxNoOverstorySpecies_Click
+    cbxNoCensus_Click
 
 Exit_Handler:
     Exit Sub
@@ -1654,7 +1690,37 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - rctNoOverstorySpecies_Click[Form_frm_Data_Entry])"
+            "Error encountered (#" & Err.Number & " - rctNoCensus_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNo1000hr_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/9/2016  - initial version
+' ----------------------------------
+Private Sub rctNo1000hr_Click()
+On Error GoTo Err_Handler
+
+    cbxNo1000hr_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNo1000hr_Click[Form_frm_Data_Entry])"
     End Select
     Resume Exit_Handler
 End Sub

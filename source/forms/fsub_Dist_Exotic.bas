@@ -2,6 +2,7 @@
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -12,10 +13,10 @@ Begin Form
     Width =8280
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =2175
-    Top =9780
-    Right =10830
-    Bottom =12495
+    Left =1080
+    Top =8730
+    Right =9990
+    Bottom =11415
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x718d0abeb2a7e340
@@ -340,7 +341,7 @@ Option Explicit
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
-'               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+'               BLC - 2/2/2016 - 1.01 - added documentation, no data collected integration
 ' =================================
 
 ' ---------------------------------
@@ -359,10 +360,6 @@ Option Explicit
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
-' set rectangle color
-' enable checkbox if there are no species
-' disable checkbox if there are species
-
 Exit_Handler:
     Exit Sub
     
@@ -376,21 +373,41 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
-' SUB:          cbxNoSpecies_Click
-' Description:  Handles checkbox click actions
+' SUB:          Form_BeforeInsert
+' Description:  Handles form pre-insert actions
 ' Assumptions:  -
 ' Parameters:   -
 ' Returns:      N/A
 ' Throws:       none
 ' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
 ' Revisions:
-'   BLC, 2/2/2016  - initial version
+'   RDB, unknown    - initial version
+'   BLC, 2/11/2016  - added no data collected info updates
 ' ---------------------------------
-Private Sub cbxNoSpecies_Click()
+Private Sub Form_BeforeInsert(Cancel As Integer)
 On Error GoTo Err_Handler
 
+    ' Create the GUID primary key value
+    If IsNull(Me!Exotic_ID) Then
+        If GetDataType("tbl_LP_Exotic", "Exotic_ID") = dbText Then
+            Me.Exotic_ID = fxnGUIDGen
+        End If
+    End If
+
+    '-----------------------------------
+    ' update the NoDataCollected info
+    '-----------------------------------
+    Dim NoData As Scripting.Dictionary
+    
+    'remove the no data collected record
+    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Exotic", 0)
+        
+    'update checkbox/rectangle
+    Me.Parent.Form.Controls("cbxNoSpecies") = 0
+    Me.Parent.Form.Controls("cbxNoSpecies").Enabled = False
+    Me.Parent.Form.Controls("rctNoSpecies").Visible = False
 
 Exit_Handler:
     Exit Sub
@@ -399,9 +416,72 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - cbxNoSpecies_Click[Form_fsub_Dist_Exotic])"
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_Dist_Exotic])"
     End Select
     Resume Exit_Handler
+End Sub
+
+Private Sub Species_GotFocus()
+
+    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
+      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
+      Me.Parent.Refresh   ' Force save of transect record
+    End If
+   
+End Sub
+
+' ---------------------------------
+' SUB:          Species_BeforeUpdate
+' Description:  Handles form pre-update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown    - initial version
+'   BLC, 2/11/2016  - added no data collected info updates
+' ---------------------------------
+Private Sub Species_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+
+    If Not IsNull(DLookup("[Exotic_ID]", "tbl_Dist_Exotic", "[Impact_ID] = '" & Me!Impact_ID & "' AND [Species] = '" & Me!Species & "'")) Then
+      MsgBox "This species is already recorded for this transect."
+      DoCmd.CancelEvent
+      SendKeys "{ESC}"
+      Me.Undo
+    End If
+
+    '-----------------------------------
+    ' update the NoDataCollected info
+    '-----------------------------------
+    Dim NoData As Scripting.Dictionary
+    
+    'remove the no data collected record
+    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Exotic", 0)
+        
+    'update checkbox/rectangle
+    Me.Parent.Form.Controls("cbxNoSpecies") = 0
+    Me.Parent.Form.Controls("cbxNoSpecies").Enabled = False
+    Me.Parent.Form.Controls("rctNoSpecies").Visible = False
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_Dist_Exotic])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+Private Sub ButtonZoom_Click()
+  Me!Notes.SetFocus
+  SendKeys ("+{F2}")
 End Sub
 
 Private Sub Button_Master_Species_Click()
@@ -424,30 +504,24 @@ Err_Button_Master_Species_Click:
  
 End Sub
 
-Private Sub ButtonZoom_Click()
-  Me!Notes.SetFocus
-  SendKeys ("+{F2}")
+Private Sub ButtonMaster_Click()
+On Error GoTo Err_ButtonMaster_Click
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+
+    stDocName = "frm_Master_Species"
+    DoCmd.OpenForm stDocName, , , stLinkCriteria
+
+Exit_ButtonMaster_Click:
+    Exit Sub
+
+Err_ButtonMaster_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonMaster_Click
+    
 End Sub
 
-Private Sub Form_BeforeInsert(Cancel As Integer)
-  
-    ' Create the GUID primary key value
-    If IsNull(Me!Exotic_ID) Then
-        If GetDataType("tbl_LP_Exotic", "Exotic_ID") = dbText Then
-            Me.Exotic_ID = fxnGUIDGen
-        End If
-    End If
-
-End Sub
-
-Private Sub Species_BeforeUpdate(Cancel As Integer)
-    If Not IsNull(DLookup("[Exotic_ID]", "tbl_Dist_Exotic", "[Impact_ID] = '" & Me!Impact_ID & "' AND [Species] = '" & Me!Species & "'")) Then
-      MsgBox "This species is already recorded for this transect."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-      Me.Undo
-    End If
-End Sub
 Private Sub ButtonUnknown_Click()
 On Error GoTo Err_ButtonUnknown_Click
 
@@ -466,16 +540,22 @@ Err_ButtonUnknown_Click:
     
 End Sub
 
-Private Sub Species_GotFocus()
-
-    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
-      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
-      Me.Parent.Refresh   ' Force save of transect record
-    End If
-   
-End Sub
+' ---------------------------------
+' SUB:          ButtonDelete_Click
+' Description:  Handles delete button actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
+' ---------------------------------
 Private Sub ButtonDelete_Click()
-On Error GoTo Err_ButtonDelete_Click
+On Error GoTo Err_Handler
 
   Dim intReply As Integer
   
@@ -488,28 +568,31 @@ On Error GoTo Err_ButtonDelete_Click
       Me.Requery
     End If
 
-Exit_ButtonDelete_Click:
-    Exit Sub
-
-Err_ButtonDelete_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonDelete_Click
+    '-----------------------------------
+    ' update the NoDataCollected info IF no records now exist
+    '-----------------------------------
+    If Me.RecordsetClone.RecordCount = 0 Then
     
-End Sub
-Private Sub ButtonMaster_Click()
-On Error GoTo Err_ButtonMaster_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-
-    stDocName = "frm_Master_Species"
-    DoCmd.OpenForm stDocName, , , stLinkCriteria
-
-Exit_ButtonMaster_Click:
-    Exit Sub
-
-Err_ButtonMaster_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonMaster_Click
+        Dim NoData As Scripting.Dictionary
+        
+        'remove the no data collected record
+        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Exotic", 1)
     
+        'update checkbox/rectangle
+        Me.Parent.Form.Controls("cbxNoSpecies") = 1
+        Me.Parent.Form.Controls("cbxNoSpecies").Enabled = True
+        Me.Parent.Form.Controls("rctNoSpecies").Visible = True
+        
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ButtonDelete_Click[Form_fsub_Dist_Exotic])"
+    End Select
+    Resume Exit_Handler
 End Sub

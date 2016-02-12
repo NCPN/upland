@@ -14,10 +14,10 @@ Begin Form
     Width =6660
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =3915
-    Top =8370
-    Right =9570
-    Bottom =12045
+    Left =5460
+    Top =11595
+    Right =11115
+    Bottom =15270
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x99c2faf85388e340
@@ -321,7 +321,7 @@ Option Explicit
 ' MODULE:       Form_fsub_Fuels_1000
 ' Level:        Form module
 ' Version:      1.01
-' Description:  data functions & procedures specific to exotic frequency monitoring
+' Description:  data functions & procedures specific to fuels monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
@@ -358,57 +358,27 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
-' SUB:          cbxNoSpecies_Click
-' Description:  Handles checkbox click actions
+' SUB:          Form_BeforeInsert
+' Description:  Handles form pre-insert actions
 ' Assumptions:  -
 ' Parameters:   -
 ' Returns:      N/A
 ' Throws:       none
 ' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
 ' Revisions:
-'   BLC, 2/2/2016  - initial version
+'   RDB, unknown    - initial version
+'   BLC, 2/11/2016  - added no data collected info updates
 ' ---------------------------------
-Private Sub cbxNoSpecies_Click()
+Private Sub Form_BeforeInsert(Cancel As Integer)
 On Error GoTo Err_Handler
 
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - cbxNoSpecies_Click[Form_fsub_Fuels_1000])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-Private Sub Decay_Class_KeyDown(KeyCode As Integer, Shift As Integer)
-  ' Ignore Page Down and Page Up keys for they will cycle through records
-  Select Case KeyCode
-    Case 33, 34
-      KeyCode = 0
-    End Select
-End Sub
-
-Private Sub Diameter_KeyDown(KeyCode As Integer, Shift As Integer)
-  ' Ignore Page Down and Page Up keys for they will cycle through records
-  Select Case KeyCode
-    Case 33, 34
-      KeyCode = 0
-    End Select
-End Sub
-
-Private Sub Form_BeforeInsert(Cancel As Integer)
-    On Error GoTo Err_Handler
     If IsNull(Me!Event_ID) Then
       MsgBox "You must enter event information first."
       DoCmd.CancelEvent
       SendKeys "{ESC}"
-      GoTo Exit_Procedure
+      GoTo Exit_Handler
     End If
     ' Create the GUID primary key value
     If IsNull(Me!Fuels_1000_ID) Then
@@ -417,34 +387,29 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
         End If
     End If
 
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-End Sub
-Private Sub ButtonDelete_Click()
-On Error GoTo Err_ButtonDelete_Click
-
-  Dim intReply As Integer
-  
-  intReply = MsgBox("Are you sure you want to delete this record?", vbYesNo, "Delete Record")
-    If intReply = vbYes Then
-      DoCmd.SetWarnings False
-      DoCmd.DoMenuItem acFormBar, acEditMenu, 8, , acMenuVer70
-      DoCmd.DoMenuItem acFormBar, acEditMenu, 6, , acMenuVer70
-      DoCmd.SetWarnings True
-      Me.Requery
-    End If
-
-Exit_ButtonDelete_Click:
-    Exit Sub
-
-Err_ButtonDelete_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonDelete_Click
+    '-----------------------------------
+    ' update the NoDataCollected info
+    '-----------------------------------
+    Dim NoData As Scripting.Dictionary
     
+    'remove the no data collected record
+    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "Fuel-1000hr", 0)
+        
+    'update checkbox/rectangle
+    Me.Parent.Form.Controls("cbxNo1000hr") = 0
+    Me.Parent.Form.Controls("cbxNo1000hr").Enabled = False
+    Me.Parent.Form.Controls("rctNo1000hr").Visible = False
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_Fuels_1000])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 Private Sub Transect_BeforeUpdate(Cancel As Integer)
@@ -467,4 +432,78 @@ Private Sub Transect_KeyDown(KeyCode As Integer, Shift As Integer)
     Case 33, 34
       KeyCode = 0
     End Select
+End Sub
+
+
+Private Sub Decay_Class_KeyDown(KeyCode As Integer, Shift As Integer)
+  ' Ignore Page Down and Page Up keys for they will cycle through records
+  Select Case KeyCode
+    Case 33, 34
+      KeyCode = 0
+    End Select
+End Sub
+
+Private Sub Diameter_KeyDown(KeyCode As Integer, Shift As Integer)
+  ' Ignore Page Down and Page Up keys for they will cycle through records
+  Select Case KeyCode
+    Case 33, 34
+      KeyCode = 0
+    End Select
+End Sub
+
+' ---------------------------------
+' SUB:          ButtonDelete_Click
+' Description:  Handles delete button actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
+' ---------------------------------
+Private Sub ButtonDelete_Click()
+On Error GoTo Err_Handler
+
+  Dim intReply As Integer
+  
+  intReply = MsgBox("Are you sure you want to delete this record?", vbYesNo, "Delete Record")
+    If intReply = vbYes Then
+      DoCmd.SetWarnings False
+      DoCmd.DoMenuItem acFormBar, acEditMenu, 8, , acMenuVer70
+      DoCmd.DoMenuItem acFormBar, acEditMenu, 6, , acMenuVer70
+      DoCmd.SetWarnings True
+      Me.Requery
+    End If
+
+    '-----------------------------------
+    ' update the NoDataCollected info IF no records now exist
+    '-----------------------------------
+    If Me.RecordsetClone.RecordCount = 0 Then
+    
+        Dim NoData As Scripting.Dictionary
+        
+        'remove the no data collected record
+        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "Fuel-1000hr", 1)
+    
+        'update checkbox/rectangle
+        Me.Parent.Form.Controls("cbxNo1000hr") = 1
+        Me.Parent.Form.Controls("cbxNo1000hr").Enabled = True
+        Me.Parent.Form.Controls("rctNo1000hr").Visible = True
+        
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ButtonDelete_Click[Form_fsub_Fuels_1000])"
+    End Select
+    Resume Exit_Handler
 End Sub

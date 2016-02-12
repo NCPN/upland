@@ -2,6 +2,7 @@
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -13,9 +14,10 @@ Begin Form
     Width =7320
     DatasheetFontHeight =9
     ItemSuffix =51
-    Top =1020
-    Right =9288
-    Bottom =3552
+    Left =2475
+    Top =1410
+    Right =10215
+    Bottom =5655
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -289,10 +291,10 @@ Begin Form
                     Caption ="Master"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -306,10 +308,10 @@ Begin Form
                     Caption ="Unknown"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -381,10 +383,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -530,10 +532,6 @@ Option Explicit
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
-' set rectangle color
-' enable checkbox if there are no species
-' disable checkbox if there are species
-    SetNoDataCheckbox Me
 
 
 Exit_Handler:
