@@ -5,7 +5,6 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =0
@@ -18,15 +17,16 @@ Begin Form
     Width =12600
     DatasheetFontHeight =9
     ItemSuffix =62
-    Left =108
-    Right =12720
-    Bottom =9816
+    Left =-8475
+    Top =3210
+    Right =3870
+    Bottom =12765
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xd4e1e7326d12e340
     End
     RecordSource ="tbl_Site_Impact"
-    Caption ="frm_Canopy_Transect"
+    Caption ="frm_Site_Impact"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -233,10 +233,10 @@ Begin Form
                     LayoutCachedTop =5460
                     LayoutCachedWidth =6300
                     LayoutCachedHeight =5820
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Subform
                     OverlapFlags =87
@@ -495,7 +495,7 @@ On Error GoTo Err_Handler
     Dim dNoData As Scripting.Dictionary
 
     'fetch no data info & set checkboxes
-    Set dNoData = GetNoDataCollected(Me.Event_ID)
+    Set dNoData = GetNoDataCollected(Me.Event_ID, "E")
     
     With dNoData
         Me.cbxNoDisturbance.Value = dNoData.item("SiteImpact-Disturbance")
@@ -505,7 +505,6 @@ On Error GoTo Err_Handler
     'set the yellow rectangles visible if no records
     Me.rctNoDisturbance.Visible = (Me.Disturbance_Details.Form.RecordsetClone.RecordCount = 0)
     Me.rctNoSpecies.Visible = (Me.fsub_Dist_Exotic.Form.RecordsetClone.RecordCount = 0)
-    
     
 Exit_Handler:
     Exit Sub
@@ -536,7 +535,7 @@ Private Sub cbxNoSpecies_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "SiteImpact-Exotic", Abs(Me.cbxNoSpecies.Value)
+    SetNoDataCollected Me.Event_ID, "E", "SiteImpact-Exotic", Abs(Me.cbxNoSpecies.Value)
 
 Exit_Handler:
     Exit Sub
@@ -567,7 +566,7 @@ Private Sub cbxNoDisturbance_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "SiteImpact-Disturbance", Abs(Me.cbxNoDisturbance.Value)
+    SetNoDataCollected Me.Event_ID, "E", "SiteImpact-Disturbance", Abs(Me.cbxNoDisturbance.Value)
 
 Exit_Handler:
     Exit Sub

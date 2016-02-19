@@ -22,9 +22,9 @@ Begin Form
     DatasheetFontHeight =11
     ItemSuffix =2
     Left =7080
-    Top =1572
+    Top =4440
     Right =15960
-    Bottom =9120
+    Bottom =11985
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x6ab456d96fb4e440
@@ -139,36 +139,6 @@ Option Explicit
 ' Revisions:    BLC - 2/3/2016  - 1.00 - initial version
 ' =================================
 
-Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" _
-  (ByVal hwnd As Long, _
-   ByVal nIndex As Long) As Long
- 
-Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" _
-  (ByVal hwnd As Long, _
-   ByVal nIndex As Long, _
-   ByVal dwNewLong As Long) As Long
- 
-Private Declare Function SetLayeredWindowAttributes Lib "user32" _
-  (ByVal hwnd As Long, _
-   ByVal crKey As Long, _
-   ByVal bAlpha As Byte, _
-   ByVal dwFlags As Long) As Long
- 
-Private Const LWA_ALPHA     As Long = &H2
-Private Const GWL_EXSTYLE   As Long = -20
-Private Const WS_EX_LAYERED As Long = &H80000
- 
-Public Sub SetFormOpacity(frm As Form, sngOpacity As Single, TColor As Long)
-    Dim lngStyle As Long
-' place in forms module mod_Form
-' Thenman, September 24, 2009
-' http://www.access-programmers.co.uk/forums/showthread.php?t=154907
-    ' get the current window style, then set transparency
-    lngStyle = GetWindowLong(frm.hwnd, GWL_EXSTYLE)
-    SetWindowLong frm.hwnd, GWL_EXSTYLE, lngStyle Or WS_EX_LAYERED
-    SetLayeredWindowAttributes frm.hwnd, TColor, (sngOpacity * 255), LWA_ALPHA
-End Sub
-
 ' ---------------------------------
 ' SUB:          Form_Open
 ' Description:  Handles form opening actions
@@ -196,12 +166,15 @@ On Error GoTo Err_Handler
     'set transect #
     lblTransectNumber.Caption = Me.OpenArgs
     
-    Transp = RGB(153, 255, 51) 'RGB(0, 0, 0) 'This is the color you want your background to be
+    'set background color -- RGB(0, 0, 0)
+    'to set color RGB, see http://www.rapidtables.com/web/color/RGB_Color.htm for Red/Green/Blue values
+    Transp = RGB(153, 255, 51)
      
     Me.Detail.BackColor = Transp
      
     Me.Painting = False
-    SetFormOpacity Me, 0.9, Transp '0.5, Transp
+    'set background opacity
+    SetFormOpacity Me, 0.9, Transp
     Me.Painting = True
 
 Exit_Handler:

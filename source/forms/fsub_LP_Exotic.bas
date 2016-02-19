@@ -12,16 +12,16 @@ Begin Form
     Width =5040
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =8040
-    Top =8655
-    Right =13695
-    Bottom =11055
+    Left =1305
+    Top =10530
+    Right =6960
+    Bottom =13125
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x45e116d57156e340
     End
     RecordSource ="tbl_LP_Exotic"
-    Caption ="fsub_LP_Belt_Shrub"
+    Caption ="fsub_LP_Exotic"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -349,10 +349,10 @@ Option Compare Database
 Option Explicit
 
 ' =================================
-' MODULE:       Form_fsub_LP_Belt_Shrub
+' MODULE:       Form_fsub_LP_Exotic
 ' Level:        Form module
 ' Version:      1.01
-' Description:  data functions & procedures specific to LP belt shrub monitoring
+' Description:  data functions & procedures specific to LP exotic perennial monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/09/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
@@ -361,7 +361,7 @@ Option Explicit
 
 ' ---------------------------------
 ' SUB:          Form_BeforeInsert
-' Description:  Handles form loading actions
+' Description:  Handles form pre-insert actions
 ' Assumptions:  -
 ' Parameters:   -
 ' Returns:      N/A
@@ -371,7 +371,7 @@ Option Explicit
 ' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
 ' Revisions:
 '   RDB, unknown   - initial version
-'   BLC, 2/9/2016  - added error handling, updated documentation
+'   BLC, 2/9/2016  - added error handling, updated documentation, no data collected updates
 ' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -383,6 +383,19 @@ On Error GoTo Err_Handler
         End If
     End If
     
+    '-----------------------------------
+    ' update the NoDataCollected info
+    '-----------------------------------
+    Dim NoData As Scripting.Dictionary
+    
+    'remove the no data collected record
+    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-ExoticPerennial", 0)
+        
+    'update checkbox/rectangle
+    Me.Parent.Form.Controls("cbxNoExotics") = 0
+    Me.Parent.Form.Controls("cbxNoExotics").Enabled = False
+    Me.Parent.Form.Controls("rctNoExotics").Visible = False
+
 Exit_Handler:
     Exit Sub
     
@@ -432,13 +445,41 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          Species_BeforeUpdate
+' Description:  Handles species pre-update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/11/2016 - added error handling, documentation
+' ---------------------------------
 Private Sub Species_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+
     If Not IsNull(DLookup("[Exotic_ID]", "tbl_LP_Exotic", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
       MsgBox "This species is already recorded for this transect."
       DoCmd.CancelEvent
       SendKeys "{ESC}"
       Me.Undo
     End If
+    
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_BeforeUpdate[Form_fsub_LP_Exotic])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 Private Sub Button_Master_Species_Click()
@@ -541,8 +582,22 @@ Private Sub ButtonZero_Click()
   Screen.PreviousControl.SetFocus
 End Sub
 
+' ---------------------------------
+' SUB:          ButtonDelete_Click
+' Description:  Handles delete button actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
+' ---------------------------------
 Private Sub ButtonDelete_Click()
-On Error GoTo Err_ButtonDelete_Click
+On Error GoTo Err_Handler
 
   Dim intReply As Integer
   
@@ -555,11 +610,31 @@ On Error GoTo Err_ButtonDelete_Click
       Me.Requery
     End If
 
-Exit_ButtonDelete_Click:
-    Exit Sub
-
-Err_ButtonDelete_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonDelete_Click
+    '-----------------------------------
+    ' update the NoDataCollected info IF no records now exist
+    '-----------------------------------
+    If Me.RecordsetClone.RecordCount = 0 Then
     
+        Dim NoData As Scripting.Dictionary
+        
+        'remove the no data collected record
+        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Exotics", 1)
+    
+        'update checkbox/rectangle
+        Me.Parent.Form.Controls("cbxNoExotics") = 1
+        Me.Parent.Form.Controls("cbxNoExotics").Enabled = True
+        Me.Parent.Form.Controls("rctNoExotics").Visible = True
+        
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ButtonDelete_Click[Form_fsub_LP_Exotic])"
+    End Select
+    Resume Exit_Handler
 End Sub

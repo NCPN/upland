@@ -17,16 +17,16 @@ Begin Form
     Width =13680
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =3528
-    Top =3228
-    Right =16968
-    Bottom =14964
+    Left =-8475
+    Top =3195
+    Right =4950
+    Bottom =14925
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xb5100b474c2ee340
     End
     RecordSource ="qry_Quadrat_Transect"
-    Caption ="frm_Canopy_Transect"
+    Caption ="frm_Quadrat_Transect"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -252,10 +252,10 @@ Begin Form
                     End
                     ControlTipText ="Previous Record"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -291,10 +291,10 @@ Begin Form
                     End
                     ControlTipText ="Next Record"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Subform
                     OverlapFlags =85
@@ -328,66 +328,22 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
 
-Private Sub ButtonNext_KeyDown(KeyCode As Integer, Shift As Integer)
-  ' Ignore Page Down and Page Up keys for they will cycle through records
-  Select Case KeyCode
-    Case 33, 34
-      KeyCode = 0
-    End Select
-End Sub
-
-Private Sub ButtonPrevious_KeyDown(KeyCode As Integer, Shift As Integer)
-  ' Ignore Page Down and Page Up keys for they will cycle through records
-  Select Case KeyCode
-    Case 33, 34
-      KeyCode = 0
-    End Select
-End Sub
-
-
-
-Private Sub ButtonPrevious_Click()
-On Error GoTo Err_ButtonPrevious_Click
-  Dim intTransect As Byte
-
-  If Me!Transect = 1 Then
-    MsgBox "Already on first transect"
-  Else
-    intTransect = Me!Transect
-    DoCmd.GoToRecord , , acPrevious
-    Me!Transect = intTransect - 1
-  End If
-  
-Exit_ButtonPrevious_Click:
-    Exit Sub
-
-Err_ButtonPrevious_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonPrevious_Click
-    
-End Sub
-Private Sub ButtonNext_Click()
-On Error GoTo Err_ButtonNext_Click
-
-  Dim intTransect As Byte
-
-  If Me!Transect = 3 Then
-    MsgBox "Three transects maximum!"
-  Else
-    intTransect = Me!Transect
-    DoCmd.GoToRecord , , acNext
-    Me!Transect = intTransect + 1
-  End If
-
-Exit_ButtonNext_Click:
-    Exit Sub
-
-Err_ButtonNext_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonNext_Click
-    
-End Sub
+' =================================
+' MODULE:       frm_Quadrat_Transect
+' Level:        Form module
+' Version:      1.02
+' Description:  data functions & procedures specific to quadrat transect data entry
+'
+' Source/date:  Russ Den Bleyker, unknown
+' Adapted:      Bonnie Campbell, 2/3/2016
+' Revisions:    RDB - unknown   - 1.00 - initial version
+'               BLC - 2/3/2016  - 1.01 - added documentation
+'               BLC - 2/19/2016 - 1.02 - based on conversation with H. Thomas, this form is
+'                                        no longer in use & should no longer be updated,
+'                                        however it will remain to handle views of prior data
+' =================================
 
 Private Sub Form_BeforeInsert(Cancel As Integer)
     On Error GoTo Err_Handler
@@ -412,7 +368,64 @@ Err_Handler:
     Resume Exit_Procedure
 End Sub
 
+Private Sub ButtonPrevious_Click()
+On Error GoTo Err_ButtonPrevious_Click
+  Dim intTransect As Byte
 
+  If Me!Transect = 1 Then
+    MsgBox "Already on first transect"
+  Else
+    intTransect = Me!Transect
+    DoCmd.GoToRecord , , acPrevious
+    Me!Transect = intTransect - 1
+  End If
+  
+Exit_ButtonPrevious_Click:
+    Exit Sub
+
+Err_ButtonPrevious_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonPrevious_Click
+    
+End Sub
+
+Private Sub ButtonNext_Click()
+On Error GoTo Err_ButtonNext_Click
+
+  Dim intTransect As Byte
+
+  If Me!Transect = 3 Then
+    MsgBox "Three transects maximum!"
+  Else
+    intTransect = Me!Transect
+    DoCmd.GoToRecord , , acNext
+    Me!Transect = intTransect + 1
+  End If
+
+Exit_ButtonNext_Click:
+    Exit Sub
+
+Err_ButtonNext_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonNext_Click
+    
+End Sub
+
+Private Sub ButtonNext_KeyDown(KeyCode As Integer, Shift As Integer)
+  ' Ignore Page Down and Page Up keys for they will cycle through records
+  Select Case KeyCode
+    Case 33, 34
+      KeyCode = 0
+    End Select
+End Sub
+
+Private Sub ButtonPrevious_KeyDown(KeyCode As Integer, Shift As Integer)
+  ' Ignore Page Down and Page Up keys for they will cycle through records
+  Select Case KeyCode
+    Case 33, 34
+      KeyCode = 0
+    End Select
+End Sub
 
 Private Sub Visit_Date_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records

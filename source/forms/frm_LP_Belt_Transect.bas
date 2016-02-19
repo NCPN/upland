@@ -17,17 +17,17 @@ Begin Form
     GridY =24
     Width =15360
     DatasheetFontHeight =9
-    ItemSuffix =67
-    Left =840
-    Top =2784
-    Right =16104
-    Bottom =11688
+    ItemSuffix =70
+    Left =855
+    Top =6315
+    Right =16110
+    Bottom =15210
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2518a6c77056e340
     End
     RecordSource ="qry_LP_Belt_Transect"
-    Caption ="frm_Canopy_Transect"
+    Caption ="frm_LP_Belt_Transect"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -127,7 +127,7 @@ Begin Form
         End
         Begin Section
             CanGrow = NotDefault
-            Height =9288
+            Height =9315
             BackColor =-2147483633
             Name ="Detail"
             Begin
@@ -267,10 +267,10 @@ Begin Form
                     End
                     ControlTipText ="Previous Record"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -306,10 +306,10 @@ Begin Form
                     End
                     ControlTipText ="Next Record"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     OverlapFlags =87
@@ -385,10 +385,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -401,41 +401,41 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Tab
                     OverlapFlags =85
-                    Left =48
-                    Top =540
-                    Width =15072
-                    Height =8748
+                    Left =45
+                    Top =492
+                    Width =15075
+                    Height =8823
                     TabIndex =10
                     Name ="TabCtl49"
 
-                    LayoutCachedLeft =48
-                    LayoutCachedTop =540
+                    LayoutCachedLeft =45
+                    LayoutCachedTop =492
                     LayoutCachedWidth =15120
-                    LayoutCachedHeight =9288
+                    LayoutCachedHeight =9315
                     Begin
                         Begin Page
                             OverlapFlags =87
-                            Left =156
+                            Left =180
                             Top =900
-                            Width =14856
-                            Height =8285
+                            Width =14805
+                            Height =8280
                             Name ="pgBeltShrub"
                             Caption ="Density"
-                            LayoutCachedLeft =156
+                            LayoutCachedLeft =180
                             LayoutCachedTop =900
-                            LayoutCachedWidth =15012
-                            LayoutCachedHeight =9185
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedWidth =14985
+                            LayoutCachedHeight =9180
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -458,7 +458,7 @@ Begin Form
                                     Left =240
                                     Top =5940
                                     Width =6354
-                                    Height =2685
+                                    Height =2877
                                     TabIndex =1
                                     Name ="fsub_LP_Seedling"
                                     SourceObject ="Form.fsub_LP_Seedling"
@@ -468,7 +468,7 @@ Begin Form
                                     LayoutCachedLeft =240
                                     LayoutCachedTop =5940
                                     LayoutCachedWidth =6594
-                                    LayoutCachedHeight =8625
+                                    LayoutCachedHeight =8817
                                 End
                                 Begin Subform
                                     Visible = NotDefault
@@ -476,7 +476,7 @@ Begin Form
                                     Left =6840
                                     Top =5940
                                     Width =5934
-                                    Height =2685
+                                    Height =2877
                                     TabIndex =2
                                     Name ="fsub_LP_Exotic"
                                     SourceObject ="Form.fsub_LP_Exotic"
@@ -486,7 +486,7 @@ Begin Form
                                     LayoutCachedLeft =6840
                                     LayoutCachedTop =5940
                                     LayoutCachedWidth =12774
-                                    LayoutCachedHeight =8625
+                                    LayoutCachedHeight =8817
                                 End
                                 Begin Rectangle
                                     SpecialEffect =0
@@ -588,25 +588,74 @@ Begin Form
                                         End
                                     End
                                 End
+                                Begin Rectangle
+                                    SpecialEffect =0
+                                    BackStyle =1
+                                    OldBorderStyle =0
+                                    OverlapFlags =223
+                                    Left =9960
+                                    Top =5400
+                                    Width =2820
+                                    Height =480
+                                    BackColor =6750207
+                                    Name ="rctNoExoticPerennials"
+                                    OnClick ="[Event Procedure]"
+                                    LayoutCachedLeft =9960
+                                    LayoutCachedTop =5400
+                                    LayoutCachedWidth =12780
+                                    LayoutCachedHeight =5880
+                                End
+                                Begin CheckBox
+                                    OverlapFlags =215
+                                    Left =10080
+                                    Top =5550
+                                    Width =300
+                                    TabIndex =5
+                                    Name ="cbxNoExoticPerennials"
+                                    OnClick ="[Event Procedure]"
+                                    ControlTipText ="No exotic perennials found"
+
+                                    LayoutCachedLeft =10080
+                                    LayoutCachedTop =5550
+                                    LayoutCachedWidth =10380
+                                    LayoutCachedHeight =5790
+                                    Begin
+                                        Begin Label
+                                            OverlapFlags =247
+                                            Left =10310
+                                            Top =5520
+                                            Width =2445
+                                            Height =240
+                                            FontWeight =600
+                                            Name ="lblNoExoticPerennials"
+                                            Caption ="No Exotic Perennials Found"
+                                            ControlTipText ="No exotic perennials found"
+                                            LayoutCachedLeft =10310
+                                            LayoutCachedTop =5520
+                                            LayoutCachedWidth =12755
+                                            LayoutCachedHeight =5760
+                                        End
+                                    End
+                                End
                             End
                         End
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =247
-                            Left =156
+                            Left =180
                             Top =900
-                            Width =14856
+                            Width =14805
                             Height =8280
                             Name ="pgDensiometer"
                             Caption ="Spherical Densiometer"
-                            LayoutCachedLeft =156
+                            LayoutCachedLeft =180
                             LayoutCachedTop =900
-                            LayoutCachedWidth =15012
+                            LayoutCachedWidth =14985
                             LayoutCachedHeight =9180
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -648,20 +697,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =156
+                            Left =180
                             Top =900
-                            Width =14856
+                            Width =14805
                             Height =8280
                             Name ="PgAdd"
                             Caption ="Exotic Frequency"
-                            LayoutCachedLeft =156
+                            LayoutCachedLeft =180
                             LayoutCachedTop =900
-                            LayoutCachedWidth =15012
+                            LayoutCachedWidth =14985
                             LayoutCachedHeight =9180
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     Visible = NotDefault
@@ -898,7 +947,9 @@ On Error GoTo Err_Handler
     'Set up correct exotic species frequency form
     'oak scrub plots
     If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
+        
         Me!fsub_LP_Exotic_Frequency.Form.Visible = False
+        
         Me!fsub_LP_Exotic_Freq_Oak.Form.Visible = True
         'Me!fsub_LP_Add_Species.SetFocus  ' Set focus to richness tab so we can hide belt-shrub tab
         Me!Visit_Date.SetFocus
@@ -915,6 +966,11 @@ On Error GoTo Err_Handler
       Me!fsub_LP_Exotic_Frequency.Form.Visible = True
       Me!fsub_LP_Exotic_Freq_Oak.Form.Visible = False
     End If
+
+'------------------------
+' set no data checkboxes
+'------------------------
+  SetCheckboxes
 
 Exit_Handler:
     Exit Sub
@@ -957,6 +1013,252 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
+' SUB:          cbxNoShrubs_Click
+' Description:  Handles No Shrubs checkbox actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/3/2016  - initial version
+' ---------------------------------
+Private Sub cbxNoShrubs_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Shrub", Abs(Me.cbxNoShrubs.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoShrubs_Click[Form_frm_LP_Belt_Transect])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNoSeedlings_Click
+' Description:  Handles No Seedlings checkbox actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/3/2016  - initial version
+' ---------------------------------
+Private Sub cbxNoSeedlings_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-TreeSeedling", Abs(Me.cbxNoSeedlings.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoSeedlings_Click[Form_frm_LP_Belt_Transect])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNoExoticPerennials_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/9/2016  - initial version
+' ----------------------------------
+Private Sub cbxNoExoticPerennials_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-ExoticPerennials", Abs(Me.cbxNoExoticPerennials.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoDisturbance_Click[Form_frm_Site_Impact])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNoExotics_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/11/2016  - initial version
+' ----------------------------------
+Private Sub cbxNoExotics_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Exotics", Abs(Me.cbxNoExotics.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoExotics_Click[Form_frm_Site_Impact])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNoShrubs_Click
+' Description:  Handles No Shrubs rectangle actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/3/2016  - initial version
+' ---------------------------------
+Private Sub rctNoShrubs_Click()
+On Error GoTo Err_Handler
+
+    'activates No Shrubs checkbox
+    cbxNoShrubs_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNoShrubs_Click[Form_frm_LP_Belt_Transect])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNoSeedlings_Click
+' Description:  Handles No Seedlings rectangle actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/3/2016  - initial version
+' ---------------------------------
+Private Sub rctNoSeedlings_Click()
+On Error GoTo Err_Handler
+
+    'activates No seedlings checkbox
+    cbxNoSeedlings_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNoSeedlings_Click[Form_frm_LP_Belt_Transect])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNoExoticPerennials_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/9/2016  - initial version
+' ----------------------------------
+Private Sub rctNoExoticPerennials_Click()
+On Error GoTo Err_Handler
+
+    cbxNoExoticPerennials_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNoExoticPerennials_Click[Form_frm_LP_Belt_Transect])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNoExotics_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/11/2016  - initial version
+' ----------------------------------
+Private Sub rctNoExotics_Click()
+On Error GoTo Err_Handler
+
+    cbxNoExotics_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNoExotics_Click[Form_frm_LP_Belt_Transect])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
 ' SUB:          ButtonPrevious_Click
 ' Description:  Handles previous button click actions
 ' Assumptions:  -
@@ -996,7 +1298,12 @@ On Error GoTo Err_Handler
     DoCmd.OpenForm "frm_Transect_Overlay", OpenArgs:=Me!Transect
     '---------------------------
   End If
-  
+    
+'------------------------
+' set no data checkboxes
+'------------------------
+  SetCheckboxes
+    
 Exit_Handler:
     Exit Sub
     
@@ -1034,9 +1341,11 @@ On Error GoTo Err_Handler
 '    GoTo Exit_ButtonNext_Click
 '  End If
   Dim intTransect As Byte
-    If IsNull(Me!Transect) Then
-      Me!Transect = 1
-    End If
+  
+  If IsNull(Me!Transect) Then
+    Me!Transect = 1
+  End If
+  
   If Me!Transect = 3 Then
     MsgBox "Three transects maximum!"
   Else
@@ -1051,8 +1360,12 @@ On Error GoTo Err_Handler
     DoCmd.OpenForm "frm_Transect_Overlay", OpenArgs:=Me!Transect
     '---------------------------
   End If
-
-
+  
+'------------------------
+' set no data checkboxes
+'------------------------
+  SetCheckboxes
+  
 Exit_Handler:
     Exit Sub
     
@@ -1167,4 +1480,61 @@ Private Sub Visit_Date_KeyDown(KeyCode As Integer, Shift As Integer)
     Case 33, 34
       KeyCode = 0
     End Select
+End Sub
+
+' ---------------------------------
+' SUB:          SetCheckboxes
+' Description:  Sets no data collected checkboxes
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/11/2016 - initial version
+' ---------------------------------
+Private Sub SetCheckboxes()
+On Error GoTo Err_Handler
+
+'------------------------
+' set no data checkboxes
+'------------------------
+    Dim dNoDataTransect As Scripting.Dictionary
+    
+    'transect level values
+    Set dNoDataTransect = GetNoDataCollected(Me.Transect_ID, "T")
+    
+    With dNoDataTransect
+        Me.cbxNoShrubs.Value = .item("1mBelt-Shrub")
+        Me.cbxNoSeedlings.Value = .item("1mBelt-TreeSeedling")
+        Me.cbxNoExotics.Value = .item("1mBelt-Exotics")
+    End With
+
+    'set the yellow rectangles visible if no records
+    Me.rctNoSeedlings.Visible = (Me.fsub_LP_Seedling.Form.RecordsetClone.RecordCount = 0)
+    Me.rctNoShrubs.Visible = (Me.fsub_LP_Belt_Shrub.Form.RecordsetClone.RecordCount = 0)
+    Me.rctNoExotics.Visible = (Me.fsub_LP_Exotic_Freq_Oak.Form.RecordsetClone.RecordCount = 0)
+
+    'disable checkboxes if records exist
+    Me.cbxNoSeedlings.Enabled = (Me.fsub_LP_Seedling.Form.RecordsetClone.RecordCount = 0)
+    Me.cbxNoShrubs.Enabled = (Me.fsub_LP_Belt_Shrub.Form.RecordsetClone.RecordCount = 0)
+    Me.cbxNoExotics.Enabled = (Me.fsub_LP_Exotic_Freq_Oak.Form.RecordsetClone.RecordCount = 0)
+    
+    'hide exotic perennials (not used)
+    Me.cbxNoExoticPerennials.Visible = False
+    Me.lblNoExoticPerennials.Visible = False
+    Me.rctNoExoticPerennials.Visible = False
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetCheckboxes[Form_frm_LP_Belt_Transect])"
+    End Select
+    Resume Exit_Handler
 End Sub

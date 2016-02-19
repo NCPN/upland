@@ -2,7 +2,6 @@
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     TabularFamily =124
     PictureAlignment =2
@@ -12,10 +11,10 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =16
-    Left =465
-    Top =60
-    Right =9285
-    Bottom =3285
+    Left =1950
+    Top =3990
+    Right =7995
+    Bottom =6585
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x993ac9fb6e87e340
@@ -28,6 +27,8 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -37,54 +38,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -94,9 +106,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =360
@@ -135,6 +149,7 @@ Begin Form
                     Name ="SD_ID"
                     ControlSource ="SD_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -149,6 +164,7 @@ Begin Form
                     Name ="Transect_ID"
                     ControlSource ="Transect_ID"
                     StatusBarText ="Foreign key to tbl_LP_Belt_Transect"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -163,6 +179,7 @@ Begin Form
                     ControlSource ="Total1"
                     StatusBarText ="Total count"
                     FontName ="Tahoma"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -177,6 +194,7 @@ Begin Form
                     ControlSource ="Total2"
                     StatusBarText ="Total count"
                     FontName ="Tahoma"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -191,6 +209,7 @@ Begin Form
                     ControlSource ="Total3"
                     StatusBarText ="Total count"
                     FontName ="Tahoma"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -205,6 +224,7 @@ Begin Form
                     ControlSource ="Total4"
                     StatusBarText ="Total count"
                     FontName ="Tahoma"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -224,6 +244,7 @@ Begin Form
                     ColumnWidths ="540"
                     FontName ="Tahoma"
                     OnGotFocus ="[Event Procedure]"
+
                 End
             End
         End

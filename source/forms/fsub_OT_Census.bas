@@ -14,10 +14,10 @@ Begin Form
     Width =14160
     DatasheetFontHeight =9
     ItemSuffix =35
-    Left =-45
-    Top =7410
-    Right =14430
-    Bottom =10905
+    Left =-8595
+    Top =7830
+    Right =5880
+    Bottom =11325
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x12768bfd3188e340
@@ -525,10 +525,7 @@ Private Sub Form_Load()
 On Error GoTo Err_Handler
 
     Dim Veg_Type As Variant
-    
-    ' set no data checkboxes
-    SetNoDataCheckbox Me
-    
+        
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent!Location_ID & "'")
     If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
       Me!Crown_Class.Visible = False
@@ -579,30 +576,18 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
         End If
     End If
 
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-End Sub
-
-' ---------------------------------
-' SUB:          cbxNoSpecies_Click
-' Description:  Handles checkbox click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 2/2/2016  - initial version
-' ---------------------------------
-Private Sub cbxNoSpecies_Click()
-On Error GoTo Err_Handler
-
+    '-----------------------------------
+    ' update the NoDataCollected info
+    '-----------------------------------
+    Dim NoData As Scripting.Dictionary
+    
+    'remove the no data collected record
+    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "OverstoryTree-Census", 0)
+        
+    'update checkbox/rectangle
+    Me.Parent.Form.Controls("cbxNoCensus") = 0
+    Me.Parent.Form.Controls("cbxNoCensus").Enabled = False
+    Me.Parent.Form.Controls("rctNoCensus").Visible = False
 
 Exit_Handler:
     Exit Sub
@@ -611,11 +596,10 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - cbxNoSpecies_Click[Form_fsub_OT_Census])"
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_OT_Tree_Saplings])"
     End Select
     Resume Exit_Handler
 End Sub
-
 
 Private Sub ButtonMaster_Click()
 On Error GoTo Err_ButtonMaster_Click
@@ -745,9 +729,22 @@ Private Sub DBH_BeforeUpdate(Cancel As Integer)
   
 End Sub
 
-
+' ---------------------------------
+' SUB:          ButtonDelete_Click
+' Description:  Handles delete button actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
+' ---------------------------------
 Private Sub ButtonDelete_Click()
-On Error GoTo Err_ButtonDelete_Click
+On Error GoTo Err_Handler
 
   Dim intReply As Integer
   
@@ -760,11 +757,31 @@ On Error GoTo Err_ButtonDelete_Click
       Me.Requery
     End If
 
-Exit_ButtonDelete_Click:
-    Exit Sub
-
-Err_ButtonDelete_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonDelete_Click
+    '-----------------------------------
+    ' update the NoDataCollected info IF no records now exist
+    '-----------------------------------
+    If Me.RecordsetClone.RecordCount = 0 Then
     
+        Dim NoData As Scripting.Dictionary
+        
+        'remove the no data collected record
+        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "OverstoryTree-Census", 1)
+    
+        'update checkbox/rectangle
+        Me.Parent.Form.Controls("cbxNoCensus") = 1
+        Me.Parent.Form.Controls("cbxNoCensus").Enabled = True
+        Me.Parent.Form.Controls("rctNoCensus").Visible = True
+        
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ButtonDelete_Click[Form_fsub_LP_Belt_Shrub])"
+    End Select
+    Resume Exit_Handler
 End Sub

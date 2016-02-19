@@ -19,15 +19,41 @@ Option Explicit
 '               ----------- uplands ---------------------------
 '               BLC, 8/21/2015 - 1.06 - added CaptureEscapeKey
 '               BLC, 2/3/2016  - 1.07 - added SetNoDataCheckbox()
-'               BLC - 2/9/2016 - 1.08 - added public dictionary for NoData checkboxes
+'               BLC, 2/9/2016  - 1.08 - added public dictionary for NoData checkboxes
 '                                       dictionary is used within subforms to identify if checkboxes
-'                                       should be checked
+'                                       should be checked, GetNoDataCollected(), SetNoDataCollected()
+'               BLC, 2/9/2016 - 1.09 - added constants, functions & subroutine supporting transect overlays
+'                                       (LWA_ALPHA, GWL_EXSTYLE, WS_EX_LAYERED, GetWindowLong(),
+'                                       SetWindowLong(), SetLayeredWindowAttributes(), SetFormOpacity())
 ' =================================
 
 ' ---------------------------------
 '  Declarations
 ' ---------------------------------
+' -- Constants --
+Private Const LWA_ALPHA     As Long = &H2
+Private Const GWL_EXSTYLE   As Long = -20
+Private Const WS_EX_LAYERED As Long = &H80000
+
+' -- --
 Public NoData As Scripting.Dictionary
+
+
+' -- Functions --
+Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" _
+  (ByVal hwnd As Long, _
+   ByVal nIndex As Long) As Long
+ 
+Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" _
+  (ByVal hwnd As Long, _
+   ByVal nIndex As Long, _
+   ByVal dwNewLong As Long) As Long
+ 
+Private Declare Function SetLayeredWindowAttributes Lib "user32" _
+  (ByVal hwnd As Long, _
+   ByVal crKey As Long, _
+   ByVal bAlpha As Byte, _
+   ByVal dwFlags As Long) As Long
 
 ' =================================
 ' SUB:          CaptureEscapeKey
@@ -225,58 +251,11 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
-' SUB:          SetNoDataCheckbox
-' Description:  Evaluates form records and sets no data checkbox
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 2/3/2016  - initial version
-' ---------------------------------
-Public Sub SetNoDataCheckbox(frm As Form)
-On Error GoTo Err_Handler
-
-    ' set rectangle color
-    ' enable checkbox if there are no species
-    ' disable checkbox if there are species
-'    MsgBox Me.RecordsetClone.RecordCount
-    
-'    With frm
-'
-'        .Controls("cbxNoData").Value = True
-'        .Controls("cbxNoData").Enabled = True
-'        .Controls("rctNoData").Visible = True
-'
-'        If .RecordsetClone.RecordCount > 0 Then
-'            .Controls("cbxNoData").Value = False
-'            .Controls("cbxNoData").Enabled = False
-'            '.Controls("rctNoData").BackColor = RGB(255, 255, 255)
-'            .Controls("rctNoData").Visible = False
-'        End If
-'
-'    End With
-    
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - SetCheckbox[mod_App_UI])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
 ' SUB:          GetNoDataCollected
 ' Description:  Gets no data collected information from NoDataCollected table for event ID
 ' Assumptions:  -
-' Parameters:   -
+' Parameters:   levelID - ID for event or event|transect as appropriate
+'               level - event or transect (E = event, T = transect)
 ' Returns:      N/A
 ' Throws:       none
 ' References:   none
@@ -284,8 +263,9 @@ End Sub
 ' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/9/2016  - initial version
+'   BLC, 2/11/2016 - added level to accommodate both event & transect level identifiers
 ' ---------------------------------
-Public Function GetNoDataCollected(eventID As String) As Scripting.Dictionary
+Public Function GetNoDataCollected(levelID As String, level As String) As Scripting.Dictionary
 On Error GoTo Err_Handler
 
     Dim strSQL As String, strItem As String
@@ -297,7 +277,8 @@ On Error GoTo Err_Handler
     With NoData
         .Add "1mBelt-Shrub", 0
         .Add "1mBelt-TreeSeedling", 0
-        .Add "1mBelt-ExoticPerennial", 0
+'        .Add "1mBelt-ExoticPerennial", 0
+        .Add "1mBelt-Exotics", 0
         .Add "OverstoryTree-Sapling", 0
         .Add "OverstoryTree-Census", 0
         .Add "Fuel-1000hr", 0
@@ -305,7 +286,7 @@ On Error GoTo Err_Handler
         .Add "SiteImpact-Exotic", 0
     End With
     
-    strSQL = "SELECT SampleType FROM NoDataCollected WHERE Event_ID = '" & eventID & "';"
+    strSQL = "SELECT SampleType FROM NoDataCollected WHERE ID = '" & levelID & "' AND SampleLevel = '" & level & "';"
     
     Set rs = CurrentDb.OpenRecordset(strSQL)
     
@@ -342,7 +323,11 @@ End Function
 ' FUNCTION:     SetNoDataCollected
 ' Description:  Sets no data checkbox
 ' Assumptions:  Absolute value of Access/VBA checkbox is sent to drive 1 = true, 0 = false
-' Parameters:   -
+'               SampleLevel is used vs. level in SQL (Access restricted word)
+' Parameters:   levelID - ID for event/transect
+'               level - sampling level identifier (E-event, T-transect)
+'               SampleType - sub-protocol w/o data "1mBelt-Shrub", "OverstoryTree-Sapling", etc.
+'               cbxValue - the value (1 or 0) to add or remove the
 ' Returns:      N/A
 ' Throws:       none
 ' References:   none
@@ -350,46 +335,32 @@ End Function
 ' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/9/2016  - initial version
+'   BLC, 2/11/2016 - added level to accommodate both event & transect level identifiers
 ' ---------------------------------
-Public Function SetNoDataCollected(eventID As String, SampleType As String, cbxValue As Integer) As Scripting.Dictionary
+Public Function SetNoDataCollected(levelID As String, level As String, SampleType As String, cbxValue As Integer) As Scripting.Dictionary
 On Error GoTo Err_Handler
     
     Dim strSQL As String, strItem As String
     Dim rs As DAO.Recordset
     
     Set NoData = New Scripting.Dictionary 'publicly set
-    Set NoData = GetNoDataCollected(eventID)
+    Set NoData = GetNoDataCollected(levelID, level)
     
     NoData.item(SampleType) = cbxValue
     
     'update the table appropriately
     If cbxValue = 1 Then
-        strSQL = "INSERT INTO NoDataCollected(Event_ID, SampleType) VALUES ('" & eventID & "', '" & SampleType & "');"
+        strSQL = "INSERT INTO NoDataCollected(ID, SampleLevel, SampleType) VALUES ('" & levelID & "', '" & level & "', '" & SampleType & "');"
     ElseIf cbxValue = 0 Then
-        strSQL = "DELETE * FROM NoDataCollected WHERE Event_ID IN (SELECT TOP 1 Event_ID FROM NoDataCollected WHERE Event_ID = '" _
-                    & eventID & "' AND SampleType = '" & SampleType & "');"
+        strSQL = "DELETE * FROM NoDataCollected WHERE ID = '" & levelID & "' AND SampleLevel = '" & level & _
+                    "' AND SampleType = '" & SampleType & "';"
     End If
     
     DoCmd.SetWarnings (False)
     DoCmd.RunSQL (strSQL)
     DoCmd.SetWarnings (True)
-
-'
-'    With frm
-'
-'        .Controls("cbxNoData").Value = True
-'        .Controls("cbxNoData").Enabled = True
-'        .Controls("rctNoData").Visible = True
-'
-'        If .RecordsetClone.RecordCount > 0 Then
-'            .Controls("cbxNoData").Value = False
-'            .Controls("cbxNoData").Enabled = False
-'            '.Controls("rctNoData").BackColor = RGB(255, 255, 255)
-'            .Controls("rctNoData").Visible = False
-'        End If
-'
-'    End With
     
+    'return current dictionary object
     Set SetNoDataCollected = NoData
     
 Exit_Handler:
@@ -403,3 +374,42 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Function
+
+' ---------------------------------
+' SUB:          SetFormOpacity
+' Description:  Sets form opacity
+' Assumptions:  place in forms module mod_Form for protocols which utilize that module
+' Parameters:   frm - form to prepare
+'               sngOpacity - opacity of the form (single)
+'               TColor - color for the form display (long)
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Thenman, September 24, 2009
+' http://www.access-programmers.co.uk/forums/showthread.php?t=154907
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/9/2016  - initial version
+' ---------------------------------
+Public Sub SetFormOpacity(frm As Form, sngOpacity As Single, TColor As Long)
+On Error GoTo Err_Handler
+
+    Dim lngStyle As Long
+    
+    ' get the current window style, then set transparency
+    lngStyle = GetWindowLong(frm.hwnd, GWL_EXSTYLE)
+    SetWindowLong frm.hwnd, GWL_EXSTYLE, lngStyle Or WS_EX_LAYERED
+    SetLayeredWindowAttributes frm.hwnd, TColor, (sngOpacity * 255), LWA_ALPHA
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetFormOpacity[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub

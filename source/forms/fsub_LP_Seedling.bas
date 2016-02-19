@@ -12,16 +12,16 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =1428
-    Top =6048
-    Right =7512
-    Bottom =8460
+    Left =750
+    Top =4035
+    Right =6825
+    Bottom =6630
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x73776174d27ce340
     End
     RecordSource ="tbl_LP_Seedling"
-    Caption ="fsub_LP_Belt_Shrub"
+    Caption ="fsub_LP_Seedling"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -241,10 +241,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -264,10 +264,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -281,10 +281,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -298,10 +298,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -315,10 +315,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -332,10 +332,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -376,10 +376,6 @@ Option Explicit
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
-' set rectangle color
-' enable checkbox if there are no species
-' disable checkbox if there are species
-    SetNoDataCheckbox Me
 
 Exit_Handler:
     Exit Sub
@@ -393,8 +389,23 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          Form_BeforeInsert
+' Description:  Handles form pre-insert actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown    - initial version
+'   BLC, 2/11/2016  - added no data collected info updates
+' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
-  
+On Error GoTo Err_Handler
+ 
    ' If IsNull(Me.Parent!Observer) And IsNull(Me.Parent!Recorder) Then
    '   MsgBox "You must enter an observer or recorder first."
    '   DoCmd.CancelEvent
@@ -407,7 +418,30 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
             Me.Seedling_ID = fxnGUIDGen
         End If
     End If
-Exit_Procedure:
+    
+    '-----------------------------------
+    ' update the NoDataCollected info
+    '-----------------------------------
+    Dim NoData As Scripting.Dictionary
+    
+    'remove the no data collected record
+    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-TreeSeedling", 0)
+        
+    'update checkbox/rectangle
+    Me.Parent.Form.Controls("cbxNoSeedlings") = 0
+    Me.Parent.Form.Controls("cbxNoSeedlings").Enabled = False
+    Me.Parent.Form.Controls("rctNoSeedlings").Visible = False
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_Dist_Exotic])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 ' ---------------------------------
@@ -557,8 +591,22 @@ Private Sub ButtonZero_Click()
   Screen.PreviousControl.SetFocus
 End Sub
 
+' ---------------------------------
+' SUB:          ButtonDelete_Click
+' Description:  Handles delete button actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
+' ---------------------------------
 Private Sub ButtonDelete_Click()
-On Error GoTo Err_ButtonDelete_Click
+On Error GoTo Err_Handler
 
   Dim intReply As Integer
   
@@ -571,11 +619,31 @@ On Error GoTo Err_ButtonDelete_Click
       Me.Requery
     End If
 
-Exit_ButtonDelete_Click:
-    Exit Sub
-
-Err_ButtonDelete_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonDelete_Click
+    '-----------------------------------
+    ' update the NoDataCollected info IF no records now exist
+    '-----------------------------------
+    If Me.RecordsetClone.RecordCount = 0 Then
     
+        Dim NoData As Scripting.Dictionary
+        
+        'remove the no data collected record
+        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-TreeSeedling", 1)
+    
+        'update checkbox/rectangle
+        Me.Parent.Form.Controls("cbxNoSeedlings") = 1
+        Me.Parent.Form.Controls("cbxNoSeedlings").Enabled = True
+        Me.Parent.Form.Controls("rctNoSeedlings").Visible = True
+        
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ButtonDelete_Click[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
 End Sub

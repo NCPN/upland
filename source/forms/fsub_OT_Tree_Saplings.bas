@@ -14,16 +14,16 @@ Begin Form
     Width =11340
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =1335
-    Top =3150
-    Right =12990
-    Bottom =6645
+    Left =-7215
+    Top =3570
+    Right =4440
+    Bottom =7065
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x384b3f359387e340
     End
     RecordSource ="tbl_OT_Tree_Saplings"
-    Caption ="fsub_LP_Belt_Shrub"
+    Caption ="fsub_OT_Tree_Saplings"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -584,7 +584,34 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
 
+' =================================
+' MODULE:       Form_fsub_OT_Tree_Saplings
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to overstory tree sapling monitoring
+'
+' Source/date:  Bonnie Campbell, 2/11/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/11/2016 - 1.01 - added documentation, set checkbox notifications for no species found
+' =================================
+
+' ---------------------------------
+' SUB:          Alive_BeforeUpdate
+' Description:  Handles alive before update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   RDB, unknown   - ?
+'   BLC, 2/11/2016  - added documentation
+' ---------------------------------
 Private Sub Alive_BeforeUpdate(Cancel As Integer)
     If Not IsNull(DLookup("[TS_ID]", "tbl_OT_Tree_Saplings", "[Event_ID] = '" & Me!Event_ID & "' AND [Species] = '" & Me!Species & "' AND [Alive] = " & Me!Alive)) Then
       MsgBox "This species is already recorded for this transect."
@@ -659,16 +686,29 @@ Private Sub ButtonZero_Click()
   Screen.PreviousControl.SetFocus
 End Sub
 
+' ---------------------------------
+' SUB:          Form_BeforeInsert
+' Description:  Handles form pre-insert actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown    - initial version
+'   BLC, 2/11/2016  - added no data collected info updates
+' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
-
-    On Error GoTo Err_Handler
+On Error GoTo Err_Handler
 
     ' Make sure there is an events record
     If IsNull(Me.Parent!Start_Date) Then
       MsgBox "Missing site visit date."
       DoCmd.CancelEvent
       SendKeys "{ESC}"
-      GoTo Exit_Procedure
+      GoTo Exit_Handler
     End If
     ' Create the GUID primary key value
     If IsNull(Me!TS_ID) Then
@@ -677,16 +717,34 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
         End If
     End If
 
-Exit_Procedure:
-    Exit Sub
+    '-----------------------------------
+    ' update the NoDataCollected info
+    '-----------------------------------
+    Dim NoData As Scripting.Dictionary
+    
+    'remove the no data collected record
+    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "OverstoryTree-Sapling", 0)
+        
+    'update checkbox/rectangle
+    Me.Parent.Form.Controls("cbxNoSaplings") = 0
+    Me.Parent.Form.Controls("cbxNoSaplings").Enabled = False
+    Me.Parent.Form.Controls("rctNoSaplings").Visible = False
 
+Exit_Handler:
+    Exit Sub
+    
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 Private Sub Species_BeforeUpdate(Cancel As Integer)
     Dim Reply As Integer
+    Dim TextMsg As String
 
     If Not IsNull(DLookup("[TS_ID]", "tbl_OT_Tree_Saplings", "[Event_ID] = '" & Me!Event_ID & "' AND [Species] = '" & Me!Species & "' AND [Alive] = " & Me!Alive)) Then
      If Me!Alive Then
@@ -731,8 +789,22 @@ Err_ButtonMaster_Click:
     
 End Sub
 
+' ---------------------------------
+' SUB:          ButtonDelete_Click
+' Description:  Handles delete button actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
+' ---------------------------------
 Private Sub ButtonDelete_Click()
-On Error GoTo Err_ButtonDelete_Click
+On Error GoTo Err_Handler
 
   Dim intReply As Integer
   
@@ -745,11 +817,31 @@ On Error GoTo Err_ButtonDelete_Click
       Me.Requery
     End If
 
-Exit_ButtonDelete_Click:
-    Exit Sub
-
-Err_ButtonDelete_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonDelete_Click
+    '-----------------------------------
+    ' update the NoDataCollected info IF no records now exist
+    '-----------------------------------
+    If Me.RecordsetClone.RecordCount = 0 Then
     
+        Dim NoData As Scripting.Dictionary
+        
+        'remove the no data collected record
+        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "OverstoryTree-Sapling", 1)
+    
+        'update checkbox/rectangle
+        Me.Parent.Form.Controls("cbxNoSaplings") = 1
+        Me.Parent.Form.Controls("cbxNoSaplings").Enabled = True
+        Me.Parent.Form.Controls("rctNoSaplings").Visible = True
+        
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ButtonDelete_Click[Form_fsub_LP_Belt_Shrub])"
+    End Select
+    Resume Exit_Handler
 End Sub

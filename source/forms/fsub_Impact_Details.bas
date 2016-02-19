@@ -14,10 +14,10 @@ Begin Form
     Width =7860
     DatasheetFontHeight =9
     ItemSuffix =22
-    Left =1935
-    Top =5100
-    Right =10170
-    Bottom =8655
+    Left =-7290
+    Top =5535
+    Right =945
+    Bottom =9090
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xc48e9ef32e50e340
@@ -377,7 +377,7 @@ Option Explicit
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
-'               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+'               BLC - 2/2/2016 - 1.01 - added documentation, no data collected checkbox/rectangle integration
 ' =================================
 
 ' ---------------------------------
@@ -395,11 +395,6 @@ Option Explicit
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
-
-' set rectangle color
-' enable checkbox if there are no species
-' disable checkbox if there are species
-    SetNoDataCheckbox Me
 
 Exit_Handler:
     Exit Sub
@@ -431,25 +426,58 @@ Private Sub Form_Current()
   End If
 End Sub
 
+' ---------------------------------
+' SUB:          Form_BeforeInsert
+' Description:  Handles form pre-insert actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown    - initial version
+'   BLC, 2/11/2016  - added update of NoDataCollected checkbox/rectangle
+' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
-    On Error GoTo Err_Handler
+On Error GoTo Err_Handler
+    
     If IsNull(Me.Parent!Visit_Date) Then
       MsgBox "You must enter Visit Date first."
       DoCmd.CancelEvent
       SendKeys "{ESC}"
-      GoTo Exit_Procedure
+      GoTo Exit_Handler
     End If
+    
     ' Create the GUID primary key value
     If IsNull(Me!Impact_Details_ID) Then
       Me!Impact_Details_ID = fxnGUIDGen
     End If
+    
+    '-----------------------------------
+    ' update the NoDataCollected info
+    '-----------------------------------
+    Dim NoData As Scripting.Dictionary
+    
+    'remove the no data collected record
+    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Disturbance", 0)
+        
+    'update checkbox/rectangle
+    Me.Parent.Form.Controls("cbxNoDisturbance") = 0
+    Me.Parent.Form.Controls("cbxNoDisturbance").Enabled = False
+    Me.Parent.Form.Controls("rctNoDisturbance").Visible = False
 
-Exit_Procedure:
+Exit_Handler:
     Exit Sub
-
+    
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_Impact_Details])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 Private Sub Disturbance_Location_AfterUpdate()

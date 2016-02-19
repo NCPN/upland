@@ -5,7 +5,6 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =0
@@ -18,16 +17,16 @@ Begin Form
     Width =11520
     DatasheetFontHeight =9
     ItemSuffix =51
-    Left =-750
-    Top =-3315
-    Right =10770
-    Bottom =5310
+    Left =1935
+    Top =2910
+    Right =13200
+    Bottom =11280
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xef3436320d89e340
     End
     RecordSource ="qry_SL_Transect"
-    Caption ="frm_Canopy_Transect"
+    Caption ="frm_SL_Transect"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -408,16 +407,19 @@ Option Compare Database
 Option Explicit
 
 ' =================================
-' MODULE:       frm_Canopy_Transect
+' MODULE:       frm_SL_Transect
 ' Level:        Form module
-' Version:      1.01
-' Description:  data functions & procedures specific to canopy transect data entry
+' Version:      1.02
+' Description:  data functions & procedures specific to SL transect data entry
 '
 ' Source/date:  John R. Boetsch, June 2006
 ' Adapted:      Bonnie Campbell, 2/3/2016
-' Revisions:    RDB - unknown  - 1.00 - initial version
-'               BLC - 2/3/2016 - 1.01 - added documentation, adjusted to use transect # overlay
+' Revisions:    RDB - unknown   - 1.00 - initial version
+'               BLC - 2/3/2016  - 1.01 - added documentation, adjusted to use transect # overlay
 '                                       vs. message box
+'               BLC - 2/19/2016 - 1.02 - based on conversation with H. Thomas, this form is
+'                                        no longer in use & should no longer be updated,
+'                                        however it will remain to handle views of prior data
 ' =================================
 
 ' ---------------------------------

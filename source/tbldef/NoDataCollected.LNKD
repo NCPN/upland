@@ -1,4 +1,4 @@
 ﻿NoDataCollected
 ;DATABASE=C:\___TEST_DATA\Upland_be.accdb
 NoDataCollected
-Event_ID;+SampleType
+ID;+SampleLevel;+SampleType
