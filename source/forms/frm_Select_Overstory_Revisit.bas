@@ -15,9 +15,9 @@ Begin Form
     Width =5040
     DatasheetFontHeight =9
     ItemSuffix =11
-    Left =5625
-    Top =4635
-    Right =11010
+    Left =5628
+    Top =4632
+    Right =11016
     Bottom =7140
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
@@ -25,6 +25,13 @@ Begin Form
     End
     Caption ="Select for Plot Revisit Data Sheet"
     DatasheetFontName ="Arial"
+    PrtMip = Begin
+        0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
+        0x010000006801000000000000a10700000100000001000000
+    End
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -35,9 +42,11 @@ Begin Form
             FontWeight =400
             ForeColor =-2147483630
             FontName ="Tahoma"
+            BorderLineStyle =0
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             FontName ="Tahoma"
         End
         Begin Section
@@ -59,6 +68,7 @@ Begin Form
                     RowSource ="SELECT tlu_Parks.ParkCode, tlu_Parks.ParkName FROM tlu_Parks; "
                     ColumnWidths ="720;2880"
                     AfterUpdate ="[Event Procedure]"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -96,6 +106,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     OverlapFlags =85
@@ -110,6 +125,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT tbl_Locations.Location_ID, tbl_Locations.Plot_ID FROM tbl_Locations; "
                     ColumnWidths ="540"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -134,6 +150,11 @@ Begin Form
                     Name ="ButtonReport"
                     Caption ="Preview Report"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     OverlapFlags =85
@@ -148,6 +169,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qry_sel_Visit_Year.Visit_Year FROM qry_sel_Visit_Year; "
                     ColumnWidths ="510"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -172,22 +194,36 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
 
-Private Sub ButtonClose_Click()
-On Error GoTo Err_ButtonClose_Click
+' =================================
+' MODULE:       Form_frm_Select_Overstory_Revisit
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to oak exotic frequency monitoring
+'
+' Source/date:  Russ DenBleyker, unknown
+' Adapted by:   Bonnie Campbell, 3/8/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 3/8/2016 - 1.01 - added documentation
+' =================================
 
-    DoCmd.Close
-
-Exit_ButtonClose_Click:
-    Exit Sub
-
-Err_ButtonClose_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonClose_Click
-    
-End Sub
-
+' ---------------------------------
+' SUB:          Park_Code_AfterUpdate
+' Description:  Handles park code after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      -
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 3/8/2016 - added documentation
+' ---------------------------------
 Private Sub Park_Code_AfterUpdate()
+On Error GoTo Err_Handler
 
   Me!Plot_ID = Null
   If Not IsNull(Me!Park_Code) Then
@@ -197,10 +233,34 @@ Private Sub Park_Code_AfterUpdate()
     MsgBox "You must select a park!"
   End If
     
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_frm_Select_Overstory_Revisit])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          ButtonReport_Click
+' Description:  Handles button report click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      -
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 3/8/2016 - added documentation
+' ---------------------------------
 Private Sub ButtonReport_Click()
-On Error GoTo Err_ButtonReport_Click
+On Error GoTo Err_Handler
 
     Dim stDocName As String
     Dim stWhereCondition As String
@@ -212,11 +272,46 @@ On Error GoTo Err_ButtonReport_Click
     stDocName = "rpt_OT_Census"
     DoCmd.OpenReport stDocName, acViewPreview, , stWhereCondition
     DoCmd.Close acForm, "frm_Select_Overstory_Revisit"
-Exit_ButtonReport_Click:
-    Exit Sub
 
-Err_ButtonReport_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonReport_Click
+Exit_Handler:
+    Exit Sub
     
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ButtonReport_Click[Form_frm_Select_Overstory_Revisit])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          ButtonClose_Click
+' Description:  Handles close button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      -
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 3/8/2016 - added documentation
+' ---------------------------------
+Private Sub ButtonClose_Click()
+On Error GoTo Err_Handler
+
+    DoCmd.Close
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ButtonClose_Click[Form_frm_Select_Overstory_Revisit])"
+    End Select
+    Resume Exit_Handler
 End Sub

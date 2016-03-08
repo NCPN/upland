@@ -12,10 +12,9 @@ Begin Form
     Width =11880
     DatasheetFontHeight =9
     ItemSuffix =43
-    Left =-4770
-    Top =6090
-    Right =7395
-    Bottom =9645
+    Top =1350
+    Right =10665
+    Bottom =4875
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -761,12 +760,13 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_LP_Belt_Shrub
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.02
 ' Description:  data functions & procedures specific to LP belt shrub monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+'               BLC - 3/7/2016 - 1.02 - fixed Error #94 Invalid use of NULL issue in Form_Load() on new visits
 ' =================================
 
 ' ---------------------------------
@@ -781,15 +781,18 @@ Option Explicit
 ' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/2/2016  - initial version
+'   BLC, 3/7/2016  - addressed Me.Transect_ID = NULL issue causing Error #94 Invalid use of NULL
+'                    when new visit is created (IsNull check)
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
     Dim NoData As Scripting.Dictionary
     
-    'set no data checkboxes/rectangles
-    Set NoData = GetNoDataCollected(Me.Transect_ID, "T")
-    
+    If Not IsNull(Me.Transect_ID) Then
+        'set no data checkboxes/rectangles
+        Set NoData = GetNoDataCollected(Me.Transect_ID, "T")
+    End If
 '    Me.Parent.Form.Controls("cbxNoShrubs").Value = NoData.item("1mBelt-Shrub")
 '    Me.Parent.Form.Controls("cbxNoSeedlings").Value = NoData.item("1mBelt-TreeSeedling")
 '

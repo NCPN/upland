@@ -13,10 +13,10 @@ Begin Form
     Width =9540
     DatasheetFontHeight =9
     ItemSuffix =54
-    Left =7260
-    Top =5490
-    Right =14955
-    Bottom =9765
+    Left =1650
+    Top =3675
+    Right =9345
+    Bottom =8175
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -313,11 +313,13 @@ Begin Form
                     WebImagePaddingBottom =1
                 End
                 Begin TextBox
+                    Visible = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
                     Left =600
                     Top =120
                     Width =600
+                    ColumnOrder =0
                     TabIndex =2
                     Name ="tbxRecordCount"
 
@@ -375,16 +377,16 @@ Begin Form
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT  qryU_Top_Canopy.Master_PLANT_Code,  qryU_Top_Canopy.LU_Code,  qryU_Top_C"
-                        "anopy.Utah_Species, qryU_Top_Canopy.Nativity FROM qryU_Top_Canopy WHERE (((qryU_"
-                        "Top_Canopy.Utah_Species) Is Not Null)) AND qryU_Top_Canopy.Nativity = 'NonNative"
-                        "' ORDER BY qryU_Top_Canopy.LU_Code;"
+                    RowSource ="(SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Can"
+                        "opy.Utah_Species,   qryU_Top_Canopy.Nativity FROM qryU_Top_Canopy WHERE (((qryU_"
+                        "Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Nativity])='NonNati"
+                        "ve')) ORDER BY qryU_Top_Canopy.LU_Code)  UNION ALL  (SELECT tbl_Unknown_Species."
+                        "Unknown_Code, tbl_Unknown_Species.Unknown_Code,   tbl_Unknown_Species.Plant_Type"
+                        ", NULL AS Nativity FROM tbl_Unknown_Species ORDER BY tbl_Unknown_Species.Unknown"
+                        "_Code);"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
-
-                End
-                Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =6300

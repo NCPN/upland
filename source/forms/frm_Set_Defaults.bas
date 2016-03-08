@@ -25,10 +25,10 @@ Begin Form
     Width =4380
     DatasheetFontHeight =10
     ItemSuffix =9
-    Left =6885
-    Top =2100
-    Right =11265
-    Bottom =5475
+    Left =9288
+    Top =2892
+    Right =13668
+    Bottom =6060
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xa3c57b9aedcee240
@@ -44,6 +44,9 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -52,22 +55,26 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             ForeColor =-2147483630
             FontName ="Tahoma"
+            BorderLineStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             FontName ="Tahoma"
             AsianLineBreak =255
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             FontName ="Tahoma"
         End
         Begin Section
@@ -96,6 +103,7 @@ Begin Form
                     ColumnWidths ="720;2880"
                     AfterUpdate ="[Event Procedure]"
                     FontName ="Arial"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -117,19 +125,24 @@ Begin Form
                     OldBorderStyle =0
                     OverlapFlags =85
                     IMESentenceMode =3
+                    ColumnCount =2
                     Left =972
                     Top =600
                     Width =3165
                     Height =252
                     FontSize =9
-                    ColumnInfo ="\"\";\"\";\"10\";\"0\""
-                    Name ="cmbUser"
+                    BoundColumn =1
+                    ColumnInfo ="\"\";\"\";\"\";\"\";\"10\";\"0\""
+                    Name ="cbxUser"
                     ControlSource ="User_name"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT Last_Name & \"_\" & First_Name AS Expr1 FROM tlu_Contacts WHERE (((tlu_Co"
-                        "ntacts.Active)=1)) ORDER BY tlu_Contacts.Last_Name, tlu_Contacts.First_Name; "
+                    RowSource ="SELECT Contact_ID, Last_Name & \"_\" & First_Name AS Expr1 FROM tlu_Contacts WHE"
+                        "RE (((tlu_Contacts.Active)=1)) ORDER BY tlu_Contacts.Last_Name, tlu_Contacts.Fir"
+                        "st_Name;"
+                    ColumnWidths ="0;3165"
                     FontName ="Arial"
-                    OnNotInList ="[Event Procedure]"
+                    OnChange ="[Event Procedure]"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -161,6 +174,7 @@ Begin Form
                     Name ="Soil_Survey_Area"
                     ControlSource ="Soil_Survey_Area"
                     FontName ="Arial"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -191,6 +205,11 @@ Begin Form
                     Caption ="OK"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -206,6 +225,11 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
                     ControlTipText ="Add a new user"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     RowSourceTypeInt =1
@@ -222,6 +246,7 @@ Begin Form
                     RowSourceType ="Value List"
                     RowSource ="\"NAD27\";\"NAD83\";\"WGS84\""
                     FontName ="Arial"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -252,6 +277,7 @@ Begin Form
                     RowSourceType ="Value List"
                     RowSource ="12;13"
                     ColumnWidths ="1440"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -282,31 +308,105 @@ Option Compare Database
 Option Explicit
 
 ' =================================
-' FORM NAME:    frm_Set_Defaults
-' Description:  Standard module for setting application defaults
+' MODULE:       frm_Set_Defaults
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to setting data entry/edit defaults
+'               (standard module for setting application defaults)
 ' Data source:  tsys_App_Defaults
 ' Data access:  edit only, no deletions
 ' Pages:        none
 ' Functions:    none
 ' References:   none
 ' Source/date:  John R. Boetsch, May 16, 2006
-' Revisions:    <name, date, desc - add lines as you go>
+' Adapted:      -
+' Revisions:    JRB - 5/16/2006  - 1.00 - initial version
+'               BLC - 3/7/2016 - 1.01 - add cbxUser_Change() to set UserID tempVar
+'                                       so user changing data can be identified in later forms,
+'                                       renamed cmbUser to cbxUser, added documentation for
+'                                       all subroutines
 ' =================================
 
-Private Sub cmbUser_NotInList(NewData As String, Response As Integer)
-    On Error GoTo Err_Handler
+' ---------------------------------
+' SUB:          cbxUser_Change
+' Description:  Handles actions when cbxUser changes
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 7, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 3/7/2016  - initial version
+' ---------------------------------
+Private Sub cbxUser_Change()
+On Error GoTo Err_Handler
+
+    'set TempVars value to the User_ID (cbxUser.Column(0))
+    If Not IsNull(TempVars.item("User_ID")) Then
+        TempVars.item("User_ID") = cbxUser.Column(0)
+    Else
+        TempVars.Add "User_ID", cbxUser.Column(0)
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxUser_Change[Form_frm_Set_Defaults])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxUser_NotInList
+' Description:  Handles actions when cbxUser is not in the list
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John Boetsch, May 16, 2006
+' Adapted:      -
+' Revisions:
+'   JRB, 5/16/2006 - initial version
+'   BLC, 3/7/2016  - added documentation
+' ---------------------------------
+Private Sub cbxUser_NotInList(NewData As String, Response As Integer)
+On Error GoTo Err_Handler
 
     Me.ActiveControl.Undo
 
-Exit_Procedure:
+Exit_Handler:
     Exit Sub
-
+    
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxUser_NotInList[Form_frm_Set_Defaults])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          cmdNewUser_Click
+' Description:  Handles actions when clicking cmdNewUser
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John Boetsch, May 16, 2006
+' Adapted:      -
+' Revisions:
+'   JRB, 5/16/2006 - initial version
+'   BLC, 3/7/2016  - added documentation
+' ---------------------------------
 Private Sub cmdNewUser_Click()
     On Error GoTo Err_Handler
     
@@ -322,6 +422,20 @@ Err_Handler:
 
 End Sub
 
+' ---------------------------------
+' SUB:          cmbPark_AfterUpdate
+' Description:  Handles actions after updating cmbPark
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John Boetsch, May 16, 2006
+' Adapted:      -
+' Revisions:
+'   JRB, 5/16/2006 - initial version
+'   BLC, 3/7/2016  - added documentation
+' ---------------------------------
 Private Sub cmbPark_AfterUpdate()
     On Error GoTo Err_Handler
 
@@ -343,15 +457,32 @@ Private Sub cmbPark_AfterUpdate()
         End If
     End If
 
-Exit_Procedure:
+Exit_Handler:
     Exit Sub
-
+    
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cmbPark_AfterUpdate[Form_frm_Set_Defaults])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          cmdOK_Click
+' Description:  Handles cmdOK click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John Boetsch, May 16, 2006
+' Adapted:      -
+' Revisions:
+'   JRB, 5/16/2006 - initial version
+'   BLC, 3/7/2016  - added documentation
+' ---------------------------------
 Private Sub cmdOK_Click()
     On Error GoTo Err_Handler
 
@@ -364,12 +495,12 @@ Private Sub cmdOK_Click()
         '  Verify that the critical data elements have been completed before saving
         If IsNull(Me.User_name) Then
             MsgBox "Please indicate the user name", vbOKOnly, "Validation error"
-            Me.cmbUser.SetFocus
-            GoTo Exit_Procedure
+            Me.cbxUser.SetFocus
+            GoTo Exit_Handler
         ElseIf IsNull(Me.Park) Then
             MsgBox "Please indicate the park", vbOKOnly, "Validation error"
             Me.cmbPark.SetFocus
-            GoTo Exit_Procedure
+            GoTo Exit_Handler
         End If
     End If
 
@@ -388,11 +519,14 @@ Private Sub cmdOK_Click()
             MsgBox "Error: OpenArgs property out of range", vbCritical
     End Select
 
-Exit_Procedure:
+Exit_Handler:
     Exit Sub
-
+    
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cmdOK_Click[Form_frm_Set_Defaults])"
+    End Select
+    Resume Exit_Handler
 End Sub

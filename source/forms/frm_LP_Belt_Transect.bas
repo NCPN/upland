@@ -8,7 +8,7 @@ Begin Form
     DividingLines = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
-    ScrollBars =0
+    ScrollBars =2
     TabularFamily =124
     PictureAlignment =2
     DatasheetGridlinesBehavior =3
@@ -18,10 +18,10 @@ Begin Form
     Width =15360
     DatasheetFontHeight =9
     ItemSuffix =70
-    Left =855
-    Top =6315
-    Right =16110
-    Bottom =15210
+    Left =840
+    Top =-576
+    Right =16104
+    Bottom =8652
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2518a6c77056e340
@@ -127,7 +127,7 @@ Begin Form
         End
         Begin Section
             CanGrow = NotDefault
-            Height =9315
+            Height =9696
             BackColor =-2147483633
             Name ="Detail"
             Begin
@@ -267,10 +267,10 @@ Begin Form
                     End
                     ControlTipText ="Previous Record"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -306,10 +306,10 @@ Begin Form
                     End
                     ControlTipText ="Next Record"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     OverlapFlags =87
@@ -385,10 +385,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -401,46 +401,46 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Tab
                     OverlapFlags =85
                     Left =45
-                    Top =492
+                    Top =480
                     Width =15075
-                    Height =8823
+                    Height =9216
                     TabIndex =10
                     Name ="TabCtl49"
 
                     LayoutCachedLeft =45
-                    LayoutCachedTop =492
+                    LayoutCachedTop =480
                     LayoutCachedWidth =15120
-                    LayoutCachedHeight =9315
+                    LayoutCachedHeight =9696
                     Begin
                         Begin Page
                             OverlapFlags =87
-                            Left =180
-                            Top =900
-                            Width =14805
-                            Height =8280
+                            Left =156
+                            Top =840
+                            Width =14856
+                            Height =8748
                             Name ="pgBeltShrub"
                             Caption ="Density"
-                            LayoutCachedLeft =180
-                            LayoutCachedTop =900
-                            LayoutCachedWidth =14985
-                            LayoutCachedHeight =9180
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =156
+                            LayoutCachedTop =840
+                            LayoutCachedWidth =15012
+                            LayoutCachedHeight =9588
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
                                     Left =300
-                                    Top =1380
+                                    Top =1320
                                     Width =12450
                                     Height =3840
                                     Name ="fsub_LP_Belt_Shrub"
@@ -449,14 +449,14 @@ Begin Form
                                     LinkMasterFields ="Transect_ID"
 
                                     LayoutCachedLeft =300
-                                    LayoutCachedTop =1380
+                                    LayoutCachedTop =1320
                                     LayoutCachedWidth =12750
-                                    LayoutCachedHeight =5220
+                                    LayoutCachedHeight =5160
                                 End
                                 Begin Subform
                                     OverlapFlags =247
                                     Left =240
-                                    Top =5940
+                                    Top =5760
                                     Width =6354
                                     Height =2877
                                     TabIndex =1
@@ -466,15 +466,15 @@ Begin Form
                                     LinkMasterFields ="Transect_ID"
 
                                     LayoutCachedLeft =240
-                                    LayoutCachedTop =5940
+                                    LayoutCachedTop =5760
                                     LayoutCachedWidth =6594
-                                    LayoutCachedHeight =8817
+                                    LayoutCachedHeight =8637
                                 End
                                 Begin Subform
                                     Visible = NotDefault
                                     OverlapFlags =247
                                     Left =6840
-                                    Top =5940
+                                    Top =5760
                                     Width =5934
                                     Height =2877
                                     TabIndex =2
@@ -484,9 +484,9 @@ Begin Form
                                     LinkMasterFields ="Transect_ID"
 
                                     LayoutCachedLeft =6840
-                                    LayoutCachedTop =5940
+                                    LayoutCachedTop =5760
                                     LayoutCachedWidth =12774
-                                    LayoutCachedHeight =8817
+                                    LayoutCachedHeight =8637
                                 End
                                 Begin Rectangle
                                     SpecialEffect =0
@@ -494,21 +494,21 @@ Begin Form
                                     OldBorderStyle =0
                                     OverlapFlags =223
                                     Left =10620
-                                    Top =900
+                                    Top =840
                                     Width =2100
                                     Height =480
                                     BackColor =6750207
                                     Name ="rctNoShrubs"
                                     OnClick ="[Event Procedure]"
                                     LayoutCachedLeft =10620
-                                    LayoutCachedTop =900
+                                    LayoutCachedTop =840
                                     LayoutCachedWidth =12720
-                                    LayoutCachedHeight =1380
+                                    LayoutCachedHeight =1320
                                 End
                                 Begin CheckBox
                                     OverlapFlags =215
                                     Left =10740
-                                    Top =1050
+                                    Top =990
                                     Width =300
                                     TabIndex =3
                                     Name ="cbxNoShrubs"
@@ -516,15 +516,15 @@ Begin Form
                                     ControlTipText ="No live shrubs rooted in the 1m belt transect were found"
 
                                     LayoutCachedLeft =10740
-                                    LayoutCachedTop =1050
+                                    LayoutCachedTop =990
                                     LayoutCachedWidth =11040
-                                    LayoutCachedHeight =1290
+                                    LayoutCachedHeight =1230
                                     Begin
                                         Begin Label
                                             OverlapFlags =247
                                             TextFontFamily =0
                                             Left =10970
-                                            Top =1020
+                                            Top =960
                                             Width =1650
                                             Height =240
                                             FontWeight =600
@@ -532,9 +532,9 @@ Begin Form
                                             Caption ="No Shrubs Found"
                                             ControlTipText ="No live rooted shrub species found"
                                             LayoutCachedLeft =10970
-                                            LayoutCachedTop =1020
+                                            LayoutCachedTop =960
                                             LayoutCachedWidth =12620
-                                            LayoutCachedHeight =1260
+                                            LayoutCachedHeight =1200
                                         End
                                     End
                                 End
@@ -544,21 +544,21 @@ Begin Form
                                     OldBorderStyle =0
                                     OverlapFlags =223
                                     Left =4260
-                                    Top =5400
+                                    Top =5220
                                     Width =2280
                                     Height =480
                                     BackColor =6750207
                                     Name ="rctNoSeedlings"
                                     OnClick ="[Event Procedure]"
                                     LayoutCachedLeft =4260
-                                    LayoutCachedTop =5400
+                                    LayoutCachedTop =5220
                                     LayoutCachedWidth =6540
-                                    LayoutCachedHeight =5880
+                                    LayoutCachedHeight =5700
                                 End
                                 Begin CheckBox
                                     OverlapFlags =215
                                     Left =4380
-                                    Top =5550
+                                    Top =5370
                                     Width =300
                                     TabIndex =4
                                     Name ="cbxNoSeedlings"
@@ -566,15 +566,15 @@ Begin Form
                                     ControlTipText ="No tree seedlings found"
 
                                     LayoutCachedLeft =4380
-                                    LayoutCachedTop =5550
+                                    LayoutCachedTop =5370
                                     LayoutCachedWidth =4680
-                                    LayoutCachedHeight =5790
+                                    LayoutCachedHeight =5610
                                     Begin
                                         Begin Label
                                             OverlapFlags =247
                                             TextFontFamily =0
                                             Left =4610
-                                            Top =5520
+                                            Top =5340
                                             Width =1800
                                             Height =240
                                             FontWeight =600
@@ -582,9 +582,9 @@ Begin Form
                                             Caption ="No Seedlings Found"
                                             ControlTipText ="No tree seedlings found"
                                             LayoutCachedLeft =4610
-                                            LayoutCachedTop =5520
+                                            LayoutCachedTop =5340
                                             LayoutCachedWidth =6410
-                                            LayoutCachedHeight =5760
+                                            LayoutCachedHeight =5580
                                         End
                                     End
                                 End
@@ -594,21 +594,21 @@ Begin Form
                                     OldBorderStyle =0
                                     OverlapFlags =223
                                     Left =9960
-                                    Top =5400
+                                    Top =5220
                                     Width =2820
                                     Height =480
                                     BackColor =6750207
                                     Name ="rctNoExoticPerennials"
                                     OnClick ="[Event Procedure]"
                                     LayoutCachedLeft =9960
-                                    LayoutCachedTop =5400
+                                    LayoutCachedTop =5220
                                     LayoutCachedWidth =12780
-                                    LayoutCachedHeight =5880
+                                    LayoutCachedHeight =5700
                                 End
                                 Begin CheckBox
                                     OverlapFlags =215
                                     Left =10080
-                                    Top =5550
+                                    Top =5370
                                     Width =300
                                     TabIndex =5
                                     Name ="cbxNoExoticPerennials"
@@ -616,14 +616,14 @@ Begin Form
                                     ControlTipText ="No exotic perennials found"
 
                                     LayoutCachedLeft =10080
-                                    LayoutCachedTop =5550
+                                    LayoutCachedTop =5370
                                     LayoutCachedWidth =10380
-                                    LayoutCachedHeight =5790
+                                    LayoutCachedHeight =5610
                                     Begin
                                         Begin Label
                                             OverlapFlags =247
                                             Left =10310
-                                            Top =5520
+                                            Top =5340
                                             Width =2445
                                             Height =240
                                             FontWeight =600
@@ -631,9 +631,9 @@ Begin Form
                                             Caption ="No Exotic Perennials Found"
                                             ControlTipText ="No exotic perennials found"
                                             LayoutCachedLeft =10310
-                                            LayoutCachedTop =5520
+                                            LayoutCachedTop =5340
                                             LayoutCachedWidth =12755
-                                            LayoutCachedHeight =5760
+                                            LayoutCachedHeight =5580
                                         End
                                     End
                                 End
@@ -642,20 +642,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =247
-                            Left =180
-                            Top =900
-                            Width =14805
-                            Height =8280
+                            Left =156
+                            Top =840
+                            Width =14856
+                            Height =8745
                             Name ="pgDensiometer"
                             Caption ="Spherical Densiometer"
-                            LayoutCachedLeft =180
-                            LayoutCachedTop =900
-                            LayoutCachedWidth =14985
-                            LayoutCachedHeight =9180
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =156
+                            LayoutCachedTop =840
+                            LayoutCachedWidth =15012
+                            LayoutCachedHeight =9585
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -697,20 +697,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =180
-                            Top =900
-                            Width =14805
-                            Height =8280
+                            Left =156
+                            Top =840
+                            Width =14856
+                            Height =8745
                             Name ="PgAdd"
                             Caption ="Exotic Frequency"
-                            LayoutCachedLeft =180
-                            LayoutCachedTop =900
-                            LayoutCachedWidth =14985
-                            LayoutCachedHeight =9180
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =156
+                            LayoutCachedTop =840
+                            LayoutCachedWidth =15012
+                            LayoutCachedHeight =9585
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     Visible = NotDefault
@@ -896,7 +896,7 @@ Option Explicit
 ' =================================
 ' MODULE:       frm_LP_Belt_Transect
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.02
 ' Description:  data functions & procedures specific to LP belt transects
 '
 ' Source/date:  John R. Boetsch, June 2006
@@ -904,6 +904,10 @@ Option Explicit
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, enabled seedlings & saplings for
 '                                       oak scrub plots
+'               BLC - 3/7/2016 - 1.02 - addressed issue causing Error #94 Invalid use of NULL
+'                                       when new visit is created in SetCheckboxes(),
+'                                       hide NoShrubs (cbx,lbl,& rct) for oak scrub plots
+'                                       hide no exotic perennial cbx,lbl,rct - exotic perennial form no longer in use
 ' =================================
 
 ' ---------------------------------
@@ -921,6 +925,7 @@ Option Explicit
 '   RDB, unknown   - ?
 '   BLC, 2/2/2016  - added documentation, enabled seedlings for oak scrub plots
 '                    (Density tab, pgBeltShrub)
+'   BLC, 3/6/2016  - hide NoShrubs cbx, lbl, & rct for oak scrub plots (Density tab, pgBeltShrub)
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
@@ -960,12 +965,21 @@ On Error GoTo Err_Handler
         '------------------------------------------------
         'Me!pgBeltShrub.visible = False
         Me!fsub_LP_Belt_Shrub.Form.Visible = False
+        'also hide NoShrubs cbx, lbl, & rct
+        Me.cbxNoShrubs.Visible = False
+        Me.lblNoShrubs.Visible = False
+        Me.rctNoShrubs.Visible = False
         '------------------------------------------------
         Me!pgDensiometer.Visible = False
     Else
       Me!fsub_LP_Exotic_Frequency.Form.Visible = True
       Me!fsub_LP_Exotic_Freq_Oak.Form.Visible = False
     End If
+
+    'hide exotic perennials (not used)
+    Me.cbxNoExoticPerennials.Visible = False
+    Me.lblNoExoticPerennials.Visible = False
+    Me.rctNoExoticPerennials.Visible = False
 
 '------------------------
 ' set no data checkboxes
@@ -1494,6 +1508,8 @@ End Sub
 ' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/11/2016 - initial version
+'   BLC, 3/7/2016  - addressed Me.Transect_ID = NULL issue causing Error #94 Invalid use of NULL
+'                    when new visit is created (IsNull check)
 ' ---------------------------------
 Private Sub SetCheckboxes()
 On Error GoTo Err_Handler
@@ -1503,15 +1519,17 @@ On Error GoTo Err_Handler
 '------------------------
     Dim dNoDataTransect As Scripting.Dictionary
     
-    'transect level values
-    Set dNoDataTransect = GetNoDataCollected(Me.Transect_ID, "T")
+    If Not IsNull(Me.Transect_ID) Then
+        'transect level values
+        Set dNoDataTransect = GetNoDataCollected(Me.Transect_ID, "T")
+        
+        With dNoDataTransect
+            Me.cbxNoShrubs.Value = .item("1mBelt-Shrub")
+            Me.cbxNoSeedlings.Value = .item("1mBelt-TreeSeedling")
+            Me.cbxNoExotics.Value = .item("1mBelt-Exotics")
+        End With
+    End If
     
-    With dNoDataTransect
-        Me.cbxNoShrubs.Value = .item("1mBelt-Shrub")
-        Me.cbxNoSeedlings.Value = .item("1mBelt-TreeSeedling")
-        Me.cbxNoExotics.Value = .item("1mBelt-Exotics")
-    End With
-
     'set the yellow rectangles visible if no records
     Me.rctNoSeedlings.Visible = (Me.fsub_LP_Seedling.Form.RecordsetClone.RecordCount = 0)
     Me.rctNoShrubs.Visible = (Me.fsub_LP_Belt_Shrub.Form.RecordsetClone.RecordCount = 0)

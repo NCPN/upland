@@ -13,10 +13,10 @@ Begin Form
     Width =7320
     DatasheetFontHeight =9
     ItemSuffix =51
-    Left =6180
-    Top =8640
-    Right =13665
-    Bottom =12915
+    Left =885
+    Top =1485
+    Right =8370
+    Bottom =4245
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -361,15 +361,16 @@ Begin Form
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species, Nativity FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Spe"
-                        "cies) Is Not Null)) AND Nativity = 'NonNative' ORDER BY qryU_Top_Canopy.LU_Code;"
+                    RowSource ="(SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Can"
+                        "opy.Utah_Species,   qryU_Top_Canopy.Nativity FROM qryU_Top_Canopy WHERE (((qryU_"
+                        "Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Nativity])='NonNati"
+                        "ve')) ORDER BY qryU_Top_Canopy.LU_Code)  UNION ALL  (SELECT tbl_Unknown_Species."
+                        "Unknown_Code, tbl_Unknown_Species.Unknown_Code,   tbl_Unknown_Species.Plant_Type"
+                        ", NULL AS Nativity FROM tbl_Unknown_Species ORDER BY tbl_Unknown_Species.Unknown"
+                        "_Code);"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
-
-                End
-                Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =6300

@@ -22,13 +22,13 @@ Begin Form
     Width =16200
     DatasheetFontHeight =10
     ItemSuffix =200
-    Left =3915
-    Top =5610
-    Right =20115
-    Bottom =20070
+    Left =3132
+    Top =2064
+    Right =19332
+    Bottom =14424
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20081016093629-468700110.912323' AND [Event_ID]='20160203131946-8"
-        "62619340.419769'"
+    Filter ="[Location_ID]='20110510103513-226866006.851196' AND [Event_ID]='20160307215852-6"
+        "47821187.973022'"
     RecSrcDt = Begin
         0x171e359b4cb5e440
     End
@@ -158,10 +158,10 @@ Begin Form
                     FontName ="Arial"
                     ControlTipText ="Close the data entry form"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     ColumnHeads = NotDefault
@@ -308,20 +308,20 @@ Begin Form
                     Begin
                         Begin Page
                             OverlapFlags =87
-                            Left =135
-                            Top =1620
-                            Width =15765
-                            Height =12720
+                            Left =108
+                            Top =1572
+                            Width =15816
+                            Height =12792
                             Name ="pgPhotos"
                             Caption ="Photos"
-                            LayoutCachedLeft =135
-                            LayoutCachedTop =1620
-                            LayoutCachedWidth =15900
-                            LayoutCachedHeight =14340
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =108
+                            LayoutCachedTop =1572
+                            LayoutCachedWidth =15924
+                            LayoutCachedHeight =14364
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -339,21 +339,21 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =215
-                            Left =135
-                            Top =1620
-                            Width =15765
-                            Height =12720
+                            Left =108
+                            Top =1572
+                            Width =15816
+                            Height =12792
                             Name ="Point Intercept"
                             EventProcPrefix ="Point_Intercept"
                             Caption ="Point Intercept"
-                            LayoutCachedLeft =135
-                            LayoutCachedTop =1620
-                            LayoutCachedWidth =15900
-                            LayoutCachedHeight =14340
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =108
+                            LayoutCachedTop =1572
+                            LayoutCachedWidth =15924
+                            LayoutCachedHeight =14364
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -371,27 +371,27 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =215
-                            Left =135
-                            Top =1620
-                            Width =15765
-                            Height =12720
+                            Left =108
+                            Top =1572
+                            Width =15816
+                            Height =12792
                             Name ="pgBeltShrub"
                             Caption ="1-m Belt"
-                            LayoutCachedLeft =135
-                            LayoutCachedTop =1620
-                            LayoutCachedWidth =15900
-                            LayoutCachedHeight =14340
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =108
+                            LayoutCachedTop =1572
+                            LayoutCachedWidth =15924
+                            LayoutCachedHeight =14364
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
                                     Left =360
                                     Top =1680
                                     Width =15534
-                                    Height =9180
+                                    Height =9504
                                     Name ="frm_LP_Belt_Transect"
                                     SourceObject ="Form.frm_LP_Belt_Transect"
                                     LinkChildFields ="Event_ID"
@@ -400,26 +400,26 @@ Begin Form
                                     LayoutCachedLeft =360
                                     LayoutCachedTop =1680
                                     LayoutCachedWidth =15894
-                                    LayoutCachedHeight =10860
+                                    LayoutCachedHeight =11184
                                 End
                             End
                         End
                         Begin Page
                             OverlapFlags =215
-                            Left =135
-                            Top =1620
-                            Width =15765
-                            Height =12720
+                            Left =108
+                            Top =1572
+                            Width =15816
+                            Height =12792
                             Name ="pgGaps"
                             Caption ="Gap Intercepts"
-                            LayoutCachedLeft =135
-                            LayoutCachedTop =1620
-                            LayoutCachedWidth =15900
-                            LayoutCachedHeight =14340
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =108
+                            LayoutCachedTop =1572
+                            LayoutCachedWidth =15924
+                            LayoutCachedHeight =14364
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -439,20 +439,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =215
-                            Left =135
-                            Top =1620
-                            Width =15765
-                            Height =12720
+                            Left =108
+                            Top =1572
+                            Width =15816
+                            Height =12792
                             Name ="pgSS"
                             Caption ="Soil Stability"
-                            LayoutCachedLeft =135
-                            LayoutCachedTop =1620
-                            LayoutCachedWidth =15900
-                            LayoutCachedHeight =14340
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =108
+                            LayoutCachedTop =1572
+                            LayoutCachedWidth =15924
+                            LayoutCachedHeight =14364
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -471,20 +471,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =215
-                            Left =135
-                            Top =1620
-                            Width =15765
-                            Height =12720
+                            Left =108
+                            Top =1572
+                            Width =15816
+                            Height =12792
                             Name ="pgSLIntercept"
                             Caption ="SL Intercept"
-                            LayoutCachedLeft =135
-                            LayoutCachedTop =1620
-                            LayoutCachedWidth =15900
-                            LayoutCachedHeight =14340
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =108
+                            LayoutCachedTop =1572
+                            LayoutCachedWidth =15924
+                            LayoutCachedHeight =14364
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -503,19 +503,19 @@ Begin Form
                         Begin Page
                             OverlapFlags =215
                             Left =60
-                            Top =1620
-                            Width =15840
-                            Height =12720
+                            Top =1572
+                            Width =15864
+                            Height =12792
                             Name ="pgOT"
                             Caption ="Overstory Trees"
                             LayoutCachedLeft =60
-                            LayoutCachedTop =1620
-                            LayoutCachedWidth =15900
-                            LayoutCachedHeight =14340
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedTop =1572
+                            LayoutCachedWidth =15924
+                            LayoutCachedHeight =14364
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -831,22 +831,21 @@ Begin Form
                             End
                         End
                         Begin Page
-                            Visible = NotDefault
                             OverlapFlags =247
-                            Left =135
-                            Top =1620
-                            Width =15765
-                            Height =12720
+                            Left =108
+                            Top =1572
+                            Width =15816
+                            Height =12792
                             Name ="pgFuels"
                             Caption ="Fuels"
-                            LayoutCachedLeft =135
-                            LayoutCachedTop =1620
-                            LayoutCachedWidth =15900
-                            LayoutCachedHeight =14340
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =108
+                            LayoutCachedTop =1572
+                            LayoutCachedWidth =15924
+                            LayoutCachedHeight =14364
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin TextBox
                                     OverlapFlags =247
@@ -968,20 +967,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =135
-                            Top =1620
-                            Width =15765
-                            Height =12720
+                            Left =108
+                            Top =1572
+                            Width =15816
+                            Height =12792
                             Name ="pgImpact"
                             Caption ="Site Impact"
-                            LayoutCachedLeft =135
-                            LayoutCachedTop =1620
-                            LayoutCachedWidth =15900
-                            LayoutCachedHeight =14340
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =108
+                            LayoutCachedTop =1572
+                            LayoutCachedWidth =15924
+                            LayoutCachedHeight =14364
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -1004,20 +1003,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =247
-                            Left =135
-                            Top =1620
-                            Width =15765
-                            Height =12720
+                            Left =108
+                            Top =1572
+                            Width =15816
+                            Height =12792
                             Name ="pgCoords_and_loc_details"
                             Caption ="Presence Cover Density"
-                            LayoutCachedLeft =135
-                            LayoutCachedTop =1620
-                            LayoutCachedWidth =15900
-                            LayoutCachedHeight =14340
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =108
+                            LayoutCachedTop =1572
+                            LayoutCachedWidth =15924
+                            LayoutCachedHeight =14364
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -1149,10 +1148,10 @@ Begin Form
                     Caption ="Change Plot Coordinates"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1197,10 +1196,10 @@ Begin Form
                     Caption ="Add/Edit Comments"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                     Overlaps =1
                 End
                 Begin TextBox
@@ -1280,7 +1279,7 @@ Option Explicit
 ' =================================
 ' MODULE:       frm_Data_Entry
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.02
 ' Description:  data functions & procedures specific to field data entry
 '
 ' Data source:  tbl_Locations
@@ -1294,6 +1293,8 @@ Option Explicit
 '               BLC - 2/3/2016 - 1.01 - added documentation, enabled seedlings & saplings for
 '                                       oak scrub plots, revised to use transect overlay vs.
 '                                       message box
+'               BLC - 3/7/2016 - 1.02 - fixed bugs setting "Overstory-Census" vs. "OverstoryTree-Census",
+'                                       and leaving rctNoShrubs visible for oak scrub plots
 ' =================================
 
 ' ---------------------------------
@@ -1354,6 +1355,8 @@ End Sub
 '   RDB, unknown   - ?
 '   BLC, 2/2/2016  - added documentation, enabled seedling & saplings data entry
 '                    for oak scrub plots
+'   BLC, 3/7/2016  - fixed issues where NoShrubs rectangle showed for oak scrub plots when
+'                    it should not & enabling pgFuels for woodland & forest plots
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
@@ -1396,46 +1399,97 @@ On Error GoTo Err_Handler
 
     Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Enabled = (Me.frm_Site_Impact.Form.Controls("Disturbance Details").Form.RecordsetClone.RecordCount = 0)
     Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Enabled = (Me.frm_Site_Impact.Form.Controls("fsub_Dist_Exotic").Form.RecordsetClone.RecordCount = 0)
-'------------------------
 
+    '---------------------------------------
+    ' display proper tabs based on veg type
+    '---------------------------------------
     Dim Veg_Type As Variant
 
-  ' Display the proper tabs
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me!Location_ID & "'")
     
-    'forest and oak scrub plots
-    If Not IsNull(Veg_Type) And (Veg_Type = "forest" Or Veg_Type = "oak scrub") Then
-      Me!pgSS.Visible = False
-      Me!pgGaps.Visible = False
+    ' forest: hide pgSS & pgGaps
+    ' grass/shrubland: hide pgFuels
+    ' oak scrub: hide  pgSS & pgGaps, LP Belt Transect NoShrubs, pgFuels; expose SLIntercept
+    ' woodland: hide gaps & OT Census crown class
+    
+    Me!pgSLIntercept.Visible = False
+    
+    If Not IsNull(Veg_Type) Then
+        Select Case Veg_Type
+            
+            Case "forest"
+                'hide SS & Gaps
+                Me!pgSS.Visible = False
+                Me!pgGaps.Visible = False
+            
+            Case "oak scrub" 'oak plots
+                'hide SS & Gaps
+                Me!pgSS.Visible = False
+                Me!pgGaps.Visible = False
+                
+                'hide shrubs
+                Me.frm_LP_Belt_Transect.Controls("cbxNoShrubs").Visible = False
+                Me.frm_LP_Belt_Transect.Controls("lblNoShrubs").Visible = False
+                Me.frm_LP_Belt_Transect.Controls("rctNoShrubs").Visible = False
+            
+                'hide fuels
+                Me!pgFuels.Visible = False
+            
+                'expose SL intercept for oak scrub
+                Me!pgSLIntercept.Visible = True
+            
+            Case "grass/shrubland"
+                'hide fuels
+                Me!pgFuels.Visible = False
+                
+            Case "woodland"
+                'hide gaps & OT Census crown class
+                Me!pgGaps.Visible = False
+                Me!fsub_OT_Census.Form!Crown_Class.Visible = False
+                Me!fsub_OT_Census.Form!Crown_Class_Label.Visible = False
+
+        End Select
     End If
     
-    'grass/shrubland and oak scrub plots
-    If Not IsNull(Veg_Type) And (Veg_Type = "grassland/shrubland" Or Veg_Type = "oak scrub") Then
-      Me!pgFuels.Visible = False
-    End If
-    
-    'oak scrub plots
-    If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
-        'Me!pgBeltShrub.Visible = False  1m belt tab visible for oak plots - 2/15/2011 - RD
-        
-        '------------------------------------------------
-        'enabled saplings for oak plots - 2/2/2016 - BLC
-        '------------------------------------------------
-        'Me!fsub_OT_Tree_Saplings.Form.visible = False
-        'Me!Sapling_Date.visible = False
-        'Me!Sapling_Observer.visible = False
-        'Me!Sapling_Recorder.visible = False
-        '------------------------------------------------
-    Else
-      Me!pgSLIntercept.Visible = False
-    End If
-    
-    'woodland plots
-    If Not IsNull(Veg_Type) And Veg_Type = "woodland" Then
-      Me!pgGaps.Visible = False
-      Me!fsub_OT_Census.Form!Crown_Class.Visible = False
-      Me!fsub_OT_Census.Form!Crown_Class_Label.Visible = False
-    End If
+'    'forest and oak scrub plots
+'    If Not IsNull(Veg_Type) And (Veg_Type = "forest" Or Veg_Type = "oak scrub") Then
+'      Me!pgSS.Visible = False
+'      Me!pgGaps.Visible = False
+'    End If
+'
+'    'grass/shrubland and oak scrub plots
+'    If Not IsNull(Veg_Type) And (Veg_Type = "grassland/shrubland" Or Veg_Type = "oak scrub") Then
+'      Me!pgFuels.Visible = False
+'    End If
+'
+'    'oak scrub plots
+'    If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
+'        'Me!pgBeltShrub.Visible = False  1m belt tab visible for oak plots - 2/15/2011 - RD
+'
+'        '------------------------------------------------
+'        'enabled saplings for oak plots - 2/2/2016 - BLC
+'        '------------------------------------------------
+'        'Me!fsub_OT_Tree_Saplings.Form.visible = False
+'        'Me!Sapling_Date.visible = False
+'        'Me!Sapling_Observer.visible = False
+'        'Me!Sapling_Recorder.visible = False
+'        '------------------------------------------------
+'
+'        'hide shrubs for oak plots
+'        Me.frm_LP_Belt_Transect.Controls("cbxNoShrubs").Visible = False
+'        Me.frm_LP_Belt_Transect.Controls("lblNoShrubs").Visible = False
+'        Me.frm_LP_Belt_Transect.Controls("rctNoShrubs").Visible = False
+'
+'    Else
+'      Me!pgSLIntercept.Visible = False
+'    End If
+'
+'    'woodland plots
+'    If Not IsNull(Veg_Type) And Veg_Type = "woodland" Then
+'      Me!pgGaps.Visible = False
+'      Me!fsub_OT_Census.Form!Crown_Class.Visible = False
+'      Me!fsub_OT_Census.Form!Crown_Class_Label.Visible = False
+'    End If
     
     If Not IsNull(Me!txtStart_date) Then
       If IsNull(Me!Fuels_Date) Then
@@ -1568,12 +1622,13 @@ End Sub
 ' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/3/2016  - initial version
+'   BLC, 3/7/2016  - fixed bug setting "Overstory-Census" vs. "OverstoryTree-Census"
 ' ---------------------------------
 Private Sub cbxNoCensus_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Overstory-Census", Abs(Me.cbxNoCensus.Value)
+    SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Census", Abs(Me.cbxNoCensus.Value)
 
 Exit_Handler:
     Exit Sub
@@ -1766,6 +1821,8 @@ End Sub
 '   RDB, unknown   - ?
 '   BLC, 2/3/2016  - added documentation, revised transect number reminder to
 '                    use transect number overlay
+'   BLC, 3/7/2016  - fixed Error #2467 expression entered refers to object that is closed or does not exist when
+'                    tabbing to 1-m belt transect
 ' ---------------------------------
 Private Sub pgTabs_Change()
 On Error GoTo Err_Handler
@@ -1773,30 +1830,35 @@ On Error GoTo Err_Handler
   Dim TransectNumber As Integer
 
   Select Case Me.pgTabs.Value  'RDB: Display a silly message so the field crews know where they are
-    Case 1
+    Case 0 'Tab: Photos
+    Case 1 'Tab: Point Intercept
       If IsNull(Me!frm_LP_Transect.Form!Transect) Then
         TransectNumber = 1
       Else
         TransectNumber = Me!frm_LP_Transect.Form!Transect
       End If
-    Case 2
+    Case 2 'Tab: 1-m Belt
       If IsNull(Me!frm_LP_Belt_Transect.Form!Transect) Then
         TransectNumber = 1
       Else
         TransectNumber = Me!frm_LP_Belt_Transect.Form!Transect
       End If
-    Case 3
+    Case 3 'Tab: Gap Intercepts
       If IsNull(Me!frm_Canopy_Transect.Form!Transect) Then
         TransectNumber = 1
       Else
         TransectNumber = Me!frm_Canopy_Transect.Form!Transect
       End If
-    Case 5
+    Case 4 'Tab: Soil Stability
+    Case 5 'Tab:
       If IsNull(Me!frm_SL_Transect.Form!Transect) Then
         TransectNumber = 1
       Else
         TransectNumber = Me!frm_SL_Transect.Form!Transect
       End If
+    Case 6 'Tab:
+    Case 7 'Tab: Overstory Trees
+    Case 8 'Tab: Site Impact
   End Select
   
     '---------------------------
@@ -1813,7 +1875,7 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Form_Load[Form_frm_Data_Entry])"
+            "Error encountered (#" & Err.Number & " - pgTabs_Change[Form_frm_Data_Entry])"
     End Select
     Resume Exit_Handler
 End Sub

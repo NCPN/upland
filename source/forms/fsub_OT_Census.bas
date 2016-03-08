@@ -14,10 +14,10 @@ Begin Form
     Width =14160
     DatasheetFontHeight =9
     ItemSuffix =35
-    Left =-8595
-    Top =7830
-    Right =5880
-    Bottom =11325
+    Left =540
+    Top =7404
+    Right =15024
+    Bottom =10908
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x12768bfd3188e340
@@ -241,10 +241,10 @@ Begin Form
                     LayoutCachedTop =300
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =600
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -260,10 +260,10 @@ Begin Form
                     LayoutCachedTop =660
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =960
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Label
                     OverlapFlags =85
@@ -403,6 +403,7 @@ Begin Form
                         "py.Utah_Species, Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Spe"
                         "cies) Is Not Null)) AND Lifeform = 'Tree' ORDER BY qryU_Top_Canopy.LU_Code;"
                     ColumnWidths ="0;2160;4320"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin ComboBox
@@ -456,10 +457,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -504,6 +505,8 @@ Option Explicit
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, set checkbox for no species found
+'               BLC - 3/8/2016 - 1.02 - added Species_GotFocus() to refresh species lists to include
+'                                       new unknowns
 ' =================================
 
 ' ---------------------------------
@@ -540,6 +543,37 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_OT_Census])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 8, 2016 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 3/8/2016  - initial version
+' ---------------------------------
+Private Sub Species_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_OT_Census])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -691,16 +725,6 @@ Private Sub Crown_Health_AfterUpdate()
   End If
 End Sub
 
-Private Sub DBH_AfterUpdate()
-
-  If Not IsNull(Me!DBH) And IsNull(Me!DType) Then
-    Me!DType = "dbh"   ' Default type indicator to dbh
-  ElseIf IsNull(Me!DBH) Then
-    Me!DType = Null    ' If they null out dbh, then type gets nulled
-  End If
-
-End Sub
-
 Private Sub DBH_BeforeUpdate(Cancel As Integer)
   Dim Veg_Type As Variant
   Dim DBH_Limit As Integer
@@ -727,6 +751,16 @@ Private Sub DBH_BeforeUpdate(Cancel As Integer)
     SendKeys "{ESC}"
   End If
   
+End Sub
+
+Private Sub DBH_AfterUpdate()
+
+  If Not IsNull(Me!DBH) And IsNull(Me!DType) Then
+    Me!DType = "dbh"   ' Default type indicator to dbh
+  ElseIf IsNull(Me!DBH) Then
+    Me!DType = Null    ' If they null out dbh, then type gets nulled
+  End If
+
 End Sub
 
 ' ---------------------------------

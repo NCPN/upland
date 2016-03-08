@@ -18,10 +18,10 @@ Begin Form
     Width =10080
     DatasheetFontHeight =9
     ItemSuffix =52
-    Left =2145
-    Top =5295
-    Right =12225
-    Bottom =12480
+    Left =5004
+    Top =2244
+    Right =15084
+    Bottom =9432
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{F4CE3EAB-E640-4E3F-8343-008314E75F39}'"
     RecSrcDt = Begin
@@ -865,10 +865,10 @@ Begin Form
                     LayoutCachedTop =6540
                     LayoutCachedWidth =6795
                     LayoutCachedHeight =6870
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -911,10 +911,10 @@ Begin Form
                     ControlTipText ="Zoom Caption"
                     Picture ="zoomin.bmp"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                     Overlaps =1
                 End
                 Begin TextBox
@@ -1110,10 +1110,10 @@ Begin Form
                     LayoutCachedTop =6540
                     LayoutCachedWidth =4935
                     LayoutCachedHeight =6870
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -1124,7 +1124,6 @@ Begin Form
                     Width =1320
                     TabIndex =42
                     Name ="tbxRecorderID"
-                    ControlSource ="Recorder"
 
                     LayoutCachedLeft =7380
                     LayoutCachedTop =1260
@@ -1194,7 +1193,7 @@ Option Explicit
 ' =================================
 ' MODULE:       frm_Location_Modify
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.02
 ' Description:  data functions & procedures specific to location modifications
 '
 ' Source/date:  John R. Boetsch, June 2006
@@ -1202,6 +1201,9 @@ Option Explicit
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/4/2016 - 1.01 - added documentation, adjusted form to require
 '                                       recorder before save button enabled
+'               BLC - 3/7/2016 - 1.02 - fix so person making changes is *not* the recorder
+'                                       recorder is person who does site characterization (one-time event)
+'                                       this needs to be whomever made changes (multiple time event)
 ' =================================
 
 ' ---------------------------------
@@ -1216,11 +1218,26 @@ Option Explicit
 ' Adapted:      Bonnie Campbell, February 4, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/4/2016  - initial version
+'   BLC, 3/7/2016  - changed tbxRecorderID from pulling [Recorder] from site characterization
+'                    to TempVars.item("User_ID") which is set from frm_Set_Defaults
 ' ---------------------------------
 Private Sub Form_Load()
     On Error GoTo Err_Handler
        
+    'set the default value for tbxRecorderID
+    'value must be set here not in control data source as =[TempVars].[Item]("User_ID")
+    'otherwise tbxRecorderID_AfterUpdate() will fail to update with
+    'Error #2448 You can't assign a value to this object.
+    tbxRecorderID = TempVars.item("User_ID")
+    
     'set the value based on tbl_Locations.Recorder for this record
+    '-----------------------------------------------------------------------
+    ' NOTE:
+    '   tbl_Locations.Recorder is NOT the recorder for site characterization
+    '   it is the person making changes on this form which usually is the
+    '   user selected when beginning the enter/edit data (frm_Set_Defaults)
+    '   determine who this is via TempVars.item("User_ID")
+    '-----------------------------------------------------------------------
     If Not IsNull(Me.tbxRecorderID.Value) Then
         Me.Recorder.Value = Me.tbxRecorderID.Value
     End If
@@ -1516,8 +1533,8 @@ End Sub
 Private Sub Recorder_AfterUpdate()
 On Error GoTo Err_Handler
     
-    'set the bound tbxRecorderID to update the record
-    Me.tbxRecorderID.Value = Me.Recorder.Value
+    'set the tbxRecorderID to update the record
+    Me.tbxRecorderID = Me.Recorder.Value
 
     'enable save when recorder isn't null
     If Not IsNull(Me!Recorder) Then
@@ -1587,5 +1604,4 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - btnClose_Click[Form_frm_Location_Modify])"
     End Select
     Resume Exit_Handler
-    
 End Sub

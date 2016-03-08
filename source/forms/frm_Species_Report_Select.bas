@@ -15,8 +15,8 @@ Begin Form
     ItemSuffix =12
     Left =2535
     Top =300
-    Right =9735
-    Bottom =6045
+    Right =9480
+    Bottom =5790
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x1385341e7574e340
@@ -226,6 +226,8 @@ End Sub
 '                     replaced by the table temp_Sp_Rpt_by_Park_Rollup, added temporary revision
 '                     of qry_Sp_Rpt_by_Park_Complete_Create_Table for filtered data (added appropriate
 '                     WHERE clause) & reverted to original qdf SQL after running (for next time)
+'   BLC - 3/7/2016  - fixed error where strSQL was not being replaced w/ strSQLNew causing report
+'                     to ignore change in WHERE clause/prior data & not regenerate the proper report data set
 ' ---------------------------------
 Private Sub Button_rpt_by_Park_Click()
 On Error GoTo Err_Handler
@@ -276,7 +278,7 @@ On Error GoTo Err_Handler
         
         'replace ORDER with WHERE clause + ORDER
         strSQLNew = Replace(strSQL, "ORDER", " WHERE " & strWhere & " ORDER")
-        qdf.sql = strSQL
+        qdf.sql = strSQLNew 'was strSQL
     End If
     
     'update underlying table (temp_Sp_Rpt_by_Park_Complete is used in report's underlying table temp_Sp_Rpt_by_Park_Rollup)
@@ -295,7 +297,7 @@ On Error GoTo Err_Handler
     'SysCmd acSysCmdSetStatus, " "
     Screen.MousePointer = 1 'Standard Cursor
     
-Exit_Sub:
+Exit_Handler:
     Set qdf = Nothing
     Exit Sub
 
@@ -305,7 +307,7 @@ Err_Handler:
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Button_rpt_by_Park_Click[Form_frm_Species_Report_Select])"
     End Select
-    Resume Exit_Sub
+    Resume Exit_Handler
 End Sub
 
 Private Sub Park_Code_AfterUpdate()
