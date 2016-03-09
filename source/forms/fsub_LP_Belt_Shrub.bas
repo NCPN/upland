@@ -625,18 +625,19 @@ Begin Form
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species, qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top"
-                        "_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifeform]) In ('Shrub'"
-                        ",'DwarfShrub')) AND ((qryU_Top_Canopy.[tlu_NCPN_Plants].[Master_PLANT_Code]) Not"
-                        " In (SELECT Master_PLANT_Code FROM ShrubExclusionList))) ORDER BY qryU_Top_Canop"
-                        "y.LU_Code;"
+                    RowSource ="(SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Can"
+                        "opy.Utah_Species, qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE (((qryU_To"
+                        "p_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.Lifeform) In ('Shrub',"
+                        "'DwarfShrub')) AND ((qryU_Top_Canopy.tlu_NCPN_Plants.Master_PLANT_Code) Not In ("
+                        "SELECT Master_PLANT_Code FROM ShrubExclusionList))) ORDER BY qryU_Top_Canopy.LU_"
+                        "Code)  UNION ALL  (SELECT tbl_Unknown_Species.Unknown_Code, tbl_Unknown_Species."
+                        "Unknown_Code,   tbl_Unknown_Species.Plant_Type, tbl_Unknown_Species.Plant_Type A"
+                        "S Lifeform FROM tbl_Unknown_Species WHERE tbl_Unknown_Species.Plant_Type IN ('Sh"
+                        "rub','Other') OR tbl_Unknown_Species.Plant_Type IS NULL ORDER BY tbl_Unknown_Spe"
+                        "cies.Unknown_Code);"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
-
-                End
-                Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =10080

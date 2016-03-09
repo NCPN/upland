@@ -351,12 +351,15 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_LP_Exotic
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.02
 ' Description:  data functions & procedures specific to LP exotic perennial monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/09/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/9/2016 - 1.01 - added documentation, checkbox for no species found
+'               BLC - 3/7/2016 - 1.02 - based on H. Thomas comments, this form is
+'                                        no longer in use & should no longer be updated,
+'                                        however it will remain to handle views of prior data
 ' =================================
 
 ' ---------------------------------

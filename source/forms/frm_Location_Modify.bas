@@ -18,10 +18,10 @@ Begin Form
     Width =10080
     DatasheetFontHeight =9
     ItemSuffix =52
-    Left =5004
-    Top =2244
-    Right =15084
-    Bottom =9432
+    Left =4110
+    Top =2910
+    Right =14190
+    Bottom =10095
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{F4CE3EAB-E640-4E3F-8343-008314E75F39}'"
     RecSrcDt = Begin
@@ -865,10 +865,10 @@ Begin Form
                     LayoutCachedTop =6540
                     LayoutCachedWidth =6795
                     LayoutCachedHeight =6870
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -911,10 +911,10 @@ Begin Form
                     ControlTipText ="Zoom Caption"
                     Picture ="zoomin.bmp"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                     Overlaps =1
                 End
                 Begin TextBox
@@ -1110,10 +1110,10 @@ Begin Form
                     LayoutCachedTop =6540
                     LayoutCachedWidth =4935
                     LayoutCachedHeight =6870
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin TextBox
                     Visible = NotDefault

@@ -221,14 +221,16 @@ Begin Form
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species, Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Spe"
-                        "cies) Is Not Null)) AND Lifeform = 'Tree' ORDER BY qryU_Top_Canopy.LU_Code;"
+                        "py.Utah_Species, qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top"
+                        "_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifeform])='Tree')) OR"
+                        "DER BY qryU_Top_Canopy.LU_Code  UNION ALL (SELECT tbl_Unknown_Species.Unknown_Co"
+                        "de, tbl_Unknown_Species.Unknown_Code, tbl_Unknown_Species.Plant_Type, tbl_Unknow"
+                        "n_Species.Plant_Type AS Lifeform FROM tbl_Unknown_Species WHERE tbl_Unknown_Spec"
+                        "ies.Plant_Type IN ('Tree','Other') OR tbl_Unknown_Species.Plant_Type IS NULL ORD"
+                        "ER BY tbl_Unknown_Species.Unknown_Code);"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
-
-                End
-                Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =3600

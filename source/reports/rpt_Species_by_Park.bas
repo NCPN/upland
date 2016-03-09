@@ -11,15 +11,15 @@ Begin Report
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
-    Width =9360
+    Width =9300
     DatasheetFontHeight =9
     ItemSuffix =18
-    Left =270
-    Top =210
-    Right =10620
-    Bottom =10590
+    Left =1815
+    Top =3540
+    Right =9690
+    Bottom =11430
     DatasheetGridlinesColor =12632256
-    OrderBy ="[temp_Sp_Rpt_by_Park_Rollup].[PlotParkSpecies]"
+    OrderBy ="[temp_Sp_Rpt_by_Park_Rollup].[ParkPlotSpecies]"
     RecSrcDt = Begin
         0xfe3370dd0da1e440
     End
@@ -27,7 +27,7 @@ Begin Report
     Caption ="rpt_Species_by_Park"
     DatasheetFontName ="Arial"
     PrtMip = Begin
-        0xa0050000a0050000a0050000a005000000000000902400004a01000001000000 ,
+        0xa0050000a0050000a0050000a005000000000000442500004a01000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
     FilterOnLoad =0
@@ -369,7 +369,7 @@ Begin Report
                     IMESentenceMode =3
                     Left =5940
                     Top =60
-                    Width =3360
+                    Width =3312
                     Height =270
                     TabIndex =1
                     Name ="tbxYear"
@@ -378,7 +378,7 @@ Begin Report
 
                     LayoutCachedLeft =5940
                     LayoutCachedTop =60
-                    LayoutCachedWidth =9300
+                    LayoutCachedWidth =9252
                     LayoutCachedHeight =330
                 End
                 Begin TextBox
@@ -456,10 +456,3 @@ Begin Report
         End
     End
 End
-CodeBehindForm
-Attribute VB_GlobalNameSpace = False
-Attribute VB_Creatable = True
-Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = False
-Option Compare Database
-Option Explicit

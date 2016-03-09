@@ -15,9 +15,9 @@ Begin Form
     DatasheetFontHeight =9
     ItemSuffix =31
     Left =1920
-    Top =3144
-    Right =13584
-    Bottom =6648
+    Top =3150
+    Right =13590
+    Bottom =6645
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x384b3f359387e340
@@ -195,7 +195,7 @@ Begin Form
                     LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OverlapFlags =95
+                    OverlapFlags =223
                     TextAlign =2
                     Left =5730
                     Top =960
@@ -255,10 +255,10 @@ Begin Form
                     LayoutCachedTop =120
                     LayoutCachedWidth =9045
                     LayoutCachedHeight =420
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -275,10 +275,10 @@ Begin Form
                     LayoutCachedTop =540
                     LayoutCachedWidth =9045
                     LayoutCachedHeight =840
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =215
@@ -459,14 +459,16 @@ Begin Form
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species, Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Spe"
-                        "cies) Is Not Null)) AND Lifeform = 'Tree' ORDER BY qryU_Top_Canopy.LU_Code;"
+                        "py.Utah_Species,   qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE (((qryU_T"
+                        "op_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifeform])='Tree')) "
+                        "ORDER BY qryU_Top_Canopy.LU_Code  UNION ALL  (SELECT tbl_Unknown_Species.Unknown"
+                        "_Code, tbl_Unknown_Species.Unknown_Code,   tbl_Unknown_Species.Plant_Type, tbl_U"
+                        "nknown_Species.Plant_Type AS Lifeform FROM tbl_Unknown_Species WHERE tbl_Unknown"
+                        "_Species.Plant_Type IN ('Tree','Other') OR tbl_Unknown_Species.Plant_Type IS NUL"
+                        "L ORDER BY tbl_Unknown_Species.Unknown_Code);"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
-
-                End
-                Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =7740
@@ -479,10 +481,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -502,10 +504,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -519,10 +521,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -536,10 +538,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -553,10 +555,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -570,10 +572,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

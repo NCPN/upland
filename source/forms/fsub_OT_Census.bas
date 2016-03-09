@@ -14,10 +14,10 @@ Begin Form
     Width =14160
     DatasheetFontHeight =9
     ItemSuffix =35
-    Left =540
-    Top =7404
-    Right =15024
-    Bottom =10908
+    Left =105
+    Top =2265
+    Right =13380
+    Bottom =4875
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x12768bfd3188e340
@@ -241,10 +241,10 @@ Begin Form
                     LayoutCachedTop =300
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =600
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -260,10 +260,10 @@ Begin Form
                     LayoutCachedTop =660
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =960
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -400,13 +400,15 @@ Begin Form
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species, Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Spe"
-                        "cies) Is Not Null)) AND Lifeform = 'Tree' ORDER BY qryU_Top_Canopy.LU_Code;"
+                        "py.Utah_Species,   qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE (((qryU_T"
+                        "op_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifeform])='Tree')) "
+                        "ORDER BY qryU_Top_Canopy.LU_Code  UNION ALL  (SELECT tbl_Unknown_Species.Unknown"
+                        "_Code, tbl_Unknown_Species.Unknown_Code,   tbl_Unknown_Species.Plant_Type, tbl_U"
+                        "nknown_Species.Plant_Type AS Lifeform FROM tbl_Unknown_Species WHERE tbl_Unknown"
+                        "_Species.Plant_Type IN ('Tree','Other') OR tbl_Unknown_Species.Plant_Type IS NUL"
+                        "L ORDER BY tbl_Unknown_Species.Unknown_Code);"
                     ColumnWidths ="0;2160;4320"
                     OnGotFocus ="[Event Procedure]"
-
-                End
-                Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
@@ -457,10 +459,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
