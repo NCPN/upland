@@ -27,7 +27,7 @@ Begin Report
     Caption ="rpt_Species_by_Park"
     DatasheetFontName ="Arial"
     PrtMip = Begin
-        0xa0050000a0050000a0050000a005000000000000442500004a01000001000000 ,
+        0xa0050000a0050000a0050000a005000000000000542400004a01000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
     FilterOnLoad =0
@@ -116,6 +116,7 @@ Begin Report
             Begin
                 Begin Label
                     BackStyle =1
+                    OverlapFlags =81
                     TextAlign =2
                     TextFontFamily =34
                     Width =9300
@@ -136,6 +137,7 @@ Begin Report
             Name ="PageHeaderSection"
             Begin
                 Begin Label
+                    OverlapFlags =81
                     TextFontFamily =34
                     Left =60
                     Top =300
@@ -153,6 +155,7 @@ Begin Report
                     ThemeFontIndex =1
                 End
                 Begin Label
+                    OverlapFlags =211
                     TextAlign =2
                     TextFontFamily =34
                     Left =240
@@ -170,6 +173,7 @@ Begin Report
                     LayoutCachedHeight =810
                 End
                 Begin Label
+                    OverlapFlags =81
                     TextFontFamily =34
                     Left =3480
                     Top =780
@@ -186,6 +190,7 @@ Begin Report
                     LayoutCachedHeight =1050
                 End
                 Begin Label
+                    OverlapFlags =81
                     TextAlign =2
                     TextFontFamily =34
                     Left =7500
@@ -203,6 +208,7 @@ Begin Report
                     LayoutCachedHeight =1050
                 End
                 Begin Label
+                    OverlapFlags =211
                     TextFontFamily =34
                     Left =660
                     Top =780
@@ -241,6 +247,7 @@ Begin Report
                 End
                 Begin Line
                     BorderWidth =2
+                    OverlapFlags =81
                     Left =60
                     Top =1080
                     Width =9240
@@ -266,6 +273,7 @@ Begin Report
                     HideDuplicates = NotDefault
                     CanGrow = NotDefault
                     CanShrink = NotDefault
+                    OverlapFlags =81
                     TextAlign =1
                     TextFontFamily =34
                     IMESentenceMode =3
@@ -299,6 +307,7 @@ Begin Report
             AlternateBackColor =8965045
             Begin
                 Begin TextBox
+                    OverlapFlags =81
                     TextAlign =2
                     TextFontFamily =34
                     IMESentenceMode =3
@@ -317,6 +326,7 @@ Begin Report
                     ThemeFontIndex =1
                 End
                 Begin TextBox
+                    OverlapFlags =81
                     TextAlign =2
                     TextFontFamily =34
                     IMESentenceMode =3
@@ -345,6 +355,7 @@ Begin Report
             AlternateBackColor =12566463
             Begin
                 Begin TextBox
+                    OverlapFlags =81
                     TextFontFamily =34
                     IMESentenceMode =3
                     Left =2940
@@ -364,6 +375,7 @@ Begin Report
                 Begin TextBox
                     CanGrow = NotDefault
                     CanShrink = NotDefault
+                    OverlapFlags =81
                     TextAlign =2
                     TextFontFamily =34
                     IMESentenceMode =3
@@ -382,6 +394,7 @@ Begin Report
                     LayoutCachedHeight =330
                 End
                 Begin TextBox
+                    OverlapFlags =81
                     TextFontFamily =34
                     IMESentenceMode =3
                     Left =600
@@ -406,6 +419,7 @@ Begin Report
             Name ="PageFooterSection"
             Begin
                 Begin TextBox
+                    OverlapFlags =81
                     TextAlign =1
                     IMESentenceMode =3
                     Left =60
@@ -422,6 +436,7 @@ Begin Report
                     LayoutCachedHeight =390
                 End
                 Begin TextBox
+                    OverlapFlags =81
                     TextAlign =3
                     IMESentenceMode =3
                     Left =4740
@@ -438,6 +453,7 @@ Begin Report
                     LayoutCachedHeight =390
                 End
                 Begin Line
+                    OverlapFlags =83
                     Left =60
                     Top =120
                     Width =9240
