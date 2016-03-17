@@ -12,10 +12,10 @@ Begin Form
     Width =8280
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =960
-    Top =3270
-    Right =8445
-    Bottom =6030
+    Left =3048
+    Top =7032
+    Right =11712
+    Bottom =9756
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x718d0abeb2a7e340
@@ -169,10 +169,10 @@ Begin Form
                     LayoutCachedTop =60
                     LayoutCachedWidth =5985
                     LayoutCachedHeight =360
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -189,10 +189,10 @@ Begin Form
                     LayoutCachedTop =480
                     LayoutCachedWidth =5985
                     LayoutCachedHeight =780
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -265,10 +265,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin TextBox
                     EnterKeyBehavior = NotDefault
@@ -310,10 +310,10 @@ Begin Form
                     ControlTipText ="Zoom Caption"
                     Picture ="zoomin.bmp"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -341,6 +341,7 @@ Option Explicit
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, no data collected integration
+'               BLC - 3/16/2016 - 1.02 - added species refresh for unknowns
 ' =================================
 
 ' ---------------------------------
@@ -420,7 +421,24 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles exotic species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 3/16/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
 Private Sub Species_GotFocus()
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
 
     If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
       Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date

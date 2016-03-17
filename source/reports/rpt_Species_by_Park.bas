@@ -2,6 +2,7 @@
 VersionRequired =20
 Begin Report
     LayoutForPrint = NotDefault
+    FilterOn = NotDefault
     OrderByOn = NotDefault
     DefaultView =0
     TabularFamily =0
@@ -13,12 +14,14 @@ Begin Report
     GridY =24
     Width =9300
     DatasheetFontHeight =9
-    ItemSuffix =18
-    Left =1815
-    Top =3540
-    Right =9690
-    Bottom =11430
+    ItemSuffix =23
+    Left =1425
+    Top =3270
+    Right =11625
+    Bottom =10755
     DatasheetGridlinesColor =12632256
+    Filter ="Unit_Code = 'CEBR' AND Plot_ID = 102 AND Len((Utah_species+' - '+CStr(SpeciesYea"
+        "rs))) > Len(Replace((Utah_species+' - '+CStr(SpeciesYears)), CStr(2014), ''))"
     OrderBy ="[temp_Sp_Rpt_by_Park_Rollup].[ParkPlotSpecies]"
     RecSrcDt = Begin
         0xfe3370dd0da1e440
@@ -116,7 +119,6 @@ Begin Report
             Begin
                 Begin Label
                     BackStyle =1
-                    OverlapFlags =81
                     TextAlign =2
                     TextFontFamily =34
                     Width =9300
@@ -137,7 +139,6 @@ Begin Report
             Name ="PageHeaderSection"
             Begin
                 Begin Label
-                    OverlapFlags =81
                     TextFontFamily =34
                     Left =60
                     Top =300
@@ -155,7 +156,6 @@ Begin Report
                     ThemeFontIndex =1
                 End
                 Begin Label
-                    OverlapFlags =211
                     TextAlign =2
                     TextFontFamily =34
                     Left =240
@@ -173,7 +173,6 @@ Begin Report
                     LayoutCachedHeight =810
                 End
                 Begin Label
-                    OverlapFlags =81
                     TextFontFamily =34
                     Left =3480
                     Top =780
@@ -190,7 +189,6 @@ Begin Report
                     LayoutCachedHeight =1050
                 End
                 Begin Label
-                    OverlapFlags =81
                     TextAlign =2
                     TextFontFamily =34
                     Left =7500
@@ -208,7 +206,6 @@ Begin Report
                     LayoutCachedHeight =1050
                 End
                 Begin Label
-                    OverlapFlags =211
                     TextFontFamily =34
                     Left =660
                     Top =780
@@ -247,7 +244,6 @@ Begin Report
                 End
                 Begin Line
                     BorderWidth =2
-                    OverlapFlags =81
                     Left =60
                     Top =1080
                     Width =9240
@@ -256,6 +252,28 @@ Begin Report
                     LayoutCachedTop =1080
                     LayoutCachedWidth =9300
                     LayoutCachedHeight =1080
+                End
+                Begin TextBox
+                    FontItalic = NotDefault
+                    TextAlign =3
+                    TextFontFamily =34
+                    IMESentenceMode =3
+                    Left =7080
+                    Top =300
+                    Width =2160
+                    Height =270
+                    FontSize =9
+                    FontWeight =500
+                    TabIndex =1
+                    Name ="tbxFilter"
+                    ControlSource ="=IIf(Len([OpenArgs])>0,\"Filter:  \" & [OpenArgs],\"\")"
+                    FontName ="Calibri"
+
+                    LayoutCachedLeft =7080
+                    LayoutCachedTop =300
+                    LayoutCachedWidth =9240
+                    LayoutCachedHeight =570
+                    ThemeFontIndex =1
                 End
             End
         End
@@ -273,7 +291,6 @@ Begin Report
                     HideDuplicates = NotDefault
                     CanGrow = NotDefault
                     CanShrink = NotDefault
-                    OverlapFlags =81
                     TextAlign =1
                     TextFontFamily =34
                     IMESentenceMode =3
@@ -307,7 +324,6 @@ Begin Report
             AlternateBackColor =8965045
             Begin
                 Begin TextBox
-                    OverlapFlags =81
                     TextAlign =2
                     TextFontFamily =34
                     IMESentenceMode =3
@@ -326,7 +342,6 @@ Begin Report
                     ThemeFontIndex =1
                 End
                 Begin TextBox
-                    OverlapFlags =81
                     TextAlign =2
                     TextFontFamily =34
                     IMESentenceMode =3
@@ -355,7 +370,6 @@ Begin Report
             AlternateBackColor =12566463
             Begin
                 Begin TextBox
-                    OverlapFlags =81
                     TextFontFamily =34
                     IMESentenceMode =3
                     Left =2940
@@ -375,7 +389,6 @@ Begin Report
                 Begin TextBox
                     CanGrow = NotDefault
                     CanShrink = NotDefault
-                    OverlapFlags =81
                     TextAlign =2
                     TextFontFamily =34
                     IMESentenceMode =3
@@ -394,7 +407,6 @@ Begin Report
                     LayoutCachedHeight =330
                 End
                 Begin TextBox
-                    OverlapFlags =81
                     TextFontFamily =34
                     IMESentenceMode =3
                     Left =600
@@ -419,7 +431,6 @@ Begin Report
             Name ="PageFooterSection"
             Begin
                 Begin TextBox
-                    OverlapFlags =81
                     TextAlign =1
                     IMESentenceMode =3
                     Left =60
@@ -436,7 +447,6 @@ Begin Report
                     LayoutCachedHeight =390
                 End
                 Begin TextBox
-                    OverlapFlags =81
                     TextAlign =3
                     IMESentenceMode =3
                     Left =4740
@@ -453,7 +463,6 @@ Begin Report
                     LayoutCachedHeight =390
                 End
                 Begin Line
-                    OverlapFlags =83
                     Left =60
                     Top =120
                     Width =9240

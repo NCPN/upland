@@ -20,8 +20,8 @@ Begin Form
     Width =11520
     DatasheetFontHeight =9
     ItemSuffix =46
-    Left =4365
-    Top =2805
+    Left =4368
+    Top =2808
     Right =14640
     Bottom =11100
     DatasheetGridlinesColor =12632256
@@ -465,10 +465,10 @@ Begin Form
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                     Overlaps =1
                 End
                 Begin TextBox

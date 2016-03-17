@@ -13,10 +13,10 @@ Begin Form
     Width =8099
     DatasheetFontHeight =9
     ItemSuffix =13
-    Left =3000
-    Top =4755
-    Right =11385
-    Bottom =11595
+    Left =2868
+    Top =4776
+    Right =11268
+    Bottom =11628
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xe3687ae93287e340
@@ -172,10 +172,10 @@ Begin Form
                     Caption ="Master Lookup"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -187,10 +187,10 @@ Begin Form
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -298,10 +298,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -379,12 +379,41 @@ Err_Handler:
     Resume Exit_Procedure
 End Sub
 
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 8, 2016 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 3/8/2016  - initial version
+' ---------------------------------
 Private Sub Species_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+
     If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
       Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
       Me.Parent.Refresh   ' Force save of transect record
     End If
-   
+
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_SLI_Gaps])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 Private Sub Shrub_Start_BeforeUpdate(Cancel As Integer)

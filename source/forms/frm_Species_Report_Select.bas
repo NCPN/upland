@@ -12,11 +12,11 @@ Begin Form
     GridX =24
     GridY =24
     DatasheetFontHeight =9
-    ItemSuffix =12
-    Left =1095
+    ItemSuffix =13
+    Left =1092
     Top =300
-    Right =8295
-    Bottom =6045
+    Right =8292
+    Bottom =6048
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x1385341e7574e340
@@ -69,6 +69,7 @@ Begin Form
                     RowSource ="SELECT qry_Parks.Unit_Code FROM qry_Parks; "
                     ColumnWidths ="525"
                     AfterUpdate ="[Event Procedure]"
+                    OnChange ="[Event Procedure]"
 
                     Begin
                         Begin Label
@@ -95,10 +96,10 @@ Begin Form
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     OverlapFlags =85
@@ -151,12 +152,13 @@ Begin Form
                     Caption ="Report by Park"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
+                    Enabled = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
                     Left =4155
@@ -166,8 +168,7 @@ Begin Form
                     ColumnInfo ="\"\";\"\";\"3\";\"2\""
                     Name ="Plot"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT tbl_Locations.Plot_ID FROM tbl_Locations WHERE (((tbl_Locations.Unit_Code"
-                        ")=\"cany\")) ORDER BY tbl_Locations.Plot_ID; "
+                    RowSource ="SELECT Plot_ID FROM tbl_Locations WHERE Unit_Code = 'CARE' ORDER BY Plot_ID"
                     ColumnWidths ="420"
                     OnGotFocus ="[Event Procedure]"
 
@@ -183,6 +184,21 @@ Begin Form
                             Caption ="Select a plot if desired"
                         End
                     End
+                End
+                Begin Label
+                    FontItalic = NotDefault
+                    OverlapFlags =85
+                    Left =5040
+                    Top =1800
+                    Width =1740
+                    Height =420
+                    ForeColor =16711680
+                    Name ="lblPlotHint"
+                    Caption ="Park selection required to select a plot."
+                    LayoutCachedLeft =5040
+                    LayoutCachedTop =1800
+                    LayoutCachedWidth =6780
+                    LayoutCachedHeight =2220
                 End
             End
         End
@@ -209,6 +225,7 @@ Option Explicit
 '               BLC - 3/8/2016 - 1.03 - fixed old data refresh issue (Button_rpt_by_Park_Click),
 '                                       added documentation & error handling to other subroutines
 '               BLC - 3/9/2016 - 1.04 - added primary key & index to improve report performance (Button_rpt_by_Park_Click)
+'               BLC - 3/16/2016 - 1.05 - added enabling plot dropdown when park is chosen (Park_Code_AfterUpdate, Park_Code_Change)
 ' =================================
 
 ' ---------------------------------
@@ -224,9 +241,12 @@ Option Explicit
 ' Revisions:
 '   RD - ?          - initial version
 '   BLC - 3/8/2016  - added documentation & error handling
+'   BLC - 3/16/2016 - deprecated but not removed - the park should now always be selected since plot is disabled until
+'                     park is chosen, as a result the park code "You must select a park first." should never be called
 ' ---------------------------------
 Private Sub Plot_GotFocus()
 On Error GoTo Err_Handler
+
   If IsNull(Me!Park_Code) Then
     MsgBox "You must select a park first."
     Me!Park_Code.SetFocus
@@ -245,6 +265,45 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
+' SUB:          Park_Code_Change
+' Description:  Contains actions occuring after changing park code
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/16/2016 - initial version
+' ---------------------------------
+Private Sub Park_Code_Change()
+On Error GoTo Err_Handler
+
+  'plot dropdown should be disabled (default)
+  Me!Plot.Enabled = False
+  Me.Refresh
+  
+  If Not IsNull(Me!Park_Code) Then
+    Me!Plot.RowSource = "SELECT Plot_ID FROM tbl_Locations WHERE Unit_Code = '" & Me!Park_Code & "' ORDER BY Plot_ID"
+    Me!Plot.Requery
+    'enable plot dropdown
+    Me!Plot.Enabled = True
+  End If
+  
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Park_Code_AfterUpdate[Form_frm_Species_Report_Select])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
 ' SUB:          Park_Code_AfterUpdate
 ' Description:  Contains actions occuring after updating park code
 ' Assumptions:  -
@@ -257,6 +316,7 @@ End Sub
 ' Revisions:
 '   RD - ?          - initial version
 '   BLC - 3/8/2016  - added documentation & error handling
+'   BLC - 3/16/2016 - enabled plot dropdown when park code is selected (otherwise it's disabled)
 ' ---------------------------------
 Private Sub Park_Code_AfterUpdate()
 On Error GoTo Err_Handler
@@ -264,6 +324,8 @@ On Error GoTo Err_Handler
   If Not IsNull(Me!Park_Code) Then
     Me!Plot.RowSource = "SELECT Plot_ID FROM tbl_Locations WHERE Unit_Code = '" & Me!Park_Code & "' ORDER BY Plot_ID"
     Me!Plot.Requery
+    'enable plot dropdown
+    Me!Plot.Enabled = True
   End If
   
 Exit_Handler:
@@ -288,6 +350,8 @@ End Sub
 ' References:
 '   Juan Soto, October 31, 2011
 '   https://accessexperts.com/blog/2011/10/31/more-alter-table-sql-statement-help/
+'   Aiken, December 3, 2014
+'   http://stackoverflow.com/questions/19369132/declare-and-initialize-string-array-in-vba
 ' Source/date:  Russ DenBleyker, unknown - for NCPN tools
 ' Adapted:      -
 ' Revisions:
@@ -307,6 +371,11 @@ End Sub
 '                     report generation time dropped from ~5min -> ~48sec for 18212 results across all parks/years,
 '                     added additional query/table statusbar messaging
 '                     n.b. status bar messages are superceded by app Run Query, etc. (fix later)
+'   BLC - 3/16/2016 - fix issue resulting in parameter error #3474 data type mismatch in criteria expression
+'                     due to where clause in existing qry_Sp_Rpt_by_Park_Complete_Create_Table which was:
+'                     WHERE Len(SpeciesYears) > Len(Replace(SpeciesYears, CStr(2014), ''))
+'                     remove it and leave existing ORDER BY clause
+'                     added report filter display via OpenArgs
 ' ---------------------------------
 Private Sub Button_rpt_by_Park_Click()
 On Error GoTo Err_Handler
@@ -316,32 +385,77 @@ On Error GoTo Err_Handler
     
     Screen.MousePointer = 11 'Hour Glass
 
-    Dim strWhere As String
+    Dim strFilter As String, strWhere As String, strParkWhere As String, strPlotWhere As String, strYrWhere As String, strSpeciesYear As String
     Dim stDocName As String
 
     'defaults
+    strFilter = ""
     strWhere = ""
+    strParkWhere = ""
+    strPlotWhere = ""
+    strYrWhere = ""
 
     stDocName = "rpt_Species_by_Park"
+    
     ' Set where condition if needed
     If (IsNull(Me!Park_Code) + IsNull(Me!Visit_Date) + IsNull(Me!Plot)) > -3 Then
+      
+      'park
       If Not IsNull(Me!Park_Code) Then
-        strWhere = "Unit_Code = '" & Me!Park_Code & "'"
-        If Not IsNull(Me!Plot) Then
-          strWhere = strWhere & " And Plot_ID = " & Me!Plot
-        End If
-        If Not IsNull(Me!Visit_Date) Then
-          'strWhere = strWhere & " AND Visit_Year = " & Me!Visit_Date
-          'strWhere = strWhere & " AND " & Me!Visit_Date & " IN (replace(SpeciesYears, '|', ','))"
-          'strWhere = strWhere & " AND " & Me!Visit_Date & " LIKE SpeciesYears"
-          strWhere = strWhere & " AND Len(SpeciesYears) > Len(Replace(SpeciesYears, CStr(" & Me!Visit_Date & "), ''))"
-        End If
-      Else
-        'strWhere = "Visit_Year = " & Me!Visit_Date
-        'strWhere = Me!Visit_Date & " IN (replace(SpeciesYears, '|', ','))"
-        'WHERE Len(SpeciesYears) > Len(Replace(SpeciesYears, CStr(2014), ''));
-        strWhere = "Len(SpeciesYears) > Len(Replace(SpeciesYears, CStr(" & Me!Visit_Date & "), ''))"
+        strParkWhere = "Unit_Code = '" & Me!Park_Code & "'"
+        strFilter = Me!Park_Code
       End If
+      
+      'plot --> NOTE: assumes UI will not allow plot selection w/o park
+      If Not IsNull(Me!Plot) Then
+        strPlotWhere = "Plot_ID = " & Me!Plot
+        strFilter = strFilter & "- plot #" & Me!Plot
+      End If
+      
+      'year
+      If Not IsNull(Me!Visit_Date) Then
+'        strYrWhere = "Len(SpeciesYear) > Len(Replace(SpeciesYear, CStr(" & Me!Visit_Date & "), ''))"
+        '(qry_Sp_Rpt_All.Utah_Species+"-"+CStr(qry_Sp_Rpt_All.Year)) AS SpeciesYear
+        strSpeciesYear = "(qry_Sp_Rpt_All.Utah_Species+' - '+CStr(qry_Sp_Rpt_All.Year))"
+        strYrWhere = "Len(" & strSpeciesYear & ") > Len(Replace(" & strSpeciesYear & ", CStr(" & Me!Visit_Date & "), ''))"
+        
+        'set filter display
+        Select Case Len(strFilter)
+            Case 0 'year only
+                strFilter = CStr(Me!Visit_Date)
+            Case 4 'park only
+                strFilter = strFilter & "-" & CStr(Me!Visit_Date)
+            Case Is > 4 'park & plot
+                strFilter = Replace(strFilter, "-", "-" & CStr(Me!Visit_Date) & " ")
+        End Select
+      
+      Else
+        'clear extra "-" for park & plot filter
+        strFilter = Replace(strFilter, "-", "")
+      End If
+      
+      'prepare where using string array & PrepareWhereClause
+      Dim ary() As String
+      ary = Split(strParkWhere & ";" & strPlotWhere & ";" & strYrWhere, ";")
+      strWhere = PrepareWhereClause(ary)
+      
+'      If Not IsNull(Me!Park_Code) Then
+'        strWhere = "Unit_Code = '" & Me!Park_Code & "'"
+'        If Not IsNull(Me!Plot) Then
+'          strWhere = strWhere & " And Plot_ID = " & Me!Plot
+'        End If
+'        If Not IsNull(Me!Visit_Date) Then
+'          'strWhere = strWhere & " AND Visit_Year = " & Me!Visit_Date
+'          'strWhere = strWhere & " AND " & Me!Visit_Date & " IN (replace(SpeciesYears, '|', ','))"
+'          'strWhere = strWhere & " AND " & Me!Visit_Date & " LIKE SpeciesYears"
+'          strWhere = strWhere & " AND Len(SpeciesYear) > Len(Replace(SpeciesYear, CStr(" & Me!Visit_Date & "), ''))"
+'        End If
+'      Else
+'        'strWhere = "Visit_Year = " & Me!Visit_Date
+'        'strWhere = Me!Visit_Date & " IN (replace(SpeciesYears, '|', ','))"
+'        'WHERE Len(SpeciesYears) > Len(Replace(SpeciesYears, CStr(2014), ''));
+'        strWhere = "Len(SpeciesYear) > Len(Replace(SpeciesYear, CStr(" & Me!Visit_Date & "), ''))"
+'      End If
     End If
     
     'retrieve querydef
@@ -350,7 +464,21 @@ On Error GoTo Err_Handler
     
     Set qdf = CurrentDb.QueryDefs("qry_Sp_Rpt_by_Park_Complete_Create_Table")
     strSQL = qdf.sql
-    
+
+'SELECT DISTINCT
+'qry_Sp_Rpt_All.Unit_Code,
+'qry_Sp_Rpt_All.Year,
+'qry_Sp_Rpt_All.Plot_ID,
+'qry_Sp_Rpt_All.Master_Family,
+'qry_Sp_Rpt_All.Utah_Species,
+'(qry_Sp_Rpt_All.Utah_Species+"-"+CStr(qry_Sp_Rpt_All.Year)) AS SpeciesYear,
+'(qry_Sp_Rpt_All.Unit_Code+"-"+CStr(qry_Sp_Rpt_All.Plot_ID)+"-"+CStr(qry_Sp_Rpt_All.Utah_Species)) AS ParkPlotSpecies,
+'(qry_Sp_Rpt_All.Unit_Code+"-"+CStr(qry_Sp_Rpt_All.Utah_Species)) AS ParkSpecies,
+'(qry_Sp_Rpt_All.Unit_Code+"-"+CStr(qry_Sp_Rpt_All.Plot_ID)) AS ParkPlot INTO temp_Sp_Rpt_by_Park_Complete
+'FROM qry_Sp_Rpt_All
+'WHERE Len(SpeciesYears) > Len(Replace(SpeciesYears, CStr(2014), ''))
+'ORDER BY qry_Sp_Rpt_All.Unit_Code, qry_Sp_Rpt_All.Plot_ID, qry_Sp_Rpt_All.Master_Family, qry_Sp_Rpt_All.Utah_Species;
+
     'update the SQL if parameters exist
     If Len(strWhere) > 0 Then
         Dim iOrderBy As Integer
@@ -404,9 +532,15 @@ On Error GoTo Err_Handler
     'Application.Echo False, "Preparing report..."
     'Application.Echo True, ""
     
-    'open report
-    DoCmd.OpenReport stDocName, acViewPreview, , strWhere
-
+    'translate SQL Where for rollup --> SpeciesYear = SpeciesYears, ,qry_Sp_Rpt_All.Year = SpeciesYears, qry_Sp_Rpt_All.Utah_species = "Utah.species"
+    Dim aryText() As String
+    aryText = Split("SpeciesYear|SpeciesYears||qry_Sp_Rpt_All.Year|SpeciesYears||qry_Sp_Rpt_All.Utah_species|Utah_species", "||")
+    strWhere = ReplaceMulti(strWhere, aryText)
+    'strWhere = Replace(strWhere, Replace(strSpeciesYear, "SpeciesYear", "SpeciesYears"), "SpeciesYears")
+    
+    'open report --> strWhere = WHERE clause filter, strFilter = display for filter if present
+    DoCmd.OpenReport stDocName, acViewPreview, , strWhere, acWindowNormal, strFilter
+    
     SysCmd acSysCmdSetStatus, "Report complete."
     
     Screen.MousePointer = 1 'Standard Cursor

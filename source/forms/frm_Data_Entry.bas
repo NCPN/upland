@@ -22,19 +22,19 @@ Begin Form
     Width =16200
     DatasheetFontHeight =10
     ItemSuffix =200
-    Left =3132
+    Left =3384
     Top =2064
-    Right =19332
+    Right =19584
     Bottom =14424
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20110510103513-226866006.851196' AND [Event_ID]='20160307215852-6"
-        "47821187.973022'"
+    Filter ="[Location_ID]='{0C2FD861-803D-480A-A376-718ADEF73E00}' AND [Event_ID]='201603162"
+        "04623-579518616.199493'"
     RecSrcDt = Begin
         0x171e359b4cb5e440
     End
     RecordSource ="qfrm_DataEntry"
     Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event - Filter "
-        "by sampling event"
+        "by sampling event - Filter by sampling event"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
@@ -1295,6 +1295,7 @@ Option Explicit
 '                                       message box
 '               BLC - 3/7/2016 - 1.02 - fixed bugs setting "Overstory-Census" vs. "OverstoryTree-Census",
 '                                       and leaving rctNoShrubs visible for oak scrub plots
+'               BLC - 3/16/2016 - 1.03 - fixed bug where Fuels tab was visible on grassland/shrubland plots
 ' =================================
 
 ' ---------------------------------
@@ -1357,6 +1358,8 @@ End Sub
 '                    for oak scrub plots
 '   BLC, 3/7/2016  - fixed issues where NoShrubs rectangle showed for oak scrub plots when
 '                    it should not & enabling pgFuels for woodland & forest plots
+'   BLC, 3/16/2016 - fixed bugs where: Fuels tab was visible on grassland/shrubland plots,
+'                    SL Intercept tab visible for other than oak scrub plots
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
@@ -1407,11 +1410,13 @@ On Error GoTo Err_Handler
 
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me!Location_ID & "'")
     
+    ' all (exceptions below): hide SLIntercept
     ' forest: hide pgSS & pgGaps
-    ' grass/shrubland: hide pgFuels
+    ' grassland/shrubland: hide pgFuels
     ' oak scrub: hide  pgSS & pgGaps, LP Belt Transect NoShrubs, pgFuels; expose SLIntercept
     ' woodland: hide gaps & OT Census crown class
     
+    'defaults
     Me!pgSLIntercept.Visible = False
     
     If Not IsNull(Veg_Type) Then
@@ -1422,6 +1427,10 @@ On Error GoTo Err_Handler
                 Me!pgSS.Visible = False
                 Me!pgGaps.Visible = False
             
+            Case "grassland/shrubland"
+                'hide fuels
+                Me!pgFuels.Visible = False
+                            
             Case "oak scrub" 'oak plots
                 'hide SS & Gaps
                 Me!pgSS.Visible = False
@@ -1438,10 +1447,6 @@ On Error GoTo Err_Handler
                 'expose SL intercept for oak scrub
                 Me!pgSLIntercept.Visible = True
             
-            Case "grass/shrubland"
-                'hide fuels
-                Me!pgFuels.Visible = False
-                
             Case "woodland"
                 'hide gaps & OT Census crown class
                 Me!pgGaps.Visible = False

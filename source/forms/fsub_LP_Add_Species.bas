@@ -14,10 +14,10 @@ Begin Form
     Width =4320
     DatasheetFontHeight =9
     ItemSuffix =19
-    Left =-4470
-    Top =4245
-    Right =-135
-    Bottom =8490
+    Left =1392
+    Top =5388
+    Right =5736
+    Bottom =9648
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xa04a1bb3ac8ae340
@@ -134,10 +134,10 @@ Begin Form
                     Caption ="Master Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -151,10 +151,10 @@ Begin Form
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -227,10 +227,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End

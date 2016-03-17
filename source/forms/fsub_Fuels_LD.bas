@@ -19,10 +19,10 @@ Begin Form
     Width =12960
     DatasheetFontHeight =9
     ItemSuffix =140
-    Left =-8295
-    Top =3690
-    Right =4560
-    Bottom =8085
+    Left =1800
+    Top =3264
+    Right =14664
+    Bottom =7668
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9ff2d503acd4e340
@@ -151,11 +151,13 @@ Begin Form
                     Height =300
                     ColumnWidth =2310
                     TabIndex =20
+                    BackColor =62207
                     Name ="2Litter_A"
                     ControlSource ="2Litter_A"
                     StatusBarText ="Litter depth at 2 meter point for transect A in centimeters"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
+                    OnChange ="[Event Procedure]"
                     EventProcPrefix ="Ctl2Litter_A"
 
                     Begin
@@ -2016,10 +2018,10 @@ Begin Form
                     FontName ="Arial"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -2034,10 +2036,10 @@ Begin Form
                     FontName ="Arial"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -2052,10 +2054,10 @@ Begin Form
                     FontName ="Arial"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -2070,10 +2072,10 @@ Begin Form
                     FontName ="Arial"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -2088,10 +2090,10 @@ Begin Form
                     FontName ="Arial"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -2104,10 +2106,10 @@ Begin Form
                     Caption ="Edit Transect"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -2126,6 +2128,146 @@ Attribute VB_Exposed = False
 Option Compare Database
 Option Explicit
 
+' =================================
+' MODULE:       Form_fsub_Fuels_LD
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to adding litter & duff fuels data
+'
+' Source/date:  Russ DenBleyker, unknown
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 3/16/2016 - 1.01 - added documentation, litter & duff change & form load
+'                                        subroutines for handling litter & duff value highlighting (backcolor = #FFF200, yellow)
+' =================================
+
+' ---------------------------------
+' SUB:          Form_Load
+' Description:  handles form loading actions
+' Parameters:
+' Returns:      -
+' Assumptions:  -
+' Throws:       none
+' References:   -
+' Source/date:  Russ DenBleyker, unknown
+' Revisions:
+'       RDB, unknown - initial version
+'       BLC, 3/16/2016 - added error handling & documentation
+' ---------------------------------
+Private Sub Form_Load()
+On Error GoTo Err_Handler
+
+    Dim db As DAO.Database
+    Dim Locations As DAO.Recordset
+    Dim strSQL As String
+    
+    ' Set up necessary fields
+    Set db = CurrentDb
+    strSQL = "SELECT * FROM [tbl_Locations] WHERE [Location_ID] = '" & Me.Parent!Location_ID & "'"
+    Set Locations = db.OpenRecordset(strSQL)
+    
+    Me!Bearing_A = Locations!Bearing_A
+    Me!Bearing_B = Locations!Bearing_B
+    Me!Bearing_C = Locations!Bearing_C
+    Me!Bearing_D = Locations!Bearing_D
+    Me!Slope_A = Locations!Slope_A
+    Me!Slope_B = Locations!Slope_B
+    Me!Slope_C = Locations!Slope_C
+    Me!Slope_D = Locations!Slope_D
+    
+    'set values for oak scrub
+    If Not IsNull(Locations!Vegetation_Type) And Locations!Vegetation_Type = "oak scrub" Then
+      Me!Bearing_D_Label.Visible = False
+      Me!Bearing_D.Visible = False
+      Me!Slope_D.Visible = False
+      Me!DI_1HR.Visible = False
+      Me!DI_10HR.Visible = False
+      Me!DI_100HR.Visible = False
+      Me!LabelD10.Visible = False
+      Me!Label120.Caption = " "
+      Me!Litter_D_Label.Caption = " "
+      Me!Duff_D_Label.Caption = " "
+      Me!Duff_D2.Enabled = False
+      Me!Duff_D2.Locked = True
+      Me!Litter_D2.Enabled = False
+      Me!Litter_D2.Locked = True
+      Me!Duff_D4.Enabled = False
+      Me!Duff_D4.Locked = True
+      Me!Litter_D4.Enabled = False
+      Me!Litter_D4.Locked = True
+      Me!Duff_D6.Enabled = False
+      Me!Duff_D6.Locked = True
+      Me!Litter_D6.Enabled = False
+      Me!Litter_D6.Locked = True
+      Me!Duff_D8.Enabled = False
+      Me!Duff_D8.Locked = True
+      Me!Litter_D8.Enabled = False
+      Me!Litter_D8.Locked = True
+      Me!Duff_D10.Enabled = False
+      Me!Duff_D10.Locked = True
+      Me!Litter_D10.Enabled = False
+      Me!Litter_D10.Locked = True
+      Me!Duff_D12.Enabled = False
+      Me!Duff_D12.Locked = True
+      Me!Litter_D12.Enabled = False
+      Me!Litter_D12.Locked = True
+      Me!Duff_D14.Enabled = False
+      Me!Duff_D14.Locked = True
+      Me!Litter_D14.Enabled = False
+      Me!Litter_D14.Locked = True
+    End If
+    Locations.Close
+    Set Locations = Nothing
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_Fuels_LD])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+
+
+'=========================
+' Litter & Duff Changes
+'=========================
+
+' ---------------------------------
+' SUB:          Ctl2Litter_A_Change
+' Description:  handles ctl2Litter_A actions
+' Parameters:
+' Returns:      -
+' Assumptions:  -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 2016
+' Revisions:    BLC, 3/16/2016 - initial version
+' ---------------------------------
+Private Sub Ctl2Litter_A_Change()
+On Error GoTo Err_Handler
+
+    'clear highlight if not null
+    If Not IsNull(Ctl2Litter_A) Then
+        Ctl2Litter_A.BackColor = RGB(255, 255, 255)
+    End If
+    
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Ctl2Litter_A_Change[Form_fsub_Fuels_LD])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+
 ' ---------------------------------
 ' SUB:          Form_KeyDown
 ' Description:  handles form's key down actions
@@ -2143,7 +2285,7 @@ On Error GoTo Err_Handler
     'capture ESC & let user determine if fields should be cleared
     CaptureEscapeKey KeyCode
     
-Exit_Sub:
+Exit_Handler:
     Exit Sub
 
 Err_Handler:
@@ -2152,8 +2294,12 @@ Err_Handler:
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Form_KeyDown[Form_fsub_Fuels_LD])"
     End Select
-    Resume Exit_Sub
+    Resume Exit_Handler
 End Sub
+
+'======================
+' KeyDown Events
+'======================
 
 Private Sub Bearing_A_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records
@@ -2187,34 +2333,12 @@ Private Sub Bearing_D_KeyDown(KeyCode As Integer, Shift As Integer)
     End Select
 End Sub
 
-Private Sub ButtonA1_Click()
-  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
-    If IsNull(Screen.PreviousControl.Value) Then
-      Screen.PreviousControl.Value = 1
-    Else
-      Screen.PreviousControl.Value = Screen.PreviousControl.Value + 1
-    End If
-  End If
-  Screen.PreviousControl.SetFocus
-End Sub
-
 Private Sub ButtonA1_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records
   Select Case KeyCode
     Case 33, 34
       KeyCode = 0
     End Select
-End Sub
-
-Private Sub ButtonA5_Click()
-  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
-    If IsNull(Screen.PreviousControl.Value) Then
-      Screen.PreviousControl.Value = 5
-    Else
-      Screen.PreviousControl.Value = Screen.PreviousControl.Value + 5
-    End If
-  End If
-  Screen.PreviousControl.SetFocus
 End Sub
 
 Private Sub ButtonA5_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -2225,40 +2349,12 @@ Private Sub ButtonA5_KeyDown(KeyCode As Integer, Shift As Integer)
     End Select
 End Sub
 
-Private Sub ButtonS1_Click()
-  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
-    If IsNull(Screen.PreviousControl.Value) Then
-      Screen.PreviousControl.Value = 0
-    ElseIf Screen.PreviousControl.Value - 1 < 0 Then
-      MsgBox "Total cannot be negative.", , "Fuels Intercepts"
-      Exit Sub
-    Else
-      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 1
-    End If
-  End If
-  Screen.PreviousControl.SetFocus
-End Sub
-
 Private Sub ButtonS1_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records
   Select Case KeyCode
     Case 33, 34
       KeyCode = 0
     End Select
-End Sub
-
-Private Sub ButtonS5_Click()
-  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
-    If IsNull(Screen.PreviousControl.Value) Then
-      Screen.PreviousControl.Value = 0
-    ElseIf Screen.PreviousControl.Value - 5 < 0 Then
-      MsgBox "Total cannot be negative.", , "Fuels Intercepts"
-      Exit Sub
-    Else
-      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 5
-    End If
-  End If
-  Screen.PreviousControl.SetFocus
 End Sub
 
 Private Sub ButtonS5_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -2269,13 +2365,6 @@ Private Sub ButtonS5_KeyDown(KeyCode As Integer, Shift As Integer)
     End Select
 End Sub
 
-Private Sub ButtonZero_Click()
-  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
-    Screen.PreviousControl.Value = 0
-  End If
-  Screen.PreviousControl.SetFocus
-End Sub
-
 Private Sub ButtonZero_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records
   Select Case KeyCode
@@ -2283,8 +2372,6 @@ Private Sub ButtonZero_KeyDown(KeyCode As Integer, Shift As Integer)
       KeyCode = 0
     End Select
 End Sub
-
-
 
 Private Sub Ctl100HR_A_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records
@@ -2774,100 +2861,65 @@ Private Sub Duff_D8_KeyDown(KeyCode As Integer, Shift As Integer)
     End Select
 End Sub
 
-Private Sub Form_BeforeInsert(Cancel As Integer)
-    On Error GoTo Err_Handler
-    If IsNull(Me!Event_ID) Then
-      MsgBox "You must enter event information first."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-      GoTo Exit_Procedure
-    End If
-    ' Create the GUID primary key value
-    If IsNull(Me!Fuels_ID) Then
-        If GetDataType("tbl_Fuels", "Fuels_ID") = dbText Then
-            Me!Fuels_ID = fxnGUIDGen
-        End If
-    End If
 
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
+'======================
+' Click Events
+'======================
+Private Sub ButtonA1_Click()
+  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 1
+    Else
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value + 1
+    End If
+  End If
+  Screen.PreviousControl.SetFocus
 End Sub
 
-
-
-Private Sub Form_Load()
-
-  Dim db As DAO.Database
-  Dim Locations As DAO.Recordset
-  Dim strSQL As String
-        
-    On Error GoTo Err_Handler
-    
-    ' Set up necessary fields
-    Set db = CurrentDb
-    strSQL = "SELECT * FROM [tbl_Locations] WHERE [Location_ID] = '" & Me.Parent!Location_ID & "'"
-    Set Locations = db.OpenRecordset(strSQL)
-    Me!Bearing_A = Locations!Bearing_A
-    Me!Bearing_B = Locations!Bearing_B
-    Me!Bearing_C = Locations!Bearing_C
-    Me!Bearing_D = Locations!Bearing_D
-    Me!Slope_A = Locations!Slope_A
-    Me!Slope_B = Locations!Slope_B
-    Me!Slope_C = Locations!Slope_C
-    Me!Slope_D = Locations!Slope_D
-    If Not IsNull(Locations!Vegetation_Type) And Locations!Vegetation_Type = "oak scrub" Then
-      Me!Bearing_D_Label.Visible = False
-      Me!Bearing_D.Visible = False
-      Me!Slope_D.Visible = False
-      Me!DI_1HR.Visible = False
-      Me!DI_10HR.Visible = False
-      Me!DI_100HR.Visible = False
-      Me!LabelD10.Visible = False
-      Me!Label120.Caption = " "
-      Me!Litter_D_Label.Caption = " "
-      Me!Duff_D_Label.Caption = " "
-      Me!Duff_D2.Enabled = False
-      Me!Duff_D2.Locked = True
-      Me!Litter_D2.Enabled = False
-      Me!Litter_D2.Locked = True
-      Me!Duff_D4.Enabled = False
-      Me!Duff_D4.Locked = True
-      Me!Litter_D4.Enabled = False
-      Me!Litter_D4.Locked = True
-      Me!Duff_D6.Enabled = False
-      Me!Duff_D6.Locked = True
-      Me!Litter_D6.Enabled = False
-      Me!Litter_D6.Locked = True
-      Me!Duff_D8.Enabled = False
-      Me!Duff_D8.Locked = True
-      Me!Litter_D8.Enabled = False
-      Me!Litter_D8.Locked = True
-      Me!Duff_D10.Enabled = False
-      Me!Duff_D10.Locked = True
-      Me!Litter_D10.Enabled = False
-      Me!Litter_D10.Locked = True
-      Me!Duff_D12.Enabled = False
-      Me!Duff_D12.Locked = True
-      Me!Litter_D12.Enabled = False
-      Me!Litter_D12.Locked = True
-      Me!Duff_D14.Enabled = False
-      Me!Duff_D14.Locked = True
-      Me!Litter_D14.Enabled = False
-      Me!Litter_D14.Locked = True
+Private Sub ButtonA5_Click()
+  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 5
+    Else
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value + 5
     End If
-    Locations.Close
-    Set Locations = Nothing
+  End If
+  Screen.PreviousControl.SetFocus
+End Sub
 
-Exit_Procedure:
-    Exit Sub
+Private Sub ButtonS1_Click()
+  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 0
+    ElseIf Screen.PreviousControl.Value - 1 < 0 Then
+      MsgBox "Total cannot be negative.", , "Fuels Intercepts"
+      Exit Sub
+    Else
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 1
+    End If
+  End If
+  Screen.PreviousControl.SetFocus
+End Sub
 
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
+Private Sub ButtonS5_Click()
+  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 0
+    ElseIf Screen.PreviousControl.Value - 5 < 0 Then
+      MsgBox "Total cannot be negative.", , "Fuels Intercepts"
+      Exit Sub
+    Else
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 5
+    End If
+  End If
+  Screen.PreviousControl.SetFocus
+End Sub
+
+Private Sub ButtonZero_Click()
+  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
+    Screen.PreviousControl.Value = 0
+  End If
+  Screen.PreviousControl.SetFocus
 End Sub
 
 Private Sub Litter_D10_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -2957,6 +3009,7 @@ Private Sub Slope_D_KeyDown(KeyCode As Integer, Shift As Integer)
       KeyCode = 0
     End Select
 End Sub
+
 Private Sub ButtonTransect_Click()
 On Error GoTo Err_ButtonTransect_Click
 
@@ -2994,4 +3047,27 @@ Err_ButtonTransect_Click:
     MsgBox Err.Description
     Resume Exit_ButtonTransect_Click
     
+End Sub
+
+Private Sub Form_BeforeInsert(Cancel As Integer)
+    On Error GoTo Err_Handler
+    If IsNull(Me!Event_ID) Then
+      MsgBox "You must enter event information first."
+      DoCmd.CancelEvent
+      SendKeys "{ESC}"
+      GoTo Exit_Procedure
+    End If
+    ' Create the GUID primary key value
+    If IsNull(Me!Fuels_ID) Then
+        If GetDataType("tbl_Fuels", "Fuels_ID") = dbText Then
+            Me!Fuels_ID = fxnGUIDGen
+        End If
+    End If
+
+Exit_Procedure:
+    Exit Sub
+
+Err_Handler:
+    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
+    Resume Exit_Procedure
 End Sub

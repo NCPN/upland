@@ -6,6 +6,7 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -18,10 +19,9 @@ Begin Form
     Width =15360
     DatasheetFontHeight =9
     ItemSuffix =70
-    Left =840
-    Top =-576
-    Right =16104
-    Bottom =8652
+    Left =1356
+    Right =16620
+    Bottom =9480
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2518a6c77056e340
@@ -640,7 +640,6 @@ Begin Form
                             End
                         End
                         Begin Page
-                            Visible = NotDefault
                             OverlapFlags =247
                             Left =156
                             Top =840
@@ -926,19 +925,63 @@ Option Explicit
 '   BLC, 2/2/2016  - added documentation, enabled seedlings for oak scrub plots
 '                    (Density tab, pgBeltShrub)
 '   BLC, 3/6/2016  - hide NoShrubs cbx, lbl, & rct for oak scrub plots (Density tab, pgBeltShrub)
+'   BLC, 3/16/2016 - fix bug hiding spherical densiometer tab for all plots (Spherical Densiometer tab, pgDensiometer),
+'                    change to Veg_Type case statements vs. if/then
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
   Dim Veg_Type As Variant
-    Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent!Location_ID & "'")
-    If Not IsNull(Veg_Type) And (Veg_Type = "woodland" Or Veg_Type = "grassland/shrubland") Then
-      Me!pgDensiometer.Visible = False
-    End If
-'    Additional species tab visible for all plots 2/15/2011 RD
-'    If Not IsNull(Veg_Type) And (Veg_Type <> "forest") Then
-'      Me!PgAdd.Visible = False
+  Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent!Location_ID & "'")
+    
+  If Not IsNull(Veg_Type) Then
+    
+    'defaults
+    Me!pgDensiometer.Visible = False
+    Me!fsub_LP_Exotic_Frequency.Form.Visible = True
+    Me!fsub_LP_Exotic_Freq_Oak.Form.Visible = False
+  
+    Select Case Veg_Type
+      Case "forest"
+        'Additional species tab visible for all plots 2/15/2011 RD
+        'Me!PgAdd.Visible = False
+        Me!pgDensiometer.Visible = True
+      
+      Case "grassland/shrubland"
+        'Me!pgDensiometer.Visible = True
+      
+      Case "oak scrub" 'oak plots
+        'Set up correct exotic species frequency form
+        Me!fsub_LP_Exotic_Frequency.Form.Visible = False
+        
+        Me!fsub_LP_Exotic_Freq_Oak.Form.Visible = True
+        'Me!fsub_LP_Add_Species.SetFocus  ' Set focus to richness tab so we can hide belt-shrub tab
+        Me!Visit_Date.SetFocus
+      
+        '------------------------------------------------
+        'enable seedlings for oak plots - 2/2/2016 - BLC
+        'but not shrubs
+        '------------------------------------------------
+        'Me!pgBeltShrub.visible = False
+        Me!fsub_LP_Belt_Shrub.Form.Visible = False
+        'also hide NoShrubs cbx, lbl, & rct
+        Me.cbxNoShrubs.Visible = False
+        Me.lblNoShrubs.Visible = False
+        Me.rctNoShrubs.Visible = False
+        '------------------------------------------------
+      
+      Case "woodland"
+        'Me!pgDensiometer.Visible = True
+    End Select
+  End If
+  
+'    If Not IsNull(Veg_Type) And (Veg_Type = "woodland" Or Veg_Type = "grassland/shrubland") Then
+'      Me!pgDensiometer.Visible = False
 '    End If
+''    Additional species tab visible for all plots 2/15/2011 RD
+''    If Not IsNull(Veg_Type) And (Veg_Type <> "forest") Then
+''      Me!PgAdd.Visible = False
+''    End If
 
 '    No species richness form unless CEBR or TICA plot 1  3/9/2012 RD
     If Me.Parent!Unit_Code = "CEBR" Then
@@ -949,32 +992,32 @@ On Error GoTo Err_Handler
       Me!fsub_LP_Add_Species.Visible = False
     End If
     
-    'Set up correct exotic species frequency form
-    'oak scrub plots
-    If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
-        
-        Me!fsub_LP_Exotic_Frequency.Form.Visible = False
-        
-        Me!fsub_LP_Exotic_Freq_Oak.Form.Visible = True
-        'Me!fsub_LP_Add_Species.SetFocus  ' Set focus to richness tab so we can hide belt-shrub tab
-        Me!Visit_Date.SetFocus
-      
-        '------------------------------------------------
-        'enabled seedlings for oak plots - 2/2/2016 - BLC
-        'but not shrubs
-        '------------------------------------------------
-        'Me!pgBeltShrub.visible = False
-        Me!fsub_LP_Belt_Shrub.Form.Visible = False
-        'also hide NoShrubs cbx, lbl, & rct
-        Me.cbxNoShrubs.Visible = False
-        Me.lblNoShrubs.Visible = False
-        Me.rctNoShrubs.Visible = False
-        '------------------------------------------------
-        Me!pgDensiometer.Visible = False
-    Else
-      Me!fsub_LP_Exotic_Frequency.Form.Visible = True
-      Me!fsub_LP_Exotic_Freq_Oak.Form.Visible = False
-    End If
+'    'Set up correct exotic species frequency form
+'    'oak scrub plots
+'    If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
+'
+'        Me!fsub_LP_Exotic_Frequency.Form.Visible = False
+'
+'        Me!fsub_LP_Exotic_Freq_Oak.Form.Visible = True
+'        'Me!fsub_LP_Add_Species.SetFocus  ' Set focus to richness tab so we can hide belt-shrub tab
+'        Me!Visit_Date.SetFocus
+'
+'        '------------------------------------------------
+'        'enabled seedlings for oak plots - 2/2/2016 - BLC
+'        'but not shrubs
+'        '------------------------------------------------
+'        'Me!pgBeltShrub.visible = False
+'        Me!fsub_LP_Belt_Shrub.Form.Visible = False
+'        'also hide NoShrubs cbx, lbl, & rct
+'        Me.cbxNoShrubs.Visible = False
+'        Me.lblNoShrubs.Visible = False
+'        Me.rctNoShrubs.Visible = False
+'        '------------------------------------------------
+'        Me!pgDensiometer.Visible = False
+'    Else
+'      Me!fsub_LP_Exotic_Frequency.Form.Visible = True
+'      Me!fsub_LP_Exotic_Freq_Oak.Form.Visible = False
+'    End If
 
     'hide exotic perennials (not used)
     Me.cbxNoExoticPerennials.Visible = False

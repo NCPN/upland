@@ -16,10 +16,10 @@ Begin Form
     Width =13980
     DatasheetFontHeight =9
     ItemSuffix =107
-    Left =-4020
-    Top =4215
-    Right =9495
-    Bottom =12330
+    Left =1068
+    Top =4236
+    Right =14592
+    Bottom =12360
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xb0c0f4149355e340
@@ -169,10 +169,10 @@ Begin Form
                     Caption ="Initialize Form"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -185,10 +185,10 @@ Begin Form
                     Caption ="Master Lookup"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -201,10 +201,10 @@ Begin Form
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Label
                     OverlapFlags =85
@@ -253,10 +253,10 @@ Begin Form
                     Caption ="More LC"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -269,10 +269,10 @@ Begin Form
                     Caption ="More Disturbance"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Label
                     OverlapFlags =85
@@ -617,7 +617,7 @@ Begin Form
                     Top =60
                     Width =660
                     TabIndex =13
-                    ColumnInfo ="\"\";\"\";\"\";\"\";\"10\";\"10\""
+                    ColumnInfo ="\"Disturbance code\";\"\";\"disturbance description\";\"\";\"10\";\"10\""
                     Name ="D1"
                     ControlSource ="D1"
                     RowSourceType ="Table/Query"
