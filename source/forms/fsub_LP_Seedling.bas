@@ -12,10 +12,10 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =1452
-    Top =9708
-    Right =7536
-    Bottom =12312
+    Left =348
+    Top =9408
+    Right =6432
+    Bottom =12012
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x73776174d27ce340
@@ -220,14 +220,15 @@ Begin Form
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species, qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top"
-                        "_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifeform])='Tree')) OR"
-                        "DER BY qryU_Top_Canopy.LU_Code  UNION ALL (SELECT tbl_Unknown_Species.Unknown_Co"
-                        "de, tbl_Unknown_Species.Unknown_Code, tbl_Unknown_Species.Plant_Type, tbl_Unknow"
-                        "n_Species.Plant_Type AS Lifeform FROM tbl_Unknown_Species WHERE tbl_Unknown_Spec"
-                        "ies.Plant_Type IN ('Tree','Other') OR tbl_Unknown_Species.Plant_Type IS NULL ORD"
-                        "ER BY tbl_Unknown_Species.Unknown_Code);"
+                    RowSource ="SELECT DISTINCT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU"
+                        "_Top_Canopy.Utah_Species, qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE (("
+                        "(qryU_Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifeform])='T"
+                        "ree')) ORDER BY qryU_Top_Canopy.LU_Code  UNION  (SELECT DISTINCT tbl_Unknown_Spe"
+                        "cies.Unknown_Code, tbl_Unknown_Species.Unknown_Code, tbl_Unknown_Species.Plant_T"
+                        "ype + \" - \" + tbl_Unknown_Species.Plant_Description, tbl_Unknown_Species.Plant"
+                        "_Type AS Lifeform FROM tbl_Unknown_Species WHERE tbl_Unknown_Species.Plant_Type "
+                        "IN ('Tree','Other') OR tbl_Unknown_Species.Plant_Type IS NULL ORDER BY tbl_Unkno"
+                        "wn_Species.Unknown_Code);"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"

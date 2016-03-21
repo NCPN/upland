@@ -589,6 +589,7 @@ Begin Form
                                     End
                                 End
                                 Begin Rectangle
+                                    Visible = NotDefault
                                     SpecialEffect =0
                                     BackStyle =1
                                     OldBorderStyle =0
@@ -606,6 +607,7 @@ Begin Form
                                     LayoutCachedHeight =5700
                                 End
                                 Begin CheckBox
+                                    Visible = NotDefault
                                     OverlapFlags =215
                                     Left =10080
                                     Top =5370
@@ -621,6 +623,7 @@ Begin Form
                                     LayoutCachedHeight =5610
                                     Begin
                                         Begin Label
+                                            Visible = NotDefault
                                             OverlapFlags =247
                                             Left =10310
                                             Top =5340
@@ -712,7 +715,6 @@ Begin Form
                             WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
-                                    Visible = NotDefault
                                     OverlapFlags =247
                                     Left =180
                                     Top =1440

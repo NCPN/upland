@@ -19,22 +19,21 @@ Begin Form
     Cycle =1
     GridX =24
     GridY =24
-    Width =16200
+    Width =16296
     DatasheetFontHeight =10
-    ItemSuffix =200
-    Left =3384
-    Top =2064
-    Right =19584
-    Bottom =14424
+    ItemSuffix =212
+    Left =1305
+    Right =17595
+    Bottom =14460
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='{0C2FD861-803D-480A-A376-718ADEF73E00}' AND [Event_ID]='201603162"
-        "04623-579518616.199493'"
+    Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201603210"
+        "94521-709037899.971008'"
     RecSrcDt = Begin
         0x171e359b4cb5e440
     End
     RecordSource ="qfrm_DataEntry"
     Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event - Filter "
-        "by sampling event - Filter by sampling event"
+        "by sampling event - Filter by sampling event - Filter by sampling event"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
@@ -158,10 +157,10 @@ Begin Form
                     FontName ="Arial"
                     ControlTipText ="Close the data entry form"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     ColumnHeads = NotDefault
@@ -308,20 +307,20 @@ Begin Form
                     Begin
                         Begin Page
                             OverlapFlags =87
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgPhotos"
                             Caption ="Photos"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -339,21 +338,21 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="Point Intercept"
                             EventProcPrefix ="Point_Intercept"
                             Caption ="Point Intercept"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -371,20 +370,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgBeltShrub"
                             Caption ="1-m Belt"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -405,21 +404,22 @@ Begin Form
                             End
                         End
                         Begin Page
+                            Visible = NotDefault
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgGaps"
                             Caption ="Gap Intercepts"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -438,21 +438,22 @@ Begin Form
                             End
                         End
                         Begin Page
+                            Visible = NotDefault
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgSS"
                             Caption ="Soil Stability"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -471,20 +472,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgSLIntercept"
                             Caption ="SL Intercept"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -503,19 +504,19 @@ Begin Form
                         Begin Page
                             OverlapFlags =215
                             Left =60
-                            Top =1572
-                            Width =15864
-                            Height =12792
+                            Top =1620
+                            Width =15840
+                            Height =12720
                             Name ="pgOT"
                             Caption ="Overstory Trees"
                             LayoutCachedLeft =60
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -832,20 +833,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgFuels"
                             Caption ="Fuels"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin TextBox
                                     OverlapFlags =247
@@ -963,24 +964,228 @@ Begin Form
                                     LinkMasterFields ="Event_ID"
 
                                 End
+                                Begin Rectangle
+                                    Visible = NotDefault
+                                    SpecialEffect =0
+                                    BackStyle =1
+                                    OldBorderStyle =0
+                                    OverlapFlags =255
+                                    Left =10080
+                                    Top =7860
+                                    Width =2760
+                                    Height =480
+                                    BackColor =6750207
+                                    Name ="rctNo1000hrA"
+                                    OnClick ="[Event Procedure]"
+                                    LayoutCachedLeft =10080
+                                    LayoutCachedTop =7860
+                                    LayoutCachedWidth =12840
+                                    LayoutCachedHeight =8340
+                                End
+                                Begin CheckBox
+                                    OverlapFlags =247
+                                    Left =10200
+                                    Top =8010
+                                    Width =300
+                                    TabIndex =5
+                                    Name ="cbxNo1000hrA"
+                                    OnClick ="[Event Procedure]"
+                                    ControlTipText ="No 1000-hr fuels found in transect A"
+
+                                    LayoutCachedLeft =10200
+                                    LayoutCachedTop =8010
+                                    LayoutCachedWidth =10500
+                                    LayoutCachedHeight =8250
+                                    Begin
+                                        Begin Label
+                                            OverlapFlags =247
+                                            TextFontFamily =0
+                                            Left =10428
+                                            Top =7980
+                                            Width =2310
+                                            Height =240
+                                            FontWeight =600
+                                            Name ="lblNo1000hrA"
+                                            Caption ="No A 1000-hr Fuels Found"
+                                            ControlTipText ="No 1000-hr fuels found in transect A"
+                                            LayoutCachedLeft =10428
+                                            LayoutCachedTop =7980
+                                            LayoutCachedWidth =12738
+                                            LayoutCachedHeight =8220
+                                        End
+                                    End
+                                End
+                                Begin Rectangle
+                                    Visible = NotDefault
+                                    SpecialEffect =0
+                                    BackStyle =1
+                                    OldBorderStyle =0
+                                    OverlapFlags =255
+                                    Left =10080
+                                    Top =8460
+                                    Width =2760
+                                    Height =480
+                                    BackColor =6750207
+                                    Name ="rctNo1000hrB"
+                                    OnClick ="[Event Procedure]"
+                                    LayoutCachedLeft =10080
+                                    LayoutCachedTop =8460
+                                    LayoutCachedWidth =12840
+                                    LayoutCachedHeight =8940
+                                End
+                                Begin CheckBox
+                                    OverlapFlags =247
+                                    Left =10200
+                                    Top =8610
+                                    Width =300
+                                    TabIndex =6
+                                    Name ="cbxNo1000hrB"
+                                    OnClick ="[Event Procedure]"
+                                    ControlTipText ="No 1000-hr fuels found in transect B"
+
+                                    LayoutCachedLeft =10200
+                                    LayoutCachedTop =8610
+                                    LayoutCachedWidth =10500
+                                    LayoutCachedHeight =8850
+                                    Begin
+                                        Begin Label
+                                            OverlapFlags =247
+                                            TextFontFamily =0
+                                            Left =10428
+                                            Top =8580
+                                            Width =2310
+                                            Height =240
+                                            FontWeight =600
+                                            Name ="lblNo1000hrB"
+                                            Caption ="No B 1000-hr Fuels Found"
+                                            ControlTipText ="No 1000-hr fuels found in transect B"
+                                            LayoutCachedLeft =10428
+                                            LayoutCachedTop =8580
+                                            LayoutCachedWidth =12738
+                                            LayoutCachedHeight =8820
+                                        End
+                                    End
+                                End
+                                Begin Rectangle
+                                    Visible = NotDefault
+                                    SpecialEffect =0
+                                    BackStyle =1
+                                    OldBorderStyle =0
+                                    OverlapFlags =255
+                                    Left =10080
+                                    Top =9060
+                                    Width =2760
+                                    Height =480
+                                    BackColor =6750207
+                                    Name ="rctNo1000hrC"
+                                    OnClick ="[Event Procedure]"
+                                    LayoutCachedLeft =10080
+                                    LayoutCachedTop =9060
+                                    LayoutCachedWidth =12840
+                                    LayoutCachedHeight =9540
+                                End
+                                Begin CheckBox
+                                    OverlapFlags =247
+                                    Left =10200
+                                    Top =9210
+                                    Width =300
+                                    TabIndex =7
+                                    Name ="cbxNo1000hrC"
+                                    OnClick ="[Event Procedure]"
+                                    ControlTipText ="No 1000-hr fuels found in transect C"
+
+                                    LayoutCachedLeft =10200
+                                    LayoutCachedTop =9210
+                                    LayoutCachedWidth =10500
+                                    LayoutCachedHeight =9450
+                                    Begin
+                                        Begin Label
+                                            OverlapFlags =247
+                                            TextFontFamily =0
+                                            Left =10428
+                                            Top =9180
+                                            Width =2310
+                                            Height =240
+                                            FontWeight =600
+                                            Name ="lblNo1000hrC"
+                                            Caption ="No C 1000-hr Fuels Found"
+                                            ControlTipText ="No 1000-hr fuels found in transect C"
+                                            LayoutCachedLeft =10428
+                                            LayoutCachedTop =9180
+                                            LayoutCachedWidth =12738
+                                            LayoutCachedHeight =9420
+                                        End
+                                    End
+                                End
+                                Begin Rectangle
+                                    Visible = NotDefault
+                                    SpecialEffect =0
+                                    BackStyle =1
+                                    OldBorderStyle =0
+                                    OverlapFlags =255
+                                    Left =10080
+                                    Top =9660
+                                    Width =2760
+                                    Height =480
+                                    BackColor =6750207
+                                    Name ="rctNo1000hrD"
+                                    OnClick ="[Event Procedure]"
+                                    LayoutCachedLeft =10080
+                                    LayoutCachedTop =9660
+                                    LayoutCachedWidth =12840
+                                    LayoutCachedHeight =10140
+                                End
+                                Begin CheckBox
+                                    OverlapFlags =247
+                                    Left =10200
+                                    Top =9810
+                                    Width =300
+                                    TabIndex =8
+                                    Name ="cbxNo1000hrD"
+                                    OnClick ="[Event Procedure]"
+                                    ControlTipText ="No 1000-hr fuels found in transect D"
+
+                                    LayoutCachedLeft =10200
+                                    LayoutCachedTop =9810
+                                    LayoutCachedWidth =10500
+                                    LayoutCachedHeight =10050
+                                    Begin
+                                        Begin Label
+                                            OverlapFlags =247
+                                            TextFontFamily =0
+                                            Left =10428
+                                            Top =9780
+                                            Width =2325
+                                            Height =240
+                                            FontWeight =600
+                                            Name ="lblNo1000hrD"
+                                            Caption ="No D 1000-hr Fuels Found"
+                                            ControlTipText ="No 1000-hr fuels found in transect D"
+                                            LayoutCachedLeft =10428
+                                            LayoutCachedTop =9780
+                                            LayoutCachedWidth =12753
+                                            LayoutCachedHeight =10020
+                                        End
+                                    End
+                                End
                             End
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgImpact"
                             Caption ="Site Impact"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -1003,20 +1208,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =247
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgCoords_and_loc_details"
                             Caption ="Presence Cover Density"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -1148,10 +1353,10 @@ Begin Form
                     Caption ="Change Plot Coordinates"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1196,10 +1401,10 @@ Begin Form
                     Caption ="Add/Edit Comments"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                     Overlaps =1
                 End
                 Begin TextBox
@@ -1216,20 +1421,21 @@ Begin Form
 
                 End
                 Begin Rectangle
+                    Visible = NotDefault
                     SpecialEffect =0
                     BackStyle =1
                     OldBorderStyle =0
                     OverlapFlags =255
                     Left =10080
                     Top =7260
-                    Width =2520
+                    Width =2760
                     Height =480
                     BackColor =6750207
                     Name ="rctNo1000hr"
                     OnClick ="[Event Procedure]"
                     LayoutCachedLeft =10080
                     LayoutCachedTop =7260
-                    LayoutCachedWidth =12600
+                    LayoutCachedWidth =12840
                     LayoutCachedHeight =7740
                 End
                 Begin CheckBox
@@ -1251,7 +1457,7 @@ Begin Form
                             OverlapFlags =255
                             Left =10430
                             Top =7380
-                            Width =2040
+                            Width =2115
                             Height =240
                             FontWeight =600
                             Name ="lblNo1000hr"
@@ -1259,7 +1465,7 @@ Begin Form
                             ControlTipText ="No 1000-hr fuels found"
                             LayoutCachedLeft =10430
                             LayoutCachedTop =7380
-                            LayoutCachedWidth =12470
+                            LayoutCachedWidth =12545
                             LayoutCachedHeight =7620
                         End
                     End
@@ -1296,6 +1502,7 @@ Option Explicit
 '               BLC - 3/7/2016 - 1.02 - fixed bugs setting "Overstory-Census" vs. "OverstoryTree-Census",
 '                                       and leaving rctNoShrubs visible for oak scrub plots
 '               BLC - 3/16/2016 - 1.03 - fixed bug where Fuels tab was visible on grassland/shrubland plots
+'                                        added, added 1000hr fuel A-D no data collected checkboxes
 ' =================================
 
 ' ---------------------------------
@@ -1372,6 +1579,8 @@ On Error GoTo Err_Handler
 
     'fetch no data info & set checkboxes
     'event level values
+    Check1000hrFuels
+    
     Set dNoDataEvent = GetNoDataCollected(Me.Event_ID, "E")
     
     With dNoDataEvent
@@ -1379,6 +1588,10 @@ On Error GoTo Err_Handler
         Me.cbxNoCensus.Value = .item("OverstoryTree-Census")
     
         Me.cbxNo1000hr.Value = .item("Fuel-1000hr")
+        Me.cbxNo1000hrA.Value = .item("Fuel-1000hr-A")
+        Me.cbxNo1000hrB.Value = .item("Fuel-1000hr-B")
+        Me.cbxNo1000hrC.Value = .item("Fuel-1000hr-C")
+        Me.cbxNo1000hrD.Value = .item("Fuel-1000hr-D")
         
         Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Value = .item("SiteImpact-Disturbance")
         Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Value = .item("SiteImpact-Exotic")
@@ -1390,6 +1603,11 @@ On Error GoTo Err_Handler
     Me.rctNoCensus.Visible = (Me.fsub_OT_Census.Form.RecordsetClone.RecordCount = 0)
     
     Me.rctNo1000hr.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+
+'    Me.rctNo1000hrA.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+'    Me.rctNo1000hrB.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+'    Me.rctNo1000hrC.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+'    Me.rctNo1000hrD.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
        
     Me.frm_Site_Impact.Form.Controls("rctNoDisturbance").Visible = (Me.frm_Site_Impact.Form.Controls("Disturbance Details").Form.RecordsetClone.RecordCount = 0)
     Me.frm_Site_Impact.Form.Controls("rctNoSpecies").Visible = (Me.frm_Site_Impact.Form.Controls("fsub_Dist_Exotic").Form.RecordsetClone.RecordCount = 0)
@@ -1399,6 +1617,10 @@ On Error GoTo Err_Handler
     Me.cbxNoCensus.Enabled = (Me.fsub_OT_Census.Form.RecordsetClone.RecordCount = 0)
 
     Me.cbxNo1000hr.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+'    Me.cbxNo1000hrA.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+'    Me.cbxNo1000hrB.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+'    Me.cbxNo1000hrC.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+'    Me.cbxNo1000hrD.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
 
     Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Enabled = (Me.frm_Site_Impact.Form.Controls("Disturbance Details").Form.RecordsetClone.RecordCount = 0)
     Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Enabled = (Me.frm_Site_Impact.Form.Controls("fsub_Dist_Exotic").Form.RecordsetClone.RecordCount = 0)
@@ -1655,16 +1877,64 @@ End Sub
 ' Returns:      N/A
 ' Throws:       none
 ' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Source/date:  Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Adapted:      -
 ' Revisions:
 '   BLC, 2/9/2016  - initial version
+'   BLC, 3/18/2016 - added A-D click to set these when 1000hr checkbox is checked
 ' ----------------------------------
 Private Sub cbxNo1000hr_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
     SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr", Abs(Me.cbxNo1000hr.Value)
+
+    'set A-D if checked
+    If Abs(Me.cbxNo1000hr) = 1 Then
+        Me.cbxNo1000hrA.Value = 1
+        Me.cbxNo1000hrB.Value = 1
+        Me.cbxNo1000hrC.Value = 1
+        Me.cbxNo1000hrD.Value = 1
+        SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-A", 1
+        SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-B", 1
+        SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-C", 1
+        SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-D", 1
+'        cbxNo1000hrA_Click
+'        cbxNo1000hrB_Click
+'        cbxNo1000hrC_Click
+'        cbxNo1000hrD_Click
+    End If
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoDisturbance_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNo1000hrA_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub cbxNo1000hrA_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-A", Abs(Me.cbxNo1000hrA.Value)
 
 Exit_Handler:
     Exit Sub
@@ -1673,7 +1943,100 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - cbxNoDisturbance_Click[Form_frm_Site_Impact])"
+            "Error encountered (#" & Err.Number & " - cbxNo1000hrA_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNo1000hrB_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub cbxNo1000hrB_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-B", Abs(Me.cbxNo1000hrB.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNo1000hrB_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNo1000hrC_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub cbxNo1000hrC_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-C", Abs(Me.cbxNo1000hrC.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNo1000hrC_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNo1000hrD_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub cbxNo1000hrD_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-D", Abs(Me.cbxNo1000hrD.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNo1000hrD_Click[Form_frm_Data_Entry])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -1766,6 +2129,126 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - rctNo1000hr_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNo1000hrA_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub rctNo1000hrA_Click()
+On Error GoTo Err_Handler
+
+    cbxNo1000hrA_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNo1000hrA_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNo1000hrB_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub rctNo1000hrB_Click()
+On Error GoTo Err_Handler
+
+    cbxNo1000hrB_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNo1000hrB_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNo1000hrC_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub rctNo1000hrC_Click()
+On Error GoTo Err_Handler
+
+    cbxNo1000hrC_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNo1000hrC_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNo1000hrD_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub rctNo1000hrD_Click()
+On Error GoTo Err_Handler
+
+    cbxNo1000hrD_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNo1000hrD_Click[Form_frm_Data_Entry])"
     End Select
     Resume Exit_Handler
 End Sub

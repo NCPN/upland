@@ -15,9 +15,9 @@ Begin Form
     Width =13680
     DatasheetFontHeight =9
     ItemSuffix =26
-    Left =1305
-    Right =13545
-    Bottom =8040
+    Left =1356
+    Right =15012
+    Bottom =6660
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2f2916b0ec7ce340
@@ -35,6 +35,8 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -44,54 +46,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -101,9 +114,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =480
@@ -237,6 +252,7 @@ Begin Form
                     Name ="Photo_ID"
                     ControlSource ="Photo_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -251,6 +267,7 @@ Begin Form
                     Name ="Event_ID"
                     ControlSource ="Event_ID"
                     StatusBarText ="Foreign key to tbl_Events"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -266,6 +283,7 @@ Begin Form
                     Format ="Short Date"
                     StatusBarText ="Date photograph taken."
                     InputMask ="99/99/0000;0;_"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -279,6 +297,7 @@ Begin Form
                     Name ="Roll"
                     ControlSource ="Roll"
                     StatusBarText ="Roll for film photos"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -292,6 +311,7 @@ Begin Form
                     Name ="Frame"
                     ControlSource ="Frame"
                     StatusBarText ="Frame for film photos"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -305,6 +325,7 @@ Begin Form
                     Name ="Digital_File"
                     ControlSource ="Digital_File"
                     StatusBarText ="Digital file name"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -318,6 +339,7 @@ Begin Form
                     Name ="Location"
                     ControlSource ="Location"
                     StatusBarText ="Location of photo point along transect in meters"
+
                 End
                 Begin TextBox
                     EnterKeyBehavior = NotDefault
@@ -333,6 +355,7 @@ Begin Form
                     Name ="Comments"
                     ControlSource ="Comments"
                     StatusBarText ="Photo comments"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -346,6 +369,7 @@ Begin Form
                     Name ="NCPN_Image_ID"
                     ControlSource ="NCPN_Image_ID"
                     StatusBarText ="Digital file name in NCPN Photo Database"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -361,9 +385,9 @@ Begin Form
                     Name ="Transect"
                     ControlSource ="Transect"
                     RowSourceType ="Value List"
-                    RowSource ="T1 - origin;T2 - origin;T3 - origin;T1 - end;T2 - end;T3 - end;T1 - 0m - crust;T"
-                        "2 - 20m - crust;T3 - 40m - crust"
+                    RowSource ="T1 - origin;T2 - origin;T3 - origin;T1 - end;T2 - end;T3 - end"
                     ColumnWidths ="1440"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -381,6 +405,7 @@ Begin Form
                     RowSource ="SELECT tlu_Contacts.Contact_ID, tlu_Contacts.Last_Name, tlu_Contacts.First_Name "
                         "FROM tlu_Contacts WHERE (((tlu_Contacts.Active)=1)); "
                     ColumnWidths ="0;975;990"
+
                 End
             End
         End

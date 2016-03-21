@@ -1,14 +1,15 @@
-﻿dbMemo "SQL" ="SELECT tlu_NCPN_Plants.Master_PLANT_Code, tlu_NCPN_Plants.LU_Code,  tlu_NCPN_Pla"
-    "nts.Utah_Species, 2 as Sort_Seq, Lifeform, Nativity\015\012FROM tlu_NCPN_Plants "
-    "WHERE tlu_NCPN_Plants.LU_Code IS NOT NULL\015\012UNION SELECT tbl_Unknown_Specie"
-    "s.Unknown_Code AS Master_Plant_Code,  tbl_Unknown_Species.Unknown_Code AS LU_Cod"
-    "e, (tbl_Unknown_Species.Unknown_Code & \"   \" & tbl_Unknown_Species.Plant_Descr"
-    "iption) AS Utah_Species, 2 AS Sort_Seq, Plant_Type AS Lifeform, '' AS Nativity\015"
-    "\012FROM tbl_Unknown_Species\015\012ORDER BY Sort_Seq, Utah_Species;\015\012"
+﻿dbMemo "SQL" ="SELECT DISTINCT tlu_NCPN_Plants.Master_PLANT_Code, tlu_NCPN_Plants.LU_Code,  tlu"
+    "_NCPN_Plants.Utah_Species, 2 as Sort_Seq, Lifeform, Nativity\015\012FROM tlu_NCP"
+    "N_Plants WHERE tlu_NCPN_Plants.LU_Code IS NOT NULL\015\012UNION SELECT DISTINCT "
+    "tbl_Unknown_Species.Unknown_Code AS Master_Plant_Code,  tbl_Unknown_Species.Unkn"
+    "own_Code AS LU_Code, (tbl_Unknown_Species.Plant_Type & \" - \" & tbl_Unknown_Spe"
+    "cies.Plant_Description) AS Utah_Species, 2 AS Sort_Seq, Plant_Type AS Lifeform, "
+    "'' AS Nativity\015\012FROM tbl_Unknown_Species\015\012ORDER BY Sort_Seq, Utah_Sp"
+    "ecies;\015\012"
 dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"
-dbBoolean "OrderByOn" ="0"
+dbBoolean "OrderByOn" ="-1"
 dbByte "Orientation" ="0"
 dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
@@ -36,6 +37,8 @@ Begin
     Begin
         dbText "Name" ="tlu_NCPN_Plants.Utah_Species"
         dbLong "AggregateType" ="-1"
+        dbInteger "ColumnWidth" ="2328"
+        dbBoolean "ColumnHidden" ="0"
     End
     Begin
         dbText "Name" ="Lifeform"

@@ -1246,10 +1246,10 @@ Private Sub Form_Load()
     btnUpdate.Enabled = False
     If Not IsNull(Me.Recorder) Then
         btnUpdate.Enabled = True
-        Me.Recorder.BackColor = RGB(255, 255, 255) 'set background to white
+        Me.Recorder.backcolor = RGB(255, 255, 255) 'set background to white
     Else
         Me.Recorder.SetFocus
-        Me.Recorder.BackColor = RGB(255, 255, 51) 'set background to yellow
+        Me.Recorder.backcolor = RGB(255, 255, 51) 'set background to yellow
     End If
     
 Exit_Handler:
@@ -1539,11 +1539,11 @@ On Error GoTo Err_Handler
     'enable save when recorder isn't null
     If Not IsNull(Me!Recorder) Then
         Me.btnUpdate.Enabled = True
-        Me.Recorder.BackColor = RGB(255, 255, 255) 'set background to white
+        Me.Recorder.backcolor = RGB(255, 255, 255) 'set background to white
     Else
         Me.btnUpdate.Enabled = False
         Me.Recorder.SetFocus
-        Me.Recorder.BackColor = RGB(255, 255, 51) 'set background to yellow
+        Me.Recorder.backcolor = RGB(255, 255, 51) 'set background to yellow
     End If
 
 Exit_Handler:

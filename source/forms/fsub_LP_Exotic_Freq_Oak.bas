@@ -13,10 +13,10 @@ Begin Form
     Width =9540
     DatasheetFontHeight =9
     ItemSuffix =54
-    Left =6048
-    Top =5136
-    Right =13752
-    Bottom =9420
+    Left =5088
+    Top =5088
+    Right =12792
+    Bottom =9372
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -377,13 +377,13 @@ Begin Form
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="(SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Can"
-                        "opy.Utah_Species,   qryU_Top_Canopy.Nativity FROM qryU_Top_Canopy WHERE (((qryU_"
-                        "Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Nativity])='NonNati"
-                        "ve')) ORDER BY qryU_Top_Canopy.LU_Code)  UNION ALL  (SELECT tbl_Unknown_Species."
-                        "Unknown_Code, tbl_Unknown_Species.Unknown_Code,   tbl_Unknown_Species.Plant_Type"
-                        ", NULL AS Nativity FROM tbl_Unknown_Species ORDER BY tbl_Unknown_Species.Unknown"
-                        "_Code);"
+                    RowSource ="(SELECT DISTINCT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qry"
+                        "U_Top_Canopy.Utah_Species,   qryU_Top_Canopy.Nativity FROM qryU_Top_Canopy WHERE"
+                        " (((qryU_Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Nativity])"
+                        "='NonNative')) ORDER BY qryU_Top_Canopy.LU_Code)  UNION  (SELECT DISTINCT tbl_Un"
+                        "known_Species.Unknown_Code, tbl_Unknown_Species.Unknown_Code,   tbl_Unknown_Spec"
+                        "ies.Plant_Type+ \" - \" + tbl_Unknown_Species.Plant_Description, NULL AS Nativit"
+                        "y FROM tbl_Unknown_Species ORDER BY tbl_Unknown_Species.Unknown_Code);"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"

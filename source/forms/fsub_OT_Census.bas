@@ -14,10 +14,10 @@ Begin Form
     Width =14160
     DatasheetFontHeight =9
     ItemSuffix =35
-    Left =564
-    Top =7692
-    Right =15048
-    Bottom =11196
+    Left =-540
+    Top =7392
+    Right =13944
+    Bottom =10896
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x12768bfd3188e340
@@ -399,14 +399,15 @@ Begin Form
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT  qryU_Top_Canopy.Master_PLANT_Code,  qryU_Top_Canopy.LU_Code,  qryU_Top_C"
-                        "anopy.Utah_Species,    qryU_Top_Canopy.Lifeform  FROM qryU_Top_Canopy  WHERE ((("
-                        "qryU_Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifeform])='Tr"
-                        "ee'))  ORDER BY qryU_Top_Canopy.LU_Code   UNION ALL  (SELECT  tbl_Unknown_Specie"
-                        "s.Unknown_Code,  tbl_Unknown_Species.Unknown_Code,    tbl_Unknown_Species.Plant_"
-                        "Type,  tbl_Unknown_Species.Plant_Type AS Lifeform  FROM tbl_Unknown_Species  WHE"
-                        "RE tbl_Unknown_Species.Plant_Type IN ('Tree','Other') OR tbl_Unknown_Species.Pla"
-                        "nt_Type IS NULL ORDER BY tbl_Unknown_Species.Unknown_Code);"
+                    RowSource ="SELECT DISTINCT  qryU_Top_Canopy.Master_PLANT_Code,  qryU_Top_Canopy.LU_Code,  q"
+                        "ryU_Top_Canopy.Utah_Species,    qryU_Top_Canopy.Lifeform  FROM qryU_Top_Canopy  "
+                        "WHERE (((qryU_Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifef"
+                        "orm])='Tree'))  ORDER BY qryU_Top_Canopy.LU_Code   UNION  (SELECT  DISTINCT tbl_"
+                        "Unknown_Species.Unknown_Code,  tbl_Unknown_Species.Unknown_Code,    tbl_Unknown_"
+                        "Species.Plant_Type+ \" - \" + tbl_Unknown_Species.Plant_Description,  tbl_Unknow"
+                        "n_Species.Plant_Type AS Lifeform  FROM tbl_Unknown_Species  WHERE tbl_Unknown_Sp"
+                        "ecies.Plant_Type IN ('Tree','Other') OR tbl_Unknown_Species.Plant_Type IS NULL O"
+                        "RDER BY tbl_Unknown_Species.Unknown_Code);"
                     ColumnWidths ="0;2160;4320"
                     OnGotFocus ="[Event Procedure]"
                     LimitToList = NotDefault

@@ -12,10 +12,10 @@ Begin Form
     Width =11880
     DatasheetFontHeight =9
     ItemSuffix =43
-    Left =1368
-    Top =5016
-    Right =13548
-    Bottom =8580
+    Left =408
+    Top =4968
+    Right =12588
+    Bottom =8532
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -626,16 +626,17 @@ Begin Form
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="(SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Can"
-                        "opy.Utah_Species, qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE (((qryU_To"
-                        "p_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.Lifeform) In ('Shrub',"
-                        "'DwarfShrub')) AND ((qryU_Top_Canopy.tlu_NCPN_Plants.Master_PLANT_Code) Not In ("
-                        "SELECT Master_PLANT_Code FROM ShrubExclusionList))) ORDER BY qryU_Top_Canopy.LU_"
-                        "Code)  UNION ALL  (SELECT tbl_Unknown_Species.Unknown_Code, tbl_Unknown_Species."
-                        "Unknown_Code,   tbl_Unknown_Species.Plant_Type, tbl_Unknown_Species.Plant_Type A"
-                        "S Lifeform FROM tbl_Unknown_Species WHERE tbl_Unknown_Species.Plant_Type IN ('Sh"
-                        "rub','Other') OR tbl_Unknown_Species.Plant_Type IS NULL ORDER BY tbl_Unknown_Spe"
-                        "cies.Unknown_Code);"
+                    RowSource ="(SELECT DISTINCT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qry"
+                        "U_Top_Canopy.Utah_Species, qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE ("
+                        "((qryU_Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.Lifeform) In "
+                        "('Shrub','DwarfShrub')) AND ((qryU_Top_Canopy.tlu_NCPN_Plants.Master_PLANT_Code)"
+                        " Not In (SELECT Master_PLANT_Code FROM ShrubExclusionList)))  ORDER BY qryU_Top_"
+                        "Canopy.LU_Code)   UNION (SELECT DISTINCT tbl_Unknown_Species.Unknown_Code,  tbl_"
+                        "Unknown_Species.Unknown_Code,    tbl_Unknown_Species.Plant_Type + \" - \" + tbl_"
+                        "Unknown_Species.Plant_Description,  tbl_Unknown_Species.Plant_Type AS Lifeform  "
+                        "FROM tbl_Unknown_Species  WHERE tbl_Unknown_Species.Plant_Type IN ('Shrub','Othe"
+                        "r') OR tbl_Unknown_Species.Plant_Type IS NULL ORDER BY tbl_Unknown_Species.Unkno"
+                        "wn_Code);"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"

@@ -12,10 +12,10 @@ Begin Form
     Width =5040
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =7908
-    Top =9456
-    Right =13572
-    Bottom =12060
+    Left =6948
+    Top =9408
+    Right =12612
+    Bottom =12012
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x45e116d57156e340
@@ -221,7 +221,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
                         "py.Utah_Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is N"
-                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code; "
+                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code;"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
