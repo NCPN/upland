@@ -541,10 +541,10 @@ On Error GoTo Err_Handler
         Dim NoData As Scripting.Dictionary
         
         With frm.Parent.Form
-            'remove the no data collected record
+            'add the no data collected record
             Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr", 1)
         
-            'update checkbox/rectangle
+            'update checkbox/rectangle --> No1000hr is not set here (leave commented out)
 '            .Controls("cbxNo1000hr") = 1
 '            .Controls("cbxNo1000hr").Enabled = True
 '            .Controls("rctNo1000hr").Visible = True
@@ -565,13 +565,19 @@ On Error GoTo Err_Handler
             .Controls("cbxNo1000hrD") = 1
             .Controls("cbxNo1000hrD").Enabled = True
             .Controls("rctNo1000hrD").Visible = True
+            
+            'add the database records for A-D
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-A", 1
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-B", 1
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-C", 1
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-D", 1
         End With
         
     Else
     
         'default values
         With frm.Parent.Form
-            'update checkbox/rectangle
+            'update checkbox/rectangle (leave 1000hr commented here)
 '            .Controls("cbxNo1000hr") = 0
 '            .Controls("cbxNo1000hr").Enabled = True
 '            .Controls("rctNo1000hr").Visible = True
@@ -650,7 +656,17 @@ On Error GoTo Err_Handler
             .MoveNext
             Loop
         End With
-    
+        
+        'set checkboxes based on NoDataCollected (catch unchanged checkboxes)
+        Dim dNoDataEvent As Scripting.Dictionary
+        Set dNoDataEvent = GetNoDataCollected(frm.Parent.Form.Controls("Event_ID"), "E")
+        
+        With dNoDataEvent
+            frm.Parent.Form.Controls("cbxNo1000hrA") = .item("Fuel-1000hr-A")
+            frm.Parent.Form.Controls("cbxNo1000hrB") = .item("Fuel-1000hr-B")
+            frm.Parent.Form.Controls("cbxNo1000hrC") = .item("Fuel-1000hr-C")
+            frm.Parent.Form.Controls("cbxNo1000hrD") = .item("Fuel-1000hr-D")
+        End With
     End If
 
 Exit_Handler:

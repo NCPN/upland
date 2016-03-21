@@ -3,6 +3,7 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -14,10 +15,10 @@ Begin Form
     Width =6660
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =4968
-    Top =5580
-    Right =10884
-    Bottom =9108
+    Left =1470
+    Top =8445
+    Right =7380
+    Bottom =12090
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x99c2faf85388e340
@@ -275,10 +276,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Tahoma"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -434,65 +435,6 @@ On Error GoTo Err_Handler
 
     'handle individual transect no fuel data collected
     Check1000hrFuels
-'    '----------------
-'    '  transect A
-'    '----------------
-'    If Me.Transect = "A" Then
-'
-'        'remove the no data collected record
-'        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "Fuel-1000hr-A", 0)
-'
-'        'update checkbox/rectangle
-'        Me.Parent.Form.Controls("cbxNo1000hrA") = 0
-'        Me.Parent.Form.Controls("cbxNo1000hrA").Enabled = False
-'        Me.Parent.Form.Controls("rctNo1000hrA").Visible = False
-'
-'    End If
-'
-'    '----------------
-'    '  transect B
-'    '----------------
-'    If Me.Transect = "B" Then
-'
-'        'remove the no data collected record
-'        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "Fuel-1000hr-B", 0)
-'
-'        'update checkbox/rectangle
-'        Me.Parent.Form.Controls("cbxNo1000hrB") = 0
-'        Me.Parent.Form.Controls("cbxNo1000hrB").Enabled = False
-'        Me.Parent.Form.Controls("rctNo1000hrB").Visible = False
-'
-'    End If
-'
-'    '----------------
-'    '  transect C
-'    '----------------
-'    If Me.Transect = "C" Then
-'
-'        'remove the no data collected record
-'        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "Fuel-1000hrC", 0)
-'
-'        'update checkbox/rectangle
-'        Me.Parent.Form.Controls("cbxNo1000hrC") = 0
-'        Me.Parent.Form.Controls("cbxNo1000hrC").Enabled = False
-'        Me.Parent.Form.Controls("rctNo1000hrC").Visible = False
-'
-'    End If
-'
-'    '----------------
-'    '  transect D
-'    '----------------
-'    If Me.Transect = "D" Then
-'
-'        'remove the no data collected record
-'        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "Fuel-1000hr-D", 0)
-'
-'        'update checkbox/rectangle
-'        Me.Parent.Form.Controls("cbxNo1000hrD") = 0
-'        Me.Parent.Form.Controls("cbxNo1000hrD").Enabled = False
-'        Me.Parent.Form.Controls("rctNo1000hrD").Visible = False
-'
-'    End If
 
 Exit_Handler:
     Exit Sub
@@ -521,68 +463,6 @@ End Sub
 ' ---------------------------------
 Private Sub Transect_AfterUpdate()
 On Error GoTo Err_Handler
-
-'    'handle individual transect no fuel data collected
-'
-'    '----------------
-'    '  transect A
-'    '----------------
-'    If Me.Transect = "A" Then
-'
-'        'remove the no data collected record
-'        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "Fuel-1000hr-A", 0)
-'
-'        'update checkbox/rectangle
-'        Me.Parent.Form.Controls("cbxNo1000hrA") = 0
-'        Me.Parent.Form.Controls("cbxNo1000hrA").Enabled = False
-'        Me.Parent.Form.Controls("rctNo1000hrA").Visible = False
-'
-'    End If
-'
-'    '----------------
-'    '  transect B
-'    '----------------
-'    If Me.Transect = "B" Then
-'
-'        'remove the no data collected record
-'        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "Fuel-1000hr-B", 0)
-'
-'        'update checkbox/rectangle
-'        Me.Parent.Form.Controls("cbxNo1000hrB") = 0
-'        Me.Parent.Form.Controls("cbxNo1000hrB").Enabled = False
-'        Me.Parent.Form.Controls("rctNo1000hrB").Visible = False
-'
-'    End If
-'
-'    '----------------
-'    '  transect C
-'    '----------------
-'    If Me.Transect = "C" Then
-'
-'        'remove the no data collected record
-'        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "Fuel-1000hrC", 0)
-'
-'        'update checkbox/rectangle
-'        Me.Parent.Form.Controls("cbxNo1000hrC") = 0
-'        Me.Parent.Form.Controls("cbxNo1000hrC").Enabled = False
-'        Me.Parent.Form.Controls("rctNo1000hrC").Visible = False
-'
-'    End If
-'
-'    '----------------
-'    '  transect D
-'    '----------------
-'    If Me.Transect = "D" Then
-'
-'        'remove the no data collected record
-'        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "Fuel-1000hr-D", 0)
-'
-'        'update checkbox/rectangle
-'        Me.Parent.Form.Controls("cbxNo1000hrD") = 0
-'        Me.Parent.Form.Controls("cbxNo1000hrD").Enabled = False
-'        Me.Parent.Form.Controls("rctNo1000hrD").Visible = False
-'
-'    End If
 
 Exit_Handler:
     Exit Sub

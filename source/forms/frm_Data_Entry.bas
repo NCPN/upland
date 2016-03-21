@@ -22,9 +22,10 @@ Begin Form
     Width =16296
     DatasheetFontHeight =10
     ItemSuffix =212
-    Left =1305
-    Right =17595
-    Bottom =14460
+    Left =4035
+    Top =2775
+    Right =20325
+    Bottom =17235
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201603210"
         "94521-709037899.971008'"
@@ -1501,7 +1502,7 @@ Option Explicit
 '                                       message box
 '               BLC - 3/7/2016 - 1.02 - fixed bugs setting "Overstory-Census" vs. "OverstoryTree-Census",
 '                                       and leaving rctNoShrubs visible for oak scrub plots
-'               BLC - 3/16/2016 - 1.03 - fixed bug where Fuels tab was visible on grassland/shrubland plots
+'               BLC - 3/21/2016 - 1.03 - fixed bug where Fuels tab was visible on grassland/shrubland plots
 '                                        added, added 1000hr fuel A-D no data collected checkboxes
 ' =================================
 
@@ -1567,6 +1568,7 @@ End Sub
 '                    it should not & enabling pgFuels for woodland & forest plots
 '   BLC, 3/16/2016 - fixed bugs where: Fuels tab was visible on grassland/shrubland plots,
 '                    SL Intercept tab visible for other than oak scrub plots
+'   BLC, 3/21/2016 - handled transect A-D 1000hr fuels
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
@@ -1604,10 +1606,7 @@ On Error GoTo Err_Handler
     
     Me.rctNo1000hr.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
 
-'    Me.rctNo1000hrA.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
-'    Me.rctNo1000hrB.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
-'    Me.rctNo1000hrC.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
-'    Me.rctNo1000hrD.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+    'A-D are set via Check1000hrFuels (more granular than RecordCount alone)
        
     Me.frm_Site_Impact.Form.Controls("rctNoDisturbance").Visible = (Me.frm_Site_Impact.Form.Controls("Disturbance Details").Form.RecordsetClone.RecordCount = 0)
     Me.frm_Site_Impact.Form.Controls("rctNoSpecies").Visible = (Me.frm_Site_Impact.Form.Controls("fsub_Dist_Exotic").Form.RecordsetClone.RecordCount = 0)
@@ -1617,10 +1616,8 @@ On Error GoTo Err_Handler
     Me.cbxNoCensus.Enabled = (Me.fsub_OT_Census.Form.RecordsetClone.RecordCount = 0)
 
     Me.cbxNo1000hr.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
-'    Me.cbxNo1000hrA.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
-'    Me.cbxNo1000hrB.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
-'    Me.cbxNo1000hrC.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
-'    Me.cbxNo1000hrD.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+    
+    'A-D are set via Check1000hrFuels (more granular than RecordCount alone)
 
     Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Enabled = (Me.frm_Site_Impact.Form.Controls("Disturbance Details").Form.RecordsetClone.RecordCount = 0)
     Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Enabled = (Me.frm_Site_Impact.Form.Controls("fsub_Dist_Exotic").Form.RecordsetClone.RecordCount = 0)
@@ -1677,47 +1674,7 @@ On Error GoTo Err_Handler
 
         End Select
     End If
-    
-'    'forest and oak scrub plots
-'    If Not IsNull(Veg_Type) And (Veg_Type = "forest" Or Veg_Type = "oak scrub") Then
-'      Me!pgSS.Visible = False
-'      Me!pgGaps.Visible = False
-'    End If
-'
-'    'grass/shrubland and oak scrub plots
-'    If Not IsNull(Veg_Type) And (Veg_Type = "grassland/shrubland" Or Veg_Type = "oak scrub") Then
-'      Me!pgFuels.Visible = False
-'    End If
-'
-'    'oak scrub plots
-'    If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
-'        'Me!pgBeltShrub.Visible = False  1m belt tab visible for oak plots - 2/15/2011 - RD
-'
-'        '------------------------------------------------
-'        'enabled saplings for oak plots - 2/2/2016 - BLC
-'        '------------------------------------------------
-'        'Me!fsub_OT_Tree_Saplings.Form.visible = False
-'        'Me!Sapling_Date.visible = False
-'        'Me!Sapling_Observer.visible = False
-'        'Me!Sapling_Recorder.visible = False
-'        '------------------------------------------------
-'
-'        'hide shrubs for oak plots
-'        Me.frm_LP_Belt_Transect.Controls("cbxNoShrubs").Visible = False
-'        Me.frm_LP_Belt_Transect.Controls("lblNoShrubs").Visible = False
-'        Me.frm_LP_Belt_Transect.Controls("rctNoShrubs").Visible = False
-'
-'    Else
-'      Me!pgSLIntercept.Visible = False
-'    End If
-'
-'    'woodland plots
-'    If Not IsNull(Veg_Type) And Veg_Type = "woodland" Then
-'      Me!pgGaps.Visible = False
-'      Me!fsub_OT_Census.Form!Crown_Class.Visible = False
-'      Me!fsub_OT_Census.Form!Crown_Class_Label.Visible = False
-'    End If
-    
+        
     If Not IsNull(Me!txtStart_date) Then
       If IsNull(Me!Fuels_Date) Then
         Me!Fuels_Date = Me!txtStart_date
@@ -1899,10 +1856,6 @@ On Error GoTo Err_Handler
         SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-B", 1
         SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-C", 1
         SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-D", 1
-'        cbxNo1000hrA_Click
-'        cbxNo1000hrB_Click
-'        cbxNo1000hrC_Click
-'        cbxNo1000hrD_Click
     End If
     
 Exit_Handler:
