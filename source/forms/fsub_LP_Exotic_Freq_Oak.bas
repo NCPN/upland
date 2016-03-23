@@ -13,10 +13,10 @@ Begin Form
     Width =9540
     DatasheetFontHeight =9
     ItemSuffix =54
-    Left =5088
-    Top =5088
-    Right =12792
-    Bottom =9372
+    Left =900
+    Top =5115
+    Right =8595
+    Bottom =9390
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -290,10 +290,10 @@ Begin Form
                     Caption ="Master "
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -307,10 +307,10 @@ Begin Form
                     Caption ="Unknown"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -399,10 +399,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -530,6 +530,8 @@ Option Explicit
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+'               BLC - 3/23/2016 -1.02 - updated button delete click to handle no exotics label not displaying
+'                                       after deleting last record
 ' =================================
 
 ' ---------------------------------
@@ -761,6 +763,8 @@ End Sub
 ' Revisions:
 '   RDB, unknown  - initial version
 '   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
+'   BLC, 3/23/2016 - added lblNoExotics.Visible since it was not properly appearing after deleting
+'                    last record
 ' ---------------------------------
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_Handler
@@ -789,6 +793,7 @@ On Error GoTo Err_Handler
         'update checkbox/rectangle
         Me.Parent.Form.Controls("cbxNoExotics") = 1
         Me.Parent.Form.Controls("cbxNoExotics").Enabled = True
+        Me.Parent.Form.Controls("lblNoExotics").Visible = True
         Me.Parent.Form.Controls("rctNoExotics").Visible = True
         
     End If

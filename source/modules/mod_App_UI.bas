@@ -526,6 +526,7 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC, 3/18/2016  - initial version
+'   BLC, 3/23/2016  - remove setting values when no records found
 ' ---------------------------------
 Public Sub Check1000hrFuels()
 On Error GoTo Err_Handler
