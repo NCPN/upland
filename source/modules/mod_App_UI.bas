@@ -538,40 +538,40 @@ On Error GoTo Err_Handler
     '-----------------------------------
     If frm.RecordsetClone.RecordCount = 0 Then
     
-        Dim NoData As Scripting.Dictionary
-        
-        With frm.Parent.Form
-            'add the no data collected record
-            Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr", 1)
-        
-            'update checkbox/rectangle --> No1000hr is not set here (leave commented out)
-'            .Controls("cbxNo1000hr") = 1
-'            .Controls("cbxNo1000hr").Enabled = True
-'            .Controls("rctNo1000hr").Visible = True
-            
-            'update A, B, C, D transect 1000hr fuels as well
-            .Controls("cbxNo1000hrA") = 1
-            .Controls("cbxNo1000hrA").Enabled = True
-            .Controls("rctNo1000hrA").Visible = True
-            
-            .Controls("cbxNo1000hrB") = 1
-            .Controls("cbxNo1000hrB").Enabled = True
-            .Controls("rctNo1000hrB").Visible = True
-            
-            .Controls("cbxNo1000hrC") = 1
-            .Controls("cbxNo1000hrC").Enabled = True
-            .Controls("rctNo1000hrC").Visible = True
-        
-            .Controls("cbxNo1000hrD") = 1
-            .Controls("cbxNo1000hrD").Enabled = True
-            .Controls("rctNo1000hrD").Visible = True
-            
-            'add the database records for A-D
-            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-A", 1
-            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-B", 1
-            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-C", 1
-            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-D", 1
-        End With
+'        Dim NoData As Scripting.Dictionary
+'
+'        With frm.Parent.Form
+'            'add the no data collected record
+'            Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr", 1)
+'
+'            'update checkbox/rectangle --> No1000hr is not set here (leave commented out)
+''            .Controls("cbxNo1000hr") = 1
+''            .Controls("cbxNo1000hr").Enabled = True
+''            .Controls("rctNo1000hr").Visible = True
+'
+'            'update A, B, C, D transect 1000hr fuels as well
+'            .Controls("cbxNo1000hrA") = 1
+'            .Controls("cbxNo1000hrA").Enabled = True
+'            .Controls("rctNo1000hrA").Visible = True
+'
+'            .Controls("cbxNo1000hrB") = 1
+'            .Controls("cbxNo1000hrB").Enabled = True
+'            .Controls("rctNo1000hrB").Visible = True
+'
+'            .Controls("cbxNo1000hrC") = 1
+'            .Controls("cbxNo1000hrC").Enabled = True
+'            .Controls("rctNo1000hrC").Visible = True
+'
+'            .Controls("cbxNo1000hrD") = 1
+'            .Controls("cbxNo1000hrD").Enabled = True
+'            .Controls("rctNo1000hrD").Visible = True
+'
+'            'add the database records for A-D
+'            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-A", 1
+'            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-B", 1
+'            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-C", 1
+'            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-D", 1
+'        End With
         
     Else
     

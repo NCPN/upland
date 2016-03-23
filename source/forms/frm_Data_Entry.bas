@@ -23,12 +23,12 @@ Begin Form
     DatasheetFontHeight =10
     ItemSuffix =212
     Left =4035
-    Top =2775
+    Top =2235
     Right =20325
-    Bottom =17235
+    Bottom =16695
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201603210"
-        "94521-709037899.971008'"
+    Filter ="[Location_ID]='{4068DE54-73B4-4BBD-B7C2-567900753DB0}' AND [Event_ID]='201603230"
+        "93010-627642035.484314'"
     RecSrcDt = Begin
         0x171e359b4cb5e440
     End
@@ -1486,7 +1486,7 @@ Option Explicit
 ' =================================
 ' MODULE:       frm_Data_Entry
 ' Level:        Form module
-' Version:      1.02
+' Version:      1.04
 ' Description:  data functions & procedures specific to field data entry
 '
 ' Data source:  tbl_Locations
@@ -1504,6 +1504,11 @@ Option Explicit
 '                                       and leaving rctNoShrubs visible for oak scrub plots
 '               BLC - 3/21/2016 - 1.03 - fixed bug where Fuels tab was visible on grassland/shrubland plots
 '                                        added, added 1000hr fuel A-D no data collected checkboxes
+'               BLC - 3/21/2016 - 1.04 - revised Form_Load to:
+'                                        expose: Gap Intercepts - grassland/shrubland
+'                                                Soil Stability - grassland/shrubland, woodland
+'                                        hide:   SL Intercept - oak scrub
+'
 ' =================================
 
 ' ---------------------------------
@@ -1569,6 +1574,11 @@ End Sub
 '   BLC, 3/16/2016 - fixed bugs where: Fuels tab was visible on grassland/shrubland plots,
 '                    SL Intercept tab visible for other than oak scrub plots
 '   BLC, 3/21/2016 - handled transect A-D 1000hr fuels
+'   BLC, 3/23/2016 - revised Form_Load to:
+'                    expose: Gap Intercepts - grassland/shrubland
+'                            Soil Stability - grassland/shrubland, woodland
+'                    hide:   SL Intercept - oak scrub
+'                    added more documentation for tabs exposed/hidden
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
@@ -1581,7 +1591,7 @@ On Error GoTo Err_Handler
 
     'fetch no data info & set checkboxes
     'event level values
-    Check1000hrFuels
+'    Check1000hrFuels
     
     Set dNoDataEvent = GetNoDataCollected(Me.Event_ID, "E")
     
@@ -1607,6 +1617,13 @@ On Error GoTo Err_Handler
     Me.rctNo1000hr.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
 
     'A-D are set via Check1000hrFuels (more granular than RecordCount alone)
+    'A-D highlighting is displayed when no records exist
+    If rctNo1000hr.Visible = True Then
+        Me.rctNo1000hrA.Visible = True
+        Me.rctNo1000hrB.Visible = True
+        Me.rctNo1000hrC.Visible = True
+        Me.rctNo1000hrD.Visible = True
+    End If
        
     Me.frm_Site_Impact.Form.Controls("rctNoDisturbance").Visible = (Me.frm_Site_Impact.Form.Controls("Disturbance Details").Form.RecordsetClone.RecordCount = 0)
     Me.frm_Site_Impact.Form.Controls("rctNoSpecies").Visible = (Me.frm_Site_Impact.Form.Controls("fsub_Dist_Exotic").Form.RecordsetClone.RecordCount = 0)
@@ -1618,6 +1635,7 @@ On Error GoTo Err_Handler
     Me.cbxNo1000hr.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
     
     'A-D are set via Check1000hrFuels (more granular than RecordCount alone)
+    Check1000hrFuels
 
     Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Enabled = (Me.frm_Site_Impact.Form.Controls("Disturbance Details").Form.RecordsetClone.RecordCount = 0)
     Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Enabled = (Me.frm_Site_Impact.Form.Controls("fsub_Dist_Exotic").Form.RecordsetClone.RecordCount = 0)
@@ -1629,48 +1647,87 @@ On Error GoTo Err_Handler
 
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me!Location_ID & "'")
     
-    ' all (exceptions below): hide SLIntercept
-    ' forest: hide pgSS & pgGaps
-    ' grassland/shrubland: hide pgFuels
-    ' oak scrub: hide  pgSS & pgGaps, LP Belt Transect NoShrubs, pgFuels; expose SLIntercept
-    ' woodland: hide gaps & OT Census crown class
+    '---------------------
+    ' tab displays
+    '---------------------
+    ' SS = soil stability, Gaps = Gap Intercepts,
+    ' all (exceptions below): hide - SLIntercept, Gaps
+    '                         expose - Photos, Point Intercept, 1-m Belt, Overstory Trees, Site Impact,
+    '                                  Fuels, Soil Stability
+    ' forest: hide pgSS & pgGaps (TICA hide Fuels)
+    ' grassland/shrubland: hide pgFuels + expose pgGaps, pgSS
+    ' oak scrub: hide  pgSS & pgGaps, LP Belt Transect NoShrubs, pgFuels; expose SLIntercept + hide SLIntercept
+    ' woodland: hide gaps & OT Census crown class + expose pgSS
+    '
+    '       X = exposed  O = hidden
+    '
+    '                               DEFAULT     Forest  Grassland/Shrubland     Oak Scrub   Woodland
+    '   Photos (pgPhotos)             X           X             X                   X           X
+    '   Point Intercept               X           X             X                   X           X
+    '   1-m Belt (pgBeltShrub)        X           X             X                   X           X
+    '   Gap Intercepts (pgGaps)       O           O             X                   O           O
+    '   Overstory Trees (pgOT)        X           X             X                   X           X
+    '   Site Impact (pgImpact)        X           X             X                   X           X
+    '   Soil Stability (pgSS)         X           O             X                   O           X
+    '   Fuels (pgFuels)               X           X             O                   O           X
+    '----------------------
     
     'defaults
+    '-- hide  --
+    '[deprecated, no longer used tabs]
     Me!pgSLIntercept.Visible = False
+    Me!pgCoords_and_loc_details.Visible = False
+    'normal tabs
+    Me!pgGaps.Visible = False
     
+    '-- expose --
+    Me!pgPhotos.Visible = True
+    Me![Point Intercept].Visible = True
+    Me!pgBeltShrub.Visible = True
+    Me!pgOT.Visible = True
+    Me.pgImpact.Visible = True
+    Me!pgFuels.Visible = True
+    Me!pgSS.Visible = True
+    
+    'handle exceptions
     If Not IsNull(Veg_Type) Then
         Select Case Veg_Type
             
-            Case "forest"
-                'hide SS & Gaps
+            Case "forest"   'hide SS & Gaps, TICA no fuels special case
+                'hide SS & Gaps (above)
                 Me!pgSS.Visible = False
-                Me!pgGaps.Visible = False
+                
+                ' Modified to hide fuels form for TICA 1 [HMT, 3/13/2015]
+                ' TICA 1 is a special case of a forest plot that does not have fuels data collected.
+                If (Me!Unit_Code = "TICA") And (Me!Plot_ID = 1) Then
+                  Me!pgFuels.Visible = False
+                End If
             
-            Case "grassland/shrubland"
+            Case "grassland/shrubland"  'hide fuels, expose SS & Gaps
                 'hide fuels
                 Me!pgFuels.Visible = False
+                
+                'expose SS (above) & Gaps
+                Me!pgGaps.Visible = True
                             
-            Case "oak scrub" 'oak plots
-                'hide SS & Gaps
+            Case "oak scrub"    'oak plots   hide Gaps, SS & fuels,  expose
+                'hide fuels, SS & Gaps (above)
+                Me!pgFuels.Visible = False
                 Me!pgSS.Visible = False
-                Me!pgGaps.Visible = False
                 
                 'hide shrubs
                 Me.frm_LP_Belt_Transect.Controls("cbxNoShrubs").Visible = False
                 Me.frm_LP_Belt_Transect.Controls("lblNoShrubs").Visible = False
                 Me.frm_LP_Belt_Transect.Controls("rctNoShrubs").Visible = False
             
-                'hide fuels
-                Me!pgFuels.Visible = False
-            
-                'expose SL intercept for oak scrub
-                Me!pgSLIntercept.Visible = True
+                'expose SL intercept for oak scrub --> NOW hide it (3/23/2016)
+                Me!pgSLIntercept.Visible = False
             
             Case "woodland"
-                'hide gaps & OT Census crown class
-                Me!pgGaps.Visible = False
+                'hide gaps (above) & OT Census crown class
                 Me!fsub_OT_Census.Form!Crown_Class.Visible = False
                 Me!fsub_OT_Census.Form!Crown_Class_Label.Visible = False
+                'expose SS (above)
 
         End Select
     End If
@@ -1685,12 +1742,6 @@ On Error GoTo Err_Handler
       If IsNull(Me!Sapling_Date) Then
         Me!Sapling_Date = Me!txtStart_date
       End If
-    End If
-    
-    ' Modified to hide fuels form for TICA 1 [HMT, 3/13/2015]
-    ' TICA 1 is a special case of a forest plot that does not have fuels data collected.
-    If (Me!Unit_Code = "TICA") And (Me!Plot_ID = 1) Then
-      Me!pgFuels.Visible = False
     End If
 
 Exit_Handler:

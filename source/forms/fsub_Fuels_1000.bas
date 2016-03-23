@@ -15,10 +15,10 @@ Begin Form
     Width =6660
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =1470
-    Top =8445
-    Right =7380
-    Bottom =12090
+    Left =1335
+    Top =5400
+    Right =7245
+    Bottom =9045
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x99c2faf85388e340
@@ -323,13 +323,15 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_Fuels_1000
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.03
 ' Description:  data functions & procedures specific to fuels monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
 '               BLC - 3/18/2016 - 1.02 - added handling for 1000hr fuels A-D checkboxes for no fuels found
+'               BLC - 3/23/2016 - 1.03 - revised Delete_Click to add 1000hr fuels A-D & main 1000hr
+'                                        NoDataCollected records when last record deleted
 ' =================================
 
 ' ---------------------------------
@@ -528,6 +530,8 @@ End Sub
 ' Revisions:
 '   RDB, unknown  - initial version
 '   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
+'   BLC, 3/23/2016 - revised to add NoDataCollected records for A-D as well as main 1000hr
+'                    when last record deleted
 ' ---------------------------------
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_Handler
@@ -564,15 +568,19 @@ On Error GoTo Err_Handler
             .Controls("rctNo1000hr").Visible = True
             
             'update A-D
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-A", 1
             .Controls("cbxNo1000hrA") = 1
             .Controls("cbxNo1000hrA").Enabled = True
             .Controls("rctNo1000hrA").Visible = True
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-B", 1
             .Controls("cbxNo1000hrB") = 1
             .Controls("cbxNo1000hrB").Enabled = True
             .Controls("rctNo1000hrB").Visible = True
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-C", 1
             .Controls("cbxNo1000hrC") = 1
             .Controls("cbxNo1000hrC").Enabled = True
             .Controls("rctNo1000hrC").Visible = True
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-D", 1
             .Controls("cbxNo1000hrD") = 1
             .Controls("cbxNo1000hrD").Enabled = True
             .Controls("rctNo1000hrD").Visible = True

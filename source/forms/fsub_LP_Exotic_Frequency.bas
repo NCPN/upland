@@ -2,7 +2,6 @@
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -14,10 +13,10 @@ Begin Form
     Width =7320
     DatasheetFontHeight =9
     ItemSuffix =51
-    Left =6336
-    Top =1440
-    Right =14088
-    Bottom =5700
+    Left =1890
+    Top =1605
+    Right =9645
+    Bottom =5865
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -291,10 +290,10 @@ Begin Form
                     Caption ="Master"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -308,10 +307,10 @@ Begin Form
                     Caption ="Unknown"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -365,10 +364,10 @@ Begin Form
                     RowSource ="(SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Can"
                         "opy.Utah_Species,   qryU_Top_Canopy.Nativity FROM qryU_Top_Canopy WHERE (((qryU_"
                         "Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Nativity])='NonNati"
-                        "ve')) ORDER BY qryU_Top_Canopy.LU_Code)  UNION ALL  (SELECT tbl_Unknown_Species."
-                        "Unknown_Code, tbl_Unknown_Species.Unknown_Code,   tbl_Unknown_Species.Plant_Type"
-                        ", NULL AS Nativity FROM tbl_Unknown_Species ORDER BY tbl_Unknown_Species.Unknown"
-                        "_Code);"
+                        "ve')) ORDER BY qryU_Top_Canopy.LU_Code)  UNION ALL (SELECT tbl_Unknown_Species.U"
+                        "nknown_Code, tbl_Unknown_Species.Unknown_Code,   tbl_Unknown_Species.Plant_Type "
+                        "+ \" - \" + tbl_Unknown_Species.Plant_Description, NULL AS Nativity FROM tbl_Unk"
+                        "nown_Species ORDER BY tbl_Unknown_Species.Unknown_Code);"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
@@ -384,10 +383,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CheckBox
                     OverlapFlags =85
