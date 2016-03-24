@@ -1654,10 +1654,6 @@ On Error GoTo Err_Handler
     ' all (exceptions below): hide - SLIntercept, Gaps
     '                         expose - Photos, Point Intercept, 1-m Belt, Overstory Trees, Site Impact,
     '                                  Fuels, Soil Stability
-    ' forest: hide pgSS & pgGaps (TICA hide Fuels)
-    ' grassland/shrubland: hide pgFuels + expose pgGaps, pgSS
-    ' oak scrub: hide  pgSS & pgGaps, LP Belt Transect NoShrubs, pgFuels; expose SLIntercept + hide SLIntercept
-    ' woodland: hide gaps & OT Census crown class + expose pgSS
     '
     '       X = exposed  O = hidden
     '
