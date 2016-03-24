@@ -19,10 +19,10 @@ Begin Form
     Width =12960
     DatasheetFontHeight =9
     ItemSuffix =140
-    Left =-300
+    Left =240
     Top =1500
-    Right =12660
-    Bottom =7110
+    Right =13155
+    Bottom =7335
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9ff2d503acd4e340
@@ -151,7 +151,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =8
+                    TabIndex =13
                     BackColor =16777215
                     Name ="Litter_A2"
                     ControlSource ="2Litter_A"
@@ -195,7 +195,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =19
+                    TabIndex =15
                     BackColor =65535
                     Name ="Litter_A4"
                     ControlSource ="4Litter_A"
@@ -221,7 +221,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =30
+                    TabIndex =17
                     BackColor =65535
                     Name ="Litter_A6"
                     ControlSource ="6Litter_A"
@@ -247,7 +247,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =38
+                    TabIndex =19
                     BackColor =65535
                     Name ="Litter_A8"
                     ControlSource ="8Litter_A"
@@ -273,7 +273,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =51
+                    TabIndex =21
                     BackColor =65535
                     Name ="Litter_A10"
                     ControlSource ="10Litter_A"
@@ -299,7 +299,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =59
+                    TabIndex =23
                     BackColor =65535
                     Name ="Litter_A12"
                     ControlSource ="12Litter_A"
@@ -325,7 +325,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =67
+                    TabIndex =25
                     BackColor =65535
                     Name ="Litter_A14"
                     ControlSource ="14Litter_A"
@@ -351,7 +351,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =10
+                    TabIndex =27
                     BackColor =65535
                     Name ="Litter_B2"
                     ControlSource ="2Litter_B"
@@ -395,7 +395,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =21
+                    TabIndex =29
                     BackColor =65535
                     Name ="Litter_B4"
                     ControlSource ="4Litter_B"
@@ -421,7 +421,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =32
+                    TabIndex =31
                     BackColor =65535
                     Name ="Litter_B6"
                     ControlSource ="6Litter_B"
@@ -447,7 +447,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =40
+                    TabIndex =33
                     BackColor =65535
                     Name ="Litter_B8"
                     ControlSource ="8Litter_B"
@@ -473,7 +473,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =53
+                    TabIndex =35
                     BackColor =65535
                     Name ="Litter_B10"
                     ControlSource ="10Litter_B"
@@ -499,7 +499,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =61
+                    TabIndex =37
                     BackColor =65535
                     Name ="Litter_B12"
                     ControlSource ="12Litter_B"
@@ -525,7 +525,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =69
+                    TabIndex =39
                     BackColor =65535
                     Name ="Litter_B14"
                     ControlSource ="14Litter_B"
@@ -551,7 +551,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =12
+                    TabIndex =41
                     BackColor =65535
                     Name ="Litter_C2"
                     ControlSource ="2Litter_C"
@@ -595,7 +595,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =23
+                    TabIndex =43
                     BackColor =65535
                     Name ="Litter_C4"
                     ControlSource ="4Litter_C"
@@ -621,7 +621,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =34
+                    TabIndex =45
                     BackColor =16777215
                     Name ="Litter_C6"
                     ControlSource ="6Litter_C"
@@ -647,7 +647,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =42
+                    TabIndex =47
                     BackColor =65535
                     Name ="Litter_C8"
                     ControlSource ="8Litter_C"
@@ -673,7 +673,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =55
+                    TabIndex =49
                     BackColor =65535
                     Name ="Litter_C10"
                     ControlSource ="10Litter_C"
@@ -699,7 +699,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =63
+                    TabIndex =51
                     BackColor =65535
                     Name ="Litter_C12"
                     ControlSource ="12Litter_C"
@@ -725,7 +725,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =71
+                    TabIndex =53
                     BackColor =65535
                     Name ="Litter_C14"
                     ControlSource ="14Litter_C"
@@ -751,7 +751,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =14
+                    TabIndex =55
                     BackColor =65535
                     Name ="Litter_D2"
                     ControlSource ="2Litter_D"
@@ -794,7 +794,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =25
+                    TabIndex =57
                     BackColor =65535
                     Name ="Litter_D4"
                     ControlSource ="4Litter_D"
@@ -820,7 +820,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =36
+                    TabIndex =59
                     BackColor =65535
                     Name ="Litter_D6"
                     ControlSource ="6Litter_D"
@@ -846,7 +846,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =44
+                    TabIndex =61
                     BackColor =65535
                     Name ="Litter_D8"
                     ControlSource ="8Litter_D"
@@ -872,7 +872,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =57
+                    TabIndex =63
                     BackColor =65535
                     Name ="Litter_D10"
                     ControlSource ="10Litter_D"
@@ -924,7 +924,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =73
+                    TabIndex =67
                     BackColor =16777215
                     Name ="Litter_D14"
                     ControlSource ="14Litter_D"
@@ -950,7 +950,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =9
+                    TabIndex =14
                     BackColor =65535
                     Name ="Duff_A2"
                     ControlSource ="2Duff_A"
@@ -996,7 +996,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =20
+                    TabIndex =16
                     BackColor =65535
                     Name ="Duff_A4"
                     ControlSource ="4Duff_A"
@@ -1022,7 +1022,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =31
+                    TabIndex =18
                     BackColor =65535
                     Name ="Duff_A6"
                     ControlSource ="6Duff_A"
@@ -1048,7 +1048,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =39
+                    TabIndex =20
                     BackColor =65535
                     Name ="Duff_A8"
                     ControlSource ="8Duff_A"
@@ -1074,7 +1074,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =52
+                    TabIndex =22
                     BackColor =65535
                     Name ="Duff_A10"
                     ControlSource ="10Duff_A"
@@ -1100,7 +1100,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =60
+                    TabIndex =24
                     BackColor =65535
                     Name ="Duff_A12"
                     ControlSource ="12Duff_A"
@@ -1126,7 +1126,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =68
+                    TabIndex =26
                     BackColor =65535
                     Name ="Duff_A14"
                     ControlSource ="14Duff_A"
@@ -1152,7 +1152,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =11
+                    TabIndex =28
                     BackColor =65535
                     Name ="Duff_B2"
                     ControlSource ="2Duff_B"
@@ -1198,7 +1198,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =22
+                    TabIndex =30
                     BackColor =65535
                     Name ="Duff_B4"
                     ControlSource ="4Duff_B"
@@ -1224,7 +1224,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =33
+                    TabIndex =32
                     BackColor =65535
                     Name ="Duff_B6"
                     ControlSource ="6Duff_B"
@@ -1250,7 +1250,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =41
+                    TabIndex =34
                     BackColor =16777215
                     Name ="Duff_B8"
                     ControlSource ="8Duff_B"
@@ -1276,7 +1276,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =54
+                    TabIndex =36
                     BackColor =65535
                     Name ="Duff_B10"
                     ControlSource ="10Duff_B"
@@ -1302,7 +1302,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =62
+                    TabIndex =38
                     BackColor =65535
                     Name ="Duff_B12"
                     ControlSource ="12Duff_B"
@@ -1328,7 +1328,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =70
+                    TabIndex =40
                     BackColor =65535
                     Name ="Duff_B14"
                     ControlSource ="14Duff_B"
@@ -1354,7 +1354,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =13
+                    TabIndex =42
                     BackColor =65535
                     Name ="Duff_C2"
                     ControlSource ="2Duff_C"
@@ -1400,7 +1400,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =24
+                    TabIndex =44
                     BackColor =65535
                     Name ="Duff_C4"
                     ControlSource ="4Duff_C"
@@ -1426,7 +1426,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =35
+                    TabIndex =46
                     BackColor =65535
                     Name ="Duff_C6"
                     ControlSource ="6Duff_C"
@@ -1452,7 +1452,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =43
+                    TabIndex =48
                     BackColor =65535
                     Name ="Duff_C8"
                     ControlSource ="8Duff_C"
@@ -1478,7 +1478,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =56
+                    TabIndex =50
                     BackColor =65535
                     Name ="Duff_C10"
                     ControlSource ="10Duff_C"
@@ -1504,7 +1504,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =64
+                    TabIndex =52
                     BackColor =65535
                     Name ="Duff_C12"
                     ControlSource ="12Duff_C"
@@ -1530,7 +1530,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =72
+                    TabIndex =54
                     BackColor =65535
                     Name ="Duff_C14"
                     ControlSource ="14Duff_C"
@@ -1556,7 +1556,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =15
+                    TabIndex =56
                     BackColor =16777215
                     Name ="Duff_D2"
                     ControlSource ="2Duff_D"
@@ -1601,7 +1601,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =26
+                    TabIndex =58
                     BackColor =65535
                     Name ="Duff_D4"
                     ControlSource ="4Duff_D"
@@ -1627,7 +1627,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =37
+                    TabIndex =60
                     BackColor =65535
                     Name ="Duff_D6"
                     ControlSource ="6Duff_D"
@@ -1653,7 +1653,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =45
+                    TabIndex =62
                     BackColor =65535
                     Name ="Duff_D8"
                     ControlSource ="8Duff_D"
@@ -1679,7 +1679,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =58
+                    TabIndex =64
                     BackColor =65535
                     Name ="Duff_D10"
                     ControlSource ="10Duff_D"
@@ -1731,7 +1731,7 @@ Begin Form
                     Width =840
                     Height =300
                     ColumnWidth =2310
-                    TabIndex =74
+                    TabIndex =68
                     BackColor =65535
                     Name ="Duff_D14"
                     ControlSource ="14Duff_D"
@@ -1921,6 +1921,7 @@ Begin Form
                 End
                 Begin TextBox
                     Visible = NotDefault
+                    TabStop = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
                     Left =120
@@ -1935,13 +1936,14 @@ Begin Form
                 End
                 Begin TextBox
                     Visible = NotDefault
+                    TabStop = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
                     Left =540
                     Top =120
                     Width =330
                     Height =300
-                    TabIndex =1
+                    TabIndex =69
                     Name ="Event_ID"
                     ControlSource ="Event_ID"
                     StatusBarText ="Foreign key to tbl_Events"
@@ -2231,7 +2233,7 @@ Begin Form
                     Top =1020
                     Width =1080
                     Height =300
-                    TabIndex =2
+                    TabIndex =1
                     Name ="1HR_A"
                     ControlSource ="1HR_A"
                     StatusBarText ="One hour fuel intercept for transect A"
@@ -2266,7 +2268,7 @@ Begin Form
                     Top =1320
                     Width =1080
                     Height =300
-                    TabIndex =5
+                    TabIndex =4
                     Name ="1HR_B"
                     ControlSource ="1HR_B"
                     StatusBarText ="One hour fuel intercept for transect B"
@@ -2301,7 +2303,7 @@ Begin Form
                     Top =1620
                     Width =1080
                     Height =300
-                    TabIndex =16
+                    TabIndex =7
                     Name ="1HR_C"
                     ControlSource ="1HR_C"
                     StatusBarText ="One hour fuel intercept for transect C"
@@ -2336,7 +2338,7 @@ Begin Form
                     Top =1920
                     Width =1080
                     Height =300
-                    TabIndex =27
+                    TabIndex =10
                     Name ="DI_1HR"
                     ControlSource ="1HR_D"
                     StatusBarText ="One hour fuel intercept for transect D"
@@ -2357,7 +2359,7 @@ Begin Form
                     Top =1020
                     Width =1080
                     Height =300
-                    TabIndex =3
+                    TabIndex =2
                     BackColor =13434828
                     Name ="10HR_A"
                     ControlSource ="10HR_A"
@@ -2395,7 +2397,7 @@ Begin Form
                     Top =1320
                     Width =1080
                     Height =300
-                    TabIndex =6
+                    TabIndex =5
                     BackColor =13434828
                     Name ="10HR_B"
                     ControlSource ="10HR_B"
@@ -2431,7 +2433,7 @@ Begin Form
                     Top =1620
                     Width =1080
                     Height =300
-                    TabIndex =17
+                    TabIndex =8
                     BackColor =13434828
                     Name ="10HR_C"
                     ControlSource ="10HR_C"
@@ -2466,7 +2468,7 @@ Begin Form
                     Top =1920
                     Width =1080
                     Height =300
-                    TabIndex =28
+                    TabIndex =11
                     BackColor =13434828
                     Name ="DI_10HR"
                     ControlSource ="10HR_D"
@@ -2488,7 +2490,7 @@ Begin Form
                     Top =1020
                     Width =1080
                     Height =300
-                    TabIndex =4
+                    TabIndex =3
                     Name ="100HR_A"
                     ControlSource ="100HR_A"
                     StatusBarText ="Hundred hour fuel intercept for transect A"
@@ -2523,7 +2525,7 @@ Begin Form
                     Top =1320
                     Width =1080
                     Height =300
-                    TabIndex =7
+                    TabIndex =6
                     Name ="100HR_B"
                     ControlSource ="100HR_B"
                     StatusBarText ="Hundred hour fuel intercept for transect B"
@@ -2545,7 +2547,7 @@ Begin Form
                     Top =1620
                     Width =1080
                     Height =300
-                    TabIndex =18
+                    TabIndex =9
                     Name ="100HR_C"
                     ControlSource ="100HR_C"
                     StatusBarText ="Hundred hour fuel intercept for transect C"
@@ -2567,7 +2569,7 @@ Begin Form
                     Top =1920
                     Width =1080
                     Height =300
-                    TabIndex =29
+                    TabIndex =12
                     Name ="DI_100HR"
                     ControlSource ="100HR_D"
                     StatusBarText ="Hundred hour fuel intercept for transect D"
@@ -2608,12 +2610,13 @@ Begin Form
                     Caption ="B"
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =900
                     Top =2280
                     Width =606
                     Height =288
-                    TabIndex =46
+                    TabIndex =70
                     Name ="ButtonA1"
                     Caption ="+ 1"
                     OnClick ="[Event Procedure]"
@@ -2626,12 +2629,13 @@ Begin Form
                     WebImagePaddingBottom =1
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =1620
                     Top =2280
                     Width =606
                     Height =288
-                    TabIndex =47
+                    TabIndex =71
                     Name ="ButtonA5"
                     Caption ="+ 5"
                     OnClick ="[Event Procedure]"
@@ -2644,12 +2648,13 @@ Begin Form
                     WebImagePaddingBottom =1
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =2340
                     Top =2280
                     Width =606
                     Height =288
-                    TabIndex =48
+                    TabIndex =72
                     Name ="ButtonS1"
                     Caption ="- 1"
                     OnClick ="[Event Procedure]"
@@ -2662,12 +2667,13 @@ Begin Form
                     WebImagePaddingBottom =1
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =3060
                     Top =2280
                     Width =606
                     Height =288
-                    TabIndex =49
+                    TabIndex =73
                     Name ="ButtonS5"
                     Caption ="- 5"
                     OnClick ="[Event Procedure]"
@@ -2680,12 +2686,13 @@ Begin Form
                     WebImagePaddingBottom =1
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =3780
                     Top =2280
                     Width =606
                     Height =288
-                    TabIndex =50
+                    TabIndex =74
                     Name ="ButtonZero"
                     Caption ="0"
                     OnClick ="[Event Procedure]"
@@ -2698,6 +2705,7 @@ Begin Form
                     WebImagePaddingBottom =1
                 End
                 Begin CommandButton
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =4920
                     Top =3840
@@ -2744,7 +2752,21 @@ Option Explicit
 '                                        which was 2Litter_D, Duff_D2, etc. to consistent Litter_ or Duff_
 '                                        followed by transect letter and point # (Litter_B14, etc.) &
 '                                        adjusted all associated control references in this module
+'               BLC - 3/24/2016 - 1.02 - added documentation @ control tab order
 ' =================================
+
+' ---------------------------------
+'  CONTROL TAB ORDER
+'
+'  Tab order MUST be the following (per HT 3/24/2016):
+'
+'   1 - 12)# of intercepts: 1HR-10HR-100HR  begin tabs L to R (across then down),  begin w/ A the down to D
+'   13 - 68) litter & duff depth: start @ transect A, do litter, then duff @ pt 2 for that transect down to 14
+'                        then go to B, C, D
+'                        (complete all of A, then B, C, D but within do litter then duff for @ pt)
+'
+'   no other controls within this form are in the tab order
+' ---------------------------------
 
 ' ---------------------------------
 ' SUB:          Form_Load
