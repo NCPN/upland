@@ -13,10 +13,10 @@ Begin Form
     Width =7320
     DatasheetFontHeight =9
     ItemSuffix =51
-    Left =1890
-    Top =1605
-    Right =9645
-    Bottom =5865
+    Left =2880
+    Top =1410
+    Right =10620
+    Bottom =5655
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -312,6 +312,22 @@ Begin Form
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
                 End
+                Begin TextBox
+                    Visible = NotDefault
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =300
+                    Top =120
+                    Width =600
+                    ColumnOrder =0
+                    TabIndex =2
+                    Name ="tbxRecordCount"
+
+                    LayoutCachedLeft =300
+                    LayoutCachedTop =120
+                    LayoutCachedWidth =900
+                    LayoutCachedHeight =360
+                End
             End
         End
         Begin Section
@@ -515,6 +531,8 @@ Option Explicit
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation
 '               BLC - 2/19/2016 - 1.02 - added no data collected checkbox functionality
+'               BLC - 3/29/2016 - 1.03 - resolve issues w/ no data collected checkbox where
+'                                        deleting species does not unhide the checkbox
 ' =================================
 
 ' ---------------------------------
@@ -529,9 +547,13 @@ Option Explicit
 ' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/2/2016  - initial version
+'   BLC, 3/29/2016 - mirror fsub_LP_Exotic_Freq_Oak & resolve
+'                    no data collected checkbox disappearing
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
+
+    tbxRecordCount.Value = Me.RecordsetClone.RecordCount
 
 Exit_Handler:
     Exit Sub
@@ -558,6 +580,8 @@ End Sub
 ' Revisions:
 '   RDB, unknown    - initial version
 '   BLC, 2/19/2016  - added no data collected info updates
+'   BLC, 3/29/2016 - mirror fsub_LP_Exotic_Freq_Oak & resolve
+'                    no data collected checkbox disappearing
 ' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -580,7 +604,7 @@ On Error GoTo Err_Handler
     'update checkbox/rectangle
     Me.Parent.Form.Controls("cbxNoExotics") = 0
     Me.Parent.Form.Controls("cbxNoExotics").Enabled = False
-    Me.Parent.Form.Controls("cbxNoExotics").Visible = False
+    Me.Parent.Form.Controls("rctNoExotics").Visible = False
 
 Exit_Handler:
     Exit Sub
@@ -592,15 +616,6 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_LP_Exotic_Frequency])"
     End Select
     Resume Exit_Handler
-End Sub
-
-Private Sub Species_GotFocus()
-
-    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
-      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
-      Me.Parent.Refresh   ' Force save of transect record
-    End If
-   
 End Sub
 
 ' ---------------------------------
@@ -616,6 +631,7 @@ End Sub
 ' Revisions:
 '   RDB, unknown    - initial version
 '   BLC, 2/19/2016  - added no data collected info updates
+'   BLC, 3/29/2016 - removed no data collected changes as this is taken care of with Form_BeforeInsert()
 ' ---------------------------------
 Private Sub Species_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -627,18 +643,24 @@ On Error GoTo Err_Handler
       Me.Undo
     End If
     
-    '-----------------------------------
-    ' update the NoDataCollected info
-    '-----------------------------------
-    Dim NoData As Scripting.Dictionary
-    
-    'remove the no data collected record
-    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Exotics", 0)
-        
-    'update checkbox/rectangle
-    Me.Parent.Form.Controls("cbxNoExotics") = 0
-    Me.Parent.Form.Controls("cbxNoExotics").Enabled = False
-    Me.Parent.Form.Controls("rctNoExotics").Visible = False
+'    '-----------------------------------
+'    ' update the NoDataCollected info
+'    '-----------------------------------
+'    Dim NoData As Scripting.Dictionary
+'
+'    'remove the no data collected record
+'    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Exotics", 0)
+'
+'    'update checkbox/rectangle
+'    Me.Parent.Form.Controls("cbxNoExotics") = 0
+'    Me.Parent.Form.Controls("cbxNoExotics").Enabled = False
+'    Me.Parent.Form.Controls("rctNoExotics").Visible = False
+
+'    'if species is added disable checkbox & change color of rectangle background
+'    If Not IsNull(Me.Species) Then
+'        Me.Parent.Form.Controls("cbxNoExotics").Enabled = False
+'        Me.Parent.Form.Controls("rctNoExotics").Visible = False
+'    End If
     
 Exit_Handler:
     Exit Sub
@@ -647,7 +669,44 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_LP_Exotic_Frequency])"
+            "Error encountered (#" & Err.Number & " - Species_BeforeUpdate[Form_fsub_LP_Exotic_Frequency])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 3/29/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
+Private Sub Species_GotFocus()
+On Error GoTo Err_Handler
+
+    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
+      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
+      Me.Parent.Refresh   ' Force save of transect record
+    End If
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_LP_Exotic_Frequency])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -721,6 +780,8 @@ End Sub
 ' Revisions:
 '   RDB, unknown  - initial version
 '   BLC, 2/19/2016 - added error handling, documentation, refresh checkbox/no data collected
+'   BLC, 3/29/2016 - mirror fsub_LP_Exotic_Freq_Oak & resolve
+'                    no data collected checkbox disappearing
 ' ---------------------------------
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_Handler
@@ -747,12 +808,17 @@ On Error GoTo Err_Handler
         Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Exotics", 1)
     
         'update checkbox/rectangle
+'        Me.Parent.Form.Controls("cbxNoExotics") = 1
+'        Me.Parent.Form.Controls("cbxNoExotics").Enabled = True
+'        Me.Parent.Form.Controls("rctNoExotics").Visible = True
+        
         Me.Parent.Form.Controls("cbxNoExotics") = 1
         Me.Parent.Form.Controls("cbxNoExotics").Enabled = True
+'        Me.Parent.Form.Controls("lblNoExotics").Visible = True
         Me.Parent.Form.Controls("rctNoExotics").Visible = True
         
     End If
-
+        
 Exit_Handler:
     Exit Sub
     

@@ -665,6 +665,7 @@ End Sub
 ' Revisions:
 '   RDB, unknown  - initial version
 '   BLC, 2/2/2016  - added documentation, disable checkbox if species exist
+'   BLC, 3/29/2016 - removed no data collected changes as this is taken care of with Form_BeforeInsert()
 ' ---------------------------------
 Private Sub Species_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -676,11 +677,11 @@ On Error GoTo Err_Handler
       Me.Undo
     End If
     
-    'if species is added disable checkbox & change color of rectangle background
-    If Not IsNull(Me.Species) Then
-        Me.Parent.Form.Controls("cbxNoExotics").Enabled = False
-        Me.Parent.Form.Controls("rctNoExotics").Visible = False
-    End If
+'    'if species is added disable checkbox & change color of rectangle background
+'    If Not IsNull(Me.Species) Then
+'        Me.Parent.Form.Controls("cbxNoExotics").Enabled = False
+'        Me.Parent.Form.Controls("rctNoExotics").Visible = False
+'    End If
     
 Exit_Handler:
     Exit Sub

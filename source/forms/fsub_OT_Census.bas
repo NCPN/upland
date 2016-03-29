@@ -14,10 +14,10 @@ Begin Form
     Width =14160
     DatasheetFontHeight =9
     ItemSuffix =35
-    Left =-540
-    Top =7392
-    Right =13944
-    Bottom =10896
+    Left =405
+    Top =2205
+    Right =14355
+    Bottom =5700
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x12768bfd3188e340
@@ -173,7 +173,7 @@ Begin Form
                     Height =420
                     FontWeight =700
                     Name ="DBH_Label"
-                    Caption ="DBH/DRC (cm)"
+                    Caption ="Diameter (cm)"
                     FontName ="Tahoma"
                     Tag ="DetachedLabel"
                 End
@@ -241,10 +241,10 @@ Begin Form
                     LayoutCachedTop =300
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =600
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -260,10 +260,10 @@ Begin Form
                     LayoutCachedTop =660
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =960
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -273,8 +273,8 @@ Begin Form
                     Width =960
                     Height =240
                     FontWeight =700
-                    Name ="Label34"
-                    Caption ="Indicator"
+                    Name ="lblDBHDRC"
+                    Caption ="DHB/DRC"
                     FontName ="Tahoma"
                     Tag ="DetachedLabel"
                 End
@@ -460,10 +460,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
