@@ -14,10 +14,10 @@ Begin Form
     Width =11340
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =840
-    Top =3132
-    Right =12504
-    Bottom =6636
+    Left =480
+    Top =2505
+    Right =11370
+    Bottom =5940
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x384b3f359387e340
@@ -30,6 +30,7 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
     AllowPivotTableView =0
     AllowPivotChartView =0
@@ -195,7 +196,7 @@ Begin Form
                     LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OverlapFlags =95
+                    OverlapFlags =223
                     TextAlign =2
                     Left =5730
                     Top =960
@@ -255,10 +256,10 @@ Begin Form
                     LayoutCachedTop =120
                     LayoutCachedWidth =9045
                     LayoutCachedHeight =420
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -275,10 +276,10 @@ Begin Form
                     LayoutCachedTop =540
                     LayoutCachedWidth =9045
                     LayoutCachedHeight =840
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =215
@@ -390,10 +391,26 @@ Begin Form
                     Height =255
                     ColumnWidth =600
                     TabIndex =4
+                    BackColor =65535
                     Name ="HC25"
                     ControlSource ="D25"
                     StatusBarText ="10.1-25cm height class total"
+                    ValidationRule ="IsNumeric([HC25])=True"
+                    ValidationText ="Diameter class 1 should be numeric between 2.5 and 5 cm"
+                    AfterUpdate ="[Event Procedure]"
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000005000000000000000400000001000000 ,
+                        0x00000000ffff0000000000000400000005000000070000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x32002e00350000000000350000000000
+                    End
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000050000000100000000000000ffff0000030000003200 ,
+                        0x2e00350000000000000000000000000000000000000000000000000000040000 ,
+                        0x000100000000000000ffff000001000000350000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin TextBox
                     OverlapFlags =215
@@ -405,10 +422,26 @@ Begin Form
                     Height =255
                     ColumnWidth =600
                     TabIndex =5
+                    BackColor =65535
                     Name ="HC50"
                     ControlSource ="D51"
                     StatusBarText ="25.1-50cm height class total"
+                    ValidationRule ="IsNumeric([HC50])=True"
+                    ValidationText ="Diameter class 1 should be numeric between 5.1 and 10 cm"
+                    AfterUpdate ="[Event Procedure]"
+                    ConditionalFormat = Begin
+                        0x0100000072000000020000000000000005000000000000000400000001000000 ,
+                        0x00000000ffff0000000000000400000005000000080000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x35002e003100000000003100300000000000
+                    End
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000050000000100000000000000ffff0000030000003500 ,
+                        0x2e00310000000000000000000000000000000000000000000000000000040000 ,
+                        0x000100000000000000ffff000002000000310030000000000000000000000000 ,
+                        0x00000000000000000000
+                    End
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -420,10 +453,26 @@ Begin Form
                     Height =255
                     ColumnWidth =600
                     TabIndex =6
+                    BackColor =65535
                     Name ="HC100"
                     ControlSource ="D101"
                     StatusBarText ="50.1-100cm height class total"
+                    ValidationRule ="IsNumeric([HC100])=True"
+                    ValidationText ="Diameter class 1 should be numeric between 10.1 and 15 cm"
+                    AfterUpdate ="[Event Procedure]"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000005000000000000000500000001000000 ,
+                        0x00000000ffff0000000000000400000006000000090000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x310030002e003100000000003100350000000000
+                    End
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000050000000100000000000000ffff0000040000003100 ,
+                        0x30002e0031000000000000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ffff00000200000031003500000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -482,10 +531,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -505,10 +554,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -522,10 +571,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -539,10 +588,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -556,10 +605,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -573,10 +622,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -593,14 +642,121 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_OT_Tree_Saplings
 ' Level:        Form module
-' Version:      1.02
+' Version:      1.03
 ' Description:  data functions & procedures specific to overstory tree sapling monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/11/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/11/2016 - 1.01 - added documentation, set checkbox notifications for no species found
 '               BLC - 3/8/2016 - 1.02 - added documentation, Species_GotFocus()
+'               BLC - 3/29/2016 - 1.03 - added field highlighting
 ' =================================
+
+' ---------------------------------
+' SUB:          Form_Load
+' Description:  handles form loading actions
+' Parameters:
+' Returns:      -
+' Assumptions:  -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'       BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub Form_Load()
+On Error GoTo Err_Handler
+   
+    'handle HC## highlighting from saved data
+    Dim ctrl As Control
+    
+    For Each ctrl In Me.Controls
+        
+        'handle only visible, enabled textboxes
+        If ctrl.ControlType = acTextBox Then
+        
+            If ctrl.Visible = True And ctrl.Enabled = True Then
+        
+                ctrl.SetFocus  'Required to avoid Error #2185 control must have focus to reference property or method
+            
+                'isolate only HC## textboxes
+                If Len(ctrl.name) > Len(Replace(ctrl.name, "HC", "")) Then
+                    SetControlHighlight ctrl, 0, "gt"
+                End If
+                
+            End If
+            
+        End If
+        
+    Next
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Form_BeforeInsert
+' Description:  Handles form pre-insert actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown    - initial version
+'   BLC, 2/11/2016  - added no data collected info updates
+' ---------------------------------
+Private Sub Form_BeforeInsert(Cancel As Integer)
+On Error GoTo Err_Handler
+
+    ' Make sure there is an events record
+    If IsNull(Me.Parent!Start_Date) Then
+      MsgBox "Missing site visit date."
+      DoCmd.CancelEvent
+      SendKeys "{ESC}"
+      GoTo Exit_Handler
+    End If
+    ' Create the GUID primary key value
+    If IsNull(Me!TS_ID) Then
+        If GetDataType("tbl_OT_Tree_Saplings", "TS_ID") = dbText Then
+            Me.TS_ID = fxnGUIDGen
+        End If
+    End If
+
+    '-----------------------------------
+    ' update the NoDataCollected info
+    '-----------------------------------
+    Dim NoData As Scripting.Dictionary
+    
+    'remove the no data collected record
+    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "OverstoryTree-Sapling", 0)
+        
+    'update checkbox/rectangle
+    Me.Parent.Form.Controls("cbxNoSaplings") = 0
+    Me.Parent.Form.Controls("cbxNoSaplings").Enabled = False
+    Me.Parent.Form.Controls("rctNoSaplings").Visible = False
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
 ' ---------------------------------
 ' SUB:          Species_GotFocus
@@ -654,6 +810,94 @@ Private Sub Alive_BeforeUpdate(Cancel As Integer)
       DoCmd.CancelEvent
       SendKeys "{ESC}"
     End If
+End Sub
+
+'==================================
+'      HC25-50-100 Updates
+'==================================
+
+' ---------------------------------
+' SUB:          HC25_AfterUpdate
+' Description:  handles HC25 actions
+' Parameters:
+' Returns:      -
+' Assumptions:  -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 2016
+' Revisions:    BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub HC25_AfterUpdate()
+On Error GoTo Err_Handler
+
+    'SetControlHighlight HC25, 0, "gt"
+    
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC25_AfterUpdate[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          HC50_AfterUpdate
+' Description:  handles HC50 actions
+' Parameters:
+' Returns:      -
+' Assumptions:  -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 2016
+' Revisions:    BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub HC50_AfterUpdate()
+On Error GoTo Err_Handler
+
+    SetControlHighlight HC50, 0, "gt"
+    
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC50_AfterUpdate[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          HC100_AfterUpdate
+' Description:  handles HC100 actions
+' Parameters:
+' Returns:      -
+' Assumptions:  -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 2016
+' Revisions:    BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub HC100_AfterUpdate()
+On Error GoTo Err_Handler
+
+    SetControlHighlight HC100
+    
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC100_AfterUpdate[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 Private Sub ButtonA1_Click()
@@ -720,62 +964,6 @@ Private Sub ButtonZero_Click()
       Screen.PreviousControl.Value = 0
   End If
   Screen.PreviousControl.SetFocus
-End Sub
-
-' ---------------------------------
-' SUB:          Form_BeforeInsert
-' Description:  Handles form pre-insert actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:  Russ DenBleyker, unknown
-' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
-' Revisions:
-'   RDB, unknown    - initial version
-'   BLC, 2/11/2016  - added no data collected info updates
-' ---------------------------------
-Private Sub Form_BeforeInsert(Cancel As Integer)
-On Error GoTo Err_Handler
-
-    ' Make sure there is an events record
-    If IsNull(Me.Parent!Start_Date) Then
-      MsgBox "Missing site visit date."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-      GoTo Exit_Handler
-    End If
-    ' Create the GUID primary key value
-    If IsNull(Me!TS_ID) Then
-        If GetDataType("tbl_OT_Tree_Saplings", "TS_ID") = dbText Then
-            Me.TS_ID = fxnGUIDGen
-        End If
-    End If
-
-    '-----------------------------------
-    ' update the NoDataCollected info
-    '-----------------------------------
-    Dim NoData As Scripting.Dictionary
-    
-    'remove the no data collected record
-    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "OverstoryTree-Sapling", 0)
-        
-    'update checkbox/rectangle
-    Me.Parent.Form.Controls("cbxNoSaplings") = 0
-    Me.Parent.Form.Controls("cbxNoSaplings").Enabled = False
-    Me.Parent.Form.Controls("rctNoSaplings").Visible = False
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_OT_Tree_Saplings])"
-    End Select
-    Resume Exit_Handler
 End Sub
 
 Private Sub Species_BeforeUpdate(Cancel As Integer)

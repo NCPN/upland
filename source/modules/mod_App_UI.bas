@@ -26,6 +26,7 @@ Option Explicit
 '                                       (LWA_ALPHA, GWL_EXSTYLE, WS_EX_LAYERED, GetWindowLong(),
 '                                       SetWindowLong(), SetLayeredWindowAttributes(), SetFormOpacity())
 '               BLC, 3/17/2016 -1.10 - added SetControlBackcolor(), CTRL_DEFAULT_BACKCOLOR, Check1000hrFuels
+'               BLC, 3/29/2016 -1.11 - added SetControlHighlight()
 ' =================================
 
 ' ---------------------------------
@@ -678,6 +679,42 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Check1000hrFuels[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          SetControlHighlight
+' Description:  handles control highlight actions
+' Parameters:   ctrl - textbox control (textbox)
+'               -- optional --
+'               threshold - value to compare control value to (double, default = 0)
+'               compareType - how control value should be compared to threshold (string, default = "gteq")
+' Returns:      -
+' Assumptions:  highlighting will be consistent across all textboxes
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 2016
+' Revisions:    BLC, 3/29/2016 - initial version
+' ---------------------------------
+Public Sub SetControlHighlight(ctrl As TextBox, Optional threshold As Double, Optional compareType As String)
+On Error GoTo Err_Handler
+
+    'set defaults if optional values aren't set
+    If Not IsNumeric(threshold) Then threshold = 0
+    If Len(compareType) > 0 Then compareType = "gteq"
+
+    'set the backcolor to white when the value reaches a threshold >= 0, checking for NULL and empty values
+    SetControlBackcolor ctrl, RGB(255, 255, 255), True, True, threshold, compareType
+   
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetControlHighlight[mod_App_UI])"
     End Select
     Resume Exit_Handler
 End Sub
