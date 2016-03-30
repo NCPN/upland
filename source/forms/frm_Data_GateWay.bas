@@ -10,6 +10,7 @@ Begin Form
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
+    FilterOn = NotDefault
     OrderByOn = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -21,12 +22,12 @@ Begin Form
     Width =10560
     DatasheetFontHeight =10
     ItemSuffix =37
-    Left =6045
-    Top =750
-    Right =16605
-    Bottom =6600
+    Left =2415
+    Top =2010
+    Right =12975
+    Bottom =7860
     DatasheetGridlinesColor =12632256
-    Filter ="Unit_code = 'BLCA' AND Site_Selection = -1"
+    Filter ="Unit_code = 'ZION' AND Site_Selection = -1"
     OrderBy ="Plot_ID DESC, Unit_Code"
     RecSrcDt = Begin
         0x29b5dcdf75fbe240

@@ -22,9 +22,9 @@ Begin Form
     Width =16296
     DatasheetFontHeight =10
     ItemSuffix =212
-    Left =3420
+    Left =-1260
     Top =2085
-    Right =19725
+    Right =15045
     Bottom =16545
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201603202"
@@ -1035,7 +1035,6 @@ Begin Form
                                     LayoutCachedHeight =8940
                                 End
                                 Begin CheckBox
-                                    Enabled = NotDefault
                                     OverlapFlags =247
                                     Left =10200
                                     Top =8610
@@ -1137,7 +1136,6 @@ Begin Form
                                     LayoutCachedHeight =10140
                                 End
                                 Begin CheckBox
-                                    Enabled = NotDefault
                                     OverlapFlags =247
                                     Left =10200
                                     Top =9810
@@ -1441,7 +1439,6 @@ Begin Form
                     LayoutCachedHeight =7740
                 End
                 Begin CheckBox
-                    Enabled = NotDefault
                     OverlapFlags =255
                     Left =10200
                     Top =7410

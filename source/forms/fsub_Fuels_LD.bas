@@ -7,7 +7,6 @@ Begin Form
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     KeyPreview = NotDefault
-    FilterOn = NotDefault
     DefaultView =0
     ScrollBars =0
     ViewsAllowed =1
@@ -20,10 +19,10 @@ Begin Form
     Width =12960
     DatasheetFontHeight =9
     ItemSuffix =140
-    Left =996
-    Top =480
-    Right =14112
-    Bottom =5136
+    Left =-3825
+    Top =3270
+    Right =9030
+    Bottom =7665
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9ff2d503acd4e340
@@ -197,7 +196,7 @@ Begin Form
                     Height =300
                     ColumnWidth =2310
                     TabIndex =15
-                    BackColor =16777215
+                    BackColor =65535
                     Name ="Litter_A4"
                     ControlSource ="4Litter_A"
                     StatusBarText ="Litter depth at 4 meter point for transect A in centimeters"
@@ -449,7 +448,7 @@ Begin Form
                     Height =300
                     ColumnWidth =2310
                     TabIndex =33
-                    BackColor =16777215
+                    BackColor =65535
                     Name ="Litter_B8"
                     ControlSource ="8Litter_B"
                     StatusBarText ="Litter depth at 8 meter point for transect B in centimeters"
@@ -597,7 +596,7 @@ Begin Form
                     Height =300
                     ColumnWidth =2310
                     TabIndex =43
-                    BackColor =16777215
+                    BackColor =65535
                     Name ="Litter_C4"
                     ControlSource ="4Litter_C"
                     StatusBarText ="Litter depth at 4 meter point for transect C in centimeters"
@@ -874,7 +873,7 @@ Begin Form
                     Height =300
                     ColumnWidth =2310
                     TabIndex =63
-                    BackColor =16777215
+                    BackColor =65535
                     Name ="Litter_D10"
                     ControlSource ="10Litter_D"
                     StatusBarText ="Litter depth at 10 meter point for transect D in centimeters"
@@ -952,7 +951,7 @@ Begin Form
                     Height =300
                     ColumnWidth =2310
                     TabIndex =14
-                    BackColor =16777215
+                    BackColor =65535
                     Name ="Duff_A2"
                     ControlSource ="2Duff_A"
                     StatusBarText ="Duff depth at 2 meter point for transect A in centimeters"
@@ -998,7 +997,7 @@ Begin Form
                     Height =300
                     ColumnWidth =2310
                     TabIndex =16
-                    BackColor =16777215
+                    BackColor =65535
                     Name ="Duff_A4"
                     ControlSource ="4Duff_A"
                     StatusBarText ="Duff depth at 4 meter point for transect A in centimeters"
@@ -1304,7 +1303,7 @@ Begin Form
                     Height =300
                     ColumnWidth =2310
                     TabIndex =38
-                    BackColor =16777215
+                    BackColor =65535
                     Name ="Duff_B12"
                     ControlSource ="12Duff_B"
                     StatusBarText ="Duff depth at 12 meter point for transect B in centimeters"
@@ -2624,10 +2623,10 @@ Begin Form
                     FontName ="Arial"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     TabStop = NotDefault
@@ -2643,10 +2642,10 @@ Begin Form
                     FontName ="Arial"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     TabStop = NotDefault
@@ -2662,10 +2661,10 @@ Begin Form
                     FontName ="Arial"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     TabStop = NotDefault
@@ -2681,10 +2680,10 @@ Begin Form
                     FontName ="Arial"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     TabStop = NotDefault
@@ -2700,10 +2699,10 @@ Begin Form
                     FontName ="Arial"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     TabStop = NotDefault
@@ -2717,10 +2716,10 @@ Begin Form
                     Caption ="Edit Transect"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

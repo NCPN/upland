@@ -209,8 +209,6 @@ Begin Form
                     Name ="SeedTotal"
                     ControlSource ="Total"
                     StatusBarText ="0-10cm height class total"
-                    ValidationRule ="IsNumeric([SeedTotal])=True Or IsNull([SeedTotal])"
-                    ValidationText ="Diameter class should be numeric"
                     DefaultValue ="Null"
                     ConditionalFormat = Begin
                         0x010000006c000000020000000000000006000000000000000200000001000000 ,
