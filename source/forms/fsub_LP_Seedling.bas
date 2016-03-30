@@ -2,6 +2,7 @@
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -12,10 +13,10 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =348
-    Top =9408
-    Right =6432
-    Bottom =12012
+    Left =1236
+    Top =5760
+    Right =7320
+    Bottom =8340
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x73776174d27ce340
@@ -29,6 +30,8 @@ Begin Form
         0x010000006801000000000000a10700000100000001000000
     End
     OnLoad ="[Event Procedure]"
+    FetchDefaults =0
+    FetchDefaults =0
     FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -195,6 +198,7 @@ Begin Form
                 Begin TextBox
                     OverlapFlags =85
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =2760
                     Top =60
@@ -202,10 +206,26 @@ Begin Form
                     Height =255
                     ColumnWidth =600
                     TabIndex =3
+                    BackColor =65535
                     Name ="SeedTotal"
                     ControlSource ="Total"
                     StatusBarText ="0-10cm height class total"
+                    ValidationRule ="IsNumeric([SeedTotal])=True Or IsNull([SeedTotal])"
+                    ValidationText ="Diameter class should be numeric"
+                    DefaultValue ="Null"
+                    ConditionalFormat = Begin
+                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x300000000000300000000000
+                    End
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x0000000000000000000000000000000000000000000000000005000000010000 ,
+                        0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
+                        0x00000000
+                    End
                 End
                 Begin ComboBox
                     OverlapFlags =247
@@ -232,6 +252,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
+                    OnChange ="[Event Procedure]"
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =3600
@@ -514,6 +535,39 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
+' SUB:          Species_Change
+' Description:  Handles species actions when control is changed
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 3/29/2016  - initial version
+' ---------------------------------
+Private Sub Species_Change()
+On Error GoTo Err_Handler
+
+    'clear seed total value to get rid of 0
+    Me.SeedTotal = Null
+    Me.Refresh
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_Change[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+
+' ---------------------------------
 ' SUB:          Species_BeforeUpdate
 ' Description:  Handles species actions when control is updated
 ' Assumptions:  -
@@ -536,6 +590,11 @@ On Error GoTo Err_Handler
       SendKeys "{ESC}"
       Me.Undo
     End If
+    
+'    'set value to NULL
+'    If Not IsNull(Me.Species) Then
+'        Me.SeedTotal = Null
+'    End If
 
 Exit_Handler:
     Exit Sub

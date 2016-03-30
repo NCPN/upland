@@ -3,6 +3,7 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -14,10 +15,10 @@ Begin Form
     Width =11340
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =480
-    Top =2505
-    Right =11370
-    Bottom =5940
+    Left =2076
+    Top =360
+    Right =13740
+    Bottom =3840
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x384b3f359387e340
@@ -196,7 +197,7 @@ Begin Form
                     LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OverlapFlags =223
+                    OverlapFlags =95
                     TextAlign =2
                     Left =5730
                     Top =960
@@ -256,10 +257,10 @@ Begin Form
                     LayoutCachedTop =120
                     LayoutCachedWidth =9045
                     LayoutCachedHeight =420
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -276,10 +277,10 @@ Begin Form
                     LayoutCachedTop =540
                     LayoutCachedWidth =9045
                     LayoutCachedHeight =840
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Label
                     OverlapFlags =215
@@ -384,6 +385,7 @@ Begin Form
                 Begin TextBox
                     OverlapFlags =85
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =3855
                     Top =60
@@ -395,26 +397,28 @@ Begin Form
                     Name ="HC25"
                     ControlSource ="D25"
                     StatusBarText ="10.1-25cm height class total"
-                    ValidationRule ="IsNumeric([HC25])=True"
-                    ValidationText ="Diameter class 1 should be numeric between 2.5 and 5 cm"
-                    AfterUpdate ="[Event Procedure]"
+                    ValidationRule ="IsNumeric([HC25])=True Or IsNull([HC25])"
+                    ValidationText ="Diameter class should be numeric"
+                    DefaultValue ="Null"
+                    OnChange ="[Event Procedure]"
                     ConditionalFormat = Begin
-                        0x0100000070000000020000000000000005000000000000000400000001000000 ,
-                        0x00000000ffff0000000000000400000005000000070000000100000000000000 ,
+                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
                         0xffff000000000000000000000000000000000000000000000000000000000000 ,
-                        0x32002e00350000000000350000000000
+                        0x300000000000300000000000
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000200000000000000050000000100000000000000ffff0000030000003200 ,
-                        0x2e00350000000000000000000000000000000000000000000000000000040000 ,
-                        0x000100000000000000ffff000001000000350000000000000000000000000000 ,
-                        0x0000000000000000
+                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x0000000000000000000000000000000000000000000000000005000000010000 ,
+                        0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
+                        0x00000000
                     End
                 End
                 Begin TextBox
                     OverlapFlags =215
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =4995
                     Top =60
@@ -426,26 +430,28 @@ Begin Form
                     Name ="HC50"
                     ControlSource ="D51"
                     StatusBarText ="25.1-50cm height class total"
-                    ValidationRule ="IsNumeric([HC50])=True"
-                    ValidationText ="Diameter class 1 should be numeric between 5.1 and 10 cm"
-                    AfterUpdate ="[Event Procedure]"
+                    ValidationRule ="IsNumeric([HC50])=True Or IsNull([HC50])"
+                    ValidationText ="Diameter class should be numeric"
+                    DefaultValue ="Null"
+                    OnChange ="[Event Procedure]"
                     ConditionalFormat = Begin
-                        0x0100000072000000020000000000000005000000000000000400000001000000 ,
-                        0x00000000ffff0000000000000400000005000000080000000100000000000000 ,
+                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
                         0xffff000000000000000000000000000000000000000000000000000000000000 ,
-                        0x35002e003100000000003100300000000000
+                        0x300000000000300000000000
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000200000000000000050000000100000000000000ffff0000030000003500 ,
-                        0x2e00310000000000000000000000000000000000000000000000000000040000 ,
-                        0x000100000000000000ffff000002000000310030000000000000000000000000 ,
-                        0x00000000000000000000
+                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x0000000000000000000000000000000000000000000000000005000000010000 ,
+                        0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
+                        0x00000000
                     End
                 End
                 Begin TextBox
                     OverlapFlags =85
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =6015
                     Top =60
@@ -457,21 +463,22 @@ Begin Form
                     Name ="HC100"
                     ControlSource ="D101"
                     StatusBarText ="50.1-100cm height class total"
-                    ValidationRule ="IsNumeric([HC100])=True"
-                    ValidationText ="Diameter class 1 should be numeric between 10.1 and 15 cm"
-                    AfterUpdate ="[Event Procedure]"
+                    ValidationRule ="IsNumeric([HC100])=True Or IsNull([HC100])"
+                    ValidationText ="Diameter class should be numeric"
+                    DefaultValue ="Null"
+                    OnChange ="[Event Procedure]"
                     ConditionalFormat = Begin
-                        0x0100000074000000020000000000000005000000000000000500000001000000 ,
-                        0x00000000ffff0000000000000400000006000000090000000100000000000000 ,
+                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
                         0xffff000000000000000000000000000000000000000000000000000000000000 ,
-                        0x310030002e003100000000003100350000000000
+                        0x300000000000300000000000
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000200000000000000050000000100000000000000ffff0000040000003100 ,
-                        0x30002e0031000000000000000000000000000000000000000000000000000004 ,
-                        0x0000000100000000000000ffff00000200000031003500000000000000000000 ,
-                        0x000000000000000000000000
+                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x0000000000000000000000000000000000000000000000000005000000010000 ,
+                        0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
+                        0x00000000
                     End
                 End
                 Begin ComboBox
@@ -519,6 +526,7 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
+                    OnChange ="[Event Procedure]"
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =7740
@@ -531,10 +539,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -554,10 +562,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -571,10 +579,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -588,10 +596,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -605,10 +613,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -622,10 +630,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -789,6 +797,162 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+'==================================
+'   HC25-50-100 Highlighting
+'==================================
+' ---------------------------------
+' SUB:          SetHCHighlight
+' Description:  Handles HC highlighting
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 3/29/2016  - initial version
+' ---------------------------------
+Private Sub SetHCHighlighting()
+On Error GoTo Err_Handler
+
+    'clear HC25-50-100 values to get rid of 0 if not set
+    If Not Me.HC25 <> 0 Then Me.HC25 = Null
+    If Not Me.HC50 <> 0 Then Me.HC50 = Null
+    If Not Me.HC100 <> 0 Then Me.HC100 = Null
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetHCHighlighting[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Species_Change
+' Description:  Handles species actions when control has been changed
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 3/29/2016  - initial version
+' ---------------------------------
+Private Sub Species_Change()
+On Error GoTo Err_Handler
+    
+    SetHCHighlighting
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_Change[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          HC25_Change
+' Description:  Handles actions when control has been changed
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 3/29/2016  - initial version
+' ---------------------------------
+Private Sub HC25_Change()
+On Error GoTo Err_Handler
+
+    SetHCHighlighting
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC25_Change[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          HC50_Change
+' Description:  Handles actions when control has been changed
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 3/29/2016  - initial version
+' ---------------------------------
+Private Sub HC50_Change()
+On Error GoTo Err_Handler
+
+    SetHCHighlighting
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC50_Change[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          HC100_Change
+' Description:  Handles actions when control has been changed
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 3/29/2016  - initial version
+' ---------------------------------
+Private Sub HC100_Change()
+On Error GoTo Err_Handler
+
+    SetHCHighlighting
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC100_Change[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
 ' ---------------------------------
 ' SUB:          Alive_BeforeUpdate
 ' Description:  Handles alive before update actions
@@ -810,94 +974,6 @@ Private Sub Alive_BeforeUpdate(Cancel As Integer)
       DoCmd.CancelEvent
       SendKeys "{ESC}"
     End If
-End Sub
-
-'==================================
-'      HC25-50-100 Updates
-'==================================
-
-' ---------------------------------
-' SUB:          HC25_AfterUpdate
-' Description:  handles HC25 actions
-' Parameters:
-' Returns:      -
-' Assumptions:  -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, March 2016
-' Revisions:    BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub HC25_AfterUpdate()
-On Error GoTo Err_Handler
-
-    'SetControlHighlight HC25, 0, "gt"
-    
-Exit_Handler:
-    Exit Sub
-
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - HC25_AfterUpdate[Form_fsub_OT_Tree_Saplings])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          HC50_AfterUpdate
-' Description:  handles HC50 actions
-' Parameters:
-' Returns:      -
-' Assumptions:  -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, March 2016
-' Revisions:    BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub HC50_AfterUpdate()
-On Error GoTo Err_Handler
-
-    SetControlHighlight HC50, 0, "gt"
-    
-Exit_Handler:
-    Exit Sub
-
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - HC50_AfterUpdate[Form_fsub_OT_Tree_Saplings])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          HC100_AfterUpdate
-' Description:  handles HC100 actions
-' Parameters:
-' Returns:      -
-' Assumptions:  -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, March 2016
-' Revisions:    BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub HC100_AfterUpdate()
-On Error GoTo Err_Handler
-
-    SetControlHighlight HC100
-    
-Exit_Handler:
-    Exit Sub
-
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - HC100_AfterUpdate[Form_fsub_OT_Tree_Saplings])"
-    End Select
-    Resume Exit_Handler
 End Sub
 
 Private Sub ButtonA1_Click()

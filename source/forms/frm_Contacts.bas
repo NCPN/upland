@@ -1208,7 +1208,7 @@ Function fxnFormDefaults(strFormMode As String)
         Me.cmdEdit.Enabled = False
         Me.cmdNew.Enabled = False
         Me.AllowAdditions = True
-        Me.Detail.backcolor = 12574431 ' haystack
+        Me.Detail.BackColor = 12574431 ' haystack
         DoCmd.GoToRecord , , acNewRec
         Me.txtFirstName.SetFocus    ' Needed on new record before disabling ctls
     ' Unlock fields
@@ -1223,7 +1223,7 @@ Function fxnFormDefaults(strFormMode As String)
         Me.cmdEdit.Enabled = False
         Me.cmdNew.Enabled = False
         Me.AllowAdditions = True
-        Me.Detail.backcolor = 12574431 ' haystack
+        Me.Detail.BackColor = 12574431 ' haystack
     ' Unlock fields
         bLockState = False
         GoTo Change_Ctl_State
@@ -1237,7 +1237,7 @@ Function fxnFormDefaults(strFormMode As String)
         Me.cmdNew.Enabled = True
         Me.DataEntry = False
         Me.AllowAdditions = False
-        Me.Detail.backcolor = 14541277 ' light blue (default)
+        Me.Detail.BackColor = 14541277 ' light blue (default)
     ' Lock fields
         bLockState = True
         GoTo Change_Ctl_State

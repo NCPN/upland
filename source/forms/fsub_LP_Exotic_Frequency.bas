@@ -12,11 +12,11 @@ Begin Form
     GridY =24
     Width =7320
     DatasheetFontHeight =9
-    ItemSuffix =51
-    Left =2880
-    Top =1410
-    Right =10620
-    Bottom =5655
+    ItemSuffix =52
+    Left =2532
+    Top =2508
+    Right =10284
+    Bottom =6744
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -281,6 +281,7 @@ Begin Form
                 End
                 Begin CommandButton
                     Visible = NotDefault
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =6300
                     Top =420
@@ -290,13 +291,14 @@ Begin Form
                     Caption ="Master"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Visible = NotDefault
+                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =6300
                     Top =60
@@ -307,13 +309,14 @@ Begin Form
                     Caption ="Unknown"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin TextBox
                     Visible = NotDefault
+                    TabStop = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
                     Left =300
@@ -336,7 +339,61 @@ Begin Form
             Name ="Detail"
             Begin
                 Begin TextBox
+                    TabStop = NotDefault
+                    OverlapFlags =93
+                    TextFontFamily =0
+                    IMESentenceMode =3
+                    Left =2556
+                    Width =3660
+                    Height =300
+                    BackColor =65535
+                    Name ="tbxRctVisible"
+                    ConditionalFormat = Begin
+                        0x010000001c020000020000000100000000000000000000006e00000001000000 ,
+                        0x00000000ffff000001000000000000006f000000dd0000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x41006200730028005b004d0030005d0029002b0041006200730028005b004d00 ,
+                        0x35005d0029002b0041006200730028005b004d00310030005d0029002b004100 ,
+                        0x6200730028005b004d00310035005d0029002b0041006200730028005b004d00 ,
+                        0x320030005d0029002b0041006200730028005b004d00320035005d0029002b00 ,
+                        0x41006200730028005b004d00330030005d0029002b0041006200730028005b00 ,
+                        0x4d00330035005d0029002b0041006200730028005b004d00340030005d002900 ,
+                        0x2b0041006200730028005b004d00340035005d0029003d003000000000004100 ,
+                        0x6200730028005b004d0030005d0029002b0041006200730028005b004d003500 ,
+                        0x5d0029002b0041006200730028005b004d00310030005d0029002b0041006200 ,
+                        0x730028005b004d00310035005d0029002b0041006200730028005b004d003200 ,
+                        0x30005d0029002b0041006200730028005b004d00320035005d0029002b004100 ,
+                        0x6200730028005b004d00330030005d0029002b0041006200730028005b004d00 ,
+                        0x330035005d0029002b0041006200730028005b004d00340030005d0029002b00 ,
+                        0x41006200730028005b004d00340035005d0029003e00300000000000
+                    End
+
+                    LayoutCachedLeft =2556
+                    LayoutCachedWidth =6216
+                    LayoutCachedHeight =300
+                    ConditionalFormat14 = Begin
+                        0x01000200000001000000000000000100000000000000ffff00006d0000004100 ,
+                        0x6200730028005b004d0030005d0029002b0041006200730028005b004d003500 ,
+                        0x5d0029002b0041006200730028005b004d00310030005d0029002b0041006200 ,
+                        0x730028005b004d00310035005d0029002b0041006200730028005b004d003200 ,
+                        0x30005d0029002b0041006200730028005b004d00320035005d0029002b004100 ,
+                        0x6200730028005b004d00330030005d0029002b0041006200730028005b004d00 ,
+                        0x330035005d0029002b0041006200730028005b004d00340030005d0029002b00 ,
+                        0x41006200730028005b004d00340035005d0029003d0030000000000000000000 ,
+                        0x0000000000000000000000000001000000000000000100000000000000ffffff ,
+                        0x006d00000041006200730028005b004d0030005d0029002b0041006200730028 ,
+                        0x005b004d0035005d0029002b0041006200730028005b004d00310030005d0029 ,
+                        0x002b0041006200730028005b004d00310035005d0029002b0041006200730028 ,
+                        0x005b004d00320030005d0029002b0041006200730028005b004d00320035005d ,
+                        0x0029002b0041006200730028005b004d00330030005d0029002b004100620073 ,
+                        0x0028005b004d00330035005d0029002b0041006200730028005b004d00340030 ,
+                        0x005d0029002b0041006200730028005b004d00340035005d0029003e00300000 ,
+                        0x0000000000000000000000000000000000000000
+                    End
+                End
+                Begin TextBox
                     Visible = NotDefault
+                    TabStop = NotDefault
                     OverlapFlags =93
                     IMESentenceMode =3
                     Left =60
@@ -344,6 +401,7 @@ Begin Form
                     Width =360
                     Height =255
                     ColumnWidth =2310
+                    TabIndex =1
                     Name ="Shrub_ID"
                     ControlSource ="Exotic_ID"
                     StatusBarText ="Unique record identifier - primary key"
@@ -358,7 +416,7 @@ Begin Form
                     Width =300
                     Height =255
                     ColumnWidth =2310
-                    TabIndex =1
+                    TabIndex =13
                     Name ="Transect_ID"
                     ControlSource ="Transect_ID"
                     StatusBarText ="Foreign key to tbl_Canopy_Transect"
@@ -366,6 +424,7 @@ Begin Form
                 End
                 Begin ComboBox
                     OverlapFlags =247
+                    TextFontFamily =0
                     IMESentenceMode =3
                     ColumnCount =3
                     ListWidth =6480
@@ -373,7 +432,23 @@ Begin Form
                     Top =60
                     Width =2304
                     TabIndex =2
+                    BackColor =65535
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"510\""
+                    ConditionalFormat = Begin
+                        0x0100000086010000020000000100000000000000000000001a00000001000000 ,
+                        0x00000000ffffff0001000000000000001b000000920000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x49004900660028004c0065006e0028005b005300700065006300690065007300 ,
+                        0x5d0029003e0030002c0031002c00300029000000000049004900660028004100 ,
+                        0x6200730028005b004d0030005d0029002b0041006200730028005b004d003500 ,
+                        0x5d0029002b0041006200730028005b004d00310030005d0029002b0041006200 ,
+                        0x730028005b004d00310035005d0029002b0041006200730028005b004d003200 ,
+                        0x30005d0029002b0041006200730028005b004d00320035005d0029002b004100 ,
+                        0x6200730028005b004d00330030005d0029002b0041006200730028005b004d00 ,
+                        0x330035005d0029002b0041006200730028005b004d00340030005d0029002b00 ,
+                        0x41006200730028005b004d00340035005d0029003e0030002c0031002c003000 ,
+                        0x290000000000
+                    End
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
@@ -387,121 +462,147 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
+                    ConditionalFormat14 = Begin
+                        0x01000200000001000000000000000100000000000000ffffff00190000004900 ,
+                        0x4900660028004c0065006e0028005b0053007000650063006900650073005d00 ,
+                        0x29003e0030002c0031002c003000290000000000000000000000000000000000 ,
+                        0x000000000001000000000000000100000000000000ffff000076000000490049 ,
+                        0x006600280041006200730028005b004d0030005d0029002b0041006200730028 ,
+                        0x005b004d0035005d0029002b0041006200730028005b004d00310030005d0029 ,
+                        0x002b0041006200730028005b004d00310035005d0029002b0041006200730028 ,
+                        0x005b004d00320030005d0029002b0041006200730028005b004d00320035005d ,
+                        0x0029002b0041006200730028005b004d00330030005d0029002b004100620073 ,
+                        0x0028005b004d00330035005d0029002b0041006200730028005b004d00340030 ,
+                        0x005d0029002b0041006200730028005b004d00340035005d0029003e0030002c ,
+                        0x0031002c0030002900000000000000000000000000000000000000000000
+                    End
+                End
+                Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =6300
                     Top =60
                     Width =705
                     Height =300
-                    TabIndex =3
+                    TabIndex =14
                     ForeColor =255
                     Name ="ButtonDelete"
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CheckBox
-                    OverlapFlags =85
+                    OverlapFlags =247
                     Left =2700
                     Top =60
-                    TabIndex =4
+                    TabIndex =3
                     Name ="M0"
                     ControlSource ="M0"
                     StatusBarText ="Zero point quadrat - species detected checkbox"
+                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
-                    OverlapFlags =85
+                    OverlapFlags =247
                     Left =3060
                     Top =60
-                    TabIndex =5
+                    TabIndex =4
                     Name ="M5"
                     ControlSource ="M5"
                     StatusBarText ="5 meter quadrat"
+                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
-                    OverlapFlags =85
+                    OverlapFlags =247
                     Left =3420
                     Top =60
-                    TabIndex =6
+                    TabIndex =5
                     Name ="M10"
                     ControlSource ="M10"
                     StatusBarText ="10 meter quadrat"
+                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
-                    OverlapFlags =85
+                    OverlapFlags =247
                     Left =3780
                     Top =60
-                    TabIndex =7
+                    TabIndex =6
                     Name ="M15"
                     ControlSource ="M15"
                     StatusBarText ="15 meter quadrat"
+                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
-                    OverlapFlags =85
+                    OverlapFlags =247
                     Left =4140
                     Top =60
-                    TabIndex =8
+                    TabIndex =7
                     Name ="M20"
                     ControlSource ="M20"
                     StatusBarText ="20 meter quadrat"
+                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
-                    OverlapFlags =85
+                    OverlapFlags =247
                     Left =4500
                     Top =60
-                    TabIndex =9
+                    TabIndex =8
                     Name ="M25"
                     ControlSource ="M25"
                     StatusBarText ="25 meter quadrat"
+                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
-                    OverlapFlags =85
+                    OverlapFlags =247
                     Left =4860
                     Top =60
-                    TabIndex =10
+                    TabIndex =9
                     Name ="M30"
                     ControlSource ="M30"
                     StatusBarText ="30 meter quadrat"
+                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
-                    OverlapFlags =85
+                    OverlapFlags =247
                     Left =5220
                     Top =60
-                    TabIndex =11
+                    TabIndex =10
                     Name ="M35"
                     ControlSource ="M35"
                     StatusBarText ="35 meter quadrat"
+                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
-                    OverlapFlags =85
+                    OverlapFlags =247
                     Left =5580
                     Top =60
-                    TabIndex =12
+                    TabIndex =11
                     Name ="M40"
                     ControlSource ="M40"
                     StatusBarText ="40 meter quadrat"
+                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
-                    OverlapFlags =85
+                    OverlapFlags =247
                     Left =5940
                     Top =60
-                    TabIndex =13
+                    TabIndex =12
                     Name ="M45"
                     ControlSource ="M45"
                     StatusBarText ="45 meter quadrat"
+                    OnClick ="[Event Procedure]"
 
                 End
             End
@@ -710,6 +811,311 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
+
+'==================================
+'  M0 --> M45 Click Events
+'==================================
+
+' ---------------------------------
+' SUB:          M0_Click
+' Description:  Handles click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub M0_Click()
+On Error GoTo Err_Handler
+
+    'GetCheckboxHighlight Me, Me.rctHighlight
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - M0_Click[Form_fsub_LP_Exotic_Freq_Oak])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          M5_Click
+' Description:  Handles click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub M5_Click()
+On Error GoTo Err_Handler
+
+    'GetCheckboxHighlight Me, Me.rctHighlight
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - M5_Click[Form_fsub_LP_Exotic_Freq_Oak])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          M10_Click
+' Description:  Handles click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub M10_Click()
+On Error GoTo Err_Handler
+
+    'GetCheckboxHighlight Me, Me.rctHighlight
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - M10_Click[Form_fsub_LP_Exotic_Freq_Oak])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          M15_Click
+' Description:  Handles click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub M15_Click()
+On Error GoTo Err_Handler
+
+    'GetCheckboxHighlight Me, Me.rctHighlight
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - M15_Click[Form_fsub_LP_Exotic_Freq_Oak])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          M20_Click
+' Description:  Handles click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub M20_Click()
+On Error GoTo Err_Handler
+
+    'GetCheckboxHighlight Me, Me.rctHighlight
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - M20_Click[Form_fsub_LP_Exotic_Freq_Oak])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          M25_Click
+' Description:  Handles click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub M25_Click()
+On Error GoTo Err_Handler
+
+    'GetCheckboxHighlight Me, Me.rctHighlight
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - M25_Click[Form_fsub_LP_Exotic_Freq_Oak])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          M30_Click
+' Description:  Handles click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub M30_Click()
+On Error GoTo Err_Handler
+
+    'GetCheckboxHighlight Me, Me.rctHighlight
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - M30_Click[Form_fsub_LP_Exotic_Freq_Oak])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          M35_Click
+' Description:  Handles click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub M35_Click()
+On Error GoTo Err_Handler
+
+    'GetCheckboxHighlight Me, Me.rctHighlight
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - M35_Click[Form_fsub_LP_Exotic_Freq_Oak])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          M40_Click
+' Description:  Handles click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub M40_Click()
+On Error GoTo Err_Handler
+
+    'GetCheckboxHighlight Me, Me.rctHighlight
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - M40_Click[Form_fsub_LP_Exotic_Freq_Oak])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          M45_Click
+' Description:  Handles click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/29/2016 - initial version
+' ---------------------------------
+Private Sub M45_Click()
+On Error GoTo Err_Handler
+
+    'GetCheckboxHighlight Me, Me.rctHighlight
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - M45_Click[Form_fsub_LP_Exotic_Freq_Oak])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
 
 Private Sub ButtonMaster_Click()
 On Error GoTo Err_ButtonMaster_Click

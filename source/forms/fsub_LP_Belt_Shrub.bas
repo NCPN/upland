@@ -12,10 +12,10 @@ Begin Form
     Width =11880
     DatasheetFontHeight =9
     ItemSuffix =43
-    Left =408
-    Top =4968
-    Right =12588
-    Bottom =8532
+    Left =2136
+    Top =2676
+    Right =14316
+    Bottom =6240
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -29,6 +29,8 @@ Begin Form
         0x010000006801000000000000a10700000100000001000000
     End
     OnLoad ="[Event Procedure]"
+    FetchDefaults =0
+    FetchDefaults =0
     FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -502,6 +504,7 @@ Begin Form
                 Begin TextBox
                     OverlapFlags =85
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =3360
                     Top =60
@@ -509,18 +512,34 @@ Begin Form
                     Height =255
                     ColumnWidth =600
                     TabIndex =4
+                    BackColor =65535
                     Name ="HC10"
                     ControlSource ="HC10"
                     StatusBarText ="0-10cm height class total"
+                    ValidationRule ="IsNumeric([HC10])=True Or IsNull([HC10])"
+                    ValidationText ="Height class should be numeric"
+                    ConditionalFormat = Begin
+                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x300000000000300000000000
+                    End
 
                     LayoutCachedLeft =3360
                     LayoutCachedTop =60
                     LayoutCachedWidth =3900
                     LayoutCachedHeight =315
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x0000000000000000000000000000000000000000000000000005000000010000 ,
+                        0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
+                        0x00000000
+                    End
                 End
                 Begin TextBox
                     OverlapFlags =215
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =4380
                     Top =60
@@ -528,14 +547,30 @@ Begin Form
                     Height =255
                     ColumnWidth =600
                     TabIndex =5
+                    BackColor =65535
                     Name ="HC25"
                     ControlSource ="HC25"
                     StatusBarText ="10.1-25cm height class total"
+                    ValidationRule ="IsNumeric([HC25])=True Or IsNull([HC25])"
+                    ValidationText ="Height class should be numeric"
+                    ConditionalFormat = Begin
+                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x300000000000300000000000
+                    End
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x0000000000000000000000000000000000000000000000000005000000010000 ,
+                        0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
+                        0x00000000
+                    End
                 End
                 Begin TextBox
                     OverlapFlags =85
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =5520
                     Top =60
@@ -543,14 +578,30 @@ Begin Form
                     Height =255
                     ColumnWidth =600
                     TabIndex =6
+                    BackColor =65535
                     Name ="HC50"
                     ControlSource ="HC50"
                     StatusBarText ="25.1-50cm height class total"
+                    ValidationRule ="IsNumeric([HC50])=True"
+                    ValidationText ="Height class should be numeric"
+                    ConditionalFormat = Begin
+                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x300000000000300000000000
+                    End
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x0000000000000000000000000000000000000000000000000005000000010000 ,
+                        0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
+                        0x00000000
+                    End
                 End
                 Begin TextBox
                     OverlapFlags =215
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =6540
                     Top =60
@@ -558,14 +609,30 @@ Begin Form
                     Height =255
                     ColumnWidth =600
                     TabIndex =7
+                    BackColor =65535
                     Name ="HC100"
                     ControlSource ="HC100"
                     StatusBarText ="50.1-100cm height class total"
+                    ValidationRule ="IsNumeric([HC100])=True Or IsNull([HC100])"
+                    ValidationText ="Height class should be numeric"
+                    ConditionalFormat = Begin
+                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x300000000000300000000000
+                    End
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x0000000000000000000000000000000000000000000000000005000000010000 ,
+                        0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
+                        0x00000000
+                    End
                 End
                 Begin TextBox
                     OverlapFlags =85
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =7680
                     Top =60
@@ -573,14 +640,30 @@ Begin Form
                     Height =255
                     ColumnWidth =600
                     TabIndex =8
+                    BackColor =65535
                     Name ="HC2m"
                     ControlSource ="HC2m"
                     StatusBarText ="1.01-2m height class total"
+                    ValidationRule ="IsNumeric([HC2m])=True"
+                    ValidationText ="Height class should be numeric"
+                    ConditionalFormat = Begin
+                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x300000000000300000000000
+                    End
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x0000000000000000000000000000000000000000000000000005000000010000 ,
+                        0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
+                        0x00000000
+                    End
                 End
                 Begin TextBox
                     OverlapFlags =215
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =8760
                     Top =60
@@ -588,10 +671,25 @@ Begin Form
                     Height =255
                     ColumnWidth =600
                     TabIndex =9
+                    BackColor =65535
                     Name ="HCGT2"
                     ControlSource ="HCGT2"
                     StatusBarText =">2.01m height class total"
+                    ValidationRule ="IsNumeric([HCGT2])=True Or IsNull([HCGT2])"
+                    ValidationText ="Height class should be numeric"
+                    ConditionalFormat = Begin
+                        0x0100000078000000020000000000000006000000000000000500000001000000 ,
+                        0x00000000ffffff000000000005000000060000000b0000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x32002e00300031000000000032002e003000310000000000
+                    End
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000060000000100000000000000ffffff00040000003200 ,
+                        0x2e00300031000000000000000000000000000000000000000000000000000005 ,
+                        0x0000000100000000000000ffff00000400000032002e00300031000000000000 ,
+                        0x00000000000000000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault

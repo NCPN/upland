@@ -170,7 +170,7 @@ On Error GoTo Err_Handler
     'to set color RGB, see http://www.rapidtables.com/web/color/RGB_Color.htm for Red/Green/Blue values
     Transp = RGB(153, 255, 51)
      
-    Me.Detail.backcolor = Transp
+    Me.Detail.BackColor = Transp
      
     Me.Painting = False
     'set background opacity

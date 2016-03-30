@@ -19,8 +19,8 @@ Begin Form
     Width =15360
     DatasheetFontHeight =9
     ItemSuffix =70
-    Left =1356
-    Right =16620
+    Left =996
+    Right =16260
     Bottom =9480
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
@@ -489,6 +489,7 @@ Begin Form
                                     LayoutCachedHeight =8637
                                 End
                                 Begin Rectangle
+                                    Visible = NotDefault
                                     SpecialEffect =0
                                     BackStyle =1
                                     OldBorderStyle =0
@@ -506,6 +507,7 @@ Begin Form
                                     LayoutCachedHeight =1320
                                 End
                                 Begin CheckBox
+                                    Enabled = NotDefault
                                     OverlapFlags =215
                                     Left =10740
                                     Top =990
@@ -539,6 +541,7 @@ Begin Form
                                     End
                                 End
                                 Begin Rectangle
+                                    Visible = NotDefault
                                     SpecialEffect =0
                                     BackStyle =1
                                     OldBorderStyle =0
@@ -556,6 +559,7 @@ Begin Form
                                     LayoutCachedHeight =5700
                                 End
                                 Begin CheckBox
+                                    Enabled = NotDefault
                                     OverlapFlags =215
                                     Left =4380
                                     Top =5370
