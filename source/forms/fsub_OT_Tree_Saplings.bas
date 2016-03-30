@@ -3,7 +3,6 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -15,10 +14,9 @@ Begin Form
     Width =11340
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =2076
-    Top =360
-    Right =13740
-    Bottom =3840
+    Top =990
+    Right =10785
+    Bottom =4485
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x384b3f359387e340
@@ -197,7 +195,7 @@ Begin Form
                     LayoutCachedHeight =1200
                 End
                 Begin Label
-                    OverlapFlags =95
+                    OverlapFlags =223
                     TextAlign =2
                     Left =5730
                     Top =960
@@ -257,10 +255,10 @@ Begin Form
                     LayoutCachedTop =120
                     LayoutCachedWidth =9045
                     LayoutCachedHeight =420
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -277,10 +275,10 @@ Begin Form
                     LayoutCachedTop =540
                     LayoutCachedWidth =9045
                     LayoutCachedHeight =840
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =215
@@ -397,8 +395,6 @@ Begin Form
                     Name ="HC25"
                     ControlSource ="D25"
                     StatusBarText ="10.1-25cm height class total"
-                    ValidationRule ="IsNumeric([HC25])=True Or IsNull([HC25])"
-                    ValidationText ="Diameter class should be numeric"
                     DefaultValue ="Null"
                     OnChange ="[Event Procedure]"
                     ConditionalFormat = Begin
@@ -430,8 +426,6 @@ Begin Form
                     Name ="HC50"
                     ControlSource ="D51"
                     StatusBarText ="25.1-50cm height class total"
-                    ValidationRule ="IsNumeric([HC50])=True Or IsNull([HC50])"
-                    ValidationText ="Diameter class should be numeric"
                     DefaultValue ="Null"
                     OnChange ="[Event Procedure]"
                     ConditionalFormat = Begin
@@ -463,8 +457,6 @@ Begin Form
                     Name ="HC100"
                     ControlSource ="D101"
                     StatusBarText ="50.1-100cm height class total"
-                    ValidationRule ="IsNumeric([HC100])=True Or IsNull([HC100])"
-                    ValidationText ="Diameter class should be numeric"
                     DefaultValue ="Null"
                     OnChange ="[Event Procedure]"
                     ConditionalFormat = Begin
@@ -510,7 +502,17 @@ Begin Form
                     Top =60
                     Width =2304
                     TabIndex =2
+                    BackColor =65535
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"510\""
+                    ConditionalFormat = Begin
+                        0x01000000d4000000020000000100000000000000000000001100000001000000 ,
+                        0x00000000ffffff00010000000000000012000000390000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x4c0065006e0028005b0053007000650063006900650073005d0029003e003000 ,
+                        0x000000004900490066002800490073004e0075006c006c0028005b0048004300 ,
+                        0x320035005d002b005b0048004300350030005d002b005b004800430031003000 ,
+                        0x30005d0029002c0030002c003100290000000000
+                    End
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
@@ -527,6 +529,17 @@ Begin Form
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
                     OnChange ="[Event Procedure]"
+                    ConditionalFormat14 = Begin
+                        0x01000200000001000000000000000100000000000000ffffff00100000004c00 ,
+                        0x65006e0028005b0053007000650063006900650073005d0029003e0030000000 ,
+                        0x0000000000000000000000000000000000000001000000000000000100000000 ,
+                        0x000000ffff0000260000004900490066002800490073004e0075006c006c0028 ,
+                        0x005b0048004300320035005d002b005b0048004300350030005d002b005b0048 ,
+                        0x0043003100300030005d0029002c0030002c0031002900000000000000000000 ,
+                        0x000000000000000000000000
+                    End
+                End
+                Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =7740
@@ -539,10 +552,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -562,10 +575,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -579,10 +592,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -596,10 +609,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -613,10 +626,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -630,10 +643,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

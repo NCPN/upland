@@ -13,10 +13,10 @@ Begin Form
     Width =7320
     DatasheetFontHeight =9
     ItemSuffix =52
-    Left =2532
-    Top =2508
-    Right =10284
-    Bottom =6744
+    Left =2535
+    Top =2505
+    Right =10290
+    Bottom =6750
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -291,10 +291,10 @@ Begin Form
                     Caption ="Master"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -309,10 +309,10 @@ Begin Form
                     Caption ="Unknown"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -490,10 +490,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CheckBox
                     OverlapFlags =247
@@ -503,7 +503,6 @@ Begin Form
                     Name ="M0"
                     ControlSource ="M0"
                     StatusBarText ="Zero point quadrat - species detected checkbox"
-                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
@@ -514,7 +513,6 @@ Begin Form
                     Name ="M5"
                     ControlSource ="M5"
                     StatusBarText ="5 meter quadrat"
-                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
@@ -525,7 +523,6 @@ Begin Form
                     Name ="M10"
                     ControlSource ="M10"
                     StatusBarText ="10 meter quadrat"
-                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
@@ -536,7 +533,6 @@ Begin Form
                     Name ="M15"
                     ControlSource ="M15"
                     StatusBarText ="15 meter quadrat"
-                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
@@ -547,7 +543,6 @@ Begin Form
                     Name ="M20"
                     ControlSource ="M20"
                     StatusBarText ="20 meter quadrat"
-                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
@@ -558,7 +553,6 @@ Begin Form
                     Name ="M25"
                     ControlSource ="M25"
                     StatusBarText ="25 meter quadrat"
-                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
@@ -569,7 +563,6 @@ Begin Form
                     Name ="M30"
                     ControlSource ="M30"
                     StatusBarText ="30 meter quadrat"
-                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
@@ -580,7 +573,6 @@ Begin Form
                     Name ="M35"
                     ControlSource ="M35"
                     StatusBarText ="35 meter quadrat"
-                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
@@ -591,7 +583,6 @@ Begin Form
                     Name ="M40"
                     ControlSource ="M40"
                     StatusBarText ="40 meter quadrat"
-                    OnClick ="[Event Procedure]"
 
                 End
                 Begin CheckBox
@@ -602,7 +593,6 @@ Begin Form
                     Name ="M45"
                     ControlSource ="M45"
                     StatusBarText ="45 meter quadrat"
-                    OnClick ="[Event Procedure]"
 
                 End
             End
@@ -744,25 +734,6 @@ On Error GoTo Err_Handler
       Me.Undo
     End If
     
-'    '-----------------------------------
-'    ' update the NoDataCollected info
-'    '-----------------------------------
-'    Dim NoData As Scripting.Dictionary
-'
-'    'remove the no data collected record
-'    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Exotics", 0)
-'
-'    'update checkbox/rectangle
-'    Me.Parent.Form.Controls("cbxNoExotics") = 0
-'    Me.Parent.Form.Controls("cbxNoExotics").Enabled = False
-'    Me.Parent.Form.Controls("rctNoExotics").Visible = False
-
-'    'if species is added disable checkbox & change color of rectangle background
-'    If Not IsNull(Me.Species) Then
-'        Me.Parent.Form.Controls("cbxNoExotics").Enabled = False
-'        Me.Parent.Form.Controls("rctNoExotics").Visible = False
-'    End If
-    
 Exit_Handler:
     Exit Sub
     
@@ -811,311 +782,6 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
-
-'==================================
-'  M0 --> M45 Click Events
-'==================================
-
-' ---------------------------------
-' SUB:          M0_Click
-' Description:  Handles click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub M0_Click()
-On Error GoTo Err_Handler
-
-    'GetCheckboxHighlight Me, Me.rctHighlight
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - M0_Click[Form_fsub_LP_Exotic_Freq_Oak])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          M5_Click
-' Description:  Handles click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub M5_Click()
-On Error GoTo Err_Handler
-
-    'GetCheckboxHighlight Me, Me.rctHighlight
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - M5_Click[Form_fsub_LP_Exotic_Freq_Oak])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          M10_Click
-' Description:  Handles click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub M10_Click()
-On Error GoTo Err_Handler
-
-    'GetCheckboxHighlight Me, Me.rctHighlight
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - M10_Click[Form_fsub_LP_Exotic_Freq_Oak])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          M15_Click
-' Description:  Handles click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub M15_Click()
-On Error GoTo Err_Handler
-
-    'GetCheckboxHighlight Me, Me.rctHighlight
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - M15_Click[Form_fsub_LP_Exotic_Freq_Oak])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          M20_Click
-' Description:  Handles click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub M20_Click()
-On Error GoTo Err_Handler
-
-    'GetCheckboxHighlight Me, Me.rctHighlight
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - M20_Click[Form_fsub_LP_Exotic_Freq_Oak])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          M25_Click
-' Description:  Handles click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub M25_Click()
-On Error GoTo Err_Handler
-
-    'GetCheckboxHighlight Me, Me.rctHighlight
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - M25_Click[Form_fsub_LP_Exotic_Freq_Oak])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          M30_Click
-' Description:  Handles click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub M30_Click()
-On Error GoTo Err_Handler
-
-    'GetCheckboxHighlight Me, Me.rctHighlight
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - M30_Click[Form_fsub_LP_Exotic_Freq_Oak])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          M35_Click
-' Description:  Handles click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub M35_Click()
-On Error GoTo Err_Handler
-
-    'GetCheckboxHighlight Me, Me.rctHighlight
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - M35_Click[Form_fsub_LP_Exotic_Freq_Oak])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          M40_Click
-' Description:  Handles click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub M40_Click()
-On Error GoTo Err_Handler
-
-    'GetCheckboxHighlight Me, Me.rctHighlight
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - M40_Click[Form_fsub_LP_Exotic_Freq_Oak])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          M45_Click
-' Description:  Handles click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, March 29, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 3/29/2016 - initial version
-' ---------------------------------
-Private Sub M45_Click()
-On Error GoTo Err_Handler
-
-    'GetCheckboxHighlight Me, Me.rctHighlight
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - M45_Click[Form_fsub_LP_Exotic_Freq_Oak])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
 
 Private Sub ButtonMaster_Click()
 On Error GoTo Err_ButtonMaster_Click
@@ -1214,13 +880,8 @@ On Error GoTo Err_Handler
         Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Exotics", 1)
     
         'update checkbox/rectangle
-'        Me.Parent.Form.Controls("cbxNoExotics") = 1
-'        Me.Parent.Form.Controls("cbxNoExotics").Enabled = True
-'        Me.Parent.Form.Controls("rctNoExotics").Visible = True
-        
         Me.Parent.Form.Controls("cbxNoExotics") = 1
         Me.Parent.Form.Controls("cbxNoExotics").Enabled = True
-'        Me.Parent.Form.Controls("lblNoExotics").Visible = True
         Me.Parent.Form.Controls("rctNoExotics").Visible = True
         
     End If

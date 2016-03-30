@@ -268,15 +268,19 @@ Begin Form
                 Begin Label
                     OverlapFlags =85
                     TextAlign =2
-                    Left =5220
+                    Left =5205
                     Top =840
-                    Width =960
+                    Width =975
                     Height =240
                     FontWeight =700
                     Name ="lblDBHDRC"
-                    Caption ="DHB/DRC"
+                    Caption ="DBH/DRC"
                     FontName ="Tahoma"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =5205
+                    LayoutCachedTop =840
+                    LayoutCachedWidth =6180
+                    LayoutCachedHeight =1080
                 End
             End
         End

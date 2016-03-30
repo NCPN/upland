@@ -12,10 +12,9 @@ Begin Form
     Width =11880
     DatasheetFontHeight =9
     ItemSuffix =43
-    Left =2136
-    Top =2676
-    Right =14316
-    Bottom =6240
+    Top =2835
+    Right =10860
+    Bottom =6390
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -516,8 +515,6 @@ Begin Form
                     Name ="HC10"
                     ControlSource ="HC10"
                     StatusBarText ="0-10cm height class total"
-                    ValidationRule ="IsNumeric([HC10])=True Or IsNull([HC10])"
-                    ValidationText ="Height class should be numeric"
                     ConditionalFormat = Begin
                         0x010000006c000000020000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
@@ -551,8 +548,6 @@ Begin Form
                     Name ="HC25"
                     ControlSource ="HC25"
                     StatusBarText ="10.1-25cm height class total"
-                    ValidationRule ="IsNumeric([HC25])=True Or IsNull([HC25])"
-                    ValidationText ="Height class should be numeric"
                     ConditionalFormat = Begin
                         0x010000006c000000020000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
@@ -582,8 +577,6 @@ Begin Form
                     Name ="HC50"
                     ControlSource ="HC50"
                     StatusBarText ="25.1-50cm height class total"
-                    ValidationRule ="IsNumeric([HC50])=True"
-                    ValidationText ="Height class should be numeric"
                     ConditionalFormat = Begin
                         0x010000006c000000020000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
@@ -613,8 +606,6 @@ Begin Form
                     Name ="HC100"
                     ControlSource ="HC100"
                     StatusBarText ="50.1-100cm height class total"
-                    ValidationRule ="IsNumeric([HC100])=True Or IsNull([HC100])"
-                    ValidationText ="Height class should be numeric"
                     ConditionalFormat = Begin
                         0x010000006c000000020000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
@@ -644,8 +635,6 @@ Begin Form
                     Name ="HC2m"
                     ControlSource ="HC2m"
                     StatusBarText ="1.01-2m height class total"
-                    ValidationRule ="IsNumeric([HC2m])=True"
-                    ValidationText ="Height class should be numeric"
                     ConditionalFormat = Begin
                         0x010000006c000000020000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
@@ -675,8 +664,6 @@ Begin Form
                     Name ="HCGT2"
                     ControlSource ="HCGT2"
                     StatusBarText =">2.01m height class total"
-                    ValidationRule ="IsNumeric([HCGT2])=True Or IsNull([HCGT2])"
-                    ValidationText ="Height class should be numeric"
                     ConditionalFormat = Begin
                         0x0100000078000000020000000000000006000000000000000500000001000000 ,
                         0x00000000ffffff000000000005000000060000000b0000000100000000000000 ,
@@ -720,7 +707,18 @@ Begin Form
                     Top =60
                     Width =2304
                     TabIndex =2
+                    BackColor =65535
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"510\""
+                    ConditionalFormat = Begin
+                        0x0100000000010000020000000100000000000000000000001100000001000000 ,
+                        0x00000000ffffff000100000000000000120000004f0000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x4c0065006e0028005b0053007000650063006900650073005d0029003e003000 ,
+                        0x000000004900490066002800490073004e0075006c006c0028005b0048004300 ,
+                        0x310030005d002b005b0048004300320035005d002b005b004800430035003000 ,
+                        0x5d002b005b00480043003100300030005d002b005b004800430032006d005d00 ,
+                        0x2b005b00480043004700540032005d0029002c0030002c003100290000000000
+                    End
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
@@ -738,6 +736,18 @@ Begin Form
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
+                    ConditionalFormat14 = Begin
+                        0x01000200000001000000000000000100000000000000ffffff00100000004c00 ,
+                        0x65006e0028005b0053007000650063006900650073005d0029003e0030000000 ,
+                        0x0000000000000000000000000000000000000001000000000000000100000000 ,
+                        0x000000ffff00003c0000004900490066002800490073004e0075006c006c0028 ,
+                        0x005b0048004300310030005d002b005b0048004300320035005d002b005b0048 ,
+                        0x004300350030005d002b005b00480043003100300030005d002b005b00480043 ,
+                        0x0032006d005d002b005b00480043004700540032005d0029002c0030002c0031 ,
+                        0x002900000000000000000000000000000000000000000000
+                    End
+                End
+                Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =10080
@@ -750,10 +760,10 @@ Begin Form
                     Caption ="Delete Record"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -773,10 +783,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -790,10 +800,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -807,10 +817,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -824,10 +834,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -841,10 +851,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

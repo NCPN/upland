@@ -20,7 +20,7 @@ Begin Form
     ItemSuffix =52
     Left =4110
     Top =2910
-    Right =14190
+    Right =11670
     Bottom =10095
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{F4CE3EAB-E640-4E3F-8343-008314E75F39}'"
@@ -1204,6 +1204,7 @@ Option Explicit
 '               BLC - 3/7/2016 - 1.02 - fix so person making changes is *not* the recorder
 '                                       recorder is person who does site characterization (one-time event)
 '                                       this needs to be whomever made changes (multiple time event)
+'               BLC - 3/30/2016- 1.03 - cleaned up Form_BeforeUpdate code
 ' =================================
 
 ' ---------------------------------
@@ -1278,105 +1279,10 @@ End Sub
 '   JRB, 6/x/2006  - initial version
 '   RDB, unknown   - ?
 '   BLC, 2/4/2016  - added documentation, removed undo on recorder name reminder
+'   BLC, 3/30/2016 - moved to btnUpdate_Click
 ' ---------------------------------
 Private Sub Form_BeforeUpdate(Cancel As Integer)
     On Error GoTo Err_Handler
-'    Dim strMsg As String
-'    Dim db As Database
-'    Dim History As DAO.Recordset
-'    Dim OldLocation As DAO.Recordset
-'    Dim strSQL As String
-'
-'    strMsg = "Are you sure you want to update location coordinates?"
-'    strMsg = strMsg & chr(13) & chr(10) & "Click Yes to Save or No to Discard changes."
-'
-'    If MsgBox(strMsg, vbQuestion + vbYesNo, "Update Location?") = vbNo Then
-'    '---------------- Cancel Location Update -----------
-'      Me.Undo
-'      GoTo Exit_Handler
-'
-'    ElseIf IsNull(Me!Recorder) Then
-'    '---------------- Require Recorder -----------------
-'      MsgBox "You must select a recorder name!"
-'      Me.Recorder.SetFocus
-'      Me.Recorder.BackColor = RGB(255, 255, 51) 'set background to yellow
-'      'Me.Undo
-'      'GoTo Exit_Handler
-'
-'    Else
-'    '---------------- Process Changes ------------------
-'      Set db = CurrentDb
-'      strSQL = "Select * from tbl_Locations WHERE Location_ID = '" & Me!Location_ID & "'"
-'
-'      Set OldLocation = db.OpenRecordset(strSQL)  '  Get unmodified location record
-'      If OldLocation.EOF Then
-'        MsgBox "Location record not found."
-'        GoTo Exit_Handler
-'      Else
-'        OldLocation.MoveFirst
-'      End If
-'
-'      Set History = db.OpenRecordset("tbl_Location_History")
-'      With History
-'        .AddNew                     ' Create a Location History record
-'        !Location_History_ID = fxnGUIDGen
-'        !Location_ID = Me!Location_ID
-'        !Modify_Date = Now()        ' Date of update
-'        !Recorder = Me!Recorder     ' Person committing update
-'        !Unit_Code = Me!Unit_Code
-'        !Plot_ID = Me!Plot_ID
-'        ' Modified to populate plot centroid coordinates (E_Coord, N_Coord) correctly. [HMT, 3/16/2015]
-'        ' Plot_E_Coord, Plot_N_Coord are no longer used.
-'        ' !E_Coord = OldLocation!Plot_E_Coord
-'        ' !N_Coord = OldLocation!Plot_N_Coord
-'        !E_Coord = OldLocation!E_Coord            ' UTM easting of plot centroid
-'        !N_Coord = OldLocation!N_Coord            ' UTM northing of plot centroid
-'        !Plot_Slope = OldLocation!Plot_Slope
-'        !Plot_Aspect = OldLocation!Plot_Aspect
-'        !Azimuth = OldLocation!Azimuth
-'        !T1O_UTME = OldLocation!T1O_UTME
-'        !T1O_UTMN = OldLocation!T1O_UTMN
-'        !T1O_Rebar = OldLocation!T1O_Rebar
-'        !T1E_UTME = OldLocation!T1E_UTME
-'        !T1E_UTMN = OldLocation!T1E_UTMN
-'        !T1E_Rebar = OldLocation!T1E_Rebar
-'        !T1_Elevation = OldLocation!T1_Elevation
-'        !T2O_UTME = OldLocation!T2O_UTME
-'        !T2O_UTMN = OldLocation!T2O_UTMN
-'        !T2O_Rebar = OldLocation!T2O_Rebar
-'        !T2E_UTME = OldLocation!T2E_UTME
-'        !T2E_UTMN = OldLocation!T2E_UTMN
-'        !T2E_Rebar = OldLocation!T2E_Rebar
-'        !T2_Elevation = OldLocation!T2_Elevation
-'        !T3O_UTME = OldLocation!T3O_UTME
-'        !T3O_UTMN = OldLocation!T3O_UTMN
-'        !T3O_Rebar = OldLocation!T3O_Rebar
-'        !T3E_UTME = OldLocation!T3E_UTME
-'        !T3E_UTMN = OldLocation!T3E_UTMN
-'        !T3E_Rebar = OldLocation!T3E_Rebar
-'        !T3_Elevation = OldLocation!T3_Elevation
-'        !Bearing_A = OldLocation!Bearing_A   ' Fuels bearings and slopes
-'        !Bearing_B = OldLocation!Bearing_B
-'        !Bearing_C = OldLocation!Bearing_C
-'        !Bearing_D = OldLocation!Bearing_D
-'        !Slope_A = OldLocation!Slope_A
-'        !Slope_B = OldLocation!Slope_B
-'        !Slope_C = OldLocation!Slope_C
-'        !Slope_D = OldLocation!Slope_D
-'        !SlopeA = OldLocation!SlopeA         ' Plot side slopes
-'        !SlopeAUD = OldLocation!SlopeAUD
-'        !SlopeB = OldLocation!SlopeB
-'        !SlopeBUD = OldLocation!SlopeBUD
-'        !SlopeC = OldLocation!SlopeC
-'        !SlopeCUD = OldLocation!SlopeCUD
-'        !SlopeD = OldLocation!SlopeD
-'        !SlopeDUD = OldLocation!SlopeDUD
-'        !Plot_Directions = OldLocation!Plot_Directions
-'        .Update
-'        .Close
-'        End With
-'        OldLocation.Close
-'    End If
     
 Exit_Handler:
     Exit Sub

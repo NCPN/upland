@@ -3,7 +3,6 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -15,9 +14,10 @@ Begin Form
     Width =13680
     DatasheetFontHeight =9
     ItemSuffix =26
-    Left =996
-    Right =14652
-    Bottom =6660
+    Left =405
+    Top =2910
+    Right =14085
+    Bottom =9525
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2f2916b0ec7ce340
@@ -385,7 +385,6 @@ Begin Form
                     Name ="Transect"
                     ControlSource ="Transect"
                     RowSourceType ="Value List"
-                    RowSource ="T1 - origin;T2 - origin;T3 - origin;T1 - end;T2 - end;T3 - end"
                     ColumnWidths ="1440"
 
                 End
@@ -422,7 +421,88 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
+
+' =================================
+' MODULE:       Form_fsub_Photo_Entry
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to photo entry
+'
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, 3/30/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 3/30/2016 - 1.01 - added documentation, error handling, crust values
+' =================================
+
+' ---------------------------------
+' SUB:          Form_Load
+' Description:  Handles form loading actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, March 30, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 3/30/2016  - add transect row source vs. hard coding in form (previously default values were
+'                     hard-coded in the form as a list
+' ---------------------------------
+Private Sub Form_Load()
+On Error GoTo Err_Handler
+
+  Dim Veg_Type As Variant
+  
+  'determine veg type
+   Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent!Location_ID & "'")
+    
+   'locations to display --> NOTE: only grassland/shrubland & woodland include crust values
+   If Not IsNull(Veg_Type) Then
+   
+        Select Case Veg_Type
+            Case "forest"
+                Me!Transect.RowSource = "T1 - origin;T2 - origin;T3 - origin;T1 - end;T2 - end;T3 - end"
+            Case "grassland/shrubland"
+                Me!Transect.RowSource = "T1 - origin;T2 - origin;T3 - origin;T1 - end;T2 - end;T3 - end;T1 - 0m - crust; T2 - 20m - crust; T3 - 40m - crust;"
+            Case "oak scrub"
+                Me!Transect.RowSource = "T1 - origin;T2 - origin;T3 - origin;T1 - end;T2 - end;T3 - end"
+            Case "woodland"
+                Me!Transect.RowSource = "T1 - origin;T2 - origin;T3 - origin;T1 - end;T2 - end;T3 - end;T1 - 0m - crust; T2 - 20m - crust; T3 - 40m - crust;"
+        End Select
+   
+   End If
+   
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_Photo_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Form_Load
+' Description:  Handles form loading actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, March 30, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 3/30/2016  - added error handling, documentation
+' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
+On Error GoTo Err_Handler
+
     ' Default to Events Start Date if photo date is null
     If IsNull(Me.Parent!Start_Date) Then
       MsgBox "Missing site visit date."
@@ -438,13 +518,15 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
             Me.Photo_ID = fxnGUIDGen
         End If
     End If
-End Sub
 
-Private Sub Form_Load()
-  Dim Veg_Type As Variant
-  ' Display the proper tabs
-    Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me.Parent!Location_ID & "'")
-    If Not IsNull(Veg_Type) And (Veg_Type = "forest" Or Veg_Type = "oak scrub") Then
-      Me!Transect.RowSource = "T1 - origin;T2 - origin;T3 - origin;T1 - end;T2 - end;T3 - end"
-    End If
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_Photo_Entry])"
+    End Select
+    Resume Exit_Handler
 End Sub

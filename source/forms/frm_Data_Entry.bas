@@ -22,9 +22,10 @@ Begin Form
     Width =16296
     DatasheetFontHeight =10
     ItemSuffix =212
-    Left =3336
-    Right =19632
-    Bottom =14460
+    Left =3420
+    Top =2085
+    Right =19725
+    Bottom =16545
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201603202"
         "33521-783995270.729065'"
@@ -158,10 +159,10 @@ Begin Form
                     FontName ="Arial"
                     ControlTipText ="Close the data entry form"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     ColumnHeads = NotDefault
@@ -308,20 +309,20 @@ Begin Form
                     Begin
                         Begin Page
                             OverlapFlags =87
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgPhotos"
                             Caption ="Photos"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -339,21 +340,21 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="Point Intercept"
                             EventProcPrefix ="Point_Intercept"
                             Caption ="Point Intercept"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -371,20 +372,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgBeltShrub"
                             Caption ="1-m Belt"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -407,20 +408,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgGaps"
                             Caption ="Gap Intercepts"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -441,20 +442,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgSS"
                             Caption ="Soil Stability"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -473,20 +474,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgSLIntercept"
                             Caption ="SL Intercept"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -505,19 +506,19 @@ Begin Form
                         Begin Page
                             OverlapFlags =215
                             Left =60
-                            Top =1572
-                            Width =15864
-                            Height =12792
+                            Top =1620
+                            Width =15840
+                            Height =12720
                             Name ="pgOT"
                             Caption ="Overstory Trees"
                             LayoutCachedLeft =60
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -834,20 +835,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgFuels"
                             Caption ="Fuels"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin TextBox
                                     OverlapFlags =247
@@ -1173,20 +1174,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgImpact"
                             Caption ="Site Impact"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -1209,20 +1210,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =247
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgCoords_and_loc_details"
                             Caption ="Presence Cover Density"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -1354,10 +1355,10 @@ Begin Form
                     Caption ="Change Plot Coordinates"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1402,10 +1403,10 @@ Begin Form
                     Caption ="Add/Edit Comments"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                     Overlaps =1
                 End
                 Begin TextBox
@@ -1592,8 +1593,6 @@ On Error GoTo Err_Handler
 
     'fetch no data info & set checkboxes
     'event level values
-'    Check1000hrFuels
-    
     Set dNoDataEvent = GetNoDataCollected(Me.Event_ID, "E")
     
     With dNoDataEvent
@@ -1755,13 +1754,13 @@ End Sub
 
 Private Sub Form_Current()
 
-Update_Loc_Info
-If Not IsNull(Me!txtUnit_Code) Then
-'  MsgBox DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
-  Me!frm_Quadrat_Transect.Form!fsub_Quadrat.Form!fsub_Quadrat_Shrubs.Form!State_Code = DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
-  Me!frm_Quadrat_Transect.Form!fsub_Quadrat.Form!fsub_Species.Form!State_Code = DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
-  Me!SiteDisplay = cboLocation_ID.Column(1)  ' Display the site number in heading
-End If
+    Update_Loc_Info
+    If Not IsNull(Me!txtUnit_Code) Then
+    '  MsgBox DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
+      Me!frm_Quadrat_Transect.Form!fsub_Quadrat.Form!fsub_Quadrat_Shrubs.Form!State_Code = DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
+      Me!frm_Quadrat_Transect.Form!fsub_Quadrat.Form!fsub_Species.Form!State_Code = DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
+      Me!SiteDisplay = cboLocation_ID.Column(1)  ' Display the site number in heading
+    End If
 End Sub
 
 Private Sub Form_BeforeUpdate(Cancel As Integer)

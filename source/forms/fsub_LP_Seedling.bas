@@ -2,7 +2,6 @@
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -13,10 +12,10 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =1236
+    Left =1230
     Top =5760
     Right =7320
-    Bottom =8340
+    Bottom =8310
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x73776174d27ce340
@@ -236,7 +235,16 @@ Begin Form
                     Top =60
                     Width =2304
                     TabIndex =2
+                    BackColor =65535
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"510\""
+                    ConditionalFormat = Begin
+                        0x01000000ac000000020000000100000000000000000000001100000001000000 ,
+                        0x00000000ffffff00010000000000000012000000250000000100000000000000 ,
+                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x4c0065006e0028005b0053007000650063006900650073005d0029003e003000 ,
+                        0x00000000490073004e0075006d00650072006900630028005b0054006f007400 ,
+                        0x61006c005d00290000000000
+                    End
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
@@ -253,6 +261,16 @@ Begin Form
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
                     OnChange ="[Event Procedure]"
+                    ConditionalFormat14 = Begin
+                        0x01000200000001000000000000000100000000000000ffffff00100000004c00 ,
+                        0x65006e0028005b0053007000650063006900650073005d0029003e0030000000 ,
+                        0x0000000000000000000000000000000000000001000000000000000100000000 ,
+                        0x000000ffff000012000000490073004e0075006d00650072006900630028005b ,
+                        0x0054006f00740061006c005d0029000000000000000000000000000000000000 ,
+                        0x00000000
+                    End
+                End
+                Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =3600
@@ -265,10 +283,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -288,10 +306,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -305,10 +323,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -322,10 +340,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -339,10 +357,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -356,10 +374,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

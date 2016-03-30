@@ -10,7 +10,6 @@ Begin Form
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     OrderByOn = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -22,9 +21,9 @@ Begin Form
     Width =10560
     DatasheetFontHeight =10
     ItemSuffix =37
-    Left =6048
-    Top =744
-    Right =16608
+    Left =6045
+    Top =750
+    Right =16605
     Bottom =6600
     DatasheetGridlinesColor =12632256
     Filter ="Unit_code = 'BLCA' AND Site_Selection = -1"
@@ -175,10 +174,10 @@ Begin Form
                     FontName ="Arial"
                     ControlTipText ="Close the data entry form"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -261,10 +260,10 @@ Begin Form
                     End
                     ControlTipText ="Turn the park filter on or off"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -291,10 +290,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =87
@@ -321,10 +320,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -441,10 +440,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CheckBox
                     Enabled = NotDefault
@@ -470,10 +469,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -487,10 +486,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -521,7 +520,6 @@ Option Explicit
 ' Revisions:    Simon Kingston, Sept. 2006 - added CorrectText calls where strings were being used in criteria
 '                                          - updated cmdDeleteRec_Click() event to use appropriate criteria depending on primary key
 ' =================================
-
 Dim strSortField As String    ' Keeps track of current sort settings
 Dim strSortOrder As String
 Dim strSortFieldLabel As String
@@ -670,8 +668,7 @@ End Sub
 ' =================================
 ' The next several procedures re-sort the records if the user
 '   double-clicks on a field label
-
-
+' =================================
 Private Sub labUnit_code_DblClick(Cancel As Integer)
     On Error GoTo Err_Handler
 
@@ -711,7 +708,6 @@ End Sub
 ' Source/date:  John R. Boetsch, May 5, 2006
 ' Revisions:    <name, date, desc - add lines as you go>
 ' =================================
-
 Private Function fxnSortRecords(ByVal strFieldName As String, _
     Optional ByVal strField2Name As String)
     On Error GoTo Err_Handler
