@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_UI
 ' Level:        Application module
-' Version:      1.10
+' Version:      1.12
 ' Description:  Application User Interface related functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, April 2015
@@ -27,6 +27,7 @@ Option Explicit
 '                                       SetWindowLong(), SetLayeredWindowAttributes(), SetFormOpacity())
 '               BLC, 3/17/2016 -1.10 - added SetControlBackcolor(), CTRL_DEFAULT_BACKCOLOR, Check1000hrFuels
 '               BLC, 3/29/2016 -1.11 - added SetControlHighlight()
+'               BLC, 4/1/2016 - 1.12 - added AddTallyValue()
 ' =================================
 
 ' ---------------------------------
@@ -715,6 +716,89 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - SetControlHighlight[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          AddTallyValue
+' Description:  Adds tally amount to control
+' Assumptions:  -
+' Parameters:   ctrl - control being changed (textbox)
+'               tallyAmount - amount to add (integer - positive or negative)
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, April 1, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 4/1/2016  - initial version
+' ---------------------------------
+Public Sub AddTallyValue(ctrl As TextBox, tallyAmount As Integer)
+On Error GoTo Err_Handler
+  
+  'handle when the user keeps cursor in field & tallyAmount would drive the value to < 0 (negative)
+  If (ctrl.Value + tallyAmount < 0) Or (IsNull(ctrl.Value) And tallyAmount < 0) Then GoTo Exit_Handler
+  
+  If tallyAmount = 0 Then ctrl.Value = 0
+  
+  Select Case ctrl.name
+    Case "SeedTotal"
+        ctrl.Value = Nz(ctrl.Value, 0) + tallyAmount
+  End Select
+  
+  'return focus
+  ctrl.SetFocus
+  
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - AddTallyValue[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          DisableTallyButtons
+' Description:  Disable tally buttons on control
+' Assumptions:  -
+' Parameters:   frm - form where tally buttons are being changed (form)
+'               lookFor - common part of tally button name (string)
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, April 1, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 4/1/2016  - initial version
+' ---------------------------------
+Public Sub DisableTallyButtons(frm As Form, lookFor As String)
+On Error GoTo Err_Handler
+  
+  Dim ctrl As Control
+  
+  For Each ctrl In frm.Controls
+  
+    If Len(ctrl.name) > Len(Replace(ctrl.name, lookFor, "")) Then
+    
+            ctrl.Enabled = False
+    
+    End If
+  
+  Next
+  
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - DisableTallyButtons[mod_App_UI])"
     End Select
     Resume Exit_Handler
 End Sub

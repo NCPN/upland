@@ -19,9 +19,10 @@ Begin Form
     Width =15360
     DatasheetFontHeight =9
     ItemSuffix =70
-    Left =996
-    Right =16260
-    Bottom =9480
+    Left =-1605
+    Top =-30
+    Right =13650
+    Bottom =9450
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2518a6c77056e340
@@ -267,10 +268,10 @@ Begin Form
                     End
                     ControlTipText ="Previous Record"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -306,10 +307,10 @@ Begin Form
                     End
                     ControlTipText ="Next Record"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     OverlapFlags =87
@@ -385,10 +386,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -401,41 +402,41 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Tab
                     OverlapFlags =85
                     Left =45
-                    Top =480
+                    Top =435
                     Width =15075
-                    Height =9216
+                    Height =9255
                     TabIndex =10
                     Name ="TabCtl49"
 
                     LayoutCachedLeft =45
-                    LayoutCachedTop =480
+                    LayoutCachedTop =435
                     LayoutCachedWidth =15120
-                    LayoutCachedHeight =9696
+                    LayoutCachedHeight =9690
                     Begin
                         Begin Page
                             OverlapFlags =87
-                            Left =156
+                            Left =180
                             Top =840
-                            Width =14856
-                            Height =8748
+                            Width =14805
+                            Height =8715
                             Name ="pgBeltShrub"
                             Caption ="Density"
-                            LayoutCachedLeft =156
+                            LayoutCachedLeft =180
                             LayoutCachedTop =840
-                            LayoutCachedWidth =15012
-                            LayoutCachedHeight =9588
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedWidth =14985
+                            LayoutCachedHeight =9555
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -647,21 +648,22 @@ Begin Form
                             End
                         End
                         Begin Page
+                            Visible = NotDefault
                             OverlapFlags =247
-                            Left =156
+                            Left =180
                             Top =840
-                            Width =14856
-                            Height =8745
+                            Width =14805
+                            Height =8715
                             Name ="pgDensiometer"
                             Caption ="Spherical Densiometer"
-                            LayoutCachedLeft =156
+                            LayoutCachedLeft =180
                             LayoutCachedTop =840
-                            LayoutCachedWidth =15012
-                            LayoutCachedHeight =9585
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedWidth =14985
+                            LayoutCachedHeight =9555
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -703,22 +705,23 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =156
+                            Left =180
                             Top =840
-                            Width =14856
-                            Height =8745
+                            Width =14805
+                            Height =8715
                             Name ="PgAdd"
                             Caption ="Exotic Frequency"
-                            LayoutCachedLeft =156
+                            LayoutCachedLeft =180
                             LayoutCachedTop =840
-                            LayoutCachedWidth =15012
-                            LayoutCachedHeight =9585
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedWidth =14985
+                            LayoutCachedHeight =9555
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
+                                    Visible = NotDefault
                                     OverlapFlags =247
                                     Left =180
                                     Top =1440

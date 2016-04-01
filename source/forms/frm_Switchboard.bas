@@ -24,10 +24,10 @@ Begin Form
     Width =9900
     DatasheetFontHeight =10
     ItemSuffix =74
-    Left =4095
-    Top =1080
-    Right =13995
-    Bottom =9060
+    Left =2880
+    Top =1305
+    Right =12780
+    Bottom =9285
     DatasheetGridlinesColor =12632256
     PictureData = Begin
         0x28000000a0020000f8010000010018000000000000810f00c30e0000c30e0000 ,
