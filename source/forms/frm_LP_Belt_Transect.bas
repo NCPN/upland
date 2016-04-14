@@ -6,7 +6,6 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -19,10 +18,8 @@ Begin Form
     Width =15360
     DatasheetFontHeight =9
     ItemSuffix =70
-    Left =-1605
-    Top =-30
-    Right =13650
-    Bottom =9450
+    Right =13656
+    Bottom =9108
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2518a6c77056e340
@@ -268,10 +265,10 @@ Begin Form
                     End
                     ControlTipText ="Previous Record"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -307,10 +304,10 @@ Begin Form
                     End
                     ControlTipText ="Next Record"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     OverlapFlags =87
@@ -386,10 +383,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -402,41 +399,41 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Tab
                     OverlapFlags =85
                     Left =45
-                    Top =435
+                    Top =432
                     Width =15075
-                    Height =9255
+                    Height =9264
                     TabIndex =10
                     Name ="TabCtl49"
 
                     LayoutCachedLeft =45
-                    LayoutCachedTop =435
+                    LayoutCachedTop =432
                     LayoutCachedWidth =15120
-                    LayoutCachedHeight =9690
+                    LayoutCachedHeight =9696
                     Begin
                         Begin Page
                             OverlapFlags =87
-                            Left =180
-                            Top =840
-                            Width =14805
-                            Height =8715
+                            Left =156
+                            Top =792
+                            Width =14856
+                            Height =8796
                             Name ="pgBeltShrub"
                             Caption ="Density"
-                            LayoutCachedLeft =180
-                            LayoutCachedTop =840
-                            LayoutCachedWidth =14985
-                            LayoutCachedHeight =9555
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =156
+                            LayoutCachedTop =792
+                            LayoutCachedWidth =15012
+                            LayoutCachedHeight =9588
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -650,20 +647,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =247
-                            Left =180
-                            Top =840
-                            Width =14805
-                            Height =8715
+                            Left =156
+                            Top =792
+                            Width =14856
+                            Height =8796
                             Name ="pgDensiometer"
                             Caption ="Spherical Densiometer"
-                            LayoutCachedLeft =180
-                            LayoutCachedTop =840
-                            LayoutCachedWidth =14985
-                            LayoutCachedHeight =9555
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =156
+                            LayoutCachedTop =792
+                            LayoutCachedWidth =15012
+                            LayoutCachedHeight =9588
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -705,20 +702,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =180
-                            Top =840
-                            Width =14805
-                            Height =8715
+                            Left =156
+                            Top =792
+                            Width =14856
+                            Height =8796
                             Name ="PgAdd"
                             Caption ="Exotic Frequency"
-                            LayoutCachedLeft =180
-                            LayoutCachedTop =840
-                            LayoutCachedWidth =14985
-                            LayoutCachedHeight =9555
-                            WebImagePaddingLeft =2
-                            WebImagePaddingTop =2
-                            WebImagePaddingRight =2
-                            WebImagePaddingBottom =2
+                            LayoutCachedLeft =156
+                            LayoutCachedTop =792
+                            LayoutCachedWidth =15012
+                            LayoutCachedHeight =9588
+                            WebImagePaddingLeft =3
+                            WebImagePaddingTop =3
+                            WebImagePaddingRight =3
+                            WebImagePaddingBottom =3
                             Begin
                                 Begin Subform
                                     Visible = NotDefault
@@ -904,7 +901,7 @@ Option Explicit
 ' =================================
 ' MODULE:       frm_LP_Belt_Transect
 ' Level:        Form module
-' Version:      1.02
+' Version:      1.03
 ' Description:  data functions & procedures specific to LP belt transects
 '
 ' Source/date:  John R. Boetsch, June 2006
@@ -916,6 +913,7 @@ Option Explicit
 '                                       when new visit is created in SetCheckboxes(),
 '                                       hide NoShrubs (cbx,lbl,& rct) for oak scrub plots
 '                                       hide no exotic perennial cbx,lbl,rct - exotic perennial form no longer in use
+'               BLC - 4/13/2016 - 1.03 - added refresh for underlying subforms for conditional formatting
 ' =================================
 
 ' ---------------------------------
@@ -1090,12 +1088,16 @@ End Sub
 ' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/3/2016  - initial version
+'   BLC, 4/13/2016 - added requery of related subform to clear/set conditional formatting on change
 ' ---------------------------------
 Private Sub cbxNoShrubs_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
     SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Shrub", Abs(Me.cbxNoShrubs.Value)
+
+    'refresh the subform to clear conditional formatting
+    Me.fsub_LP_Belt_Shrub.Requery
 
 Exit_Handler:
     Exit Sub
@@ -1121,12 +1123,16 @@ End Sub
 ' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/3/2016  - initial version
+'   BLC, 4/13/2016 - added requery of related subform to clear/set conditional formatting on change
 ' ---------------------------------
 Private Sub cbxNoSeedlings_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
     SetNoDataCollected Me.Transect_ID, "T", "1mBelt-TreeSeedling", Abs(Me.cbxNoSeedlings.Value)
+
+    'refresh the subform to clear conditional formatting
+    Me.fsub_LP_Seedling.Requery
 
 Exit_Handler:
     Exit Sub
@@ -1183,12 +1189,16 @@ End Sub
 ' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/11/2016  - initial version
+'   BLC, 4/13/2016 - added requery of related subform to clear/set conditional formatting on change
 ' ----------------------------------
 Private Sub cbxNoExotics_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
     SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Exotics", Abs(Me.cbxNoExotics.Value)
+
+    'refresh the subform to clear conditional formatting
+    Me.fsub_LP_Exotic_Freq_Oak.Requery
 
 Exit_Handler:
     Exit Sub

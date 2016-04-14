@@ -12,9 +12,10 @@ Begin Form
     Width =11880
     DatasheetFontHeight =9
     ItemSuffix =43
-    Top =2835
-    Right =10860
-    Bottom =6390
+    Left =780
+    Top =2676
+    Right =12960
+    Bottom =6240
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -516,10 +517,12 @@ Begin Form
                     ControlSource ="HC10"
                     StatusBarText ="0-10cm height class total"
                     ConditionalFormat = Begin
-                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x01000000b6000000030000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
-                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
-                        0x300000000000300000000000
+                        0xffff00000100000000000000060000002a0000000100000000000000ffffff00 ,
+                        0x3000000000003000000000005b0050006100720065006e0074005d002e005b00 ,
+                        0x6300620078004e006f005300680072007500620073005d002e005b0056006100 ,
+                        0x6c00750065005d003d00540072007500650000000000
                     End
 
                     LayoutCachedLeft =3360
@@ -527,10 +530,13 @@ Begin Form
                     LayoutCachedWidth =3900
                     LayoutCachedHeight =315
                     ConditionalFormat14 = Begin
-                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
-                        0x00000000
+                        0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
+                        0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
+                        0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
+                        0x6500000000000000000000000000000000000000000000
                     End
                 End
                 Begin TextBox
@@ -549,17 +555,22 @@ Begin Form
                     ControlSource ="HC25"
                     StatusBarText ="10.1-25cm height class total"
                     ConditionalFormat = Begin
-                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x01000000b6000000030000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
-                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
-                        0x300000000000300000000000
+                        0xffff00000100000000000000060000002a0000000100000000000000ffffff00 ,
+                        0x3000000000003000000000005b0050006100720065006e0074005d002e005b00 ,
+                        0x6300620078004e006f005300680072007500620073005d002e005b0056006100 ,
+                        0x6c00750065005d003d00540072007500650000000000
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
-                        0x00000000
+                        0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
+                        0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
+                        0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
+                        0x6500000000000000000000000000000000000000000000
                     End
                 End
                 Begin TextBox
@@ -578,17 +589,22 @@ Begin Form
                     ControlSource ="HC50"
                     StatusBarText ="25.1-50cm height class total"
                     ConditionalFormat = Begin
-                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x01000000b6000000030000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
-                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
-                        0x300000000000300000000000
+                        0xffff00000100000000000000060000002a0000000100000000000000ffffff00 ,
+                        0x3000000000003000000000005b0050006100720065006e0074005d002e005b00 ,
+                        0x6300620078004e006f005300680072007500620073005d002e005b0056006100 ,
+                        0x6c00750065005d003d00540072007500650000000000
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
-                        0x00000000
+                        0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
+                        0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
+                        0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
+                        0x6500000000000000000000000000000000000000000000
                     End
                 End
                 Begin TextBox
@@ -607,17 +623,22 @@ Begin Form
                     ControlSource ="HC100"
                     StatusBarText ="50.1-100cm height class total"
                     ConditionalFormat = Begin
-                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x01000000b6000000030000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
-                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
-                        0x300000000000300000000000
+                        0xffff00000100000000000000060000002a0000000100000000000000ffffff00 ,
+                        0x3000000000003000000000005b0050006100720065006e0074005d002e005b00 ,
+                        0x6300620078004e006f005300680072007500620073005d002e005b0056006100 ,
+                        0x6c00750065005d003d00540072007500650000000000
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
-                        0x00000000
+                        0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
+                        0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
+                        0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
+                        0x6500000000000000000000000000000000000000000000
                     End
                 End
                 Begin TextBox
@@ -636,22 +657,28 @@ Begin Form
                     ControlSource ="HC2m"
                     StatusBarText ="1.01-2m height class total"
                     ConditionalFormat = Begin
-                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x01000000b6000000030000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
-                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
-                        0x300000000000300000000000
+                        0xffff00000100000000000000060000002a0000000100000000000000ffffff00 ,
+                        0x3000000000003000000000005b0050006100720065006e0074005d002e005b00 ,
+                        0x6300620078004e006f005300680072007500620073005d002e005b0056006100 ,
+                        0x6c00750065005d003d00540072007500650000000000
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
-                        0x00000000
+                        0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
+                        0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
+                        0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
+                        0x6500000000000000000000000000000000000000000000
                     End
                 End
                 Begin TextBox
                     OverlapFlags =215
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =8760
                     Top =60
@@ -664,17 +691,22 @@ Begin Form
                     ControlSource ="HCGT2"
                     StatusBarText =">2.01m height class total"
                     ConditionalFormat = Begin
-                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x01000000b6000000030000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
-                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
-                        0x300000000000300000000000
+                        0xffff00000100000000000000060000002a0000000100000000000000ffffff00 ,
+                        0x3000000000003000000000005b0050006100720065006e0074005d002e005b00 ,
+                        0x6300620078004e006f005300680072007500620073005d002e005b0056006100 ,
+                        0x6c00750065005d003d00540072007500650000000000
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
-                        0x00000000
+                        0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
+                        0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
+                        0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
+                        0x6500000000000000000000000000000000000000000000
                     End
                 End
                 Begin ComboBox
@@ -699,6 +731,7 @@ Begin Form
                 End
                 Begin ComboBox
                     OverlapFlags =247
+                    TextFontFamily =0
                     IMESentenceMode =3
                     ColumnCount =3
                     ListWidth =6480
@@ -709,14 +742,17 @@ Begin Form
                     BackColor =65535
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"510\""
                     ConditionalFormat = Begin
-                        0x0100000000010000020000000100000000000000000000001100000001000000 ,
+                        0x0100000046010000030000000100000000000000000000001100000001000000 ,
                         0x00000000ffffff000100000000000000120000004f0000000100000000000000 ,
-                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0xffff0000010000000000000050000000720000000100000000000000ffffff00 ,
                         0x4c0065006e0028005b0053007000650063006900650073005d0029003e003000 ,
                         0x000000004900490066002800490073004e0075006c006c0028005b0048004300 ,
                         0x310030005d002b005b0048004300320035005d002b005b004800430035003000 ,
                         0x5d002b005b00480043003100300030005d002b005b004800430032006d005d00 ,
-                        0x2b005b00480043004700540032005d0029002c0030002c003100290000000000
+                        0x2b005b00480043004700540032005d0029002c0030002c003100290000000000 ,
+                        0x5b0050006100720065006e0074005d002e005b006300620078004e006f005300 ,
+                        0x680072007500620073005d002e00560061006c00750065003d00540072007500 ,
+                        0x650000000000
                     End
                     Name ="Species"
                     ControlSource ="Species"
@@ -725,25 +761,31 @@ Begin Form
                         "U_Top_Canopy.Utah_Species, qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE ("
                         "((qryU_Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.Lifeform) In "
                         "('Shrub','DwarfShrub')) AND ((qryU_Top_Canopy.tlu_NCPN_Plants.Master_PLANT_Code)"
-                        " Not In (SELECT Master_PLANT_Code FROM ShrubExclusionList)))  ORDER BY qryU_Top_"
-                        "Canopy.LU_Code)   UNION (SELECT DISTINCT tbl_Unknown_Species.Unknown_Code,  tbl_"
-                        "Unknown_Species.Unknown_Code,    tbl_Unknown_Species.Plant_Type + \" - \" + tbl_"
-                        "Unknown_Species.Plant_Description,  tbl_Unknown_Species.Plant_Type AS Lifeform  "
-                        "FROM tbl_Unknown_Species  WHERE tbl_Unknown_Species.Plant_Type IN ('Shrub','Othe"
-                        "r') OR tbl_Unknown_Species.Plant_Type IS NULL ORDER BY tbl_Unknown_Species.Unkno"
-                        "wn_Code);"
+                        " Not In (SELECT Master_PLANT_Code FROM ShrubExclusionList))))    UNION  (SELECT "
+                        "DISTINCT tbl_Unknown_Species.Unknown_Code,  tbl_Unknown_Species.Unknown_Code,   "
+                        " tbl_Unknown_Species.Plant_Type + \" - \" + tbl_Unknown_Species.Plant_Descriptio"
+                        "n,  tbl_Unknown_Species.Plant_Type AS Lifeform  FROM tbl_Unknown_Species  WHERE "
+                        "tbl_Unknown_Species.Plant_Type IN ('Shrub','Other') OR tbl_Unknown_Species.Plant"
+                        "_Type IS NULL ORDER BY tbl_Unknown_Species.Unknown_Code)  UNION  (SELECT DISTINC"
+                        "T  qryU_Top_Canopy.Master_PLANT_Code,   qryU_Top_Canopy.LU_Code,  qryU_Top_Canop"
+                        "y.Utah_Species,  qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE qryU_Top_Ca"
+                        "nopy.LU_Code IN ('JUNOST','PINEDU')) ORDER BY qryU_Top_Canopy.LU_Code;"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
                     ConditionalFormat14 = Begin
-                        0x01000200000001000000000000000100000000000000ffffff00100000004c00 ,
+                        0x01000300000001000000000000000100000000000000ffffff00100000004c00 ,
                         0x65006e0028005b0053007000650063006900650073005d0029003e0030000000 ,
                         0x0000000000000000000000000000000000000001000000000000000100000000 ,
                         0x000000ffff00003c0000004900490066002800490073004e0075006c006c0028 ,
                         0x005b0048004300310030005d002b005b0048004300320035005d002b005b0048 ,
                         0x004300350030005d002b005b00480043003100300030005d002b005b00480043 ,
                         0x0032006d005d002b005b00480043004700540032005d0029002c0030002c0031 ,
-                        0x002900000000000000000000000000000000000000000000
+                        0x0029000000000000000000000000000000000000000000000100000000000000 ,
+                        0x0100000000000000ffffff00210000005b0050006100720065006e0074005d00 ,
+                        0x2e005b006300620078004e006f005300680072007500620073005d002e005600 ,
+                        0x61006c00750065003d0054007200750065000000000000000000000000000000 ,
+                        0x00000000000000
                     End
                 End
                 Begin CommandButton
@@ -759,10 +801,10 @@ Begin Form
                     Caption ="Delete Record"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -782,10 +824,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -799,10 +841,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -816,10 +858,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -833,10 +875,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -850,10 +892,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -870,13 +912,19 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_LP_Belt_Shrub
 ' Level:        Form module
-' Version:      1.02
+' Version:      1.03
 ' Description:  data functions & procedures specific to LP belt shrub monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
 '               BLC - 3/7/2016 - 1.02 - fixed Error #94 Invalid use of NULL issue in Form_Load() on new visits
+'               BLC - 4/13/2016 - 1.03 - adjusted species dropdown SQL to include JUNOST & PINEDU (LU_Code)
+'                                        tree species & changed the sort to be across the entire
+'                                        UNION query versus within its component SELECTS
+'                                        to accommodate "EPHVIR" being selected vs. "EPHVIRV"
+'                                        when users type in "EPHVIR" (see also 2016 Upland In-Season Updates documentation)
+'                                        added refresh for underlying subforms for conditional formatting
 ' =================================
 
 ' ---------------------------------
@@ -903,12 +951,6 @@ On Error GoTo Err_Handler
         'set no data checkboxes/rectangles
         Set NoData = GetNoDataCollected(Me.Transect_ID, "T")
     End If
-'    Me.Parent.Form.Controls("cbxNoShrubs").Value = NoData.item("1mBelt-Shrub")
-'    Me.Parent.Form.Controls("cbxNoSeedlings").Value = NoData.item("1mBelt-TreeSeedling")
-'
-'    'hide if checkbox is false
-'    'Me.Parent.Form.Controls("rctNoShrubs").Visible = Abs(Me.Parent.Form.Controls("cbxNoShrubs").Value)
-'    'Me.Parent.Form.Controls("rctNoSeedlings").Visible = Abs(Me.Parent.Form.Controls("cbxNoSeedlings").Value)
     
 Exit_Handler:
     Exit Sub
@@ -1190,8 +1232,11 @@ On Error GoTo Err_Handler
         Me.Parent.Form.Controls("cbxNoShrubs").Enabled = True
         Me.Parent.Form.Controls("rctNoShrubs").Visible = True
         
+        'refresh the form for conditional formatting
+        Me.Requery
+        
     End If
-
+    
 Exit_Handler:
     Exit Sub
     

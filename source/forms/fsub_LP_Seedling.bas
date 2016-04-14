@@ -12,9 +12,9 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =28
-    Top =5730
-    Right =4965
-    Bottom =8295
+    Top =5736
+    Right =4968
+    Bottom =8292
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x73776174d27ce340
@@ -212,21 +212,27 @@ Begin Form
                     OnGotFocus ="[Event Procedure]"
                     OnClick ="[Event Procedure]"
                     ConditionalFormat = Begin
-                        0x010000006c000000020000000000000006000000000000000200000001000000 ,
+                        0x01000000ac000000030000000000000006000000000000000200000001000000 ,
                         0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
-                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
-                        0x300000000000300000000000
+                        0xffff0000010000000000000006000000250000000100000000000000ffffff00 ,
+                        0x3000000000003000000000005b0050006100720065006e0074005d002e005b00 ,
+                        0x6300620078004e006f0053006500650064006c0069006e00670073005d003d00 ,
+                        0x540072007500650000000000
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000200000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
-                        0x00000000
+                        0x0000000001000000000000000100000000000000ffffff001e0000005b005000 ,
+                        0x6100720065006e0074005d002e005b006300620078004e006f00530065006500 ,
+                        0x64006c0069006e00670073005d003d0054007200750065000000000000000000 ,
+                        0x00000000000000000000000000
                     End
                 End
                 Begin ComboBox
                     OverlapFlags =247
+                    TextFontFamily =0
                     IMESentenceMode =3
                     ColumnCount =3
                     ListWidth =6480
@@ -237,12 +243,14 @@ Begin Form
                     BackColor =65535
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"510\""
                     ConditionalFormat = Begin
-                        0x01000000ac000000020000000100000000000000000000001100000001000000 ,
+                        0x01000000ec000000030000000100000000000000000000001100000001000000 ,
                         0x00000000ffffff00010000000000000012000000250000000100000000000000 ,
-                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0xffff0000010000000000000026000000450000000100000000000000ffffff00 ,
                         0x4c0065006e0028005b0053007000650063006900650073005d0029003e003000 ,
                         0x00000000490073004e0075006d00650072006900630028005b0054006f007400 ,
-                        0x61006c005d00290000000000
+                        0x61006c005d002900000000005b0050006100720065006e0074005d002e005b00 ,
+                        0x6300620078004e006f0053006500650064006c0069006e00670073005d003d00 ,
+                        0x540072007500650000000000
                     End
                     Name ="Species"
                     ControlSource ="Species"
@@ -261,12 +269,15 @@ Begin Form
                     OnGotFocus ="[Event Procedure]"
                     OnChange ="[Event Procedure]"
                     ConditionalFormat14 = Begin
-                        0x01000200000001000000000000000100000000000000ffffff00100000004c00 ,
+                        0x01000300000001000000000000000100000000000000ffffff00100000004c00 ,
                         0x65006e0028005b0053007000650063006900650073005d0029003e0030000000 ,
                         0x0000000000000000000000000000000000000001000000000000000100000000 ,
                         0x000000ffff000012000000490073004e0075006d00650072006900630028005b ,
                         0x0054006f00740061006c005d0029000000000000000000000000000000000000 ,
-                        0x00000000
+                        0x0000000001000000000000000100000000000000ffffff001e0000005b005000 ,
+                        0x6100720065006e0074005d002e005b006300620078004e006f00530065006500 ,
+                        0x64006c0069006e00670073005d003d0054007200750065000000000000000000 ,
+                        0x00000000000000000000000000
                     End
                 End
                 Begin CommandButton
@@ -282,10 +293,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -306,10 +317,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Enabled = NotDefault
@@ -324,10 +335,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Enabled = NotDefault
@@ -342,10 +353,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Enabled = NotDefault
@@ -360,10 +371,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Enabled = NotDefault
@@ -378,10 +389,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End

@@ -14,9 +14,9 @@ Begin Form
     Width =14160
     DatasheetFontHeight =9
     ItemSuffix =35
-    Left =405
-    Top =2205
-    Right =14355
+    Left =408
+    Top =2208
+    Right =14352
     Bottom =5700
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
@@ -241,10 +241,10 @@ Begin Form
                     LayoutCachedTop =300
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =600
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -260,10 +260,10 @@ Begin Form
                     LayoutCachedTop =660
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =960
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Label
                     OverlapFlags =85
@@ -467,10 +467,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -509,7 +509,7 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_OT_Census
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.03
 ' Description:  data functions & procedures specific to overstory census monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
@@ -517,6 +517,7 @@ Option Explicit
 '               BLC - 2/2/2016 - 1.01 - added documentation, set checkbox for no species found
 '               BLC - 3/8/2016 - 1.02 - added Species_GotFocus() to refresh species lists to include
 '                                       new unknowns
+'               BLC - 4/13/2016 - 1.03 - added refresh for underlying subforms for conditional formatting
 ' =================================
 
 ' ---------------------------------
@@ -786,6 +787,7 @@ End Sub
 ' Revisions:
 '   RDB, unknown  - initial version
 '   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
+'   BLC, 4/13/2016 - added requery of related subform to clear/set conditional formatting on change
 ' ---------------------------------
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_Handler
@@ -815,6 +817,9 @@ On Error GoTo Err_Handler
         Me.Parent.Form.Controls("cbxNoCensus") = 1
         Me.Parent.Form.Controls("cbxNoCensus").Enabled = True
         Me.Parent.Form.Controls("rctNoCensus").Visible = True
+        
+        'refresh the subform to clear conditional formatting
+        Me.Requery
         
     End If
 

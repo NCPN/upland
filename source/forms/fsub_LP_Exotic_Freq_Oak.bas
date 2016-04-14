@@ -13,10 +13,10 @@ Begin Form
     Width =10440
     DatasheetFontHeight =9
     ItemSuffix =57
-    Left =1515
-    Top =2430
-    Right =9210
-    Bottom =6195
+    Left =1512
+    Top =2436
+    Right =9216
+    Bottom =6192
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -291,10 +291,10 @@ Begin Form
                     Caption ="Master "
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -309,10 +309,10 @@ Begin Form
                     Caption ="Unknown"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -349,9 +349,9 @@ Begin Form
                     BackColor =65535
                     Name ="tbxRctVisible"
                     ConditionalFormat = Begin
-                        0x010000001c020000020000000100000000000000000000006e00000001000000 ,
+                        0x0100000064020000030000000100000000000000000000006e00000001000000 ,
                         0x00000000ffff000001000000000000006f000000dd0000000100000000000000 ,
-                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0xffffff000100000000000000de000000010100000100000000000000ffffff00 ,
                         0x41006200730028005b004d0030005d0029002b0041006200730028005b004d00 ,
                         0x35005d0029002b0041006200730028005b004d00310030005d0029002b004100 ,
                         0x6200730028005b004d00310035005d0029002b0041006200730028005b004d00 ,
@@ -365,14 +365,17 @@ Begin Form
                         0x30005d0029002b0041006200730028005b004d00320035005d0029002b004100 ,
                         0x6200730028005b004d00330030005d0029002b0041006200730028005b004d00 ,
                         0x330035005d0029002b0041006200730028005b004d00340030005d0029002b00 ,
-                        0x41006200730028005b004d00340035005d0029003e00300000000000
+                        0x41006200730028005b004d00340035005d0029003e003000000000005b005000 ,
+                        0x6100720065006e0074005d002e005b006300620078004e006f00450078006f00 ,
+                        0x74006900630073005d002e00560061006c00750065003d005400720075006500 ,
+                        0x00000000
                     End
 
                     LayoutCachedLeft =2580
                     LayoutCachedWidth =6240
                     LayoutCachedHeight =300
                     ConditionalFormat14 = Begin
-                        0x01000200000001000000000000000100000000000000ffff00006d0000004100 ,
+                        0x01000300000001000000000000000100000000000000ffff00006d0000004100 ,
                         0x6200730028005b004d0030005d0029002b0041006200730028005b004d003500 ,
                         0x5d0029002b0041006200730028005b004d00310030005d0029002b0041006200 ,
                         0x730028005b004d00310035005d0029002b0041006200730028005b004d003200 ,
@@ -388,7 +391,11 @@ Begin Form
                         0x0029002b0041006200730028005b004d00330030005d0029002b004100620073 ,
                         0x0028005b004d00330035005d0029002b0041006200730028005b004d00340030 ,
                         0x005d0029002b0041006200730028005b004d00340035005d0029003e00300000 ,
-                        0x0000000000000000000000000000000000000000
+                        0x0000000000000000000000000000000000000000010000000000000001000000 ,
+                        0x00000000ffffff00220000005b0050006100720065006e0074005d002e005b00 ,
+                        0x6300620078004e006f00450078006f0074006900630073005d002e0056006100 ,
+                        0x6c00750065003d00540072007500650000000000000000000000000000000000 ,
+                        0x0000000000
                     End
                 End
                 Begin TextBox
@@ -435,19 +442,21 @@ Begin Form
                     BackColor =65535
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"510\""
                     ConditionalFormat = Begin
-                        0x0100000086010000020000000100000000000000000000001a00000001000000 ,
-                        0x00000000ffffff0001000000000000001b000000920000000100000000000000 ,
-                        0xffff000000000000000000000000000000000000000000000000000000000000 ,
+                        0x01000000ce010000030000000100000000000000000000001a00000001000000 ,
+                        0x00000000ffffff0001000000000000001b0000003e0000000100000000000000 ,
+                        0xffffff0001000000000000003f000000b60000000100000000000000ffff0000 ,
                         0x49004900660028004c0065006e0028005b005300700065006300690065007300 ,
-                        0x5d0029003e0030002c0031002c00300029000000000049004900660028004100 ,
-                        0x6200730028005b004d0030005d0029002b0041006200730028005b004d003500 ,
-                        0x5d0029002b0041006200730028005b004d00310030005d0029002b0041006200 ,
-                        0x730028005b004d00310035005d0029002b0041006200730028005b004d003200 ,
-                        0x30005d0029002b0041006200730028005b004d00320035005d0029002b004100 ,
-                        0x6200730028005b004d00330030005d0029002b0041006200730028005b004d00 ,
-                        0x330035005d0029002b0041006200730028005b004d00340030005d0029002b00 ,
-                        0x41006200730028005b004d00340035005d0029003e0030002c0031002c003000 ,
-                        0x290000000000
+                        0x5d0029003e0030002c0031002c0030002900000000005b005000610072006500 ,
+                        0x6e0074005d002e005b006300620078004e006f00450078006f00740069006300 ,
+                        0x73005d002e00560061006c00750065003d005400720075006500000000004900 ,
+                        0x49006600280041006200730028005b004d0030005d0029002b00410062007300 ,
+                        0x28005b004d0035005d0029002b0041006200730028005b004d00310030005d00 ,
+                        0x29002b0041006200730028005b004d00310035005d0029002b00410062007300 ,
+                        0x28005b004d00320030005d0029002b0041006200730028005b004d0032003500 ,
+                        0x5d0029002b0041006200730028005b004d00330030005d0029002b0041006200 ,
+                        0x730028005b004d00330035005d0029002b0041006200730028005b004d003400 ,
+                        0x30005d0029002b0041006200730028005b004d00340035005d0029003e003000 ,
+                        0x2c0031002c003000290000000000
                     End
                     Name ="Species"
                     ControlSource ="Species"
@@ -463,18 +472,22 @@ Begin Form
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
                     ConditionalFormat14 = Begin
-                        0x01000200000001000000000000000100000000000000ffffff00190000004900 ,
+                        0x01000300000001000000000000000100000000000000ffffff00190000004900 ,
                         0x4900660028004c0065006e0028005b0053007000650063006900650073005d00 ,
                         0x29003e0030002c0031002c003000290000000000000000000000000000000000 ,
-                        0x000000000001000000000000000100000000000000ffff000076000000490049 ,
-                        0x006600280041006200730028005b004d0030005d0029002b0041006200730028 ,
-                        0x005b004d0035005d0029002b0041006200730028005b004d00310030005d0029 ,
-                        0x002b0041006200730028005b004d00310035005d0029002b0041006200730028 ,
-                        0x005b004d00320030005d0029002b0041006200730028005b004d00320035005d ,
-                        0x0029002b0041006200730028005b004d00330030005d0029002b004100620073 ,
-                        0x0028005b004d00330035005d0029002b0041006200730028005b004d00340030 ,
-                        0x005d0029002b0041006200730028005b004d00340035005d0029003e0030002c ,
-                        0x0031002c0030002900000000000000000000000000000000000000000000
+                        0x000000000001000000000000000100000000000000ffffff00220000005b0050 ,
+                        0x006100720065006e0074005d002e005b006300620078004e006f00450078006f ,
+                        0x0074006900630073005d002e00560061006c00750065003d0054007200750065 ,
+                        0x0000000000000000000000000000000000000000000001000000000000000100 ,
+                        0x000000000000ffff000076000000490049006600280041006200730028005b00 ,
+                        0x4d0030005d0029002b0041006200730028005b004d0035005d0029002b004100 ,
+                        0x6200730028005b004d00310030005d0029002b0041006200730028005b004d00 ,
+                        0x310035005d0029002b0041006200730028005b004d00320030005d0029002b00 ,
+                        0x41006200730028005b004d00320035005d0029002b0041006200730028005b00 ,
+                        0x4d00330030005d0029002b0041006200730028005b004d00330035005d002900 ,
+                        0x2b0041006200730028005b004d00340030005d0029002b004100620073002800 ,
+                        0x5b004d00340035005d0029003e0030002c0031002c0030002900000000000000 ,
+                        0x000000000000000000000000000000
                     End
                 End
                 Begin CommandButton
@@ -490,10 +503,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                     Overlaps =1
                 End
                 Begin CheckBox
@@ -616,7 +629,7 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_Exotic_Freq_Oak
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.03
 ' Description:  data functions & procedures specific to oak exotic frequency monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
@@ -624,6 +637,7 @@ Option Explicit
 '               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
 '               BLC - 3/23/2016 -1.02 - updated button delete click to handle no exotics label not displaying
 '                                       after deleting last record
+'               BLC - 4/13/2016 - 1.03 - added refresh for underlying subforms for conditional formatting
 ' =================================
 
 ' ---------------------------------
@@ -851,6 +865,7 @@ End Sub
 '   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
 '   BLC, 3/23/2016 - added lblNoExotics.Visible since it was not properly appearing after deleting
 '                    last record
+'   BLC, 4/13/2016 - added requery of related subform to clear/set conditional formatting on change
 ' ---------------------------------
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_Handler
@@ -881,6 +896,9 @@ On Error GoTo Err_Handler
         Me.Parent.Form.Controls("cbxNoExotics").Enabled = True
         Me.Parent.Form.Controls("lblNoExotics").Visible = True
         Me.Parent.Form.Controls("rctNoExotics").Visible = True
+        
+        'refresh the subform to clear conditional formatting
+        Me.Requery
         
     End If
 
