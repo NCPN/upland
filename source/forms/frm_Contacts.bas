@@ -892,7 +892,7 @@ End If
 
 strFormName = "frm_Set_Defaults"
 If IsLoaded(strFormName) Then
-    Forms(strFormName)!cmbUser.Requery
+    Forms(strFormName)!cbxUser.Requery
 End If
     
 End Sub

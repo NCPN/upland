@@ -2,6 +2,7 @@
 VersionRequired =20
 Begin Report
     LayoutForPrint = NotDefault
+    FilterOn = NotDefault
     OrderByOn = NotDefault
     DefaultView =0
     TabularFamily =0
@@ -11,15 +12,17 @@ Begin Report
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
-    Width =9360
+    Width =9300
     DatasheetFontHeight =9
-    ItemSuffix =18
-    Left =270
-    Top =210
-    Right =10620
-    Bottom =10590
+    ItemSuffix =23
+    Left =1425
+    Top =3270
+    Right =11625
+    Bottom =10755
     DatasheetGridlinesColor =12632256
-    OrderBy ="[temp_Sp_Rpt_by_Park_Rollup].[PlotParkSpecies]"
+    Filter ="Unit_Code = 'CEBR' AND Plot_ID = 102 AND Len((Utah_species+' - '+CStr(SpeciesYea"
+        "rs))) > Len(Replace((Utah_species+' - '+CStr(SpeciesYears)), CStr(2014), ''))"
+    OrderBy ="[temp_Sp_Rpt_by_Park_Rollup].[ParkPlotSpecies]"
     RecSrcDt = Begin
         0xfe3370dd0da1e440
     End
@@ -27,7 +30,7 @@ Begin Report
     Caption ="rpt_Species_by_Park"
     DatasheetFontName ="Arial"
     PrtMip = Begin
-        0xa0050000a0050000a0050000a005000000000000902400004a01000001000000 ,
+        0xa0050000a0050000a0050000a005000000000000542400004a01000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
     FilterOnLoad =0
@@ -250,6 +253,28 @@ Begin Report
                     LayoutCachedWidth =9300
                     LayoutCachedHeight =1080
                 End
+                Begin TextBox
+                    FontItalic = NotDefault
+                    TextAlign =3
+                    TextFontFamily =34
+                    IMESentenceMode =3
+                    Left =7080
+                    Top =300
+                    Width =2160
+                    Height =270
+                    FontSize =9
+                    FontWeight =500
+                    TabIndex =1
+                    Name ="tbxFilter"
+                    ControlSource ="=IIf(Len([OpenArgs])>0,\"Filter:  \" & [OpenArgs],\"\")"
+                    FontName ="Calibri"
+
+                    LayoutCachedLeft =7080
+                    LayoutCachedTop =300
+                    LayoutCachedWidth =9240
+                    LayoutCachedHeight =570
+                    ThemeFontIndex =1
+                End
             End
         End
         Begin BreakHeader
@@ -369,7 +394,7 @@ Begin Report
                     IMESentenceMode =3
                     Left =5940
                     Top =60
-                    Width =3360
+                    Width =3312
                     Height =270
                     TabIndex =1
                     Name ="tbxYear"
@@ -378,7 +403,7 @@ Begin Report
 
                     LayoutCachedLeft =5940
                     LayoutCachedTop =60
-                    LayoutCachedWidth =9300
+                    LayoutCachedWidth =9252
                     LayoutCachedHeight =330
                 End
                 Begin TextBox
@@ -456,10 +481,3 @@ Begin Report
         End
     End
 End
-CodeBehindForm
-Attribute VB_GlobalNameSpace = False
-Attribute VB_Creatable = True
-Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = False
-Option Compare Database
-Option Explicit

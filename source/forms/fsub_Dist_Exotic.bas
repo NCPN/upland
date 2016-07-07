@@ -2,7 +2,6 @@
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -13,16 +12,16 @@ Begin Form
     Width =8280
     DatasheetFontHeight =9
     ItemSuffix =31
-    Left =1080
-    Top =8730
-    Right =9990
-    Bottom =11415
+    Left =480
+    Top =2250
+    Right =9870
+    Bottom =6420
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x718d0abeb2a7e340
     End
     RecordSource ="tbl_Dist_Exotic"
-    Caption ="fsub_LP_Belt_Shrub"
+    Caption ="fsub_Dist_Exotic"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -244,16 +243,16 @@ Begin Form
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species,qryU_Top_Canopy.Nativity FROM qryU_Top_Canopy WHERE (((qryU_Top_"
-                        "Canopy.Utah_Species) Is Not Null)) AND Nativity = 'NonNative' ORDER BY qryU_Top_"
-                        "Canopy.LU_Code;"
+                    RowSource ="SELECT * FROM (SELECT DISTINCT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canop"
+                        "y.LU_Code AS LUcode, qryU_Top_Canopy.Utah_Species, qryU_Top_Canopy.Nativity FROM"
+                        " qryU_Top_Canopy  WHERE (((qryU_Top_Canopy.Utah_Species) Is Not Null) AND ((qryU"
+                        "_Top_Canopy.[Nativity])='NonNative'))  )   UNION  (SELECT DISTINCT tbl_Unknown_S"
+                        "pecies.Unknown_Code, tbl_Unknown_Species.Unknown_Code AS LUcode, tbl_Unknown_Spe"
+                        "cies.Plant_Type+ \" - \" + tbl_Unknown_Species.Plant_Description, NULL AS Nativi"
+                        "ty FROM tbl_Unknown_Species) ORDER BY LUcode ;"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
-
-                End
-                Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =85
                     Left =6240
@@ -342,6 +341,7 @@ Option Explicit
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, no data collected integration
+'               BLC - 3/16/2016 - 1.02 - added species refresh for unknowns
 ' =================================
 
 ' ---------------------------------
@@ -421,7 +421,24 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles exotic species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 3/16/2016 - added error handling, documentation, refresh list to catch unknowns
+' ---------------------------------
 Private Sub Species_GotFocus()
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
 
     If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
       Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date

@@ -10,31 +10,30 @@ Begin Form
     AllowAdditions = NotDefault
     FilterOn = NotDefault
     DefaultView =0
-    ScrollBars =0
     ViewsAllowed =1
     TabularFamily =0
-    BorderStyle =1
     PictureAlignment =2
     DatasheetGridlinesBehavior =3
     Cycle =1
     GridX =24
     GridY =24
-    Width =16200
+    Width =16296
     DatasheetFontHeight =10
-    ItemSuffix =200
-    Left =3804
-    Top =-180
-    Right =20004
-    Bottom =12180
+    ItemSuffix =212
+    Left =2736
+    Top =2064
+    Right =19044
+    Bottom =11172
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20081016093629-468700110.912323' AND [Event_ID]='20160203131946-8"
-        "62619340.419769'"
+    Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201603202"
+        "33521-783995270.729065'"
     RecSrcDt = Begin
         0x171e359b4cb5e440
     End
     RecordSource ="qfrm_DataEntry"
     Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event - Filter "
-        "by sampling event"
+        "by sampling event - Filter by sampling event - Filter by sampling event - Filter"
+        " by sampling event - Filter by sampling event - Filter by sampling event"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
@@ -391,7 +390,7 @@ Begin Form
                                     Left =360
                                     Top =1680
                                     Width =15534
-                                    Height =9180
+                                    Height =9504
                                     Name ="frm_LP_Belt_Transect"
                                     SourceObject ="Form.frm_LP_Belt_Transect"
                                     LinkChildFields ="Event_ID"
@@ -400,11 +399,12 @@ Begin Form
                                     LayoutCachedLeft =360
                                     LayoutCachedTop =1680
                                     LayoutCachedWidth =15894
-                                    LayoutCachedHeight =10860
+                                    LayoutCachedHeight =11184
                                 End
                             End
                         End
                         Begin Page
+                            Visible = NotDefault
                             OverlapFlags =215
                             Left =108
                             Top =1572
@@ -438,6 +438,7 @@ Begin Form
                             End
                         End
                         Begin Page
+                            Visible = NotDefault
                             OverlapFlags =215
                             Left =108
                             Top =1572
@@ -831,7 +832,6 @@ Begin Form
                             End
                         End
                         Begin Page
-                            Visible = NotDefault
                             OverlapFlags =247
                             Left =108
                             Top =1572
@@ -963,6 +963,208 @@ Begin Form
                                     LinkChildFields ="Event_ID"
                                     LinkMasterFields ="Event_ID"
 
+                                End
+                                Begin Rectangle
+                                    SpecialEffect =0
+                                    BackStyle =1
+                                    OldBorderStyle =0
+                                    OverlapFlags =255
+                                    Left =10080
+                                    Top =7860
+                                    Width =2760
+                                    Height =480
+                                    BackColor =6750207
+                                    Name ="rctNo1000hrA"
+                                    OnClick ="[Event Procedure]"
+                                    LayoutCachedLeft =10080
+                                    LayoutCachedTop =7860
+                                    LayoutCachedWidth =12840
+                                    LayoutCachedHeight =8340
+                                End
+                                Begin CheckBox
+                                    OverlapFlags =247
+                                    Left =10200
+                                    Top =8010
+                                    Width =300
+                                    TabIndex =5
+                                    Name ="cbxNo1000hrA"
+                                    OnClick ="[Event Procedure]"
+                                    ControlTipText ="No 1000-hr fuels found in transect A"
+
+                                    LayoutCachedLeft =10200
+                                    LayoutCachedTop =8010
+                                    LayoutCachedWidth =10500
+                                    LayoutCachedHeight =8250
+                                    Begin
+                                        Begin Label
+                                            OverlapFlags =247
+                                            TextFontFamily =0
+                                            Left =10428
+                                            Top =7980
+                                            Width =2310
+                                            Height =240
+                                            FontWeight =600
+                                            Name ="lblNo1000hrA"
+                                            Caption ="No A 1000-hr Fuels Found"
+                                            ControlTipText ="No 1000-hr fuels found in transect A"
+                                            LayoutCachedLeft =10428
+                                            LayoutCachedTop =7980
+                                            LayoutCachedWidth =12738
+                                            LayoutCachedHeight =8220
+                                        End
+                                    End
+                                End
+                                Begin Rectangle
+                                    Visible = NotDefault
+                                    SpecialEffect =0
+                                    BackStyle =1
+                                    OldBorderStyle =0
+                                    OverlapFlags =255
+                                    Left =10080
+                                    Top =8460
+                                    Width =2760
+                                    Height =480
+                                    BackColor =6750207
+                                    Name ="rctNo1000hrB"
+                                    OnClick ="[Event Procedure]"
+                                    LayoutCachedLeft =10080
+                                    LayoutCachedTop =8460
+                                    LayoutCachedWidth =12840
+                                    LayoutCachedHeight =8940
+                                End
+                                Begin CheckBox
+                                    OverlapFlags =247
+                                    Left =10200
+                                    Top =8610
+                                    Width =300
+                                    TabIndex =6
+                                    Name ="cbxNo1000hrB"
+                                    OnClick ="[Event Procedure]"
+                                    ControlTipText ="No 1000-hr fuels found in transect B"
+
+                                    LayoutCachedLeft =10200
+                                    LayoutCachedTop =8610
+                                    LayoutCachedWidth =10500
+                                    LayoutCachedHeight =8850
+                                    Begin
+                                        Begin Label
+                                            OverlapFlags =247
+                                            TextFontFamily =0
+                                            Left =10428
+                                            Top =8580
+                                            Width =2310
+                                            Height =240
+                                            FontWeight =600
+                                            Name ="lblNo1000hrB"
+                                            Caption ="No B 1000-hr Fuels Found"
+                                            ControlTipText ="No 1000-hr fuels found in transect B"
+                                            LayoutCachedLeft =10428
+                                            LayoutCachedTop =8580
+                                            LayoutCachedWidth =12738
+                                            LayoutCachedHeight =8820
+                                        End
+                                    End
+                                End
+                                Begin Rectangle
+                                    SpecialEffect =0
+                                    BackStyle =1
+                                    OldBorderStyle =0
+                                    OverlapFlags =255
+                                    Left =10080
+                                    Top =9060
+                                    Width =2760
+                                    Height =480
+                                    BackColor =6750207
+                                    Name ="rctNo1000hrC"
+                                    OnClick ="[Event Procedure]"
+                                    LayoutCachedLeft =10080
+                                    LayoutCachedTop =9060
+                                    LayoutCachedWidth =12840
+                                    LayoutCachedHeight =9540
+                                End
+                                Begin CheckBox
+                                    OverlapFlags =247
+                                    Left =10200
+                                    Top =9210
+                                    Width =300
+                                    TabIndex =7
+                                    Name ="cbxNo1000hrC"
+                                    OnClick ="[Event Procedure]"
+                                    ControlTipText ="No 1000-hr fuels found in transect C"
+
+                                    LayoutCachedLeft =10200
+                                    LayoutCachedTop =9210
+                                    LayoutCachedWidth =10500
+                                    LayoutCachedHeight =9450
+                                    Begin
+                                        Begin Label
+                                            OverlapFlags =247
+                                            TextFontFamily =0
+                                            Left =10428
+                                            Top =9180
+                                            Width =2310
+                                            Height =240
+                                            FontWeight =600
+                                            Name ="lblNo1000hrC"
+                                            Caption ="No C 1000-hr Fuels Found"
+                                            ControlTipText ="No 1000-hr fuels found in transect C"
+                                            LayoutCachedLeft =10428
+                                            LayoutCachedTop =9180
+                                            LayoutCachedWidth =12738
+                                            LayoutCachedHeight =9420
+                                        End
+                                    End
+                                End
+                                Begin Rectangle
+                                    Visible = NotDefault
+                                    SpecialEffect =0
+                                    BackStyle =1
+                                    OldBorderStyle =0
+                                    OverlapFlags =255
+                                    Left =10080
+                                    Top =9660
+                                    Width =2760
+                                    Height =480
+                                    BackColor =6750207
+                                    Name ="rctNo1000hrD"
+                                    OnClick ="[Event Procedure]"
+                                    LayoutCachedLeft =10080
+                                    LayoutCachedTop =9660
+                                    LayoutCachedWidth =12840
+                                    LayoutCachedHeight =10140
+                                End
+                                Begin CheckBox
+                                    OverlapFlags =247
+                                    Left =10200
+                                    Top =9810
+                                    Width =300
+                                    TabIndex =8
+                                    Name ="cbxNo1000hrD"
+                                    OnClick ="[Event Procedure]"
+                                    ControlTipText ="No 1000-hr fuels found in transect D"
+
+                                    LayoutCachedLeft =10200
+                                    LayoutCachedTop =9810
+                                    LayoutCachedWidth =10500
+                                    LayoutCachedHeight =10050
+                                    Begin
+                                        Begin Label
+                                            OverlapFlags =247
+                                            TextFontFamily =0
+                                            Left =10428
+                                            Top =9780
+                                            Width =2325
+                                            Height =240
+                                            FontWeight =600
+                                            Name ="lblNo1000hrD"
+                                            Caption ="No D 1000-hr Fuels Found"
+                                            ControlTipText ="No 1000-hr fuels found in transect D"
+                                            LayoutCachedLeft =10428
+                                            LayoutCachedTop =9780
+                                            LayoutCachedWidth =12753
+                                            LayoutCachedHeight =10020
+                                        End
+                                    End
                                 End
                             End
                         End
@@ -1217,20 +1419,21 @@ Begin Form
 
                 End
                 Begin Rectangle
+                    Visible = NotDefault
                     SpecialEffect =0
                     BackStyle =1
                     OldBorderStyle =0
                     OverlapFlags =255
                     Left =10080
                     Top =7260
-                    Width =2520
+                    Width =2760
                     Height =480
                     BackColor =6750207
                     Name ="rctNo1000hr"
                     OnClick ="[Event Procedure]"
                     LayoutCachedLeft =10080
                     LayoutCachedTop =7260
-                    LayoutCachedWidth =12600
+                    LayoutCachedWidth =12840
                     LayoutCachedHeight =7740
                 End
                 Begin CheckBox
@@ -1252,7 +1455,7 @@ Begin Form
                             OverlapFlags =255
                             Left =10430
                             Top =7380
-                            Width =2040
+                            Width =2115
                             Height =240
                             FontWeight =600
                             Name ="lblNo1000hr"
@@ -1260,7 +1463,7 @@ Begin Form
                             ControlTipText ="No 1000-hr fuels found"
                             LayoutCachedLeft =10430
                             LayoutCachedTop =7380
-                            LayoutCachedWidth =12470
+                            LayoutCachedWidth =12545
                             LayoutCachedHeight =7620
                         End
                     End
@@ -1280,7 +1483,7 @@ Option Explicit
 ' =================================
 ' MODULE:       frm_Data_Entry
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.05
 ' Description:  data functions & procedures specific to field data entry
 '
 ' Data source:  tbl_Locations
@@ -1294,6 +1497,18 @@ Option Explicit
 '               BLC - 2/3/2016 - 1.01 - added documentation, enabled seedlings & saplings for
 '                                       oak scrub plots, revised to use transect overlay vs.
 '                                       message box
+'               BLC - 3/7/2016 - 1.02 - fixed bugs setting "Overstory-Census" vs. "OverstoryTree-Census",
+'                                       and leaving rctNoShrubs visible for oak scrub plots
+'               BLC - 3/21/2016 - 1.03 - fixed bug where Fuels tab was visible on grassland/shrubland plots
+'                                        added, added 1000hr fuel A-D no data collected checkboxes
+'               BLC - 3/21/2016 - 1.04 - revised Form_Load to:
+'                                        expose: Gap Intercepts - grassland/shrubland
+'                                                Soil Stability - grassland/shrubland, woodland
+'                                        hide:   SL Intercept - oak scrub
+'               BLC - 4/13/2016 - 1.05 - changed form properties to avoid taskbar overlap (Scrollbars = Both, Border Style = Sizeable)
+'                                        allows users to resize & scroll to expose taskbar apps/documents
+'                                        original values (Scrollbars = Neither, Border Style = Thin)
+'                                        added refresh for underlying subforms for conditional formatting
 ' =================================
 
 ' ---------------------------------
@@ -1354,6 +1569,16 @@ End Sub
 '   RDB, unknown   - ?
 '   BLC, 2/2/2016  - added documentation, enabled seedling & saplings data entry
 '                    for oak scrub plots
+'   BLC, 3/7/2016  - fixed issues where NoShrubs rectangle showed for oak scrub plots when
+'                    it should not & enabling pgFuels for woodland & forest plots
+'   BLC, 3/16/2016 - fixed bugs where: Fuels tab was visible on grassland/shrubland plots,
+'                    SL Intercept tab visible for other than oak scrub plots
+'   BLC, 3/21/2016 - handled transect A-D 1000hr fuels
+'   BLC, 3/23/2016 - revised Form_Load to:
+'                    expose: Gap Intercepts - grassland/shrubland
+'                            Soil Stability - grassland/shrubland, woodland
+'                    hide:   SL Intercept - oak scrub
+'                    added more documentation for tabs exposed/hidden
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
@@ -1373,85 +1598,134 @@ On Error GoTo Err_Handler
         Me.cbxNoCensus.Value = .item("OverstoryTree-Census")
     
         Me.cbxNo1000hr.Value = .item("Fuel-1000hr")
+        Me.cbxNo1000hrA.Value = .item("Fuel-1000hr-A")
+        Me.cbxNo1000hrB.Value = .item("Fuel-1000hr-B")
+        Me.cbxNo1000hrC.Value = .item("Fuel-1000hr-C")
+        Me.cbxNo1000hrD.Value = .item("Fuel-1000hr-D")
         
         Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Value = .item("SiteImpact-Disturbance")
         Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Value = .item("SiteImpact-Exotic")
     End With
     
-    'transect level values
-'    Set dNoDataTransect = GetNoDataCollected(Me.frm_LP_Belt_Transect.Form.Controls("Transect_ID"), "T")
-'
-'    With dNoDataTransect
-'        Me.frm_LP_Belt_Transect.Form.Controls("cbxNoShrubs").Value = .item("1mBelt-Shrub")
-'        Me.frm_LP_Belt_Transect.Form.Controls("cbxNoSeedlings").Value = .item("1mBelt-TreeSeedling")
-'        Me.frm_LP_Belt_Transect.Form.Controls("cbxNoExotics").Value = .item("1mBelt-ExoticPerennial")
-'    End With
-    
-    'set the yellow rectangles visible if no records
-'    Me.frm_LP_Belt_Transect.Form.Controls("rctNoSeedlings").Visible = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Seedling").Form.RecordsetClone.RecordCount = 0)
-'    Me.frm_LP_Belt_Transect.Form.Controls("rctNoShrubs").Visible = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Belt_Shrub").Form.RecordsetClone.RecordCount = 0)
-'    Me.frm_LP_Belt_Transect.Form.Controls("rctNoExotics").Visible = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Exotic").Form.RecordsetClone.RecordCount = 0)
-    
+    'transect level values -> see LP_Belt_Transect
+   
     Me.rctNoSaplings.Visible = (Me.fsub_OT_Tree_Saplings.Form.RecordsetClone.RecordCount = 0)
     Me.rctNoCensus.Visible = (Me.fsub_OT_Census.Form.RecordsetClone.RecordCount = 0)
     
     Me.rctNo1000hr.Visible = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+
+    'A-D are set via Check1000hrFuels (more granular than RecordCount alone)
+    'A-D highlighting is displayed when no records exist
+    If rctNo1000hr.Visible = True Then
+        Me.rctNo1000hrA.Visible = True
+        Me.rctNo1000hrB.Visible = True
+        Me.rctNo1000hrC.Visible = True
+        Me.rctNo1000hrD.Visible = True
+    End If
        
     Me.frm_Site_Impact.Form.Controls("rctNoDisturbance").Visible = (Me.frm_Site_Impact.Form.Controls("Disturbance Details").Form.RecordsetClone.RecordCount = 0)
     Me.frm_Site_Impact.Form.Controls("rctNoSpecies").Visible = (Me.frm_Site_Impact.Form.Controls("fsub_Dist_Exotic").Form.RecordsetClone.RecordCount = 0)
     
     'disable checkboxes if records exist
-'    Me.frm_LP_Belt_Transect.Form.Controls("cbxNoSeedlings").Enabled = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Belt_Shrub").Form.RecordsetClone.RecordCount = 0)
-'    Me.frm_LP_Belt_Transect.Form.Controls("cbxNoExotics").Enabled = (Me.frm_LP_Belt_Transect.Controls("fsub_LP_Seedling").Form.RecordsetClone.RecordCount = 0)
-
     Me.cbxNoSaplings.Enabled = (Me.fsub_OT_Tree_Saplings.Form.RecordsetClone.RecordCount = 0)
     Me.cbxNoCensus.Enabled = (Me.fsub_OT_Census.Form.RecordsetClone.RecordCount = 0)
 
     Me.cbxNo1000hr.Enabled = (Me.fsub_Fuels_1000.Form.RecordsetClone.RecordCount = 0)
+    
+    'A-D are set via Check1000hrFuels (more granular than RecordCount alone)
+    Check1000hrFuels
 
     Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Enabled = (Me.frm_Site_Impact.Form.Controls("Disturbance Details").Form.RecordsetClone.RecordCount = 0)
     Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Enabled = (Me.frm_Site_Impact.Form.Controls("fsub_Dist_Exotic").Form.RecordsetClone.RecordCount = 0)
-'------------------------
 
+    '---------------------------------------
+    ' display proper tabs based on veg type
+    '---------------------------------------
     Dim Veg_Type As Variant
 
-  ' Display the proper tabs
     Veg_Type = DLookup("[Vegetation_Type]", "tbl_Locations", "[Location_ID] = '" & Me!Location_ID & "'")
     
-    'forest and oak scrub plots
-    If Not IsNull(Veg_Type) And (Veg_Type = "forest" Or Veg_Type = "oak scrub") Then
-      Me!pgSS.Visible = False
-      Me!pgGaps.Visible = False
-    End If
+    '---------------------
+    ' tab displays
+    '---------------------
+    ' SS = soil stability, Gaps = Gap Intercepts,
+    ' all (exceptions below): hide - SLIntercept, Gaps
+    '                         expose - Photos, Point Intercept, 1-m Belt, Overstory Trees, Site Impact,
+    '                                  Fuels, Soil Stability
+    '
+    '       X = exposed  O = hidden
+    '
+    '                               DEFAULT     Forest  Grassland/Shrubland     Oak Scrub   Woodland
+    '   Photos (pgPhotos)             X           X             X                   X           X
+    '   Point Intercept               X           X             X                   X           X
+    '   1-m Belt (pgBeltShrub)        X           X             X                   X           X
+    '   Gap Intercepts (pgGaps)       O           O             X                   O           O
+    '   Overstory Trees (pgOT)        X           X             X                   X           X
+    '   Site Impact (pgImpact)        X           X             X                   X           X
+    '   Soil Stability (pgSS)         X           O             X                   O           X
+    '   Fuels (pgFuels)               X           X             O                   O           X
+    '----------------------
     
-    'grass/shrubland and oak scrub plots
-    If Not IsNull(Veg_Type) And (Veg_Type = "grassland/shrubland" Or Veg_Type = "oak scrub") Then
-      Me!pgFuels.Visible = False
-    End If
+    'defaults
+    '-- hide  --
+    '[deprecated, no longer used tabs]
+    Me!pgSLIntercept.Visible = False
+    Me!pgCoords_and_loc_details.Visible = False
+    'normal tabs
+    Me!pgGaps.Visible = False
     
-    'oak scrub plots
-    If Not IsNull(Veg_Type) And Veg_Type = "oak scrub" Then
-        'Me!pgBeltShrub.Visible = False  1m belt tab visible for oak plots - 2/15/2011 - RD
+    '-- expose --
+    Me!pgPhotos.Visible = True
+    Me![Point Intercept].Visible = True
+    Me!pgBeltShrub.Visible = True
+    Me!pgOT.Visible = True
+    Me.pgImpact.Visible = True
+    Me!pgFuels.Visible = True
+    Me!pgSS.Visible = True
+    
+    'handle exceptions
+    If Not IsNull(Veg_Type) Then
+        Select Case Veg_Type
+            
+            Case "forest"   'hide SS & Gaps, TICA no fuels special case
+                'hide SS & Gaps (above)
+                Me!pgSS.Visible = False
+                
+                ' Modified to hide fuels form for TICA 1 [HMT, 3/13/2015]
+                ' TICA 1 is a special case of a forest plot that does not have fuels data collected.
+                If (Me!Unit_Code = "TICA") And (Me!Plot_ID = 1) Then
+                  Me!pgFuels.Visible = False
+                End If
+            
+            Case "grassland/shrubland"  'hide fuels, expose SS & Gaps
+                'hide fuels
+                Me!pgFuels.Visible = False
+                
+                'expose SS (above) & Gaps
+                Me!pgGaps.Visible = True
+                            
+            Case "oak scrub"    'oak plots   hide Gaps, SS & fuels,  expose
+                'hide fuels, SS & Gaps (above)
+                Me!pgFuels.Visible = False
+                Me!pgSS.Visible = False
+                
+                'hide shrubs
+                Me.frm_LP_Belt_Transect.Controls("cbxNoShrubs").Visible = False
+                Me.frm_LP_Belt_Transect.Controls("lblNoShrubs").Visible = False
+                Me.frm_LP_Belt_Transect.Controls("rctNoShrubs").Visible = False
+            
+                'expose SL intercept for oak scrub --> NOW hide it (3/23/2016)
+                Me!pgSLIntercept.Visible = False
+            
+            Case "woodland"
+                'hide gaps (above) & OT Census crown class
+                Me!fsub_OT_Census.Form!Crown_Class.Visible = False
+                Me!fsub_OT_Census.Form!Crown_Class_Label.Visible = False
+                'expose SS (above)
+
+        End Select
+    End If
         
-        '------------------------------------------------
-        'enabled saplings for oak plots - 2/2/2016 - BLC
-        '------------------------------------------------
-        'Me!fsub_OT_Tree_Saplings.Form.visible = False
-        'Me!Sapling_Date.visible = False
-        'Me!Sapling_Observer.visible = False
-        'Me!Sapling_Recorder.visible = False
-        '------------------------------------------------
-    Else
-      Me!pgSLIntercept.Visible = False
-    End If
-    
-    'woodland plots
-    If Not IsNull(Veg_Type) And Veg_Type = "woodland" Then
-      Me!pgGaps.Visible = False
-      Me!fsub_OT_Census.Form!Crown_Class.Visible = False
-      Me!fsub_OT_Census.Form!Crown_Class_Label.Visible = False
-    End If
-    
     If Not IsNull(Me!txtStart_date) Then
       If IsNull(Me!Fuels_Date) Then
         Me!Fuels_Date = Me!txtStart_date
@@ -1462,12 +1736,6 @@ On Error GoTo Err_Handler
       If IsNull(Me!Sapling_Date) Then
         Me!Sapling_Date = Me!txtStart_date
       End If
-    End If
-    
-    ' Modified to hide fuels form for TICA 1 [HMT, 3/13/2015]
-    ' TICA 1 is a special case of a forest plot that does not have fuels data collected.
-    If (Me!Unit_Code = "TICA") And (Me!Plot_ID = 1) Then
-      Me!pgFuels.Visible = False
     End If
 
 Exit_Handler:
@@ -1484,13 +1752,13 @@ End Sub
 
 Private Sub Form_Current()
 
-Update_Loc_Info
-If Not IsNull(Me!txtUnit_Code) Then
-'  MsgBox DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
-  Me!frm_Quadrat_Transect.Form!fsub_Quadrat.Form!fsub_Quadrat_Shrubs.Form!State_Code = DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
-  Me!frm_Quadrat_Transect.Form!fsub_Quadrat.Form!fsub_Species.Form!State_Code = DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
-  Me!SiteDisplay = cboLocation_ID.Column(1)  ' Display the site number in heading
-End If
+    Update_Loc_Info
+    If Not IsNull(Me!txtUnit_Code) Then
+    '  MsgBox DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
+      Me!frm_Quadrat_Transect.Form!fsub_Quadrat.Form!fsub_Quadrat_Shrubs.Form!State_Code = DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
+      Me!frm_Quadrat_Transect.Form!fsub_Quadrat.Form!fsub_Species.Form!State_Code = DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
+      Me!SiteDisplay = cboLocation_ID.Column(1)  ' Display the site number in heading
+    End If
 End Sub
 
 Private Sub Form_BeforeUpdate(Cancel As Integer)
@@ -1552,12 +1820,16 @@ End Sub
 ' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/3/2016  - initial version
+'   BLC, 4/13/2016 - added requery of related subform to clear/set conditional formatting on change
 ' ---------------------------------
 Private Sub cbxNoSaplings_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
     SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Sapling", Abs(Me.cbxNoSaplings.Value)
+    
+    'refresh the subform to clear conditional formatting
+    Me.fsub_OT_Tree_Saplings.Requery
 
 Exit_Handler:
     Exit Sub
@@ -1583,13 +1855,18 @@ End Sub
 ' Adapted:      Bonnie Campbell, February 3, 2016 - for NCPN tools
 ' Revisions:
 '   BLC, 2/3/2016  - initial version
+'   BLC, 3/7/2016  - fixed bug setting "Overstory-Census" vs. "OverstoryTree-Census"
+'   BLC, 4/13/2016 - added requery of related subform to clear/set conditional formatting on change
 ' ---------------------------------
 Private Sub cbxNoCensus_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Overstory-Census", Abs(Me.cbxNoCensus.Value)
+    SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Census", Abs(Me.cbxNoCensus.Value)
 
+    'refresh the subform to clear conditional formatting
+    Me.fsub_OT_Census.Requery
+    
 Exit_Handler:
     Exit Sub
     
@@ -1610,16 +1887,60 @@ End Sub
 ' Returns:      N/A
 ' Throws:       none
 ' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Source/date:  Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Adapted:      -
 ' Revisions:
 '   BLC, 2/9/2016  - initial version
+'   BLC, 3/18/2016 - added A-D click to set these when 1000hr checkbox is checked
 ' ----------------------------------
 Private Sub cbxNo1000hr_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
     SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr", Abs(Me.cbxNo1000hr.Value)
+
+    'set A-D if checked
+    If Abs(Me.cbxNo1000hr) = 1 Then
+        Me.cbxNo1000hrA.Value = 1
+        Me.cbxNo1000hrB.Value = 1
+        Me.cbxNo1000hrC.Value = 1
+        Me.cbxNo1000hrD.Value = 1
+        SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-A", 1
+        SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-B", 1
+        SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-C", 1
+        SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-D", 1
+    End If
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNoDisturbance_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNo1000hrA_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub cbxNo1000hrA_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-A", Abs(Me.cbxNo1000hrA.Value)
 
 Exit_Handler:
     Exit Sub
@@ -1628,7 +1949,100 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - cbxNoDisturbance_Click[Form_frm_Site_Impact])"
+            "Error encountered (#" & Err.Number & " - cbxNo1000hrA_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNo1000hrB_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub cbxNo1000hrB_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-B", Abs(Me.cbxNo1000hrB.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNo1000hrB_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNo1000hrC_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub cbxNo1000hrC_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-C", Abs(Me.cbxNo1000hrC.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNo1000hrC_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          cbxNo1000hrD_Click
+' Description:  Handles checkbox click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub cbxNo1000hrD_Click()
+On Error GoTo Err_Handler
+
+    'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-D", Abs(Me.cbxNo1000hrD.Value)
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxNo1000hrD_Click[Form_frm_Data_Entry])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -1725,6 +2139,126 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          rctNo1000hrA_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub rctNo1000hrA_Click()
+On Error GoTo Err_Handler
+
+    cbxNo1000hrA_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNo1000hrA_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNo1000hrB_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub rctNo1000hrB_Click()
+On Error GoTo Err_Handler
+
+    cbxNo1000hrB_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNo1000hrB_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNo1000hrC_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub rctNo1000hrC_Click()
+On Error GoTo Err_Handler
+
+    cbxNo1000hrC_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNo1000hrC_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          rctNo1000hrD_Click
+' Description:  Handles rectangular box click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ----------------------------------
+Private Sub rctNo1000hrD_Click()
+On Error GoTo Err_Handler
+
+    cbxNo1000hrD_Click
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - rctNo1000hrD_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
 Private Sub cboLocation_ID_AfterUpdate()
 ' Update_Loc_Info
 End Sub
@@ -1781,6 +2315,8 @@ End Sub
 '   RDB, unknown   - ?
 '   BLC, 2/3/2016  - added documentation, revised transect number reminder to
 '                    use transect number overlay
+'   BLC, 3/7/2016  - fixed Error #2467 expression entered refers to object that is closed or does not exist when
+'                    tabbing to 1-m belt transect
 ' ---------------------------------
 Private Sub pgTabs_Change()
 On Error GoTo Err_Handler
@@ -1788,30 +2324,35 @@ On Error GoTo Err_Handler
   Dim TransectNumber As Integer
 
   Select Case Me.pgTabs.Value  'RDB: Display a silly message so the field crews know where they are
-    Case 1
+    Case 0 'Tab: Photos
+    Case 1 'Tab: Point Intercept
       If IsNull(Me!frm_LP_Transect.Form!Transect) Then
         TransectNumber = 1
       Else
         TransectNumber = Me!frm_LP_Transect.Form!Transect
       End If
-    Case 2
+    Case 2 'Tab: 1-m Belt
       If IsNull(Me!frm_LP_Belt_Transect.Form!Transect) Then
         TransectNumber = 1
       Else
         TransectNumber = Me!frm_LP_Belt_Transect.Form!Transect
       End If
-    Case 3
+    Case 3 'Tab: Gap Intercepts
       If IsNull(Me!frm_Canopy_Transect.Form!Transect) Then
         TransectNumber = 1
       Else
         TransectNumber = Me!frm_Canopy_Transect.Form!Transect
       End If
-    Case 5
+    Case 4 'Tab: Soil Stability
+    Case 5 'Tab:
       If IsNull(Me!frm_SL_Transect.Form!Transect) Then
         TransectNumber = 1
       Else
         TransectNumber = Me!frm_SL_Transect.Form!Transect
       End If
+    Case 6 'Tab:
+    Case 7 'Tab: Overstory Trees
+    Case 8 'Tab: Site Impact
   End Select
   
     '---------------------------
@@ -1828,7 +2369,7 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Form_Load[Form_frm_Data_Entry])"
+            "Error encountered (#" & Err.Number & " - pgTabs_Change[Form_frm_Data_Entry])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -1914,5 +2455,4 @@ Exit_ButtonComments_Click:
 Err_ButtonComments_Click:
     MsgBox Err.Description
     Resume Exit_ButtonComments_Click
-    
 End Sub

@@ -7,5 +7,6 @@ CREATE TABLE [temp_Sp_Rpt_by_Park_Complete] (
   [SpeciesYear] VARCHAR (255),
   [ParkPlotSpecies] VARCHAR (255),
   [ParkSpecies] VARCHAR (255),
-  [ParkPlot] VARCHAR (255)
+  [ParkPlot] VARCHAR (255),
+   CONSTRAINT 
 )

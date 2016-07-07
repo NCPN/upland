@@ -12,16 +12,16 @@ Begin Form
     Width =5040
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =8700
-    Top =4512
-    Right =14364
-    Bottom =7116
+    Left =6948
+    Top =9408
+    Right =12612
+    Bottom =12012
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x45e116d57156e340
     End
     RecordSource ="tbl_LP_Exotic"
-    Caption ="fsub_LP_Belt_Shrub"
+    Caption ="fsub_LP_Exotic"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -221,7 +221,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
                         "py.Utah_Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is N"
-                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code; "
+                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code;"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
@@ -349,14 +349,17 @@ Option Compare Database
 Option Explicit
 
 ' =================================
-' MODULE:       Form_fsub_LP_Belt_Shrub
+' MODULE:       Form_fsub_LP_Exotic
 ' Level:        Form module
-' Version:      1.01
-' Description:  data functions & procedures specific to LP belt shrub monitoring
+' Version:      1.02
+' Description:  data functions & procedures specific to LP exotic perennial monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/09/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/9/2016 - 1.01 - added documentation, checkbox for no species found
+'               BLC - 3/7/2016 - 1.02 - based on H. Thomas comments, this form is
+'                                        no longer in use & should no longer be updated,
+'                                        however it will remain to handle views of prior data
 ' =================================
 
 ' ---------------------------------
@@ -371,7 +374,7 @@ Option Explicit
 ' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
 ' Revisions:
 '   RDB, unknown   - initial version
-'   BLC, 2/9/2016  - added error handling, updated documentation
+'   BLC, 2/9/2016  - added error handling, updated documentation, no data collected updates
 ' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -389,7 +392,7 @@ On Error GoTo Err_Handler
     Dim NoData As Scripting.Dictionary
     
     'remove the no data collected record
-    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Exotics", 0)
+    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-ExoticPerennial", 0)
         
     'update checkbox/rectangle
     Me.Parent.Form.Controls("cbxNoExotics") = 0
@@ -457,7 +460,7 @@ End Sub
 ' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
 ' Revisions:
 '   RDB, unknown  - initial version
-'   BLC, 2/11/2016 - added error handling, documentation, refresh list to catch unknowns
+'   BLC, 2/11/2016 - added error handling, documentation
 ' ---------------------------------
 Private Sub Species_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler

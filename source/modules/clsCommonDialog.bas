@@ -334,12 +334,12 @@ Public Property Let CancelError(vNewValue As Boolean)
     bCancelError = vNewValue
 End Property
 
-Public Property Get Color() As Long
+Public Property Get color() As Long
     'return object's Color property
-    Color = lColor
+    color = lColor
 End Property
 
-Public Property Let Color(vNewValue As Long)
+Public Property Let color(vNewValue As Long)
     'assign object's Color property
     lColor = vNewValue
 End Property

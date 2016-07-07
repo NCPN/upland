@@ -14,16 +14,16 @@ Begin Form
     Width =9180
     DatasheetFontHeight =9
     ItemSuffix =34
-    Left =645
-    Top =2685
-    Right =10605
-    Bottom =5955
+    Left =-2175
+    Top =10965
+    Right =6780
+    Bottom =12945
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xf02518bf4b1ee340
     End
     RecordSource ="tbl_Quadrat_Shrubs"
-    Caption ="fsubl_Quadrat_Shrubs"
+    Caption ="fsub_Quadrat_Shrubs"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
     DatasheetFontName ="Arial"

@@ -3,6 +3,7 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -14,10 +15,10 @@ Begin Form
     Width =7860
     DatasheetFontHeight =9
     ItemSuffix =22
-    Left =1620
-    Top =4755
-    Right =9855
-    Bottom =8310
+    Left =1656
+    Top =1440
+    Right =9900
+    Bottom =4980
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xc48e9ef32e50e340

@@ -13,10 +13,10 @@ Begin Form
     Width =8099
     DatasheetFontHeight =9
     ItemSuffix =13
-    Left =690
-    Top =360
-    Right =9150
-    Bottom =8100
+    Left =1908
+    Top =4728
+    Right =10308
+    Bottom =11580
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xe3687ae93287e340
@@ -172,10 +172,10 @@ Begin Form
                     Caption ="Master Lookup"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -187,10 +187,10 @@ Begin Form
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -280,7 +280,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
                         "py.Utah_Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is N"
-                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code; "
+                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code;"
                     ColumnWidths ="0;2160;4320"
                     OnGotFocus ="[Event Procedure]"
 
@@ -298,10 +298,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -317,44 +317,21 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Option Compare Database
-
-Private Sub ButtonLookup_Click()
-On Error GoTo Err_ButtonLookup_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-
-    stDocName = "frm_Master_Species"
-    DoCmd.OpenForm stDocName, , , stLinkCriteria
-
-Exit_ButtonLookup_Click:
-    Exit Sub
-
-Err_ButtonLookup_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonLookup_Click
-    
-End Sub
-Private Sub ButtonUnknown_Click()
-On Error GoTo Err_ButtonUnknown_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-
-    stDocName = "frm_List_Unknown"
-    DoCmd.OpenForm stDocName, , , stLinkCriteria, , acDialog
-    Me.Requery
-    Me.Refresh
-
-Exit_ButtonUnknown_Click:
-    Exit Sub
-
-Err_ButtonUnknown_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonUnknown_Click
-    
-End Sub
+' =================================
+' MODULE:       fsub_SLI_Gaps
+' Level:        Form module
+' Version:      1.02
+' Description:  data functions & procedures specific to SLI gaps data entry
+'
+' Source/date:  John R. Boetsch, June 2006
+' Adapted:      Bonnie Campbell, 2/3/2016
+' Revisions:    RDB - unknown   - 1.00 - initial version
+'               BLC - 2/3/2016  - 1.01 - added documentation, adjusted to use transect # overlay
+'                                       vs. message box
+'               BLC - 2/19/2016 - 1.02 - based on conversation with H. Thomas, this form is
+'                                        no longer in use & should no longer be updated,
+'                                        however it will remain to handle views of prior data
+' =================================
 
 Private Sub Form_BeforeInsert(Cancel As Integer)
     ' Create the GUID primary key value
@@ -402,6 +379,43 @@ Err_Handler:
     Resume Exit_Procedure
 End Sub
 
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 8, 2016 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 3/8/2016  - initial version
+' ---------------------------------
+Private Sub Species_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+
+    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
+      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
+      Me.Parent.Refresh   ' Force save of transect record
+    End If
+
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_SLI_Gaps])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
 Private Sub Shrub_Start_BeforeUpdate(Cancel As Integer)
     Dim db As DAO.Database
     Dim Points As DAO.Recordset
@@ -439,13 +453,44 @@ Err_Handler:
     Resume Exit_Procedure
 End Sub
 
-Private Sub Species_GotFocus()
-    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
-      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
-      Me.Parent.Refresh   ' Force save of transect record
-    End If
-   
+Private Sub ButtonLookup_Click()
+On Error GoTo Err_ButtonLookup_Click
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+
+    stDocName = "frm_Master_Species"
+    DoCmd.OpenForm stDocName, , , stLinkCriteria
+
+Exit_ButtonLookup_Click:
+    Exit Sub
+
+Err_ButtonLookup_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonLookup_Click
+    
 End Sub
+
+Private Sub ButtonUnknown_Click()
+On Error GoTo Err_ButtonUnknown_Click
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+
+    stDocName = "frm_List_Unknown"
+    DoCmd.OpenForm stDocName, , , stLinkCriteria, , acDialog
+    Me.Requery
+    Me.Refresh
+
+Exit_ButtonUnknown_Click:
+    Exit Sub
+
+Err_ButtonUnknown_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonUnknown_Click
+    
+End Sub
+
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_ButtonDelete_Click
 

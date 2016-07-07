@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_UI
 ' Level:        Application module
-' Version:      1.08
+' Version:      1.12
 ' Description:  Application User Interface related functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, April 2015
@@ -19,15 +19,45 @@ Option Explicit
 '               ----------- uplands ---------------------------
 '               BLC, 8/21/2015 - 1.06 - added CaptureEscapeKey
 '               BLC, 2/3/2016  - 1.07 - added SetNoDataCheckbox()
-'               BLC - 2/9/2016 - 1.08 - added public dictionary for NoData checkboxes
+'               BLC, 2/9/2016  - 1.08 - added public dictionary for NoData checkboxes
 '                                       dictionary is used within subforms to identify if checkboxes
 '                                       should be checked, GetNoDataCollected(), SetNoDataCollected()
+'               BLC, 2/9/2016 - 1.09 - added constants, functions & subroutine supporting transect overlays
+'                                       (LWA_ALPHA, GWL_EXSTYLE, WS_EX_LAYERED, GetWindowLong(),
+'                                       SetWindowLong(), SetLayeredWindowAttributes(), SetFormOpacity())
+'               BLC, 3/17/2016 -1.10 - added SetControlBackcolor(), CTRL_DEFAULT_BACKCOLOR, Check1000hrFuels
+'               BLC, 3/29/2016 -1.11 - added SetControlHighlight()
+'               BLC, 4/1/2016 - 1.12 - added AddTallyValue()
 ' =================================
 
 ' ---------------------------------
 '  Declarations
 ' ---------------------------------
+' -- Constants --
+Private Const LWA_ALPHA     As Long = &H2
+Private Const GWL_EXSTYLE   As Long = -20
+Private Const WS_EX_LAYERED As Long = &H80000
+
+Public Const CTRL_DEFAULT_BACKCOLOR  As Long = 65535  'RGB(255, 255, 0) highlight yellow
+
+' -- Values --
 Public NoData As Scripting.Dictionary
+
+' -- Functions --
+Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" _
+  (ByVal hwnd As Long, _
+   ByVal nIndex As Long) As Long
+ 
+Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" _
+  (ByVal hwnd As Long, _
+   ByVal nIndex As Long, _
+   ByVal dwNewLong As Long) As Long
+ 
+Private Declare Function SetLayeredWindowAttributes Lib "user32" _
+  (ByVal hwnd As Long, _
+   ByVal crKey As Long, _
+   ByVal bAlpha As Byte, _
+   ByVal dwFlags As Long) As Long
 
 ' =================================
 ' SUB:          CaptureEscapeKey
@@ -238,6 +268,7 @@ End Sub
 ' Revisions:
 '   BLC, 2/9/2016  - initial version
 '   BLC, 2/11/2016 - added level to accommodate both event & transect level identifiers
+'   BLC, 3/18/2016 - added 1000hr fuel A-D to handle no fuels reported in comments for transects
 ' ---------------------------------
 Public Function GetNoDataCollected(levelID As String, level As String) As Scripting.Dictionary
 On Error GoTo Err_Handler
@@ -256,6 +287,10 @@ On Error GoTo Err_Handler
         .Add "OverstoryTree-Sapling", 0
         .Add "OverstoryTree-Census", 0
         .Add "Fuel-1000hr", 0
+        .Add "Fuel-1000hr-A", 0
+        .Add "Fuel-1000hr-B", 0
+        .Add "Fuel-1000hr-C", 0
+        .Add "Fuel-1000hr-D", 0
         .Add "SiteImpact-Disturbance", 0
         .Add "SiteImpact-Exotic", 0
     End With
@@ -348,3 +383,422 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Function
+
+' ---------------------------------
+' SUB:          SetFormOpacity
+' Description:  Sets form opacity
+' Assumptions:  place in forms module mod_Form for protocols which utilize that module
+' Parameters:   frm - form to prepare
+'               sngOpacity - opacity of the form (single)
+'               TColor - color for the form display (long)
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Thenman, September 24, 2009
+' http://www.access-programmers.co.uk/forums/showthread.php?t=154907
+' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 2/9/2016  - initial version
+' ---------------------------------
+Public Sub SetFormOpacity(frm As Form, sngOpacity As Single, TColor As Long)
+On Error GoTo Err_Handler
+
+    Dim lngStyle As Long
+    
+    ' get the current window style, then set transparency
+    lngStyle = GetWindowLong(frm.hwnd, GWL_EXSTYLE)
+    SetWindowLong frm.hwnd, GWL_EXSTYLE, lngStyle Or WS_EX_LAYERED
+    SetLayeredWindowAttributes frm.hwnd, TColor, (sngOpacity * 255), LWA_ALPHA
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetFormOpacity[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          SetControlBackcolor
+' Description:  sets controls backcolor based on control value
+' Parameters:   ctrl - textbox control (textbox)
+'               threshold - value to compare against (variant)
+'               compareType - type of comparison (string)
+'               color - numeric value for color (long) - result of RGB(r,g,b)
+'               checkNULL - check if the control's value is NULL (boolean)
+'               checkEmpty - check if the control's value is an empty string (boolean)
+' Returns:      -
+' Assumptions:  Assumes CTRL_DEFAULT_BACKCOLOR is set for the application
+'               and that this is the typical backcolor for the controls
+'               using SetControlBackcolor.
+'               Assumes threshold value is numeric.
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 2016
+' Revisions:    BLC, 3/17/2016 - initial version
+' ---------------------------------
+Public Sub SetControlBackcolor(ctrl As TextBox, color As Long, checkNULL As Boolean, _
+                        checkEmpty As Boolean, Optional threshold As Variant, Optional compareType As String)
+On Error GoTo Err_Handler
+    
+    Dim resetcolor As Boolean
+    
+    'default
+    resetcolor = False
+    
+    'change the backcolor --> revert to default only if the conditions aren't met
+    ctrl.BackColor = color
+    
+    'null
+    If checkNULL Then
+        'reset backcolor if null
+        If IsNull(Trim(ctrl.text)) Then
+            resetcolor = True
+            GoTo Exit_Handler
+        End If
+    End If
+    
+    'empty
+    If checkEmpty Then
+        'reset backcolor if empty
+        If Len(Trim(ctrl.text)) = 0 Then
+            resetcolor = True
+            GoTo Exit_Handler
+        End If
+    End If
+    
+    'threshold
+    If Not IsNull(threshold) And IsNumeric(ctrl.text) Then
+        'set value base on compareType & threshold
+        Select Case compareType
+            Case "gt"
+                If Not CDbl(ctrl.text) > threshold Then
+                    resetcolor = True
+                End If
+            Case "gteq"
+                If Not CDbl(ctrl.text) >= threshold Then
+                    resetcolor = True
+                End If
+            Case "lt"
+                If Not CDbl(ctrl.text) < threshold Then
+                    resetcolor = True
+                End If
+            Case "lteq"
+                If Not CDbl(ctrl.text) <= threshold Then
+                    resetcolor = True
+                End If
+            Case "eq"
+                If Not CDbl(ctrl.text) = threshold Then
+                    resetcolor = True
+                End If
+        End Select
+    End If
+    
+Exit_Handler:
+    'reset to default backcolor
+    If resetcolor Then
+        ctrl.BackColor = CTRL_DEFAULT_BACKCOLOR
+    End If
+    
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetControlBackcolor[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Check1000hrFuels
+' Description:  Handles 1000hr fuel check actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+'   BLC, 3/23/2016  - remove setting values when no records found
+' ---------------------------------
+Public Sub Check1000hrFuels()
+On Error GoTo Err_Handler
+
+    Dim frm As Form
+    Set frm = Forms!frm_Data_Entry!fsub_Fuels_1000.Form
+
+    '-----------------------------------
+    ' update the NoDataCollected info IF no records now exist
+    '-----------------------------------
+    If frm.RecordsetClone.RecordCount = 0 Then
+    
+'        Dim NoData As Scripting.Dictionary
+'
+'        With frm.Parent.Form
+'            'add the no data collected record
+'            Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr", 1)
+'
+'            'update checkbox/rectangle --> No1000hr is not set here (leave commented out)
+''            .Controls("cbxNo1000hr") = 1
+''            .Controls("cbxNo1000hr").Enabled = True
+''            .Controls("rctNo1000hr").Visible = True
+'
+'            'update A, B, C, D transect 1000hr fuels as well
+'            .Controls("cbxNo1000hrA") = 1
+'            .Controls("cbxNo1000hrA").Enabled = True
+'            .Controls("rctNo1000hrA").Visible = True
+'
+'            .Controls("cbxNo1000hrB") = 1
+'            .Controls("cbxNo1000hrB").Enabled = True
+'            .Controls("rctNo1000hrB").Visible = True
+'
+'            .Controls("cbxNo1000hrC") = 1
+'            .Controls("cbxNo1000hrC").Enabled = True
+'            .Controls("rctNo1000hrC").Visible = True
+'
+'            .Controls("cbxNo1000hrD") = 1
+'            .Controls("cbxNo1000hrD").Enabled = True
+'            .Controls("rctNo1000hrD").Visible = True
+'
+'            'add the database records for A-D
+'            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-A", 1
+'            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-B", 1
+'            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-C", 1
+'            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-D", 1
+'        End With
+        
+    Else
+    
+        'default values
+        With frm.Parent.Form
+            'update checkbox/rectangle (leave 1000hr commented here)
+'            .Controls("cbxNo1000hr") = 0
+'            .Controls("cbxNo1000hr").Enabled = True
+'            .Controls("rctNo1000hr").Visible = True
+            
+            'update A, B, C, D transect 1000hr fuels as well
+            .Controls("cbxNo1000hrA") = 0
+            .Controls("cbxNo1000hrA").Enabled = True
+            .Controls("rctNo1000hrA").Visible = True
+            
+            .Controls("cbxNo1000hrB") = 0
+            .Controls("cbxNo1000hrB").Enabled = True
+            .Controls("rctNo1000hrB").Visible = True
+            
+            .Controls("cbxNo1000hrC") = 0
+            .Controls("cbxNo1000hrC").Enabled = True
+            .Controls("rctNo1000hrC").Visible = True
+        
+            .Controls("cbxNo1000hrD") = 0
+            .Controls("cbxNo1000hrD").Enabled = True
+            .Controls("rctNo1000hrD").Visible = True
+        End With
+    
+        'check for A, B, C, D transect 1000hr fuels
+        Dim rs As DAO.Recordset
+        
+        Set rs = frm.RecordsetClone
+        With rs
+            .MoveFirst
+            Do While Not .EOF
+            Select Case .Fields("Transect")
+            
+                Case "A"
+                    With frm.Parent.Form
+                        'remove the no data collected record
+                        Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-A", 0)
+                            
+                        'update checkbox/rectangle
+                        .Controls("cbxNo1000hrA") = 0
+                        .Controls("cbxNo1000hrA").Enabled = False
+                        .Controls("rctNo1000hrA").Visible = False
+                    End With
+                    
+                Case "B"
+                    With frm.Parent.Form
+                        'remove the no data collected record
+                        Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-B", 0)
+                            
+                        'update checkbox/rectangle
+                        .Controls("cbxNo1000hrB") = 0
+                        .Controls("cbxNo1000hrB").Enabled = False
+                        .Controls("rctNo1000hrB").Visible = False
+                    End With
+                    
+                Case "C"
+                    With frm.Parent.Form
+                        'remove the no data collected record
+                        Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-C", 0)
+                            
+                        'update checkbox/rectangle
+                        .Controls("cbxNo1000hrC") = 0
+                        .Controls("cbxNo1000hrC").Enabled = False
+                        .Controls("rctNo1000hrC").Visible = False
+                    End With
+                    
+                Case "D"
+                    With frm.Parent.Form
+                        'remove the no data collected record
+                        Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-D", 0)
+                            
+                        'update checkbox/rectangle
+                        .Controls("cbxNo1000hrD") = 0
+                        .Controls("cbxNo1000hrD").Enabled = False
+                        .Controls("rctNo1000hrD").Visible = False
+                    End With
+            End Select
+            .MoveNext
+            Loop
+        End With
+        
+        'set checkboxes based on NoDataCollected (catch unchanged checkboxes)
+        Dim dNoDataEvent As Scripting.Dictionary
+        Set dNoDataEvent = GetNoDataCollected(frm.Parent.Form.Controls("Event_ID"), "E")
+        
+        With dNoDataEvent
+            frm.Parent.Form.Controls("cbxNo1000hrA") = .item("Fuel-1000hr-A")
+            frm.Parent.Form.Controls("cbxNo1000hrB") = .item("Fuel-1000hr-B")
+            frm.Parent.Form.Controls("cbxNo1000hrC") = .item("Fuel-1000hr-C")
+            frm.Parent.Form.Controls("cbxNo1000hrD") = .item("Fuel-1000hr-D")
+        End With
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Check1000hrFuels[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          SetControlHighlight
+' Description:  handles control highlight actions
+' Parameters:   ctrl - textbox control (textbox)
+'               -- optional --
+'               threshold - value to compare control value to (double, default = 0)
+'               compareType - how control value should be compared to threshold (string, default = "gteq")
+' Returns:      -
+' Assumptions:  highlighting will be consistent across all textboxes
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 2016
+' Revisions:    BLC, 3/29/2016 - initial version
+' ---------------------------------
+Public Sub SetControlHighlight(ctrl As TextBox, Optional threshold As Double, Optional compareType As String)
+On Error GoTo Err_Handler
+
+    'set defaults if optional values aren't set
+    If Not IsNumeric(threshold) Then threshold = 0
+    If Len(compareType) > 0 Then compareType = "gteq"
+
+    'set the backcolor to white when the value reaches a threshold >= 0, checking for NULL and empty values
+    SetControlBackcolor ctrl, RGB(255, 255, 255), True, True, threshold, compareType
+   
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetControlHighlight[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          AddTallyValue
+' Description:  Adds tally amount to control
+' Assumptions:  -
+' Parameters:   ctrl - control being changed (textbox)
+'               tallyAmount - amount to add (integer - positive or negative)
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, April 1, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 4/1/2016  - initial version
+' ---------------------------------
+Public Sub AddTallyValue(ctrl As TextBox, tallyAmount As Integer)
+On Error GoTo Err_Handler
+  
+  'handle when the user keeps cursor in field & tallyAmount would drive the value to < 0 (negative)
+  If (ctrl.Value + tallyAmount < 0) Or (IsNull(ctrl.Value) And tallyAmount < 0) Then GoTo Exit_Handler
+  
+  If tallyAmount = 0 Then ctrl.Value = 0
+  
+  Select Case ctrl.name
+    Case "SeedTotal"
+        ctrl.Value = Nz(ctrl.Value, 0) + tallyAmount
+  End Select
+  
+  'return focus
+  ctrl.SetFocus
+  
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - AddTallyValue[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          DisableTallyButtons
+' Description:  Disable tally buttons on control
+' Assumptions:  -
+' Parameters:   frm - form where tally buttons are being changed (form)
+'               lookFor - common part of tally button name (string)
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, April 1, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 4/1/2016  - initial version
+' ---------------------------------
+Public Sub DisableTallyButtons(frm As Form, lookFor As String)
+On Error GoTo Err_Handler
+  
+  Dim ctrl As Control
+  
+  For Each ctrl In frm.Controls
+  
+    If Len(ctrl.name) > Len(Replace(ctrl.name, lookFor, "")) Then
+    
+            ctrl.Enabled = False
+    
+    End If
+  
+  Next
+  
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - DisableTallyButtons[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub

@@ -20,11 +20,11 @@ Begin Form
     GridY =24
     Width =8884
     DatasheetFontHeight =11
-    ItemSuffix =2
-    Left =7080
-    Top =1572
-    Right =15960
-    Bottom =9120
+    ItemSuffix =4
+    Left =5184
+    Top =3348
+    Right =15048
+    Bottom =11172
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x6ab456d96fb4e440
@@ -68,18 +68,117 @@ Begin Form
             GridlineThemeColorIndex =1
             GridlineShade =65.0
         End
+        Begin CommandButton
+            FontSize =11
+            FontWeight =400
+            FontName ="Calibri"
+            ForeThemeColorIndex =0
+            ForeTint =75.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+            UseTheme =1
+            Shape =1
+            Gradient =12
+            BackThemeColorIndex =4
+            BackTint =60.0
+            BorderLineStyle =0
+            BorderColor =16777215
+            BorderThemeColorIndex =4
+            BorderTint =60.0
+            ThemeFontIndex =1
+            HoverThemeColorIndex =4
+            HoverTint =40.0
+            PressedThemeColorIndex =4
+            PressedShade =75.0
+            HoverForeThemeColorIndex =0
+            HoverForeTint =75.0
+            PressedForeThemeColorIndex =0
+            PressedForeTint =75.0
+        End
         Begin Section
             Height =7560
             BackColor =-2147483607
             Name ="Detail"
             OnClick ="[Event Procedure]"
             AutoHeight =1
-            AlternateBackColor =15921906
-            AlternateBackThemeColorIndex =1
-            AlternateBackShade =95.0
             Begin
-                Begin Label
+                Begin CommandButton
+                    Transparent = NotDefault
                     OverlapFlags =93
+                    Left =120
+                    Top =120
+                    Width =8460
+                    Height =6600
+                    ForeColor =4210752
+                    Name ="btnEnter"
+                    OnClick ="[Event Procedure]"
+                    PictureData = Begin
+                        0x2800000010000000100000000100040000000000800000000000000000000000 ,
+                        0x0000000000000000000000000000800000800000008080008000000080008000 ,
+                        0x8080000080808000c0c0c0000000ff00c0c0c00000ffff00ff000000c0c0c000 ,
+                        0xffff0000ffffff00dddddddddddddddddddddddddddddddddddddddddddddddd ,
+                        0xdddddddddddddddddddddddddddddddddddd00dddd00ddddddddd00dd00ddddd ,
+                        0xdddddd0000ddddddddddddd00ddddddddddddd0000ddddddddddd00dd00ddddd ,
+                        0xdddd00dddd00dddddddddddddddddddddddddddddddddddddddddddddddddddd ,
+                        0xdddddddddddddddd000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
+                    OnKeyDown ="[Event Procedure]"
+                    ObjectPalette = Begin
+                        0x000301000000000000000000
+                    End
+                    ControlTipText ="Type Enter to dismiss"
+                    GridlineColor =10921638
+                    BackStyle =0
+
+                    LayoutCachedLeft =120
+                    LayoutCachedTop =120
+                    LayoutCachedWidth =8580
+                    LayoutCachedHeight =6720
+                    UseTheme =0
+                    Gradient =0
+                    BackColor =14136213
+                    OldBorderStyle =0
+                    BorderColor =14136213
+                    HoverColor =-2
+                    HoverThemeColorIndex =-1
+                    PressedColor =-2
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =4210752
+                    PressedForeColor =4210752
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
+                    Overlaps =1
+                End
+                Begin Label
+                    OverlapFlags =223
                     TextAlign =2
                     Top =2220
                     Width =8640
@@ -99,7 +198,7 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     Left =330
                     Width =8085
@@ -137,37 +236,9 @@ Option Explicit
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Adapted:      -
 ' Revisions:    BLC - 2/3/2016  - 1.00 - initial version
+'               BLC - 4/13/2016 - 1.01 - added btnEnter_Click, btnEnter_KeyDown events for handling
+'                                        closing transect overlay on Enter
 ' =================================
-
-Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" _
-  (ByVal hwnd As Long, _
-   ByVal nIndex As Long) As Long
- 
-Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" _
-  (ByVal hwnd As Long, _
-   ByVal nIndex As Long, _
-   ByVal dwNewLong As Long) As Long
- 
-Private Declare Function SetLayeredWindowAttributes Lib "user32" _
-  (ByVal hwnd As Long, _
-   ByVal crKey As Long, _
-   ByVal bAlpha As Byte, _
-   ByVal dwFlags As Long) As Long
- 
-Private Const LWA_ALPHA     As Long = &H2
-Private Const GWL_EXSTYLE   As Long = -20
-Private Const WS_EX_LAYERED As Long = &H80000
- 
-Public Sub SetFormOpacity(frm As Form, sngOpacity As Single, TColor As Long)
-    Dim lngStyle As Long
-' place in forms module mod_Form
-' Thenman, September 24, 2009
-' http://www.access-programmers.co.uk/forums/showthread.php?t=154907
-    ' get the current window style, then set transparency
-    lngStyle = GetWindowLong(frm.hwnd, GWL_EXSTYLE)
-    SetWindowLong frm.hwnd, GWL_EXSTYLE, lngStyle Or WS_EX_LAYERED
-    SetLayeredWindowAttributes frm.hwnd, TColor, (sngOpacity * 255), LWA_ALPHA
-End Sub
 
 ' ---------------------------------
 ' SUB:          Form_Open
@@ -196,12 +267,15 @@ On Error GoTo Err_Handler
     'set transect #
     lblTransectNumber.Caption = Me.OpenArgs
     
-    Transp = RGB(153, 255, 51) 'RGB(0, 0, 0) 'This is the color you want your background to be
+    'set background color -- RGB(0, 0, 0)
+    'to set color RGB, see http://www.rapidtables.com/web/color/RGB_Color.htm for Red/Green/Blue values
+    Transp = RGB(153, 255, 51)
      
     Me.Detail.BackColor = Transp
      
     Me.Painting = False
-    SetFormOpacity Me, 0.9, Transp '0.5, Transp
+    'set background opacity
+    SetFormOpacity Me, 0.9, Transp
     Me.Painting = True
 
 Exit_Handler:
@@ -331,6 +405,69 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - lblTransectNumber_Click[Form_frm_Transect_Overlay])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnEnter_KeyDown
+' Description:  Handles form transect number key down actions
+' Assumptions:  -
+' Parameters:   KeyCode - code for key being pressed
+'               Shift - if shift is also pressed
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, April 13, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 4/13/2016  - initial version
+' ---------------------------------
+Private Sub btnEnter_KeyDown(KeyCode As Integer, Shift As Integer)
+On Error GoTo Err_Handler
+
+    'if user presses Enter (return) close the form
+    If KeyCode = vbKeyReturn Then DoCmd.Close
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnEnter_KeyDown[Form_frm_Transect_Overlay])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnEnter_Click
+' Description:  Handles form enter button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, April 13, 2016 - for NCPN tools
+' Revisions:
+'   BLC, 4/13/2016  - initial version
+' ---------------------------------
+Private Sub btnEnter_Click()
+On Error GoTo Err_Handler
+
+    'close the form
+    DoCmd.Close
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnEnter_KeyDown[Form_frm_Transect_Overlay])"
     End Select
     Resume Exit_Handler
 End Sub

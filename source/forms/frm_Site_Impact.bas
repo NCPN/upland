@@ -18,16 +18,15 @@ Begin Form
     Width =12600
     DatasheetFontHeight =9
     ItemSuffix =62
-    Left =225
-    Top =2055
-    Right =12825
-    Bottom =11865
+    Left =816
+    Right =13428
+    Bottom =9816
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xd4e1e7326d12e340
     End
     RecordSource ="tbl_Site_Impact"
-    Caption ="frm_Canopy_Transect"
+    Caption ="frm_Site_Impact"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -234,10 +233,10 @@ Begin Form
                     LayoutCachedTop =5460
                     LayoutCachedWidth =6300
                     LayoutCachedHeight =5820
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Subform
                     OverlapFlags =87

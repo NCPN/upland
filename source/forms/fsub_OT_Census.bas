@@ -14,10 +14,10 @@ Begin Form
     Width =14160
     DatasheetFontHeight =9
     ItemSuffix =35
-    Left =315
-    Top =7050
-    Right =14790
-    Bottom =10545
+    Left =408
+    Top =2208
+    Right =14352
+    Bottom =5700
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x12768bfd3188e340
@@ -173,7 +173,7 @@ Begin Form
                     Height =420
                     FontWeight =700
                     Name ="DBH_Label"
-                    Caption ="DBH/DRC (cm)"
+                    Caption ="Diameter (cm)"
                     FontName ="Tahoma"
                     Tag ="DetachedLabel"
                 End
@@ -241,10 +241,10 @@ Begin Form
                     LayoutCachedTop =300
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =600
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -260,23 +260,27 @@ Begin Form
                     LayoutCachedTop =660
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =960
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Label
                     OverlapFlags =85
                     TextAlign =2
-                    Left =5220
+                    Left =5205
                     Top =840
-                    Width =960
+                    Width =975
                     Height =240
                     FontWeight =700
-                    Name ="Label34"
-                    Caption ="Indicator"
+                    Name ="lblDBHDRC"
+                    Caption ="DBH/DRC"
                     FontName ="Tahoma"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =5205
+                    LayoutCachedTop =840
+                    LayoutCachedWidth =6180
+                    LayoutCachedHeight =1080
                 End
             End
         End
@@ -399,13 +403,20 @@ Begin Form
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species, Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Spe"
-                        "cies) Is Not Null)) AND Lifeform = 'Tree' ORDER BY qryU_Top_Canopy.LU_Code;"
+                    RowSource ="SELECT DISTINCT  qryU_Top_Canopy.Master_PLANT_Code,  qryU_Top_Canopy.LU_Code,  q"
+                        "ryU_Top_Canopy.Utah_Species,    qryU_Top_Canopy.Lifeform  FROM qryU_Top_Canopy  "
+                        "WHERE (((qryU_Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifef"
+                        "orm])='Tree'))   ORDER BY qryU_Top_Canopy.LU_Code    UNION  (SELECT  DISTINCT tb"
+                        "l_Unknown_Species.Unknown_Code,  tbl_Unknown_Species.Unknown_Code,    tbl_Unknow"
+                        "n_Species.Plant_Type+ \" - \" + tbl_Unknown_Species.Plant_Description,  tbl_Unkn"
+                        "own_Species.Plant_Type AS Lifeform   FROM tbl_Unknown_Species   WHERE tbl_Unknow"
+                        "n_Species.Plant_Type IN ('Tree','Other') OR tbl_Unknown_Species.Plant_Type IS NU"
+                        "LL  ORDER BY tbl_Unknown_Species.Unknown_Code) UNION ( SELECT DISTINCT  qryU_Top"
+                        "_Canopy.Master_PLANT_Code,  qryU_Top_Canopy.LU_Code,  qryU_Top_Canopy.Utah_Speci"
+                        "es,    qryU_Top_Canopy.Lifeform  FROM qryU_Top_Canopy  WHERE (qryU_Top_Canopy.LU"
+                        "_Code='QUEGAM')   ORDER BY qryU_Top_Canopy.LU_Code ) ;"
                     ColumnWidths ="0;2160;4320"
-
-                End
-                Begin ComboBox
+                    OnGotFocus ="[Event Procedure]"
                     LimitToList = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
@@ -456,10 +467,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -498,12 +509,15 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_OT_Census
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.03
 ' Description:  data functions & procedures specific to overstory census monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, set checkbox for no species found
+'               BLC - 3/8/2016 - 1.02 - added Species_GotFocus() to refresh species lists to include
+'                                       new unknowns
+'               BLC - 4/13/2016 - 1.03 - added refresh for underlying subforms for conditional formatting
 ' =================================
 
 ' ---------------------------------
@@ -540,6 +554,37 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Form_Load[Form_fsub_OT_Census])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Species_GotFocus
+' Description:  Handles species actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 8, 2016 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 3/8/2016  - initial version
+' ---------------------------------
+Private Sub Species_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_OT_Census])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -691,16 +736,6 @@ Private Sub Crown_Health_AfterUpdate()
   End If
 End Sub
 
-Private Sub DBH_AfterUpdate()
-
-  If Not IsNull(Me!DBH) And IsNull(Me!DType) Then
-    Me!DType = "dbh"   ' Default type indicator to dbh
-  ElseIf IsNull(Me!DBH) Then
-    Me!DType = Null    ' If they null out dbh, then type gets nulled
-  End If
-
-End Sub
-
 Private Sub DBH_BeforeUpdate(Cancel As Integer)
   Dim Veg_Type As Variant
   Dim DBH_Limit As Integer
@@ -729,6 +764,16 @@ Private Sub DBH_BeforeUpdate(Cancel As Integer)
   
 End Sub
 
+Private Sub DBH_AfterUpdate()
+
+  If Not IsNull(Me!DBH) And IsNull(Me!DType) Then
+    Me!DType = "dbh"   ' Default type indicator to dbh
+  ElseIf IsNull(Me!DBH) Then
+    Me!DType = Null    ' If they null out dbh, then type gets nulled
+  End If
+
+End Sub
+
 ' ---------------------------------
 ' SUB:          ButtonDelete_Click
 ' Description:  Handles delete button actions
@@ -742,6 +787,7 @@ End Sub
 ' Revisions:
 '   RDB, unknown  - initial version
 '   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
+'   BLC, 4/13/2016 - added requery of related subform to clear/set conditional formatting on change
 ' ---------------------------------
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_Handler
@@ -771,6 +817,9 @@ On Error GoTo Err_Handler
         Me.Parent.Form.Controls("cbxNoCensus") = 1
         Me.Parent.Form.Controls("cbxNoCensus").Enabled = True
         Me.Parent.Form.Controls("rctNoCensus").Visible = True
+        
+        'refresh the subform to clear conditional formatting
+        Me.Requery
         
     End If
 

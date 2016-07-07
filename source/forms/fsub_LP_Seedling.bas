@@ -12,16 +12,15 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =2880
-    Top =8580
-    Right =8964
-    Bottom =10968
+    Top =5736
+    Right =4968
+    Bottom =8292
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x73776174d27ce340
     End
     RecordSource ="tbl_LP_Seedling"
-    Caption ="fsub_LP_Belt_Shrub"
+    Caption ="fsub_LP_Seedling"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -29,6 +28,8 @@ Begin Form
         0x010000006801000000000000a10700000100000001000000
     End
     OnLoad ="[Event Procedure]"
+    FetchDefaults =0
+    FetchDefaults =0
     FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -195,6 +196,7 @@ Begin Form
                 Begin TextBox
                     OverlapFlags =85
                     TextAlign =2
+                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =2760
                     Top =60
@@ -202,13 +204,35 @@ Begin Form
                     Height =255
                     ColumnWidth =600
                     TabIndex =3
+                    BackColor =65535
                     Name ="SeedTotal"
                     ControlSource ="Total"
                     StatusBarText ="0-10cm height class total"
+                    DefaultValue ="Null"
+                    OnGotFocus ="[Event Procedure]"
+                    OnClick ="[Event Procedure]"
+                    ConditionalFormat = Begin
+                        0x01000000ac000000030000000000000006000000000000000200000001000000 ,
+                        0x00000000ffffff00000000000500000003000000050000000100000000000000 ,
+                        0xffff0000010000000000000006000000250000000100000000000000ffffff00 ,
+                        0x3000000000003000000000005b0050006100720065006e0074005d002e005b00 ,
+                        0x6300620078004e006f0053006500650064006c0069006e00670073005d003d00 ,
+                        0x540072007500650000000000
+                    End
 
+                    ConditionalFormat14 = Begin
+                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x0000000000000000000000000000000000000000000000000005000000010000 ,
+                        0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
+                        0x0000000001000000000000000100000000000000ffffff001e0000005b005000 ,
+                        0x6100720065006e0074005d002e005b006300620078004e006f00530065006500 ,
+                        0x64006c0069006e00670073005d003d0054007200750065000000000000000000 ,
+                        0x00000000000000000000000000
+                    End
                 End
                 Begin ComboBox
                     OverlapFlags =247
+                    TextFontFamily =0
                     IMESentenceMode =3
                     ColumnCount =3
                     ListWidth =6480
@@ -216,17 +240,45 @@ Begin Form
                     Top =60
                     Width =2304
                     TabIndex =2
+                    BackColor =65535
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"510\""
+                    ConditionalFormat = Begin
+                        0x01000000ec000000030000000100000000000000000000001100000001000000 ,
+                        0x00000000ffffff00010000000000000012000000250000000100000000000000 ,
+                        0xffff0000010000000000000026000000450000000100000000000000ffffff00 ,
+                        0x4c0065006e0028005b0053007000650063006900650073005d0029003e003000 ,
+                        0x00000000490073004e0075006d00650072006900630028005b0054006f007400 ,
+                        0x61006c005d002900000000005b0050006100720065006e0074005d002e005b00 ,
+                        0x6300620078004e006f0053006500650064006c0069006e00670073005d003d00 ,
+                        0x540072007500650000000000
+                    End
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
-                        "py.Utah_Species, Lifeform FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Spe"
-                        "cies) Is Not Null)) AND Lifeform = 'Tree' ORDER BY qryU_Top_Canopy.LU_Code;"
+                    RowSource ="SELECT DISTINCT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU"
+                        "_Top_Canopy.Utah_Species, qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE (("
+                        "(qryU_Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifeform])='T"
+                        "ree')) ORDER BY qryU_Top_Canopy.LU_Code  UNION  (SELECT DISTINCT tbl_Unknown_Spe"
+                        "cies.Unknown_Code, tbl_Unknown_Species.Unknown_Code, tbl_Unknown_Species.Plant_T"
+                        "ype + \" - \" + tbl_Unknown_Species.Plant_Description, tbl_Unknown_Species.Plant"
+                        "_Type AS Lifeform FROM tbl_Unknown_Species WHERE tbl_Unknown_Species.Plant_Type "
+                        "IN ('Tree','Other') OR tbl_Unknown_Species.Plant_Type IS NULL ORDER BY tbl_Unkno"
+                        "wn_Species.Unknown_Code);"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
-
+                    OnChange ="[Event Procedure]"
+                    ConditionalFormat14 = Begin
+                        0x01000300000001000000000000000100000000000000ffffff00100000004c00 ,
+                        0x65006e0028005b0053007000650063006900650073005d0029003e0030000000 ,
+                        0x0000000000000000000000000000000000000001000000000000000100000000 ,
+                        0x000000ffff000012000000490073004e0075006d00650072006900630028005b ,
+                        0x0054006f00740061006c005d0029000000000000000000000000000000000000 ,
+                        0x0000000001000000000000000100000000000000ffffff001e0000005b005000 ,
+                        0x6100720065006e0074005d002e005b006300620078004e006f00530065006500 ,
+                        0x64006c0069006e00670073005d003d0054007200750065000000000000000000 ,
+                        0x00000000000000000000000000
+                    End
                 End
                 Begin CommandButton
                     TabStop = NotDefault
@@ -254,12 +306,13 @@ Begin Form
             Name ="FormFooter"
             Begin
                 Begin CommandButton
+                    Enabled = NotDefault
                     OverlapFlags =85
                     Left =720
                     Top =60
                     Width =606
                     Height =288
-                    Name ="ButtonA1"
+                    Name ="TallyA1"
                     Caption ="+ 1"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -270,13 +323,14 @@ Begin Form
                     WebImagePaddingBottom =2
                 End
                 Begin CommandButton
+                    Enabled = NotDefault
                     OverlapFlags =85
                     Left =1440
                     Top =60
                     Width =606
                     Height =288
                     TabIndex =1
-                    Name ="ButtonA5"
+                    Name ="TallyA5"
                     Caption ="+ 5"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -287,13 +341,14 @@ Begin Form
                     WebImagePaddingBottom =2
                 End
                 Begin CommandButton
+                    Enabled = NotDefault
                     OverlapFlags =85
                     Left =2160
                     Top =60
                     Width =606
                     Height =288
                     TabIndex =2
-                    Name ="ButtonS1"
+                    Name ="TallyS1"
                     Caption ="- 1"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -304,13 +359,14 @@ Begin Form
                     WebImagePaddingBottom =2
                 End
                 Begin CommandButton
+                    Enabled = NotDefault
                     OverlapFlags =85
                     Left =2880
                     Top =60
                     Width =606
                     Height =288
                     TabIndex =3
-                    Name ="ButtonS5"
+                    Name ="TallyS5"
                     Caption ="- 5"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -321,13 +377,14 @@ Begin Form
                     WebImagePaddingBottom =2
                 End
                 Begin CommandButton
+                    Enabled = NotDefault
                     OverlapFlags =85
                     Left =3600
                     Top =60
                     Width =606
                     Height =288
                     TabIndex =4
-                    Name ="ButtonZero"
+                    Name ="TallyA0"
                     Caption ="0"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -352,12 +409,14 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_LP_Seedling
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.02
 ' Description:  data functions & procedures specific to LP seedling monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+'               BLC - 4/1/2016 - 1.02 - added clearing of SeedTotal 0 (table default) to set to NULL
+'                                       ensuring that field crew enter data (vs data being defaulted)
 ' =================================
 
 ' ---------------------------------
@@ -376,7 +435,9 @@ Option Explicit
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
-
+    'reset tally buttons (disable)
+    DisableTallyButtons Me, "Tally"
+    
 Exit_Handler:
     Exit Sub
     
@@ -402,6 +463,7 @@ End Sub
 ' Revisions:
 '   RDB, unknown    - initial version
 '   BLC, 2/11/2016  - added no data collected info updates
+'   BLC, 4/1/2016   - added setting SeedTotal to NULL to clear 0 (table default)
 ' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -418,6 +480,9 @@ On Error GoTo Err_Handler
             Me.Seedling_ID = fxnGUIDGen
         End If
     End If
+    
+    'clear seed total value to get rid of 0 table default
+    Me.SeedTotal = Null
     
     '-----------------------------------
     ' update the NoDataCollected info
@@ -486,6 +551,8 @@ End Sub
 ' Revisions:
 '   RDB, unknown  - initial version
 '   BLC, 2/9/2016 - added error handling, documentation, refresh list to catch unknowns
+'   BLC, 4/1/2016 - revised based on use of AddTallyValue & tally
+'                   buttons disabling when tally values should not be available
 ' ---------------------------------
 Private Sub Species_GotFocus()
 On Error GoTo Err_Handler
@@ -497,7 +564,10 @@ On Error GoTo Err_Handler
 
     'update the data to ensure new unknowns are added
     Me.ActiveControl.Requery
-
+    
+    'reset tally buttons (disable)
+    DisableTallyButtons Me, "Tally"
+    
 Exit_Handler:
     Exit Sub
     
@@ -506,6 +576,38 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Species_Change
+' Description:  Handles species actions when control is changed
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 3/29/2016  - initial version
+' ---------------------------------
+Private Sub Species_Change()
+On Error GoTo Err_Handler
+
+    'clear seed total value to get rid of 0
+'    Me.SeedTotal = Null
+'    Me.Refresh
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_Change[Form_fsub_LP_Seedling])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -522,7 +624,7 @@ End Sub
 ' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
 ' Revisions:
 '   RDB, unknown  - initial version
-'   BLC, 2/9/2016 - added error handling, documentation, refresh checkbox/no data collected
+'   BLC, 2/9/2016 - added error handling, documentation
 ' ---------------------------------
 Private Sub Species_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -546,49 +648,314 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
-Private Sub ButtonA1_Click()
-  If Screen.PreviousControl.name = "SeedTotal" And Not IsNull(Me!Species) Then
-    Screen.PreviousControl.Value = Screen.PreviousControl.Value + 1
-  End If
-  Screen.PreviousControl.SetFocus
+'==================================
+'   Tally Buttons
+'==================================
+
+' ---------------------------------
+' SUB:          SeedTotal_Click
+' Description:  Handles actions when control is clicked
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, April 1, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 4/1/2016  - initial version
+' ---------------------------------
+Private Sub SeedTotal_Click()
+On Error GoTo Err_Handler
+  
+  'default none are enabled
+  DisableTallyButtons Me, "Tally"
+  
+  'disable tallies that drive seed total < 0
+  Select Case Nz(SeedTotal.Value, "Null")
+    Case "Null"
+        TallyA0.Enabled = True
+        TallyA1.Enabled = True
+        TallyA5.Enabled = True
+    Case Is < 1
+        TallyA0.Enabled = True
+        TallyA1.Enabled = True
+        TallyA5.Enabled = True
+    Case Is < 5
+        TallyS1.Enabled = True
+        TallyA0.Enabled = True
+        TallyA1.Enabled = True
+        TallyA5.Enabled = True
+    Case Is >= 5
+        TallyS5.Enabled = True
+        TallyS1.Enabled = True
+        TallyA0.Enabled = True
+        TallyA1.Enabled = True
+        TallyA5.Enabled = True
+  End Select
+  
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SeedTotal_Click[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonA5_Click()
-  If Screen.PreviousControl.name = "SeedTotal" And Not IsNull(Me!Species) Then
-    Screen.PreviousControl.Value = Screen.PreviousControl.Value + 5
-  End If
-  Screen.PreviousControl.SetFocus
+' ---------------------------------
+' SUB:          SeedTotal_GotFocus
+' Description:  Handles actions when after control is the focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, April 1, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 4/1/2016  - initial version
+' ---------------------------------
+Private Sub SeedTotal_GotFocus()
+On Error GoTo Err_Handler
+  
+  'default none are enabled
+  DisableTallyButtons Me, "Tally"
+  
+  'disable tallies that drive seed total < 0
+  Select Case Nz(SeedTotal.Value, "Null")
+    Case "Null"
+        TallyA0.Enabled = True
+        TallyA1.Enabled = True
+        TallyA5.Enabled = True
+    Case Is < 1
+        TallyA0.Enabled = True
+        TallyA1.Enabled = True
+        TallyA5.Enabled = True
+    Case Is < 5
+        TallyS1.Enabled = True
+        TallyA0.Enabled = True
+        TallyA1.Enabled = True
+        TallyA5.Enabled = True
+    Case Is >= 5
+        TallyS5.Enabled = True
+        TallyS1.Enabled = True
+        TallyA0.Enabled = True
+        TallyA1.Enabled = True
+        TallyA5.Enabled = True
+  End Select
+  
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SeedTotal_GotFocus[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonS1_Click()
-  If Screen.PreviousControl.name = "SeedTotal" And Not IsNull(Me!Species) Then
-    If Screen.PreviousControl.Value - 1 < 0 Then
-      MsgBox "Total cannot be negative.", , "Tree Seedlings"
-      Exit Sub
-    Else
-      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 1
-    End If
-  End If
-  Screen.PreviousControl.SetFocus
+' ---------------------------------
+' SUB:          TallyA1_Click
+' Description:  Handles actions when control is clicked
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, April 1, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 4/1/2016 - added error handling, documentation, revised based on use of AddTallyValue & tally
+'                   buttons disabling when tally values should not be available
+' ---------------------------------
+Private Sub TallyA1_Click()
+On Error GoTo Err_Handler
+  
+  AddTallyValue Screen.PreviousControl, 1
+'  'If Screen.PreviousControl.name = "SeedTotal" And Not IsNull(Me!Species) Then
+'  If Screen.PreviousControl.name = "SeedTotal" Then
+'    Screen.PreviousControl.Value = Screen.PreviousControl.Value + 1
+'  End If
+'  Screen.PreviousControl.SetFocus
+  
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - TallyA1_Click[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonS5_Click()
-  If Screen.PreviousControl.name = "SeedTotal" And Not IsNull(Me!Species) Then
-    If Screen.PreviousControl.Value - 5 < 0 Then
-      MsgBox "Total cannot be negative.", , "Tree Seedlings"
-      Exit Sub
-    Else
-      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 5
-    End If
-  End If
-  Screen.PreviousControl.SetFocus
+' ---------------------------------
+' SUB:          TallyA5_Click
+' Description:  Handles actions when control is clicked
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, April 1, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 4/1/2016 - added error handling, documentation, revised based on use of AddTallyValue & tally
+'                   buttons disabling when tally values should not be available
+' ---------------------------------
+Private Sub TallyA5_Click()
+On Error GoTo Err_Handler
+  
+'  'If Screen.PreviousControl.name = "SeedTotal" And Not IsNull(Me!Species) Then
+'  If Screen.PreviousControl.name = "SeedTotal" Then
+'    Screen.PreviousControl.Value = Screen.PreviousControl.Value + 5
+'  End If
+'  Screen.PreviousControl.SetFocus
+
+    AddTallyValue Screen.PreviousControl, 5
+
+  
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - TallyA5_Click[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonZero_Click()
-  If Screen.PreviousControl.name = "SeedTotal" And Not IsNull(Me!Species) Then
-    Screen.PreviousControl.Value = 0
-  End If
-  Screen.PreviousControl.SetFocus
+' ---------------------------------
+' SUB:          TallyS1_Click
+' Description:  Handles actions when control is clicked
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, April 1, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 4/1/2016 - added error handling, documentation, revised based on use of AddTallyValue & tally
+'                   buttons disabling when tally values should not be available
+' ---------------------------------
+Private Sub TallyS1_Click()
+On Error GoTo Err_Handler
+  
+'  'If Screen.PreviousControl.name = "SeedTotal" And Not IsNull(Me!Species) Then
+'  If Screen.PreviousControl.name = "SeedTotal" Then
+''    If Screen.PreviousControl.Value - 1 < 0 Then
+''      MsgBox "Total cannot be negative.", , "Tree Seedlings"
+''      Exit Sub
+''    Else
+'      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 1
+''    End If
+'  End If
+'  Screen.PreviousControl.SetFocus
+  
+    AddTallyValue Screen.PreviousControl, -1
+  
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - TallyS1_Click[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          TallyS5_Click
+' Description:  Handles actions when control is clicked
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, April 1, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 4/1/2016 - added error handling, documentation, revised based on use of AddTallyValue & tally
+'                   buttons disabling when tally values should not be available
+' ---------------------------------
+Private Sub TallyS5_Click()
+On Error GoTo Err_Handler
+  
+'  If Screen.PreviousControl.name = "SeedTotal" And Not IsNull(Me!Species) Then
+'    If Screen.PreviousControl.Value - 5 < 0 Then
+'      MsgBox "Total cannot be negative.", , "Tree Seedlings"
+'      Exit Sub
+'    Else
+'      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 5
+'    End If
+'  End If
+'  Screen.PreviousControl.SetFocus
+  
+      AddTallyValue Screen.PreviousControl, -5
+  
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - TallyS5_Click[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          TallyA0_Click
+' Description:  Handles actions when control is clicked
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Russ DenBleyker, unknown
+' Adapted:      Bonnie Campbell, April 1, 2016 - for NCPN tools
+' Revisions:
+'   RDB, unknown  - initial version
+'   BLC, 4/1/2016 - added error handling, documentation, revised based on use of AddTallyValue & tally
+'                   buttons disabling when tally values should not be available
+' ---------------------------------
+Private Sub TallyA0_Click()
+On Error GoTo Err_Handler
+
+    AddTallyValue Screen.PreviousControl, 0
+    
+'  If Screen.PreviousControl.name = "SeedTotal" And Not IsNull(Me!Species) Then
+'    Screen.PreviousControl.Value = 0
+'  End If
+'  Screen.PreviousControl.SetFocus
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - TallyA0_Click[Form_fsub_LP_Seedling])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 ' ---------------------------------

@@ -3,6 +3,7 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -14,10 +15,10 @@ Begin Form
     Width =6660
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =5460
-    Top =11595
-    Right =11115
-    Bottom =15270
+    Left =1335
+    Top =5400
+    Right =7245
+    Bottom =9045
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x99c2faf85388e340
@@ -25,6 +26,7 @@ Begin Form
     RecordSource ="qry_Fuels_1000"
     Caption ="fsub_Fuels_1000"
     BeforeInsert ="[Event Procedure]"
+    AfterUpdate ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
@@ -296,6 +298,7 @@ Begin Form
                     RowSource ="A;B;C;D"
                     StatusBarText ="Transect associated with 1000-hr fuel measurements."
                     BeforeUpdate ="[Event Procedure]"
+                    AfterUpdate ="[Event Procedure]"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
 
@@ -320,12 +323,15 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_Fuels_1000
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.03
 ' Description:  data functions & procedures specific to fuels monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/2/2016 - 1.01 - added documentation, checkbox for no species found
+'               BLC - 3/18/2016 - 1.02 - added handling for 1000hr fuels A-D checkboxes for no fuels found
+'               BLC - 3/23/2016 - 1.03 - revised Delete_Click to add 1000hr fuels A-D & main 1000hr
+'                                        NoDataCollected records when last record deleted
 ' =================================
 
 ' ---------------------------------
@@ -380,6 +386,7 @@ On Error GoTo Err_Handler
       SendKeys "{ESC}"
       GoTo Exit_Handler
     End If
+    
     ' Create the GUID primary key value
     If IsNull(Me!Fuels_1000_ID) Then
         If GetDataType("tbl_Fuels_1000", "Fuels_1000_ID") = dbText Then
@@ -399,6 +406,65 @@ On Error GoTo Err_Handler
     Me.Parent.Form.Controls("cbxNo1000hr") = 0
     Me.Parent.Form.Controls("cbxNo1000hr").Enabled = False
     Me.Parent.Form.Controls("rctNo1000hr").Visible = False
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_Fuels_1000])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Form_AfterUpdate
+' Description:  Handles form post-update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 3/18/2016  - initial version
+' ---------------------------------
+Private Sub Form_AfterUpdate()
+On Error GoTo Err_Handler
+
+    'handle individual transect no fuel data collected
+    Check1000hrFuels
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_Fuels_1000])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Transect_AfterUpdate
+' Description:  Handles form post-update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 18, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 3/18/2016    - initial version
+' ---------------------------------
+Private Sub Transect_AfterUpdate()
+On Error GoTo Err_Handler
 
 Exit_Handler:
     Exit Sub
@@ -464,6 +530,8 @@ End Sub
 ' Revisions:
 '   RDB, unknown  - initial version
 '   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
+'   BLC, 3/23/2016 - revised to add NoDataCollected records for A-D as well as main 1000hr
+'                    when last record deleted
 ' ---------------------------------
 Private Sub ButtonDelete_Click()
 On Error GoTo Err_Handler
@@ -482,17 +550,42 @@ On Error GoTo Err_Handler
     '-----------------------------------
     ' update the NoDataCollected info IF no records now exist
     '-----------------------------------
+    
+    Check1000hrFuels
+    
     If Me.RecordsetClone.RecordCount = 0 Then
     
         Dim NoData As Scripting.Dictionary
         
-        'remove the no data collected record
-        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "Fuel-1000hr", 1)
-    
-        'update checkbox/rectangle
-        Me.Parent.Form.Controls("cbxNo1000hr") = 1
-        Me.Parent.Form.Controls("cbxNo1000hr").Enabled = True
-        Me.Parent.Form.Controls("rctNo1000hr").Visible = True
+        With Me.Parent.Form
+            
+            'remove the no data collected record
+            Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr", 1)
+        
+            'update checkbox/rectangle
+            .Controls("cbxNo1000hr") = 1
+            .Controls("cbxNo1000hr").Enabled = True
+            .Controls("rctNo1000hr").Visible = True
+            
+            'update A-D
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-A", 1
+            .Controls("cbxNo1000hrA") = 1
+            .Controls("cbxNo1000hrA").Enabled = True
+            .Controls("rctNo1000hrA").Visible = True
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-B", 1
+            .Controls("cbxNo1000hrB") = 1
+            .Controls("cbxNo1000hrB").Enabled = True
+            .Controls("rctNo1000hrB").Visible = True
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-C", 1
+            .Controls("cbxNo1000hrC") = 1
+            .Controls("cbxNo1000hrC").Enabled = True
+            .Controls("rctNo1000hrC").Visible = True
+            SetNoDataCollected .Controls("Event_ID"), "E", "Fuel-1000hr-D", 1
+            .Controls("cbxNo1000hrD") = 1
+            .Controls("cbxNo1000hrD").Enabled = True
+            .Controls("rctNo1000hrD").Visible = True
+        
+        End With
         
     End If
 

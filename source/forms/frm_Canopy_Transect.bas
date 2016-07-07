@@ -6,7 +6,6 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =0
@@ -19,10 +18,10 @@ Begin Form
     Width =13680
     DatasheetFontHeight =9
     ItemSuffix =37
-    Left =-2025
-    Top =-3450
-    Right =11745
-    Bottom =7125
+    Left =660
+    Top =2775
+    Right =14175
+    Bottom =13095
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xf84b9e552c2ee340

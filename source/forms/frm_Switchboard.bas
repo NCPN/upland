@@ -24,10 +24,10 @@ Begin Form
     Width =9900
     DatasheetFontHeight =10
     ItemSuffix =74
-    Left =1485
-    Top =960
-    Right =11385
-    Bottom =8940
+    Left =7680
+    Top =1305
+    Right =17580
+    Bottom =9285
     DatasheetGridlinesColor =12632256
     PictureData = Begin
         0x28000000a0020000f8010000010018000000000000810f00c30e0000c30e0000 ,
@@ -33571,12 +33571,15 @@ Private Sub Form_Load()
         End If
     End With
     
-    varVersion = NothingZ(varVersion, "Version unknown")
-    varAuthor = "Russ DenBleyker"
-    varAuthorOrg = "NCPN"
-    varAuthorPhone = "970-858-9234 X 324"
-    varAppTitle = NothingZ(varAppTitle, cstrDefaultAppTitle)
-    varAuthorOrgName = "NCPN"
+'-----------------------------------------------------------------
+' REVISED: 7/7/2016 to remove defaults which no longer apply BLC
+'    varVersion = NothingZ(varVersion, "Version unknown")
+'    varAuthor = "Russ DenBleyker"
+'    varAuthorOrg = "NCPN"
+'    varAuthorPhone = "970-858-9234 X 324"
+'    varAppTitle = NothingZ(varAppTitle, cstrDefaultAppTitle)
+'    varAuthorOrgName = "NCPN"
+'-----------------------------------------------------------------
 
     Me.Caption = varAppTitle
     Me!labNetwork.Caption = varAuthorOrgName & vbCrLf & "Inventory and Monitoring Program"

@@ -14,16 +14,16 @@ Begin Form
     Width =4320
     DatasheetFontHeight =9
     ItemSuffix =19
-    Left =1380
-    Top =4935
-    Right =5715
-    Bottom =9180
+    Left =288
+    Top =5088
+    Right =4632
+    Bottom =9348
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xa04a1bb3ac8ae340
     End
     RecordSource ="tbl_LP_Add_Species"
-    Caption ="fsub_LP_Densiometer"
+    Caption ="fsub_LP_Add_Species"
     DatasheetFontName ="Arial"
     PrtMip = Begin
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
@@ -134,10 +134,10 @@ Begin Form
                     Caption ="Master Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -151,10 +151,10 @@ Begin Form
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -208,7 +208,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Cano"
                         "py.Utah_Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is N"
-                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code; "
+                        "ot Null)) ORDER BY qryU_Top_Canopy.LU_Code;"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
@@ -227,10 +227,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -247,33 +247,18 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
 
-Private Sub Point_GotFocus()
-
-    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
-      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
-      Me.Parent.Refresh   ' Force save of transect record
-    End If
- 
-End Sub
-
-Private Sub ButtonMaster_Click()
-On Error GoTo Err_ButtonMaster_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-
-    stDocName = "frm_Master_Species"
-    DoCmd.OpenForm stDocName, , , stLinkCriteria
-
-Exit_ButtonMaster_Click:
-    Exit Sub
-
-Err_ButtonMaster_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonMaster_Click
-    
-End Sub
+' =================================
+' MODULE:       Form_fsub_LP_Add_Species
+' Level:        Form module
+' Version:      1.01
+' Description:  data functions & procedures specific to adding LP species
+'
+' Source/date:  Bonnie Campbell, 2/2/2016
+' Revisions:    RDB - unknown  - 1.00 - initial version
+'               BLC - 2/9/2016 - 1.01 - added documentation, checkbox for no species found
+' =================================
 
 ' ---------------------------------
 ' SUB:          Species_GotFocus
@@ -312,12 +297,39 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+Private Sub Point_GotFocus()
+
+    If IsNull(Me.Parent!Visit_Date) Then    ' If they didn't bother to enter a date, default to event date.
+      Me.Parent!Visit_Date = Me.Parent.Parent!Start_Date
+      Me.Parent.Refresh   ' Force save of transect record
+    End If
+ 
+End Sub
+
 Private Sub Species_BeforeUpdate(Cancel As Integer)
     If Not IsNull(DLookup("[Add_ID]", "tbl_LP_Add_Species", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Species] = '" & Me!Species & "'")) Then
       MsgBox "This species is already recorded for this transect."
       DoCmd.CancelEvent
       SendKeys "{ESC}"
     End If
+End Sub
+
+Private Sub ButtonMaster_Click()
+On Error GoTo Err_ButtonMaster_Click
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+
+    stDocName = "frm_Master_Species"
+    DoCmd.OpenForm stDocName, , , stLinkCriteria
+
+Exit_ButtonMaster_Click:
+    Exit Sub
+
+Err_ButtonMaster_Click:
+    MsgBox Err.Description
+    Resume Exit_ButtonMaster_Click
+    
 End Sub
 
 Private Sub ButtonDelete_Click()

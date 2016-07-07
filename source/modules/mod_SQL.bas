@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_SQL
 ' Level:        Framework module
-' VERSION:      1.04
+' VERSION:      1.05
 ' Description:  Database/SQL properties, functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, 7/24/2014
@@ -13,6 +13,7 @@ Option Explicit
 '               BLC, 5/26/2015 - 1.02 - added mod_db_Templates subs/functions - GetQuerySQL, GetSQLDbTemplate
 '               BLC, 6/30/2015 - 1.03 - combined GetDbQuerySQL with GetQuerySQL, renamed get... to Get... functions
 '               BLC, 8/21/2015 - 1.04 - added ConcatRelated notes for Error 3048 using linked tables
+'               BLC, 3/16/2016 - 1.05 - added PrepareWhereClause() [Uplands 2016 preseason mods]
 ' =================================
 
 ' ---------------------------------
@@ -525,4 +526,54 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - Coalesce[mod_SQL])"
     End Select
     Resume Exit_Function
+End Function
+
+' ---------------------------------
+' SUB:          PrepareWhereClause
+' Description:  Prepares a where clause from multiple params
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 16, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2016  - initial version
+' ---------------------------------
+Public Function PrepareWhereClause(params() As String)
+On Error GoTo Err_Handler
+    
+    Dim strWhere As String
+    Dim i As Integer
+    
+    'default
+    strWhere = ""
+
+    'check all params for length, then insert an " AND " if there's a new non-empty clause
+    For i = 0 To UBound(params)
+        
+        'add to clause
+        If Len(strWhere) > 0 And Len(params(i)) > 0 Then
+            strWhere = strWhere & " AND "
+        End If
+        
+        'add param to where clause
+        If Len(params(i)) > 0 Then
+            strWhere = strWhere & params(i)
+        End If
+    Next
+    
+
+Exit_Handler:
+    PrepareWhereClause = strWhere
+    Exit Function
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - PrepareWhereClause[mod_SQL])"
+    End Select
+    Resume Exit_Handler
 End Function
