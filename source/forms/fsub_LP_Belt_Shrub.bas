@@ -12,10 +12,10 @@ Begin Form
     Width =11880
     DatasheetFontHeight =9
     ItemSuffix =43
-    Left =780
-    Top =2676
-    Right =12960
-    Bottom =6240
+    Left =1188
+    Top =1416
+    Right =13620
+    Bottom =4956
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -766,10 +766,8 @@ Begin Form
                         " tbl_Unknown_Species.Plant_Type + \" - \" + tbl_Unknown_Species.Plant_Descriptio"
                         "n,  tbl_Unknown_Species.Plant_Type AS Lifeform  FROM tbl_Unknown_Species  WHERE "
                         "tbl_Unknown_Species.Plant_Type IN ('Shrub','Other') OR tbl_Unknown_Species.Plant"
-                        "_Type IS NULL ORDER BY tbl_Unknown_Species.Unknown_Code)  UNION  (SELECT DISTINC"
-                        "T  qryU_Top_Canopy.Master_PLANT_Code,   qryU_Top_Canopy.LU_Code,  qryU_Top_Canop"
-                        "y.Utah_Species,  qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE qryU_Top_Ca"
-                        "nopy.LU_Code IN ('JUNOST','PINEDU')) ORDER BY qryU_Top_Canopy.LU_Code;"
+                        "_Type IS NULL ORDER BY tbl_Unknown_Species.Unknown_Code)  ORDER BY qryU_Top_Cano"
+                        "py.LU_Code;"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
@@ -912,7 +910,7 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_LP_Belt_Shrub
 ' Level:        Form module
-' Version:      1.03
+' Version:      1.04
 ' Description:  data functions & procedures specific to LP belt shrub monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/2/2016
@@ -925,6 +923,9 @@ Option Explicit
 '                                        to accommodate "EPHVIR" being selected vs. "EPHVIRV"
 '                                        when users type in "EPHVIR" (see also 2016 Upland In-Season Updates documentation)
 '                                        added refresh for underlying subforms for conditional formatting
+'               BLC - 11/29/2016 - 1.04 - adjusted species dropdown SQL to *EXCLUDE* JUNOST & PINEDU (LU_Code)
+'                                        tree species w/ the decision to no longer treat these species as
+'                                        shrubs (see also 2017 Upland Pre-Season Updates documentation)
 ' =================================
 
 ' ---------------------------------
