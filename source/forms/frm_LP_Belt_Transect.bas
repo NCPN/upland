@@ -15,11 +15,11 @@ Begin Form
     Cycle =1
     GridX =24
     GridY =24
-    Width =15360
+    Width =13680
     DatasheetFontHeight =9
     ItemSuffix =70
-    Right =13656
-    Bottom =9108
+    Right =13650
+    Bottom =9105
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2518a6c77056e340
@@ -265,10 +265,10 @@ Begin Form
                     End
                     ControlTipText ="Previous Record"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -304,10 +304,10 @@ Begin Form
                     End
                     ControlTipText ="Next Record"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     OverlapFlags =87
@@ -383,10 +383,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -399,41 +399,41 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     OnKeyDown ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Tab
                     OverlapFlags =85
                     Left =45
-                    Top =432
-                    Width =15075
-                    Height =9264
+                    Top =435
+                    Width =13320
+                    Height =9255
                     TabIndex =10
                     Name ="TabCtl49"
 
                     LayoutCachedLeft =45
-                    LayoutCachedTop =432
-                    LayoutCachedWidth =15120
-                    LayoutCachedHeight =9696
+                    LayoutCachedTop =435
+                    LayoutCachedWidth =13365
+                    LayoutCachedHeight =9690
                     Begin
                         Begin Page
                             OverlapFlags =87
-                            Left =156
-                            Top =792
-                            Width =14856
-                            Height =8796
+                            Left =180
+                            Top =840
+                            Width =13050
+                            Height =8715
                             Name ="pgBeltShrub"
                             Caption ="Density"
-                            LayoutCachedLeft =156
-                            LayoutCachedTop =792
-                            LayoutCachedWidth =15012
-                            LayoutCachedHeight =9588
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =180
+                            LayoutCachedTop =840
+                            LayoutCachedWidth =13230
+                            LayoutCachedHeight =9555
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -647,20 +647,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =247
-                            Left =156
-                            Top =792
-                            Width =14856
-                            Height =8796
+                            Left =180
+                            Top =840
+                            Width =13050
+                            Height =8715
                             Name ="pgDensiometer"
                             Caption ="Spherical Densiometer"
-                            LayoutCachedLeft =156
-                            LayoutCachedTop =792
-                            LayoutCachedWidth =15012
-                            LayoutCachedHeight =9588
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =180
+                            LayoutCachedTop =840
+                            LayoutCachedWidth =13230
+                            LayoutCachedHeight =9555
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -702,20 +702,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =156
-                            Top =792
-                            Width =14856
-                            Height =8796
+                            Left =180
+                            Top =840
+                            Width =13050
+                            Height =8715
                             Name ="PgAdd"
                             Caption ="Exotic Frequency"
-                            LayoutCachedLeft =156
-                            LayoutCachedTop =792
-                            LayoutCachedWidth =15012
-                            LayoutCachedHeight =9588
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =180
+                            LayoutCachedTop =840
+                            LayoutCachedWidth =13230
+                            LayoutCachedHeight =9555
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     Visible = NotDefault
@@ -884,7 +884,7 @@ Begin Form
             End
         End
         Begin FormFooter
-            Height =1080
+            Height =0
             BackColor =-2147483633
             Name ="FormFooter"
         End
@@ -901,7 +901,7 @@ Option Explicit
 ' =================================
 ' MODULE:       frm_LP_Belt_Transect
 ' Level:        Form module
-' Version:      1.03
+' Version:      1.04
 ' Description:  data functions & procedures specific to LP belt transects
 '
 ' Source/date:  John R. Boetsch, June 2006
@@ -914,6 +914,9 @@ Option Explicit
 '                                       hide NoShrubs (cbx,lbl,& rct) for oak scrub plots
 '                                       hide no exotic perennial cbx,lbl,rct - exotic perennial form no longer in use
 '               BLC - 4/13/2016 - 1.03 - added refresh for underlying subforms for conditional formatting
+'               BLC - 11/30/2016 - 1.04 - revised form & TabCtl49 widths, form footer height to
+'                                       reduce issues w/ hidden horizontal scroll bars on
+'                                       1-m belt oak plots (see also 2017 Upland Pre-Season Update documentation)
 ' =================================
 
 ' ---------------------------------
