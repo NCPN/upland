@@ -917,6 +917,12 @@ Begin Form
                     Width =839
                     Height =300
                     TabIndex =8
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T1500_Rating"
                     ControlSource ="T1500_Rating"
                     RowSourceType ="Value List"
@@ -924,6 +930,12 @@ Begin Form
                     ColumnWidths ="1440"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -963,6 +975,12 @@ Begin Form
                     Width =839
                     Height =300
                     TabIndex =20
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T1545_Rating"
                     ControlSource ="T1545_Rating"
                     RowSourceType ="Value List"
@@ -970,6 +988,12 @@ Begin Form
                     ColumnWidths ="240"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin Label
                     OldBorderStyle =1
@@ -1069,6 +1093,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =32
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T2630_Rating"
                     ControlSource ="T2630_Rating"
                     RowSourceType ="Value List"
@@ -1076,6 +1106,12 @@ Begin Form
                     ColumnWidths ="255"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1115,6 +1151,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =44
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T2715_Rating"
                     ControlSource ="T2715_Rating"
                     RowSourceType ="Value List"
@@ -1122,6 +1164,12 @@ Begin Form
                     ColumnWidths ="210"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1161,6 +1209,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =56
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T3800_Rating"
                     ControlSource ="T3800_Rating"
                     RowSourceType ="Value List"
@@ -1168,6 +1222,12 @@ Begin Form
                     ColumnWidths ="195"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1207,6 +1267,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =68
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T3845_Rating"
                     ControlSource ="T3845_Rating"
                     RowSourceType ="Value List"
@@ -1214,6 +1280,12 @@ Begin Form
                     ColumnWidths ="195"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin Label
                     OldBorderStyle =1
@@ -1277,6 +1349,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =12
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T1515_Rating"
                     ControlSource ="T1515_Rating"
                     RowSourceType ="Value List"
@@ -1284,6 +1362,12 @@ Begin Form
                     ColumnWidths ="1440"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1323,6 +1407,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =24
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T1600_Rating"
                     ControlSource ="T1600_Rating"
                     RowSourceType ="Value List"
@@ -1330,6 +1420,12 @@ Begin Form
                     ColumnWidths ="210"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1369,6 +1465,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =36
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T2645_Rating"
                     ControlSource ="T2645_Rating"
                     RowSourceType ="Value List"
@@ -1376,6 +1478,12 @@ Begin Form
                     ColumnWidths ="225"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1415,6 +1523,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =48
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T2730_Rating"
                     ControlSource ="T2730_Rating"
                     RowSourceType ="Value List"
@@ -1422,6 +1536,12 @@ Begin Form
                     ColumnWidths ="270"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1461,6 +1581,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =60
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T3815_Rating"
                     ControlSource ="T3815_Rating"
                     RowSourceType ="Value List"
@@ -1468,6 +1594,12 @@ Begin Form
                     ColumnWidths ="255"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1507,6 +1639,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =72
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T3900_Rating"
                     ControlSource ="T3900_Rating"
                     RowSourceType ="Value List"
@@ -1514,6 +1652,12 @@ Begin Form
                     ColumnWidths ="255"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1553,6 +1697,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =16
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T1530_Rating"
                     ControlSource ="T1530_Rating"
                     RowSourceType ="Value List"
@@ -1560,6 +1710,12 @@ Begin Form
                     ColumnWidths ="225"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1599,6 +1755,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =28
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T1615_Rating"
                     ControlSource ="T1615_Rating"
                     RowSourceType ="Value List"
@@ -1606,6 +1768,12 @@ Begin Form
                     ColumnWidths ="225"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1645,6 +1813,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =40
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T2700_Rating"
                     ControlSource ="T2700_Rating"
                     RowSourceType ="Value List"
@@ -1652,6 +1826,12 @@ Begin Form
                     ColumnWidths ="285"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1691,6 +1871,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =52
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T2745_Rating"
                     ControlSource ="T2745_Rating"
                     RowSourceType ="Value List"
@@ -1698,6 +1884,12 @@ Begin Form
                     ColumnWidths ="255"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1737,6 +1929,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =64
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T3830_Rating"
                     ControlSource ="T3830_Rating"
                     RowSourceType ="Value List"
@@ -1744,6 +1942,12 @@ Begin Form
                     ColumnWidths ="1440"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1783,6 +1987,12 @@ Begin Form
                     Width =840
                     Height =300
                     TabIndex =76
+                    ConditionalFormat = Begin
+                        0x0100000070000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000000000000300000004000000070000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000002200220000000000
+                    End
                     Name ="T3915_Rating"
                     ControlSource ="T3915_Rating"
                     RowSourceType ="Value List"
@@ -1790,6 +2000,12 @@ Begin Form
                     ColumnWidths ="285"
                     OnKeyDown ="[Event Procedure]"
 
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000000000000300000001 ,
+                        0x00000000000000ffffff00020000002200220000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin CommandButton
                     Visible = NotDefault
