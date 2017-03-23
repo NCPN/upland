@@ -730,7 +730,7 @@ Rem
 Rem//////////////////////////////////////////////////////////////////////////
 Rem
 
-Public Type state
+Public Type State
   bit_buffer_64                As Long
   bit_buffer_64_part_2         As Long
   bit_buffer_32                As Long
@@ -1248,7 +1248,7 @@ Public Declare Function ijlFree Lib "ijl15.dll" (ByRef jcprops As JPEG_CORE_PROP
 Public Declare Function ijlRead Lib "ijl15.dll" (ByRef jcprops As JPEG_CORE_PROPERTIES, ByVal iotype As Long) As Long  'IJLERR
 Public Declare Function ijlWrite Lib "ijl15.dll" (ByRef jcprops As JPEG_CORE_PROPERTIES, ByVal iotype As Long) As Long 'IJLERR
 Public Declare Function ijlGetLibVersion Lib "ijl15.dll" () As Long 'pointer to IJLibVersion...
-Public Declare Function ijlErrorStr Lib "ijl15.dll" (code As Long) As Long  'pointer to C-style string
+Public Declare Function ijlErrorStr Lib "ijl15.dll" (Code As Long) As Long  'pointer to C-style string
 
 
 Rem

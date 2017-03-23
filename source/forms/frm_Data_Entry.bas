@@ -19,11 +19,11 @@ Begin Form
     GridY =24
     Width =16296
     DatasheetFontHeight =10
-    ItemSuffix =212
-    Left =2736
-    Top =2064
-    Right =19044
-    Bottom =11172
+    ItemSuffix =213
+    Left =3390
+    Top =2100
+    Right =19710
+    Bottom =11205
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201603202"
         "33521-783995270.729065'"
@@ -151,16 +151,16 @@ Begin Form
                     FontSize =9
                     FontWeight =700
                     TabIndex =12
-                    Name ="cmdClose"
+                    Name ="btnClose"
                     Caption ="Close"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
                     ControlTipText ="Close the data entry form"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     ColumnHeads = NotDefault
@@ -307,20 +307,20 @@ Begin Form
                     Begin
                         Begin Page
                             OverlapFlags =87
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgPhotos"
                             Caption ="Photos"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -338,21 +338,21 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="Point Intercept"
                             EventProcPrefix ="Point_Intercept"
                             Caption ="Point Intercept"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -370,20 +370,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgBeltShrub"
                             Caption ="1-m Belt"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -406,20 +406,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgGaps"
                             Caption ="Gap Intercepts"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -440,20 +440,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgSS"
                             Caption ="Soil Stability"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -472,20 +472,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =215
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgSLIntercept"
                             Caption ="SL Intercept"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -504,19 +504,19 @@ Begin Form
                         Begin Page
                             OverlapFlags =215
                             Left =60
-                            Top =1572
-                            Width =15864
-                            Height =12792
+                            Top =1620
+                            Width =15840
+                            Height =12720
                             Name ="pgOT"
                             Caption ="Overstory Trees"
                             LayoutCachedLeft =60
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -833,20 +833,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgFuels"
                             Caption ="Fuels"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin TextBox
                                     OverlapFlags =247
@@ -1170,20 +1170,20 @@ Begin Form
                         End
                         Begin Page
                             OverlapFlags =247
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgImpact"
                             Caption ="Site Impact"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -1206,20 +1206,20 @@ Begin Form
                         Begin Page
                             Visible = NotDefault
                             OverlapFlags =247
-                            Left =108
-                            Top =1572
-                            Width =15816
-                            Height =12792
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgCoords_and_loc_details"
                             Caption ="Presence Cover Density"
-                            LayoutCachedLeft =108
-                            LayoutCachedTop =1572
-                            LayoutCachedWidth =15924
-                            LayoutCachedHeight =14364
-                            WebImagePaddingLeft =3
-                            WebImagePaddingTop =3
-                            WebImagePaddingRight =3
-                            WebImagePaddingBottom =3
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =247
@@ -1347,14 +1347,13 @@ Begin Form
                     Width =1080
                     Height =480
                     TabIndex =11
-                    Name ="ButtonCoord"
+                    Name ="btnCoord"
                     Caption ="Change Plot Coordinates"
-                    OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1395,14 +1394,13 @@ Begin Form
                     Width =1020
                     Height =480
                     TabIndex =13
-                    Name ="ButtonComments"
+                    Name ="btnComments"
                     Caption ="Add/Edit Comments"
-                    OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                     Overlaps =1
                 End
                 Begin TextBox
@@ -1468,6 +1466,91 @@ Begin Form
                         End
                     End
                 End
+                Begin CommandButton
+                    TabStop = NotDefault
+                    OverlapFlags =85
+                    Left =13860
+                    Top =180
+                    Width =780
+                    Height =899
+                    FontSize =9
+                    FontWeight =700
+                    TabIndex =16
+                    Name ="btnPlotQAQC"
+                    StatusBarText ="Check Field Data!"
+                    OnClick ="[Event Procedure]"
+                    PictureData = Begin
+                        0x2800000010000000100000000100040000000000800000000000000000000000 ,
+                        0x0000000000000000000000000000800000800000008080008000000080008000 ,
+                        0x8080000080808000c0c0c0000000ff00c0c0c00000ffff00ff000000c0c0c000 ,
+                        0xffff0000ffffff00ddddddddddddddddddd0000000000ddddd0ffffffffff0dd ,
+                        0xdd0fff88fffff0dddd0ff8188ffff0dddd0f811188fff0dddd0f11f118fff0dd ,
+                        0xdd0fffff178ff0dddd0ffffff188f0dddd0fffffff18f0dddd0ffffffff1f0dd ,
+                        0xdd0ffffffffff0dddd0ff000000ff0ddddd000f888000ddddddddd0000dddddd ,
+                        0xdddddddddddddddd000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
+                    FontName ="Arial"
+                    ObjectPalette = Begin
+                        0x000301000000000000000000
+                    End
+                    ControlTipText ="Check Field Data!"
+                    LeftPadding =60
+                    RightPadding =75
+                    BottomPadding =120
+
+                    LayoutCachedLeft =13860
+                    LayoutCachedTop =180
+                    LayoutCachedWidth =14640
+                    LayoutCachedHeight =1079
+                    ForeThemeColorIndex =0
+                    UseTheme =1
+                    Shape =2
+                    Gradient =12
+                    BackColor =13020235
+                    BackThemeColorIndex =8
+                    BorderColor =13020235
+                    BorderThemeColorIndex =8
+                    HoverColor =13745519
+                    HoverThemeColorIndex =8
+                    HoverTint =80.0
+                    PressedColor =10915381
+                    PressedThemeColorIndex =8
+                    PressedShade =80.0
+                    HoverForeColor =0
+                    HoverForeThemeColorIndex =0
+                    PressedForeColor =0
+                    PressedForeThemeColorIndex =0
+                    Shadow =-1
+                    QuickStyle =27
+                    QuickStyleMask =-1
+                    WebImagePaddingTop =1
+                End
             End
         End
     End
@@ -1509,7 +1592,27 @@ Option Explicit
 '                                        allows users to resize & scroll to expose taskbar apps/documents
 '                                        original values (Scrollbars = Neither, Border Style = Thin)
 '                                        added refresh for underlying subforms for conditional formatting
+'               BLC - 3/22/2017 - 1.06 - added documentation, error handling, btnPlotQAQC
 ' =================================
+'---------------------
+' Simulated Inheritance
+'---------------------
+
+'---------------------
+' Declarations
+'---------------------
+
+'---------------------
+' Event Declarations
+'---------------------
+
+'---------------------
+' Properties
+'---------------------
+
+'---------------------
+' Methods
+'---------------------
 
 ' ---------------------------------
 ' SUB:          Form_Open
@@ -1520,11 +1623,12 @@ Option Explicit
 ' Throws:       none
 ' References:   none
 ' Source/date:
-' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
 ' Revisions:
 '   JRB, 6/x/2006  - initial version
 '   RDB, unknown   - ?
 '   BLC, 2/2/2016  - added documentation
+'   BLC, 3/22/2017 - added btnPlotQAQC initalization
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
     On Error GoTo Err_Handler
@@ -1541,6 +1645,17 @@ Private Sub Form_Open(Cancel As Integer)
     End If
     Me.Caption = Me.Caption & strCaptionSuffix
     Me!txtStart_date.SetFocus
+    
+    'default
+    ' ----------------------------
+    ' mod_Color module typically handles colors
+    ' only one is used here so the module is not included here
+    ' if mod_Color is added in the future: remove lngYelLime definition
+    ' Public Const lngYelLime As Long = 9699294   '?RGB(222,255,147) #DEFF93
+    ' ----------------------------
+    Dim lngYelLime As Long
+    lngYelLime = 9699294
+    btnPlotQAQC.HoverColor = lngYelLime
 
 Exit_Handler:
     Exit Sub
@@ -1563,7 +1678,7 @@ End Sub
 ' Throws:       none
 ' References:   none
 ' Source/date:  John R. Boetsch - June, 2006
-' Adapted:      Bonnie Campbell, February 2, 2016 - for NCPN tools
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
 ' Revisions:
 '   JRB, 6/x/2006  - initial version
 '   RDB, unknown   - ?
@@ -1750,7 +1865,22 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          Form_Current
+' Description:  Handles form current actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John R. Boetsch - June, 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Form_Current()
+On Error GoTo Err_Handler
 
     Update_Loc_Info
     If Not IsNull(Me!txtUnit_Code) Then
@@ -1759,18 +1889,71 @@ Private Sub Form_Current()
       Me!frm_Quadrat_Transect.Form!fsub_Quadrat.Form!fsub_Species.Form!State_Code = DLookup("[ParkState]", "tlu_Parks", "[ParkCode] = '" & Me!txtUnit_Code & "'")
       Me!SiteDisplay = cboLocation_ID.Column(1)  ' Display the site number in heading
     End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Current[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          Form_BeforeUpdate
+' Description:  Handles form before update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John R. Boetsch - June, 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Form_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+
   If IsNull(Me!Start_Date) Then
         ' ask user if (s)he wants to enter data or cancel and close form
         If MsgBox("Visit date is missing - do you want to enter the missing data?", vbYesNo, "Date missing") = vbNo Then
             Me.Undo
         End If
   End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeUpdate[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          Form_BeforeInsert
+' Description:  Handles form before insert actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John R. Boetsch - June, 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
+On Error GoTo Err_Handler
 
         Dim db As DAO.Database
         Dim Versions As DAO.Recordset
@@ -1793,19 +1976,49 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
         End If
     End If
 
-Exit_Procedure:
+Exit_Handler:
     Exit Sub
-
+    
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          Form_Close
+' Description:  Handles form closing actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John R. Boetsch - June, 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Form_Close()
-If IsLoaded("frm_Data_Gateway") Then
-    Forms("frm_Data_Gateway").Requery
-End If
+On Error GoTo Err_Handler
+
+    If IsLoaded("frm_Data_Gateway") Then
+        Forms("frm_Data_Gateway").Requery
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Close[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 ' ---------------------------------
@@ -2263,41 +2476,80 @@ Private Sub cboLocation_ID_AfterUpdate()
 ' Update_Loc_Info
 End Sub
 
+' ---------------------------------
+' SUB:          btnClose_CLick
+' Description:  Handles close button actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John R. Boetsch - June, 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, renamed cmdClose to btnClose
+' ---------------------------------
 Private Sub cmdClose_Click()
     On Error GoTo Err_Handler
 
     DoCmd.RunCommand acCmdSaveRecord
     DoCmd.Close , , acSaveNo
 
-Exit_Procedure:
+Exit_Handler:
     Exit Sub
-
+    
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnClose_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Public Sub Update_Loc_Info()
+' ---------------------------------
+' SUB:          Update_Loc_Info
 ' Description:  Updates associated location information when Location_ID is updated
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
 ' References:   GetCriteriaString
-' Source/date:  Simon Kingston, Sept. 2006
-' Revisions:    <name, date, desc - add lines as you go>
-
-Dim strXY As Variant
-Dim strCriteria As String
-
-If IsNull(Me!txtLocation_ID) Then
-    Me!txtXY = Null
-    Me!txtUnit_Code = Null
-Else
-    strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.name, "txtLocation_ID")
+' Source/date:  Simon Kingston - Sept. 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   SK, 9/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, error handling
+' ---------------------------------
+Public Sub Update_Loc_Info()
+On Error GoTo Err_Handler
     
-    strXY = "E: " & Nz(DLookup("E_Coord", "tbl_Locations", strCriteria), "")
-    strXY = strXY & "  N: " & Nz(DLookup("N_Coord", "tbl_Locations", strCriteria), "")
-    Me!txtXY = strXY
-    Me!txtUnit_Code = DLookup("Unit_Code", "tbl_Locations", strCriteria)
-End If
+    Dim strXY As Variant
+    Dim strCriteria As String
+    
+    If IsNull(Me!txtLocation_ID) Then
+        Me!txtXY = Null
+        Me!txtUnit_Code = Null
+    Else
+        strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.name, "txtLocation_ID")
+        
+        strXY = "E: " & Nz(DLookup("E_Coord", "tbl_Locations", strCriteria), "")
+        strXY = strXY & "  N: " & Nz(DLookup("N_Coord", "tbl_Locations", strCriteria), "")
+        Me!txtXY = strXY
+        Me!txtUnit_Code = DLookup("Unit_Code", "tbl_Locations", strCriteria)
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 ' ---------------------------------
@@ -2374,6 +2626,20 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' SUB:          txtStart_Date_AfterUpdate
+' Description:  Handles form closing actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John R. Boetsch - June, 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub txtStart_Date_AfterUpdate()
         Dim db As DAO.Database
         Dim Events As DAO.Recordset
@@ -2391,19 +2657,39 @@ Private Sub txtStart_Date_AfterUpdate()
       Me.Undo
       Events.Close
       DoCmd.Close
-      GoTo Exit_Procedure
+      GoTo Exit_Handler
     End If
     Events.Close
-Exit_Procedure:
-    Exit Sub
 
+Exit_Handler:
+    Exit Sub
+    
 Err_Handler:
-    MsgBox Err.Description
-    Resume Exit_Procedure
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - txtStart_Date_AfterUpdate[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonCoord_Click()
-On Error GoTo Err_ButtonCoord_Click
+' ---------------------------------
+' SUB:          btnCoord_Click
+' Description:  Handles coordinate button actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John R. Boetsch - June, 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, error handling,
+'                    renamed buttonCoord to btnCoord
+' ---------------------------------
+Private Sub btnCoord_Click()
+On Error GoTo Err_Handler
 
     Dim stDocName As String
     Dim stLinkCriteria As String
@@ -2413,17 +2699,36 @@ On Error GoTo Err_ButtonCoord_Click
     stLinkCriteria = "[Location_ID]=" & "'" & Me![txtLocation_ID] & "'"
     DoCmd.OpenForm stDocName, , , stLinkCriteria, , acDialog
     Update_Loc_Info
-Exit_ButtonCoord_Click:
-    Exit Sub
-
-Err_ButtonCoord_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonCoord_Click
     
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnCoord_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonComments_Click()
-On Error GoTo Err_ButtonComments_Click
+' ---------------------------------
+' SUB:          Form_Close
+' Description:  Handles form closing actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John R. Boetsch - June, 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, error handling,
+'                    renamed buttonComments to btnComments
+' ---------------------------------
+Private Sub btnComments_Click()
+On Error GoTo Err_Handler
 
     Dim stDocName As String
     Dim stLinkCriteria As String
@@ -2449,10 +2754,46 @@ On Error GoTo Err_ButtonComments_Click
     End If
     RevisitComments.Close
     Set RevisitComments = Nothing
-Exit_ButtonComments_Click:
+    
+Exit_Handler:
     Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnComments_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
-Err_ButtonComments_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonComments_Click
+' ---------------------------------
+' SUB:          btnPlotQAQC_Click
+' Description:  Handles Plot QA/QC button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John R. Boetsch - June, 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnPlotQAQC_Click()
+On Error GoTo Err_Handler
+
+    DoCmd.OpenForm "FieldQAQC", acNormal, , , , acDialog, Me.Plot_ID
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnPlotQAQC_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
 End Sub

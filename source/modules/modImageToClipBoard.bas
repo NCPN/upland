@@ -13,7 +13,7 @@ End Type
 
 'ннннннннннннннннннннннннннннннннннннннннннннннннна
 Private Declare Function SendMessage Lib "user32" Alias "SendMessageA" _
-(ByVal hwnd As Long, ByVal wMsg As Long, _
+(ByVal hWnd As Long, ByVal wMsg As Long, _
 ByVal wParam As Long, lParam As Any) As Long
 
 Private Declare Function SetEnhMetaFileBits Lib "gdi32" _
@@ -35,7 +35,7 @@ As Long
 
 Private Declare Function GlobalFree Lib "kernel32" (ByVal hMem As Long) As Long
 
-Private Declare Function OpenClipboard Lib "user32" (ByVal hwnd As Long) _
+Private Declare Function OpenClipboard Lib "user32" (ByVal hWnd As Long) _
 As Long
 Private Declare Function CloseClipboard Lib "user32" () As Long
 Private Declare Function GetClipboardData Lib "user32" (ByVal wFormat As _
@@ -290,7 +290,7 @@ If Len(strfName & vbNullString) = 0 Then
  
  clsDialog.hdc = 0
  clsDialog.MaxFileSize = 256
- clsDialog.Max = 256
+ clsDialog.max = 256
  clsDialog.FileTitle = vbNullString
  clsDialog.DialogTitle = "Please Select an Image File to Load"
  clsDialog.InitDir = vbNullString
@@ -408,8 +408,8 @@ On Error Resume Next
 Application.Echo False
 
 For lngTemp = 1 To 9
-lngRet = SendMessage(ctl.Parent.hwnd, WM_VSCROLL, SB_PAGEUP, 0&)
-lngRet = SendMessage(ctl.Parent.hwnd, WM_HSCROLL, SB_PAGELEFT, 0&)
+lngRet = SendMessage(ctl.Parent.hWnd, WM_VSCROLL, SB_PAGEUP, 0&)
+lngRet = SendMessage(ctl.Parent.hWnd, WM_HSCROLL, SB_PAGELEFT, 0&)
 Next lngTemp
 
 ' Start Screen Redraws

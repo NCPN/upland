@@ -36,7 +36,7 @@ End Type
 Private Declare Function IsClipboardFormatAvailable Lib "user32" (ByVal wFormat As Integer) As Long
 
 'Open the clipboard to read
-Private Declare Function OpenClipboard Lib "user32" (ByVal hwnd As Long) As Long
+Private Declare Function OpenClipboard Lib "user32" (ByVal hWnd As Long) As Long
 
 'Get a pointer to the bitmap/metafile
 Private Declare Function GetClipboardData Lib "user32" (ByVal wFormat As Integer) As Long

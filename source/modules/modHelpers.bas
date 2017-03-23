@@ -176,10 +176,10 @@ Dim B As Boolean
 End Function
 
 
-Public Function ShowErrorMsg(ByVal context As String, ByVal code As Long) 'IJLERR)
+Public Function ShowErrorMsg(ByVal Context As String, ByVal Code As Long) 'IJLERR)
   Dim message As String
   
-  message = "IJL ERROR: [" & code & "]" & " - " & context
+  message = "IJL ERROR: [" & Code & "]" & " - " & Context
   
   Call MsgBox(message, vbExclamation, "Intel(R) JPEG Library")
 
