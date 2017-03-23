@@ -637,7 +637,7 @@ Public Sub PrintFields(strObjectName)
 Dim db As Database
 Dim tdf As TableDef
 Dim qdf As QueryDef
-Dim fld As Field
+Dim fld As field
 Dim strOutput As String
 
 On Error Resume Next
@@ -974,7 +974,7 @@ Public Function fPathParsing(fullPath As String, PathFormat As String) As String
             '? fPathParsing("C:\work\Seasonals.xls", "E")
             '.xls
 Dim i As Integer, f As String, Found As Integer
-Dim DirName As String, FName As String, Ext As String
+Dim DirName As String, fName As String, Ext As String
   
   fullPath = Trim$(fullPath)
 '
@@ -997,29 +997,29 @@ Dim DirName As String, FName As String, Ext As String
 ' Get File name and extension
 '
   If f = "." Or f = ".." Then
-    FName = f
+    fName = f
   Else
     i = InStr(f, ".")
     If i > 0 Then
-      FName = Left$(f, i - 1)
+      fName = Left$(f, i - 1)
       Ext = Mid$(f, i)
     Else
-      FName = f
+      fName = f
     End If
   End If
 Select Case PathFormat
     Case "D"
         fPathParsing = DirName
     Case "N"
-        fPathParsing = FName
+        fPathParsing = fName
     Case "E"
         fPathParsing = Ext
     Case "DN"
-        fPathParsing = DirName & FName
+        fPathParsing = DirName & fName
     Case "NE"
-        fPathParsing = FName & Ext
+        fPathParsing = fName & Ext
     Case "DNE"
-        fPathParsing = DirName & FName & Ext
+        fPathParsing = DirName & fName & Ext
     Case Else
         fPathParsing = fullPath
 

@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_UI
 ' Level:        Application module
-' Version:      1.12
+' Version:      1.13
 ' Description:  Application User Interface related functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, April 2015
@@ -28,6 +28,9 @@ Option Explicit
 '               BLC, 3/17/2016 -1.10 - added SetControlBackcolor(), CTRL_DEFAULT_BACKCOLOR, Check1000hrFuels
 '               BLC, 3/29/2016 -1.11 - added SetControlHighlight()
 '               BLC, 4/1/2016 - 1.12 - added AddTallyValue()
+'               BLC, 3/22/2017 - 1.13 - added SortListForm() from big rivers,
+'                                       moved to mod_Forms (6/1/2016 big rivers dev):
+'                                       CaptureEscapeKey(), SetFormOpacity()
 ' =================================
 
 ' ---------------------------------
@@ -45,62 +48,19 @@ Public NoData As Scripting.Dictionary
 
 ' -- Functions --
 Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" _
-  (ByVal hwnd As Long, _
+  (ByVal hWnd As Long, _
    ByVal nIndex As Long) As Long
  
 Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" _
-  (ByVal hwnd As Long, _
+  (ByVal hWnd As Long, _
    ByVal nIndex As Long, _
    ByVal dwNewLong As Long) As Long
  
 Private Declare Function SetLayeredWindowAttributes Lib "user32" _
-  (ByVal hwnd As Long, _
+  (ByVal hWnd As Long, _
    ByVal crKey As Long, _
    ByVal bAlpha As Byte, _
    ByVal dwFlags As Long) As Long
-
-' =================================
-' SUB:          CaptureEscapeKey
-' Description:  Handles ESCAPE key actions for certain forms
-' Assumptions:
-' Note:         Handles ESC for the following modal forms:
-'               fsub_Soil_Stability, fsub_Fuels_LD, frm_Locations, frm_Unknown_Species
-' Parameters:   KeyCode - keycode detected (key down)
-' Returns:      -
-' Throws:       none
-' References:
-'  John Spencer, 3/11/2010
-'  http://msgroups.net/microsoft.public.access/how-best-to-disable-esc-key-on-form/21881
-' Source/date:  Bonnie Campbell, August 21, 2015 - for NCPN tools
-' Revisions:    BLC, 8/21/2015 - initial version
-' =================================
-Public Sub CaptureEscapeKey(KeyCode As Integer)
-On Error GoTo Err_Handler
-
-    If KeyCode = vbKeyEscape Then
-        If MsgBox("Undo changes?" & vbCrLf & vbCrLf & _
-            "If yes, this may undo all recent changes (not just for a single field)." & vbCrLf & vbCrLf & _
-            "Note:" & vbCrLf & _
-            "If your cursor was in a..." & vbCrLf & _
-            "+ text field, dropdown listbox, or checkbox field >> ALL changes will be undone." & vbCrLf & _
-            "+ text field changed immediately before you clicked ESCAPE >> only the text field changes will be undone." & vbCrLf & vbCrLf & _
-            "Previously saved data will remain unchanged.", vbYesNo, "ESCAPE Pressed!") = vbNo Then
-            KeyCode = 0
-        End If
-        'KeyCode = 0
-    End If
-    
-Exit_Sub:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - CaptureEscapeKey[mod_App_UI])"
-    End Select
-    Resume Exit_Sub
-End Sub
 
 ' =================================
 ' SUB:          RollupReportbyPark
@@ -383,45 +343,6 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Function
-
-' ---------------------------------
-' SUB:          SetFormOpacity
-' Description:  Sets form opacity
-' Assumptions:  place in forms module mod_Form for protocols which utilize that module
-' Parameters:   frm - form to prepare
-'               sngOpacity - opacity of the form (single)
-'               TColor - color for the form display (long)
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:
-' Thenman, September 24, 2009
-' http://www.access-programmers.co.uk/forums/showthread.php?t=154907
-' Adapted:      Bonnie Campbell, February 9, 2016 - for NCPN tools
-' Revisions:
-'   BLC, 2/9/2016  - initial version
-' ---------------------------------
-Public Sub SetFormOpacity(frm As Form, sngOpacity As Single, TColor As Long)
-On Error GoTo Err_Handler
-
-    Dim lngStyle As Long
-    
-    ' get the current window style, then set transparency
-    lngStyle = GetWindowLong(frm.hwnd, GWL_EXSTYLE)
-    SetWindowLong frm.hwnd, GWL_EXSTYLE, lngStyle Or WS_EX_LAYERED
-    SetLayeredWindowAttributes frm.hwnd, TColor, (sngOpacity * 255), LWA_ALPHA
-    
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - SetFormOpacity[mod_App_UI])"
-    End Select
-    Resume Exit_Handler
-End Sub
 
 ' ---------------------------------
 ' SUB:          SetControlBackcolor
@@ -799,6 +720,82 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - DisableTallyButtons[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          SortListForm
+' Description:  form label sort on click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:
+'   pere_de_chipstic, August 5, 2012
+'   http://www.utteraccess.com/forum/Sort-Continuous-Form-Hea-t1991553.html
+'   Allen Browne, June 28, 2006
+'   https://bytes.com/topic/access/answers/506322-using-orderby-multiple-fields
+' Source/date:  Bonnie Campbell, January 19, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 1/19/2017 - initial version
+'   BLC - 1/31/2017 - adjusted to accommodate templates list
+'   BLC - 2/21/2017 - adjusted to accommodate Contact list
+' ---------------------------------
+Public Sub SortListForm(frm As Form, ctrl As Control)
+On Error GoTo Err_Handler
+
+    Dim strSort As String
+    
+    'default
+    strSort = ""
+    
+    'set sort field
+    Select Case Replace(ctrl.name, "lbl", "")
+        Case "Email"
+            strSort = "Email"
+        Case "HdrID"
+            strSort = "ID"
+            Select Case frm.name
+                Case "ContactList"
+                    strSort = "c.ID"
+            End Select
+        Case "Name"
+            strSort = "LastName"
+        Case "Template"
+            strSort = "TemplateName"
+        Case "SOPNum"
+            strSort = "SOPNumber"
+        Case "SOP"
+            strSort = "FullName"
+        Case "Syntax"
+            strSort = "Syntax"
+        Case "Version"
+            strSort = "Version"
+        Case "EffectiveDate"
+            strSort = "EffectiveDate"
+        Case ""
+    End Select
+
+    'set the sort
+    If InStr(frm.OrderBy, strSort) = 0 Then
+        frm.OrderBy = strSort
+    ElseIf right(frm.OrderBy, 4) = "Desc" Then
+        frm.OrderBy = strSort
+    Else
+        frm.OrderBy = strSort & " Desc"
+    End If
+    
+    frm.OrderByOn = True
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SortListForm[mod_App_UI form])"
     End Select
     Resume Exit_Handler
 End Sub

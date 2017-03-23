@@ -286,9 +286,9 @@ Private Function sLeftOfNull(ByVal sIn As String)
 End Function
 
 
-Public Property Get Action() As Integer
+Public Property Get action() As Integer
     'Return object's Action property
-    Action = iAction
+    action = iAction
 End Property
 
 Private Function sAPIFilter(sIn)
@@ -394,12 +394,12 @@ Public Property Let InitDir(vNewValue As String)
     sInitDir = vNewValue
 End Property
 
-Public Property Get Max() As Long
+Public Property Get max() As Long
     'Return object's Max property
-    Max = lMax
+    max = lMax
 End Property
 
-Public Property Let Max(vNewValue As Long)
+Public Property Let max(vNewValue As Long)
     'Assign object's - property
     lMax = vNewValue
 End Property
@@ -617,7 +617,7 @@ End Sub
 Private Sub Class_Initialize()
 Me.hdc = 0
 Me.MaxFileSize = 256
-Me.Max = 256
+Me.max = 256
 Me.FileTitle = vbNullString
 Me.DialogTitle = "Please Select a File"
 Me.InitDir = vbNullString

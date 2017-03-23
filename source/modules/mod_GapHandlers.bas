@@ -160,7 +160,7 @@ Function UpdateBasalGaps(strTransectID As String, strField As String) As Integer
     Dim intField As Integer  ' The integer portion of the field name will serve as Gap_ID.
     Dim intField1 As Integer
     Dim intField2 As Integer
-    Dim Result As Byte
+    Dim result As Byte
     
     If IsNull(strField) Then
       UpdateBasalGaps = 0  ' Field name is null, disregard.
@@ -172,8 +172,8 @@ Function UpdateBasalGaps(strTransectID As String, strField As String) As Integer
       GoTo Exit_Function
     End If
     intField = right(strField, Len(strField) - 1) ' Get the field number
-    Result = intField Mod 2
-    If Result = 0 Then   ' Set up the field numbers properly.
+    result = intField Mod 2
+    If result = 0 Then   ' Set up the field numbers properly.
       intField2 = intField
       intField1 = intField - 1
     Else
@@ -188,11 +188,11 @@ Function UpdateBasalGaps(strTransectID As String, strField As String) As Integer
         UpdateBasalGaps = 1
         GoTo Exit_Function
       End If
-      If Result = 1 And IsNull(Forms!frm_Data_Entry!frm_Canopy_Transect.Form!fsub_Basal_Gap.Form!(strFieldName2)) Then
+      If result = 1 And IsNull(Forms!frm_Data_Entry!frm_Canopy_Transect.Form!fsub_Basal_Gap.Form!(strFieldName2)) Then
         UpdateBasalGaps = 0  ' If add and 1st field of pair, then there is no error if second is null.
         GoTo Exit_Function   ' Give them a chance to enter the second one
       End If
-      If Result = 0 And IsNull(Forms!frm_Data_Entry!frm_Canopy_Transect.Form!fsub_Basal_Gap.Form!(strFieldName1)) Then
+      If result = 0 And IsNull(Forms!frm_Data_Entry!frm_Canopy_Transect.Form!fsub_Basal_Gap.Form!(strFieldName1)) Then
         MsgBox "Start required."
         UpdateBasalGaps = 1  ' If add and 2nd field of pair, abort for missing start.
         GoTo Exit_Function
@@ -242,7 +242,7 @@ Function UpdateBasalGaps(strTransectID As String, strField As String) As Integer
       Set Gaps = db.OpenRecordset(strSQL)
       Gaps.MoveFirst
       Gaps.Edit
-      If Result = 0 Then
+      If result = 0 Then
         If Gaps!Gap_Start - Forms!frm_Data_Entry!frm_Canopy_Transect.Form!fsub_Basal_Gap.Form!(strFieldName2) < 20 Then
           MsgBox "You cannot have gaps < 20cm."
           UpdateBasalGaps = 1  ' Indicate no update.
@@ -360,7 +360,7 @@ Function UpdateCanopyGaps(strTransectID As String, strField As String) As Intege
     Dim intField As Integer  ' The integer portion of the field name will serve as Gap_ID.
     Dim intField1 As Integer
     Dim intField2 As Integer
-    Dim Result As Byte
+    Dim result As Byte
     
     If IsNull(strField) Then
       UpdateCanopyGaps = 0  ' Field name is null, disregard.
@@ -372,8 +372,8 @@ Function UpdateCanopyGaps(strTransectID As String, strField As String) As Intege
       GoTo Exit_Function
     End If
     intField = right(strField, Len(strField) - 1) ' Get the field number
-    Result = intField Mod 2
-    If Result = 0 Then   ' Set up the field numbers properly.
+    result = intField Mod 2
+    If result = 0 Then   ' Set up the field numbers properly.
       intField2 = intField
       intField1 = intField - 1
     Else
@@ -388,11 +388,11 @@ Function UpdateCanopyGaps(strTransectID As String, strField As String) As Intege
         UpdateCanopyGaps = 1
         GoTo Exit_Function
       End If
-      If Result = 1 And IsNull(Forms!frm_Data_Entry!frm_Canopy_Transect.Form!fsub_Canopy_Gap.Form!(strFieldName2)) Then
+      If result = 1 And IsNull(Forms!frm_Data_Entry!frm_Canopy_Transect.Form!fsub_Canopy_Gap.Form!(strFieldName2)) Then
         UpdateCanopyGaps = 0  ' If add and 1st field of pair, then there is no error if second is null.
         GoTo Exit_Function   ' Give them a chance to enter the second one
       End If
-      If Result = 0 And IsNull(Forms!frm_Data_Entry!frm_Canopy_Transect.Form!fsub_Canopy_Gap.Form!(strFieldName1)) Then
+      If result = 0 And IsNull(Forms!frm_Data_Entry!frm_Canopy_Transect.Form!fsub_Canopy_Gap.Form!(strFieldName1)) Then
         MsgBox "Start required."
         UpdateCanopyGaps = 1  ' If add and 2nd field of pair, abort for missing start.
         GoTo Exit_Function
@@ -442,7 +442,7 @@ Function UpdateCanopyGaps(strTransectID As String, strField As String) As Intege
       Set Gaps = db.OpenRecordset(strSQL)
       Gaps.MoveFirst
       Gaps.Edit
-      If Result = 0 Then
+      If result = 0 Then
         If Forms!frm_Data_Entry!frm_Canopy_Transect.Form!fsub_Canopy_Gap.Form!(strFieldName2) - Gaps!Start < 20 Then
           MsgBox "You cannot have gaps < 20cm."
           UpdateCanopyGaps = 1  ' Indicate no update.

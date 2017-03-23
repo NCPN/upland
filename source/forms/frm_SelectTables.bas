@@ -126,7 +126,7 @@ Dim strValues As String
 
 On Error GoTo Err_Handler
 
-If Me!lstTables.ItemsSelected.count = 0 Then
+If Me!lstTables.ItemsSelected.Count = 0 Then
     MsgBox "There are no tables selected.", vbExclamation, "No Tables Selected"
 Else
     strFilename = XML_Read("FileName", Nz(Me.OpenArgs, ""))

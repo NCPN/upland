@@ -219,7 +219,7 @@ Private Sub Button_Print_Click()
 On Error GoTo Err_Button_Print
 
     Dim objWord As Word.Application
-    Dim fld As Field
+    Dim fld As field
     Dim rst As ADODB.Recordset
     Dim Mrst As ADODB.Recordset
     Dim cat As ADOX.Catalog
