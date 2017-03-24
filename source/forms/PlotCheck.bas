@@ -7,6 +7,7 @@ Begin Form
     NavigationButtons = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
+    FilterOn = NotDefault
     OrderByOn = NotDefault
     AllowEdits = NotDefault
     ScrollBars =2
@@ -18,12 +19,13 @@ Begin Form
     GridY =24
     Width =7560
     DatasheetFontHeight =11
-    ItemSuffix =42
-    Left =9030
-    Top =3315
-    Right =17760
-    Bottom =14190
+    ItemSuffix =44
+    Left =3465
+    Top =2805
+    Right =12195
+    Bottom =13680
     DatasheetGridlinesColor =14806254
+    Filter ="[FieldCheck]=1"
     OrderBy ="TemplateName"
     RecSrcDt = Begin
         0x0680db994fd0e440
@@ -43,7 +45,7 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
-    FilterOnLoad =0
+    FilterOnLoad =255
     ShowPageMargins =0
     DisplayOnSharePointSite =1
     AllowLayoutView =0
@@ -189,7 +191,6 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin Label
-                    Visible = NotDefault
                     OverlapFlags =93
                     Left =120
                     Top =960
@@ -354,7 +355,7 @@ Begin Form
                     FontSize =9
                     TabIndex =2
                     BorderColor =10921638
-                    ForeColor =4210752
+                    ForeColor =11916796
                     Name ="tbxID"
                     ControlSource ="ID"
                     GridlineColor =10921638
@@ -363,6 +364,73 @@ Begin Form
                     LayoutCachedTop =960
                     LayoutCachedWidth =1080
                     LayoutCachedHeight =1275
+                    ForeThemeColorIndex =9
+                    ForeTint =40.0
+                End
+                Begin CommandButton
+                    TabStop = NotDefault
+                    OverlapFlags =215
+                    Left =5460
+                    Top =180
+                    Width =504
+                    TabIndex =3
+                    ForeColor =4210752
+                    Name ="btnRunChecks"
+                    Caption ="Run All Checks"
+                    ControlTipText ="Run all checks"
+                    GridlineColor =10921638
+                    ImageData = Begin
+                        0x2800000010000000100000000100200000000000000000000000000000000000 ,
+                        0x000000000000000000000000000000000000000000000000a08070ff604830ff ,
+                        0x604830ff604830ff604830ff604830ff604830ff604830ff604830ff604830ff ,
+                        0x604830ff000000000000000000000000a08070ff604830ffa08070ffffffffff ,
+                        0xb0a090ffb0a090ffb0a090ffb0a090ffb0a090ffb0a090ffb0a090ffb0a090ff ,
+                        0x604830ff00000000a08070ff604830ffa08070ffffffffffa08070ffffffffff ,
+                        0xfffffffffff8fffff0f0f0fff0e8e0fff0e0d0ffe0d0d0ffe0c8c0ffb0a090ff ,
+                        0x604830ff00000000a08070ffffffffffa08070ffffffffffa08070ffffffffff ,
+                        0xffffffffd0f0e0ff106850fff0f0f0fff0e0e0fff0d8d0ffe0d0c0ffb0a090ff ,
+                        0x604830ff00000000a08070ffffffffffa08070ffffffffffa08070ffffffffff ,
+                        0xffffffff209870ff209870ff209870ff209870ffc0c8c0ffe0d8d0ffb0a090ff ,
+                        0x604830ff00000000a08070ffffffffffa08070ffffffffffa08870ffffffffff ,
+                        0xffffffffe0f0f0ff209870fffff8f0ffc0e0d0ff209870fff0d8d0ffb0a090ff ,
+                        0x604830ff00000000a08070ffffffffffa08870ffffffffffa08880ffffffffff ,
+                        0xfffffffffffffffffffffffffffffffffff8f0ff209870fff0e0e0ffb0a090ff ,
+                        0x604830ff00000000a08870ffffffffffa08880ffffffffffb09080ffffffffff ,
+                        0xffffffff209870fffffffffffffffffffff8fffff0f0f0fff0e8e0ffb0a090ff ,
+                        0x604830ff00000000a08880ffffffffffb09080ffffffffffb09080ffffffffff ,
+                        0xffffffff209870ffb0d8c0ffffffffff107850ffd0e0e0fff0f0f0ffb0a090ff ,
+                        0x604830ff00000000b09080ffffffffffb09080ffffffffffb09880ffffffffff ,
+                        0xffffffffd0e8e0ff209870ff209870ff209870ff107850ffd0b8b0ffb0a090ff ,
+                        0x604830ff00000000b09080ffffffffffb09880ffffffffffb09880ffffffffff ,
+                        0xffffffffffffffffffffffffffffffff209870ffd0d8d0ffa09080ff605040ff ,
+                        0x604830ff00000000b09880ffffffffffb09880ffffffffffb0a090ffffffffff ,
+                        0xffffffffffffffffffffffffffffffffffffffffd0b8b0ffd0c8c0ff604830ff ,
+                        0xd0b0a09000000000b09880ffffffffffb0a090ffffffffffc0a090ffffffffff ,
+                        0xffffffffffffffffffffffffffffffffffffffffc0a8a0ff604830ffd0b0a090 ,
+                        0x0000000000000000b0a090ffffffffffc0a090ffffffffffc0a090ffd0c0b0ff ,
+                        0xd0c0b0ffd0c0b0ffd0b8b0ffd0b8a0ffc0b0a0ffc0a090ffd0b0a09000000000 ,
+                        0x0000000000000000c0a090ffffffffffc0a090ffe0c8b0ffe0c8c0ffe0d0c0ff ,
+                        0xe0d0c0ffe0d0c0ffe0d0c0ffd0b8b0ffd0b0a090000000000000000000000000 ,
+                        0x0000000000000000b09890ffd0c0b0ffd0c0b0ffd0c0b0ffd0c0b0ffd0c0b0ff ,
+                        0xd0b8b0ffc0b0a0ffd0b0a0900000000000000000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
+
+                    LayoutCachedLeft =5460
+                    LayoutCachedTop =180
+                    LayoutCachedWidth =5964
+                    LayoutCachedHeight =540
+                    BackColor =14136213
+                    BorderColor =14136213
+                    HoverColor =15060409
+                    PressedColor =9592887
+                    HoverForeColor =4210752
+                    PressedForeColor =4210752
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
+                    Overlaps =1
                 End
             End
         End
@@ -372,7 +440,6 @@ Begin Form
             Height =420
             Name ="Detail"
             OnMouseMove ="[Event Procedure]"
-            AutoHeight =255
             AlternateBackColor =15921906
             AlternateBackThemeColorIndex =1
             AlternateBackShade =95.0
@@ -559,6 +626,34 @@ Begin Form
                     WebImagePaddingBottom =1
                     Overlaps =1
                 End
+                Begin TextBox
+                    TabStop = NotDefault
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =540
+                    Top =60
+                    Width =360
+                    Height =300
+                    FontSize =9
+                    TabIndex =4
+                    BorderColor =8355711
+                    ForeColor =690698
+                    Name ="tbxNumRecords"
+                    DefaultValue ="0"
+                    GridlineColor =10921638
+
+                    LayoutCachedLeft =540
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =900
+                    LayoutCachedHeight =360
+                    BorderThemeColorIndex =0
+                    BorderTint =50.0
+                    BorderShade =100.0
+                    ForeThemeColorIndex =-1
+                    ForeTint =50.0
+                End
             End
         End
         Begin FormFooter
@@ -709,12 +804,12 @@ On Error GoTo Err_Handler
     lblDirections.ForeColor = lngLtBlue
     
     'set hover
-    btnDelete.HoverColor = lngGreen
-    btnViewSQL.HoverColor = lngGreen
-    btnOpenTable.HoverColor = lngGreen
-    
-    btnDelete.Caption = StringFromCodepoint(uDelete)
-    btnDelete.ForeColor = lngRed
+'    btnDelete.HoverColor = lngGreen
+'    btnViewSQL.HoverColor = lngGreen
+'    btnOpenTable.HoverColor = lngGreen
+'
+'    btnDelete.Caption = StringFromCodepoint(uDelete)
+'    btnDelete.ForeColor = lngRed
 
     'enable textbox to ensure scrollbar is available for longer text
     tbxTemplate.Enabled = True
@@ -1029,7 +1124,7 @@ Private Sub lblHdrID_Click()
 On Error GoTo Err_Handler
 
     'set the sort
-    SortListForm Me, Me.lblHdrID
+'    SortListForm Me, Me.lblHdrID
     
 Exit_Handler:
     Exit Sub
@@ -1061,7 +1156,7 @@ Private Sub lblVersion_Click()
 On Error GoTo Err_Handler
 
     'set the sort
-    SortListForm Me, Me.lblVersion
+'    SortListForm Me, Me.lblVersion
 
 Exit_Handler:
     Exit Sub
@@ -1125,7 +1220,7 @@ Private Sub lblSyntax_Click()
 On Error GoTo Err_Handler
 
     'set the sort
-    SortListForm Me, Me.lblSyntax
+'    SortListForm Me, Me.lblSyntax
 
 Exit_Handler:
     Exit Sub
@@ -1157,7 +1252,7 @@ Private Sub lblEffectiveDate_Click()
 On Error GoTo Err_Handler
 
     'set the sort
-    SortListForm Me, Me.lblEffectiveDate
+'    SortListForm Me, Me.lblEffectiveDate
 
 Exit_Handler:
     Exit Sub

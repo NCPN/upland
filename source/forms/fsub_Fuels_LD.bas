@@ -19,7 +19,6 @@ Begin Form
     Width =12960
     DatasheetFontHeight =9
     ItemSuffix =140
-    Left =-3825
     Top =3270
     Right =9030
     Bottom =7665
@@ -2234,17 +2233,30 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =1
+                    BackColor =62207
                     Name ="1HR_A"
                     ControlSource ="1HR_A"
                     StatusBarText ="One hour fuel intercept for transect A"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
                     EventProcPrefix ="Ctl1HR_A"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =1440
                     LayoutCachedTop =1020
                     LayoutCachedWidth =2520
                     LayoutCachedHeight =1320
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ffffff00020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -2269,17 +2281,30 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =4
+                    BackColor =62207
                     Name ="1HR_B"
                     ControlSource ="1HR_B"
                     StatusBarText ="One hour fuel intercept for transect B"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
                     EventProcPrefix ="Ctl1HR_B"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =1440
                     LayoutCachedTop =1320
                     LayoutCachedWidth =2520
                     LayoutCachedHeight =1620
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ffffff00020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -2304,17 +2329,30 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =7
+                    BackColor =62207
                     Name ="1HR_C"
                     ControlSource ="1HR_C"
                     StatusBarText ="One hour fuel intercept for transect C"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
                     EventProcPrefix ="Ctl1HR_C"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =1440
                     LayoutCachedTop =1620
                     LayoutCachedWidth =2520
                     LayoutCachedHeight =1920
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ffffff00020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -2339,16 +2377,29 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =10
+                    BackColor =62207
                     Name ="DI_1HR"
                     ControlSource ="1HR_D"
                     StatusBarText ="One hour fuel intercept for transect D"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =1440
                     LayoutCachedTop =1920
                     LayoutCachedWidth =2520
                     LayoutCachedHeight =2220
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ffffff00020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                 End
                 Begin TextBox
                     SpecialEffect =0
@@ -2360,18 +2411,30 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =2
-                    BackColor =13434828
+                    BackColor =62207
                     Name ="10HR_A"
                     ControlSource ="10HR_A"
                     StatusBarText ="Ten hour fuel intercept for transect A"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
                     EventProcPrefix ="Ctl10HR_A"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xccff990000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =2520
                     LayoutCachedTop =1020
                     LayoutCachedWidth =3600
                     LayoutCachedHeight =1320
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ccff9900020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                     Begin
                         Begin Label
                             BackStyle =1
@@ -2398,18 +2461,30 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =5
-                    BackColor =13434828
+                    BackColor =62207
                     Name ="10HR_B"
                     ControlSource ="10HR_B"
                     StatusBarText ="Ten hour fuel intercept for transect B"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
                     EventProcPrefix ="Ctl10HR_B"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xccff990000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =2520
                     LayoutCachedTop =1320
                     LayoutCachedWidth =3600
                     LayoutCachedHeight =1620
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ccff9900020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -2434,18 +2509,30 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =8
-                    BackColor =13434828
+                    BackColor =62207
                     Name ="10HR_C"
                     ControlSource ="10HR_C"
                     StatusBarText ="Ten hour fuel intercept for transect C"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
                     EventProcPrefix ="Ctl10HR_C"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xccff990000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =2520
                     LayoutCachedTop =1620
                     LayoutCachedWidth =3600
                     LayoutCachedHeight =1920
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ccff9900020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -2469,17 +2556,29 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =11
-                    BackColor =13434828
+                    BackColor =62207
                     Name ="DI_10HR"
                     ControlSource ="10HR_D"
                     StatusBarText ="Ten hour fuel intercept for transect D"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xccff990000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =2520
                     LayoutCachedTop =1920
                     LayoutCachedWidth =3600
                     LayoutCachedHeight =2220
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ccff9900020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                 End
                 Begin TextBox
                     SpecialEffect =0
@@ -2491,17 +2590,30 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =3
+                    BackColor =62207
                     Name ="100HR_A"
                     ControlSource ="100HR_A"
                     StatusBarText ="Hundred hour fuel intercept for transect A"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
                     EventProcPrefix ="Ctl100HR_A"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =3600
                     LayoutCachedTop =1020
                     LayoutCachedWidth =4680
                     LayoutCachedHeight =1320
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ffffff00020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -2513,6 +2625,10 @@ Begin Form
                             Name ="100HR_A_Label"
                             Caption ="     100-hr    (1-3 in)"
                             EventProcPrefix ="Ctl100HR_A_Label"
+                            LayoutCachedLeft =3600
+                            LayoutCachedTop =600
+                            LayoutCachedWidth =4680
+                            LayoutCachedHeight =1020
                         End
                     End
                 End
@@ -2526,17 +2642,30 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =6
+                    BackColor =62207
                     Name ="100HR_B"
                     ControlSource ="100HR_B"
                     StatusBarText ="Hundred hour fuel intercept for transect B"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
                     EventProcPrefix ="Ctl100HR_B"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =3600
                     LayoutCachedTop =1320
                     LayoutCachedWidth =4680
                     LayoutCachedHeight =1620
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ffffff00020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                 End
                 Begin TextBox
                     SpecialEffect =0
@@ -2548,17 +2677,30 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =9
+                    BackColor =62207
                     Name ="100HR_C"
                     ControlSource ="100HR_C"
                     StatusBarText ="Hundred hour fuel intercept for transect C"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
                     EventProcPrefix ="Ctl100HR_C"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =3600
                     LayoutCachedTop =1620
                     LayoutCachedWidth =4680
                     LayoutCachedHeight =1920
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ffffff00020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                 End
                 Begin TextBox
                     SpecialEffect =0
@@ -2570,16 +2712,29 @@ Begin Form
                     Width =1080
                     Height =300
                     TabIndex =12
+                    BackColor =62207
                     Name ="DI_100HR"
                     ControlSource ="100HR_D"
                     StatusBarText ="Hundred hour fuel intercept for transect D"
                     FontName ="Tahoma"
                     OnKeyDown ="[Event Procedure]"
+                    ConditionalFormat = Begin
+                        0x0100000074000000020000000000000001000000000000000200000001000000 ,
+                        0x00000000fff20000000000000400000006000000090000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x3000000031003000300000002d00310000000000
+                    End
 
                     LayoutCachedLeft =3600
                     LayoutCachedTop =1920
                     LayoutCachedWidth =4680
                     LayoutCachedHeight =2220
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000010000000100000000000000fff20000010000003000 ,
+                        0x0300000031003000300000000000000000000000000000000000000000000004 ,
+                        0x0000000100000000000000ffffff00020000002d003100000000000000000000 ,
+                        0x000000000000000000000000
+                    End
                 End
                 Begin Label
                     OverlapFlags =85
@@ -2780,6 +2935,8 @@ Option Explicit
 ' Revisions:
 '       RDB, unknown - initial version
 '       BLC, 3/16/2016 - added error handling & documentation, handled litter/duff highlighting
+'       BLC, 3/23/2017 - revised naming convention for transect D 1, 10, & 100-hr fuel intercepts
+'                        from DI_1HR > 1HR_D, etc.
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler

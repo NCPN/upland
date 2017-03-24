@@ -20,13 +20,13 @@ Begin Form
     Width =16296
     DatasheetFontHeight =10
     ItemSuffix =213
-    Left =3390
-    Top =2100
-    Right =19710
-    Bottom =11205
+    Left =60
+    Top =90
+    Right =16605
+    Bottom =14550
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201603202"
-        "33521-783995270.729065'"
+    Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201703231"
+        "04002-289562463.760376'"
     RecSrcDt = Begin
         0x171e359b4cb5e440
     End
@@ -1349,6 +1349,7 @@ Begin Form
                     TabIndex =11
                     Name ="btnCoord"
                     Caption ="Change Plot Coordinates"
+                    OnClick ="[Event Procedure]"
 
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
@@ -1396,6 +1397,7 @@ Begin Form
                     TabIndex =13
                     Name ="btnComments"
                     Caption ="Add/Edit Comments"
+                    OnClick ="[Event Procedure]"
 
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
@@ -1988,39 +1990,9 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
-' ---------------------------------
-' SUB:          Form_Close
-' Description:  Handles form closing actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:  John R. Boetsch - June, 2006
-' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
-' Revisions:
-'   JRB, 6/x/2006  - initial version
-'   BLC, 3/22/2017 - added documentation, error handling
-' ---------------------------------
-Private Sub Form_Close()
-On Error GoTo Err_Handler
-
-    If IsLoaded("frm_Data_Gateway") Then
-        Forms("frm_Data_Gateway").Requery
-    End If
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Form_Close[Form_frm_Data_Entry])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
+' =================================
+'   No Data Checkboxes
+' =================================
 ' ---------------------------------
 ' SUB:          cbxNoSaplings_Click
 ' Description:  Handles No Saplings checkbox actions
@@ -2477,8 +2449,8 @@ Private Sub cboLocation_ID_AfterUpdate()
 End Sub
 
 ' ---------------------------------
-' SUB:          btnClose_CLick
-' Description:  Handles close button actions
+' SUB:          txtStart_Date_AfterUpdate
+' Description:  Handles form closing actions
 ' Assumptions:  -
 ' Parameters:   -
 ' Returns:      N/A
@@ -2488,57 +2460,28 @@ End Sub
 ' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
 ' Revisions:
 '   JRB, 6/x/2006  - initial version
-'   BLC, 3/22/2017 - added documentation, renamed cmdClose to btnClose
-' ---------------------------------
-Private Sub cmdClose_Click()
-    On Error GoTo Err_Handler
-
-    DoCmd.RunCommand acCmdSaveRecord
-    DoCmd.Close , , acSaveNo
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - btnClose_Click[Form_frm_Data_Entry])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          Update_Loc_Info
-' Description:  Updates associated location information when Location_ID is updated
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   GetCriteriaString
-' Source/date:  Simon Kingston - Sept. 2006
-' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
-' Revisions:
-'   SK, 9/x/2006  - initial version
 '   BLC, 3/22/2017 - added documentation, error handling
 ' ---------------------------------
-Public Sub Update_Loc_Info()
-On Error GoTo Err_Handler
-    
-    Dim strXY As Variant
-    Dim strCriteria As String
-    
-    If IsNull(Me!txtLocation_ID) Then
-        Me!txtXY = Null
-        Me!txtUnit_Code = Null
-    Else
-        strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.name, "txtLocation_ID")
+Private Sub txtStart_Date_AfterUpdate()
+        Dim db As DAO.Database
+        Dim Events As DAO.Recordset
+        Dim strSQL As String
         
-        strXY = "E: " & Nz(DLookup("E_Coord", "tbl_Locations", strCriteria), "")
-        strXY = strXY & "  N: " & Nz(DLookup("N_Coord", "tbl_Locations", strCriteria), "")
-        Me!txtXY = strXY
-        Me!txtUnit_Code = DLookup("Unit_Code", "tbl_Locations", strCriteria)
+    On Error GoTo Err_Handler
+    
+    ' Check for duplicate date
+    strSQL = "SELECT Event_ID FROM tbl_Events WHERE [Location_ID] = '" & Me!cboLocation_ID & "' AND [Start_Date] = #" & Me!Start_Date & "#"
+'    MsgBox strSQL
+    Set db = CurrentDb
+    Set Events = db.OpenRecordset(strSQL)
+    If Not Events.EOF Then
+      MsgBox " Duplicate visit date - update cancelled."
+      Me.Undo
+      Events.Close
+      DoCmd.Close
+      GoTo Exit_Handler
     End If
+    Events.Close
 
 Exit_Handler:
     Exit Sub
@@ -2547,7 +2490,7 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Form_Load[Form_frm_Data_Entry])"
+            "Error encountered (#" & Err.Number & " - txtStart_Date_AfterUpdate[Form_frm_Data_Entry])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -2627,53 +2570,6 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
-' SUB:          txtStart_Date_AfterUpdate
-' Description:  Handles form closing actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:  John R. Boetsch - June, 2006
-' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
-' Revisions:
-'   JRB, 6/x/2006  - initial version
-'   BLC, 3/22/2017 - added documentation, error handling
-' ---------------------------------
-Private Sub txtStart_Date_AfterUpdate()
-        Dim db As DAO.Database
-        Dim Events As DAO.Recordset
-        Dim strSQL As String
-        
-    On Error GoTo Err_Handler
-    
-    ' Check for duplicate date
-    strSQL = "SELECT Event_ID FROM tbl_Events WHERE [Location_ID] = '" & Me!cboLocation_ID & "' AND [Start_Date] = #" & Me!Start_Date & "#"
-'    MsgBox strSQL
-    Set db = CurrentDb
-    Set Events = db.OpenRecordset(strSQL)
-    If Not Events.EOF Then
-      MsgBox " Duplicate visit date - update cancelled."
-      Me.Undo
-      Events.Close
-      DoCmd.Close
-      GoTo Exit_Handler
-    End If
-    Events.Close
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - txtStart_Date_AfterUpdate[Form_frm_Data_Entry])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
 ' SUB:          btnCoord_Click
 ' Description:  Handles coordinate button actions
 ' Assumptions:  -
@@ -2713,8 +2609,40 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
-' SUB:          Form_Close
-' Description:  Handles form closing actions
+' SUB:          btnClose_CLick
+' Description:  Handles close button actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John R. Boetsch - June, 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, renamed cmdClose to btnClose
+' ---------------------------------
+Private Sub btnClose_Click()
+    On Error GoTo Err_Handler
+
+    DoCmd.RunCommand acCmdSaveRecord
+    DoCmd.Close , , acSaveNo
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnClose_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnComments_Click
+' Description:  Handles comment button click actions
 ' Assumptions:  -
 ' Parameters:   -
 ' Returns:      N/A
@@ -2784,7 +2712,7 @@ End Sub
 Private Sub btnPlotQAQC_Click()
 On Error GoTo Err_Handler
 
-    DoCmd.OpenForm "FieldQAQC", acNormal, , , , acDialog, Me.Plot_ID
+    DoCmd.OpenForm "PlotCheck", acNormal, , , , acDialog, Me.Plot_ID
 
 Exit_Handler:
     Exit Sub
@@ -2794,6 +2722,83 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - btnPlotQAQC_Click[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Form_Close
+' Description:  Handles form closing actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  John R. Boetsch - June, 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub Form_Close()
+On Error GoTo Err_Handler
+
+    If IsLoaded("frm_Data_Gateway") Then
+        Forms("frm_Data_Gateway").Requery
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Close[Form_frm_Data_Entry])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Update_Loc_Info
+' Description:  Updates associated location information when Location_ID is updated
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   GetCriteriaString
+' Source/date:  Simon Kingston - Sept. 2006
+' Adapted:      Bonnie Campbell, March 22, 2017 - for NCPN tools
+' Revisions:
+'   SK, 9/x/2006  - initial version
+'   BLC, 3/22/2017 - added documentation, error handling
+' ---------------------------------
+Public Sub Update_Loc_Info()
+On Error GoTo Err_Handler
+    
+    Dim strXY As Variant
+    Dim strCriteria As String
+    
+    If IsNull(Me!txtLocation_ID) Then
+        Me!txtXY = Null
+        Me!txtUnit_Code = Null
+    Else
+        strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.name, "txtLocation_ID")
+        
+        strXY = "E: " & Nz(DLookup("E_Coord", "tbl_Locations", strCriteria), "")
+        strXY = strXY & "  N: " & Nz(DLookup("N_Coord", "tbl_Locations", strCriteria), "")
+        Me!txtXY = strXY
+        Me!txtUnit_Code = DLookup("Unit_Code", "tbl_Locations", strCriteria)
+    End If
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Load[Form_frm_Data_Entry])"
     End Select
     Resume Exit_Handler
 End Sub

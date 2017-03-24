@@ -31,6 +31,7 @@ Option Explicit
 '               BLC, 3/22/2017 - 1.13 - added SortListForm() from big rivers,
 '                                       moved to mod_Forms (6/1/2016 big rivers dev):
 '                                       CaptureEscapeKey(), SetFormOpacity()
+'               BLC, 3/23/2017 - 1.14 - added PopulateForm(), DeleteRecord() from big rivers
 ' =================================
 
 ' ---------------------------------
@@ -796,6 +797,156 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - SortListForm[mod_App_UI form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          PopulateForm
+' Description:  Populate a form using a specific record for edits
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, June 1, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 6/1/2016 - initial version
+'   BLC - 6/2/2016 - moved from forms (EventsList, TaglineList)
+'   BLC - 8/8/2016 - revised to use default table name
+'   BLC - 8/29/2016 - adjusted for Contact form (requires both Contact, Contact_Access data)
+'                     using usys_temp_qdf & adjusting ID to Contact_ID in final SQL
+'   BLC - 10/24/2016 - added ModWentworth form
+'   BLC - 1/12/2017 - code cleanup
+'   BLC - 2/14/2017 - added Task form
+' --------------------------------------------------------------------
+'   BLC - 3/23/2017 - adapted version for Upland db
+' --------------------------------------------------------------------
+' ---------------------------------
+Public Sub PopulateForm(frm As Form, ID As Long)
+On Error GoTo Err_Handler
+    Dim strSQL As String, strTable As String
+
+    With frm
+        'default
+        strTable = .name
+        
+        'find the form & populate its controls from the ID
+        Select Case .name
+            Case "Contact"
+                'requires Contact & Contact_Access data
+                Dim qdf As DAO.QueryDef
+                CurrentDb.QueryDefs("usys_temp_qdf").sql = GetTemplate("s_contact_access")
+                
+                strTable = "usys_temp_qdf"
+                'set form fields to record fields as datasource
+                'contact data
+                .Controls("tbxID").ControlSource = "c.ID"
+                .Controls("tbxFirst").ControlSource = "FirstName"
+                .Controls("tbxMI").ControlSource = "MiddleInitial"
+                .Controls("tbxLast").ControlSource = "LastName"
+                .Controls("tbxEmail").ControlSource = "Email"
+                .Controls("tbxUsername").ControlSource = "Username"
+                .Controls("tbxOrganization").ControlSource = "Organization"
+                .Controls("tbxPhone").ControlSource = "WorkPhone"
+                .Controls("tbxPosition").ControlSource = "PositionTitle"
+                .Controls("tbxExtension").ControlSource = "WorkExtension"
+                'contact_access data
+                .Controls("cbxUserRole").ControlSource = "Access_ID"
+            Case "Events"
+                strTable = "Event"
+                'set form fields to record fields as datasource
+                .Controls("tbxID").ControlSource = "ID"
+                .Controls("cbxSite").ControlSource = "Site_ID"
+                .Controls("cbxLocation").ControlSource = "Location_ID"
+                .Controls("tbxStartDate").ControlSource = "StartDate"
+                .Controls("lblMsgIcon").Caption = ""
+                .Controls("lblMsg").Caption = ""
+            Case "Feature"
+                'set form fields to record fields as datasource
+                .Controls("tbxID").ControlSource = "ID"
+                .Controls("tbxFeature").ControlSource = "Feature"
+                '.Controls("cbxLocation").ControlSource = ""
+        End Select
+    
+'        'save record changes from form first to avoid "Write Conflict" errors
+'        'where form & SQL are attempting to save record
+'        'frm.Dirty = False
+'
+'        If frm.Dirty Then
+'            MsgBox frm.Name & " DIRTY"
+'            frm.Dirty = False
+'        Else
+'            MsgBox frm.Name & " CLEAN"
+'        End If
+        
+        strSQL = GetTemplate("s_form_edit", "tbl" & PARAM_SEPARATOR & strTable & "|id" & PARAM_SEPARATOR & ID)
+        
+        'alter to retrieve proper ID
+        Select Case .name
+            Case "Contact"
+                strSQL = Replace(strSQL, " ID = ", " c.ID = ")
+        End Select
+        
+        .RecordSource = strSQL
+        
+    End With
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - PopulateForm[mod_App_UI])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          DeleteRecord
+' Description:  Delete a specific record from a table
+' Assumptions:  Assumes tbl name is properly capitalized & matches db table name
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, June 1, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 6/1/2016 - initial version
+'   BLC - 6/2/2016 - moved from forms (TaglineList, EventsList) to mod_App_UI
+'   BLC - 6/27/2016- revised to match
+' --------------------------------------------------------------------
+'   BLC - 3/23/2017 - adapted version for Upland db
+' --------------------------------------------------------------------
+' ---------------------------------
+Public Sub DeleteRecord(tbl As String, ID As Long)
+On Error GoTo Err_Handler
+    Dim strSQL As String
+
+    'find the form & populate its controls from the ID
+    strSQL = GetTemplate("d_form_record", "tbl" & PARAM_SEPARATOR & tbl & "|id" & PARAM_SEPARATOR & ID)
+    
+    If IsNull(strSQL) Or Len(strSQL) = 0 Then GoTo Exit_Handler
+Debug.Print strSQL
+    DoCmd.SetWarnings False
+    DoCmd.RunSQL strSQL
+    DoCmd.SetWarnings True
+    
+    'show deleted record message & clear
+    DoCmd.OpenForm "MsgOverlay", acNormal, , , , acDialog, _
+        tbl & PARAM_SEPARATOR & ID & _
+        "|Type" & PARAM_SEPARATOR & "info"
+        
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - DeleteRecord[mod_App_UI])"
     End Select
     Resume Exit_Handler
 End Sub

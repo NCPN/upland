@@ -19,13 +19,13 @@ Begin Form
     Cycle =1
     GridX =24
     GridY =24
-    Width =7560
+    Width =7920
     DatasheetFontHeight =11
     ItemSuffix =41
-    Left =8205
-    Top =2505
-    Right =16020
-    Bottom =7845
+    Left =3180
+    Top =4545
+    Right =11355
+    Bottom =9885
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x0680db994fd0e440
@@ -168,7 +168,7 @@ Begin Form
                 Begin Label
                     OverlapFlags =215
                     Left =45
-                    Width =6600
+                    Width =6975
                     Height =1260
                     BorderColor =8355711
                     ForeColor =16777164
@@ -176,14 +176,14 @@ Begin Form
                     Caption ="directions"
                     GridlineColor =10921638
                     LayoutCachedLeft =45
-                    LayoutCachedWidth =6645
+                    LayoutCachedWidth =7020
                     LayoutCachedHeight =1260
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
                 Begin Label
                     OverlapFlags =85
-                    Left =6420
+                    Left =6960
                     Top =1320
                     Width =900
                     Height =315
@@ -193,9 +193,9 @@ Begin Form
                     Name ="lblFormat"
                     Caption ="Format"
                     GridlineColor =10921638
-                    LayoutCachedLeft =6420
+                    LayoutCachedLeft =6960
                     LayoutCachedTop =1320
-                    LayoutCachedWidth =7320
+                    LayoutCachedWidth =7860
                     LayoutCachedHeight =1635
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
@@ -220,10 +220,10 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =85
+                    OverlapFlags =93
                     Left =1500
                     Top =1320
-                    Width =3300
+                    Width =3900
                     Height =315
                     FontSize =9
                     FontWeight =500
@@ -234,7 +234,7 @@ Begin Form
                     GridlineColor =10921638
                     LayoutCachedLeft =1500
                     LayoutCachedTop =1320
-                    LayoutCachedWidth =4800
+                    LayoutCachedWidth =5400
                     LayoutCachedHeight =1635
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
@@ -259,8 +259,8 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =85
-                    Left =4860
+                    OverlapFlags =87
+                    Left =5400
                     Top =1320
                     Width =1440
                     Height =315
@@ -270,16 +270,16 @@ Begin Form
                     Name ="lblEffectiveDate"
                     Caption ="Effective Date"
                     GridlineColor =10921638
-                    LayoutCachedLeft =4860
+                    LayoutCachedLeft =5400
                     LayoutCachedTop =1320
-                    LayoutCachedWidth =6300
+                    LayoutCachedWidth =6840
                     LayoutCachedHeight =1635
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =6720
+                    Left =7080
                     Top =120
                     Width =720
                     ForeColor =4210752
@@ -325,9 +325,9 @@ Begin Form
                         0x0000000000000000
                     End
 
-                    LayoutCachedLeft =6720
+                    LayoutCachedLeft =7080
                     LayoutCachedTop =120
-                    LayoutCachedWidth =7440
+                    LayoutCachedWidth =7800
                     LayoutCachedHeight =480
                     BackColor =14136213
                     BorderColor =14136213
@@ -364,7 +364,7 @@ Begin Form
                     IMESentenceMode =3
                     Left =60
                     Top =60
-                    Width =7440
+                    Width =7800
                     Height =3555
                     BorderColor =10921638
                     ForeColor =4210752
@@ -374,7 +374,7 @@ Begin Form
 
                     LayoutCachedLeft =60
                     LayoutCachedTop =60
-                    LayoutCachedWidth =7500
+                    LayoutCachedWidth =7860
                     LayoutCachedHeight =3615
                 End
             End
@@ -514,6 +514,7 @@ End Property
 ' Revisions:
 '   BLC - 5/31/2016 - initial version
 '   BLC - 1/10/2017 - added documentation @ error 2448, tbxSQL properties, ColorizeText()
+'   BLC - 3/24/2017 - added QA/QC queries to list which can be run
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -554,8 +555,11 @@ On Error GoTo Err_Handler
     btnRunSQL.HoverColor = lngGreen
     btnRunSQL.Enabled = False
 
-    'only enable if it's a SELECT query
-    If Left(aryOA(2), 1) = "s" Then btnRunSQL.Enabled = True
+    'only enable if it's a SELECT or QA/QC query
+    Select Case Left(aryOA(2), 1)
+        Case "s", "q"
+            btnRunSQL.Enabled = True
+    End Select
     
     'don't select SQL
     

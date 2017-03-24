@@ -1053,199 +1053,199 @@ On Error GoTo Err_Handler
         '-----------------------
         '  INSERTS
         '-----------------------
-                Case "i_comment"
-                    '-- required parameters --
-                    .Parameters("comtype") = Params(1)             'CommentType -> table
-                    .Parameters("ctid") = Params(2)                 'TypeID
-                    .Parameters("cmt") = Params(3)                  'Comment
-                    .Parameters("CID") = Params(4)                  'CommentorID
-                    
+'                Case "i_comment"
+'                    '-- required parameters --
+'                    .Parameters("comtype") = Params(1)             'CommentType -> table
+'                    .Parameters("ctid") = Params(2)                 'TypeID
+'                    .Parameters("cmt") = Params(3)                  'Comment
+'                    .Parameters("CID") = Params(4)                  'CommentorID
+'
+''                    .Parameters("CreateDate") = Now()
+''                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID
+''                    .Parameters("LastModified") = Now()
+'                    .Parameters("LMID") = TempVars("AppUserID")     'LastModifiedByID -> ContactID
+'
+'                Case "i_contact", "i_contact_new"
+'                    '-- required parameters --
+'                    .Parameters("First") = Params(1)
+'                    .Parameters("Last") = Params(2)
+'                    .Parameters("EmailAddress") = Params(3)
+'                    .Parameters("Login") = Params(4)
+'                    .Parameters("Org") = Params(5)
+'                    .Parameters("MI") = Params(6)
+'                    .Parameters("Position") = Params(7)
+'                    .Parameters("Phone") = Params(8)
+'                    .Parameters("Ext") = Params(9)
+'                    .Parameters("IsActiveFlag") = Params(10)
+'                    .Parameters("IsNPSFlag") = Params(11)
+'
+'                Case "i_contact_access"
+'                    '-- required parameters --
+'                    .Parameters("ContactID") = Params(1)
+'                    .Parameters("AccessID") = Params(2)
+'
+'                    'don't record the action or return ID
+'                    SkipRecordAction = True
+'
+'                Case "i_cover_species"
+'                    'set the table name in the template --> handles WCC, URC, ARC species
+'                    .sql = Replace(.sql, "INTO tbl ", "INTO " & Params(0) & " ")
+'
+'                    '-- required parameters --
+'                    .Parameters("VegPlotID") = Params(1)
+'                    .Parameters("MasterPlantCode") = Params(2)
+'                    .Parameters("PctCover") = Params(3)
+'
+''        params(0) = "WoodyCanopySpecies"
+''        params(1) = .VegPlotID
+''        params(2) = .MasterPlantCode
+''        params(3) = .PercentCover
+'
+''        params(0) = "RootedSpecies"
+''        params(1) = .VegPlotID
+''        params(2) = .MasterPlantCode
+''        params(3) = .PercentCover
+'
+'                Case "i_event"
+'                    '-- required parameters --
+'                    .Parameters("SID") = Params(1)
+'                    .Parameters("LID") = Params(2)
+'                    .Parameters("PID") = Params(3)
+'                    .Parameters("Start") = Params(4)
+'
+'                Case "i_feature"
+'                    '-- required parameters --
+'                    .Parameters("LocationID") = Params(1)
+'                    .Parameters("LocationName") = Params(2)
+'                    .Parameters("Description") = Params(3)
+'                    .Parameters("Directions") = Params(4)
+'
+'                Case "i_imported_data"
+'                    '-- required parameters --
+'                    .Parameters("idate") = CDate(Format(Now(), "YYYY-mm-dd hh:nn:ss AMPM"))
+'                    .Parameters("sfile") = Params(1)
+'                    .Parameters("dtbl") = Params(2)
+'                    .Parameters("nrec") = Params(3)
+'                    .Parameters("srec") = Params(4)
+'                    .Parameters("erec") = Params(5)
+'
+'                Case "i_location"
+'                    '-- required parameters --
+'                    .Parameters("csn") = Params(1)           'CollectionSourceName
+'                    .Parameters("ltype") = Params(2)         'LocationType
+'                    .Parameters("lname") = Params(3)         'LocationName
+'                    .Parameters("dist") = Params(4)          'HeadtoOrientDistance
+'                    .Parameters("brg") = Params(5)           'HeadtoOrientBearing
+'                    .Parameters("lnotes") = Params(6)        'Notes
+'
+'                    '.Parameters("CreateDate") = Now()
+'                    .Parameters("CID") = TempVars("AppUserID")  'CreatedByID
+'                    '.Parameters("LastModified") = Now()
+'                    .Parameters("LMID") = TempVars("AppUserID") 'LastModifiedByID
+'
+'                Case "i_login"
+'                    '-- required parameters --
+'                    .Parameters("uname") = Params(1) 'username
+'                    .Parameters("activity") = Params(2) 'activity
+'                    .Parameters("version") = TempVars("AppVersion")
+'                    .Parameters("accesslvl") = TempVars("UserAccessLevelID")
+'
+'Debug.Print "uname: " & Params(1) & " activity: " & Params(2) & _
+'            " version: " & TempVars("AppVersion") & " accesslvl: " & TempVars("UserAccessLevelID")
+'
+'                    SkipRecordAction = True
+'
+'                Case "i_park"
+'                    '-- required parameters --
+'                    .Parameters("ParkCode") = Params(1)
+'                    .Parameters("ParkName") = Params(2)
+'                    .Parameters("ParkState") = Params(3)
+'                    .Parameters("IsActiveForProtocol") = Params(4)
+'
+'                Case "i_photo"
+'                    '-- required parameters --
+'                    .Parameters("PhotoDate") = Params(1)
+'                    .Parameters("PhotoType") = Params(2)
+'                    .Parameters("PhotographerID") = Params(3)
+'                    .Parameters("FileName") = Params(4)
+'                    .Parameters("NCPNImageID") = Params(5)
+'                    .Parameters("DirectionFacing") = Params(6)
+'                    .Parameters("PhotogLocation") = Params(7)
+'                    .Parameters("IsCloseup") = Params(8)
+'                    .Parameters("IsInActive") = Params(9)
+'                    .Parameters("IsSkipped") = Params(10)
+'                    .Parameters("IsReplacement") = Params(11)
+'                    .Parameters("LastPhotoUpdate") = Params(12)
+'
 '                    .Parameters("CreateDate") = Now()
-'                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID
+'                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
 '                    .Parameters("LastModified") = Now()
-                    .Parameters("LMID") = TempVars("AppUserID")     'LastModifiedByID -> ContactID
-        
-                Case "i_contact", "i_contact_new"
-                    '-- required parameters --
-                    .Parameters("First") = Params(1)
-                    .Parameters("Last") = Params(2)
-                    .Parameters("EmailAddress") = Params(3)
-                    .Parameters("Login") = Params(4)
-                    .Parameters("Org") = Params(5)
-                    .Parameters("MI") = Params(6)
-                    .Parameters("Position") = Params(7)
-                    .Parameters("Phone") = Params(8)
-                    .Parameters("Ext") = Params(9)
-                    .Parameters("IsActiveFlag") = Params(10)
-                    .Parameters("IsNPSFlag") = Params(11)
-                    
-                Case "i_contact_access"
-                    '-- required parameters --
-                    .Parameters("ContactID") = Params(1)
-                    .Parameters("AccessID") = Params(2)
+'                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
+'
+'                Case "i_record_action"
+'                    '-- required parameters --
+'                    .Parameters("RefTable") = Params(0)
+'                    .Parameters("RefID") = Params(1)
+'                    .Parameters("ID") = Params(2)
+'                    .Parameters("Activity") = Params(3)
+'                    .Parameters("ActionDate") = Params(4)
+'
+'                    SkipRecordAction = True
+'
+'                Case "i_sensitive_locations"
+'                    '-- required parameters --
+'                    .Parameters("pkid") = Params(0)
+'                    .Parameters("lid") = Params(1)
+'                    .Parameters("CID") = TempVars("AppUserID")
+'                    .Parameters("LMID") = TempVars("AppUserID")
+'
+'                Case "i_sensitive_species"
+'                    '-- required parameters --
+'                    .Parameters("pkid") = Params(0)
+'                    .Parameters("sp") = Params(1)
+'                    .Parameters("CID") = TempVars("AppUserID")
+'                    .Parameters("LMID") = TempVars("AppUserID")
+'
+'                Case "i_site"
+'                    '-- required parameters --
+'                    .Parameters("parkID") = Params(1)
+'                    .Parameters("riverID") = Params(2)
+'                    .Parameters("code") = Params(3)         'SiteCode
+'                    .Parameters("sname") = Params(4)        'SiteName
+'                    'use |flag| to force 1/0 values vs. Access False (0) & True (-1)
+'                    .Parameters("flag") = Abs(Params(5))    'IsActiveForProtocol
+'
+'                    '-- optional parameters --
+'                    'NOTE: parameters are limited to 255 char
+'                    '      dir may be truncated via parameter since it's a MEMO field
+'                    .Parameters("dir") = Params(6)          'Directions
+'                    .Parameters("descr") = Params(7)        'Description
+'
+'                Case "i_tagline"
+'                    '-- required parameters --
+'                    .Parameters("LineDistSource") = Params(1)
+'                    .Parameters("LineDistSourceID") = Params(2)
+'                    .Parameters("LineDistType") = Params(3)
+'                    .Parameters("LineDistance") = Params(4)
+'                    .Parameters("HeightType") = Params(5)
+'                    .Parameters("Height") = Params(6)
                 
-                    'don't record the action or return ID
-                    SkipRecordAction = True
-                
-                Case "i_cover_species"
-                    'set the table name in the template --> handles WCC, URC, ARC species
-                    .sql = Replace(.sql, "INTO tbl ", "INTO " & Params(0) & " ")
-                                    
-                    '-- required parameters --
-                    .Parameters("VegPlotID") = Params(1)
-                    .Parameters("MasterPlantCode") = Params(2)
-                    .Parameters("PctCover") = Params(3)
-                        
-'        params(0) = "WoodyCanopySpecies"
-'        params(1) = .VegPlotID
-'        params(2) = .MasterPlantCode
-'        params(3) = .PercentCover
-
-'        params(0) = "RootedSpecies"
-'        params(1) = .VegPlotID
-'        params(2) = .MasterPlantCode
-'        params(3) = .PercentCover
-                
-                Case "i_event"
-                    '-- required parameters --
-                    .Parameters("SID") = Params(1)
-                    .Parameters("LID") = Params(2)
-                    .Parameters("PID") = Params(3)
-                    .Parameters("Start") = Params(4)
-                                        
-                Case "i_feature"
-                    '-- required parameters --
-                    .Parameters("LocationID") = Params(1)
-                    .Parameters("LocationName") = Params(2)
-                    .Parameters("Description") = Params(3)
-                    .Parameters("Directions") = Params(4)
-                
-                Case "i_imported_data"
-                    '-- required parameters --
-                    .Parameters("idate") = CDate(Format(Now(), "YYYY-mm-dd hh:nn:ss AMPM"))
-                    .Parameters("sfile") = Params(1)
-                    .Parameters("dtbl") = Params(2)
-                    .Parameters("nrec") = Params(3)
-                    .Parameters("srec") = Params(4)
-                    .Parameters("erec") = Params(5)
-                    
-                Case "i_location"
-                    '-- required parameters --
-                    .Parameters("csn") = Params(1)           'CollectionSourceName
-                    .Parameters("ltype") = Params(2)         'LocationType
-                    .Parameters("lname") = Params(3)         'LocationName
-                    .Parameters("dist") = Params(4)          'HeadtoOrientDistance
-                    .Parameters("brg") = Params(5)           'HeadtoOrientBearing
-                    .Parameters("lnotes") = Params(6)        'Notes
-                    
-                    '.Parameters("CreateDate") = Now()
-                    .Parameters("CID") = TempVars("AppUserID")  'CreatedByID
-                    '.Parameters("LastModified") = Now()
-                    .Parameters("LMID") = TempVars("AppUserID") 'LastModifiedByID
-                                                        
-                Case "i_login"
-                    '-- required parameters --
-                    .Parameters("uname") = Params(1) 'username
-                    .Parameters("activity") = Params(2) 'activity
-                    .Parameters("version") = TempVars("AppVersion")
-                    .Parameters("accesslvl") = TempVars("UserAccessLevelID")
-
-Debug.Print "uname: " & Params(1) & " activity: " & Params(2) & _
-            " version: " & TempVars("AppVersion") & " accesslvl: " & TempVars("UserAccessLevelID")
-                    
-                    SkipRecordAction = True
-                    
-                Case "i_park"
-                    '-- required parameters --
-                    .Parameters("ParkCode") = Params(1)
-                    .Parameters("ParkName") = Params(2)
-                    .Parameters("ParkState") = Params(3)
-                    .Parameters("IsActiveForProtocol") = Params(4)
-                                                        
-                Case "i_photo"
-                    '-- required parameters --
-                    .Parameters("PhotoDate") = Params(1)
-                    .Parameters("PhotoType") = Params(2)
-                    .Parameters("PhotographerID") = Params(3)
-                    .Parameters("FileName") = Params(4)
-                    .Parameters("NCPNImageID") = Params(5)
-                    .Parameters("DirectionFacing") = Params(6)
-                    .Parameters("PhotogLocation") = Params(7)
-                    .Parameters("IsCloseup") = Params(8)
-                    .Parameters("IsInActive") = Params(9)
-                    .Parameters("IsSkipped") = Params(10)
-                    .Parameters("IsReplacement") = Params(11)
-                    .Parameters("LastPhotoUpdate") = Params(12)
-                    
-                    .Parameters("CreateDate") = Now()
-                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
-                    .Parameters("LastModified") = Now()
-                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
-                
-                Case "i_record_action"
-                    '-- required parameters --
-                    .Parameters("RefTable") = Params(0)
-                    .Parameters("RefID") = Params(1)
-                    .Parameters("ID") = Params(2)
-                    .Parameters("Activity") = Params(3)
-                    .Parameters("ActionDate") = Params(4)
-                    
-                    SkipRecordAction = True
-                
-                Case "i_sensitive_locations"
-                    '-- required parameters --
-                    .Parameters("pkid") = Params(0)
-                    .Parameters("lid") = Params(1)
-                    .Parameters("CID") = TempVars("AppUserID")
-                    .Parameters("LMID") = TempVars("AppUserID")
-                    
-                Case "i_sensitive_species"
-                    '-- required parameters --
-                    .Parameters("pkid") = Params(0)
-                    .Parameters("sp") = Params(1)
-                    .Parameters("CID") = TempVars("AppUserID")
-                    .Parameters("LMID") = TempVars("AppUserID")
-                    
-                Case "i_site"
-                    '-- required parameters --
-                    .Parameters("parkID") = Params(1)
-                    .Parameters("riverID") = Params(2)
-                    .Parameters("code") = Params(3)         'SiteCode
-                    .Parameters("sname") = Params(4)        'SiteName
-                    'use |flag| to force 1/0 values vs. Access False (0) & True (-1)
-                    .Parameters("flag") = Abs(Params(5))    'IsActiveForProtocol
-                    
-                    '-- optional parameters --
-                    'NOTE: parameters are limited to 255 char
-                    '      dir may be truncated via parameter since it's a MEMO field
-                    .Parameters("dir") = Params(6)          'Directions
-                    .Parameters("descr") = Params(7)        'Description
-                
-                Case "i_tagline"
-                    '-- required parameters --
-                    .Parameters("LineDistSource") = Params(1)
-                    .Parameters("LineDistSourceID") = Params(2)
-                    .Parameters("LineDistType") = Params(3)
-                    .Parameters("LineDistance") = Params(4)
-                    .Parameters("HeightType") = Params(5)
-                    .Parameters("Height") = Params(6)
-                
-                Case "i_task"
-                    '-- required parameters --
-                    .Parameters("descr") = Params(1)         'Task
-                    .Parameters("stat") = Params(2)         'Status
-                    .Parameters("prio") = Params(3)         'Priority
-                    .Parameters("ttype") = Params(4)        'TaskType
-                    .Parameters("typeident") = Params(5)    'TaskTypeID
-                    .Parameters("RID") = Params(6)          'RequestedByID
-                    .Parameters("reqdate") = Params(7)      'RequestDate
-                    .Parameters("CID") = Params(8)          'CompletedByID
-                    .Parameters("compldate") = Params(9)    'CompleteDate
-                
-                    '.Parameters("CreateDate") = Now()                  'CreateDate
-                    '.Parameters("CreatedByID") = TempVars("ContactID") 'CreatedByID
-                    '.Parameters("LastModified") = Now()                'LastModified
-                    .Parameters("LMID") = TempVars("AppUserID") 'ContactID")  'lastmodifiedID
+'                Case "i_task"
+'                    '-- required parameters --
+'                    .Parameters("descr") = Params(1)         'Task
+'                    .Parameters("stat") = Params(2)         'Status
+'                    .Parameters("prio") = Params(3)         'Priority
+'                    .Parameters("ttype") = Params(4)        'TaskType
+'                    .Parameters("typeident") = Params(5)    'TaskTypeID
+'                    .Parameters("RID") = Params(6)          'RequestedByID
+'                    .Parameters("reqdate") = Params(7)      'RequestDate
+'                    .Parameters("CID") = Params(8)          'CompletedByID
+'                    .Parameters("compldate") = Params(9)    'CompleteDate
+'
+'                    '.Parameters("CreateDate") = Now()                  'CreateDate
+'                    '.Parameters("CreatedByID") = TempVars("ContactID") 'CreatedByID
+'                    '.Parameters("LastModified") = Now()                'LastModified
+'                    .Parameters("LMID") = TempVars("AppUserID") 'ContactID")  'lastmodifiedID
                 
                 Case "i_template"
                     '-- required parameters --
@@ -1265,305 +1265,305 @@ Debug.Print "uname: " & Params(1) & " activity: " & Params(2) & _
                     .Parameters("sflag") = Params(10)       'IsSupported
                     .Parameters("lmid") = TempVars("AppUserID") 'lastmodifiedID
                 
-                Case "i_transducer"
-                    '-- required parameters --
-                    .Parameters("EventID") = Params(1)
-                    .Parameters("TransducerType") = Params(2)
-                    .Parameters("TransducerNumber") = Params(3)
-                    .Parameters("SerialNumber") = Params(4)
-                    .Parameters("IsSurveyed") = Params(5)
-                    .Parameters("Timing") = Params(6)
-                    .Parameters("ActionDate") = Params(7)
-                    .Parameters("ActionTime") = Params(8)
-                
-                Case "i_understory_species"
-                    '-- required parameters --
-                    .Parameters("VegPlotID") = Params(1)
-                    .Parameters("MasterPlantCode") = Params(2)
-                    .Parameters("PercentCover") = Params(3)
-                    .Parameters("IsSeedling") = Params(4)
-                     
-                Case "i_vegplot"
-                    '-- required parameters --
-                    .Parameters("EventID") = Params(1)
-                    .Parameters("SiteID") = Params(2)
-                    .Parameters("FeatureID") = Params(3)
-                    .Parameters("VegTransectID") = Params(4)
-                    .Parameters("PlotNumber") = Params(5)
-                    .Parameters("PlotDistance") = Params(6)
-                    .Parameters("ModalSedimentSize") = Params(7)
-                    .Parameters("PercentFines") = Params(8)
-                    .Parameters("PercentWater") = Params(9)
-                    .Parameters("UnderstoryRootedPctCover") = Params(10)
-                    .Parameters("PlotDensity") = Params(11)
-                    .Parameters("NoCanopyVeg") = Params(12)
-                    .Parameters("NoRootedVeg") = Params(13)
-                    .Parameters("HasSocialTrail") = Params(14)
-                    .Parameters("FilamentousAlgae") = Params(15)
-                    .Parameters("NoIndicatorSpecies") = Params(16)
-                    
-                    .Parameters("CreateDate") = Now()
-                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
-                    .Parameters("LastModified") = Now()
-                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
-                
-                Case "i_vegtransect"
-                    '-- required parameters --
-                    .Parameters("LocationID") = Params(1)
-                    .Parameters("EventID") = Params(2)
-                    .Parameters("TransectNumber") = Params(3)
-                    .Parameters("SampleDate") = Params(4)
-        
-                Case "i_vegwalk"
-                    '-- required parameters --
-                    .Parameters("EventID") = Params(1)
-                    .Parameters("CollectionPlaceID") = Params(2)
-                    .Parameters("CollectionType") = Params(3)
-                    .Parameters("StartDate") = Params(4)
-                    
-                    .Parameters("CreateDate") = Now()
-                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
-                    .Parameters("LastModified") = Now()
-                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
-                    
-                Case "i_vegwalk_species"
-                    '-- required parameters --
-                    .Parameters("VegWalkID") = Params(1)
-                    .Parameters("MasterPlantCode") = Params(2)
-                    .Parameters("IsSeedling") = Params(3)
-                    
-                Case "i_waterway"
-                    '-- required parameters --
-                    .Parameters("ParkID") = Params(1)
-                    .Parameters("Name") = Params(2)
-                    .Parameters("Segment") = Params(3)
-                    
-                Case "i_usys_temp_photo"
-                    '-- required parameters --
-                    .Parameters("ppath") = Params(1)
-                    .Parameters("pfile") = Params(2)
-                    .Parameters("pdate") = Params(3)
-                    .Parameters("ptype") = Params(4)
+'                Case "i_transducer"
+'                    '-- required parameters --
+'                    .Parameters("EventID") = Params(1)
+'                    .Parameters("TransducerType") = Params(2)
+'                    .Parameters("TransducerNumber") = Params(3)
+'                    .Parameters("SerialNumber") = Params(4)
+'                    .Parameters("IsSurveyed") = Params(5)
+'                    .Parameters("Timing") = Params(6)
+'                    .Parameters("ActionDate") = Params(7)
+'                    .Parameters("ActionTime") = Params(8)
+'
+'                Case "i_understory_species"
+'                    '-- required parameters --
+'                    .Parameters("VegPlotID") = Params(1)
+'                    .Parameters("MasterPlantCode") = Params(2)
+'                    .Parameters("PercentCover") = Params(3)
+'                    .Parameters("IsSeedling") = Params(4)
+'
+'                Case "i_vegplot"
+'                    '-- required parameters --
+'                    .Parameters("EventID") = Params(1)
+'                    .Parameters("SiteID") = Params(2)
+'                    .Parameters("FeatureID") = Params(3)
+'                    .Parameters("VegTransectID") = Params(4)
+'                    .Parameters("PlotNumber") = Params(5)
+'                    .Parameters("PlotDistance") = Params(6)
+'                    .Parameters("ModalSedimentSize") = Params(7)
+'                    .Parameters("PercentFines") = Params(8)
+'                    .Parameters("PercentWater") = Params(9)
+'                    .Parameters("UnderstoryRootedPctCover") = Params(10)
+'                    .Parameters("PlotDensity") = Params(11)
+'                    .Parameters("NoCanopyVeg") = Params(12)
+'                    .Parameters("NoRootedVeg") = Params(13)
+'                    .Parameters("HasSocialTrail") = Params(14)
+'                    .Parameters("FilamentousAlgae") = Params(15)
+'                    .Parameters("NoIndicatorSpecies") = Params(16)
+'
+'                    .Parameters("CreateDate") = Now()
+'                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
+'                    .Parameters("LastModified") = Now()
+'                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
+'
+'                Case "i_vegtransect"
+'                    '-- required parameters --
+'                    .Parameters("LocationID") = Params(1)
+'                    .Parameters("EventID") = Params(2)
+'                    .Parameters("TransectNumber") = Params(3)
+'                    .Parameters("SampleDate") = Params(4)
+'
+'                Case "i_vegwalk"
+'                    '-- required parameters --
+'                    .Parameters("EventID") = Params(1)
+'                    .Parameters("CollectionPlaceID") = Params(2)
+'                    .Parameters("CollectionType") = Params(3)
+'                    .Parameters("StartDate") = Params(4)
+'
+'                    .Parameters("CreateDate") = Now()
+'                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
+'                    .Parameters("LastModified") = Now()
+'                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
+'
+'                Case "i_vegwalk_species"
+'                    '-- required parameters --
+'                    .Parameters("VegWalkID") = Params(1)
+'                    .Parameters("MasterPlantCode") = Params(2)
+'                    .Parameters("IsSeedling") = Params(3)
+'
+'                Case "i_waterway"
+'                    '-- required parameters --
+'                    .Parameters("ParkID") = Params(1)
+'                    .Parameters("Name") = Params(2)
+'                    .Parameters("Segment") = Params(3)
+'
+'                Case "i_usys_temp_photo"
+'                    '-- required parameters --
+'                    .Parameters("ppath") = Params(1)
+'                    .Parameters("pfile") = Params(2)
+'                    .Parameters("pdate") = Params(3)
+'                    .Parameters("ptype") = Params(4)
                 
         '-----------------------
         '  UPDATES
         '-----------------------
-                Case "u_comment"
-                    '-- required parameters --
-                    .Parameters("CommentType") = Params(1)
-                    .Parameters("TypeID") = Params(2)
-                    .Parameters("Comment") = Params(3)
-                    .Parameters("CommentorID") = Params(4)
-                    
-                    .Parameters("CreateDate") = Now()
-                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
-                    .Parameters("LastModified") = Now()
-                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
-                    
-                Case "u_contact"
-                    '-- required parameters --
-                    .Parameters("First") = Params(1)
-                    .Parameters("Last") = Params(2)
-                    .Parameters("EmailAddress") = Params(3)
-                    .Parameters("Login") = Params(4)
-                    .Parameters("Org") = Params(5)
-                    .Parameters("MI") = Params(6)
-                    .Parameters("Position") = Params(7)
-                    .Parameters("Phone") = Params(8)
-                    .Parameters("Ext") = Params(9)
-                    .Parameters("IsActiveFlag") = Params(10)
-                    .Parameters("IsNPSFlag") = Params(11)
-                    .Parameters("ContactID") = Params(12)
-                    ID = Params(12)
-                
-                Case "u_contact_access"
-                    '-- required parameters --
-                    .Parameters("ContactID") = Params(1)
-                    .Parameters("AccessID") = Params(2)
-                    ID = Params(1)
-                
-                Case "u_contact_isactive_flag"
-                    '-- required parameters --
-                    .Parameters("cid") = Params(1)
-                    .Parameters("flag") = Params(2)
-                
-                Case "u_cover_species"
-                    'set the table name in the template --> handles WCC, URC, ARC species
-                    .sql = Replace(.sql, " tbl ", " " & Params(0) & " ")
-                                    
-                    '-- required parameters --
-                    .Parameters("VegPlot_ID") = Params(1)
-                    .Parameters("Master_PLANT_Code") = Params(2)
-                    .Parameters("PctCover") = Params(3)
-                
-                Case "u_event"
-                    '-- required parameters --
-                    .Parameters("SID") = Params(1)
-                    .Parameters("LID") = Params(2)
-                    .Parameters("PID") = Params(3)
-                    .Parameters("Start") = Params(4)
-                    .Parameters("EID") = Params(5)
-                    ID = Params(5)
-                    
-                Case "u_feature"
-                    '-- required parameters --
-                    .Parameters("LocationID") = Params(1)
-                    .Parameters("LocationName") = Params(2)
-                    .Parameters("Description") = Params(3)
-                    .Parameters("Directions") = Params(4)
-                    
-                Case "u_location"
-                    '-- required parameters --
-                    .Parameters("CollectionSourceName") = Params(1)
-                    .Parameters("LocationType") = Params(2)
-                    .Parameters("LocationName") = Params(3)
-                    .Parameters("HeadtoOrientDistance") = Params(4)
-                    .Parameters("HeadtoOrientBearing") = Params(5)
-                    
-                    .Parameters("LastModified") = Now()
-                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
-                
-                Case "u_mod_wentworth_retireyear"
-                    '-- required parameters --
-                    .Parameters("mwsid") = Params(1)
-                    .Parameters("yr") = Params(2)
-                
-                Case "u_park"
-                    '-- required parameters --
-                    .Parameters("ParkCode") = Params(1)
-                    .Parameters("ParkName") = Params(2)
-                    .Parameters("ParkState") = Params(3)
-                    .Parameters("IsActiveForProtocol") = Params(4)
-                        
-                Case "u_photo"
-                    '-- required parameters --
-                    .Parameters("PhotoDate") = Params(1)
-                    .Parameters("PhotoType") = Params(2)
-                    .Parameters("PhotographerID") = Params(3)
-                    .Parameters("FileName") = Params(4)
-                    .Parameters("NCPNImageID") = Params(5)
-                    .Parameters("DirectionFacing") = Params(6)
-                    .Parameters("PhotogLocation") = Params(7)
-                    .Parameters("IsCloseup") = Params(8)
-                    .Parameters("IsInActive") = Params(9)
-                    .Parameters("IsSkipped") = Params(10)
-                    .Parameters("IsReplacement") = Params(11)
-                    .Parameters("LastPhotoUpdate") = Params(12)
-                    
-                    .Parameters("CreateDate") = Now()
-                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
-                    .Parameters("LastModified") = Now()
-                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
-                
-                Case "u_site"
-                    '-- required parameters --
-                    .Parameters("ParkID") = Params(1)
-                    .Parameters("RiverID") = Params(2)
-                    .Parameters("Code") = Params(3)
-                    .Parameters("Name") = Params(4)
-                    .Parameters("IsActiveForProtocol") = Params(5)
-                    
-                    '-- optional parameters --
-                    .Parameters("Directions") = Params(6)
-                    .Parameters("Description") = Params(7)
-                
-                Case "u_site_isactive_flag"
-                    '-- required parameters --
-                    .Parameters("sid") = Params(1)
-                    .Parameters("flag") = Params(2)
-                
-                Case "u_tagline"
-                    '-- required parameters --
-                    .Parameters("LineDistSource") = Params(1)
-                    .Parameters("LineDistSourceID") = Params(2)
-                    .Parameters("LineDistType") = Params(3)
-                    .Parameters("LineDistance") = Params(4)
-                    .Parameters("HeightType") = Params(5)
-                    .Parameters("Height") = Params(6)
-                
-                Case "u_task"
-                    '-- required parameters --
-                    .Parameters("tid") = Params(14)         'task ID
-                    .Parameters("descr") = Params(1)        'task
-                    .Parameters("stat") = Params(2)         'status
-                    .Parameters("prio") = Params(3)         'priority
-                    .Parameters("ttype") = Params(4)        'task type
-                    .Parameters("typeident") = Params(5)    'task type ID
-                    .Parameters("RID") = Params(3)          'requested by ID
-                    .Parameters("reqdate") = Params(7)      'request date
-                    .Parameters("CID") = Params(5)          'completed by ID
-                    .Parameters("compldate") = Params(9)    'complete date
-                
-                    .Parameters("LMID") = TempVars("AppUserID") 'last modified by ID
-                
-                Case "u_transducer"
-                    '-- required parameters --
-                    .Parameters("EventID") = Params(1)
-                    .Parameters("TransducerType") = Params(2)
-                    .Parameters("TransducerNumber") = Params(3)
-                    .Parameters("SerialNumber") = Params(4)
-                    .Parameters("IsSurveyed") = Params(5)
-                    .Parameters("Timing") = Params(6)
-                    .Parameters("ActionDate") = Params(7)
-                    .Parameters("ActionTime") = Params(8)
-                
+'                Case "u_comment"
+'                    '-- required parameters --
+'                    .Parameters("CommentType") = Params(1)
+'                    .Parameters("TypeID") = Params(2)
+'                    .Parameters("Comment") = Params(3)
+'                    .Parameters("CommentorID") = Params(4)
+'
+'                    .Parameters("CreateDate") = Now()
+'                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
+'                    .Parameters("LastModified") = Now()
+'                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
+'
+'                Case "u_contact"
+'                    '-- required parameters --
+'                    .Parameters("First") = Params(1)
+'                    .Parameters("Last") = Params(2)
+'                    .Parameters("EmailAddress") = Params(3)
+'                    .Parameters("Login") = Params(4)
+'                    .Parameters("Org") = Params(5)
+'                    .Parameters("MI") = Params(6)
+'                    .Parameters("Position") = Params(7)
+'                    .Parameters("Phone") = Params(8)
+'                    .Parameters("Ext") = Params(9)
+'                    .Parameters("IsActiveFlag") = Params(10)
+'                    .Parameters("IsNPSFlag") = Params(11)
+'                    .Parameters("ContactID") = Params(12)
+'                    ID = Params(12)
+'
+'                Case "u_contact_access"
+'                    '-- required parameters --
+'                    .Parameters("ContactID") = Params(1)
+'                    .Parameters("AccessID") = Params(2)
+'                    ID = Params(1)
+'
+'                Case "u_contact_isactive_flag"
+'                    '-- required parameters --
+'                    .Parameters("cid") = Params(1)
+'                    .Parameters("flag") = Params(2)
+'
+'                Case "u_cover_species"
+'                    'set the table name in the template --> handles WCC, URC, ARC species
+'                    .sql = Replace(.sql, " tbl ", " " & Params(0) & " ")
+'
+'                    '-- required parameters --
+'                    .Parameters("VegPlot_ID") = Params(1)
+'                    .Parameters("Master_PLANT_Code") = Params(2)
+'                    .Parameters("PctCover") = Params(3)
+'
+'                Case "u_event"
+'                    '-- required parameters --
+'                    .Parameters("SID") = Params(1)
+'                    .Parameters("LID") = Params(2)
+'                    .Parameters("PID") = Params(3)
+'                    .Parameters("Start") = Params(4)
+'                    .Parameters("EID") = Params(5)
+'                    ID = Params(5)
+'
+'                Case "u_feature"
+'                    '-- required parameters --
+'                    .Parameters("LocationID") = Params(1)
+'                    .Parameters("LocationName") = Params(2)
+'                    .Parameters("Description") = Params(3)
+'                    .Parameters("Directions") = Params(4)
+'
+'                Case "u_location"
+'                    '-- required parameters --
+'                    .Parameters("CollectionSourceName") = Params(1)
+'                    .Parameters("LocationType") = Params(2)
+'                    .Parameters("LocationName") = Params(3)
+'                    .Parameters("HeadtoOrientDistance") = Params(4)
+'                    .Parameters("HeadtoOrientBearing") = Params(5)
+'
+'                    .Parameters("LastModified") = Now()
+'                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
+'
+'                Case "u_mod_wentworth_retireyear"
+'                    '-- required parameters --
+'                    .Parameters("mwsid") = Params(1)
+'                    .Parameters("yr") = Params(2)
+'
+'                Case "u_park"
+'                    '-- required parameters --
+'                    .Parameters("ParkCode") = Params(1)
+'                    .Parameters("ParkName") = Params(2)
+'                    .Parameters("ParkState") = Params(3)
+'                    .Parameters("IsActiveForProtocol") = Params(4)
+'
+'                Case "u_photo"
+'                    '-- required parameters --
+'                    .Parameters("PhotoDate") = Params(1)
+'                    .Parameters("PhotoType") = Params(2)
+'                    .Parameters("PhotographerID") = Params(3)
+'                    .Parameters("FileName") = Params(4)
+'                    .Parameters("NCPNImageID") = Params(5)
+'                    .Parameters("DirectionFacing") = Params(6)
+'                    .Parameters("PhotogLocation") = Params(7)
+'                    .Parameters("IsCloseup") = Params(8)
+'                    .Parameters("IsInActive") = Params(9)
+'                    .Parameters("IsSkipped") = Params(10)
+'                    .Parameters("IsReplacement") = Params(11)
+'                    .Parameters("LastPhotoUpdate") = Params(12)
+'
+'                    .Parameters("CreateDate") = Now()
+'                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
+'                    .Parameters("LastModified") = Now()
+'                    .Parameters("LastModifiedByID") = TempVars("AppUserID") 'ContactID")
+'
+'                Case "u_site"
+'                    '-- required parameters --
+'                    .Parameters("ParkID") = Params(1)
+'                    .Parameters("RiverID") = Params(2)
+'                    .Parameters("Code") = Params(3)
+'                    .Parameters("Name") = Params(4)
+'                    .Parameters("IsActiveForProtocol") = Params(5)
+'
+'                    '-- optional parameters --
+'                    .Parameters("Directions") = Params(6)
+'                    .Parameters("Description") = Params(7)
+'
+'                Case "u_site_isactive_flag"
+'                    '-- required parameters --
+'                    .Parameters("sid") = Params(1)
+'                    .Parameters("flag") = Params(2)
+'
+'                Case "u_tagline"
+'                    '-- required parameters --
+'                    .Parameters("LineDistSource") = Params(1)
+'                    .Parameters("LineDistSourceID") = Params(2)
+'                    .Parameters("LineDistType") = Params(3)
+'                    .Parameters("LineDistance") = Params(4)
+'                    .Parameters("HeightType") = Params(5)
+'                    .Parameters("Height") = Params(6)
+'
+'                Case "u_task"
+'                    '-- required parameters --
+'                    .Parameters("tid") = Params(14)         'task ID
+'                    .Parameters("descr") = Params(1)        'task
+'                    .Parameters("stat") = Params(2)         'status
+'                    .Parameters("prio") = Params(3)         'priority
+'                    .Parameters("ttype") = Params(4)        'task type
+'                    .Parameters("typeident") = Params(5)    'task type ID
+'                    .Parameters("RID") = Params(3)          'requested by ID
+'                    .Parameters("reqdate") = Params(7)      'request date
+'                    .Parameters("CID") = Params(5)          'completed by ID
+'                    .Parameters("compldate") = Params(9)    'complete date
+'
+'                    .Parameters("LMID") = TempVars("AppUserID") 'last modified by ID
+'
+'                Case "u_transducer"
+'                    '-- required parameters --
+'                    .Parameters("EventID") = Params(1)
+'                    .Parameters("TransducerType") = Params(2)
+'                    .Parameters("TransducerNumber") = Params(3)
+'                    .Parameters("SerialNumber") = Params(4)
+'                    .Parameters("IsSurveyed") = Params(5)
+'                    .Parameters("Timing") = Params(6)
+'                    .Parameters("ActionDate") = Params(7)
+'                    .Parameters("ActionTime") = Params(8)
+'
                 Case "u_template"
                     '-- required parameters --
                     .Parameters("id") = Params(1)
                 
-                Case "u_tsys_datasheet_defaults"
-                    '-- required parameters --
-                    .Parameters("id") = Params(1)
-                    .Parameters("pid") = Params(2)
-                    .Parameters("rid") = Params(3)
-                    .Parameters("cover") = Params(4)
-                    .Parameters("species") = Params(5)
-                    .Parameters("blanks") = Params(6)
-                    
-                    '-- optional parameters --
-                
-                Case "u_usys_temp_photo"
-                    '-- required parameters --
-                    .Parameters("iid") = Params(1)
-                    .Parameters("ptype") = Params(4)
-                
-                Case "u_vegtransect"
-                    '-- required parameters --
-                    .Parameters("LocationID") = Params(1)
-                    .Parameters("EventID") = Params(2)
-                    .Parameters("TransectNumber") = Params(3)
-                    .Parameters("SampleDate") = Params(4)
-                
-                Case "u_vegwalk"
-                    '-- required parameters --
-                    .Parameters("EventID") = Params(1)
-                    .Parameters("CollectionPlaceID") = Params(2)
-                    .Parameters("CollectionType") = Params(3)
-                    .Parameters("StartDate") = Params(4)
-                    
-                    .Parameters("CreateDate") = Now()
-                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
-                    .Parameters("LastModified") = Now()
-                    .Parameters("LastModifiedByID") = TempVars("AppUserID") '"ContactID")
-                
-                Case "u_vegwalk_species"
-                    '-- required parameters --
-                    .Parameters("VegWalkID") = Params(1)
-                    .Parameters("MasterPlantCode") = Params(2)
-                    .Parameters("IsSeedling") = Params(3)
-                    
-                Case "u_understory_species"
-                    '-- required parameters --
-                    .Parameters("VegPlotID") = Params(1)
-                    .Parameters("MasterPlantCode") = Params(2)
-                    .Parameters("PercentCover") = Params(3)
-                    .Parameters("IsSeedling") = Params(4)
-                
-                Case "u_waterway"
-                    '-- required parameters --
-                    .Parameters("ParkID") = Params(1)
-                    .Parameters("Name") = Params(2)
-                    .Parameters("Segment") = Params(3)
+'                Case "u_tsys_datasheet_defaults"
+'                    '-- required parameters --
+'                    .Parameters("id") = Params(1)
+'                    .Parameters("pid") = Params(2)
+'                    .Parameters("rid") = Params(3)
+'                    .Parameters("cover") = Params(4)
+'                    .Parameters("species") = Params(5)
+'                    .Parameters("blanks") = Params(6)
+'
+'                    '-- optional parameters --
+'
+'                Case "u_usys_temp_photo"
+'                    '-- required parameters --
+'                    .Parameters("iid") = Params(1)
+'                    .Parameters("ptype") = Params(4)
+'
+'                Case "u_vegtransect"
+'                    '-- required parameters --
+'                    .Parameters("LocationID") = Params(1)
+'                    .Parameters("EventID") = Params(2)
+'                    .Parameters("TransectNumber") = Params(3)
+'                    .Parameters("SampleDate") = Params(4)
+'
+'                Case "u_vegwalk"
+'                    '-- required parameters --
+'                    .Parameters("EventID") = Params(1)
+'                    .Parameters("CollectionPlaceID") = Params(2)
+'                    .Parameters("CollectionType") = Params(3)
+'                    .Parameters("StartDate") = Params(4)
+'
+'                    .Parameters("CreateDate") = Now()
+'                    .Parameters("CreatedByID") = TempVars("AppUserID") 'ContactID")
+'                    .Parameters("LastModified") = Now()
+'                    .Parameters("LastModifiedByID") = TempVars("AppUserID") '"ContactID")
+'
+'                Case "u_vegwalk_species"
+'                    '-- required parameters --
+'                    .Parameters("VegWalkID") = Params(1)
+'                    .Parameters("MasterPlantCode") = Params(2)
+'                    .Parameters("IsSeedling") = Params(3)
+'
+'                Case "u_understory_species"
+'                    '-- required parameters --
+'                    .Parameters("VegPlotID") = Params(1)
+'                    .Parameters("MasterPlantCode") = Params(2)
+'                    .Parameters("PercentCover") = Params(3)
+'                    .Parameters("IsSeedling") = Params(4)
+'
+'                Case "u_waterway"
+'                    '-- required parameters --
+'                    .Parameters("ParkID") = Params(1)
+'                    .Parameters("Name") = Params(2)
+'                    .Parameters("Segment") = Params(3)
                 
             End Select
             
@@ -1672,258 +1672,259 @@ On Error GoTo Err_Handler
         strTable = frm.name
     
         Select Case frm.name
-            Case "Contact"
-                Dim p As New Person
-    
-                With p
-                    'values passed into form
-                            
-                    'form values
-                    .LastName = frm!tbxLast.Value
-                    .FirstName = frm!tbxFirst.Value
-                    If Not IsNull(frm!tbxMI.Value) Then p.MiddleInitial = frm!tbxMI.Value  'FIX EMPTY STRING
-                    .Email = frm!tbxEmail.Value
-                    '.Username = frm!tbxUsername.Value
-                    If Not IsNull(frm!tbxUsername.Value) Then p.Username = frm!tbxUsername.Value
-                    If Not IsNull(frm!tbxOrganization.Value) Then p.Organization = frm!tbxOrganization.Value
-                    If Not IsNull(frm!tbxPosition.Value) Then .PosTitle = frm!tbxPosition.Value
-                    If Not IsNull(frm!tbxPhone.Value) And Len(frm!tbxPhone.Value) > 0 Then
-                        .WorkPhone = RemoveChars(frm!tbxPhone.Value, True) 'remove non-numerics
-                    Else
-                        .WorkPhone = Null
-                    End If
-                    If Not IsNull(frm!tbxExtension.Value) And Len(frm!tbxExtension.Value) > 0 Then
-                        .WorkExtension = RemoveChars(frm!tbxExtension.Value, True) 'remove non-numerics
-                    Else
-                        .WorkExtension = Null
-                    End If
-                    If Not IsNull(frm!cbxUserRole.Column(1)) Then .AccessRole = frm!cbxUserRole.Column(1)
-                    .ID = frm!tbxID.Value '0 if new, edit if > 0
-                
-                    strCriteria = "[FirstName] = '" & .FirstName _
-                                    & "' AND [LastName] = '" & .LastName _
-                                    & "' AND [MiddleInitial] = '" & .MiddleInitial _
-                                    & "' AND [Email] = '" & .Email & "'"
-                    
-                    'set the generic object --> Contact
-                    Set obj = p
-                    
-                    'cleanup
-                    Set p = Nothing
-                End With
-
-            Case "Events"
-                Dim ev As New EventVisit
-                strTable = "Event"
-                
-                With ev
-                    'values passed into form
-                    
-                    'form values
-                    .LocationID = frm!cbxLocation.Column(0)
-                    .ProtocolID = 1 ' assumes this is for big rivers protocol
-                    .SiteID = TempVars("SiteID") 'frm!cbxSite.Column(0)
-                    
-                    .StartDate = frm!tbxStartDate.Value
-                    
-                    .ID = frm!tbxID.Value '0 if new, edit if > 0
-                    
-                    strCriteria = "[Site_ID] = " & .SiteID & " AND [Location_ID] = " & .LocationID & " AND [StartDate] = " & Format(.StartDate, "YYYY-mm-dd")
-                    
-                    'set the generic object --> EventVisit
-                    Set obj = ev
-                    
-                    'cleanup
-                    Set ev = Nothing
-                End With
-            
-            Case "Feature"
-                    Dim f As New Feature
-    
-                    With f
-                        'values passed into form
-                                
-                        'form values
-                        .LocationID = frm!cbxLocation.Column(0)
-                        .name = frm!tbxFeature.Value
-                        
-                        If Not IsNull(frm!tbxFeatureDirections.Value) Then f.Directions = frm!tbxFeatureDirections.Value
-                        If Not IsNull(frm!tbxDescription.Value) Then .Directions = frm!tbxDescription.Value
-                        .ID = frm!tbxID.Value '0 if new, edit if > 0
-                    
-                        strCriteria = "[Location_ID] = " & .LocationID & " AND [Feature] = '" & .name & "'"
-                        
-                        'set the generic object --> Feature
-                        Set obj = f
-                    
-                        'cleanup
-                        Set f = Nothing
-                    End With
-
-            Case "Location"
-                    Dim loc As New Location
-                    
-                    With loc
-                        'form values
-                        
-                        'location types: F- feature, T- transect, P - plot
-                        .LocationType = frm.LocationType 'cbxLocationType.SelText
-                        
-                        'CollectionSourceName is the identifier for which
-                        'feature/transect/plot the location is located on
-                        'collection feature ID (A, B, C...) or Transect number (1-8)
-                        .CollectionSourceName = frm.cbxCollectionSourceID
-                                                                        
-                        .LocationName = frm!tbxName.Value
-                
-                        .HeadtoOrientDistance = frm!tbxDistance.Value
-                        .HeadtoOrientBearing = frm!tbxBearing.Value
-                        
-                        .LocationNotes = frm!tbxNotes.Value
-                        
-                        '.CreateDate = ""
-                        '.CreatedByID = 0
-                        .LastModified = Now()
-                        .LastModifiedByID = 0
-                        
-                        .ID = frm!tbxID.Value '0 if new, edit if > 0
-
-                        'ignore location notes in criteria
-                        strCriteria = "[LocationName] = '" & .LocationName _
-                                    & "' AND [LocationType] = '" & .LocationType _
-                                    & "' AND [CollectionSourceName] = '" & .CollectionSourceName _
-                                    & "' AND [HeadtoOrientDistance_m] = " & .HeadtoOrientDistance _
-                                    & " AND [HeadtoOrientBearing] = " & .HeadtoOrientBearing '_
-'                                    & " AND [LastModified] = " & .LastModified _
-'                                    & " AND [LastModifiedBy_ID] = " & .LastModifiedByID
-                    
-                        'set the generic object --> Location
-                        Set obj = loc
-                        
-                        'cleanup
-                        Set loc = Nothing
-                    End With
-                                        
-            Case "Photo"
-                Dim ph As New Photo
-                
-                With ph
-                    'values passed into form
-                
-                    .ID = frm!tbxID.Value '0 if new, edit if > 0
-                                
-                    'set the generic object --> Location
-                    Set obj = p
-                    
-                    'cleanup
-                    Set ph = Nothing
-                End With
-                                        
-            Case "PhotoOtherDetails"
-                Dim pho As New Photo
-                
-                With pho
-                    Dim FilePath As String
-                    Dim aryFileInfo() As Variant
-                    Dim nodeinfo() As String
-                    '0 - M, 1- C, 2-full file path, 3-file name w/o extension
-                    nodeinfo = Split(frm.Parent!tvwTree.Object.SelectedItem.tag, "|")
-                    FilePath = nodeinfo(2)
-                    'filepath = frm.Parent!tvwTree.Object.SelectedItem.Tag 'frm!tvw.SelectedNode.Tag
-                    'aryFileInfo = GetFileEXIFInfo()
-                    'values passed into form
-'        Params(0) = "Photo"
-'        Params(1) = .PhotoDate
-'        Params(2) = .PhotoType
-'        Params(3) = .PhotographerID
-'        Params(4) = .FileName
-'        Params(5) = .NCPNImageID
-'        Params(6) = .DirectionFacing
-'        Params(7) = .PhotogLocation
-'        Params(8) = .IsCloseup
-'        Params(9) = .IsInActive
-'        Params(10) = .IsSkipped
-'        Params(11) = .IsReplacement
-'        Params(12) = .LastPhotoUpdate
-                    .PhotoType = frm!lblPhotoType
-                    Select Case .PhotoType
-                        Case "U" 'unclassified
-                        Case "F" 'feature
-                        Case "T" 'transect
-                        Case "O" 'overview
-                        Case "R" 'reference
-                        Case "O" 'other
-                    End Select
-                    .PhotographerID = frm.fsub.Form.Controls("cbxPhotog")
-                    .fileName = "" 'lblPhotoFilename 'aryFileInfo(0)
-                    
-                    .ID = frm!tbxID.Value '0 if new, edit if > 0
-                                
-                    'set the generic object --> Location
-                    Set obj = pho
-                    
-                    'cleanup
-                    Set pho = Nothing
-                End With
-                                                                                
-            Case "SetObserverRecorder"
-                Dim ra As New RecordAction
-                
-                With ra
-                    'values passed into form
-                    .RefTable = frm.RefTable
-                    .RefID = frm.RefID
-                    .ContactID = frm.RAContactID
-                    .RefAction = frm.RAAction
-                    '.ActionType = frm.RAAction
-                    .ActionDate = CDate(Format(Now(), "YYYY-mm-dd hh:nn:ss AMPM"))
-                
-                    .ID = frm!tbxID.Value '0 if new, edit if > 0
-                                
-                    strCriteria = "[Contact_ID] = " & .ContactID _
-                                & " AND [Activity] = '" & .RefAction _
-                                & "'"
-
-                    'set the generic object --> Location
-                    Set obj = ra
-                    
-                    'cleanup
-                    Set ra = Nothing
-                End With
-            
-            
-            Case "Site"
-                Dim s As New Site
-                
-                With s
-                    'values passed into form
-                    .Park = TempVars("ParkCode")
-                    .River = TempVars("River")
-                    
-                    'form values
-                    .Code = frm!tbxSiteCode.Value
-                    .name = frm!tbxSiteName.Value
-                    .Directions = Nz(frm!tbxSiteDirections.Value, "")
-                    .Description = Nz(frm!tbxDescription.Value, "")
-                    
-                    'assumed
-                    .IsActiveForProtocol = 1 'all sites assumed active when added
-        
-                    .ID = frm!tbxID.Value '0 if new, edit if > 0
-                
-                    strCriteria = "[SiteCode] = '" & .Code & "' AND [SiteName] = '" & .name & "'"
-                
-                    'set the generic object --> Site
-                    Set obj = s
-                    
-                    'cleanup
-                    Set s = Nothing
-                End With
-                
-            Case "SurveyFile"
+'            Case "Contact"
+'                Dim p As New Person
+'
+'                With p
+'                    'values passed into form
+'
+'                    'form values
+'                    .LastName = frm!tbxLast.Value
+'                    .FirstName = frm!tbxFirst.Value
+'                    If Not IsNull(frm!tbxMI.Value) Then p.MiddleInitial = frm!tbxMI.Value  'FIX EMPTY STRING
+'                    .Email = frm!tbxEmail.Value
+'                    '.Username = frm!tbxUsername.Value
+'                    If Not IsNull(frm!tbxUsername.Value) Then p.Username = frm!tbxUsername.Value
+'                    If Not IsNull(frm!tbxOrganization.Value) Then p.Organization = frm!tbxOrganization.Value
+'                    If Not IsNull(frm!tbxPosition.Value) Then .PosTitle = frm!tbxPosition.Value
+'                    If Not IsNull(frm!tbxPhone.Value) And Len(frm!tbxPhone.Value) > 0 Then
+'                        .WorkPhone = RemoveChars(frm!tbxPhone.Value, True) 'remove non-numerics
+'                    Else
+'                        .WorkPhone = Null
+'                    End If
+'                    If Not IsNull(frm!tbxExtension.Value) And Len(frm!tbxExtension.Value) > 0 Then
+'                        .WorkExtension = RemoveChars(frm!tbxExtension.Value, True) 'remove non-numerics
+'                    Else
+'                        .WorkExtension = Null
+'                    End If
+'                    If Not IsNull(frm!cbxUserRole.Column(1)) Then .AccessRole = frm!cbxUserRole.Column(1)
+'                    .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                    strCriteria = "[FirstName] = '" & .FirstName _
+'                                    & "' AND [LastName] = '" & .LastName _
+'                                    & "' AND [MiddleInitial] = '" & .MiddleInitial _
+'                                    & "' AND [Email] = '" & .Email & "'"
+'
+'                    'set the generic object --> Contact
+'                    Set obj = p
+'
+'                    'cleanup
+'                    Set p = Nothing
+'                End With
+'
+'            Case "Events"
+'                Dim ev As New EventVisit
+'                strTable = "Event"
+'
+'                With ev
+'                    'values passed into form
+'
+'                    'form values
+'                    .LocationID = frm!cbxLocation.Column(0)
+'                    .ProtocolID = 1 ' assumes this is for big rivers protocol
+'                    .SiteID = TempVars("SiteID") 'frm!cbxSite.Column(0)
+'
+'                    .StartDate = frm!tbxStartDate.Value
+'
+'                    .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                    strCriteria = "[Site_ID] = " & .SiteID & " AND [Location_ID] = " & .LocationID & " AND [StartDate] = " & Format(.StartDate, "YYYY-mm-dd")
+'
+'                    'set the generic object --> EventVisit
+'                    Set obj = ev
+'
+'                    'cleanup
+'                    Set ev = Nothing
+'                End With
+'
+'            Case "Feature"
+'                    Dim f As New Feature
+'
+'                    With f
+'                        'values passed into form
+'
+'                        'form values
+'                        .LocationID = frm!cbxLocation.Column(0)
+'                        .name = frm!tbxFeature.Value
+'
+'                        If Not IsNull(frm!tbxFeatureDirections.Value) Then f.Directions = frm!tbxFeatureDirections.Value
+'                        If Not IsNull(frm!tbxDescription.Value) Then .Directions = frm!tbxDescription.Value
+'                        .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                        strCriteria = "[Location_ID] = " & .LocationID & " AND [Feature] = '" & .name & "'"
+'
+'                        'set the generic object --> Feature
+'                        Set obj = f
+'
+'                        'cleanup
+'                        Set f = Nothing
+'                    End With
+'
+'            Case "Location"
+'                    Dim loc As New Location
+'
+'                    With loc
+'                        'form values
+'
+'                        'location types: F- feature, T- transect, P - plot
+'                        .LocationType = frm.LocationType 'cbxLocationType.SelText
+'
+'                        'CollectionSourceName is the identifier for which
+'                        'feature/transect/plot the location is located on
+'                        'collection feature ID (A, B, C...) or Transect number (1-8)
+'                        .CollectionSourceName = frm.cbxCollectionSourceID
+'
+'                        .LocationName = frm!tbxName.Value
+'
+'                        .HeadtoOrientDistance = frm!tbxDistance.Value
+'                        .HeadtoOrientBearing = frm!tbxBearing.Value
+'
+'                        .LocationNotes = frm!tbxNotes.Value
+'
+'                        '.CreateDate = ""
+'                        '.CreatedByID = 0
+'                        .LastModified = Now()
+'                        .LastModifiedByID = 0
+'
+'                        .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                        'ignore location notes in criteria
+'                        strCriteria = "[LocationName] = '" & .LocationName _
+'                                    & "' AND [LocationType] = '" & .LocationType _
+'                                    & "' AND [CollectionSourceName] = '" & .CollectionSourceName _
+'                                    & "' AND [HeadtoOrientDistance_m] = " & .HeadtoOrientDistance _
+'                                    & " AND [HeadtoOrientBearing] = " & .HeadtoOrientBearing '_
+''                                    & " AND [LastModified] = " & .LastModified _
+''                                    & " AND [LastModifiedBy_ID] = " & .LastModifiedByID
+'
+'                        'set the generic object --> Location
+'                        Set obj = loc
+'
+'                        'cleanup
+'                        Set loc = Nothing
+'                    End With
+'
+'            Case "Photo"
+'                Dim ph As New Photo
+'
+'                With ph
+'                    'values passed into form
+'
+'                    .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                    'set the generic object --> Location
+'                    Set obj = p
+'
+'                    'cleanup
+'                    Set ph = Nothing
+'                End With
+'
+'            Case "PhotoOtherDetails"
+'                Dim pho As New Photo
+'
+'                With pho
+'                    Dim FilePath As String
+'                    Dim aryFileInfo() As Variant
+'                    Dim nodeinfo() As String
+'                    '0 - M, 1- C, 2-full file path, 3-file name w/o extension
+'                    nodeinfo = Split(frm.Parent!tvwTree.Object.SelectedItem.tag, "|")
+'                    FilePath = nodeinfo(2)
+'                    'filepath = frm.Parent!tvwTree.Object.SelectedItem.Tag 'frm!tvw.SelectedNode.Tag
+'                    'aryFileInfo = GetFileEXIFInfo()
+'                    'values passed into form
+''        Params(0) = "Photo"
+''        Params(1) = .PhotoDate
+''        Params(2) = .PhotoType
+''        Params(3) = .PhotographerID
+''        Params(4) = .FileName
+''        Params(5) = .NCPNImageID
+''        Params(6) = .DirectionFacing
+''        Params(7) = .PhotogLocation
+''        Params(8) = .IsCloseup
+''        Params(9) = .IsInActive
+''        Params(10) = .IsSkipped
+''        Params(11) = .IsReplacement
+''        Params(12) = .LastPhotoUpdate
+'                    .PhotoType = frm!lblPhotoType
+'                    Select Case .PhotoType
+'                        Case "U" 'unclassified
+'                        Case "F" 'feature
+'                        Case "T" 'transect
+'                        Case "O" 'overview
+'                        Case "R" 'reference
+'                        Case "O" 'other
+'                    End Select
+'                    .PhotographerID = frm.fsub.Form.Controls("cbxPhotog")
+'                    .fileName = "" 'lblPhotoFilename 'aryFileInfo(0)
+'
+'                    .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                    'set the generic object --> Location
+'                    Set obj = pho
+'
+'                    'cleanup
+'                    Set pho = Nothing
+'                End With
+'
+'            Case "SetObserverRecorder"
+'                Dim ra As New RecordAction
+'
+'                With ra
+'                    'values passed into form
+'                    .RefTable = frm.RefTable
+'                    .RefID = frm.RefID
+'                    .ContactID = frm.RAContactID
+'                    .RefAction = frm.RAAction
+'                    '.ActionType = frm.RAAction
+'                    .ActionDate = CDate(Format(Now(), "YYYY-mm-dd hh:nn:ss AMPM"))
+'
+'                    .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                    strCriteria = "[Contact_ID] = " & .ContactID _
+'                                & " AND [Activity] = '" & .RefAction _
+'                                & "'"
+'
+'                    'set the generic object --> Location
+'                    Set obj = ra
+'
+'                    'cleanup
+'                    Set ra = Nothing
+'                End With
+'
+'
+'            Case "Site"
+'                Dim s As New Site
+'
+'                With s
+'                    'values passed into form
+'                    .Park = TempVars("ParkCode")
+'                    .River = TempVars("River")
+'
+'                    'form values
+'                    .Code = frm!tbxSiteCode.Value
+'                    .name = frm!tbxSiteName.Value
+'                    .Directions = Nz(frm!tbxSiteDirections.Value, "")
+'                    .Description = Nz(frm!tbxDescription.Value, "")
+'
+'                    'assumed
+'                    .IsActiveForProtocol = 1 'all sites assumed active when added
+'
+'                    .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                    strCriteria = "[SiteCode] = '" & .Code & "' AND [SiteName] = '" & .name & "'"
+'
+'                    'set the generic object --> Site
+'                    Set obj = s
+'
+'                    'cleanup
+'                    Set s = Nothing
+'                End With
+'
+'            Case "SurveyFile"
             
             Case "Template"
-                Dim tpl As New Template
+                'Dim tpl As New Template
+                Dim tpl As Template
                 
                 With tpl
                     .IsSupported = 1
@@ -1943,28 +1944,28 @@ On Error GoTo Err_Handler
                 'cleanup
                 Set tpl = Nothing
             
-            Case "Task"
-                Dim tk As New Task
-                
-                With tk
-                    .ID = frm!tbxID.Value '0 if new, edit if > 0
-                    .RequestDate = frm!tbxRequestDate.Value
-                    .RequestedByID = frm!cbxRequestedBy.Column(0)
-                    .Status = frm!cbxStatus.Column(0)
-                    .Priority = frm!cbxPriority.Column(0)
-                    .Task = frm!tbxTask.Value
-                    .TaskType = frm.ContextType
-                    
-                    strCriteria = "[TaskType] = '" & .TaskType _
-                                & "' AND [Task] = '" & .Task _
-                                & "'"
-                
-                    'set the generic object --> Task
-                    Set obj = tk
-                    
-                    'cleanup
-                    Set tk = Nothing
-                End With
+'            Case "Task"
+'                Dim tk As New Task
+'
+'                With tk
+'                    .ID = frm!tbxID.Value '0 if new, edit if > 0
+'                    .RequestDate = frm!tbxRequestDate.Value
+'                    .RequestedByID = frm!cbxRequestedBy.Column(0)
+'                    .Status = frm!cbxStatus.Column(0)
+'                    .Priority = frm!cbxPriority.Column(0)
+'                    .Task = frm!tbxTask.Value
+'                    .TaskType = frm.ContextType
+'
+'                    strCriteria = "[TaskType] = '" & .TaskType _
+'                                & "' AND [Task] = '" & .Task _
+'                                & "'"
+'
+'                    'set the generic object --> Task
+'                    Set obj = tk
+'
+'                    'cleanup
+'                    Set tk = Nothing
+'                End With
                 
             Case "TemplateAdd"
                 'Dim tpl As New Template
@@ -1992,149 +1993,149 @@ On Error GoTo Err_Handler
                 'inserts only, no ID?
                 NoList = True
                 
-            Case "Transducer"
-                Dim t As New Transducer
-        
-                With t
-                    'values passed into form
-                    .EventID = 1
-                            
-                    'form values
-                    .TransducerType = ""
-                    .TransducerNumber = frm!cbxTransducer.SelText
-                    .SerialNumber = frm!tbxSerialNo.Value
-                    .IsSurveyed = frm!chkSurveyed.Value
-                    .Timing = frm!cbxTiming.SelText
-                    .ActionDate = Format(frm!tbxSampleDate.Value, "YYYY-mm-dd")
-                    .ActionTime = Format(frm!tbxSampleTime.Value, "hh:mm.ss")
-                    
-                    .ID = frm!tbxID.Value '0 if new, edit if > 0
-                
-                    strCriteria = "[TransducerNumber] = " & .TransducerNumber _
-                                & " AND [Timing] = '" & .Timing _
-                                & "' AND [SerialNumber] = '" & .SerialNumber _
-                                & "' AND [ActionDate] = " & .ActionDate
-                
-                    'set the generic object --> Transducer
-                    Set obj = t
-                    
-                    'cleanup
-                    Set t = Nothing
-                End With
-            
-            Case "Transect"
-                Dim vt As New VegTransect
-                strTable = "VegTransect"
-                
-                With vt
-                    'values passed into form
-                    .Park = TempVars("ParkCode")
-                    .LocationID = 1
-                    .EventID = 1
-                            
-                    'form values
-                    .TransectNumber = frm!tbxNumber.Value
-                    .SampleDate = Format(frm!tbxSampleDate.Value, "YYYY-mm-dd")
-                    
-                    .ID = frm!tbxID.Value '0 if new, edit if > 0
-                    
-                    strCriteria = "[TransectNumber] = " & .TransectNumber _
-                                & "' AND [SampleDate] = " & .SampleDate
-                
-                    'set the generic object --> VegTransect
-                    Set obj = vt
-                    
-                    'cleanup
-                    Set vt = Nothing
-                End With
-            
-            Case "UserRole"
-                Dim u As New Person
-                    
-                With u
-                    'values passed into form
-            '        .EventID = 1
-                            
-                    'form values
-            '        .UserRoleType = ""
-            '        .UserRoleNumber = cbxUserRole.SelText
-            '        .SerialNumber = tbxSerialNo.value
-            '        .IsSurveyed = chkSurveyed.value
-            '        .Timing = cbxTiming.SelText
-            '        .ActionDate = Format(tbxSampleDate.value, "YYYY-mm-dd")
-            '        .ActionTime = Format(tbxSampleTime.value, "hh:mm.ss")
-                    
-                    .ID = frm!tbxID.Value '0 if new, edit if > 0
-                
-                    'strCriteria = "[UserRoleNumber] = " & .UserRoleNumber
-                
-                    'set the generic object --> Location
-                    Set obj = u
-                    
-                    'cleanup
-                    Set u = Nothing
-                End With
-
-            Case "VegWalk"
-                Select Case frm.FormContext
-                    Case "AllRootedSpecies"
-                        Dim ars As New RootedSpecies
-                        
-                        With ars
-                            'values passed into form
-                            .ID = frm!tbxID.Value '0 if new, edit if > 0
-                            
-                            'set the generic object --> Woody Canopy Species
-                            Set obj = ars
-                            
-                            'cleanup
-                            Set ars = Nothing
-                        End With
-                    
-                    Case "UnderstoryRootedSpecies"
-                        Dim ucs As New UnderstoryCoverSpecies
-                        
-                        With ucs
-                            'values passed into form
-                            .ID = frm!tbxID.Value '0 if new, edit if > 0
-                            
-                            'set the generic object --> Woody Canopy Species
-                            Set obj = ucs
-                            
-                            'cleanup
-                            Set ucs = Nothing
-                        End With
-
-                    Case "VegWalk"
-                        Dim vw As New VegWalk
-                        
-                        With vw
-                            'values passed into form
-                        
-                            .ID = frm!tbxID.Value '0 if new, edit if > 0
-                                        
-                            'set the generic object --> Location
-                            Set obj = vw
-                            
-                            'cleanup
-                            Set vw = Nothing
-                        End With
-                    
-                    Case "WoodyCanopySpecies"
-                        Dim wcs As New WoodyCanopySpecies
-                        
-                        With wcs
-                            'values passed into form
-                            .ID = frm!tbxID.Value '0 if new, edit if > 0
-                            
-                            'set the generic object --> Woody Canopy Species
-                            Set obj = wcs
-                            
-                            'cleanup
-                            Set wcs = Nothing
-                        End With
-                        
-                End Select
+'            Case "Transducer"
+'                Dim t As New Transducer
+'
+'                With t
+'                    'values passed into form
+'                    .EventID = 1
+'
+'                    'form values
+'                    .TransducerType = ""
+'                    .TransducerNumber = frm!cbxTransducer.SelText
+'                    .SerialNumber = frm!tbxSerialNo.Value
+'                    .IsSurveyed = frm!chkSurveyed.Value
+'                    .Timing = frm!cbxTiming.SelText
+'                    .ActionDate = Format(frm!tbxSampleDate.Value, "YYYY-mm-dd")
+'                    .ActionTime = Format(frm!tbxSampleTime.Value, "hh:mm.ss")
+'
+'                    .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                    strCriteria = "[TransducerNumber] = " & .TransducerNumber _
+'                                & " AND [Timing] = '" & .Timing _
+'                                & "' AND [SerialNumber] = '" & .SerialNumber _
+'                                & "' AND [ActionDate] = " & .ActionDate
+'
+'                    'set the generic object --> Transducer
+'                    Set obj = t
+'
+'                    'cleanup
+'                    Set t = Nothing
+'                End With
+'
+'            Case "Transect"
+'                Dim vt As New VegTransect
+'                strTable = "VegTransect"
+'
+'                With vt
+'                    'values passed into form
+'                    .Park = TempVars("ParkCode")
+'                    .LocationID = 1
+'                    .EventID = 1
+'
+'                    'form values
+'                    .TransectNumber = frm!tbxNumber.Value
+'                    .SampleDate = Format(frm!tbxSampleDate.Value, "YYYY-mm-dd")
+'
+'                    .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                    strCriteria = "[TransectNumber] = " & .TransectNumber _
+'                                & "' AND [SampleDate] = " & .SampleDate
+'
+'                    'set the generic object --> VegTransect
+'                    Set obj = vt
+'
+'                    'cleanup
+'                    Set vt = Nothing
+'                End With
+'
+'            Case "UserRole"
+'                Dim u As New Person
+'
+'                With u
+'                    'values passed into form
+'            '        .EventID = 1
+'
+'                    'form values
+'            '        .UserRoleType = ""
+'            '        .UserRoleNumber = cbxUserRole.SelText
+'            '        .SerialNumber = tbxSerialNo.value
+'            '        .IsSurveyed = chkSurveyed.value
+'            '        .Timing = cbxTiming.SelText
+'            '        .ActionDate = Format(tbxSampleDate.value, "YYYY-mm-dd")
+'            '        .ActionTime = Format(tbxSampleTime.value, "hh:mm.ss")
+'
+'                    .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                    'strCriteria = "[UserRoleNumber] = " & .UserRoleNumber
+'
+'                    'set the generic object --> Location
+'                    Set obj = u
+'
+'                    'cleanup
+'                    Set u = Nothing
+'                End With
+'
+'            Case "VegWalk"
+'                Select Case frm.FormContext
+'                    Case "AllRootedSpecies"
+'                        Dim ars As New RootedSpecies
+'
+'                        With ars
+'                            'values passed into form
+'                            .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                            'set the generic object --> Woody Canopy Species
+'                            Set obj = ars
+'
+'                            'cleanup
+'                            Set ars = Nothing
+'                        End With
+'
+'                    Case "UnderstoryRootedSpecies"
+'                        Dim ucs As New UnderstoryCoverSpecies
+'
+'                        With ucs
+'                            'values passed into form
+'                            .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                            'set the generic object --> Woody Canopy Species
+'                            Set obj = ucs
+'
+'                            'cleanup
+'                            Set ucs = Nothing
+'                        End With
+'
+'                    Case "VegWalk"
+'                        Dim vw As New VegWalk
+'
+'                        With vw
+'                            'values passed into form
+'
+'                            .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                            'set the generic object --> Location
+'                            Set obj = vw
+'
+'                            'cleanup
+'                            Set vw = Nothing
+'                        End With
+'
+'                    Case "WoodyCanopySpecies"
+'                        Dim wcs As New WoodyCanopySpecies
+'
+'                        With wcs
+'                            'values passed into form
+'                            .ID = frm!tbxID.Value '0 if new, edit if > 0
+'
+'                            'set the generic object --> Woody Canopy Species
+'                            Set obj = wcs
+'
+'                            'cleanup
+'                            Set wcs = Nothing
+'                        End With
+'
+'                End Select
             
 
             Case Else
@@ -2263,84 +2264,84 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
-' ---------------------------------
-' Sub:          SetObserverRecorder
-' Description:  Sets data observer & recorder
-' Assumptions:  -
-' Parameters:   obj - object to set observer/recorder on (object)
-'               tbl - name of table being modified (string)
-' Returns:      -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, August 9, 2016 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 8/9/2016 - initial version
-' ---------------------------------
-Public Sub SetObserverRecorder(obj As Object, tbl As String)
-On Error GoTo Err_Handler
-    
-    'handle record actions
-    Dim act As New RecordAction
-    With act
-    
-    'Recorder
-        .RefAction = "R"
-        .ContactID = obj.RecorderID
-        .RefID = obj.ID
-        .RefTable = tbl
-        .SaveToDb
-        
-    'Observer
-        .RefAction = "O"
-        .ContactID = obj.ObserverID
-        .RefID = obj.ID
-        .RefTable = tbl
-        .SaveToDb
-        
-    End With
+'' ---------------------------------
+'' Sub:          SetObserverRecorder
+'' Description:  Sets data observer & recorder
+'' Assumptions:  -
+'' Parameters:   obj - object to set observer/recorder on (object)
+''               tbl - name of table being modified (string)
+'' Returns:      -
+'' Throws:       none
+'' References:   -
+'' Source/date:  Bonnie Campbell, August 9, 2016 - for NCPN tools
+'' Adapted:      -
+'' Revisions:
+''   BLC - 8/9/2016 - initial version
+'' ---------------------------------
+'Public Sub SetObserverRecorder(obj As Object, tbl As String)
+'On Error GoTo Err_Handler
+'
+'    'handle record actions
+'    Dim act As New RecordAction
+'    With act
+'
+'    'Recorder
+'        .RefAction = "R"
+'        .ContactID = obj.RecorderID
+'        .RefID = obj.ID
+'        .RefTable = tbl
+'        .SaveToDb
+'
+'    'Observer
+'        .RefAction = "O"
+'        .ContactID = obj.ObserverID
+'        .RefID = obj.ID
+'        .RefTable = tbl
+'        .SaveToDb
+'
+'    End With
+'
+'Exit_Handler:
+'    Exit Sub
+'Err_Handler:
+'    Select Case Err.Number
+'      Case Else
+'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+'            "Error encountered (#" & Err.Number & " - SetObserverRecorder[mod_App_Data])"
+'    End Select
+'    Resume Exit_Handler
+'End Sub
 
-Exit_Handler:
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - SetObserverRecorder[mod_App_Data])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' Sub:          UploadCSVFile
-' Description:  Uploads data into database from CSV file
-' Assumptions:  -
-' Parameters:   strFilename - name of file being uploaded (string)
-' Returns:      -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, September 1, 2016 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 9/1/2016 - initial version
-'   BLC - 10/19/2016 - renamed to UploadCSVFile from UploadSurveyFile to genericize
-' ---------------------------------
-Public Sub UploadCSVFile(strFilename As String)
-On Error GoTo Err_Handler
-    
-    'import to table
-    ImportCSV strFilename, "usys_temp_csv", True, True
-
-Exit_Handler:
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - UploadCSVFile[mod_App_Data])"
-    End Select
-    Resume Exit_Handler
-End Sub
+'' ---------------------------------
+'' Sub:          UploadCSVFile
+'' Description:  Uploads data into database from CSV file
+'' Assumptions:  -
+'' Parameters:   strFilename - name of file being uploaded (string)
+'' Returns:      -
+'' Throws:       none
+'' References:   -
+'' Source/date:  Bonnie Campbell, September 1, 2016 - for NCPN tools
+'' Adapted:      -
+'' Revisions:
+''   BLC - 9/1/2016 - initial version
+''   BLC - 10/19/2016 - renamed to UploadCSVFile from UploadSurveyFile to genericize
+'' ---------------------------------
+'Public Sub UploadCSVFile(strFilename As String)
+'On Error GoTo Err_Handler
+'
+'    'import to table
+'    ImportCSV strFilename, "usys_temp_csv", True, True
+'
+'Exit_Handler:
+'    Exit Sub
+'Err_Handler:
+'    Select Case Err.Number
+'      Case Else
+'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+'            "Error encountered (#" & Err.Number & " - UploadCSVFile[mod_App_Data])"
+'    End Select
+'    Resume Exit_Handler
+'End Sub
 
 ' ---------------------------------
 ' Function:          FetchAddlData

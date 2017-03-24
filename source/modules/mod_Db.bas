@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_Db
 ' Level:        Framework module
-' Version:      1.12
+' Version:      1.13
 ' Description:  Database related functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, April 2015
@@ -24,6 +24,10 @@ Option Explicit
 '               BLC, 2/2/2017  - 1.11  - cleared g_AppTemplates in GetTemplates()
 '                                        to allow re-definition w/o restarting db
 '               BLC, 2/22/2017 - 1.12  - added DbObjectExists() to validate db objects
+' --------------------------------------------------------------------
+'               BLC, 3/22/2017          added to Upland db
+' --------------------------------------------------------------------
+'               BLC, 3/23/2017 - 1.13  - revised GetTemplates() to use "SQL" vs. "T-SQL" syntax
 ' =================================
 
 ' ---------------------------------
@@ -360,7 +364,6 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Function
-
 
 ' =================================
 ' FUNCTION:     TableExists
@@ -1038,6 +1041,7 @@ End Function
 '               BLC, 2/1/2017  - added error handling for improper parameter syntax (param name:param type)
 '               BLC, 2/2/2017  - added clearing of global g_AppTemplates to allow re-definition
 '                                without restarting db
+'               BLC, 3/23/2017 - revised to use "SQL" for default syntax (most should be "SQL" i.e. usable in SQL server & Access)
 ' ---------------------------------
 Public Sub GetTemplates(Optional strSyntax As String = "", Optional Params As String = "")
 
@@ -1050,7 +1054,7 @@ Public Sub GetTemplates(Optional strSyntax As String = "", Optional Params As St
     strSQLWhere = " WHERE IsSupported > 0"
     
     If Len(strSyntax) = 0 Then
-        strSyntax = "T-SQL"
+        strSyntax = "SQL"
     End If
     
     strSQLWhere = strSQLWhere & " AND LCase(Syntax) = LCase('" & strSyntax & "')"
