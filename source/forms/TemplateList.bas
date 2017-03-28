@@ -19,10 +19,10 @@ Begin Form
     Width =8160
     DatasheetFontHeight =11
     ItemSuffix =44
-    Left =6060
-    Top =3315
-    Right =17070
-    Bottom =13920
+    Left =3630
+    Top =3060
+    Right =14640
+    Bottom =13665
     DatasheetGridlinesColor =14806254
     OrderBy ="TemplateName"
     RecSrcDt = Begin
@@ -889,7 +889,7 @@ Option Explicit
 ' =================================
 ' Form:         TemplateList
 ' Level:        Application form
-' Version:      1.03
+' Version:      1.04
 ' Basis:        Dropdown form
 '
 ' Description:  List form object related properties, events, functions & procedures for UI display
@@ -903,6 +903,7 @@ Option Explicit
 '               BLC - 2/1/2017  - 1.03 - handles giving focus to new template after TemplateAdd
 '                                        added refresh button to run GetTemplates & update
 '                                        template dictionary
+'               BLC - 3/24/2017 - 1.04 - added CallingForm properties
 ' =================================
 
 '---------------------
@@ -914,17 +915,16 @@ Option Explicit
 '---------------------
 Private m_Title As String
 Private m_Directions As String
-Private m_ButtonCaption
-Private m_SelectedID As Integer
-Private m_SelectedValue As String
+Private m_CallingForm As String
+Private m_CallingRecordID As Integer
 
 '---------------------
 ' Event Declarations
 '---------------------
 Public Event InvalidTitle(Value As String)
 Public Event InvalidDirections(Value As String)
-Public Event InvalidLabel(Value As String)
-Public Event InvalidCaption(Value As String)
+Public Event InvalidCallingForm(Value As String)
+Public Event InvalidCallingRecordID(Value As Integer)
 
 '---------------------
 ' Properties
@@ -960,35 +960,20 @@ Public Property Get Directions() As String
     Directions = m_Directions
 End Property
 
-Public Property Let ButtonCaption(Value As String)
-    If Len(Value) > 0 Then
-        m_ButtonCaption = Value
-
-        'set the form button caption
-        'Me.btnEdit.Caption = m_ButtonCaption
-    Else
-        RaiseEvent InvalidCaption(Value)
-    End If
+Public Property Let CallingForm(Value As String)
+        m_CallingForm = Value
 End Property
 
-Public Property Get ButtonCaption() As String
-    ButtonCaption = m_ButtonCaption
+Public Property Get CallingForm() As String
+    CallingForm = m_CallingForm
 End Property
 
-Public Property Let SelectedID(Value As Integer)
-        m_SelectedID = Value
+Public Property Let CallingRecordID(Value As Integer)
+        m_CallingRecordID = Value
 End Property
 
-Public Property Get SelectedID() As Integer
-    SelectedID = m_SelectedID
-End Property
-
-Public Property Let SelectedValue(Value As String)
-        m_SelectedValue = Value
-End Property
-
-Public Property Get SelectedValue() As String
-    SelectedValue = m_SelectedValue
+Public Property Get CallingRecordID() As Integer
+    CallingRecordID = m_CallingRecordID
 End Property
 
 '---------------------
@@ -1008,13 +993,29 @@ End Property
 ' Revisions:
 '   BLC - 5/31/2016 - initial version
 '   BLC - 1/10/2017 - added btnOpenTable, set
+'   BLC - 3/24/2017 - set & minimize CallingForm
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
 
-    'minimize DbAdmin
-'    ToggleForm "DbAdmin", -1
+    'default
+    Me.CallingForm = "frm_Data_Entry"
+    Me.CallingRecordID = -1
+        
+    'If Len(Nz(Me.OpenArgs, "")) > 0 Then Me.CallingForm = Me.OpenArgs
 
+    'minimize calling form
+    ToggleForm Me.CallingForm, -1
+
+    'set record
+    If Len(Nz(Me.OpenArgs, "")) > 0 Then
+        If InStr(Me.OpenArgs, "|") Then
+            Dim ary() As String
+            ary = Split(Me.OpenArgs, "|")
+            Me.CallingForm = ary(0)
+        End If
+    End If
+        
     Me.Caption = "Template List"
     lblTitle.Caption = ""
     lblDirections.Caption = "Sort records by clicking the header." _
@@ -1102,13 +1103,13 @@ On Error GoTo Err_Handler
         Call lblVersion_Click
         Call lblHdrID_Click
         Me.SetFocus
-        DoCmd.GoToRecord acDataForm, Me.name, acLast
+        DoCmd.GoToRecord acDataForm, Me.Name, acLast
 '        DoCmd.GoToRecord acDataForm, Me.Name, acPrevious, 30 << causes endless loop
         
         'close form
         DoCmd.Close acForm, "TemplateAdd"
     Else
-        Debug.Print "not open"
+'       Debug.Print "not open"
     End If
        
 Exit_Handler:

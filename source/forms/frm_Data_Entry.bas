@@ -20,10 +20,10 @@ Begin Form
     Width =16296
     DatasheetFontHeight =10
     ItemSuffix =213
-    Left =60
-    Top =90
-    Right =16605
-    Bottom =14550
+    Left =5970
+    Top =30
+    Right =22515
+    Bottom =14490
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201703231"
         "04002-289562463.760376'"
@@ -1469,16 +1469,15 @@ Begin Form
                     End
                 End
                 Begin CommandButton
-                    TabStop = NotDefault
                     OverlapFlags =85
                     Left =13860
                     Top =180
-                    Width =780
-                    Height =899
-                    FontSize =9
-                    FontWeight =700
+                    Width =960
+                    Height =900
+                    FontSize =11
                     TabIndex =16
                     Name ="btnPlotQAQC"
+                    Caption ="Plot Check!"
                     StatusBarText ="Check Field Data!"
                     OnClick ="[Event Procedure]"
                     PictureData = Begin
@@ -1517,7 +1516,7 @@ Begin Form
                         0x0000000000000000000000000000000000000000000000000000000000000000 ,
                         0x0000000000000000
                     End
-                    FontName ="Arial"
+                    FontName ="Calibri"
                     ObjectPalette = Begin
                         0x000301000000000000000000
                     End
@@ -1525,31 +1524,31 @@ Begin Form
                     LeftPadding =60
                     RightPadding =75
                     BottomPadding =120
+                    GridlineColor =10921638
 
                     LayoutCachedLeft =13860
                     LayoutCachedTop =180
-                    LayoutCachedWidth =14640
-                    LayoutCachedHeight =1079
+                    LayoutCachedWidth =14820
+                    LayoutCachedHeight =1080
                     ForeThemeColorIndex =0
+                    GridlineThemeColorIndex =1
+                    GridlineShade =65.0
                     UseTheme =1
                     Shape =2
                     Gradient =12
-                    BackColor =13020235
-                    BackThemeColorIndex =8
-                    BorderColor =13020235
-                    BorderThemeColorIndex =8
-                    HoverColor =13745519
-                    HoverThemeColorIndex =8
-                    HoverTint =80.0
-                    PressedColor =10915381
-                    PressedThemeColorIndex =8
-                    PressedShade =80.0
+                    BackColor =5066944
+                    BackThemeColorIndex =5
+                    BorderColor =5066944
+                    BorderThemeColorIndex =5
+                    ThemeFontIndex =1
+                    HoverColor =15709952
+                    PressedColor =15709952
                     HoverForeColor =0
                     HoverForeThemeColorIndex =0
                     PressedForeColor =0
                     PressedForeThemeColorIndex =0
                     Shadow =-1
-                    QuickStyle =27
+                    QuickStyle =24
                     QuickStyleMask =-1
                     WebImagePaddingTop =1
                 End
@@ -1568,7 +1567,7 @@ Option Explicit
 ' =================================
 ' MODULE:       frm_Data_Entry
 ' Level:        Form module
-' Version:      1.05
+' Version:      1.06
 ' Description:  data functions & procedures specific to field data entry
 '
 ' Data source:  tbl_Locations
@@ -1595,6 +1594,7 @@ Option Explicit
 '                                        original values (Scrollbars = Neither, Border Style = Thin)
 '                                        added refresh for underlying subforms for conditional formatting
 '               BLC - 3/22/2017 - 1.06 - added documentation, error handling, btnPlotQAQC
+'               BLC - 3/24/2017 - 1.07 - added CallingForm property, added TempVar("ParkCode")
 ' =================================
 '---------------------
 ' Simulated Inheritance
@@ -1603,6 +1603,7 @@ Option Explicit
 '---------------------
 ' Declarations
 '---------------------
+Private m_CallingForm As String
 
 '---------------------
 ' Event Declarations
@@ -1631,6 +1632,7 @@ Option Explicit
 '   RDB, unknown   - ?
 '   BLC, 2/2/2016  - added documentation
 '   BLC, 3/22/2017 - added btnPlotQAQC initalization
+'   BLC, 3/24/2017 - removed btnPlotQAQC initialization & added TempVar("ParkCode")
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
     On Error GoTo Err_Handler
@@ -1648,17 +1650,9 @@ Private Sub Form_Open(Cancel As Integer)
     Me.Caption = Me.Caption & strCaptionSuffix
     Me!txtStart_date.SetFocus
     
-    'default
-    ' ----------------------------
-    ' mod_Color module typically handles colors
-    ' only one is used here so the module is not included here
-    ' if mod_Color is added in the future: remove lngYelLime definition
-    ' Public Const lngYelLime As Long = 9699294   '?RGB(222,255,147) #DEFF93
-    ' ----------------------------
-    Dim lngYelLime As Long
-    lngYelLime = 9699294
-    btnPlotQAQC.HoverColor = lngYelLime
-
+    'set park
+    SetTempVar "ParkCode", Nz(Me.Unit_Code, "")
+    
 Exit_Handler:
     Exit Sub
     
@@ -2711,8 +2705,11 @@ End Sub
 ' ---------------------------------
 Private Sub btnPlotQAQC_Click()
 On Error GoTo Err_Handler
+    
+    'minimize calling form
+    ToggleForm Me.Name, -1
 
-    DoCmd.OpenForm "PlotCheck", acNormal, , , , acDialog, Me.Plot_ID
+    DoCmd.OpenForm "PlotCheck", acNormal, , , , acDialog, Me.Name & "|" & Me.Plot_ID
 
 Exit_Handler:
     Exit Sub
@@ -2783,7 +2780,7 @@ On Error GoTo Err_Handler
         Me!txtXY = Null
         Me!txtUnit_Code = Null
     Else
-        strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.name, "txtLocation_ID")
+        strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.Name, "txtLocation_ID")
         
         strXY = "E: " & Nz(DLookup("E_Coord", "tbl_Locations", strCriteria), "")
         strXY = strXY & "  N: " & Nz(DLookup("N_Coord", "tbl_Locations", strCriteria), "")

@@ -1,15 +1,12 @@
 ﻿Version =20
 VersionRequired =20
 Begin Form
-    PopUp = NotDefault
     RecordSelectors = NotDefault
-    MaxButton = NotDefault
-    NavigationButtons = NotDefault
+    AutoCenter = NotDefault
+    AllowDeletions = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
-    OrderByOn = NotDefault
-    AllowEdits = NotDefault
+    DataEntry = NotDefault
     ScrollBars =2
     ViewsAllowed =1
     BorderStyle =1
@@ -19,18 +16,15 @@ Begin Form
     GridY =24
     Width =7560
     DatasheetFontHeight =11
-    ItemSuffix =44
-    Left =3465
-    Top =2805
-    Right =12195
-    Bottom =13680
+    ItemSuffix =53
+    Left =-1155
+    Top =120
+    Right =6660
+    Bottom =14160
     DatasheetGridlinesColor =14806254
-    Filter ="[FieldCheck]=1"
-    OrderBy ="TemplateName"
     RecSrcDt = Begin
-        0x0680db994fd0e440
+        0xce54d73357e8e440
     End
-    RecordSource ="tsys_Db_Templates"
     Caption ="_List"
     OnCurrent ="[Event Procedure]"
     OnOpen ="[Event Procedure]"
@@ -45,7 +39,9 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    OrderByOnLoad =0
     FilterOnLoad =255
+    OrderByOnLoad =0
     ShowPageMargins =0
     DisplayOnSharePointSite =1
     AllowLayoutView =0
@@ -69,6 +65,16 @@ Begin Form
             BorderTint =50.0
             ForeThemeColorIndex =0
             ForeTint =50.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Rectangle
+            SpecialEffect =3
+            BackStyle =0
+            BorderLineStyle =0
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
             GridlineThemeColorIndex =1
             GridlineShade =65.0
         End
@@ -134,7 +140,6 @@ Begin Form
             GridlineShade =65.0
         End
         Begin FormHeader
-            Height =1380
             BackColor =4144959
             Name ="FormHeader"
             AlternateBackThemeColorIndex =1
@@ -157,23 +162,25 @@ Begin Form
                 Begin Label
                     OverlapFlags =223
                     Left =120
+                    Top =120
                     Width =7260
-                    Height =840
+                    Height =540
                     BorderColor =8355711
                     ForeColor =16777164
                     Name ="lblDirections"
                     Caption ="directions"
                     GridlineColor =10921638
                     LayoutCachedLeft =120
+                    LayoutCachedTop =120
                     LayoutCachedWidth =7380
-                    LayoutCachedHeight =840
+                    LayoutCachedHeight =660
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
                 Begin Label
                     OverlapFlags =85
                     Left =1200
-                    Top =1020
+                    Top =1080
                     Width =3840
                     Height =315
                     FontWeight =500
@@ -184,16 +191,16 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     GridlineColor =10921638
                     LayoutCachedLeft =1200
-                    LayoutCachedTop =1020
+                    LayoutCachedTop =1080
                     LayoutCachedWidth =5040
-                    LayoutCachedHeight =1335
+                    LayoutCachedHeight =1395
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =93
-                    Left =120
-                    Top =960
+                    OverlapFlags =223
+                    Left =1440
+                    Top =600
                     Width =720
                     Height =315
                     FontWeight =500
@@ -203,10 +210,10 @@ Begin Form
                     Caption ="Plot #"
                     OnClick ="[Event Procedure]"
                     GridlineColor =10921638
-                    LayoutCachedLeft =120
-                    LayoutCachedTop =960
-                    LayoutCachedWidth =840
-                    LayoutCachedHeight =1275
+                    LayoutCachedLeft =1440
+                    LayoutCachedTop =600
+                    LayoutCachedWidth =2160
+                    LayoutCachedHeight =915
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
@@ -340,40 +347,13 @@ Begin Form
                     WebImagePaddingBottom =1
                     Overlaps =1
                 End
-                Begin TextBox
-                    Enabled = NotDefault
-                    TabStop = NotDefault
-                    OldBorderStyle =0
-                    OverlapFlags =215
-                    TextAlign =2
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Left =720
-                    Top =960
-                    Width =360
-                    Height =315
-                    FontSize =9
-                    TabIndex =2
-                    BorderColor =10921638
-                    ForeColor =11916796
-                    Name ="tbxID"
-                    ControlSource ="ID"
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =720
-                    LayoutCachedTop =960
-                    LayoutCachedWidth =1080
-                    LayoutCachedHeight =1275
-                    ForeThemeColorIndex =9
-                    ForeTint =40.0
-                End
                 Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =215
                     Left =5460
                     Top =180
                     Width =504
-                    TabIndex =3
+                    TabIndex =2
                     ForeColor =4210752
                     Name ="btnRunChecks"
                     Caption ="Run All Checks"
@@ -432,14 +412,78 @@ Begin Form
                     WebImagePaddingBottom =1
                     Overlaps =1
                 End
+                Begin Label
+                    OverlapFlags =223
+                    Left =120
+                    Top =600
+                    Width =720
+                    Height =315
+                    FontWeight =500
+                    BorderColor =8355711
+                    ForeColor =16777215
+                    Name ="lblPark"
+                    Caption ="Park"
+                    GridlineColor =10921638
+                    LayoutCachedLeft =120
+                    LayoutCachedTop =600
+                    LayoutCachedWidth =840
+                    LayoutCachedHeight =915
+                    ForeThemeColorIndex =-1
+                    ForeTint =100.0
+                End
+                Begin Label
+                    OverlapFlags =215
+                    TextAlign =2
+                    Left =2040
+                    Top =630
+                    Width =360
+                    Height =315
+                    FontSize =9
+                    BorderColor =10921638
+                    ForeColor =6750207
+                    Name ="lblPlotID"
+                    GridlineColor =10921638
+                    LayoutCachedLeft =2040
+                    LayoutCachedTop =630
+                    LayoutCachedWidth =2400
+                    LayoutCachedHeight =945
+                    BorderThemeColorIndex =1
+                    BorderTint =100.0
+                    BorderShade =65.0
+                    ForeThemeColorIndex =-1
+                    ForeTint =100.0
+                End
+                Begin Label
+                    OverlapFlags =215
+                    TextAlign =2
+                    Left =600
+                    Top =630
+                    Width =660
+                    Height =315
+                    FontSize =9
+                    BorderColor =10921638
+                    ForeColor =6750207
+                    Name ="lblParkCode"
+                    GridlineColor =10921638
+                    LayoutCachedLeft =600
+                    LayoutCachedTop =630
+                    LayoutCachedWidth =1260
+                    LayoutCachedHeight =945
+                    BorderThemeColorIndex =1
+                    BorderTint =100.0
+                    BorderShade =65.0
+                    ForeThemeColorIndex =-1
+                    ForeTint =100.0
+                End
             End
         End
         Begin Section
             CanGrow = NotDefault
             CanShrink = NotDefault
-            Height =420
+            Height =840
             Name ="Detail"
             OnMouseMove ="[Event Procedure]"
+            AutoHeight =255
             AlternateBackColor =15921906
             AlternateBackThemeColorIndex =1
             AlternateBackShade =95.0
@@ -456,7 +500,6 @@ Begin Form
                     Width =360
                     Height =315
                     FontSize =9
-                    TabIndex =1
                     BorderColor =8355711
                     ForeColor =690698
                     Name ="tbxIcon"
@@ -476,7 +519,7 @@ Begin Form
                     Locked = NotDefault
                     TabStop = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =93
                     TextAlign =1
                     BackStyle =0
                     IMESentenceMode =3
@@ -505,6 +548,7 @@ Begin Form
                     OverlapFlags =85
                     Left =6780
                     Width =720
+                    TabIndex =1
                     ForeColor =4210752
                     Name ="btnViewSQL"
                     Caption ="Edit"
@@ -561,13 +605,12 @@ Begin Form
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
-                    Overlaps =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
                     Left =5880
                     Width =720
-                    TabIndex =3
+                    TabIndex =4
                     ForeColor =4210752
                     Name ="btnOpenTable"
                     Caption ="Add Record"
@@ -624,7 +667,6 @@ Begin Form
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
-                    Overlaps =1
                 End
                 Begin TextBox
                     TabStop = NotDefault
@@ -637,17 +679,131 @@ Begin Form
                     Width =360
                     Height =300
                     FontSize =9
-                    TabIndex =4
+                    TabIndex =3
                     BorderColor =8355711
                     ForeColor =690698
                     Name ="tbxNumRecords"
-                    DefaultValue ="0"
+                    ControlSource ="NumRecords"
                     GridlineColor =10921638
 
                     LayoutCachedLeft =540
                     LayoutCachedTop =60
                     LayoutCachedWidth =900
                     LayoutCachedHeight =360
+                    BorderThemeColorIndex =0
+                    BorderTint =50.0
+                    BorderShade =100.0
+                    ForeThemeColorIndex =-1
+                    ForeTint =50.0
+                End
+                Begin TextBox
+                    Enabled = NotDefault
+                    TabStop = NotDefault
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =5220
+                    Top =45
+                    Width =360
+                    Height =315
+                    FontSize =9
+                    TabIndex =5
+                    BorderColor =10921638
+                    ForeColor =11916796
+                    Name ="tbxID"
+                    ControlSource ="ID"
+                    GridlineColor =10921638
+
+                    LayoutCachedLeft =5220
+                    LayoutCachedTop =45
+                    LayoutCachedWidth =5580
+                    LayoutCachedHeight =360
+                    ForeThemeColorIndex =9
+                    ForeTint =40.0
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =5880
+                    Top =480
+                    Width =720
+                    TabIndex =6
+                    ForeColor =4210752
+                    Name ="btnRunCheck"
+                    Caption ="Run"
+                    OnClick ="[Event Procedure]"
+                    ObjectPalette = Begin
+                        0x000301000000000000000000
+                    End
+                    ControlTipText ="Open tsys_Db_Templates table"
+                    GridlineColor =10921638
+
+                    LayoutCachedLeft =5880
+                    LayoutCachedTop =480
+                    LayoutCachedWidth =6600
+                    LayoutCachedHeight =840
+                    BackColor =14136213
+                    BorderColor =14136213
+                    HoverColor =15060409
+                    PressedColor =9592887
+                    HoverForeColor =4210752
+                    PressedForeColor =4210752
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
+                End
+                Begin TextBox
+                    Visible = NotDefault
+                    Locked = NotDefault
+                    TabStop = NotDefault
+                    OldBorderStyle =0
+                    OverlapFlags =247
+                    TextAlign =1
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =4080
+                    Top =30
+                    Width =1080
+                    Height =315
+                    FontSize =9
+                    TabIndex =7
+                    BorderColor =10921638
+                    ForeColor =4138256
+                    Name ="tbxSQL"
+                    ControlSource ="Template"
+                    GridlineColor =10921638
+
+                    LayoutCachedLeft =4080
+                    LayoutCachedTop =30
+                    LayoutCachedWidth =5160
+                    LayoutCachedHeight =345
+                    ForeThemeColorIndex =2
+                    ForeTint =100.0
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    TabStop = NotDefault
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =540
+                    Top =480
+                    Width =360
+                    Height =300
+                    FontSize =9
+                    TabIndex =8
+                    BorderColor =8355711
+                    ForeColor =690698
+                    Name ="tbxCheckOK"
+                    GridlineColor =10921638
+
+                    LayoutCachedLeft =540
+                    LayoutCachedTop =480
+                    LayoutCachedWidth =900
+                    LayoutCachedHeight =780
                     BorderThemeColorIndex =0
                     BorderTint =50.0
                     BorderShade =100.0
@@ -676,7 +832,7 @@ Option Explicit
 ' =================================
 ' Form:         PlotCheck
 ' Level:        Application form
-' Version:      1.03
+' Version:      1.01
 ' Basis:        Dropdown form
 '
 ' Description:  Plot field check form object related properties, events, functions & procedures for UI display
@@ -684,6 +840,7 @@ Option Explicit
 ' Source/date:  Bonnie Campbell, March 22, 2017
 ' References:   -
 ' Revisions:    BLC - 3/22/2017 - 1.00 - initial version
+'               BLC - 3/24/2017 - 1.01 - added CallingForm, CallingRecordID properties
 ' =================================
 
 '---------------------
@@ -695,17 +852,16 @@ Option Explicit
 '---------------------
 Private m_Title As String
 Private m_Directions As String
-Private m_ButtonCaption
-Private m_SelectedID As Integer
-Private m_SelectedValue As String
+Private m_CallingForm As String
+Private m_CallingRecordID As Integer
 
 '---------------------
 ' Event Declarations
 '---------------------
 Public Event InvalidTitle(Value As String)
 Public Event InvalidDirections(Value As String)
-Public Event InvalidLabel(Value As String)
-Public Event InvalidCaption(Value As String)
+Public Event InvalidCallingForm(Value As String)
+Public Event InvalidCallingRecordID(Value As Integer)
 
 '---------------------
 ' Properties
@@ -741,35 +897,20 @@ Public Property Get Directions() As String
     Directions = m_Directions
 End Property
 
-Public Property Let ButtonCaption(Value As String)
-    If Len(Value) > 0 Then
-        m_ButtonCaption = Value
-
-        'set the form button caption
-        'Me.btnEdit.Caption = m_ButtonCaption
-    Else
-        RaiseEvent InvalidCaption(Value)
-    End If
+Public Property Let CallingForm(Value As String)
+        m_CallingForm = Value
 End Property
 
-Public Property Get ButtonCaption() As String
-    ButtonCaption = m_ButtonCaption
+Public Property Get CallingForm() As String
+    CallingForm = m_CallingForm
 End Property
 
-Public Property Let SelectedID(Value As Integer)
-        m_SelectedID = Value
+Public Property Let CallingRecordID(Value As Integer)
+        m_CallingRecordID = Value
 End Property
 
-Public Property Get SelectedID() As Integer
-    SelectedID = m_SelectedID
-End Property
-
-Public Property Let SelectedValue(Value As String)
-        m_SelectedValue = Value
-End Property
-
-Public Property Get SelectedValue() As String
-    SelectedValue = m_SelectedValue
+Public Property Get CallingRecordID() As Integer
+    CallingRecordID = m_CallingRecordID
 End Property
 
 '---------------------
@@ -783,21 +924,48 @@ End Property
 ' Parameters:   -
 ' Returns:      -
 ' Throws:       none
-' References:   -
+' References:
+'   JeffK, March 26, 2009
+'   http://www.utteraccess.com/forum/set-height-continuous-fo-t1804798.html
 ' Source/date:  Bonnie Campbell, March 22, 2017 - for NCPN tools
 ' Adapted:      -
 ' Revisions:
 '   BLC - 3/22/2017 - initial version
+'   BLC - 3/24/2017 - set & minimize CallingForm
+'   BLC - 3/27/2017 - added tbxCheckOK
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
 
-    'minimize DbAdmin
-    ToggleForm "DbAdmin", -1
+    'default
+    Me.CallingForm = "frm_Data_Entry"
+    Me.CallingRecordID = -1
+        
+    'If Len(Nz(Me.OpenArgs, "")) > 0 Then Me.CallingForm = Me.OpenArgs
 
+    'minimize calling form
+    ToggleForm Me.CallingForm, -1
+
+    'set record
+    If Len(Nz(Me.OpenArgs, "")) > 0 Then
+        If InStr(Me.OpenArgs, "|") Then
+            Dim ary() As String
+            ary = Split(Me.OpenArgs, "|")
+            Me.CallingForm = ary(0)
+            Me.CallingRecordID = ary(1)
+        End If
+    End If
+
+    'set park & record
+    Me.lblParkCode.Caption = Nz(TempVars("ParkCode"), "")
+    Me.lblPlotID.Caption = Me.CallingRecordID
+    
+    SetTempVar "plotID", Me.CallingRecordID
+        
     Me.Caption = "Plot Check"
     lblTitle.Caption = ""
-    lblDirections.Caption = "Before you leave the plot, run these checks!"
+    Me.Directions = "Before you leave the plot, run these checks!"
+    lblDirections.Caption = Me.Directions
     
     tbxIcon.Value = StringFromCodepoint(uLocked)
     tbxIcon.ForeColor = lngDkGreen
@@ -806,7 +974,8 @@ On Error GoTo Err_Handler
     'set hover
 '    btnDelete.HoverColor = lngGreen
 '    btnViewSQL.HoverColor = lngGreen
-'    btnOpenTable.HoverColor = lngGreen
+    btnOpenTable.HoverColor = lngGreen
+    btnRunCheck.HoverColor = lngGreen
 '
 '    btnDelete.Caption = StringFromCodepoint(uDelete)
 '    btnDelete.ForeColor = lngRed
@@ -815,7 +984,32 @@ On Error GoTo Err_Handler
     tbxTemplate.Enabled = True
     
     'cover to avoid data entry
+    
+    'set underlying data
+    Set Me.Recordset = GetRecords("s_template_num_records")
+    
+    'set form height <- must be set or detail height = 1 record
+    '                   due to setting recordset programmatically
+    Me.InsideHeight = Me.FormHeader.Height + Me.FormFooter.Height + _
+                        (Me.Detail.Height * 15)
+    
+    'defaults
+    Me.Filter = "[FieldCheck]=" & 1
+    Me.FilterOnLoad = True
+    Me.AllowEdits = True
+    Me.AllowFilters = True
+    
+    'clear num records & run queries
+    RunPlotCheck
+    
+    Dim chk As String
+    chk = StringFromCodepoint(uCheck)
+    
+    Me.tbxCheckOK = IIf(Me.tbxNumRecords > 0, chk, "")
+    
+    Me.Requery
 
+    
 Exit_Handler:
     Exit Sub
 Err_Handler:
@@ -882,13 +1076,13 @@ On Error GoTo Err_Handler
         Call lblVersion_Click
         Call lblHdrID_Click
         Me.SetFocus
-        DoCmd.GoToRecord acDataForm, Me.name, acLast
+        DoCmd.GoToRecord acDataForm, Me.Name, acLast
 '        DoCmd.GoToRecord acDataForm, Me.Name, acPrevious, 30 << causes endless loop
         
         'close form
         DoCmd.Close acForm, "TemplateAdd"
     Else
-        Debug.Print "not open"
+'        Debug.Print "not open"
     End If
        
 Exit_Handler:
@@ -1014,17 +1208,17 @@ End Sub
 Private Sub btnViewSQL_Click()
 On Error GoTo Err_Handler
     
-    Dim strOA As String
-    
-    'prepare open args
-    strOA = Me.ID.Value & "|" _
-            & Me.Version.Value & "|" _
-            & Me.TemplateName.Value & "|" _
-            & Me.Template.Value & "|" _
-            & Me.EffectiveDate.Value & "|" _
-            & Me.Syntax.Value
-    
-    DoCmd.OpenForm "TemplateSQL", acNormal, , , , , strOA
+'    Dim strOA As String
+'
+'    'prepare open args
+'    strOA = Me.ID.Value & "|" _
+'            & Me.Version.Value & "|" _
+'            & Me.TemplateName.Value & "|" _
+'            & Me.Template.Value & "|" _
+'            & Me.EffectiveDate.Value & "|" _
+'            & Me.Syntax.Value
+'
+'    DoCmd.OpenForm "TemplateSQL", acNormal, , , , , strOA
 
 Exit_Handler:
     Exit Sub
@@ -1033,6 +1227,142 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - btnViewSQL_Click[PlotCheck form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          btnRunCheck_Click
+' Description:  Run check button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 24, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/24/2017 - initial version
+' ---------------------------------
+Private Sub btnRunCheck_Click()
+On Error GoTo Err_Handler
+    
+    'retrieve the SQL for the ID
+    'Me.Template
+    
+    'ensure temp query is closed
+    DoCmd.Close acQuery, "usys_temp_display", acSaveNo
+    
+    Dim db As DAO.Database
+    Dim qdf As DAO.QueryDef, qdf2 As DAO.QueryDef
+    Dim rs As DAO.Recordset
+    
+    Set db = CurrentDb
+    
+    With db
+        Set qdf = .QueryDefs("usys_temp_qdf")
+        
+        With qdf
+
+            Dim strSQL As String
+            
+            'replace park code & plotID parameters
+            'strSQL = Replace(Replace(Me.tbxSQL, "[pkid]", "'" & TempVars("ParkCode") & "'"), _
+                        "[pid]", Me.lblPlotID.Caption)
+            
+            .SQL = Me.tbxSQL 'strSQL 'Me.Template 'Me.tbxSQL
+            
+            'set park code & plotID parameters
+            .Parameters("pkid") = TempVars("ParkCode")
+            .Parameters("pid") = Me.lblPlotID.Caption
+            
+            Debug.Print .SQL
+            
+            'open query window
+'            DoCmd.OpenQuery qdf.Name, acViewNormal, acReadOnly '<< asks for params
+'            DoCmd.RunSQL (qdf.SQL) '<< requires query statement
+            
+            With db
+                'replace park code & plotID parameters
+                strSQL = Replace(Replace(Me.tbxSQL, "[pkid]", "'" & TempVars("ParkCode") & "'"), _
+                            "[pid]", Me.lblPlotID.Caption)
+                
+                'remove parameter clause (values already replaced)
+                strSQL = right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
+                
+ Debug.Print strSQL
+                Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
+                
+                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
+                
+                '.QueryDefs.Delete "usys_temp_display"
+            End With
+            
+            
+            'don't .OpenRecordset here --> causes missing param errors
+            'OK for SELECT/QA as long as all params are accommodated
+            Set rs = .OpenRecordset()
+            
+            'update the number
+            Dim Template As String
+    
+            Template = "u_num_records" '"i_num_records"
+    
+            Dim Params(0 To 2) As Variant
+        
+            With Me
+                Params(0) = Template
+                Params(1) = Me.tbxID
+                Params(2) = rs.RecordCount
+            
+                SetRecord Template, Params
+            End With
+    
+'    'after template is saved, refresh global Template dictionary
+'    GetTemplates
+'
+'            SetRecord "i_num_records", params
+'            Me.tbxNumRecords = rs.RecordCount
+            
+            'refresh form
+            Me.Requery
+            
+            'run query
+'            .Execute
+            
+            'minimize plotcheck so user can see query result
+            ToggleForm "PlotCheck", -1
+            
+        End With
+        
+        'open & run query to provide parameter prompts
+'        DoCmd.OpenQuery "usys_temp_qdf", acViewNormal
+        
+        'identify how many records are returned
+'        qdf.ReturnsRecords
+        
+'        'minimize TemplateSQL
+'        ToggleForm "TemplateSQL", -1
+        
+'        'close form
+'        DoCmd.Close acForm, "TemplateSQL"
+        
+    End With
+
+    
+Exit_Handler:
+    'cleanup
+    Set rs = Nothing
+    db.Close
+    qdf.Close
+    qdf2.Close
+    
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnRunCheck_Click[PlotCheck form])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -1054,7 +1384,7 @@ Private Sub btnEdit_Click()
 On Error GoTo Err_Handler
     
     'populate the parent form
-    PopulateForm Me.Parent, ID
+'    PopulateForm Me.Parent, ID
 
 Exit_Handler:
     Exit Sub
@@ -1089,7 +1419,7 @@ On Error GoTo Err_Handler
      result = MsgBox("Delete Record this record: #" & tbxID & " ?" _
                         & vbCrLf & "This action cannot be undone.", vbYesNo, "Delete Record?")
 
-    If result = vbYes Then DeleteRecord "Event", ID
+'    If result = vbYes Then DeleteRecord "Event", ID
     
     'clear the deleted record
     Me.Requery
@@ -1345,12 +1675,16 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 3/22/2017 - initial version
+'   BLC - 3/24/2017 - revise to restore calling form
 ' ---------------------------------
 Private Sub Form_Close()
 On Error GoTo Err_Handler
 
-    'restore DbAdmin
-    ToggleForm "DbAdmin", 0
+    'close the temp query if open
+    
+
+    'restore calling form
+    ToggleForm Me.CallingForm, 0
     
 Exit_Handler:
     Exit Sub
@@ -1362,3 +1696,63 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
+
+' ---------------------------------
+' Sub:          RunPlotCheck
+' Description:  Run plot check queries
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 27, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/27/2017 - initial version
+' ---------------------------------
+'Public Sub RunPlotCheck()
+'On Error GoTo Err_Handler
+'
+'    Dim Template As String
+'    Dim rs As DAO.Recordset, rs2 As DAO.Recordset
+'
+'    'clear num records
+'    ClearTable "NumRecords"
+'
+'    'fetch queries
+'    Template = "s_template_num_records"
+'
+'    Set rs = GetRecords(Template)
+'
+'    'iterate through records
+'    If Not rs.EOF And rs.BOF Then
+'        rs.MoveFirst
+'        Do Until rs.EOF
+'
+'            'run query & retrieve record #s
+'            Set rs2 = GetRecords(rs("Template"))
+'
+'            'add values to numrecords
+'            Dim Params(0 To 2) As Variant
+'
+'            Params(0) = "i_num_records"
+'            Params(1) = rs("ID")
+'            Params(2) = rs2.RecordCount
+'
+'            SetRecord "i_num_records", Params
+'
+'            Debug.Print Params(1) & " " & rs("Template") & " " & Params(2)
+'        Loop
+'    End If
+'
+'Exit_Handler:
+'    Exit Sub
+'Err_Handler:
+'    Select Case Err.Number
+'      Case Else
+'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+'            "Error encountered (#" & Err.Number & " - RunPlotCheck[PlotCheck form])"
+'    End Select
+'    Resume Exit_Handler
+'End Sub
+'

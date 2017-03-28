@@ -152,11 +152,11 @@ On Error GoTo Err_Handler
 
     'Close all open forms
     Do While Forms.Count > 0
-        DoCmd.Close acForm, Forms(0).name
+        DoCmd.Close acForm, Forms(0).Name
     Loop
     
     Do While Reports.Count > 0
-        DoCmd.Close acReport, Reports(0).name
+        DoCmd.Close acReport, Reports(0).Name
     Loop
 
 Exit_Handler:
@@ -191,7 +191,7 @@ Public Function FormIsOpen(strFormName As String) As Boolean
  
     'search for form in Forms collection (all open forms)
     For Each frm In Forms
-      If frm.name = strFormName Then
+      If frm.Name = strFormName Then
         'check form is in Form view: 0 - Design View, 1 - Form View, 2 - Datasheet View
         If frm.CurrentView = 1 Then
             FormIsOpen = True
@@ -316,7 +316,7 @@ Public Sub AddControl(frm As Form, ctrl As Control, ctrlName As String, _
 On Error GoTo Err_Handler
 
     ' Create ctrl
-    Set ctrl = CreateControl(frm.name, ctrl.ControlType, , "", "", xPos, yPos)
+    Set ctrl = CreateControl(frm.Name, ctrl.ControlType, , "", "", xPos, yPos)
     
     ' Restore form
     DoCmd.Restore
@@ -355,7 +355,7 @@ On Error GoTo Err_Handler
 
     Dim strForm As String
     
-    strForm = frm.name
+    strForm = frm.Name
     
     'determine key being used
     Select Case KeyCode
@@ -717,7 +717,7 @@ On Error GoTo Err_Handler
     
     With ctrl
         If Len(.text) > iMaxLen Then
-            msg = "Oops! " & .name & " field too long. Truncated to " & iMaxLen & " characters."
+            msg = "Oops! " & .Name & " field too long. Truncated to " & iMaxLen & " characters."
         
             DoCmd.OpenForm "MsgOverlay", acNormal, , , , acDialog, _
                 "msg" & PARAM_SEPARATOR & msg & _

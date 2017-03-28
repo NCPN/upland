@@ -504,7 +504,7 @@ Private Sub cmdOK_Click()
         End If
     End If
 
-    DoCmd.Close acForm, Me.name, acSaveNo
+    DoCmd.Close acForm, Me.Name, acSaveNo
     DoCmd.OpenForm "frm_Switchboard"
     Select Case varOpenArgs
         Case 1

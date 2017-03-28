@@ -162,14 +162,14 @@ Dim B As Boolean
          
       Else
          ' Throw error
-         Err.Raise 26001, Application.CurrentDb.name & ".mIntelJPEGLibrary", "Failed to save to JPG " & lR, vbExclamation
+         Err.Raise 26001, Application.CurrentDb.Name & ".mIntelJPEGLibrary", "Failed to save to JPG " & lR, vbExclamation
       End If
       
       ' Ensure we have freed memory:
       ijlFree tJ
    Else
       ' Throw error:
-      Err.Raise 26001, Application.CurrentDb.name & ".mIntelJPEGLibrary", "Failed to initialise the IJL library: " & lR
+      Err.Raise 26001, Application.CurrentDb.Name & ".mIntelJPEGLibrary", "Failed to initialise the IJL library: " & lR
    End If
    
 

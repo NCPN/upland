@@ -601,8 +601,8 @@ Dim tdf As TableDef
 Set db = CurrentDb
 
 For Each tdf In db.TableDefs
-    If Not Left(tdf.name, 4) = "MSys" Then
-        Debug.Print tdf.name & ": " & tdf.RecordCount
+    If Not Left(tdf.Name, 4) = "MSys" Then
+        Debug.Print tdf.Name & ": " & tdf.RecordCount
     End If
 Next
 
@@ -651,11 +651,11 @@ If Err.Number = 3265 Then
     Set qdf = db.QueryDefs(strObjectName)
     
     For Each fld In qdf.Fields
-        Debug.Print fld.name
+        Debug.Print fld.Name
     Next
 Else
     For Each fld In tdf.Fields
-        Debug.Print fld.name
+        Debug.Print fld.Name
     Next
 End If
 
@@ -918,7 +918,7 @@ Function IsObjectInDB_TSB(strDatabase As String, strType As String, strName As S
     Case "Module", "Modules": strCon = "Modules"
   End Select
   
-  varDummy = dbsTemp.Containers(strCon).Documents(strName).name
+  varDummy = dbsTemp.Containers(strCon).Documents(strName).Name
   IsObjectInDB_TSB = True
 
   dbsTemp.Close

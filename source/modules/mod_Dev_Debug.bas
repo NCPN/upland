@@ -392,13 +392,13 @@ On Error GoTo Err_Handler
     
         For Each modl In .AllModules
             
-            Debug.Print modl.name
+            Debug.Print modl.Name
             
-            If Left$(modl.name, Len(strType)) = strType Then
+            If Left$(modl.Name, Len(strType)) = strType Then
                 
-                DeleteModule modl.name
+                DeleteModule modl.Name
                 
-                Debug.Print modl.name & " DELETED!"
+                Debug.Print modl.Name & " DELETED!"
             
             End If
             

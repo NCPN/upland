@@ -22,10 +22,10 @@ Begin Form
     Width =7920
     DatasheetFontHeight =11
     ItemSuffix =41
-    Left =3180
-    Top =4545
-    Right =11355
-    Bottom =9885
+    Left =8745
+    Top =5040
+    Right =16920
+    Bottom =10380
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x0680db994fd0e440
@@ -399,7 +399,7 @@ Option Explicit
 ' =================================
 ' Form:         TemplateSQL
 ' Level:        Application form
-' Version:      1.01
+' Version:      1.02
 ' Basis:        Dropdown form
 '
 ' Description:  List form object related properties, events, functions & procedures for UI display
@@ -408,6 +408,7 @@ Option Explicit
 ' References:   -
 ' Revisions:    BLC - 5/31/2016 - 1.00 - initial version
 '               BLC - 1/10/2017 - 1.01 - added tbxSQL property documentation
+'               BLC - 3/24/2017 - 1.02 - enabled running for QA/QC queries
 ' =================================
 
 '---------------------
@@ -422,6 +423,7 @@ Private m_Directions As String
 Private m_ButtonCaption
 Private m_SelectedID As Integer
 Private m_SelectedValue As String
+Private m_CallingForm As String
 
 '---------------------
 ' Event Declarations
@@ -687,6 +689,7 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 6/1/2016 - initial version
+'   BLC - 3/24/2017 - enable running for QA/QC queries
 ' ---------------------------------
 Private Sub btnRunSQL_Click()
 On Error GoTo Err_Handler
@@ -703,35 +706,39 @@ On Error GoTo Err_Handler
     
     'edit, update, delete
     'selects
-    'only run if it's a SELECT query
-    If Left(Me.lblTemplateName.Caption, 1) = "s" Then
-        Dim db As DAO.Database
-        Dim qdf As DAO.QueryDef
-        Dim rs As DAO.Recordset
+    'only run if it's a SELECT or QA/QC query
+    Select Case Left(Me.lblTemplateName.Caption, 1)
         
-        Set db = CurrentDb
-        
-        With db
-            Set qdf = .QueryDefs("usys_temp_qdf")
+        Case "s", "q"   'SELECT or QA/QC
             
-            With qdf
-                .sql = Me.tbxSQL
+            Dim db As DAO.Database
+            Dim qdf As DAO.QueryDef
+            Dim rs As DAO.Recordset
+            
+            Set db = CurrentDb
+            
+            With db
+                Set qdf = .QueryDefs("usys_temp_qdf")
                 
-                'don't .OpenRecordset here --> causes missing param errors
+                With qdf
+                    .SQL = Me.tbxSQL
+                    
+                    'don't .OpenRecordset here --> causes missing param errors
+                End With
+                
+                'open & run query to provide parameter prompts
+                DoCmd.OpenQuery "usys_temp_qdf", acViewNormal
+                
+                'minimize TemplateSQL
+                ToggleForm "TemplateSQL", -1
+                
+                'close form
+                DoCmd.Close acForm, "TemplateSQL"
+                
             End With
-            
-            'open & run query to provide parameter prompts
-            DoCmd.OpenQuery "usys_temp_qdf", acViewNormal
-            
-            'minimize TemplateSQL
-            ToggleForm "TemplateSQL", -1
-            
-            'close form
-            DoCmd.Close acForm, "TemplateSQL"
-            
-        End With
-    
-    End If
+        
+        Case Else
+    End Select
 
 Exit_Handler:
     Exit Sub

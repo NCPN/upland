@@ -463,7 +463,7 @@ On Error GoTo Err_Handler
     Dim strSQL As String
     
     Set qdf = CurrentDb.QueryDefs("qry_Sp_Rpt_by_Park_Complete_Create_Table")
-    strSQL = qdf.sql
+    strSQL = qdf.SQL
 
 'SELECT DISTINCT
 'qry_Sp_Rpt_All.Unit_Code,
@@ -486,7 +486,7 @@ On Error GoTo Err_Handler
         
         'replace ORDER with WHERE clause + ORDER
         strSQLNew = Replace(strSQL, "ORDER", " WHERE " & strWhere & " ORDER")
-        qdf.sql = strSQLNew 'was strSQL
+        qdf.SQL = strSQLNew 'was strSQL
     End If
     
     'update underlying table (temp_Sp_Rpt_by_Park_Complete is used in report's underlying table temp_Sp_Rpt_by_Park_Rollup)
@@ -508,7 +508,7 @@ On Error GoTo Err_Handler
     DoCmd.SetWarnings True
     
     'reset qdf SQL
-    qdf.sql = strSQL
+    qdf.SQL = strSQL
     
     'update underlying table (temp_Sp_Rpt_by_Park_Rollup)
     DoCmd.SetWarnings False

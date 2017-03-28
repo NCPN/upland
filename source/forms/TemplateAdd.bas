@@ -1759,7 +1759,7 @@ On Error GoTo Err_Handler
 '        multiple times when transitioning back (get focus?)
 
     'minimize form (calling form will close it)
-    ToggleForm Me.name, -1
+    ToggleForm Me.Name, -1
     
     'restore list & refresh
     ToggleForm Me.CallingForm, 0

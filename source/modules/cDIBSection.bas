@@ -125,7 +125,7 @@ Private Declare Function BitBlt Lib "gdi32" (ByVal hDestDC As Long, ByVal X As L
 Private Declare Function SelectObject Lib "gdi32" (ByVal hdc As Long, ByVal hObject As Long) As Long
 Private Declare Function DeleteObject Lib "gdi32" (ByVal hObject As Long) As Long
 Private Declare Function GetDIBits Lib "gdi32" (ByVal hdc As Long, ByVal hBmp As Long, ByVal uStartScan As Long, ByVal cScanLines As Long, ByVal lpvBits As Long, ByRef lpbi As BITMAPINFO, ByVal uUsage As Long) As Long
-Private Declare Function LoadImage Lib "user32" Alias "LoadImageA" (ByVal hInstance As Long, ByVal name As Long, ByVal uType As Long, ByVal cxDesired As Long, ByVal cyDesired As Long, ByVal fuLoad As Long) As Long
+Private Declare Function LoadImage Lib "user32" Alias "LoadImageA" (ByVal hInstance As Long, ByVal Name As Long, ByVal uType As Long, ByVal cxDesired As Long, ByVal cyDesired As Long, ByVal fuLoad As Long) As Long
 Private Declare Function apiGetObject Lib "gdi32" Alias "GetObjectA" _
 (ByVal hObject As Long, ByVal nCount As Long, lpObject As Any) As Long
 Private Declare Sub apiCopyMemory Lib "kernel32" Alias "RtlMoveMemory" _
@@ -255,7 +255,7 @@ Public Function Create(ByVal lWidth As Long, ByVal lHeight As Long, Optional ByV
 End Function
 
 
-Public Function Load(ByVal name As String) As Boolean
+Public Function Load(ByVal Name As String) As Boolean
   Dim hBmp As Long
   Dim pName As Long
   Dim aName As String
@@ -269,7 +269,7 @@ Public Function Load(ByVal name As String) As Boolean
     Exit Function
   End If
 
-  aName = StrConv(name, vbFromUnicode)
+  aName = StrConv(Name, vbFromUnicode)
   pName = StrPtr(aName)
 
   hBmp = LoadImage(0, pName, IMAGE_BITMAP, 0, 0, (LR_CREATEDIBSECTION Or LR_LOADFROMFILE))

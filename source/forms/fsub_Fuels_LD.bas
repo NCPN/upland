@@ -3016,7 +3016,7 @@ On Error GoTo Err_Handler
                 ctrl.SetFocus  'Required to avoid Error #2185 control must have focus to reference property or method
             
                 'isolate only Litter_ and Duff_ textboxes
-                If Len(ctrl.name) > Len(Replace(Replace(ctrl.name, "Litter_", ""), "Duff_", "")) Then
+                If Len(ctrl.Name) > Len(Replace(Replace(ctrl.Name, "Litter_", ""), "Duff_", "")) Then
                     SetLitterDuffHighlight ctrl
                 End If
                 
@@ -5308,7 +5308,7 @@ End Sub
 ' Click Events
 '======================
 Private Sub ButtonA1_Click()
-  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
+  If InStr(1, Screen.PreviousControl.Name, "HR") > 0 Then
     If IsNull(Screen.PreviousControl.Value) Then
       Screen.PreviousControl.Value = 1
     Else
@@ -5319,7 +5319,7 @@ Private Sub ButtonA1_Click()
 End Sub
 
 Private Sub ButtonA5_Click()
-  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
+  If InStr(1, Screen.PreviousControl.Name, "HR") > 0 Then
     If IsNull(Screen.PreviousControl.Value) Then
       Screen.PreviousControl.Value = 5
     Else
@@ -5330,7 +5330,7 @@ Private Sub ButtonA5_Click()
 End Sub
 
 Private Sub ButtonS1_Click()
-  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
+  If InStr(1, Screen.PreviousControl.Name, "HR") > 0 Then
     If IsNull(Screen.PreviousControl.Value) Then
       Screen.PreviousControl.Value = 0
     ElseIf Screen.PreviousControl.Value - 1 < 0 Then
@@ -5344,7 +5344,7 @@ Private Sub ButtonS1_Click()
 End Sub
 
 Private Sub ButtonS5_Click()
-  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
+  If InStr(1, Screen.PreviousControl.Name, "HR") > 0 Then
     If IsNull(Screen.PreviousControl.Value) Then
       Screen.PreviousControl.Value = 0
     ElseIf Screen.PreviousControl.Value - 5 < 0 Then
@@ -5358,7 +5358,7 @@ Private Sub ButtonS5_Click()
 End Sub
 
 Private Sub ButtonZero_Click()
-  If InStr(1, Screen.PreviousControl.name, "HR") > 0 Then
+  If InStr(1, Screen.PreviousControl.Name, "HR") > 0 Then
     Screen.PreviousControl.Value = 0
   End If
   Screen.PreviousControl.SetFocus

@@ -54,7 +54,7 @@ Public Type IJLibVersion
   Major           As Long
   Minor           As Long
   build           As Long
-  name            As Long 'pointer to C-style string
+  Name            As Long 'pointer to C-style string
   Version         As Long 'pointer to C-style string
   InternalVersion As Long 'pointer to C-style string
   BuildDate       As Long 'pointer to C-style string

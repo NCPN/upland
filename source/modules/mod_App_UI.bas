@@ -127,7 +127,7 @@ On Error GoTo Err_Handler
               'determine how many have the same ParkPlotSpecies
               strSQL = "SELECT COUNT(Year) AS NumRecords FROM temp_Sp_Rpt_by_Park_Complete WHERE ParkPlotSpecies = '" & strParkPlotSpecies & "';"
               Set rsCount = CurrentDb.OpenRecordset(strSQL, dbOpenSnapshot)
-              iCount = rsCount!NumRecords
+              iCount = rsCount!numrecords
             End If
           
             For i = 1 To iCount
@@ -664,7 +664,7 @@ On Error GoTo Err_Handler
   
   If tallyAmount = 0 Then ctrl.Value = 0
   
-  Select Case ctrl.name
+  Select Case ctrl.Name
     Case "SeedTotal"
         ctrl.Value = Nz(ctrl.Value, 0) + tallyAmount
   End Select
@@ -705,7 +705,7 @@ On Error GoTo Err_Handler
   
   For Each ctrl In frm.Controls
   
-    If Len(ctrl.name) > Len(Replace(ctrl.name, lookFor, "")) Then
+    If Len(ctrl.Name) > Len(Replace(ctrl.Name, lookFor, "")) Then
     
             ctrl.Enabled = False
     
@@ -753,12 +753,12 @@ On Error GoTo Err_Handler
     strSort = ""
     
     'set sort field
-    Select Case Replace(ctrl.name, "lbl", "")
+    Select Case Replace(ctrl.Name, "lbl", "")
         Case "Email"
             strSort = "Email"
         Case "HdrID"
             strSort = "ID"
-            Select Case frm.name
+            Select Case frm.Name
                 Case "ContactList"
                     strSort = "c.ID"
             End Select
@@ -830,14 +830,14 @@ On Error GoTo Err_Handler
 
     With frm
         'default
-        strTable = .name
+        strTable = .Name
         
         'find the form & populate its controls from the ID
-        Select Case .name
+        Select Case .Name
             Case "Contact"
                 'requires Contact & Contact_Access data
                 Dim qdf As DAO.QueryDef
-                CurrentDb.QueryDefs("usys_temp_qdf").sql = GetTemplate("s_contact_access")
+                CurrentDb.QueryDefs("usys_temp_qdf").SQL = GetTemplate("s_contact_access")
                 
                 strTable = "usys_temp_qdf"
                 'set form fields to record fields as datasource
@@ -884,7 +884,7 @@ On Error GoTo Err_Handler
         strSQL = GetTemplate("s_form_edit", "tbl" & PARAM_SEPARATOR & strTable & "|id" & PARAM_SEPARATOR & ID)
         
         'alter to retrieve proper ID
-        Select Case .name
+        Select Case .Name
             Case "Contact"
                 strSQL = Replace(strSQL, " ID = ", " c.ID = ")
         End Select

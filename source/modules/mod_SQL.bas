@@ -64,7 +64,7 @@ End Property
 Public Function GetSQL(strQuery As String) As String
 On Error GoTo Err_Handler:
 
-   GetSQL = dbCurrent.QueryDefs(strQuery).sql
+   GetSQL = dbCurrent.QueryDefs(strQuery).SQL
    
 Exit_Function:
     Exit Function
@@ -177,7 +177,7 @@ Dim qdf As DAO.QueryDef
     Set qdf = CurrentDb.QueryDefs(strQueryName)
     
     'return SQL
-    GetQuerySQL = qdf.sql
+    GetQuerySQL = qdf.SQL
  
 Exit_Function:
     Exit Function

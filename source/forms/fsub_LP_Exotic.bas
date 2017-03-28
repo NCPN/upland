@@ -529,7 +529,7 @@ Err_ButtonUnknown_Click:
 End Sub
 
 Private Sub ButtonA1_Click()
-  If Screen.PreviousControl.name = "Total" And Not IsNull(Me!Species) Then
+  If Screen.PreviousControl.Name = "Total" And Not IsNull(Me!Species) Then
     If IsNull(Screen.PreviousControl.Value) Then
       Screen.PreviousControl.Value = 1
     Else
@@ -540,7 +540,7 @@ Private Sub ButtonA1_Click()
 End Sub
 
 Private Sub ButtonA5_Click()
-  If Screen.PreviousControl.name = "Total" And Not IsNull(Me!Species) Then
+  If Screen.PreviousControl.Name = "Total" And Not IsNull(Me!Species) Then
     If IsNull(Screen.PreviousControl.Value) Then
       Screen.PreviousControl.Value = 5
     Else
@@ -551,7 +551,7 @@ Private Sub ButtonA5_Click()
 End Sub
 
 Private Sub ButtonS1_Click()
-  If Screen.PreviousControl.name = "Total" And Not IsNull(Me!Species) Then
+  If Screen.PreviousControl.Name = "Total" And Not IsNull(Me!Species) Then
     If IsNull(Screen.PreviousControl.Value) Then
       Screen.PreviousControl.Value = 0
     ElseIf Screen.PreviousControl.Value - 1 < 0 Then
@@ -565,7 +565,7 @@ Private Sub ButtonS1_Click()
 End Sub
 
 Private Sub ButtonS5_Click()
-  If Screen.PreviousControl.name = "Total" And Not IsNull(Me!Species) Then
+  If Screen.PreviousControl.Name = "Total" And Not IsNull(Me!Species) Then
     If IsNull(Screen.PreviousControl.Value) Then
       Screen.PreviousControl.Value = 0
     ElseIf Screen.PreviousControl.Value - 5 < 0 Then
@@ -579,7 +579,7 @@ Private Sub ButtonS5_Click()
 End Sub
 
 Private Sub ButtonZero_Click()
-  If Screen.PreviousControl.name = "Total" And Not IsNull(Me!Species) Then
+  If Screen.PreviousControl.Name = "Total" And Not IsNull(Me!Species) Then
     Screen.PreviousControl.Value = 0
   End If
   Screen.PreviousControl.SetFocus
