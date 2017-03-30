@@ -1,5 +1,4 @@
-﻿dbMemo "SQL" ="PARAMETERS rid Long, num Long;\015\012UPDATE NumRecords SET NumRecords = [num]\015"
-    "\012WHERE ID = [rid];\015\012"
+﻿dbMemo "SQL" ="SELECT Remarks\015\012FROM tsys_Db_Templates\015\012WHERE ID = 49;\015\012"
 dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"

@@ -5,7 +5,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.24
+' Version:      1.25
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -41,6 +41,7 @@ Option Explicit
 ' --------------------------------------------------------------------
 '               BLC, 3/22/2017  - 1.24 - removed big rivers only components
 '                                        revised for uplands
+'               BLC, 3/29/2017  - 1.25 - added FieldCheck, FieldOK, Dependencies for templates
 ' =================================
 
 '' ---------------------------------
@@ -901,6 +902,7 @@ End Sub
 '   BLC - 9/22/2016 - added templates
 '   BLC - 1/9/2017 - added templates
 '   BLC - 2/7/2017 - added template - s_location_with_loctypeID_sensitivity
+'   BLC - 3/28/2017 - added upland templates, removed big rivers templates
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -1038,6 +1040,7 @@ End Function
 '   BLC - 1/24/2017 - added IsNPS flag parameter for contacts
 '   BLC - 3/24/2017 - set SkipRecordAction = False for uplands, removed unused big rivers cases,
 '                     added uplands cases, delete cases
+'   BLC - 3/29/2017 - added FieldOK, FieldCheck, Dependencies parameters for templates
 ' ---------------------------------
 Public Function SetRecord(Template As String, Params As Variant) As Long
 On Error GoTo Err_Handler
@@ -1084,6 +1087,7 @@ On Error GoTo Err_Handler
                     '-- required parameters --
                     .Parameters("rid") = Params(1)  'record ID
                     .Parameters("num") = Params(2)  'number of records
+                    .Parameters("fok") = Params(3)  'field ok? (QC pass/fail)
                     
                 Case "i_template"
                     '-- required parameters --
@@ -1102,6 +1106,9 @@ On Error GoTo Err_Handler
                     .Parameters("vers") = Params(9)         'Version
                     .Parameters("sflag") = Params(10)       'IsSupported
                     .Parameters("lmid") = TempVars("AppUserID") 'lastmodifiedID
+                    .Parameters("fqc") = Params(11)         'FieldCheck
+                    .Parameters("fok") = Params(12)         'FieldOK
+                    .Parameters("dep") = Params(13)         'Dependencies
                 
         '-----------------------
         '  UPDATES
@@ -1110,6 +1117,7 @@ On Error GoTo Err_Handler
                     '-- required parameters --
                     .Parameters("rid") = Params(1)
                     .Parameters("num") = Params(2)
+                    .Parameters("fok") = Params(3)
                     
                 Case "u_template"
                     '-- required parameters --
@@ -1638,6 +1646,7 @@ End Function
 ' Adapted:      -
 ' Revisions:
 '   BLC - 3/27/2017 - initial version
+'   BLC - 3/29/2017 - adjusted to accommodate FieldOK (pass/fail/unknown) values
 ' ---------------------------------
 Public Function RunPlotCheck()
 On Error GoTo Err_Handler
@@ -1662,11 +1671,12 @@ On Error GoTo Err_Handler
             Set rs2 = GetRecords(rs("TemplateName"))
             
             'add values to numrecords
-            Dim Params(0 To 2) As Variant
+            Dim Params(0 To 3) As Variant
             
             Params(0) = "i_num_records"
             Params(1) = rs("ID")
             Params(2) = rs2.RecordCount
+            Params(3) = IIf(rs("FieldOK"), 1, -1)
             
             SetRecord "i_num_records", Params
             

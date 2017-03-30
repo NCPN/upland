@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_Db
 ' Level:        Framework module
-' Version:      1.13
+' Version:      1.14
 ' Description:  Database related functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, April 2015
@@ -28,6 +28,7 @@ Option Explicit
 '               BLC, 3/22/2017          added to Upland db
 ' --------------------------------------------------------------------
 '               BLC, 3/23/2017 - 1.13  - revised GetTemplates() to use "SQL" vs. "T-SQL" syntax
+'               BLC, 3/28/2017 - 1.14  - added CloseObject()
 ' =================================
 
 ' ---------------------------------
@@ -2221,3 +2222,47 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Function
+
+' ---------------------------------
+' SUB:          CloseObject
+' Description:  Checks if object exists, closes it if it does
+' Assumptions:  Object does not require saving (acSaveNo)
+' Parameters:   obj - object to close (variant)
+'               oType - object type (string)
+' Returns:      -
+' Throws:       none
+' References:   none
+' Source/date:  -
+' Adapted:      Bonnie Campbell, March 28, 2017 - for NCPN tools
+' Revisions:
+'   BLC - 3/28/2017 - initial version
+' ---------------------------------
+Public Sub CloseObject(obj As Variant, oType As String)
+On Error GoTo Err_Handler
+
+    Dim oGrp As AcObjectType
+    
+    Select Case LCase(oType)
+        Case "qry"
+            oGrp = acQuery
+        Case "tbl"
+            oGrp = acTable
+        Case "frm"
+            oGrp = acForm
+        Case "rpt"
+            oGrp = acReport
+    End Select
+
+    DoCmd.Close oGrp, obj, acSaveNo
+    
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - CloseObject[mod_Db])"
+    End Select
+    Resume Exit_Handler
+End Sub
