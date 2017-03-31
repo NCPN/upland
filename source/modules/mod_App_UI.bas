@@ -267,7 +267,7 @@ On Error GoTo Err_Handler
         Do Until rs.EOF
     
             strItem = rs("SampleType") 'cannot use directly in NoData.item(rs("SampleType")) -> adds new item
-            NoData.item(strItem) = 1
+            NoData.Item(strItem) = 1
             
             rs.MoveNext
             
@@ -316,7 +316,7 @@ On Error GoTo Err_Handler
     Set NoData = New Scripting.Dictionary 'publicly set
     Set NoData = GetNoDataCollected(levelID, level)
     
-    NoData.item(SampleType) = cbxValue
+    NoData.Item(SampleType) = cbxValue
     
     'update the table appropriately
     If cbxValue = 1 Then
@@ -587,10 +587,10 @@ On Error GoTo Err_Handler
         Set dNoDataEvent = GetNoDataCollected(frm.Parent.Form.Controls("Event_ID"), "E")
         
         With dNoDataEvent
-            frm.Parent.Form.Controls("cbxNo1000hrA") = .item("Fuel-1000hr-A")
-            frm.Parent.Form.Controls("cbxNo1000hrB") = .item("Fuel-1000hr-B")
-            frm.Parent.Form.Controls("cbxNo1000hrC") = .item("Fuel-1000hr-C")
-            frm.Parent.Form.Controls("cbxNo1000hrD") = .item("Fuel-1000hr-D")
+            frm.Parent.Form.Controls("cbxNo1000hrA") = .Item("Fuel-1000hr-A")
+            frm.Parent.Form.Controls("cbxNo1000hrB") = .Item("Fuel-1000hr-B")
+            frm.Parent.Form.Controls("cbxNo1000hrC") = .Item("Fuel-1000hr-C")
+            frm.Parent.Form.Controls("cbxNo1000hrD") = .Item("Fuel-1000hr-D")
         End With
     End If
 
@@ -660,13 +660,13 @@ Public Sub AddTallyValue(ctrl As TextBox, tallyAmount As Integer)
 On Error GoTo Err_Handler
   
   'handle when the user keeps cursor in field & tallyAmount would drive the value to < 0 (negative)
-  If (ctrl.Value + tallyAmount < 0) Or (IsNull(ctrl.Value) And tallyAmount < 0) Then GoTo Exit_Handler
+  If (ctrl.value + tallyAmount < 0) Or (IsNull(ctrl.value) And tallyAmount < 0) Then GoTo Exit_Handler
   
-  If tallyAmount = 0 Then ctrl.Value = 0
+  If tallyAmount = 0 Then ctrl.value = 0
   
   Select Case ctrl.Name
     Case "SeedTotal"
-        ctrl.Value = Nz(ctrl.Value, 0) + tallyAmount
+        ctrl.value = Nz(ctrl.value, 0) + tallyAmount
   End Select
   
   'return focus
@@ -782,7 +782,7 @@ On Error GoTo Err_Handler
     'set the sort
     If InStr(frm.OrderBy, strSort) = 0 Then
         frm.OrderBy = strSort
-    ElseIf right(frm.OrderBy, 4) = "Desc" Then
+    ElseIf Right(frm.OrderBy, 4) = "Desc" Then
         frm.OrderBy = strSort
     Else
         frm.OrderBy = strSort & " Desc"

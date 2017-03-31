@@ -14,11 +14,11 @@ Begin Form
     GridY =24
     Width =7560
     DatasheetFontHeight =11
-    ItemSuffix =2
-    Left =4035
-    Top =5880
-    Right =12060
-    Bottom =8970
+    ItemSuffix =3
+    Left =4005
+    Top =4050
+    Right =11565
+    Bottom =13290
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -148,7 +148,7 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =85
+                    OverlapFlags =93
                     Left =1080
                     Top =1080
                     Width =3960
@@ -380,10 +380,10 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =85
+                    OverlapFlags =215
                     TextAlign =2
-                    Left =180
-                    Top =810
+                    Left =4860
+                    Top =900
                     Width =780
                     Height =525
                     FontWeight =500
@@ -392,10 +392,10 @@ Begin Form
                     Name ="lblRecordsReturned"
                     Caption ="# Records"
                     GridlineColor =10921638
-                    LayoutCachedLeft =180
-                    LayoutCachedTop =810
-                    LayoutCachedWidth =960
-                    LayoutCachedHeight =1335
+                    LayoutCachedLeft =4860
+                    LayoutCachedTop =900
+                    LayoutCachedWidth =5640
+                    LayoutCachedHeight =1425
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
@@ -418,6 +418,27 @@ Begin Form
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
+                Begin Label
+                    OverlapFlags =85
+                    TextAlign =2
+                    Left =420
+                    Top =1080
+                    Width =360
+                    Height =285
+                    FontWeight =500
+                    BorderColor =8355711
+                    ForeColor =16777215
+                    Name ="lblID"
+                    Caption ="ID"
+                    OnClick ="[Event Procedure]"
+                    GridlineColor =10921638
+                    LayoutCachedLeft =420
+                    LayoutCachedTop =1080
+                    LayoutCachedWidth =780
+                    LayoutCachedHeight =1365
+                    ForeThemeColorIndex =-1
+                    ForeTint =100.0
+                End
             End
         End
         Begin Section
@@ -433,7 +454,7 @@ Begin Form
                     Visible = NotDefault
                     TabStop = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =93
+                    OverlapFlags =85
                     BackStyle =0
                     IMESentenceMode =3
                     Top =30
@@ -473,6 +494,14 @@ Begin Form
                     Name ="tbxTemplate"
                     ControlSource ="TemplateName"
                     OnMouseMove ="[Event Procedure]"
+                    ConditionalFormat = Begin
+                        0x01000000a8000000020000000100000000000000000000001100000001000000 ,
+                        0xed1c2400ffffff00010000000000000012000000230000000100000022b14c00 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b004600690065006c00640043006800650063006b004f004b005d003d003000 ,
+                        0x000000005b004600690065006c00640043006800650063006b004f004b005d00 ,
+                        0x3d00310000000000
+                    End
                     GridlineColor =10921638
 
                     LayoutCachedLeft =900
@@ -482,15 +511,22 @@ Begin Form
                     ForeThemeColorIndex =2
                     ForeTint =100.0
                     ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x010002000000010000000000000001000000ed1c2400ffffff00100000005b00 ,
+                        0x4600690065006c00640043006800650063006b004f004b005d003d0030000000 ,
+                        0x0000000000000000000000000000000000000001000000000000000100000022 ,
+                        0xb14c00ffffff00100000005b004600690065006c00640043006800650063006b ,
+                        0x004f004b005d003d003100000000000000000000000000000000000000000000
+                    End
                 End
                 Begin TextBox
                     TabStop = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =247
+                    OverlapFlags =93
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =180
+                    Left =4980
                     Top =45
                     Width =600
                     Height =300
@@ -502,9 +538,9 @@ Begin Form
                     ControlSource ="NumRecords"
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =180
+                    LayoutCachedLeft =4980
                     LayoutCachedTop =45
-                    LayoutCachedWidth =780
+                    LayoutCachedWidth =5580
                     LayoutCachedHeight =345
                     BorderThemeColorIndex =0
                     BorderTint =50.0
@@ -520,7 +556,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =5100
+                    Left =420
                     Top =30
                     Width =360
                     Height =315
@@ -532,9 +568,9 @@ Begin Form
                     ControlSource ="ID"
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =5100
+                    LayoutCachedLeft =420
                     LayoutCachedTop =30
-                    LayoutCachedWidth =5460
+                    LayoutCachedWidth =780
                     LayoutCachedHeight =345
                     ForeThemeColorIndex =1
                     ForeTint =100.0
@@ -697,6 +733,7 @@ Option Explicit
 '               BLC - 3/24/2017 - 1.01 - added CallingForm, CallingRecordID properties
 '               BLC - 3/28/2017 - 1.02 - removed unused click events (btnAdd,
 '                                        btnDelete, btnEdit, lblHdr, lblVersion)
+'               BLC - 3/30/2017 - 1.03 - added lblID_Click
 ' =================================
 
 '---------------------
@@ -714,23 +751,23 @@ Private m_CallingRecordID As Integer
 '---------------------
 ' Event Declarations
 '---------------------
-Public Event InvalidTitle(Value As String)
-Public Event InvalidDirections(Value As String)
-Public Event InvalidCallingForm(Value As String)
-Public Event InvalidCallingRecordID(Value As Integer)
+Public Event InvalidTitle(value As String)
+Public Event InvalidDirections(value As String)
+Public Event InvalidCallingForm(value As String)
+Public Event InvalidCallingRecordID(value As Integer)
 
 '---------------------
 ' Properties
 '---------------------
-Public Property Let Title(Value As String)
-    If Len(Value) > 0 Then
-        m_Title = Value
+Public Property Let Title(value As String)
+    If Len(value) > 0 Then
+        m_Title = value
 
         'set the form title & caption
         Me.lblTitle.Caption = m_Title
         Me.Caption = m_Title
     Else
-        RaiseEvent InvalidTitle(Value)
+        RaiseEvent InvalidTitle(value)
     End If
 End Property
 
@@ -738,14 +775,14 @@ Public Property Get Title() As String
     Title = m_Title
 End Property
 
-Public Property Let Directions(Value As String)
-    If Len(Value) > 0 Then
-        m_Directions = Value
+Public Property Let Directions(value As String)
+    If Len(value) > 0 Then
+        m_Directions = value
 
         'set the form directions
         Me.lblDirections.Caption = m_Directions
     Else
-        RaiseEvent InvalidDirections(Value)
+        RaiseEvent InvalidDirections(value)
     End If
 End Property
 
@@ -753,16 +790,16 @@ Public Property Get Directions() As String
     Directions = m_Directions
 End Property
 
-Public Property Let CallingForm(Value As String)
-        m_CallingForm = Value
+Public Property Let CallingForm(value As String)
+        m_CallingForm = value
 End Property
 
 Public Property Get CallingForm() As String
     CallingForm = m_CallingForm
 End Property
 
-Public Property Let CallingRecordID(Value As Integer)
-        m_CallingRecordID = Value
+Public Property Let CallingRecordID(value As Integer)
+        m_CallingRecordID = value
 End Property
 
 Public Property Get CallingRecordID() As Integer
@@ -824,7 +861,7 @@ On Error GoTo Err_Handler
         & vbCrLf & "To re-run & view results click the Run button."
     lblDirections.Caption = Me.Directions
     
-    tbxIcon.Value = StringFromCodepoint(uLocked)
+    tbxIcon.value = StringFromCodepoint(uLocked)
     tbxIcon.ForeColor = lngDkGreen
     lblDirections.ForeColor = lngLtBlue
     
@@ -941,6 +978,7 @@ End Sub
 ' Revisions:
 '   BLC - 3/24/2017 - initial version
 '   BLC - 3/28/2017 - code cleanup
+'   BLC - 3/30/2017 - revise to use g_AppTemplates
 ' ---------------------------------
 Private Sub btnRunCheck_Click()
 On Error GoTo Err_Handler
@@ -948,6 +986,7 @@ On Error GoTo Err_Handler
     Dim db As DAO.Database
     Dim qdf As DAO.QueryDef, qdf2 As DAO.QueryDef
     Dim rs As DAO.Recordset
+    Dim PlotID As Integer
     
     Set db = CurrentDb
     
@@ -962,52 +1001,88 @@ On Error GoTo Err_Handler
             'strSQL = Replace(Replace(Me.tbxSQL, "[pkid]", "'" & TempVars("ParkCode") & "'"), _
                         "[pid]", Me.lblPlotID.Caption)
             
-            .SQL = Me.tbxSQL 'strSQL 'Me.Template 'Me.tbxSQL
+            PlotID = Me.lblPlotID.Caption
             
-            'set park code & plotID parameters
-            .Parameters("pkid") = TempVars("ParkCode")
-            .Parameters("pid") = Me.lblPlotID.Caption
-                        
+            .SQL = Me.tbxSQL 'strSQL 'Me.Template 'Me.tbxSQL
+            strSQL = .SQL
+'            If Len(.SQL) > Len(Replace(.SQL, "PARAMETERS", "")) Then
+'                'set park code & plotID parameters
+'                .Parameters("pkid") = TempVars("ParkCode")
+'                .Parameters("pid") = PlotID
+'
+'                'replace park code & plotID parameters
+'                strSQL = Replace(Replace(Me.tbxSQL, "[pkid]", "'" & TempVars("ParkCode") & "'"), _
+'                            "[pid]", Me.lblPlotID.Caption)
+'
+'                'remove parameter clause (values already replaced)
+'                strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
+'
+'            Else
+'                'add filter for park & plot
+'                SetQueryProperty .Name, "Filter", "[Unit_Code]='" & TempVars("ParkCode") & _
+'                                                "' AND [Plot_ID]=" & PlotID
+'            End If
+            
             'open query window
             With db
-                'replace park code & plotID parameters
-                strSQL = Replace(Replace(Me.tbxSQL, "[pkid]", "'" & TempVars("ParkCode") & "'"), _
-                            "[pid]", Me.lblPlotID.Caption)
                 
-                'remove parameter clause (values already replaced)
-                strSQL = right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
-                
-                'ensure temp query is closed & removed
-                DoCmd.Close acQuery, "usys_temp_display", acSaveNo
-                
-                'remove usys_temp_display if it already exists
-                If Not db.QueryDefs("usys_temp_display") Is Nothing Then _
-                    DoCmd.DeleteObject acQuery, "usys_temp_display"
+                If QueryExists("usys_temp_display") Then
+                    'ensure temp query is closed & removed
+                    DoCmd.Close acQuery, "usys_temp_display", acSaveNo
+                    
+                    'remove usys_temp_display if it already exists
+                    If Not db.QueryDefs("usys_temp_display") Is Nothing Then _
+                        DoCmd.DeleteObject acQuery, "usys_temp_display"
+                End If
  
                 Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
+                
+                'limit query by park & plot
+                If Len(strSQL) > Len(Replace(strSQL, "PARAMETERS", "")) Then
+                    'set park code & plotID parameters
+                    qdf2.Parameters("pkid") = TempVars("ParkCode")
+                    qdf2.Parameters("pid") = PlotID
+                
+                    'replace park code & plotID parameters
+                    strSQL = Replace(Replace(strSQL, "[pkid]", "'" & TempVars("ParkCode") & "'"), _
+                                "[pid]", Me.lblPlotID.Caption)
+                    
+                    'remove parameter clause (values already replaced)
+                    strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
+                
+                Else
+                    'add filter for park & plot
+                    SetQueryProperty "usys_temp_display", "Filter", _
+                                        "[Unit_Code]='" & TempVars("ParkCode") & _
+                                        "' AND [Plot_ID]=" & PlotID
+                End If
+                
                 
                 DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
                 
             End With
             
-            'don't .OpenRecordset here --> causes missing param errors
-            'OK for SELECT/QA as long as all params are accommodated
-            Set rs = .OpenRecordset()
-            
-            'update the number
-            Dim Template As String
-    
-            Template = "u_num_records" '"i_num_records"
-    
-            Dim Params(0 To 2) As Variant
-        
-            With Me
-                Params(0) = Template
-                Params(1) = Me.tbxID
-                Params(2) = rs.RecordCount
-            
-                SetRecord Template, Params
-            End With
+            'set NumRecords values
+            SetPlotCheckResult qdf.Name, "update"
+'            'don't .OpenRecordset here --> causes missing param errors
+'            'OK for SELECT/QA as long as all params are accommodated
+'            Set rs = .OpenRecordset()
+'
+'            'update the number
+'            Dim Template As String
+'
+'            Template = "u_num_records" '"i_num_records"
+'
+'            Dim Params(0 To 2) As Variant
+'
+'            With Me
+'                Params(0) = Template
+'                Params(1) = Me.tbxID
+'                Params(2) = rs.RecordCount
+'                Params(3) = PlotCheckOK
+'
+'                SetRecord Template, Params
+'            End With
                 
             'refresh form
             Me.Requery
@@ -1033,6 +1108,38 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - btnRunCheck_Click[PlotCheck form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          lblID_Click
+' Description:  lbl click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:
+'   pere_de_chipstic, August 5, 2012
+'   http://www.utteraccess.com/forum/Sort-Continuous-Form-Hea-t1991553.html
+' Source/date:  Bonnie Campbell, September 13, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 9/13/2016 - initial version
+' ---------------------------------
+Private Sub lblID_Click()
+On Error GoTo Err_Handler
+
+    'set the sort
+    SortListForm Me, Me.lblID
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - lblID_Click[PlotCheck form])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -1156,6 +1263,9 @@ On Error GoTo Err_Handler
 
     'close the temp query if open
     CloseObject "usys_temp_display", "qry"
+
+'    'remove template queries
+'    RemoveTemplateQueries
 
     'restore calling form
     ToggleForm Me.CallingForm, 0

@@ -33733,12 +33733,12 @@ If booLinked And Me!chkCompactBEOnExit And IsNull(Me!txtLinkPath) = False Then
     
         strOrigDbName = Me!txtLinkPath
         ' Don't do anything if the link path string is empty or isn't an mdb file
-        If right(strOrigDbName, 6) = ".accdb" Or right(strOrigDbName, 4) = ".mdb" Then
+        If Right(strOrigDbName, 6) = ".accdb" Or Right(strOrigDbName, 4) = ".mdb" Then
             intCount = 0
             ' If needed, loop through alternate temporary names until an unused name is found
             Do
                 intCount = intCount + 1
-                If right(strOrigDbName, 6) = ".accdb" Then
+                If Right(strOrigDbName, 6) = ".accdb" Then
                   strSuffix = "_" & CStr(intCount) & ".accdb"
                 Else
                   strSuffix = "_" & CStr(intCount) & ".mdb"

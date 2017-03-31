@@ -447,7 +447,7 @@ Private Sub Report_Open(Cancel As Integer)
     If Len(YearWork) = 4 Then
       Exit Do
     Else
-      YearWork = right(YearWork, Len(YearWork) - 4)
+      YearWork = Right(YearWork, Len(YearWork) - 4)
       FieldIndex = FieldIndex + 1
     End If
   Loop

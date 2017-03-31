@@ -672,7 +672,7 @@ On Error GoTo Err_Handler
   DisableTallyButtons Me, "Tally"
   
   'disable tallies that drive seed total < 0
-  Select Case Nz(SeedTotal.Value, "Null")
+  Select Case Nz(SeedTotal.value, "Null")
     Case "Null"
         TallyA0.Enabled = True
         TallyA1.Enabled = True
@@ -726,7 +726,7 @@ On Error GoTo Err_Handler
   DisableTallyButtons Me, "Tally"
   
   'disable tallies that drive seed total < 0
-  Select Case Nz(SeedTotal.Value, "Null")
+  Select Case Nz(SeedTotal.value, "Null")
     Case "Null"
         TallyA0.Enabled = True
         TallyA1.Enabled = True

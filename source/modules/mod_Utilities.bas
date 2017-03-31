@@ -331,7 +331,7 @@ Loop
         strResult = Mid(strResult, 2)
     Loop
     'Next eliminate any trailing semicolons
-    Do Until right(strResult, 1) <> strDelimiter
+    Do Until Right(strResult, 1) <> strDelimiter
         strResult = Left(strResult, Len(strResult) - 1)
     Loop
     'Finally, eliminate grouped semicolons in the list
@@ -485,7 +485,7 @@ Dim strItem As String
 Dim intI As Integer
 Dim strNewList As String
 
-If Not right(strListToKeep, 1) = strDelimiter Then
+If Not Right(strListToKeep, 1) = strDelimiter Then
     strListToKeep = strListToKeep & strDelimiter
 End If
 
@@ -493,7 +493,7 @@ If Not Left(strListToKeep, 1) = strDelimiter Then
     strListToKeep = strDelimiter & strListToKeep
 End If
 
-If Not right(strListMain, 1) = strDelimiter Then
+If Not Right(strListMain, 1) = strDelimiter Then
     strListMain = strListMain & strDelimiter
 End If
 
@@ -524,7 +524,7 @@ Dim intI As Integer
         strList = Mid(strList, 2)
     Loop
     'Next eliminate any trailing delimiters
-    Do Until right(strList, 1) <> strDelimiter
+    Do Until Right(strList, 1) <> strDelimiter
         strList = Left(strList, Len(strList) - 1)
     Loop
     'Finally, eliminate grouped delimiters in the list

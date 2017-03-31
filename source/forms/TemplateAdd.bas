@@ -1013,22 +1013,22 @@ Private m_AlertBoxVisible As Byte
 '---------------------
 ' Event Declarations
 '---------------------
-Public Event InvalidTitle(Value As String)
-Public Event InvalidDirections(Value As String)
-Public Event InvalidCallingForm(Value As String)
+Public Event InvalidTitle(value As String)
+Public Event InvalidDirections(value As String)
+Public Event InvalidCallingForm(value As String)
 
 '---------------------
 ' Properties
 '---------------------
-Public Property Let Title(Value As String)
-    If Len(Value) > 0 Then
-        m_Title = Value
+Public Property Let Title(value As String)
+    If Len(value) > 0 Then
+        m_Title = value
 
         'set the form title & caption
         Me.lblTitle.Caption = m_Title
         Me.Caption = m_Title
     Else
-        RaiseEvent InvalidTitle(Value)
+        RaiseEvent InvalidTitle(value)
     End If
 End Property
 
@@ -1036,14 +1036,14 @@ Public Property Get Title() As String
     Title = m_Title
 End Property
 
-Public Property Let Directions(Value As String)
-    If Len(Value) > 0 Then
-        m_Directions = Value
+Public Property Let Directions(value As String)
+    If Len(value) > 0 Then
+        m_Directions = value
 
         'set the form directions
         Me.lblDirections.Caption = m_Directions
     Else
-        RaiseEvent InvalidDirections(Value)
+        RaiseEvent InvalidDirections(value)
     End If
 End Property
 
@@ -1051,11 +1051,11 @@ Public Property Get Directions() As String
     Directions = m_Directions
 End Property
 
-Public Property Let CallingForm(Value As String)
-    If Len(Value) > 0 Then
-        m_CallingForm = Value
+Public Property Let CallingForm(value As String)
+    If Len(value) > 0 Then
+        m_CallingForm = value
     Else
-        RaiseEvent InvalidCallingForm(Value)
+        RaiseEvent InvalidCallingForm(value)
     End If
 End Property
 
@@ -1067,10 +1067,10 @@ Public Property Get CountLabel() As String
     CountLabel = m_CountLabel
 End Property
 
-Public Property Let CountLabel(Value As String)
-    If Len(Trim(Value)) = 0 Then Value = "Character Count"
-    If ValidateString(Value, "alphanumdashslashspace") Then
-        m_CountLabel = Value
+Public Property Let CountLabel(value As String)
+    If Len(Trim(value)) = 0 Then value = "Character Count"
+    If ValidateString(value, "alphanumdashslashspace") Then
+        m_CountLabel = value
     End If
     lblCharacterCount.Caption = m_CountLabel
 End Property
@@ -1079,10 +1079,10 @@ Public Property Get CurrentCount() As String
     CurrentCount = m_CurrentCount
 End Property
 
-Public Property Let CurrentCount(Value As String)
-    If Len(Trim(Value)) = 0 Then Value = "1"
-    If ValidateString(Value, "numeric") Then
-        m_CurrentCount = Value
+Public Property Let CurrentCount(value As String)
+    If Len(Trim(value)) = 0 Then value = "1"
+    If ValidateString(value, "numeric") Then
+        m_CurrentCount = value
     End If
     lblCount.Caption = m_CurrentCount
 End Property
@@ -1091,10 +1091,10 @@ Public Property Get MaxCount() As String
     MaxCount = m_MaxCount
 End Property
 
-Public Property Let MaxCount(Value As String)
-    If Len(Trim(Value)) = 0 Then Value = "/ XX characters"
-    If ValidateString(Value, "alphanumdashslashspace") Then
-        m_MaxCount = Value
+Public Property Let MaxCount(value As String)
+    If Len(Trim(value)) = 0 Then value = "/ XX characters"
+    If ValidateString(value, "alphanumdashslashspace") Then
+        m_MaxCount = value
     End If
     lblMaxCount.Caption = m_MaxCount
 End Property
@@ -1104,19 +1104,19 @@ Public Property Get AlertCount() As Integer
     AlertCount = m_AlertCount
 End Property
 
-Public Property Let AlertCount(Value As Integer)
-    If Len(Trim(Value)) = 0 Then Value = 10
-    m_AlertCount = Value
+Public Property Let AlertCount(value As Integer)
+    If Len(Trim(value)) = 0 Then value = 10
+    m_AlertCount = value
 End Property
 
 Public Property Get RemainingCount() As String
     RemainingCount = m_RemainingCount
 End Property
 
-Public Property Let RemainingCount(Value As String)
-    If Len(Trim(Value)) = 0 Then Value = "XX characters remain"
-    If ValidateString(Value, "alphanumdashslashspace") Then
-        m_RemainingCount = Value
+Public Property Let RemainingCount(value As String)
+    If Len(Trim(value)) = 0 Then value = "XX characters remain"
+    If ValidateString(value, "alphanumdashslashspace") Then
+        m_RemainingCount = value
     End If
     lblMaxCount.Caption = m_RemainingCount
 End Property
@@ -1126,8 +1126,8 @@ Public Property Get CountLabelFontColor() As Long
     CountLabelFontColor = m_CountLabelFontColor
 End Property
 
-Public Property Let CountLabelFontColor(Value As Long)
-    m_CountLabelFontColor = Value
+Public Property Let CountLabelFontColor(value As Long)
+    m_CountLabelFontColor = value
     lblCount.ForeColor = m_CountLabelFontColor
 End Property
 
@@ -1135,8 +1135,8 @@ Public Property Get CurrentCountFontColor() As Long
     CurrentCountFontColor = m_CurrentCountFontColor
 End Property
 
-Public Property Let CurrentCountFontColor(Value As Long)
-    m_CurrentCountFontColor = Value
+Public Property Let CurrentCountFontColor(value As Long)
+    m_CurrentCountFontColor = value
     lblCount.ForeColor = m_CurrentCountFontColor
 End Property
 
@@ -1144,8 +1144,8 @@ Public Property Get MaxCountFontColor() As Long
     MaxCountFontColor = m_MaxCountFontColor
 End Property
 
-Public Property Let MaxCountFontColor(Value As Long)
-    m_MaxCountFontColor = Value
+Public Property Let MaxCountFontColor(value As Long)
+    m_MaxCountFontColor = value
     lblMaxCount.ForeColor = m_MaxCountFontColor
 End Property
 
@@ -1153,8 +1153,8 @@ Public Property Get RemainingCountFontColor() As Long
     RemainingCountFontColor = m_RemainingCountFontColor
 End Property
 
-Public Property Let RemainingCountFontColor(Value As Long)
-    m_RemainingCountFontColor = Value
+Public Property Let RemainingCountFontColor(value As Long)
+    m_RemainingCountFontColor = value
     lblMaxCount.ForeColor = m_RemainingCountFontColor
 End Property
 
@@ -1162,9 +1162,9 @@ Public Property Get AlertBoxBackgroundColor() As Long
     AlertBoxBackgroundColor = m_AlertBoxBackgroundColor
 End Property
 
-Public Property Let AlertBoxBackgroundColor(Value As Long)
+Public Property Let AlertBoxBackgroundColor(value As Long)
     rctAlert.backstyle = 1 '1 = Normal, 0 = Transparent
-    m_AlertBoxBackgroundColor = Value
+    m_AlertBoxBackgroundColor = value
     rctAlert.BackColor = m_AlertBoxBackgroundColor
 End Property
 
@@ -1173,8 +1173,8 @@ Public Property Get CountLabelVisible() As Byte
     CountLabelVisible = m_CountLabelVisible
 End Property
 
-Public Property Let CountLabelVisible(Value As Byte)
-    m_CountLabelVisible = Value
+Public Property Let CountLabelVisible(value As Byte)
+    m_CountLabelVisible = value
     lblCount.Visible = m_CountLabelVisible
 End Property
 
@@ -1182,8 +1182,8 @@ Public Property Get CurrentCountVisible() As Byte
     CurrentCountVisible = m_CurrentCountVisible
 End Property
 
-Public Property Let CurrentCountVisible(Value As Byte)
-    m_CurrentCountVisible = Value
+Public Property Let CurrentCountVisible(value As Byte)
+    m_CurrentCountVisible = value
     lblCount.Visible = m_CurrentCountVisible
 End Property
 
@@ -1191,8 +1191,8 @@ Public Property Get MaxCountVisible() As Byte
     MaxCountVisible = m_MaxCountVisible
 End Property
 
-Public Property Let MaxCountVisible(Value As Byte)
-    m_MaxCountVisible = Value
+Public Property Let MaxCountVisible(value As Byte)
+    m_MaxCountVisible = value
     lblMaxCount.Visible = m_MaxCountVisible
 End Property
 
@@ -1200,16 +1200,16 @@ Public Property Get RemainingCountVisible() As Byte
     RemainingCountVisible = m_RemainingCountVisible
 End Property
 
-Public Property Let RemainingCountVisible(Value As Byte)
-    m_RemainingCountVisible = Value
+Public Property Let RemainingCountVisible(value As Byte)
+    m_RemainingCountVisible = value
 End Property
 
 Public Property Get AlertBoxVisible() As Byte
     AlertBoxVisible = m_AlertBoxVisible
 End Property
 
-Public Property Let AlertBoxVisible(Value As Byte)
-    m_AlertBoxVisible = Value
+Public Property Let AlertBoxVisible(value As Byte)
+    m_AlertBoxVisible = value
     Me.rctAlert.Visible = m_AlertBoxVisible
 End Property
 
@@ -1257,7 +1257,7 @@ On Error GoTo Err_Handler
                             "The new template will appear at the bottom of the template list." & vbCrLf & vbCrLf & _
                             "To format your template text, use the Notepad button at right," & vbCrLf & _
                             "then copy && paste it into the template textbox."
-    tbxIcon.Value = StringFromCodepoint(uLocked)
+    tbxIcon.value = StringFromCodepoint(uLocked)
     tbxIcon.ForeColor = lngDkGreen
     lblDirections.ForeColor = lngLtBlue
     
@@ -1300,7 +1300,7 @@ On Error GoTo Err_Handler
     cbxSyntax.ColumnCount = 3
     cbxSyntax.BoundColumn = 3
     cbxSyntax.ColumnWidths = "0;0;1;"
-    cbxSyntax.Value = "T-SQL"
+    cbxSyntax.value = "T-SQL"
     
     'defaults
     btnSave.Enabled = False
@@ -1741,10 +1741,10 @@ On Error GoTo Err_Handler
     'default IsSupported is 1 (set in UpsertRecord)
     
     'set hidden context field value
-    Me.tbxContext.Value = Me.tbxTemplate.Value
+    Me.tbxContext.value = Me.tbxTemplate.value
     
     'clear tbxID so templates are considered adds, not updates
-    Me.tbxID.Value = 0
+    Me.tbxID.value = 0
     
     UpsertRecord Me
 
@@ -1861,11 +1861,11 @@ On Error GoTo Err_Handler
     
     'set color of icon depending on if values are set
     'requires: site code & name (directions & description optional)
-    If Len(Nz(tbxTemplate.Value, "")) > 0 _
-        And Len(Nz(tbxRemarks.Value, "")) > 0 _
-        And Len(Nz(tbxTemplateSQL.Value, "")) > 0 _
-        And Len(Nz(tbxVersion.Value, "")) > 0 _
-        And Len(Nz(tbxEffectiveDate.Value, "")) > 0 _
+    If Len(Nz(tbxTemplate.value, "")) > 0 _
+        And Len(Nz(tbxRemarks.value, "")) > 0 _
+        And Len(Nz(tbxTemplateSQL.value, "")) > 0 _
+        And Len(Nz(tbxVersion.value, "")) > 0 _
+        And Len(Nz(tbxEffectiveDate.value, "")) > 0 _
         Then
         isOK = True
     End If

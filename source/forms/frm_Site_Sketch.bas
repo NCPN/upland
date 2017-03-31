@@ -466,7 +466,7 @@ On Error GoTo Err_Size_Click
 ' Redisplay current JPEG image at selected ratio
 ' valid ratios are 1, 1/2, 1/4 and 1/8
 ' Read JPEG image
-If LoadJPG(m_cDib, m_cDib.CurrentJpegFileName, Me.FrameSize.Value) Then
+If LoadJPG(m_cDib, m_cDib.CurrentJpegFileName, Me.FrameSize.value) Then
     Call m_cDib.DIBtoPictureData(Me.Image0)
 Else
     MsgBox "Unable to Load Jpeg Image", vbCritical

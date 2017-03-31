@@ -115,10 +115,10 @@ Public Function fxnTrimSpaces(strInputText As String) As String
 
     ' First trim leading spaces
     Do While Left(strTemp, 1) = " "
-        strTemp = right(strTemp, Len(strTemp) - 1)
+        strTemp = Right(strTemp, Len(strTemp) - 1)
     Loop
     ' Then trim trailing spaces
-    Do While right(strTemp, 1) = " "
+    Do While Right(strTemp, 1) = " "
         strTemp = Left(strTemp, Len(strTemp) - 1)
     Loop
 

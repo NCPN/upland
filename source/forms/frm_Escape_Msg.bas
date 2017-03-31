@@ -1653,21 +1653,21 @@ Option Explicit
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
-    Dim keys As String, strMsg As String
+    Dim Keys As String, strMsg As String
     Dim imageVisible As Boolean
     
     'defaults
     strMsg = ""
-    keys = ""
+    Keys = ""
     imgUndoRedo.Visible = False
     
-    If Not IsNull(Me.OpenArgs) Then keys = Me.OpenArgs
+    If Not IsNull(Me.OpenArgs) Then Keys = Me.OpenArgs
     
     'exit if already set
-    If TempVars.item("DISABLE_ESCAPE_MSG") = True Then GoTo Exit_Sub
+    If TempVars.Item("DISABLE_ESCAPE_MSG") = True Then GoTo Exit_Sub
     
     'determine message
-    Select Case keys
+    Select Case Keys
         Case "ESC"
             strMsg = "Sorry ESC has been "
         Case "^Z"

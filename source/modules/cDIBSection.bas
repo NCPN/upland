@@ -9,7 +9,7 @@ Option Explicit
 Private Type RECT
     Left As Long
     Top As Long
-    right As Long
+    Right As Long
     Bottom As Long
 End Type
 
@@ -377,7 +377,7 @@ With mh.rclFrame
     ' the conversion process.
     
 ' Convert to MM
-sngConvertX = (.right - .Left) * 0.01
+sngConvertX = (.Right - .Left) * 0.01
 sngConvertY = (.Bottom - .Top) * 0.01
  End With
  
@@ -453,7 +453,7 @@ Dim hnewbrush As Long
 hnewbrush = apiCreateSolidBrush(RGB(255, 255, 255))
 rc.Left = 0
 rc.Top = 0
-rc.right = m_bmi.bmiHeader.biWidth
+rc.Right = m_bmi.bmiHeader.biWidth
 rc.Bottom = m_bmi.bmiHeader.biHeight
 
 Call apiFillRect(m_hDC, rc, hnewbrush)
@@ -488,7 +488,7 @@ hBmp = SelectObject(hDCtemp, hBMPtemp)
   rc.Top = 0
  rc.Left = 0
  rc.Bottom = m_bmi.bmiHeader.biHeight
- rc.right = m_bmi.bmiHeader.biWidth
+ rc.Right = m_bmi.bmiHeader.biWidth
  lngRet = apiPlayEnhMetaFile(m_hDC, hBmp, rc)
  
 ' Delete the EMF

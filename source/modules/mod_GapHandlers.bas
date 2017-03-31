@@ -171,7 +171,7 @@ Function UpdateBasalGaps(strTransectID As String, strField As String) As Integer
       UpdateBasalGaps = 0
       GoTo Exit_Function
     End If
-    intField = right(strField, Len(strField) - 1) ' Get the field number
+    intField = Right(strField, Len(strField) - 1) ' Get the field number
     result = intField Mod 2
     If result = 0 Then   ' Set up the field numbers properly.
       intField2 = intField
@@ -371,7 +371,7 @@ Function UpdateCanopyGaps(strTransectID As String, strField As String) As Intege
       UpdateCanopyGaps = 0
       GoTo Exit_Function
     End If
-    intField = right(strField, Len(strField) - 1) ' Get the field number
+    intField = Right(strField, Len(strField) - 1) ' Get the field number
     result = intField Mod 2
     If result = 0 Then   ' Set up the field numbers properly.
       intField2 = intField

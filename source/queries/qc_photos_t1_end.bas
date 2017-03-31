@@ -1,0 +1,15 @@
+﻿dbMemo "SQL" ="SELECT tbl_Locations.Unit_Code, tbl_Locations.Plot_ID, tbl_Events.Start_Date, tb"
+    "l_Locations.Vegetation_Type, tbl_Photos.Transect, tbl_Photos.Location\015\012FRO"
+    "M tbl_Locations INNER JOIN (tbl_Events INNER JOIN tbl_Photos ON tbl_Events.Event"
+    "_ID = tbl_Photos.Event_ID) ON tbl_Locations.Location_ID = tbl_Events.Location_ID"
+    "\015\012WHERE (((tbl_Locations.Vegetation_Type)=\"forest\" Or (tbl_Locations.Veg"
+    "etation_Type)=\"woodland\") \015\012AND ((tbl_Photos.Transect)=\"T1 - end\") \015"
+    "\012AND ((tbl_Photos.Location)=53)) \015\012OR (((tbl_Locations.Vegetation_Type)"
+    "=\"oak scrub\") \015\012AND ((tbl_Photos.Transect)=\"T1 - end\") \015\012AND ((t"
+    "bl_Photos.Location)=23))\015\012ORDER BY tbl_Locations.Unit_Code, tbl_Locations."
+    "Plot_ID, tbl_Events.Start_Date;\015\012"
+dbMemo "Connect" =""
+dbBoolean "ReturnsRecords" ="-1"
+dbInteger "ODBCTimeout" ="60"
+Begin
+End

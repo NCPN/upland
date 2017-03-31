@@ -264,12 +264,12 @@ Public Function fxnMakeBackup()
 
     strBackupDate = Format$(Now, "YYYYMMDD_HHNN")
     ' Verify that an .mdb is being specified
-    If right(strSourceFileName, 4) <> ".mdb" And right(strSourceFileName, 6) <> ".accdb" Then
+    If Right(strSourceFileName, 4) <> ".mdb" And Right(strSourceFileName, 6) <> ".accdb" Then
         MsgBox "Expected *.mdb or *.accdb file, found " & strSourceFileName & vbCrLf & _
                 "File NOT copied.", vbCritical, "Error creating data backup"
         GoTo Exit_Procedure
     Else
-      If right(strSourceFileName, 4) = ".mdb" Then
+      If Right(strSourceFileName, 4) = ".mdb" Then
         ' Backup for 2003 back end
         strFilename = Left(strSourceFileName, Len(strSourceFileName) - 4) & _
             "_" & strBackupDate & ".mdb"

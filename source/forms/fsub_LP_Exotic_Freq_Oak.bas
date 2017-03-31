@@ -656,7 +656,7 @@ Option Explicit
 Private Sub Form_Load()
 On Error GoTo Err_Handler
     
-    tbxRecordCount.Value = Me.RecordsetClone.RecordCount
+    tbxRecordCount.value = Me.RecordsetClone.RecordCount
 
 Exit_Handler:
     Exit Sub

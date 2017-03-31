@@ -1011,10 +1011,10 @@ End Sub
 Private Sub ButtonA1_Click()
 
   If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.Value) Then
-      Screen.PreviousControl.Value = 1
+    If IsNull(Screen.PreviousControl.value) Then
+      Screen.PreviousControl.value = 1
     Else
-      Screen.PreviousControl.Value = Screen.PreviousControl.Value + 1
+      Screen.PreviousControl.value = Screen.PreviousControl.value + 1
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -1022,10 +1022,10 @@ End Sub
 
 Private Sub ButtonA5_Click()
   If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.Value) Then
-      Screen.PreviousControl.Value = 5
+    If IsNull(Screen.PreviousControl.value) Then
+      Screen.PreviousControl.value = 5
     Else
-      Screen.PreviousControl.Value = Screen.PreviousControl.Value + 5
+      Screen.PreviousControl.value = Screen.PreviousControl.value + 5
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -1033,13 +1033,13 @@ End Sub
 
 Private Sub ButtonS1_Click()
   If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.Value) Then
-      Screen.PreviousControl.Value = 0
-    ElseIf Screen.PreviousControl.Value - 1 < 0 Then
+    If IsNull(Screen.PreviousControl.value) Then
+      Screen.PreviousControl.value = 0
+    ElseIf Screen.PreviousControl.value - 1 < 0 Then
       MsgBox "Total cannot be negative.", , "Belt Shrubs"
       Exit Sub
     Else
-      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 1
+      Screen.PreviousControl.value = Screen.PreviousControl.value - 1
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -1047,13 +1047,13 @@ End Sub
 
 Private Sub ButtonS5_Click()
   If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.Value) Then
-      Screen.PreviousControl.Value = 0
-    ElseIf Screen.PreviousControl.Value - 5 < 0 Then
+    If IsNull(Screen.PreviousControl.value) Then
+      Screen.PreviousControl.value = 0
+    ElseIf Screen.PreviousControl.value - 5 < 0 Then
       MsgBox "Total cannot be negative.", , "Belt Shrubs"
       Exit Sub
     Else
-      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 5
+      Screen.PreviousControl.value = Screen.PreviousControl.value - 5
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -1069,7 +1069,7 @@ End Sub
 
 Private Sub ButtonZero_Click()
   If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-      Screen.PreviousControl.Value = 0
+      Screen.PreviousControl.value = 0
   End If
   Screen.PreviousControl.SetFocus
 End Sub

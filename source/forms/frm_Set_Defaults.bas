@@ -344,8 +344,8 @@ Private Sub cbxUser_Change()
 On Error GoTo Err_Handler
 
     'set TempVars value to the User_ID (cbxUser.Column(0))
-    If Not IsNull(TempVars.item("User_ID")) Then
-        TempVars.item("User_ID") = cbxUser.Column(0)
+    If Not IsNull(TempVars.Item("User_ID")) Then
+        TempVars.Item("User_ID") = cbxUser.Column(0)
     Else
         TempVars.Add "User_ID", cbxUser.Column(0)
     End If

@@ -1097,7 +1097,7 @@ Private Sub cbxNoShrubs_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Shrub", Abs(Me.cbxNoShrubs.Value)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Shrub", Abs(Me.cbxNoShrubs.value)
 
     'refresh the subform to clear conditional formatting
     Me.fsub_LP_Belt_Shrub.Requery
@@ -1132,7 +1132,7 @@ Private Sub cbxNoSeedlings_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-TreeSeedling", Abs(Me.cbxNoSeedlings.Value)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-TreeSeedling", Abs(Me.cbxNoSeedlings.value)
 
     'refresh the subform to clear conditional formatting
     Me.fsub_LP_Seedling.Requery
@@ -1166,7 +1166,7 @@ Private Sub cbxNoExoticPerennials_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-ExoticPerennials", Abs(Me.cbxNoExoticPerennials.Value)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-ExoticPerennials", Abs(Me.cbxNoExoticPerennials.value)
 
 Exit_Handler:
     Exit Sub
@@ -1198,7 +1198,7 @@ Private Sub cbxNoExotics_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Exotics", Abs(Me.cbxNoExotics.Value)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Exotics", Abs(Me.cbxNoExotics.value)
 
     'refresh the subform to clear conditional formatting
     Me.fsub_LP_Exotic_Freq_Oak.Requery
@@ -1589,9 +1589,9 @@ On Error GoTo Err_Handler
         Set dNoDataTransect = GetNoDataCollected(Me.Transect_ID, "T")
         
         With dNoDataTransect
-            Me.cbxNoShrubs.Value = .item("1mBelt-Shrub")
-            Me.cbxNoSeedlings.Value = .item("1mBelt-TreeSeedling")
-            Me.cbxNoExotics.Value = .item("1mBelt-Exotics")
+            Me.cbxNoShrubs.value = .Item("1mBelt-Shrub")
+            Me.cbxNoSeedlings.value = .Item("1mBelt-TreeSeedling")
+            Me.cbxNoExotics.value = .Item("1mBelt-Exotics")
         End With
     End If
     

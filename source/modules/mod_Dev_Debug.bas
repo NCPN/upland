@@ -338,7 +338,7 @@ On Error GoTo Err_Handler
 
     Set vbCom = Application.VBE.ActiveVBProject.VBComponents
 
-    vbCom.Remove VBComponent:=vbCom.item(strModule)
+    vbCom.Remove VBComponent:=vbCom.Item(strModule)
 
 Exit_Sub:
     Exit Sub
@@ -445,7 +445,7 @@ On Error GoTo Err_Handler
     
         ModuleFilePath = strPath & ModuleFile
         
-        If right(ModuleFilePath, 4) = ".bas" Then
+        If Right(ModuleFilePath, 4) = ".bas" Then
             'add the module (file)
             Application.VBE.ActiveVBProject.VBComponents.Import ModuleFilePath
         End If

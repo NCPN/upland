@@ -1705,17 +1705,17 @@ On Error GoTo Err_Handler
     Set dNoDataEvent = GetNoDataCollected(Me.Event_ID, "E")
     
     With dNoDataEvent
-        Me.cbxNoSaplings.Value = .item("OverstoryTree-Sapling")
-        Me.cbxNoCensus.Value = .item("OverstoryTree-Census")
+        Me.cbxNoSaplings.value = .Item("OverstoryTree-Sapling")
+        Me.cbxNoCensus.value = .Item("OverstoryTree-Census")
     
-        Me.cbxNo1000hr.Value = .item("Fuel-1000hr")
-        Me.cbxNo1000hrA.Value = .item("Fuel-1000hr-A")
-        Me.cbxNo1000hrB.Value = .item("Fuel-1000hr-B")
-        Me.cbxNo1000hrC.Value = .item("Fuel-1000hr-C")
-        Me.cbxNo1000hrD.Value = .item("Fuel-1000hr-D")
+        Me.cbxNo1000hr.value = .Item("Fuel-1000hr")
+        Me.cbxNo1000hrA.value = .Item("Fuel-1000hr-A")
+        Me.cbxNo1000hrB.value = .Item("Fuel-1000hr-B")
+        Me.cbxNo1000hrC.value = .Item("Fuel-1000hr-C")
+        Me.cbxNo1000hrD.value = .Item("Fuel-1000hr-D")
         
-        Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Value = .item("SiteImpact-Disturbance")
-        Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Value = .item("SiteImpact-Exotic")
+        Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").value = .Item("SiteImpact-Disturbance")
+        Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").value = .Item("SiteImpact-Exotic")
     End With
     
     'transect level values -> see LP_Belt_Transect
@@ -2005,7 +2005,7 @@ Private Sub cbxNoSaplings_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Sapling", Abs(Me.cbxNoSaplings.Value)
+    SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Sapling", Abs(Me.cbxNoSaplings.value)
     
     'refresh the subform to clear conditional formatting
     Me.fsub_OT_Tree_Saplings.Requery
@@ -2041,7 +2041,7 @@ Private Sub cbxNoCensus_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Census", Abs(Me.cbxNoCensus.Value)
+    SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Census", Abs(Me.cbxNoCensus.value)
 
     'refresh the subform to clear conditional formatting
     Me.fsub_OT_Census.Requery
@@ -2076,14 +2076,14 @@ Private Sub cbxNo1000hr_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr", Abs(Me.cbxNo1000hr.Value)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr", Abs(Me.cbxNo1000hr.value)
 
     'set A-D if checked
     If Abs(Me.cbxNo1000hr) = 1 Then
-        Me.cbxNo1000hrA.Value = 1
-        Me.cbxNo1000hrB.Value = 1
-        Me.cbxNo1000hrC.Value = 1
-        Me.cbxNo1000hrD.Value = 1
+        Me.cbxNo1000hrA.value = 1
+        Me.cbxNo1000hrB.value = 1
+        Me.cbxNo1000hrC.value = 1
+        Me.cbxNo1000hrD.value = 1
         SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-A", 1
         SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-B", 1
         SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-C", 1
@@ -2119,7 +2119,7 @@ Private Sub cbxNo1000hrA_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-A", Abs(Me.cbxNo1000hrA.Value)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-A", Abs(Me.cbxNo1000hrA.value)
 
 Exit_Handler:
     Exit Sub
@@ -2150,7 +2150,7 @@ Private Sub cbxNo1000hrB_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-B", Abs(Me.cbxNo1000hrB.Value)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-B", Abs(Me.cbxNo1000hrB.value)
 
 Exit_Handler:
     Exit Sub
@@ -2181,7 +2181,7 @@ Private Sub cbxNo1000hrC_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-C", Abs(Me.cbxNo1000hrC.Value)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-C", Abs(Me.cbxNo1000hrC.value)
 
 Exit_Handler:
     Exit Sub
@@ -2212,7 +2212,7 @@ Private Sub cbxNo1000hrD_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-D", Abs(Me.cbxNo1000hrD.Value)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-D", Abs(Me.cbxNo1000hrD.value)
 
 Exit_Handler:
     Exit Sub
@@ -2512,7 +2512,7 @@ On Error GoTo Err_Handler
 
   Dim TransectNumber As Integer
 
-  Select Case Me.pgTabs.Value  'RDB: Display a silly message so the field crews know where they are
+  Select Case Me.pgTabs.value  'RDB: Display a silly message so the field crews know where they are
     Case 0 'Tab: Photos
     Case 1 'Tab: Point Intercept
       If IsNull(Me!frm_LP_Transect.Form!Transect) Then

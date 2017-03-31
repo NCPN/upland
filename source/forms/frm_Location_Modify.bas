@@ -1229,7 +1229,7 @@ Private Sub Form_Load()
     'value must be set here not in control data source as =[TempVars].[Item]("User_ID")
     'otherwise tbxRecorderID_AfterUpdate() will fail to update with
     'Error #2448 You can't assign a value to this object.
-    tbxRecorderID = TempVars.item("User_ID")
+    tbxRecorderID = TempVars.Item("User_ID")
     
     'set the value based on tbl_Locations.Recorder for this record
     '-----------------------------------------------------------------------
@@ -1239,8 +1239,8 @@ Private Sub Form_Load()
     '   user selected when beginning the enter/edit data (frm_Set_Defaults)
     '   determine who this is via TempVars.item("User_ID")
     '-----------------------------------------------------------------------
-    If Not IsNull(Me.tbxRecorderID.Value) Then
-        Me.Recorder.Value = Me.tbxRecorderID.Value
+    If Not IsNull(Me.tbxRecorderID.value) Then
+        Me.Recorder.value = Me.tbxRecorderID.value
     End If
        
     'enable the update button only if the recorder is entered
@@ -1440,7 +1440,7 @@ Private Sub Recorder_AfterUpdate()
 On Error GoTo Err_Handler
     
     'set the tbxRecorderID to update the record
-    Me.tbxRecorderID = Me.Recorder.Value
+    Me.tbxRecorderID = Me.Recorder.value
 
     'enable save when recorder isn't null
     If Not IsNull(Me!Recorder) Then

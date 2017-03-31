@@ -78,7 +78,7 @@ Rem*D*/
 Public Type IJL_RECT
   Left   As Long
   Top    As Long
-  right  As Long
+  Right  As Long
   Bottom As Long
 End Type
 

@@ -5,7 +5,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.25
+' Version:      1.26
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -42,6 +42,7 @@ Option Explicit
 '               BLC, 3/22/2017  - 1.24 - removed big rivers only components
 '                                        revised for uplands
 '               BLC, 3/29/2017  - 1.25 - added FieldCheck, FieldOK, Dependencies for templates
+'               BLC, 3/30/2017  - 1.26 - added non-parameterized query option for GetRecords()
 ' =================================
 
 '' ---------------------------------
@@ -342,7 +343,7 @@ On Error GoTo Err_Handler
     
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
-        State = rs.Fields("ParkState").Value
+        State = rs.Fields("ParkState").value
     End If
    
     'return value
@@ -848,7 +849,7 @@ On Error GoTo Err_Handler
     
     Template = Template & "Sensitive" & Context
     
-    If right(Template, 1) <> "s" Then Template = Template & "s"
+    If Right(Template, 1) <> "s" Then Template = Template & "s"
     
 '    Select Case Context
 '        Case "Locations"
@@ -903,6 +904,7 @@ End Sub
 '   BLC - 1/9/2017 - added templates
 '   BLC - 2/7/2017 - added template - s_location_with_loctypeID_sensitivity
 '   BLC - 3/28/2017 - added upland templates, removed big rivers templates
+'   BLC - 3/30/2017 - added option for non-parameterized queries (Else)
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -1000,6 +1002,8 @@ On Error GoTo Err_Handler
                     '-- required parameters --
 '                    .Parameters("parkID") = TempVars("ParkID")
                 
+                Case Else
+                    'handle other non-parameterized queries
             End Select
             
             Set rs = .OpenRecordset(dbOpenDynaset)
@@ -1297,7 +1301,7 @@ On Error GoTo Err_Handler
         End Select
                 
         'set insert/update based on whether its an edit or new entry
-        DoAction = IIf(frm!tbxID.Value > 0, "u", "i")
+        DoAction = IIf(frm!tbxID.value > 0, "u", "i")
         
         If NoList Then
                     
@@ -1324,7 +1328,7 @@ On Error GoTo Err_Handler
                 'record already exists & ID > 0
                 
                 'retrieve ID
-                If frm!tbxID.Value = rs("ID") Then 'rs("Contact.ID") Then
+                If frm!tbxID.value = rs("ID") Then 'rs("Contact.ID") Then
                     'IDs are equivalent, just change the data
                     frm!lblMsg.ForeColor = lngLime
                     frm!lblMsgIcon.ForeColor = lngLime
@@ -1547,7 +1551,7 @@ On Error GoTo Err_Handler
                 Next
                 
                 'remove extra comma
-                strFields = IIf(right(strFields, 1) = ",", RTrim(strFields), strFields)
+                strFields = IIf(Right(strFields, 1) = ",", RTrim(strFields), strFields)
             
             Else
                 
@@ -1647,44 +1651,128 @@ End Function
 ' Revisions:
 '   BLC - 3/27/2017 - initial version
 '   BLC - 3/29/2017 - adjusted to accommodate FieldOK (pass/fail/unknown) values
+'   BLC - 3/30/2017 - handle dependencies (queries dependent on queries)
 ' ---------------------------------
 Public Function RunPlotCheck()
 On Error GoTo Err_Handler
 
-    Dim Template As String
+'    Dim Template As String
     Dim rs As DAO.Recordset, rs2 As DAO.Recordset
+    Dim strTemplate As String, strDeps As String, strFieldOK As String, _
+        strOperator As String, strField As String, CompareTo As String
+    Dim iTemplate As Integer, i As Integer, iOK As Integer, isOK As Integer
+    Dim blnFieldCheck As Boolean
 
     'clear num records
     ClearTable "NumRecords"
+    
+    'initialize AppTemplates if not populated
+    If g_AppTemplates Is Nothing Then GetTemplates
         
     'fetch queries
-    Template = "s_template_num_records"
+'    Template = "s_template_num_records"
     
-    Set rs = GetRecords(Template)
+'    Set rs = GetRecords(Template) '--> can't run first since some queries are dependent
+'
+'    'iterate through records
+'    If Not (rs.EOF And rs.BOF) Then
+'        rs.MoveFirst
+'        Do Until rs.EOF
+'
+'            'run query & retrieve record #s
+'            Set rs2 = GetRecords(rs("TemplateName"))
+'
+'            'handle dependencies first
+'            'Dependencies = comma separated list of queries template is dependent on
+'            If Len(rs2("Dependencies")) > 0 Then _
+'                HandleDependentQueries rs2("Dependencies"), "run"
+'
+'            'add values to numrecords
+'            Dim Params(0 To 3) As Variant
+'
+'            Params(0) = "i_num_records"
+'            Params(1) = rs("ID")
+'            Params(2) = rs2.RecordCount
+'            Params(3) = IIf(rs("FieldOK"), 1, -1)
+'
+'            SetRecord "i_num_records", Params
+'
+'            Debug.Print Params(1) & " " & rs("TemplateName") & " " & Params(2)
+'
+'            rs.MoveNext
+'        Loop
+'    End If
+
+    'use g_AppTemplates scripting dictionary vs. recordset to avoid missing dependencies
+    'iterate through queries
+    For i = 0 To g_AppTemplates.Count - 1
     
-    'iterate through records
-    If Not (rs.EOF And rs.BOF) Then
-        rs.MoveFirst
-        Do Until rs.EOF
-            
-            'run query & retrieve record #s
-            Set rs2 = GetRecords(rs("TemplateName"))
-            
-            'add values to numrecords
-            Dim Params(0 To 3) As Variant
-            
-            Params(0) = "i_num_records"
-            Params(1) = rs("ID")
-            Params(2) = rs2.RecordCount
-            Params(3) = IIf(rs("FieldOK"), 1, -1)
-            
-            SetRecord "i_num_records", Params
-            
-            Debug.Print Params(1) & " " & rs("TemplateName") & " " & Params(2)
+        With g_AppTemplates.Items()(i)
+            strTemplate = .Item("TemplateName")
+            SetPlotCheckResult strTemplate, "insert"
+'            iTemplate = .Item("ID")
+'            strDeps = .Item("Dependencies")
+'            strFieldOK = .Item("FieldOK")
+'            blnFieldCheck = .Item("FieldCheck")
+        End With
         
-            rs.MoveNext
-        Loop
-    End If
+'        'include only templates w/ FieldCheck = 1
+'        If blnFieldCheck Then
+'            'handle dependencies first
+'            'Dependencies = comma separated list of queries template is dependent on
+'            If Len(strDeps) > 0 Then _
+'                HandleDependentQueries strDeps, "run"
+'
+'            'run query & retrieve record #s
+'            Set rs = GetRecords(strTemplate)
+'
+'            'default
+'            isOK = 0
+'
+'            'add values to numrecords
+'            Dim Params(0 To 3) As Variant
+'
+'            Params(0) = "i_num_records"
+'            Params(1) = iTemplate
+'            Params(2) = rs.RecordCount
+'
+'            If Len(strFieldOK) > 0 Then
+'                'assess if field check is fulfilled
+'
+'                'determine comparitor
+'                iOK = CInt(Right(strFieldOK, 1))
+'
+'                'fetch the operator
+'                strOperator = Left(Right(strFieldOK, Len(strFieldOK) - InStr(strFieldOK, "]")), 1)
+'
+'                'fetch the field/item to check
+'                strField = Replace(Left(strFieldOK, InStr(strFieldOK, "]") - 1), "[", "")
+'
+'                Select Case strField
+'                    Case "NumRecords"
+'                        CompareTo = rs.RecordCount
+'                    Case Else
+'                        CompareTo = strField
+'                End Select
+'
+'                Select Case strOperator
+'                    Case "="
+'                        isOK = IIf(CompareTo = iOK, 1, 0)
+'                    Case "<"
+'                        isOK = IIf(CompareTo < iOK, 1, 0)
+'                    Case ">"
+'                        isOK = IIf(CompareTo > iOK, 1, 0)
+'                End Select
+'
+'            End If
+'
+'            Params(3) = isOK
+'
+'            SetRecord "i_num_records", Params
+'
+'            Debug.Print Params(1) & " " & strTemplate & " " & Params(2)
+'        End If
+    Next
     
 Exit_Handler:
     Exit Function
@@ -1695,4 +1783,132 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - RunPlotCheck[mod_App_Data form])"
     End Select
     Resume Exit_Handler
+End Function
+
+' ---------------------------------
+' Sub:          SetPlotCheckResult
+' Description:  Run plot check queries
+' Assumptions:  -
+' Parameters:   strTemplate - template name (string)
+'               action - insert or update (string)
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 30, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/30/2017 - initial version
+'   BLC - 3/29/2017 - adjusted to accommodate FieldOK (pass/fail/unknown) values
+'   BLC - 3/30/2017 - handle dependencies (queries dependent on queries)
+' ---------------------------------
+Public Function SetPlotCheckResult(strTemplate As String, action As String)
+On Error GoTo Err_Handler
+
+    Dim rs As DAO.Recordset, rs2 As DAO.Recordset
+    Dim strDeps As String, strFieldOK As String, _
+        strOperator As String, strField As String, CompareTo As String
+    Dim iTemplate As Integer, i As Integer, iOK As Integer, isOK As Integer
+    Dim blnFieldCheck As Boolean
+
+    'clear num records
+'    ClearTable "NumRecords"
+    
+    'initialize AppTemplates if not populated
+    If g_AppTemplates Is Nothing Then GetTemplates
+        
+    'use g_AppTemplates scripting dictionary vs. recordset to avoid missing dependencies
+    'iterate through queries
+'    For i = 0 To g_AppTemplates.Count - 1
+    
+        With g_AppTemplates.Items()(i)
+ '           strTemplate = .Item("TemplateName")
+            iTemplate = .Item("ID")
+            strDeps = .Item("Dependencies")
+            strFieldOK = .Item("FieldOK")
+            blnFieldCheck = .Item("FieldCheck")
+        End With
+        
+        'include only templates w/ FieldCheck = 1
+        If blnFieldCheck Then
+            'handle dependencies first
+            'Dependencies = comma separated list of queries template is dependent on
+            If Len(strDeps) > 0 Then _
+                HandleDependentQueries strDeps, "run"
+                            
+            'run query & retrieve record #s
+            Set rs = GetRecords(strTemplate)
+                
+            'default
+            isOK = 0
+                
+            'add values to numrecords
+            Dim Params(0 To 3) As Variant
+            
+            Params(0) = LCase(Left(action, 1)) & "_num_records"
+            Params(1) = iTemplate
+            Params(2) = rs.RecordCount
+            
+            If Len(strFieldOK) > 0 Then
+                'assess if field check is fulfilled
+                
+                'determine comparitor
+                iOK = CInt(Right(strFieldOK, 1))
+                
+                'fetch the operator
+                strOperator = Left(Right(strFieldOK, Len(strFieldOK) - InStr(strFieldOK, "]")), 1)
+                
+                'fetch the field/item to check
+                strField = Replace(Left(strFieldOK, InStr(strFieldOK, "]") - 1), "[", "")
+                
+                Select Case strField
+                    Case "NumRecords"
+                        CompareTo = rs.RecordCount
+                    Case Else
+                        CompareTo = strField
+                End Select
+            
+                Select Case strOperator
+                    Case "="
+                        isOK = IIf(CompareTo = iOK, 1, 0)
+                    Case "<"
+                        isOK = IIf(CompareTo < iOK, 1, 0)
+                    Case ">"
+                        isOK = IIf(CompareTo > iOK, 1, 0)
+                End Select
+            
+            End If
+            
+            Params(3) = isOK
+            
+            SetRecord "i_num_records", Params
+            
+            Debug.Print Params(1) & " " & strTemplate & " " & Params(2)
+        End If
+    'Next
+    
+Exit_Handler:
+    Exit Function
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetPlotCheckResult[mod_App_Data form])"
+    End Select
+    Resume Exit_Handler
+End Function
+
+
+Public Function test()
+
+    'HandleDependentQueries "68,60,69,70,71,72,73,74,75", "run"
+    'HandleDependentQueries "68,60,69,70,71,72,73,74,75", "remove"
+    'RemoveTemplateQueries
+ 
+    'Set g_AppTemplates = Nothing
+    'GetTemplates
+ 
+    RunPlotCheck
+    
+    'GetTemplateIDs
+ 
 End Function

@@ -498,8 +498,8 @@ On Error GoTo Err_Handler
     Set dNoData = GetNoDataCollected(Me.Event_ID, "E")
     
     With dNoData
-        Me.cbxNoDisturbance.Value = dNoData.item("SiteImpact-Disturbance")
-        Me.cbxNoSpecies.Value = dNoData.item("SiteImpact-Exotic")
+        Me.cbxNoDisturbance.value = dNoData.Item("SiteImpact-Disturbance")
+        Me.cbxNoSpecies.value = dNoData.Item("SiteImpact-Exotic")
     End With
     
     'set the yellow rectangles visible if no records
@@ -535,7 +535,7 @@ Private Sub cbxNoSpecies_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "SiteImpact-Exotic", Abs(Me.cbxNoSpecies.Value)
+    SetNoDataCollected Me.Event_ID, "E", "SiteImpact-Exotic", Abs(Me.cbxNoSpecies.value)
 
 Exit_Handler:
     Exit Sub
@@ -566,7 +566,7 @@ Private Sub cbxNoDisturbance_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "SiteImpact-Disturbance", Abs(Me.cbxNoDisturbance.Value)
+    SetNoDataCollected Me.Event_ID, "E", "SiteImpact-Disturbance", Abs(Me.cbxNoDisturbance.value)
 
 Exit_Handler:
     Exit Sub

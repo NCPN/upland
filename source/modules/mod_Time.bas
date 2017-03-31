@@ -53,7 +53,7 @@ Public Function FiscalYear(ByVal datDate As Date, _
     If blnFourDigits Then
         strYear = CStr(intYear)
     Else
-        strYear = right(CStr(intYear), 2)
+        strYear = Right(CStr(intYear), 2)
     End If
 
     If blnAddPrefix Then
