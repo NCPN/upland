@@ -128,7 +128,7 @@ On Error GoTo Err_Handler
               'determine how many have the same ParkPlotSpecies
               strSQL = "SELECT COUNT(Year) AS NumRecords FROM temp_Sp_Rpt_by_Park_Complete WHERE ParkPlotSpecies = '" & strParkPlotSpecies & "';"
               Set rsCount = CurrentDb.OpenRecordset(strSQL, dbOpenSnapshot)
-              iCount = rsCount!NumRecords
+              iCount = rsCount!numRecords
             End If
           
             For i = 1 To iCount

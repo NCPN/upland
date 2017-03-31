@@ -1804,6 +1804,7 @@ End Function
 '   BLC - 3/30/2017 - initial version
 '   BLC - 3/29/2017 - adjusted to accommodate FieldOK (pass/fail/unknown) values
 '   BLC - 3/30/2017 - handle dependencies (queries dependent on queries)
+'                     only queries used for field checks are checked
 ' ---------------------------------
 Public Function SetPlotCheckResult(strTemplate As String, action As String)
 On Error GoTo Err_Handler
@@ -1815,85 +1816,73 @@ On Error GoTo Err_Handler
     Dim i As Integer, iOK As Integer
     Dim blnFieldCheck As Boolean, isOK As Boolean
 
-    'clear num records
-'    ClearTable "NumRecords"
     
     'initialize AppTemplates if not populated
     If g_AppTemplates Is Nothing Then GetTemplates
         
-    'use g_AppTemplates scripting dictionary vs. recordset to avoid missing dependencies
-    'iterate through queries
-'    For i = 0 To g_AppTemplates.Count - 1
-    
-'        With g_AppTemplates.Items()(i)
-        With g_AppTemplates(strTemplate)
- '           strTemplate = .Item("TemplateName")
-            iTemplate = .Item("ID")
-            strDeps = .Item("Dependencies")
-            strFieldOK = .Item("FieldOK")
-            blnFieldCheck = .Item("FieldCheck")
-        End With
+    With g_AppTemplates(strTemplate)
+        iTemplate = .Item("ID")
+        strDeps = .Item("Dependencies")
+        strFieldOK = .Item("FieldOK")
+        blnFieldCheck = .Item("FieldCheck")
+    End With
         
-        'include only templates w/ FieldCheck = 1
-'        If blnFieldCheck Then
-            'handle dependencies first
-            'Dependencies = comma separated list of queries template is dependent on
-            If Len(strDeps) > 0 Then _
-                HandleDependentQueries strDeps, "run"
+    'handle dependencies first
+    'Dependencies = comma separated list of queries template is dependent on
+    If Len(strDeps) > 0 Then _
+        HandleDependentQueries strDeps, "run"
                             
-            'run query & retrieve record #s
-            Set rs = GetRecords(strTemplate)
-                
-            'default
-            isOK = 0
-                
-            'add values to numrecords
-            Dim Params(0 To 3) As Variant
+        'run query & retrieve record #s
+        Set rs = GetRecords(strTemplate)
             
-            Params(0) = LCase(Left(action, 1)) & "_num_records"
-            Params(1) = iTemplate
-            Params(2) = rs.RecordCount
+        'default
+        isOK = 0
             
-            If Len(strFieldOK) > 0 Then
-                'assess if field check is fulfilled
-                
-                'determine comparitor
-                iOK = CInt(Right(strFieldOK, 1))
-                
-                'fetch the operator
-                strOperator = Left(Right(strFieldOK, Len(strFieldOK) - InStr(strFieldOK, "]")), 1)
-                
-                'fetch the field/item to check
-                strField = Replace(Left(strFieldOK, InStr(strFieldOK, "]") - 1), "[", "")
-                
-                Select Case strField
-                    Case "NumRecords"
-                        CompareTo = rs.RecordCount
-                    Case Else
-                        CompareTo = strField
-                End Select
+        'add values to numrecords
+        Dim Params(0 To 3) As Variant
+        
+        Params(0) = LCase(Left(action, 1)) & "_num_records"
+        Params(1) = iTemplate
+        Params(2) = rs.RecordCount
+        
+        If Len(strFieldOK) > 0 Then
+            'assess if field check is fulfilled
             
-                Select Case strOperator
-                    Case "="
-                        isOK = IIf(CompareTo = iOK, 1, 0)
-                    Case "<"
-                        isOK = IIf(CompareTo < iOK, 1, 0)
-                    Case ">"
-                        isOK = IIf(CompareTo > iOK, 1, 0)
-                End Select
+            'determine comparitor
+            iOK = CInt(Right(strFieldOK, 1))
             
-            End If
+            'fetch the operator
+            strOperator = Left(Right(strFieldOK, Len(strFieldOK) - InStr(strFieldOK, "]")), 1)
             
-            Params(3) = isOK
+            'fetch the field/item to check
+            strField = Replace(Left(strFieldOK, InStr(strFieldOK, "]") - 1), "[", "")
             
-            'clear original value
-            DeleteRecord "NumRecords", iTemplate, False
-            
-            SetRecord "i_num_records", Params
-            
-            Debug.Print Params(1) & " " & strTemplate & " " & Params(2)
- '       End If
-    'Next
+            Select Case strField
+                Case "NumRecords"
+                    CompareTo = rs.RecordCount
+                Case Else
+                    CompareTo = strField
+            End Select
+        
+            Select Case strOperator
+                Case "="
+                    isOK = IIf(CompareTo = iOK, 1, 0)
+                Case "<"
+                    isOK = IIf(CompareTo < iOK, 1, 0)
+                Case ">"
+                    isOK = IIf(CompareTo > iOK, 1, 0)
+            End Select
+        
+        End If
+        
+        Params(3) = isOK
+        
+        'clear original value
+        DeleteRecord "NumRecords", iTemplate, False
+        
+        SetRecord "i_num_records", Params
+        
+        Debug.Print Params(1) & " " & strTemplate & " " & Params(2)
     
 Exit_Handler:
     Exit Function
@@ -1906,6 +1895,42 @@ Err_Handler:
     Resume Exit_Handler
 End Function
 
+' ---------------------------------
+' Sub:          UpdateNumRecords
+' Description:  Update NumRecords # of records
+' Assumptions:  -
+' Parameters:   iRecord - template ID (string)
+'               numRecords - # of records (integer)
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 30, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/30/2017 - initial version
+' ---------------------------------
+Public Function UpdateNumRecords(iRecord As Integer, numRecords As Integer)
+On Error GoTo Err_Handler
+
+    'add values to numrecords
+    Dim Params(0 To 3) As Variant
+    
+    Params(0) = "u_num_records"
+    Params(1) = iRecord
+    Params(2) = numRecords
+            
+    SetRecord "u_num_records", Params
+    
+Exit_Handler:
+    Exit Function
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - UpdateNumRecords[mod_App_Data form])"
+    End Select
+    Resume Exit_Handler
+End Function
 
 Public Function test()
 

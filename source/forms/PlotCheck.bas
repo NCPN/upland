@@ -15,10 +15,10 @@ Begin Form
     Width =7560
     DatasheetFontHeight =11
     ItemSuffix =3
-    Left =7350
-    Top =2595
-    Right =14910
-    Bottom =11835
+    Left =8010
+    Top =6540
+    Right =15570
+    Bottom =12180
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -442,7 +442,7 @@ Begin Form
             End
         End
         Begin Section
-            Height =780
+            Height =420
             Name ="Detail"
             OnMouseMove ="[Event Procedure]"
             AlternateBackColor =15921906
@@ -536,6 +536,14 @@ Begin Form
                     ForeColor =690698
                     Name ="tbxNumRecords"
                     ControlSource ="NumRecords"
+                    ConditionalFormat = Begin
+                        0x01000000a8000000020000000100000000000000000000001100000001000000 ,
+                        0xff000000ffffff00010000000000000012000000230000000100000022b14c00 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b004600690065006c00640043006800650063006b004f004b005d003d003000 ,
+                        0x000000005b004600690065006c00640043006800650063006b004f004b005d00 ,
+                        0x3d00310000000000
+                    End
                     GridlineColor =10921638
 
                     LayoutCachedLeft =4980
@@ -547,6 +555,13 @@ Begin Form
                     BorderShade =100.0
                     ForeThemeColorIndex =-1
                     ForeTint =50.0
+                    ConditionalFormat14 = Begin
+                        0x010002000000010000000000000001000000ff000000ffffff00100000005b00 ,
+                        0x4600690065006c00640043006800650063006b004f004b005d003d0030000000 ,
+                        0x0000000000000000000000000000000000000001000000000000000100000022 ,
+                        0xb14c00ffffff00100000005b004600690065006c00640043006800650063006b ,
+                        0x004f004b005d003d003100000000000000000000000000000000000000000000
+                    End
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -566,6 +581,14 @@ Begin Form
                     ForeColor =15921906
                     Name ="tbxID"
                     ControlSource ="ID"
+                    ConditionalFormat = Begin
+                        0x01000000a8000000020000000100000000000000000000001100000001000000 ,
+                        0xff000000ffffff00010000000000000012000000230000000100000022b14c00 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b004600690065006c00640043006800650063006b004f004b005d003d003000 ,
+                        0x000000005b004600690065006c00640043006800650063006b004f004b005d00 ,
+                        0x3d00310000000000
+                    End
                     GridlineColor =10921638
 
                     LayoutCachedLeft =420
@@ -575,9 +598,16 @@ Begin Form
                     ForeThemeColorIndex =1
                     ForeTint =100.0
                     ForeShade =95.0
+                    ConditionalFormat14 = Begin
+                        0x010002000000010000000000000001000000ff000000ffffff00100000005b00 ,
+                        0x4600690065006c00640043006800650063006b004f004b005d003d0030000000 ,
+                        0x0000000000000000000000000000000000000001000000000000000100000022 ,
+                        0xb14c00ffffff00100000005b004600690065006c00640043006800650063006b ,
+                        0x004f004b005d003d003100000000000000000000000000000000000000000000
+                    End
                 End
                 Begin CommandButton
-                    OverlapFlags =85
+                    OverlapFlags =93
                     Left =6240
                     Width =720
                     TabIndex =4
@@ -615,6 +645,7 @@ Begin Form
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
+                    Overlaps =1
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -673,15 +704,16 @@ Begin Form
                     ForeTint =50.0
                 End
                 Begin TextBox
+                    Visible = NotDefault
                     Enabled = NotDefault
                     TabStop = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =215
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =5100
-                    Top =420
+                    Left =6840
+                    Top =15
                     Width =360
                     Height =315
                     FontSize =9
@@ -692,10 +724,10 @@ Begin Form
                     ControlSource ="FieldCheckOK"
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =5100
-                    LayoutCachedTop =420
-                    LayoutCachedWidth =5460
-                    LayoutCachedHeight =735
+                    LayoutCachedLeft =6840
+                    LayoutCachedTop =15
+                    LayoutCachedWidth =7200
+                    LayoutCachedHeight =330
                     ForeThemeColorIndex =1
                     ForeTint =100.0
                     ForeShade =95.0
@@ -733,7 +765,8 @@ Option Explicit
 '               BLC - 3/24/2017 - 1.01 - added CallingForm, CallingRecordID properties
 '               BLC - 3/28/2017 - 1.02 - removed unused click events (btnAdd,
 '                                        btnDelete, btnEdit, lblHdr, lblVersion)
-'               BLC - 3/30/2017 - 1.03 - added lblID_Click, revised RunCheck()
+'               BLC - 3/30/2017 - 1.03 - added lblID_Click, revised RunCheck(),
+'                                        updated checks
 ' =================================
 
 '---------------------
@@ -826,6 +859,7 @@ End Property
 '   BLC - 3/22/2017 - initial version
 '   BLC - 3/24/2017 - set & minimize CallingForm
 '   BLC - 3/27/2017 - added tbxCheckOK
+'   BLC - 3/30/2017 - hid unfiltered query num records
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -892,6 +926,9 @@ On Error GoTo Err_Handler
     chk = StringFromCodepoint(uCheck)
     
     Me.tbxCheckOK = IIf(Me.tbxNumRecords > 0, chk, "")
+    
+    'hide initial unfiltered query record #s
+    Me.tbxNumRecords.Visible = False
     
     Me.Requery
 
@@ -987,7 +1024,7 @@ On Error GoTo Err_Handler
     Dim qdf As DAO.QueryDef, qdf2 As DAO.QueryDef
     Dim rs As DAO.Recordset
     Dim PlotID As Integer
-    Dim ParkCode As String
+    Dim ParkCode As String, fltr As String
     
     Set db = CurrentDb
     
@@ -1005,32 +1042,9 @@ On Error GoTo Err_Handler
             'set values
             ParkCode = TempVars("ParkCode")
             PlotID = Me.lblPlotID.Caption
-
-            'replace park code & plotID parameters
-            'strSQL = Replace(Replace(Me.tbxSQL, "[pkid]", "'" & TempVars("ParkCode") & "'"), _
-                        "[pid]", Me.lblPlotID.Caption)
             
-            'PlotID = Me.lblPlotID.Caption
-            
-            .SQL = Me.tbxSQL 'strSQL 'Me.Template 'Me.tbxSQL
+            .SQL = Me.tbxSQL
             strSQL = .SQL
-'            If Len(.SQL) > Len(Replace(.SQL, "PARAMETERS", "")) Then
-'                'set park code & plotID parameters
-'                .Parameters("pkid") = TempVars("ParkCode")
-'                .Parameters("pid") = PlotID
-'
-'                'replace park code & plotID parameters
-'                strSQL = Replace(Replace(Me.tbxSQL, "[pkid]", "'" & TempVars("ParkCode") & "'"), _
-'                            "[pid]", Me.lblPlotID.Caption)
-'
-'                'remove parameter clause (values already replaced)
-'                strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
-'
-'            Else
-'                'add filter for park & plot
-'                SetQueryProperty .Name, "Filter", "[Unit_Code]='" & TempVars("ParkCode") & _
-'                                                "' AND [Plot_ID]=" & PlotID
-'            End If
             
             'open query window
             With db
@@ -1063,56 +1077,38 @@ On Error GoTo Err_Handler
                     'remove parameter clause (values already replaced)
                     strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
                 
-                Else
-                    'add filter for park & plot
-                    'SetQueryProperty "usys_temp_display", "Filter",
-'                    SetQueryProperty qdf2, "Filter", _
-'                                        "[Unit_Code]='" & TempVars("ParkCode") & _
-'                                        "'" 'AND [Plot_ID]=" & PlotID
                 End If
-                
-'                qdf2.Properties("FilterOnLoad") = True
-                
+                                
                 DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
+                
+                'hide open query
+                
                 
                 'apply filter if not parameterized
                 If IsParameterized = False Then _
                     DoCmd.SetFilter WhereCondition:="[Park]='" & TempVars("ParkCode") & _
                                             "' AND [Plot]=" & PlotID
-                    
-'                    DoCmd.SetFilter WhereCondition:="[Unit_Code]='" & TempVars("ParkCode") & _
-'                                            "' AND [Plot_ID]=" & PlotID
                 
+                'update the # of records to the filtered #
+                fltr = "[Park]='" & TempVars("ParkCode") & _
+                                            "' AND [Plot]=" & PlotID
+                UpdateNumRecords Me.tbxID, DCount("*", "usys_temp_display", _
+                        fltr)
+'                        "[Park]='" & TempVars("ParkCode") & _
+'                                            "' AND [Plot]=" & PlotID)
+                'unhide record #s
+                Me.tbxNumRecords.Visible = True
                 
             End With
-            
-            'set NumRecords values
-'            SetPlotCheckResult qdf.Name, "update"
-'            'don't .OpenRecordset here --> causes missing param errors
-'            'OK for SELECT/QA as long as all params are accommodated
-'            Set rs = .OpenRecordset()
-'
-'            'update the number
-'            Dim Template As String
-'
-'            Template = "u_num_records" '"i_num_records"
-'
-'            Dim Params(0 To 2) As Variant
-'
-'            With Me
-'                Params(0) = Template
-'                Params(1) = Me.tbxID
-'                Params(2) = rs.RecordCount
-'                Params(3) = PlotCheckOK
-'
-'                SetRecord Template, Params
-'            End With
-                
+                            
             'refresh form
             Me.Requery
             
             'minimize plotcheck so user can see query result
             ToggleForm "PlotCheck", -1
+            
+            'focus on the query
+            
             
         End With
                 
