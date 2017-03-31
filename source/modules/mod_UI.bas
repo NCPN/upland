@@ -1498,7 +1498,7 @@ End Sub
 ' Revisions:
 '   BLC - 1/26/2017  - initial version
 ' ---------------------------------
-Public Sub DisplayMsg(msg As String)
+Public Sub displayMsg(msg As String)
 On Error GoTo Err_Handler
 
     Dim msgText As String, msgType As String, msgTitle As String

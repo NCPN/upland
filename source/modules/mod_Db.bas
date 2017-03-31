@@ -30,7 +30,8 @@ Option Explicit
 '               BLC, 3/23/2017 - 1.13  - revised GetTemplates() to use "SQL" vs. "T-SQL" syntax
 '               BLC, 3/28/2017 - 1.14  - added CloseObject()
 '               BLC, 3/30/2017 - 1.15  - added template dependent query function
-'                                        HandleDependentQueries(), SetQueryProperty()
+'                                        HandleDependentQueries(), SetQueryProperty(),
+'                                        DeleteRecord() moved from mod_UI
 ' =================================
 
 ' ---------------------------------
@@ -1887,6 +1888,55 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
+' Sub:          DeleteRecord
+' Description:  Delete a specific record from a table
+' Assumptions:  Assumes tbl name is properly capitalized & matches db table name
+' Parameters:   tbl - table name (string)
+'               ID - record ID (long)
+'               displayMsg - whether message should be displayed (boolean, default = true)
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, June 1, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 6/1/2016 - initial version
+'   BLC - 6/2/2016 - moved from forms (TaglineList, EventsList) to mod_App_UI
+'   BLC - 6/27/2016- revised to match
+'   BLC - 3/30/2017- added displayMsg to enable silent deletes
+' ---------------------------------
+Public Sub DeleteRecord(tbl As String, ID As Long, Optional displayMsg As Boolean = True)
+On Error GoTo Err_Handler
+    Dim strSQL As String
+
+    'find the form & populate its controls from the ID
+    strSQL = GetTemplate("d_form_record", "tbl" & PARAM_SEPARATOR & tbl & "|id" & PARAM_SEPARATOR & ID)
+    
+    If IsNull(strSQL) Or Len(strSQL) = 0 Then GoTo Exit_Handler
+Debug.Print strSQL
+    DoCmd.SetWarnings False
+    DoCmd.RunSQL strSQL
+    DoCmd.SetWarnings True
+    
+    If displayMsg Then
+        'show deleted record message & clear
+        DoCmd.OpenForm "MsgOverlay", acNormal, , , , acDialog, _
+            tbl & PARAM_SEPARATOR & ID & _
+            "|Type" & PARAM_SEPARATOR & "info"
+    End If
+        
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - DeleteRecord[mod_Db])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
 ' FUNCTION:     GetParamsFromSQL
 ' Description:  extracts parameters from SQL string
 ' Assumptions:  -
@@ -2515,7 +2565,7 @@ End Sub
 ' SUB:          RemoveTemplateQueries
 ' Description:  Removes queries created from templates
 ' Assumptions:  -
-' Parameters:   qry - name of query to modify (string)
+' Parameters:   qdf - query to modify (DAO.QueryDef)
 '               prop - name of property to add (string)
 '               val - value of new property (variant)
 ' Returns:      -
@@ -2528,14 +2578,14 @@ End Sub
 ' Revisions:
 '   BLC - 3/30/2017 - initial version
 ' ---------------------------------
-Sub SetQueryProperty(qry As String, prop As String, val As Variant)
+Sub SetQueryProperty(qdf As DAO.QueryDef, prop As String, val As Variant) 'qry As String, prop As String, val As Variant)
 On Error Resume Next
-    Dim db As Database
-    Dim qdf As QueryDef
+'    Dim db As Database
+'    Dim qdf As QueryDef
     Dim prp As DAO.Property
     
-    Set db = CurrentDb
-    Set qdf = db.QueryDefs(qry)
+'    Set db = CurrentDb
+'    Set qdf = db.QueryDefs(qry)
     
     With qdf
         Set prp = qdf.Properties(prop)

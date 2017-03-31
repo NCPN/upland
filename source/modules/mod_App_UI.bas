@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_UI
 ' Level:        Application module
-' Version:      1.13
+' Version:      1.15
 ' Description:  Application User Interface related functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, April 2015
@@ -32,6 +32,7 @@ Option Explicit
 '                                       moved to mod_Forms (6/1/2016 big rivers dev):
 '                                       CaptureEscapeKey(), SetFormOpacity()
 '               BLC, 3/23/2017 - 1.14 - added PopulateForm(), DeleteRecord() from big rivers
+'               BLC, 3/30/2017 - 1.15 - moved DeleteRecord() to mod_Db
 ' =================================
 
 ' ---------------------------------
@@ -127,7 +128,7 @@ On Error GoTo Err_Handler
               'determine how many have the same ParkPlotSpecies
               strSQL = "SELECT COUNT(Year) AS NumRecords FROM temp_Sp_Rpt_by_Park_Complete WHERE ParkPlotSpecies = '" & strParkPlotSpecies & "';"
               Set rsCount = CurrentDb.OpenRecordset(strSQL, dbOpenSnapshot)
-              iCount = rsCount!numrecords
+              iCount = rsCount!NumRecords
             End If
           
             For i = 1 To iCount
@@ -900,53 +901,6 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - PopulateForm[mod_App_UI])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' Sub:          DeleteRecord
-' Description:  Delete a specific record from a table
-' Assumptions:  Assumes tbl name is properly capitalized & matches db table name
-' Parameters:   -
-' Returns:      -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, June 1, 2016 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 6/1/2016 - initial version
-'   BLC - 6/2/2016 - moved from forms (TaglineList, EventsList) to mod_App_UI
-'   BLC - 6/27/2016- revised to match
-' --------------------------------------------------------------------
-'   BLC - 3/23/2017 - adapted version for Upland db
-' --------------------------------------------------------------------
-' ---------------------------------
-Public Sub DeleteRecord(tbl As String, ID As Long)
-On Error GoTo Err_Handler
-    Dim strSQL As String
-
-    'find the form & populate its controls from the ID
-    strSQL = GetTemplate("d_form_record", "tbl" & PARAM_SEPARATOR & tbl & "|id" & PARAM_SEPARATOR & ID)
-    
-    If IsNull(strSQL) Or Len(strSQL) = 0 Then GoTo Exit_Handler
-Debug.Print strSQL
-    DoCmd.SetWarnings False
-    DoCmd.RunSQL strSQL
-    DoCmd.SetWarnings True
-    
-    'show deleted record message & clear
-    DoCmd.OpenForm "MsgOverlay", acNormal, , , , acDialog, _
-        tbl & PARAM_SEPARATOR & ID & _
-        "|Type" & PARAM_SEPARATOR & "info"
-        
-Exit_Handler:
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - DeleteRecord[mod_App_UI])"
     End Select
     Resume Exit_Handler
 End Sub

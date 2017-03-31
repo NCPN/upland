@@ -1705,11 +1705,15 @@ On Error GoTo Err_Handler
 
     'use g_AppTemplates scripting dictionary vs. recordset to avoid missing dependencies
     'iterate through queries
-    For i = 0 To g_AppTemplates.Count - 1
+    For i = 0 To g_AppTemplates.Count - 2
     
         With g_AppTemplates.Items()(i)
             strTemplate = .Item("TemplateName")
-            SetPlotCheckResult strTemplate, "insert"
+            
+            Debug.Print strTemplate
+            
+            If Len(.Item("FieldOK")) > 0 And .Item("FieldCheck") Then _
+                SetPlotCheckResult strTemplate, "insert"
 '            iTemplate = .Item("ID")
 '            strDeps = .Item("Dependencies")
 '            strFieldOK = .Item("FieldOK")
@@ -1807,8 +1811,9 @@ On Error GoTo Err_Handler
     Dim rs As DAO.Recordset, rs2 As DAO.Recordset
     Dim strDeps As String, strFieldOK As String, _
         strOperator As String, strField As String, CompareTo As String
-    Dim iTemplate As Integer, i As Integer, iOK As Integer, isOK As Integer
-    Dim blnFieldCheck As Boolean
+    Dim iTemplate As Long
+    Dim i As Integer, iOK As Integer
+    Dim blnFieldCheck As Boolean, isOK As Boolean
 
     'clear num records
 '    ClearTable "NumRecords"
@@ -1820,7 +1825,8 @@ On Error GoTo Err_Handler
     'iterate through queries
 '    For i = 0 To g_AppTemplates.Count - 1
     
-        With g_AppTemplates.Items()(i)
+'        With g_AppTemplates.Items()(i)
+        With g_AppTemplates(strTemplate)
  '           strTemplate = .Item("TemplateName")
             iTemplate = .Item("ID")
             strDeps = .Item("Dependencies")
@@ -1829,7 +1835,7 @@ On Error GoTo Err_Handler
         End With
         
         'include only templates w/ FieldCheck = 1
-        If blnFieldCheck Then
+'        If blnFieldCheck Then
             'handle dependencies first
             'Dependencies = comma separated list of queries template is dependent on
             If Len(strDeps) > 0 Then _
@@ -1880,10 +1886,13 @@ On Error GoTo Err_Handler
             
             Params(3) = isOK
             
+            'clear original value
+            DeleteRecord "NumRecords", iTemplate, False
+            
             SetRecord "i_num_records", Params
             
             Debug.Print Params(1) & " " & strTemplate & " " & Params(2)
-        End If
+ '       End If
     'Next
     
 Exit_Handler:
@@ -1902,12 +1911,12 @@ Public Function test()
 
     'HandleDependentQueries "68,60,69,70,71,72,73,74,75", "run"
     'HandleDependentQueries "68,60,69,70,71,72,73,74,75", "remove"
-    'RemoveTemplateQueries
+    RemoveTemplateQueries
  
     'Set g_AppTemplates = Nothing
     'GetTemplates
  
-    RunPlotCheck
+    'RunPlotCheck
     
     'GetTemplateIDs
  

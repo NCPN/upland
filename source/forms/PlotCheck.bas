@@ -1,13 +1,13 @@
 ﻿Version =20
 VersionRequired =20
 Begin Form
-    PopUp = NotDefault
     RecordSelectors = NotDefault
     NavigationButtons = NotDefault
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
     ScrollBars =2
+    BorderStyle =1
     PictureAlignment =2
     DatasheetGridlinesBehavior =3
     GridX =24
@@ -15,10 +15,10 @@ Begin Form
     Width =7560
     DatasheetFontHeight =11
     ItemSuffix =3
-    Left =4005
-    Top =4050
-    Right =11565
-    Bottom =13290
+    Left =7350
+    Top =2595
+    Right =14910
+    Bottom =11835
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -733,7 +733,7 @@ Option Explicit
 '               BLC - 3/24/2017 - 1.01 - added CallingForm, CallingRecordID properties
 '               BLC - 3/28/2017 - 1.02 - removed unused click events (btnAdd,
 '                                        btnDelete, btnEdit, lblHdr, lblVersion)
-'               BLC - 3/30/2017 - 1.03 - added lblID_Click
+'               BLC - 3/30/2017 - 1.03 - added lblID_Click, revised RunCheck()
 ' =================================
 
 '---------------------
@@ -987,6 +987,7 @@ On Error GoTo Err_Handler
     Dim qdf As DAO.QueryDef, qdf2 As DAO.QueryDef
     Dim rs As DAO.Recordset
     Dim PlotID As Integer
+    Dim ParkCode As String
     
     Set db = CurrentDb
     
@@ -996,12 +997,20 @@ On Error GoTo Err_Handler
         With qdf
 
             Dim strSQL As String
+            Dim IsParameterized As Boolean
             
+            'default
+            IsParameterized = False
+
+            'set values
+            ParkCode = TempVars("ParkCode")
+            PlotID = Me.lblPlotID.Caption
+
             'replace park code & plotID parameters
             'strSQL = Replace(Replace(Me.tbxSQL, "[pkid]", "'" & TempVars("ParkCode") & "'"), _
                         "[pid]", Me.lblPlotID.Caption)
             
-            PlotID = Me.lblPlotID.Caption
+            'PlotID = Me.lblPlotID.Caption
             
             .SQL = Me.tbxSQL 'strSQL 'Me.Template 'Me.tbxSQL
             strSQL = .SQL
@@ -1039,6 +1048,10 @@ On Error GoTo Err_Handler
                 
                 'limit query by park & plot
                 If Len(strSQL) > Len(Replace(strSQL, "PARAMETERS", "")) Then
+                    
+                    'set flag
+                    IsParameterized = True
+                
                     'set park code & plotID parameters
                     qdf2.Parameters("pkid") = TempVars("ParkCode")
                     qdf2.Parameters("pid") = PlotID
@@ -1052,18 +1065,29 @@ On Error GoTo Err_Handler
                 
                 Else
                     'add filter for park & plot
-                    SetQueryProperty "usys_temp_display", "Filter", _
-                                        "[Unit_Code]='" & TempVars("ParkCode") & _
-                                        "' AND [Plot_ID]=" & PlotID
+                    'SetQueryProperty "usys_temp_display", "Filter",
+'                    SetQueryProperty qdf2, "Filter", _
+'                                        "[Unit_Code]='" & TempVars("ParkCode") & _
+'                                        "'" 'AND [Plot_ID]=" & PlotID
                 End If
                 
+'                qdf2.Properties("FilterOnLoad") = True
                 
                 DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
+                
+                'apply filter if not parameterized
+                If IsParameterized = False Then _
+                    DoCmd.SetFilter WhereCondition:="[Park]='" & TempVars("ParkCode") & _
+                                            "' AND [Plot]=" & PlotID
+                    
+'                    DoCmd.SetFilter WhereCondition:="[Unit_Code]='" & TempVars("ParkCode") & _
+'                                            "' AND [Plot_ID]=" & PlotID
+                
                 
             End With
             
             'set NumRecords values
-            SetPlotCheckResult qdf.Name, "update"
+'            SetPlotCheckResult qdf.Name, "update"
 '            'don't .OpenRecordset here --> causes missing param errors
 '            'OK for SELECT/QA as long as all params are accommodated
 '            Set rs = .OpenRecordset()

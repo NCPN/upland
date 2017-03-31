@@ -28,6 +28,5 @@
 dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"
-dbText "Filter" ="[Unit_Code]='CEBR' AND [Plot_ID]=133"
 Begin
 End
