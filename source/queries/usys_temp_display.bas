@@ -25,7 +25,7 @@
     "de AS Park, Plot_ID AS Plot, \015\012Start_Date AS VisitDate, \015\012Vegetation"
     "_Type AS [Vegetation Type], \015\012\"No T3 end photo at default location.\" AS "
     "Issue\015\012FROM qc_photos_no_t3_end)  AS [%$##@_Alias]\015\012WHERE Park = 'CE"
-    "BR'\015\012AND Plot = 133\015\012AND VisitDate = #3/23/2017\015\012#;\015\012"
+    "BR'\015\012AND Plot = 133\015\012AND VisitDate = #7/19/2015\015\012#;\015\012"
 dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"
