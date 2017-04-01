@@ -1147,7 +1147,7 @@ Public Sub GetTemplates(Optional strSyntax As String = "", Optional Params As St
                         End If
                             
                         dictParam.Add param(0), param(1)
-Debug.Print param(0) & "-" & param(1)
+
                     End If
                 
                 Next
@@ -1164,18 +1164,14 @@ Debug.Print param(0) & "-" & param(1)
                 'Debug.Print Nz(Value, key & "-NULL")
                 dict.Add key, value
             End If
-Debug.Print
+        
         Next
         
-'        Debug.Print i & " " & dict("TemplateName")
-        
-'        If dictTemplates.Exists("TemplateName") Then
-'            Debug.Print "dict: " & dict("TemplateName")
-'        End If
         
         'add template dictionary to dictionary of templates
         dictTemplates.Add dict("TemplateName"), dict
         
+'        Debug.Print dict("TemplateName") & " " & dict.Item("ID")
         rs.MoveNext
     Loop
     
@@ -2423,7 +2419,10 @@ On Error GoTo Err_Handler
     Dim ary() As String
     Dim i As Integer
     Dim ids As Scripting.Dictionary
-    
+If deps = "41" Then
+    Debug.Print deps
+End If
+
     'list -> array
     ary = Split(deps, ",")
     
@@ -2440,19 +2439,16 @@ On Error GoTo Err_Handler
         'retrieve template ID dictionary
         'initialize AppTemplates if not populated
         If g_AppTemplateIDs Is Nothing Then GetTemplateIDs
-        Set ids = g_AppTemplateIDs 'GetTemplateIDs
+        Set ids = g_AppTemplateIDs
     
         'iterate through queries
         For i = LBound(ary) To UBound(ary)
-        
-'            rs = (ids(i).Item)   'GetTemplateByID(ary(i))
-            
+                    
             tID = CInt(ary(i))
             
-            iTemplate = ids(tID) '.Item
+            iTemplate = ids(tID)
             
             strTemplate = g_AppTemplates(iTemplate).Item("TemplateName")
-            'g_AppTemplates.Item (strTemplate) 'ids(i).Item)
             
             Select Case LCase(action)
                 Case "run"  'generates dep queries
@@ -2468,7 +2464,9 @@ On Error GoTo Err_Handler
                     'create & run query
                     'qdf.Name = strTemplate 'rs("TemplateName")
                     'qdf.SQL = strSQL 'rs("Template")
-                    
+If strTemplate = "qc_ndc_fuels1000hr_transects_all" Then
+    Debug.Print strTemplate
+End If
                     'check if query exists
                     If Not QueryExists(strTemplate) Then 'db.QueryDefs(strTemplate) Is Nothing Then 'qdf.Name) Is Nothing Then
                         'create query

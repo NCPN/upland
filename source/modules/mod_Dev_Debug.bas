@@ -484,9 +484,10 @@ End Sub
 
 Public Function test()
 
+    'HandleDependentQueries "41", "run"
     'HandleDependentQueries "68,60,69,70,71,72,73,74,75", "run"
     'HandleDependentQueries "68,60,69,70,71,72,73,74,75", "remove"
-    'RemoveTemplateQueries
+    RemoveTemplateQueries
  
     'Set g_AppTemplates = Nothing
     'GetTemplates
@@ -495,6 +496,8 @@ Public Function test()
     
     'GetTemplateIDs
  
-    GetTemplates
+    'GetTemplates
+    
+    'g_AppTemplates.Items().Item ("qc_ndc_fuels1000hr_transects_all")
  
 End Function

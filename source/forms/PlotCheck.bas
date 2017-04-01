@@ -15,10 +15,10 @@ Begin Form
     Width =7560
     DatasheetFontHeight =11
     ItemSuffix =5
-    Left =4185
-    Top =2520
-    Right =14445
-    Bottom =8160
+    Left =345
+    Top =3240
+    Right =8160
+    Bottom =8880
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -1073,6 +1073,7 @@ End Sub
 '   BLC - 3/24/2017 - initial version
 '   BLC - 3/28/2017 - code cleanup
 '   BLC - 3/30/2017 - revise to use g_AppTemplates
+'   BLC - 3/31/2017 - code cleanup
 ' ---------------------------------
 Private Sub btnRunCheck_Click()
 On Error GoTo Err_Handler
@@ -1120,55 +1121,35 @@ On Error GoTo Err_Handler
                 
                 'limit query by park & plot
                 If Len(strSQL) > Len(Replace(strSQL, "PARAMETERS", "")) Then
-                    
-                    'set flag
-'                    IsParameterized = True
-                    
-                    'update qdf2 SQL
-'                    qdf2.SQL = strSQL
-                
-                    'set park code, plotID, VisitDate parameters
-'                    qdf2.Parameters("pkcode") = TempVars("ParkCode")
-'                    qdf2.Parameters("pid") = PlotID
-'                    qdf2.Parameters("vdate") = TempVars("SampleDate")
-                
-'                    'replace park code & plotID parameters
+
+                    'replace park code & plotID parameters
                     strSQL = Replace( _
                              Replace( _
                              Replace(strSQL, "[pkcode]", "'" & TempVars("ParkCode") & "'"), _
                                 "[pid]", PlotID), _
-                                "[vdate]", TempVars("SampleDate"))
+                                "[vdate]", "#" & TempVars("SampleDate")) & "#"
 
 '                    'remove parameter clause (values already replaced)
                     strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
+                    
+                    'remove the final semicolon to avoid issues w/ [vdate]
+                    strSQL = Replace(strSQL, ";", "")
+                    'strSQL = strSQL & ";"
                 
                     Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
-qdf2.OpenRecordset
+'qdf2.OpenRecordset
                 End If
+                                                                
+                'display results
+                'DoCmd.OpenForm "PlotCheckResults", acNormal
                                 
-'                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
+                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
                 
                 'hide open query
                 
-
-                'apply filter if not parameterized
-'                If IsParameterized = False Then _
-'                    DoCmd.SetFilter WhereCondition:="[Park]='" & TempVars("ParkCode") & _
-'                                            "' AND [Plot]=" & PlotID & _
-'                                            " AND [Start_Date]=" & TempVars("SampleDate")
-                
-                'update the # of records to the filtered #
-'                fltr = "[Park]='" & TempVars("ParkCode") & _
-                                            "' AND [Plot]=" & PlotID & _
-                                            " AND [Start_Date]=" & TempVars("SampleDate")
-                                             
-'                UpdateNumRecords Me.tbxID, DCount("*", "usys_temp_display", _
-'                        fltr)
-'                        "[Park]='" & TempVars("ParkCode") & _
-'                                            "' AND [Plot]=" & PlotID)
                 'unhide record #s
-                Me.tbxNumRecords.Visible = True
-                
+                'Me.tbxNumRecords.Visible = True
+                                 
             End With
                             
             'refresh form

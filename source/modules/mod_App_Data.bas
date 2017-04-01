@@ -934,80 +934,23 @@ On Error GoTo Err_Handler
                                                                                                                
                 Case "s_get_parks"
                     '-- required parameters --
-                                                    
-'                Case "s_mod_wentworth_for_eventyr"
-'                    '-- required parameters --
-'                    'default event year to current year if not passed in
-'                    .Parameters("eventyr") = Nz(TempVars("EventYear"), Year(Now))
-                
+                                                                    
                 Case "s_park_id"
                     '-- required parameters --
                     .Parameters("pkcode") = TempVars("ParkCode")
            
                 Case "s_template_num_records"
                     '-- required parameters --
-                    
-                
-'                Case "s_top_rooted_species_last_year_by_park"
-'                    '-- required parameters --
-'                    .Parameters("pkcode") = TempVars("ParkCode")
-'
-'                    'revise TOP X --> 99 is replaced by # species to return (from datasheet defaults)
-'                    '             -->  8 is replaced by # blanks to return (")
-'                    .SQL = Replace(Replace(.SQL, 99, TempVars("TopSpecies")), 8, TempVars("TopBlanks"))
-'
-'                Case "qa_ndc_nodatacollected_fuels1000hr_transectA"
-'                Case "qa_ndc_nodatacollected_fuels1000hr_transectB"
-'                Case "qa_ndc_nodatacollected_fuels1000hr_transectC"
-'                Case "qa_ndc_nodatacollected_fuels1000hr_transectD"
-'                Case "qa_ndc_nodatacollected_saplings"
-'                Case "qa_ndc_nodatacollected_seedlings"
-'                Case "qa_ndc_nodatacollected_si_disturbance"
-'                Case "qa_ndc_nodatacollected_si_exotics"
-'                Case "qa_ndc_notrecorded_census"
-'                Case "qa_ndc_notrecorded_exoticfreq"
-'                Case "qa_ndc_notrecorded_fuels1000hr"
-'                Case "qa_ndc_notrecorded_fuels1000hr_transectA"
-'                Case "qa_ndc_notrecorded_fuels1000hr_transectB"
-'                Case "qa_ndc_notrecorded_fuels1000hr_transectC"
-'                Case "qa_ndc_notrecorded_fuels1000hr_transectD"
-'                Case "qa_ndc_notrecorded_saplings"
-'                Case "qa_ndc_notrecorded_seedlings"
-'                Case "qa_ndc_notrecorded_shrubs"
-'                Case "qa_ndc_notrecorded_si_disturbance"
-'                Case "qa_ndc_notrecorded_si_exotics"
-'
-'                Case "qa_ndc_fuels1000hr_transects"
-'
-'                Case "qa_ndc_fuels1000hr_transects_by_plot"
-'                    '-- required parameters --
-'                    .Parameters("pkid") = TempVars("ParkCode")
-'                    .Parameters("pid") = TempVars("plotID")
-'                Case "qa_ndc_nodata_census_by_plot"
-'                    '-- required parameters --
-'                    .Parameters("pkid") = TempVars("ParkCode")
-'                    .Parameters("pid") = TempVars("plotID")
-'
-'                Case "qa_ndc_nodata_exoticfreq_by_plot"
-'                    '-- required parameters --
-'                    .Parameters("pkid") = TempVars("ParkCode")
-'                    .Parameters("pid") = TempVars("plotID")
-'
-'                Case "qa_ndc_nodata_fuels1000hr_by_plot"
-'                    '-- required parameters --
-'                    .Parameters("pkid") = TempVars("ParkCode")
-'                    .Parameters("pid") = TempVars("plotID")
 
-                Case "qc_ndc_nodatarecorded_all_methods_by_plot", _
+                Case "qc_ndc_notrecorded_all_methods_by_plot_visit", _
                     "qc_photos_missing_by_plot_visit"
                     '-- required parameters --
                     .Parameters("pkcode") = TempVars("ParkCode")
                     .Parameters("pid") = TempVars("plotID")
-                    .Parameters("vdate") = TempVars("VisitDate")
+                    .Parameters("vdate") = TempVars("SampleDate")
                 
                 Case "s_tsys_datasheet_defaults"
                     '-- required parameters --
-'                    .Parameters("parkID") = TempVars("ParkID")
                 
                 Case Else
                     'handle other non-parameterized queries
@@ -1663,12 +1606,7 @@ End Function
 Public Function RunPlotCheck()
 On Error GoTo Err_Handler
 
-'    Dim Template As String
-    Dim rs As DAO.Recordset, rs2 As DAO.Recordset
-    Dim strTemplate As String, strDeps As String, strFieldOK As String, _
-        strOperator As String, strField As String, CompareTo As String
-    Dim iTemplate As Integer, i As Integer, iOK As Integer, isOK As Integer
-    Dim blnFieldCheck As Boolean
+    Dim strTemplate As String
     Dim x As Variant
 
     'clear num records
@@ -1739,6 +1677,10 @@ On Error GoTo Err_Handler
     'initialize AppTemplates if not populated
     If g_AppTemplates Is Nothing Then GetTemplates
         
+If strTemplate = "qc_ndc_fuels1000hr_transects_all" Then
+    Debug.Print "here"
+End If
+        
     With g_AppTemplates(strTemplate)
         iTemplate = .Item("ID")
         strDeps = .Item("Dependencies")
@@ -1801,7 +1743,7 @@ On Error GoTo Err_Handler
         
         SetRecord "i_num_records", Params
         
-        Debug.Print Params(1) & " " & strTemplate & " " & Params(2)
+        Debug.Print Params(1) & " " & strTemplate & " " & Params(2) & " " & Params(3)
     
 Exit_Handler:
     Exit Function
