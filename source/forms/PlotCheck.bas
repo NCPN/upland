@@ -14,11 +14,11 @@ Begin Form
     GridY =24
     Width =7560
     DatasheetFontHeight =11
-    ItemSuffix =3
-    Left =8010
-    Top =6540
-    Right =15570
-    Bottom =12180
+    ItemSuffix =5
+    Left =4185
+    Top =2520
+    Right =14445
+    Bottom =8160
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -380,7 +380,7 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =215
+                    OverlapFlags =223
                     TextAlign =2
                     Left =4860
                     Top =900
@@ -439,6 +439,47 @@ Begin Form
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
+                Begin Label
+                    OverlapFlags =223
+                    Left =5280
+                    Top =585
+                    Width =1080
+                    Height =315
+                    FontWeight =500
+                    BorderColor =8355711
+                    ForeColor =16777215
+                    Name ="lblVIsitDate"
+                    Caption ="Visit Date"
+                    GridlineColor =10921638
+                    LayoutCachedLeft =5280
+                    LayoutCachedTop =585
+                    LayoutCachedWidth =6360
+                    LayoutCachedHeight =900
+                    ForeThemeColorIndex =-1
+                    ForeTint =100.0
+                End
+                Begin Label
+                    OverlapFlags =215
+                    TextAlign =2
+                    Left =6360
+                    Top =600
+                    Width =840
+                    Height =315
+                    FontSize =9
+                    BorderColor =10921638
+                    ForeColor =6750207
+                    Name ="lblSampleDate"
+                    GridlineColor =10921638
+                    LayoutCachedLeft =6360
+                    LayoutCachedTop =600
+                    LayoutCachedWidth =7200
+                    LayoutCachedHeight =915
+                    BorderThemeColorIndex =1
+                    BorderTint =100.0
+                    BorderShade =65.0
+                    ForeThemeColorIndex =-1
+                    ForeTint =100.0
+                End
             End
         End
         Begin Section
@@ -483,7 +524,7 @@ Begin Form
                     TextAlign =1
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =900
+                    Left =825
                     Top =30
                     Width =4020
                     Height =315
@@ -504,9 +545,9 @@ Begin Form
                     End
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =900
+                    LayoutCachedLeft =825
                     LayoutCachedTop =30
-                    LayoutCachedWidth =4920
+                    LayoutCachedWidth =4845
                     LayoutCachedHeight =345
                     ForeThemeColorIndex =2
                     ForeTint =100.0
@@ -767,6 +808,7 @@ Option Explicit
 '                                        btnDelete, btnEdit, lblHdr, lblVersion)
 '               BLC - 3/30/2017 - 1.03 - added lblID_Click, revised RunCheck(),
 '                                        updated checks
+'               BLC - 3/31/2017 - 1.04 - added CallingSampleDate property
 ' =================================
 
 '---------------------
@@ -780,6 +822,7 @@ Private m_Title As String
 Private m_Directions As String
 Private m_CallingForm As String
 Private m_CallingRecordID As Integer
+Private m_CallingSampleDate As Date
 
 '---------------------
 ' Event Declarations
@@ -788,6 +831,7 @@ Public Event InvalidTitle(value As String)
 Public Event InvalidDirections(value As String)
 Public Event InvalidCallingForm(value As String)
 Public Event InvalidCallingRecordID(value As Integer)
+Public Event InvalidCallingSampleDate(value As Date)
 
 '---------------------
 ' Properties
@@ -839,6 +883,14 @@ Public Property Get CallingRecordID() As Integer
     CallingRecordID = m_CallingRecordID
 End Property
 
+Public Property Let CallingSampleDate(value As Date)
+        m_CallingSampleDate = value
+End Property
+
+Public Property Get CallingSampleDate() As Date
+    CallingSampleDate = m_CallingSampleDate
+End Property
+
 '---------------------
 ' Methods
 '---------------------
@@ -860,6 +912,7 @@ End Property
 '   BLC - 3/24/2017 - set & minimize CallingForm
 '   BLC - 3/27/2017 - added tbxCheckOK
 '   BLC - 3/30/2017 - hid unfiltered query num records
+'   BLC - 3/31/2017 - added CallingSampleDate property
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -867,6 +920,7 @@ On Error GoTo Err_Handler
     'default
     Me.CallingForm = "frm_Data_Entry"
     Me.CallingRecordID = -1
+    Me.CallingSampleDate = Date
         
     'If Len(Nz(Me.OpenArgs, "")) > 0 Then Me.CallingForm = Me.OpenArgs
 
@@ -880,15 +934,18 @@ On Error GoTo Err_Handler
             ary = Split(Me.OpenArgs, "|")
             Me.CallingForm = ary(0)
             Me.CallingRecordID = ary(1)
+            Me.CallingSampleDate = ary(2)
         End If
     End If
 
     'set park & record
     Me.lblParkCode.Caption = Nz(TempVars("ParkCode"), "")
     Me.lblPlotID.Caption = Me.CallingRecordID
+    Me.lblSampleDate.Caption = Me.CallingSampleDate
     
     SetTempVar "plotID", Me.CallingRecordID
-        
+    SetTempVar "SampleDate", Me.CallingSampleDate
+    
     Me.Caption = "Plot Check"
     lblTitle.Caption = ""
     Me.Directions = "The following plot checks have been run." _
@@ -927,8 +984,8 @@ On Error GoTo Err_Handler
     
     Me.tbxCheckOK = IIf(Me.tbxNumRecords > 0, chk, "")
     
-    'hide initial unfiltered query record #s
-    Me.tbxNumRecords.Visible = False
+'    'hide initial unfiltered query record #s
+    Me.tbxNumRecords.Visible = True 'False
     
     Me.Requery
 
@@ -1040,8 +1097,9 @@ On Error GoTo Err_Handler
             IsParameterized = False
 
             'set values
-            ParkCode = TempVars("ParkCode")
+'            ParkCode = TempVars("ParkCode")
             PlotID = Me.lblPlotID.Caption
+'            SampleDate = Me.lblSampleDate.Caption
             
             .SQL = Me.tbxSQL
             strSQL = .SQL
@@ -1058,42 +1116,54 @@ On Error GoTo Err_Handler
                         DoCmd.DeleteObject acQuery, "usys_temp_display"
                 End If
  
-                Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
+'                Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
                 
                 'limit query by park & plot
                 If Len(strSQL) > Len(Replace(strSQL, "PARAMETERS", "")) Then
                     
                     'set flag
-                    IsParameterized = True
-                
-                    'set park code & plotID parameters
-                    qdf2.Parameters("pkid") = TempVars("ParkCode")
-                    qdf2.Parameters("pid") = PlotID
-                
-                    'replace park code & plotID parameters
-                    strSQL = Replace(Replace(strSQL, "[pkid]", "'" & TempVars("ParkCode") & "'"), _
-                                "[pid]", Me.lblPlotID.Caption)
+'                    IsParameterized = True
                     
-                    'remove parameter clause (values already replaced)
+                    'update qdf2 SQL
+'                    qdf2.SQL = strSQL
+                
+                    'set park code, plotID, VisitDate parameters
+'                    qdf2.Parameters("pkcode") = TempVars("ParkCode")
+'                    qdf2.Parameters("pid") = PlotID
+'                    qdf2.Parameters("vdate") = TempVars("SampleDate")
+                
+'                    'replace park code & plotID parameters
+                    strSQL = Replace( _
+                             Replace( _
+                             Replace(strSQL, "[pkcode]", "'" & TempVars("ParkCode") & "'"), _
+                                "[pid]", PlotID), _
+                                "[vdate]", TempVars("SampleDate"))
+
+'                    'remove parameter clause (values already replaced)
                     strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
                 
+                    Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
+qdf2.OpenRecordset
                 End If
                                 
-                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
+'                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
                 
                 'hide open query
                 
-                
+
                 'apply filter if not parameterized
-                If IsParameterized = False Then _
-                    DoCmd.SetFilter WhereCondition:="[Park]='" & TempVars("ParkCode") & _
-                                            "' AND [Plot]=" & PlotID
+'                If IsParameterized = False Then _
+'                    DoCmd.SetFilter WhereCondition:="[Park]='" & TempVars("ParkCode") & _
+'                                            "' AND [Plot]=" & PlotID & _
+'                                            " AND [Start_Date]=" & TempVars("SampleDate")
                 
                 'update the # of records to the filtered #
-                fltr = "[Park]='" & TempVars("ParkCode") & _
-                                            "' AND [Plot]=" & PlotID
-                UpdateNumRecords Me.tbxID, DCount("*", "usys_temp_display", _
-                        fltr)
+'                fltr = "[Park]='" & TempVars("ParkCode") & _
+                                            "' AND [Plot]=" & PlotID & _
+                                            " AND [Start_Date]=" & TempVars("SampleDate")
+                                             
+'                UpdateNumRecords Me.tbxID, DCount("*", "usys_temp_display", _
+'                        fltr)
 '                        "[Park]='" & TempVars("ParkCode") & _
 '                                            "' AND [Plot]=" & PlotID)
                 'unhide record #s
@@ -1108,7 +1178,6 @@ On Error GoTo Err_Handler
             ToggleForm "PlotCheck", -1
             
             'focus on the query
-            
             
         End With
                 
@@ -1214,7 +1283,7 @@ End Sub
 ' Revisions:
 '   BLC - 9/13/2016 - initial version
 ' ---------------------------------
-Private Sub tbxTemplate_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub tbxTemplate_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
 On Error GoTo Err_Handler
 
     Me.tbxTemplate.ControlTipText = Nz(FetchAddlData("tsys_Db_Templates", "Remarks", Me.tbxID)(0), "")
@@ -1248,7 +1317,7 @@ End Sub
 ' Revisions:
 '   BLC - 9/13/2016 - initial version
 ' ---------------------------------
-Private Sub Detail_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Detail_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
 On Error GoTo Err_Handler
 
     Me.tbxTemplate.ControlTipText = ""

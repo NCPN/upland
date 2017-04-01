@@ -481,3 +481,20 @@ Public Sub moduletest()
     'generate the rollup by park data
     RollupReportbyPark
 End Sub
+
+Public Function test()
+
+    'HandleDependentQueries "68,60,69,70,71,72,73,74,75", "run"
+    'HandleDependentQueries "68,60,69,70,71,72,73,74,75", "remove"
+    'RemoveTemplateQueries
+ 
+    'Set g_AppTemplates = Nothing
+    'GetTemplates
+ 
+    'RunPlotCheck
+    
+    'GetTemplateIDs
+ 
+    GetTemplates
+ 
+End Function

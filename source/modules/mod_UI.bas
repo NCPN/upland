@@ -77,7 +77,7 @@ Public Const SB_BOTH = 3
 Declare Function SetWindowPos Lib "user32.dll" ( _
     ByVal hWnd As Long, _
     ByVal hWndInsertAfter As Long, _
-    ByVal X As Long, _
+    ByVal x As Long, _
     ByVal Y As Long, _
     ByVal cx As Long, _
     ByVal cy As Long, _

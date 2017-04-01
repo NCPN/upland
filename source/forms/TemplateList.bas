@@ -1504,7 +1504,7 @@ End Sub
 ' Revisions:
 '   BLC - 9/13/2016 - initial version
 ' ---------------------------------
-Private Sub tbxTemplate_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub tbxTemplate_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
 On Error GoTo Err_Handler
 
     Me.tbxTemplate.ControlTipText = Nz(FetchAddlData("tsys_Db_Templates", "Remarks", Me.tbxID)(0), "")
@@ -1538,7 +1538,7 @@ End Sub
 ' Revisions:
 '   BLC - 9/13/2016 - initial version
 ' ---------------------------------
-Private Sub Detail_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Detail_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
 On Error GoTo Err_Handler
 
     Me.tbxTemplate.ControlTipText = ""

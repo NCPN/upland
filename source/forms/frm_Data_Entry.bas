@@ -21,9 +21,9 @@ Begin Form
     DatasheetFontHeight =10
     ItemSuffix =213
     Left =5970
-    Top =30
+    Top =2100
     Right =22515
-    Bottom =14490
+    Bottom =14085
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201703231"
         "04002-289562463.760376'"
@@ -1567,7 +1567,7 @@ Option Explicit
 ' =================================
 ' MODULE:       frm_Data_Entry
 ' Level:        Form module
-' Version:      1.06
+' Version:      1.08
 ' Description:  data functions & procedures specific to field data entry
 '
 ' Data source:  tbl_Locations
@@ -1595,6 +1595,7 @@ Option Explicit
 '                                        added refresh for underlying subforms for conditional formatting
 '               BLC - 3/22/2017 - 1.06 - added documentation, error handling, btnPlotQAQC
 '               BLC - 3/24/2017 - 1.07 - added CallingForm property, added TempVar("ParkCode")
+'               BLC - 3/31/2017 - 1.08 - added RemoveTemplateQueries to clear queries on form close
 ' =================================
 '---------------------
 ' Simulated Inheritance
@@ -2702,6 +2703,7 @@ End Sub
 ' Revisions:
 '   JRB, 6/x/2006  - initial version
 '   BLC, 3/22/2017 - added documentation, error handling
+'   BLC, 3/31/2017 - added sample date open arg for PlotCheck
 ' ---------------------------------
 Private Sub btnPlotQAQC_Click()
 On Error GoTo Err_Handler
@@ -2709,7 +2711,10 @@ On Error GoTo Err_Handler
     'minimize calling form
     ToggleForm Me.Name, -1
 
-    DoCmd.OpenForm "PlotCheck", acNormal, , , , acDialog, Me.Name & "|" & Me.Plot_ID
+    'pass along form name, plot ID, sample date
+    DoCmd.OpenForm "PlotCheck", acNormal, , , , acDialog, Me.Name & _
+                                                            "|" & Me.Plot_ID & _
+                                                            "|" & Me.txtStart_date
 
 Exit_Handler:
     Exit Sub
@@ -2736,6 +2741,7 @@ End Sub
 ' Revisions:
 '   JRB, 6/x/2006  - initial version
 '   BLC, 3/22/2017 - added documentation, error handling
+'   BLC, 3/31/2017 - added clearing for qc queries
 ' ---------------------------------
 Private Sub Form_Close()
 On Error GoTo Err_Handler
@@ -2743,6 +2749,9 @@ On Error GoTo Err_Handler
     If IsLoaded("frm_Data_Gateway") Then
         Forms("frm_Data_Gateway").Requery
     End If
+    
+    'clear queries
+    RemoveTemplateQueries
 
 Exit_Handler:
     Exit Sub

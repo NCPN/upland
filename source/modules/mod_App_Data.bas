@@ -948,56 +948,63 @@ On Error GoTo Err_Handler
                     '-- required parameters --
                     
                 
-                Case "s_top_rooted_species_last_year_by_park"
+'                Case "s_top_rooted_species_last_year_by_park"
+'                    '-- required parameters --
+'                    .Parameters("pkcode") = TempVars("ParkCode")
+'
+'                    'revise TOP X --> 99 is replaced by # species to return (from datasheet defaults)
+'                    '             -->  8 is replaced by # blanks to return (")
+'                    .SQL = Replace(Replace(.SQL, 99, TempVars("TopSpecies")), 8, TempVars("TopBlanks"))
+'
+'                Case "qa_ndc_nodatacollected_fuels1000hr_transectA"
+'                Case "qa_ndc_nodatacollected_fuels1000hr_transectB"
+'                Case "qa_ndc_nodatacollected_fuels1000hr_transectC"
+'                Case "qa_ndc_nodatacollected_fuels1000hr_transectD"
+'                Case "qa_ndc_nodatacollected_saplings"
+'                Case "qa_ndc_nodatacollected_seedlings"
+'                Case "qa_ndc_nodatacollected_si_disturbance"
+'                Case "qa_ndc_nodatacollected_si_exotics"
+'                Case "qa_ndc_notrecorded_census"
+'                Case "qa_ndc_notrecorded_exoticfreq"
+'                Case "qa_ndc_notrecorded_fuels1000hr"
+'                Case "qa_ndc_notrecorded_fuels1000hr_transectA"
+'                Case "qa_ndc_notrecorded_fuels1000hr_transectB"
+'                Case "qa_ndc_notrecorded_fuels1000hr_transectC"
+'                Case "qa_ndc_notrecorded_fuels1000hr_transectD"
+'                Case "qa_ndc_notrecorded_saplings"
+'                Case "qa_ndc_notrecorded_seedlings"
+'                Case "qa_ndc_notrecorded_shrubs"
+'                Case "qa_ndc_notrecorded_si_disturbance"
+'                Case "qa_ndc_notrecorded_si_exotics"
+'
+'                Case "qa_ndc_fuels1000hr_transects"
+'
+'                Case "qa_ndc_fuels1000hr_transects_by_plot"
+'                    '-- required parameters --
+'                    .Parameters("pkid") = TempVars("ParkCode")
+'                    .Parameters("pid") = TempVars("plotID")
+'                Case "qa_ndc_nodata_census_by_plot"
+'                    '-- required parameters --
+'                    .Parameters("pkid") = TempVars("ParkCode")
+'                    .Parameters("pid") = TempVars("plotID")
+'
+'                Case "qa_ndc_nodata_exoticfreq_by_plot"
+'                    '-- required parameters --
+'                    .Parameters("pkid") = TempVars("ParkCode")
+'                    .Parameters("pid") = TempVars("plotID")
+'
+'                Case "qa_ndc_nodata_fuels1000hr_by_plot"
+'                    '-- required parameters --
+'                    .Parameters("pkid") = TempVars("ParkCode")
+'                    .Parameters("pid") = TempVars("plotID")
+
+                Case "qc_ndc_nodatarecorded_all_methods_by_plot", _
+                    "qc_photos_missing_by_plot_visit"
                     '-- required parameters --
                     .Parameters("pkcode") = TempVars("ParkCode")
-    
-                    'revise TOP X --> 99 is replaced by # species to return (from datasheet defaults)
-                    '             -->  8 is replaced by # blanks to return (")
-                    .SQL = Replace(Replace(.SQL, 99, TempVars("TopSpecies")), 8, TempVars("TopBlanks"))
-                    
-                Case "qa_ndc_nodatacollected_fuels1000hr_transectA"
-                Case "qa_ndc_nodatacollected_fuels1000hr_transectB"
-                Case "qa_ndc_nodatacollected_fuels1000hr_transectC"
-                Case "qa_ndc_nodatacollected_fuels1000hr_transectD"
-                Case "qa_ndc_nodatacollected_saplings"
-                Case "qa_ndc_nodatacollected_seedlings"
-                Case "qa_ndc_nodatacollected_si_disturbance"
-                Case "qa_ndc_nodatacollected_si_exotics"
-                Case "qa_ndc_notrecorded_census"
-                Case "qa_ndc_notrecorded_exoticfreq"
-                Case "qa_ndc_notrecorded_fuels1000hr"
-                Case "qa_ndc_notrecorded_fuels1000hr_transectA"
-                Case "qa_ndc_notrecorded_fuels1000hr_transectB"
-                Case "qa_ndc_notrecorded_fuels1000hr_transectC"
-                Case "qa_ndc_notrecorded_fuels1000hr_transectD"
-                Case "qa_ndc_notrecorded_saplings"
-                Case "qa_ndc_notrecorded_seedlings"
-                Case "qa_ndc_notrecorded_shrubs"
-                Case "qa_ndc_notrecorded_si_disturbance"
-                Case "qa_ndc_notrecorded_si_exotics"
-                
-                Case "qa_ndc_fuels1000hr_transects"
-                
-                Case "qa_ndc_fuels1000hr_transects_by_plot"
-                    '-- required parameters --
-                    .Parameters("pkid") = TempVars("ParkCode")
                     .Parameters("pid") = TempVars("plotID")
-                Case "qa_ndc_nodata_census_by_plot"
-                    '-- required parameters --
-                    .Parameters("pkid") = TempVars("ParkCode")
-                    .Parameters("pid") = TempVars("plotID")
+                    .Parameters("vdate") = TempVars("VisitDate")
                 
-                Case "qa_ndc_nodata_exoticfreq_by_plot"
-                    '-- required parameters --
-                    .Parameters("pkid") = TempVars("ParkCode")
-                    .Parameters("pid") = TempVars("plotID")
-                
-                Case "qa_ndc_nodata_fuels1000hr_by_plot"
-                    '-- required parameters --
-                    .Parameters("pkid") = TempVars("ParkCode")
-                    .Parameters("pid") = TempVars("plotID")
-
                 Case "s_tsys_datasheet_defaults"
                     '-- required parameters --
 '                    .Parameters("parkID") = TempVars("ParkID")
@@ -1662,6 +1669,7 @@ On Error GoTo Err_Handler
         strOperator As String, strField As String, CompareTo As String
     Dim iTemplate As Integer, i As Integer, iOK As Integer, isOK As Integer
     Dim blnFieldCheck As Boolean
+    Dim x As Variant
 
     'clear num records
     ClearTable "NumRecords"
@@ -1669,45 +1677,12 @@ On Error GoTo Err_Handler
     'initialize AppTemplates if not populated
     If g_AppTemplates Is Nothing Then GetTemplates
         
-    'fetch queries
-'    Template = "s_template_num_records"
-    
-'    Set rs = GetRecords(Template) '--> can't run first since some queries are dependent
-'
-'    'iterate through records
-'    If Not (rs.EOF And rs.BOF) Then
-'        rs.MoveFirst
-'        Do Until rs.EOF
-'
-'            'run query & retrieve record #s
-'            Set rs2 = GetRecords(rs("TemplateName"))
-'
-'            'handle dependencies first
-'            'Dependencies = comma separated list of queries template is dependent on
-'            If Len(rs2("Dependencies")) > 0 Then _
-'                HandleDependentQueries rs2("Dependencies"), "run"
-'
-'            'add values to numrecords
-'            Dim Params(0 To 3) As Variant
-'
-'            Params(0) = "i_num_records"
-'            Params(1) = rs("ID")
-'            Params(2) = rs2.RecordCount
-'            Params(3) = IIf(rs("FieldOK"), 1, -1)
-'
-'            SetRecord "i_num_records", Params
-'
-'            Debug.Print Params(1) & " " & rs("TemplateName") & " " & Params(2)
-'
-'            rs.MoveNext
-'        Loop
-'    End If
-
     'use g_AppTemplates scripting dictionary vs. recordset to avoid missing dependencies
     'iterate through queries
-    For i = 0 To g_AppTemplates.Count - 2
+ '   For i = 0 To g_AppTemplates.Count - 2
+    For Each x In g_AppTemplates
     
-        With g_AppTemplates.Items()(i)
+        With g_AppTemplates.Item(x) 'g_AppTemplates.Items()(i)
             strTemplate = .Item("TemplateName")
             
             Debug.Print strTemplate
@@ -1720,62 +1695,6 @@ On Error GoTo Err_Handler
 '            blnFieldCheck = .Item("FieldCheck")
         End With
         
-'        'include only templates w/ FieldCheck = 1
-'        If blnFieldCheck Then
-'            'handle dependencies first
-'            'Dependencies = comma separated list of queries template is dependent on
-'            If Len(strDeps) > 0 Then _
-'                HandleDependentQueries strDeps, "run"
-'
-'            'run query & retrieve record #s
-'            Set rs = GetRecords(strTemplate)
-'
-'            'default
-'            isOK = 0
-'
-'            'add values to numrecords
-'            Dim Params(0 To 3) As Variant
-'
-'            Params(0) = "i_num_records"
-'            Params(1) = iTemplate
-'            Params(2) = rs.RecordCount
-'
-'            If Len(strFieldOK) > 0 Then
-'                'assess if field check is fulfilled
-'
-'                'determine comparitor
-'                iOK = CInt(Right(strFieldOK, 1))
-'
-'                'fetch the operator
-'                strOperator = Left(Right(strFieldOK, Len(strFieldOK) - InStr(strFieldOK, "]")), 1)
-'
-'                'fetch the field/item to check
-'                strField = Replace(Left(strFieldOK, InStr(strFieldOK, "]") - 1), "[", "")
-'
-'                Select Case strField
-'                    Case "NumRecords"
-'                        CompareTo = rs.RecordCount
-'                    Case Else
-'                        CompareTo = strField
-'                End Select
-'
-'                Select Case strOperator
-'                    Case "="
-'                        isOK = IIf(CompareTo = iOK, 1, 0)
-'                    Case "<"
-'                        isOK = IIf(CompareTo < iOK, 1, 0)
-'                    Case ">"
-'                        isOK = IIf(CompareTo > iOK, 1, 0)
-'                End Select
-'
-'            End If
-'
-'            Params(3) = isOK
-'
-'            SetRecord "i_num_records", Params
-'
-'            Debug.Print Params(1) & " " & strTemplate & " " & Params(2)
-'        End If
     Next
     
 Exit_Handler:
@@ -1930,19 +1849,4 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - UpdateNumRecords[mod_App_Data form])"
     End Select
     Resume Exit_Handler
-End Function
-
-Public Function test()
-
-    'HandleDependentQueries "68,60,69,70,71,72,73,74,75", "run"
-    'HandleDependentQueries "68,60,69,70,71,72,73,74,75", "remove"
-    RemoveTemplateQueries
- 
-    'Set g_AppTemplates = Nothing
-    'GetTemplates
- 
-    'RunPlotCheck
-    
-    'GetTemplateIDs
- 
 End Function
