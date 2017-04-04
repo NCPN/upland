@@ -15,13 +15,13 @@ Begin OutputColumns
     Expression ="Year([Start_Date])"
 End
 Begin Joins
-    LeftTable ="tbl_Events"
-    RightTable ="tbl_OT_Census"
-    Expression ="tbl_Events.Event_ID = tbl_OT_Census.Event_ID"
-    Flag =1
     LeftTable ="tbl_OT_Census"
     RightTable ="tlu_NCPN_Plants"
     Expression ="tbl_OT_Census.Species = tlu_NCPN_Plants.Master_PLANT_Code"
+    Flag =1
+    LeftTable ="tbl_Events"
+    RightTable ="tbl_OT_Census"
+    Expression ="tbl_Events.Event_ID = tbl_OT_Census.Event_ID"
     Flag =1
     LeftTable ="tbl_Locations"
     RightTable ="tbl_Events"
@@ -37,7 +37,31 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0xedba0706161c6d43a67a5ddc30e4d1f4
 End
+dbMemo "Filter" ="([qry_Sp_Rpt_OC].[Utah_Species] Is Null OR [qry_Sp_Rpt_OC].[Utah_Species]=\"\")"
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
+    Begin
+        dbText "Name" ="tbl_Locations.Unit_Code"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="tbl_Locations.Plot_ID"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="tlu_NCPN_Plants.Master_Family"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="tlu_NCPN_Plants.Utah_Species"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="Year"
+        dbLong "AggregateType" ="-1"
+    End
 End
 Begin
     State =0
@@ -47,8 +71,8 @@ Begin
     Bottom =385
     Left =-1
     Top =-1
-    Right =1218
-    Bottom =144
+    Right =1193
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =539
@@ -57,7 +81,7 @@ Begin
         Top =6
         Right =134
         Bottom =120
-        Top =1
+        Top =0
         Name ="tbl_Locations"
         Name =""
     End
@@ -75,7 +99,7 @@ Begin
         Top =6
         Right =402
         Bottom =120
-        Top =2
+        Top =0
         Name ="tbl_OT_Census"
         Name =""
     End

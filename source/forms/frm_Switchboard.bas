@@ -24,10 +24,10 @@ Begin Form
     Width =9900
     DatasheetFontHeight =10
     ItemSuffix =74
-    Left =7680
-    Top =1305
-    Right =17580
-    Bottom =9285
+    Left =7215
+    Top =1335
+    Right =17115
+    Bottom =10020
     DatasheetGridlinesColor =12632256
     PictureData = Begin
         0x28000000a0020000f8010000010018000000000000810f00c30e0000c30e0000 ,
@@ -31874,7 +31874,7 @@ Begin Form
         End
         Begin Section
             CanGrow = NotDefault
-            Height =7995
+            Height =8700
             BackColor =0
             Name ="Detail"
             Begin
@@ -31905,22 +31905,29 @@ Begin Form
                     BackStyle =0
                     Top =3240
                     Width =5895
-                    Height =4755
+                    Height =5460
                     FontSize =9
                     FontWeight =700
                     TabIndex =1
                     Name ="PageTabs"
                     FontName ="Arial"
 
+                    LayoutCachedTop =3240
+                    LayoutCachedWidth =5895
+                    LayoutCachedHeight =8700
                     Begin
                         Begin Page
                             OverlapFlags =87
                             Left =135
                             Top =3675
                             Width =5625
-                            Height =4185
+                            Height =4890
                             Name ="pgMain"
                             Caption =" Main menu"
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =3675
+                            LayoutCachedWidth =5760
+                            LayoutCachedHeight =8565
                             WebImagePaddingLeft =2
                             WebImagePaddingTop =2
                             WebImagePaddingRight =2
@@ -32094,13 +32101,13 @@ Begin Form
                             Left =120
                             Top =3672
                             Width =5640
-                            Height =4188
+                            Height =4893
                             Name ="pgDefaults"
                             Caption =" Defaults"
                             LayoutCachedLeft =120
                             LayoutCachedTop =3672
                             LayoutCachedWidth =5760
-                            LayoutCachedHeight =7860
+                            LayoutCachedHeight =8565
                             WebImagePaddingLeft =2
                             WebImagePaddingTop =2
                             WebImagePaddingRight =2
@@ -32308,7 +32315,7 @@ Begin Form
                                     Left =180
                                     Top =6510
                                     ColumnWidth =2208
-                                    TabIndex =7
+                                    TabIndex =6
                                     Name ="chkBackupOnStartup"
                                     ControlSource ="Backup_prompt_startup"
                                     StatusBarText ="Whether or not the application prompts for backups upon startup"
@@ -32334,7 +32341,7 @@ Begin Form
                                     Left =180
                                     Top =6870
                                     ColumnWidth =1908
-                                    TabIndex =8
+                                    TabIndex =7
                                     Name ="chkBackupOnExit"
                                     ControlSource ="Backup_prompt_exit"
                                     StatusBarText ="Whether or not the application prompts for backups upon exiting"
@@ -32359,7 +32366,7 @@ Begin Form
                                     OverlapFlags =215
                                     Left =180
                                     Top =7232
-                                    TabIndex =9
+                                    TabIndex =8
                                     Name ="chkCompactBEOnExit"
                                     ControlSource ="Compact_be_exit"
                                     StatusBarText ="Whether or not the application compacts the back-end db upon exiting"
@@ -32384,7 +32391,7 @@ Begin Form
                                     OverlapFlags =215
                                     Left =180
                                     Top =7592
-                                    TabIndex =10
+                                    TabIndex =9
                                     Name ="chkVerifyOnStartup"
                                     ControlSource ="Verify_links_startup"
                                     StatusBarText ="Whether or not the application verifies table connections upon startup"
@@ -32405,6 +32412,56 @@ Begin Form
                                         End
                                     End
                                 End
+                                Begin CommandButton
+                                    OverlapFlags =215
+                                    Left =3540
+                                    Top =3840
+                                    Width =1800
+                                    Height =660
+                                    FontSize =11
+                                    TabIndex =10
+                                    ForeColor =0
+                                    Name ="btnManageTemplates"
+                                    Caption ="Manage Templates"
+                                    StatusBarText ="Manage templates"
+                                    OnClick ="[Event Procedure]"
+                                    FontName ="Calibri"
+                                    ControlTipText ="Manage templates"
+                                    LeftPadding =60
+                                    RightPadding =75
+                                    BottomPadding =120
+                                    GridlineColor =10921638
+
+                                    LayoutCachedLeft =3540
+                                    LayoutCachedTop =3840
+                                    LayoutCachedWidth =5340
+                                    LayoutCachedHeight =4500
+                                    ForeThemeColorIndex =0
+                                    GridlineThemeColorIndex =1
+                                    GridlineShade =65.0
+                                    UseTheme =1
+                                    Shape =2
+                                    Gradient =12
+                                    BackColor =13020235
+                                    BackThemeColorIndex =8
+                                    BorderColor =13020235
+                                    BorderThemeColorIndex =8
+                                    ThemeFontIndex =1
+                                    HoverColor =13745519
+                                    HoverThemeColorIndex =8
+                                    HoverTint =80.0
+                                    PressedColor =10915381
+                                    PressedThemeColorIndex =8
+                                    PressedShade =80.0
+                                    HoverForeColor =0
+                                    HoverForeThemeColorIndex =0
+                                    PressedForeColor =0
+                                    PressedForeThemeColorIndex =0
+                                    Shadow =-1
+                                    QuickStyle =27
+                                    QuickStyleMask =-1
+                                    WebImagePaddingTop =1
+                                End
                             End
                         End
                         Begin Page
@@ -32412,13 +32469,13 @@ Begin Form
                             Left =120
                             Top =3675
                             Width =5640
-                            Height =4185
+                            Height =4890
                             Name ="pgAbout"
                             Caption =" About"
                             LayoutCachedLeft =120
                             LayoutCachedTop =3675
                             LayoutCachedWidth =5760
-                            LayoutCachedHeight =7860
+                            LayoutCachedHeight =8565
                             WebImagePaddingLeft =2
                             WebImagePaddingTop =2
                             WebImagePaddingRight =2
@@ -33480,15 +33537,20 @@ Option Compare Database
 Option Explicit
 
 ' =================================
-' FORM NAME:    frm_Switchboard
+' FORM NAME:       frm_Switchboard
+' Version:      1.03
 ' Description:  Standard module - main screen of the user interface, viewed at startup
 ' Data source:  tsys_App_Defaults
 ' Data access:  edit only, no additions, moving between records or deletions
 ' Pages:        pgMain, pgDefaults, pgAbout
 ' Functions:    none
 ' References:   fxnMakeBackup, fxnFileExists, fxnDeleteFile
-' Source/date:  John R. Boetsch, May 24, 2006
-' Revisions:    Simon Kingston, Sept. 2006 - added lookup for release information to look at tsys_App_Releases
+' Source/date:  John R. Boetsch, June 2006
+' Adapted:      Bonnie Campbell, 4/3/2017
+' Revisions:    JRB - 6/x/2006  - 1.00 - initial version
+'               SK - 9/x/2006 - 1.01 - added lookup for release information to look at
+'                                      tsys_App_Releases (SK = Simon Kingston)
+'               BLC - 4/3/2017 - added btnManageTemplates(), updated documentation
 ' =================================
 
 Private Sub Form_Open(Cancel As Integer)
@@ -33940,6 +34002,41 @@ Err_Handler:
     Resume Exit_Procedure
 
 End Sub
+
+' ---------------------------------
+' SUB:          btnManageTemplates_Click
+' Description:  Handles manage templates button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, April 3, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 4/3/2017  - initial version
+' ---------------------------------
+Private Sub btnManageTemplates_Click()
+On Error GoTo Err_Handler
+    
+    'minimize calling form
+    ToggleForm Me.Name, -1
+
+    'pass along form name, plot ID, sample date
+    DoCmd.OpenForm "TemplateList", acNormal, , , , acDialog, Me.Name
+    
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnManageTemplates_Click[Form_frm_Switchboard])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
 
 ' =================================
 ' PAGE NAME:    Database Information (pgAbout)

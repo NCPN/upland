@@ -1,50 +1,13 @@
-﻿Operation =1
-Option =2
-Begin InputTables
-    Name ="tbl_Locations"
-    Name ="tbl_Events"
-    Name ="tbl_LP_Transect"
-    Name ="tbl_LP_Intercept"
-    Name ="tlu_NCPN_Plants"
-End
-Begin OutputColumns
-    Expression ="tbl_Locations.Unit_Code"
-    Expression ="tbl_Locations.Plot_ID"
-    Expression ="tlu_NCPN_Plants.Master_Family"
-    Expression ="tlu_NCPN_Plants.Utah_Species"
-    Alias ="Year"
-    Expression ="Year([Start_Date])"
-End
-Begin Joins
-    LeftTable ="tbl_LP_Intercept"
-    RightTable ="tlu_NCPN_Plants"
-    Expression ="tbl_LP_Intercept.Top = tlu_NCPN_Plants.Master_PLANT_Code"
-    Flag =1
-    LeftTable ="tbl_LP_Transect"
-    RightTable ="tbl_LP_Intercept"
-    Expression ="tbl_LP_Transect.Transect_ID = tbl_LP_Intercept.Transect_ID"
-    Flag =1
-    LeftTable ="tbl_Events"
-    RightTable ="tbl_LP_Transect"
-    Expression ="tbl_Events.Event_ID = tbl_LP_Transect.Event_ID"
-    Flag =1
-    LeftTable ="tbl_Locations"
-    RightTable ="tbl_Events"
-    Expression ="tbl_Locations.Location_ID = tbl_Events.Location_ID"
-    Flag =1
-End
-Begin OrderBy
-    Expression ="tbl_Locations.Unit_Code"
-    Flag =0
-    Expression ="tbl_Locations.Plot_ID"
-    Flag =0
-    Expression ="tlu_NCPN_Plants.Master_Family"
-    Flag =0
-    Expression ="tlu_NCPN_Plants.Utah_Species"
-    Flag =0
-    Expression ="Year([Start_Date])"
-    Flag =0
-End
+﻿dbMemo "SQL" ="SELECT DISTINCT tbl_Locations.Unit_Code, tbl_Locations.Plot_ID, tlu_NCPN_Plants."
+    "Master_Family, tlu_NCPN_Plants.Utah_Species, Year([Start_Date]) AS [Year]\015\012"
+    "FROM tbl_Locations INNER JOIN (tbl_Events INNER JOIN (tbl_LP_Transect INNER JOIN"
+    " (tbl_LP_Intercept INNER JOIN tlu_NCPN_Plants ON tbl_LP_Intercept.Top = tlu_NCPN"
+    "_Plants.Master_PLANT_Code) ON tbl_LP_Transect.Transect_ID = tbl_LP_Intercept.Tra"
+    "nsect_ID) ON tbl_Events.Event_ID = tbl_LP_Transect.Event_ID) ON tbl_Locations.Lo"
+    "cation_ID = tbl_Events.Location_ID\015\012ORDER BY tbl_Locations.Unit_Code, tbl_"
+    "Locations.Plot_ID, tlu_NCPN_Plants.Master_Family, tlu_NCPN_Plants.Utah_Species, "
+    "Year([Start_Date]);\015\012"
+dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"
 dbByte "RecordsetType" ="0"
@@ -54,64 +17,29 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0x29d0e58963f1b54682af44ddcfd75e75
 End
+dbMemo "Filter" ="([qry_Sp_Rpt_PI_TC].[Utah_Species] Is Null OR [qry_Sp_Rpt_PI_TC].[Utah_Species]="
+    "\"\")"
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
 Begin
-End
-Begin
-    State =0
-    Left =47
-    Top =43
-    Right =1267
-    Bottom =356
-    Left =-1
-    Top =-1
-    Right =1213
-    Bottom =144
-    Left =0
-    Top =0
-    ColumnsShown =539
     Begin
-        Left =38
-        Top =6
-        Right =134
-        Bottom =120
-        Top =1
-        Name ="tbl_Locations"
-        Name =""
+        dbText "Name" ="tlu_NCPN_Plants.Master_Family"
+        dbLong "AggregateType" ="-1"
     End
     Begin
-        Left =172
-        Top =6
-        Right =268
-        Bottom =120
-        Top =0
-        Name ="tbl_Events"
-        Name =""
+        dbText "Name" ="tlu_NCPN_Plants.Utah_Species"
+        dbLong "AggregateType" ="-1"
     End
     Begin
-        Left =306
-        Top =6
-        Right =402
-        Bottom =120
-        Top =0
-        Name ="tbl_LP_Transect"
-        Name =""
+        dbText "Name" ="Year"
+        dbLong "AggregateType" ="-1"
     End
     Begin
-        Left =460
-        Top =6
-        Right =556
-        Bottom =120
-        Top =1
-        Name ="tbl_LP_Intercept"
-        Name =""
+        dbText "Name" ="tbl_Locations.Unit_Code"
+        dbLong "AggregateType" ="-1"
     End
     Begin
-        Left =608
-        Top =6
-        Right =739
-        Bottom =120
-        Top =0
-        Name ="tlu_NCPN_Plants"
-        Name =""
+        dbText "Name" ="tbl_Locations.Plot_ID"
+        dbLong "AggregateType" ="-1"
     End
 End

@@ -15,10 +15,10 @@ Begin Form
     Width =7560
     DatasheetFontHeight =11
     ItemSuffix =5
-    Left =345
-    Top =3240
-    Right =8160
-    Bottom =8880
+    Left =5745
+    Top =2805
+    Right =13560
+    Bottom =8445
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -169,7 +169,7 @@ Begin Form
                 End
                 Begin Label
                     OverlapFlags =223
-                    Left =6600
+                    Left =6480
                     Top =120
                     Width =720
                     Height =315
@@ -179,9 +179,9 @@ Begin Form
                     Name ="lblPlot"
                     Caption ="Plot #"
                     GridlineColor =10921638
-                    LayoutCachedLeft =6600
+                    LayoutCachedLeft =6480
                     LayoutCachedTop =120
-                    LayoutCachedWidth =7320
+                    LayoutCachedWidth =7200
                     LayoutCachedHeight =435
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
@@ -338,16 +338,16 @@ Begin Form
                 Begin Label
                     OverlapFlags =215
                     TextAlign =2
-                    Left =7200
+                    Left =7080
                     Top =150
-                    Width =360
+                    Width =480
                     Height =315
                     FontSize =9
                     BorderColor =10921638
                     ForeColor =6750207
                     Name ="lblPlotID"
                     GridlineColor =10921638
-                    LayoutCachedLeft =7200
+                    LayoutCachedLeft =7080
                     LayoutCachedTop =150
                     LayoutCachedWidth =7560
                     LayoutCachedHeight =465
@@ -1127,13 +1127,13 @@ On Error GoTo Err_Handler
                              Replace( _
                              Replace(strSQL, "[pkcode]", "'" & TempVars("ParkCode") & "'"), _
                                 "[pid]", PlotID), _
-                                "[vdate]", "#" & TempVars("SampleDate")) & "#"
+                                "[vdate]", "#" & TempVars("SampleDate") & "#")
 
 '                    'remove parameter clause (values already replaced)
                     strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
                     
                     'remove the final semicolon to avoid issues w/ [vdate]
-                    strSQL = Replace(strSQL, ";", "")
+                    'strSQL = Replace(strSQL, ";", "")
                     'strSQL = strSQL & ";"
                 
                     Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)

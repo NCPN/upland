@@ -54,18 +54,43 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0x4d761b4143d9f44691fbb8d7606b115c
 End
+dbMemo "Filter" ="([qry_Sp_Rpt_PI_LC2].[Utah_Species] Is Null OR [qry_Sp_Rpt_PI_LC2].[Utah_Species"
+    "]=\"\")"
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
+    Begin
+        dbText "Name" ="tbl_Locations.Unit_Code"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="tbl_Locations.Plot_ID"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="tlu_NCPN_Plants.Master_Family"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="tlu_NCPN_Plants.Utah_Species"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="Year"
+        dbLong "AggregateType" ="-1"
+    End
 End
 Begin
     State =0
     Left =37
-    Top =153
+    Top =121
     Right =1257
-    Bottom =466
+    Bottom =434
     Left =-1
     Top =-1
-    Right =1213
-    Bottom =144
+    Right =1188
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =539
@@ -74,7 +99,7 @@ Begin
         Top =6
         Right =134
         Bottom =120
-        Top =1
+        Top =0
         Name ="tbl_Locations"
         Name =""
     End

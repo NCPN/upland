@@ -810,7 +810,7 @@ On Error GoTo Err_Handler
     
     Params(0) = Template
     Params(1) = ID
-    Params(2) = IIf(InStr(Template, "wentworth") > 0, Year(Date), IsActive)
+    Params(2) = IIf(InStr(Template, "wentworth") > 0, year(Date), IsActive)
         
     SetRecord Template, Params
     
@@ -943,7 +943,8 @@ On Error GoTo Err_Handler
                     '-- required parameters --
 
                 Case "qc_ndc_notrecorded_all_methods_by_plot_visit", _
-                    "qc_photos_missing_by_plot_visit"
+                    "qc_photos_missing_by_plot_visit", _
+                    "qc_species_by_plot_visit"
                     '-- required parameters --
                     .Parameters("pkcode") = TempVars("ParkCode")
                     .Parameters("pid") = TempVars("plotID")
@@ -1677,9 +1678,8 @@ On Error GoTo Err_Handler
     'initialize AppTemplates if not populated
     If g_AppTemplates Is Nothing Then GetTemplates
         
-If strTemplate = "qc_ndc_fuels1000hr_transects_all" Then
-    Debug.Print "here"
-End If
+'Debug.Print "SetPlotCheckResult"
+'Debug.Print strTemplate
         
     With g_AppTemplates(strTemplate)
         iTemplate = .Item("ID")
@@ -1692,58 +1692,65 @@ End If
     'Dependencies = comma separated list of queries template is dependent on
     If Len(strDeps) > 0 Then _
         HandleDependentQueries strDeps, "run"
-                            
-        'run query & retrieve record #s
-        Set rs = GetRecords(strTemplate)
-            
-        'default
-        isOK = 0
-            
-        'add values to numrecords
-        Dim Params(0 To 3) As Variant
+    
+    'run query & retrieve record #s
+    Set rs = GetRecords(strTemplate)
         
-        Params(0) = LCase(Left(action, 1)) & "_num_records"
-        Params(1) = iTemplate
-        Params(2) = rs.RecordCount
+    'identify proper count
+    If Not (rs.EOF And rs.BOF) Then
+        rs.MoveLast
+        rs.MoveFirst
+        Debug.Print "# records = " & rs.RecordCount
+    End If
         
-        If Len(strFieldOK) > 0 Then
-            'assess if field check is fulfilled
-            
-            'determine comparitor
-            iOK = CInt(Right(strFieldOK, 1))
-            
-            'fetch the operator
-            strOperator = Left(Right(strFieldOK, Len(strFieldOK) - InStr(strFieldOK, "]")), 1)
-            
-            'fetch the field/item to check
-            strField = Replace(Left(strFieldOK, InStr(strFieldOK, "]") - 1), "[", "")
-            
-            Select Case strField
-                Case "NumRecords"
-                    CompareTo = rs.RecordCount
-                Case Else
-                    CompareTo = strField
-            End Select
+    'default
+    isOK = 0
         
-            Select Case strOperator
-                Case "="
-                    isOK = IIf(CompareTo = iOK, 1, 0)
-                Case "<"
-                    isOK = IIf(CompareTo < iOK, 1, 0)
-                Case ">"
-                    isOK = IIf(CompareTo > iOK, 1, 0)
-            End Select
+    'add values to numrecords
+    Dim Params(0 To 3) As Variant
+    
+    Params(0) = LCase(Left(action, 1)) & "_num_records"
+    Params(1) = iTemplate
+    Params(2) = rs.RecordCount
+    
+    If Len(strFieldOK) > 0 Then
+        'assess if field check is fulfilled
         
-        End If
+        'determine comparitor
+        iOK = CInt(Right(strFieldOK, 1))
         
-        Params(3) = isOK
+        'fetch the operator
+        strOperator = Left(Right(strFieldOK, Len(strFieldOK) - InStr(strFieldOK, "]")), 1)
         
-        'clear original value
-        DeleteRecord "NumRecords", iTemplate, False
+        'fetch the field/item to check
+        strField = Replace(Left(strFieldOK, InStr(strFieldOK, "]") - 1), "[", "")
         
-        SetRecord "i_num_records", Params
-        
-        Debug.Print Params(1) & " " & strTemplate & " " & Params(2) & " " & Params(3)
+        Select Case strField
+            Case "NumRecords"
+                CompareTo = rs.RecordCount
+            Case Else
+                CompareTo = strField
+        End Select
+    
+        Select Case strOperator
+            Case "="
+                isOK = IIf(CompareTo = iOK, 1, 0)
+            Case "<"
+                isOK = IIf(CompareTo < iOK, 1, 0)
+            Case ">"
+                isOK = IIf(CompareTo > iOK, 1, 0)
+        End Select
+    
+    End If
+    
+    Params(3) = IIf(isOK = True, 1, 0) 'convert to 1/0 as true/false instead of 0/-1
+    
+    'clear original value
+    DeleteRecord "NumRecords", iTemplate, False
+    
+    SetRecord "i_num_records", Params
+    
+    Debug.Print Params(1) & " " & strTemplate & " " & Params(2) & " " & Params(3)
     
 Exit_Handler:
     Exit Function
@@ -1775,6 +1782,8 @@ On Error GoTo Err_Handler
 
     'add values to numrecords
     Dim Params(0 To 3) As Variant
+
+Debug.Print "UpdateNumRecords"
     
     Params(0) = "u_num_records"
     Params(1) = iRecord
@@ -1791,4 +1800,207 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - UpdateNumRecords[mod_App_Data form])"
     End Select
     Resume Exit_Handler
+End Function
+
+' ---------------------------------
+' Sub:          PrepareSpeciesQuery
+' Description:  Craft the species query
+' Assumptions:  -
+' Parameters:   Park - park code (string)
+'               SampleDate - sampling visit year (integer)
+'               PlotID - plot # (integer)
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, April 3, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 4/3/2017 - initial version
+' ---------------------------------
+Public Function PrepareSpeciesQuery(Park As String, SampleYear As Integer, PlotID As Integer)
+On Error GoTo Err_Handler
+    'set statusbar notice
+    SysCmd acSysCmdSetStatus, "Running report ..."
+    
+    Screen.MousePointer = 11 'Hour Glass
+
+    Dim strFilter As String, strWhere As String, strParkWhere As String, strPlotWhere As String, strYrWhere As String, strSpeciesYear As String
+    Dim stDocName As String
+
+    'defaults
+    strFilter = ""
+    strWhere = ""
+    strParkWhere = ""
+    strPlotWhere = ""
+    strYrWhere = ""
+
+    stDocName = "rpt_Species_by_Park"
+    
+    ' Set where condition if needed
+    If (IsNull(Park) + IsNull(SampleYear) + IsNull(PlotID)) > -3 Then
+      
+      'park
+      If Not IsNull(Park) Then
+        strParkWhere = "Unit_Code = '" & Park & "'"
+        strFilter = Park
+      End If
+      
+      'plot --> NOTE: assumes UI will not allow plot selection w/o park
+      If Not IsNull(PlotID) Then
+        strPlotWhere = "Plot_ID = " & PlotID
+        strFilter = strFilter & "- plot #" & PlotID
+      End If
+      
+      'year
+      If Not IsNull(SampleYear) Then
+'        strYrWhere = "Len(SpeciesYear) > Len(Replace(SpeciesYear, CStr(" & Me!Visit_Date & "), ''))"
+        '(qry_Sp_Rpt_All.Utah_Species+"-"+CStr(qry_Sp_Rpt_All.Year)) AS SpeciesYear
+        strSpeciesYear = "(qry_Sp_Rpt_All.Utah_Species+' - '+CStr(qry_Sp_Rpt_All.Year))"
+        strYrWhere = "Len(" & strSpeciesYear & ") > Len(Replace(" & strSpeciesYear & ", CStr(" & SampleYear & "), ''))"
+        
+        'set filter display
+        Select Case Len(strFilter)
+            Case 0 'year only
+                strFilter = CStr(SampleYear)
+            Case 4 'park only
+                strFilter = strFilter & "-" & CStr(SampleYear)
+            Case Is > 4 'park & plot
+                strFilter = Replace(strFilter, "-", "-" & CStr(SampleYear) & " ")
+        End Select
+      
+      Else
+        'clear extra "-" for park & plot filter
+        strFilter = Replace(strFilter, "-", "")
+      End If
+      
+      'prepare where using string array & PrepareWhereClause
+      Dim ary() As String
+      ary = Split(strParkWhere & ";" & strPlotWhere & ";" & strYrWhere, ";")
+      strWhere = PrepareWhereClause(ary)
+      
+'      If Not IsNull(Me!Park_Code) Then
+'        strWhere = "Unit_Code = '" & Me!Park_Code & "'"
+'        If Not IsNull(Me!Plot) Then
+'          strWhere = strWhere & " And Plot_ID = " & Me!Plot
+'        End If
+'        If Not IsNull(Me!Visit_Date) Then
+'          'strWhere = strWhere & " AND Visit_Year = " & Me!Visit_Date
+'          'strWhere = strWhere & " AND " & Me!Visit_Date & " IN (replace(SpeciesYears, '|', ','))"
+'          'strWhere = strWhere & " AND " & Me!Visit_Date & " LIKE SpeciesYears"
+'          strWhere = strWhere & " AND Len(SpeciesYear) > Len(Replace(SpeciesYear, CStr(" & Me!Visit_Date & "), ''))"
+'        End If
+'      Else
+'        'strWhere = "Visit_Year = " & Me!Visit_Date
+'        'strWhere = Me!Visit_Date & " IN (replace(SpeciesYears, '|', ','))"
+'        'WHERE Len(SpeciesYears) > Len(Replace(SpeciesYears, CStr(2014), ''));
+'        strWhere = "Len(SpeciesYear) > Len(Replace(SpeciesYear, CStr(" & Me!Visit_Date & "), ''))"
+'      End If
+    End If
+    
+    'retrieve querydef
+    Dim qdf As QueryDef
+    Dim strSQL As String
+    
+    Set qdf = CurrentDb.QueryDefs("qry_Sp_Rpt_by_Park_Complete_Create_Table")
+    strSQL = qdf.SQL
+
+'SELECT DISTINCT
+'qry_Sp_Rpt_All.Unit_Code,
+'qry_Sp_Rpt_All.Year,
+'qry_Sp_Rpt_All.Plot_ID,
+'qry_Sp_Rpt_All.Master_Family,
+'qry_Sp_Rpt_All.Utah_Species,
+'(qry_Sp_Rpt_All.Utah_Species+"-"+CStr(qry_Sp_Rpt_All.Year)) AS SpeciesYear,
+'(qry_Sp_Rpt_All.Unit_Code+"-"+CStr(qry_Sp_Rpt_All.Plot_ID)+"-"+CStr(qry_Sp_Rpt_All.Utah_Species)) AS ParkPlotSpecies,
+'(qry_Sp_Rpt_All.Unit_Code+"-"+CStr(qry_Sp_Rpt_All.Utah_Species)) AS ParkSpecies,
+'(qry_Sp_Rpt_All.Unit_Code+"-"+CStr(qry_Sp_Rpt_All.Plot_ID)) AS ParkPlot INTO temp_Sp_Rpt_by_Park_Complete
+'FROM qry_Sp_Rpt_All
+'WHERE Len(SpeciesYears) > Len(Replace(SpeciesYears, CStr(2014), ''))
+'ORDER BY qry_Sp_Rpt_All.Unit_Code, qry_Sp_Rpt_All.Plot_ID, qry_Sp_Rpt_All.Master_Family, qry_Sp_Rpt_All.Utah_Species;
+
+    'update the SQL if parameters exist
+    If Len(strWhere) > 0 Then
+        Dim iOrderBy As Integer
+        Dim strSQLNew As String
+        
+        'replace ORDER with WHERE clause + ORDER
+        strSQLNew = Replace(strSQL, "ORDER", " WHERE " & strWhere & " ORDER")
+        qdf.SQL = strSQLNew 'was strSQL
+    End If
+    
+    'update underlying table (temp_Sp_Rpt_by_Park_Complete is used in report's underlying table temp_Sp_Rpt_by_Park_Rollup)
+    DoCmd.SetWarnings False
+    DoCmd.OpenQuery "qry_Sp_Rpt_by_Park_Complete_Create_Table", acViewNormal
+    
+    'update status bar
+    SysCmd acSysCmdSetStatus, "Generating complete results..."
+    'DoEvents
+    'Application.Echo False, "Generating complete results..."
+    'Application.Echo True, ""
+    
+    'add an index to improve report performance
+    Dim strIdxSQL As String
+    
+    strIdxSQL = "CREATE INDEX idxParkPlotSpeciesYear ON temp_Sp_Rpt_by_Park_Complete (ParkPlotSpecies, Year)"
+    CurrentDb.Execute strIdxSQL
+    
+    DoCmd.SetWarnings True
+    
+    'reset qdf SQL
+    qdf.SQL = strSQL
+    
+    'update underlying table (temp_Sp_Rpt_by_Park_Rollup)
+    DoCmd.SetWarnings False
+    DoCmd.OpenQuery "qry_Sp_Rpt_by_Park_Rollup_Create_Table", acViewNormal
+    
+    'update status bar
+    SysCmd acSysCmdSetStatus, "Generating rollup..."
+    'DoEvents
+    'Application.Echo False, "Generating rollup..."
+    'Application.Echo True, ""
+    
+    'add an index to improve report performance
+    strIdxSQL = "CREATE INDEX idxParkPlotSpeciesYears ON temp_Sp_Rpt_by_Park_Rollup (ParkPlotSpecies, SpeciesYears)"
+    CurrentDb.Execute strIdxSQL
+    
+Debug.Print strSQL
+
+    DoCmd.SetWarnings True
+    
+    'update status bar
+    SysCmd acSysCmdSetStatus, "Preparing report..."
+    'DoEvents
+    'Application.Echo False, "Preparing report..."
+    'Application.Echo True, ""
+    
+    'translate SQL Where for rollup --> SpeciesYear = SpeciesYears, ,qry_Sp_Rpt_All.Year = SpeciesYears, qry_Sp_Rpt_All.Utah_species = "Utah.species"
+    Dim aryText() As String
+    aryText = Split("SpeciesYear|SpeciesYears||qry_Sp_Rpt_All.Year|SpeciesYears||qry_Sp_Rpt_All.Utah_species|Utah_species", "||")
+    strWhere = ReplaceMulti(strWhere, aryText)
+    'strWhere = Replace(strWhere, Replace(strSpeciesYear, "SpeciesYear", "SpeciesYears"), "SpeciesYears")
+    
+    'open report --> strWhere = WHERE clause filter, strFilter = display for filter if present
+    DoCmd.OpenReport stDocName, acViewPreview, , strWhere, acWindowNormal, strFilter
+    
+    SysCmd acSysCmdSetStatus, "Report complete."
+    
+    Screen.MousePointer = 1 'Standard Cursor
+    'clear status bar
+    SysCmd acSysCmdSetStatus, " "
+
+Exit_Handler:
+    Exit Function
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - PrepareSpeciesQuery[mod_App_Data form])"
+    End Select
+    Resume Exit_Handler
+End Function
+
+Public Function testmetoo()
+
+    PrepareSpeciesQuery "CANY", 2017, 4
+
 End Function

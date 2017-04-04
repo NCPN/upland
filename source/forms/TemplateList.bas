@@ -19,10 +19,10 @@ Begin Form
     Width =8160
     DatasheetFontHeight =11
     ItemSuffix =44
-    Left =3630
+    Left =4350
     Top =3060
-    Right =14640
-    Bottom =13665
+    Right =12510
+    Bottom =13305
     DatasheetGridlinesColor =14806254
     OrderBy ="TemplateName"
     RecSrcDt = Begin
@@ -269,6 +269,7 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin CommandButton
+                    Enabled = NotDefault
                     OverlapFlags =215
                     Left =7320
                     Top =180
@@ -904,6 +905,7 @@ Option Explicit
 '                                        added refresh button to run GetTemplates & update
 '                                        template dictionary
 '               BLC - 3/24/2017 - 1.04 - added CallingForm properties
+'               BLC - 4/3/2017 - 1.05 - revised to use OpenArgs for CallingForm
 ' =================================
 
 '---------------------
@@ -994,6 +996,7 @@ End Property
 '   BLC - 5/31/2016 - initial version
 '   BLC - 1/10/2017 - added btnOpenTable, set
 '   BLC - 3/24/2017 - set & minimize CallingForm
+'   BLC - 4/3/2017 - revised to use OpenArgs for calling form name
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -1002,7 +1005,7 @@ On Error GoTo Err_Handler
     Me.CallingForm = "frm_Data_Entry"
     Me.CallingRecordID = -1
         
-    'If Len(Nz(Me.OpenArgs, "")) > 0 Then Me.CallingForm = Me.OpenArgs
+    If Len(Nz(Me.OpenArgs, "")) > 0 Then Me.CallingForm = Me.OpenArgs
 
     'minimize calling form
     ToggleForm Me.CallingForm, -1
@@ -1566,12 +1569,13 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 5/31/2016 - initial version
+'   BLC - 4/3/2017 - revised to restore CallingForm
 ' ---------------------------------
 Private Sub Form_Close()
 On Error GoTo Err_Handler
 
-    'restore DbAdmin
-    ToggleForm "DbAdmin", 0
+    'restore CallingForm
+    ToggleForm Me.CallingForm, 0
     
 Exit_Handler:
     Exit Sub

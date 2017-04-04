@@ -55,7 +55,32 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0x4017476baab6b9488a00027b0a32d7c8
 End
+dbMemo "Filter" ="([qry_Sp_Rpt_SI_Exotics].[Utah_Species] Is Null OR [qry_Sp_Rpt_SI_Exotics].[Utah"
+    "_Species]=\"\")"
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
+    Begin
+        dbText "Name" ="tbl_Locations.Unit_Code"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="tbl_Locations.Plot_ID"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="tlu_NCPN_Plants.Master_Family"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="tlu_NCPN_Plants.Utah_Species"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="Year"
+        dbLong "AggregateType" ="-1"
+    End
 End
 Begin
     State =0
@@ -65,8 +90,8 @@ Begin
     Bottom =345
     Left =-1
     Top =-1
-    Right =1074
-    Bottom =144
+    Right =1057
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =539
@@ -102,7 +127,7 @@ Begin
         Top =6
         Right =536
         Bottom =94
-        Top =2
+        Top =0
         Name ="tbl_Dist_Exotic"
         Name =""
     End

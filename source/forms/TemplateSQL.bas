@@ -399,7 +399,7 @@ Option Explicit
 ' =================================
 ' Form:         TemplateSQL
 ' Level:        Application form
-' Version:      1.02
+' Version:      1.03
 ' Basis:        Dropdown form
 '
 ' Description:  List form object related properties, events, functions & procedures for UI display
@@ -409,6 +409,7 @@ Option Explicit
 ' Revisions:    BLC - 5/31/2016 - 1.00 - initial version
 '               BLC - 1/10/2017 - 1.01 - added tbxSQL property documentation
 '               BLC - 3/24/2017 - 1.02 - enabled running for QA/QC queries
+'               BLC - 4/3/2017 - 1.03 - disabled RunSQL button for QA/QC queries (may require dependent queries)
 ' =================================
 
 '---------------------
@@ -517,6 +518,7 @@ End Property
 '   BLC - 5/31/2016 - initial version
 '   BLC - 1/10/2017 - added documentation @ error 2448, tbxSQL properties, ColorizeText()
 '   BLC - 3/24/2017 - added QA/QC queries to list which can be run
+'   BLC - 4/3/2017 - disabled btnRunSQL for QA/QC queries which may require dependent queries
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -559,8 +561,10 @@ On Error GoTo Err_Handler
 
     'only enable if it's a SELECT or QA/QC query
     Select Case Left(aryOA(2), 1)
-        Case "s", "q"
+        Case "s"
             btnRunSQL.Enabled = True
+        Case "q"
+            'disabled due to dependent queries
     End Select
     
     'don't select SQL
