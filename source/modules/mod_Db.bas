@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_Db
 ' Level:        Framework module
-' Version:      1.16
+' Version:      1.17
 ' Description:  Database related functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, April 2015
@@ -33,6 +33,7 @@ Option Explicit
 '                                        HandleDependentQueries(), SetQueryProperty(),
 '                                        DeleteRecord() moved from mod_UI
 '               BLC, 3/31/2017 - 1.16  - added g_AppTemplateIDs global for template/ID matches
+'               BLC, 4/3/2017  - 1.17  - code cleanup
 ' =================================
 
 ' ---------------------------------
@@ -2412,6 +2413,7 @@ End Sub
 ' Revisions:
 '   BLC - 3/30/2017 - initial version
 '   BLC - 3/31/2017 - adjust to include check for g_AppTemplateIDs
+'   BLC - 4/3/2017 - code cleanup
 ' ---------------------------------
 Public Sub HandleDependentQueries(deps As String, action As String)
 On Error GoTo Err_Handler
@@ -2464,9 +2466,7 @@ End If
                     'create & run query
                     'qdf.Name = strTemplate 'rs("TemplateName")
                     'qdf.SQL = strSQL 'rs("Template")
-If strTemplate = "qc_ndc_fuels1000hr_transects_all" Then
-    Debug.Print strTemplate
-End If
+                    
                     'check if query exists
                     If Not QueryExists(strTemplate) Then 'db.QueryDefs(strTemplate) Is Nothing Then 'qdf.Name) Is Nothing Then
                         'create query

@@ -795,7 +795,7 @@ Option Explicit
 ' =================================
 ' Form:         PlotCheck
 ' Level:        Application form
-' Version:      1.02
+' Version:      1.04
 ' Basis:        Dropdown form
 '
 ' Description:  Plot field check form object related properties, events, functions & procedures for UI display
@@ -809,6 +809,7 @@ Option Explicit
 '               BLC - 3/30/2017 - 1.03 - added lblID_Click, revised RunCheck(),
 '                                        updated checks
 '               BLC - 3/31/2017 - 1.04 - added CallingSampleDate property
+'               BLC - 4/3/2017 - 1.05 - code cleanup
 ' =================================
 
 '---------------------
@@ -1074,6 +1075,7 @@ End Sub
 '   BLC - 3/28/2017 - code cleanup
 '   BLC - 3/30/2017 - revise to use g_AppTemplates
 '   BLC - 3/31/2017 - code cleanup
+'   BLC - 4/3/2017  - resolve issue w/ date SQL (ending # not in correct place) code cleanup
 ' ---------------------------------
 Private Sub btnRunCheck_Click()
 On Error GoTo Err_Handler
@@ -1116,9 +1118,7 @@ On Error GoTo Err_Handler
                     If Not db.QueryDefs("usys_temp_display") Is Nothing Then _
                         DoCmd.DeleteObject acQuery, "usys_temp_display"
                 End If
- 
-'                Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
-                
+                 
                 'limit query by park & plot
                 If Len(strSQL) > Len(Replace(strSQL, "PARAMETERS", "")) Then
 
@@ -1129,26 +1129,17 @@ On Error GoTo Err_Handler
                                 "[pid]", PlotID), _
                                 "[vdate]", "#" & TempVars("SampleDate") & "#")
 
-'                    'remove parameter clause (values already replaced)
+                    'remove parameter clause (values already replaced)
                     strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
-                    
-                    'remove the final semicolon to avoid issues w/ [vdate]
-                    'strSQL = Replace(strSQL, ";", "")
-                    'strSQL = strSQL & ";"
-                
+                                    
                     Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
-'qdf2.OpenRecordset
+
                 End If
                                                                 
                 'display results
                 'DoCmd.OpenForm "PlotCheckResults", acNormal
                                 
                 DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
-                
-                'hide open query
-                
-                'unhide record #s
-                'Me.tbxNumRecords.Visible = True
                                  
             End With
                             

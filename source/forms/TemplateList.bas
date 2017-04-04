@@ -19,9 +19,9 @@ Begin Form
     Width =8160
     DatasheetFontHeight =11
     ItemSuffix =44
-    Left =4350
+    Left =4590
     Top =3060
-    Right =12510
+    Right =12750
     Bottom =13305
     DatasheetGridlinesColor =14806254
     OrderBy ="TemplateName"
@@ -890,7 +890,7 @@ Option Explicit
 ' =================================
 ' Form:         TemplateList
 ' Level:        Application form
-' Version:      1.04
+' Version:      1.05
 ' Basis:        Dropdown form
 '
 ' Description:  List form object related properties, events, functions & procedures for UI display

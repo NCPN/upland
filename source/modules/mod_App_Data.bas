@@ -5,7 +5,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.26
+' Version:      1.27
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -43,6 +43,7 @@ Option Explicit
 '                                        revised for uplands
 '               BLC, 3/29/2017  - 1.25 - added FieldCheck, FieldOK, Dependencies for templates
 '               BLC, 3/30/2017  - 1.26 - added non-parameterized query option for GetRecords()
+'               BLC, 4/3/2017   - 1.27 - added qc_species_by_plot_visit
 ' =================================
 
 '' ---------------------------------
@@ -905,6 +906,7 @@ End Sub
 '   BLC - 2/7/2017 - added template - s_location_with_loctypeID_sensitivity
 '   BLC - 3/28/2017 - added upland templates, removed big rivers templates
 '   BLC - 3/30/2017 - added option for non-parameterized queries (Else)
+'   BLC - 4/3/2017 - added qc_species_by_plot_visit
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -1815,7 +1817,7 @@ End Function
 ' Source/date:  Bonnie Campbell, April 3, 2017 - for NCPN tools
 ' Adapted:      -
 ' Revisions:
-'   BLC - 4/3/2017 - initial version
+'   BLC - 4/3/2017 - initial version (consider for future use)
 ' ---------------------------------
 Public Function PrepareSpeciesQuery(Park As String, SampleYear As Integer, PlotID As Integer)
 On Error GoTo Err_Handler
@@ -1997,10 +1999,4 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - PrepareSpeciesQuery[mod_App_Data form])"
     End Select
     Resume Exit_Handler
-End Function
-
-Public Function testmetoo()
-
-    PrepareSpeciesQuery "CANY", 2017, 4
-
 End Function
