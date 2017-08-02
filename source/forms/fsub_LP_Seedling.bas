@@ -12,9 +12,10 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =28
-    Top =5736
-    Right =4968
-    Bottom =8292
+    Left =3510
+    Top =3240
+    Right =8475
+    Bottom =5805
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x73776174d27ce340
@@ -255,15 +256,12 @@ Begin Form
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT DISTINCT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU"
-                        "_Top_Canopy.Utah_Species, qryU_Top_Canopy.Lifeform FROM qryU_Top_Canopy WHERE (("
-                        "(qryU_Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifeform])='T"
-                        "ree')) ORDER BY qryU_Top_Canopy.LU_Code  UNION  (SELECT DISTINCT tbl_Unknown_Spe"
-                        "cies.Unknown_Code, tbl_Unknown_Species.Unknown_Code, tbl_Unknown_Species.Plant_T"
-                        "ype + \" - \" + tbl_Unknown_Species.Plant_Description, tbl_Unknown_Species.Plant"
-                        "_Type AS Lifeform FROM tbl_Unknown_Species WHERE tbl_Unknown_Species.Plant_Type "
-                        "IN ('Tree','Other') OR tbl_Unknown_Species.Plant_Type IS NULL ORDER BY tbl_Unkno"
-                        "wn_Species.Unknown_Code);"
+                    RowSource ="SELECT DISTINCT  q.Master_PLANT_Code, q.LU_Code, q.Utah_Species, q.Lifeform  FRO"
+                        "M qryU_Top_Canopy q WHERE  (([q.Utah_Species] Is Not Null)  AND (q.[Lifeform]='T"
+                        "ree')) OR (q.[LU_Code] = 'JUNIPERUS') ORDER BY q.LU_Code    UNION  (SELECT DISTI"
+                        "NCT u.Unknown_Code, u.Unknown_Code, u.Plant_Type + \" - \" + u.Plant_Description"
+                        ", u.Plant_Type AS Lifeform  FROM tbl_Unknown_Species u WHERE u.Plant_Type IN ('T"
+                        "ree','Other')  OR u.Plant_Type IS NULL  ORDER BY u.Unknown_Code);"
                     ColumnWidths ="0;2160;4320"
                     BeforeUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
@@ -293,10 +291,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -317,10 +315,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Enabled = NotDefault
@@ -335,10 +333,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Enabled = NotDefault
@@ -353,10 +351,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Enabled = NotDefault
@@ -371,10 +369,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Enabled = NotDefault
@@ -389,10 +387,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

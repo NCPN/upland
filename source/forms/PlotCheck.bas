@@ -1,6 +1,7 @@
 ﻿Version =20
 VersionRequired =20
 Begin Form
+    PopUp = NotDefault
     RecordSelectors = NotDefault
     NavigationButtons = NotDefault
     AllowDeletions = NotDefault
@@ -15,10 +16,10 @@ Begin Form
     Width =7560
     DatasheetFontHeight =11
     ItemSuffix =5
-    Left =5745
-    Top =2805
-    Right =13560
-    Bottom =8445
+    Left =4815
+    Top =5115
+    Right =12630
+    Bottom =10755
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -1144,12 +1145,13 @@ On Error GoTo Err_Handler
             End With
                             
             'refresh form
-            Me.Requery
+'            Me.Requery
             
             'minimize plotcheck so user can see query result
             ToggleForm "PlotCheck", -1
             
-            'focus on the query
+            'focus on the query (avoid PlotCheck appearing modal)
+            DoCmd.SelectObject acQuery, "usys_temp_display", False
             
         End With
                 

@@ -14,9 +14,9 @@ Begin Form
     Width =14160
     DatasheetFontHeight =9
     ItemSuffix =35
-    Left =408
-    Top =2208
-    Right =14352
+    Left =405
+    Top =2205
+    Right =14355
     Bottom =5700
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
@@ -241,10 +241,10 @@ Begin Form
                     LayoutCachedTop =300
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =600
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -260,10 +260,10 @@ Begin Form
                     LayoutCachedTop =660
                     LayoutCachedWidth =11880
                     LayoutCachedHeight =960
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -403,18 +403,15 @@ Begin Form
                     Name ="Species"
                     ControlSource ="Species"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT DISTINCT  qryU_Top_Canopy.Master_PLANT_Code,  qryU_Top_Canopy.LU_Code,  q"
-                        "ryU_Top_Canopy.Utah_Species,    qryU_Top_Canopy.Lifeform  FROM qryU_Top_Canopy  "
-                        "WHERE (((qryU_Top_Canopy.Utah_Species) Is Not Null) AND ((qryU_Top_Canopy.[Lifef"
-                        "orm])='Tree'))   ORDER BY qryU_Top_Canopy.LU_Code    UNION  (SELECT  DISTINCT tb"
-                        "l_Unknown_Species.Unknown_Code,  tbl_Unknown_Species.Unknown_Code,    tbl_Unknow"
-                        "n_Species.Plant_Type+ \" - \" + tbl_Unknown_Species.Plant_Description,  tbl_Unkn"
-                        "own_Species.Plant_Type AS Lifeform   FROM tbl_Unknown_Species   WHERE tbl_Unknow"
-                        "n_Species.Plant_Type IN ('Tree','Other') OR tbl_Unknown_Species.Plant_Type IS NU"
-                        "LL  ORDER BY tbl_Unknown_Species.Unknown_Code) UNION ( SELECT DISTINCT  qryU_Top"
-                        "_Canopy.Master_PLANT_Code,  qryU_Top_Canopy.LU_Code,  qryU_Top_Canopy.Utah_Speci"
-                        "es,    qryU_Top_Canopy.Lifeform  FROM qryU_Top_Canopy  WHERE (qryU_Top_Canopy.LU"
-                        "_Code='QUEGAM')   ORDER BY qryU_Top_Canopy.LU_Code ) ;"
+                    RowSource ="SELECT DISTINCT   q.Master_PLANT_Code,  q.LU_Code,  q.Utah_Species, q.Lifeform  "
+                        " FROM qryU_Top_Canopy  q WHERE (((q.Utah_Species) Is Not Null)  AND ((q.[Lifefor"
+                        "m])='Tree')) OR (q.[LU_Code] = 'JUNIPERUS')    ORDER BY q.LU_Code      UNION    "
+                        "(SELECT  DISTINCT u.Unknown_Code,  u.Unknown_Code,     u.Plant_Type+ \" - \" + u"
+                        ".Plant_Description,  u.Plant_Type AS Lifeform    FROM tbl_Unknown_Species u WHER"
+                        "E u.Plant_Type  IN ('Tree','Other') OR u.Plant_Type IS NULL   ORDER BY u.Unknown"
+                        "_Code)   UNION   ( SELECT DISTINCT   tc.Master_PLANT_Code,  tc.LU_Code, tc.Utah_"
+                        "Species, tc.Lifeform   FROM qryU_Top_Canopy  tc WHERE (tc.LU_Code='QUEGAM')    O"
+                        "RDER BY tc.LU_Code );"
                     ColumnWidths ="0;2160;4320"
                     OnGotFocus ="[Event Procedure]"
                     LimitToList = NotDefault
@@ -467,10 +464,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault

@@ -971,6 +971,10 @@ Exit_Handler:
     Exit Function
 Err_Handler:
     Select Case Err.Number
+      Case 3048 'Cannot open any more databases
+        MsgBox "Sorry, I'm overtaxed right now..." & vbCrLf & vbCrLf & _
+                "...I can't seem to get the " & Template & _
+                " query to run.", vbOKOnly, "Oops!"
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - GetRecords[mod_App_Data])"
