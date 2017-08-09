@@ -6,6 +6,7 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -18,8 +19,10 @@ Begin Form
     Width =13680
     DatasheetFontHeight =9
     ItemSuffix =70
-    Right =13650
-    Bottom =9105
+    Left =-930
+    Top =270
+    Right =14325
+    Bottom =9750
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2518a6c77056e340
@@ -539,7 +542,6 @@ Begin Form
                                     End
                                 End
                                 Begin Rectangle
-                                    Visible = NotDefault
                                     SpecialEffect =0
                                     BackStyle =1
                                     OldBorderStyle =0
@@ -557,7 +559,6 @@ Begin Form
                                     LayoutCachedHeight =5700
                                 End
                                 Begin CheckBox
-                                    Enabled = NotDefault
                                     OverlapFlags =215
                                     Left =4380
                                     Top =5370
@@ -828,6 +829,7 @@ Begin Form
                                     End
                                 End
                                 Begin Rectangle
+                                    Visible = NotDefault
                                     SpecialEffect =0
                                     BackStyle =1
                                     OldBorderStyle =0
@@ -845,6 +847,7 @@ Begin Form
                                     LayoutCachedHeight =1380
                                 End
                                 Begin CheckBox
+                                    Enabled = NotDefault
                                     OverlapFlags =247
                                     Left =10920
                                     Top =1050

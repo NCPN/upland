@@ -3,6 +3,7 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -14,10 +15,10 @@ Begin Form
     Width =13680
     DatasheetFontHeight =9
     ItemSuffix =26
-    Left =405
-    Top =2910
-    Right =14085
-    Bottom =9525
+    Left =-930
+    Top =270
+    Right =12720
+    Bottom =6915
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x2f2916b0ec7ce340
@@ -385,6 +386,8 @@ Begin Form
                     Name ="Transect"
                     ControlSource ="Transect"
                     RowSourceType ="Value List"
+                    RowSource ="T1 - origin;T2 - origin;T3 - origin;T1 - end;T2 - end;T3 - end;T1 - 0m - crust; "
+                        "T2 - 20m - crust; T3 - 40m - crust;"
                     ColumnWidths ="1440"
 
                 End

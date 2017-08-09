@@ -20,20 +20,21 @@ Begin Form
     Width =16296
     DatasheetFontHeight =10
     ItemSuffix =213
-    Left =5970
-    Top =2100
-    Right =22515
-    Bottom =14085
+    Left =2310
+    Top =1335
+    Right =18855
+    Bottom =15795
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='{5B51E342-B287-415E-BE53-2052252341A5}' AND [Event_ID]='201703231"
-        "04002-289562463.760376'"
+    Filter ="[Location_ID]='{E35D7F2C-A99C-41FE-ACEC-A1DAD79E24AC}' AND [Event_ID]='201704101"
+        "01034-289562463.760376'"
     RecSrcDt = Begin
         0x171e359b4cb5e440
     End
     RecordSource ="qfrm_DataEntry"
     Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event - Filter "
         "by sampling event - Filter by sampling event - Filter by sampling event - Filter"
-        " by sampling event - Filter by sampling event - Filter by sampling event"
+        " by sampling event - Filter by sampling event - Filter by sampling event - Filte"
+        "r by sampling event"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
@@ -404,7 +405,6 @@ Begin Form
                             End
                         End
                         Begin Page
-                            Visible = NotDefault
                             OverlapFlags =215
                             Left =135
                             Top =1620
@@ -438,7 +438,6 @@ Begin Form
                             End
                         End
                         Begin Page
-                            Visible = NotDefault
                             OverlapFlags =215
                             Left =135
                             Top =1620
@@ -780,6 +779,7 @@ Begin Form
                                     End
                                 End
                                 Begin Rectangle
+                                    Visible = NotDefault
                                     SpecialEffect =0
                                     BackStyle =1
                                     OldBorderStyle =0
@@ -797,6 +797,7 @@ Begin Form
                                     LayoutCachedHeight =2100
                                 End
                                 Begin CheckBox
+                                    Enabled = NotDefault
                                     OverlapFlags =215
                                     Left =11340
                                     Top =1770
@@ -832,6 +833,7 @@ Begin Form
                             End
                         End
                         Begin Page
+                            Visible = NotDefault
                             OverlapFlags =247
                             Left =135
                             Top =1620
@@ -1015,7 +1017,6 @@ Begin Form
                                     End
                                 End
                                 Begin Rectangle
-                                    Visible = NotDefault
                                     SpecialEffect =0
                                     BackStyle =1
                                     OldBorderStyle =0
@@ -1116,7 +1117,6 @@ Begin Form
                                     End
                                 End
                                 Begin Rectangle
-                                    Visible = NotDefault
                                     SpecialEffect =0
                                     BackStyle =1
                                     OldBorderStyle =0
@@ -1419,7 +1419,6 @@ Begin Form
 
                 End
                 Begin Rectangle
-                    Visible = NotDefault
                     SpecialEffect =0
                     BackStyle =1
                     OldBorderStyle =0

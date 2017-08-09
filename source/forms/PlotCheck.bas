@@ -1,9 +1,7 @@
 ﻿Version =20
 VersionRequired =20
 Begin Form
-    PopUp = NotDefault
     RecordSelectors = NotDefault
-    NavigationButtons = NotDefault
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
@@ -15,11 +13,11 @@ Begin Form
     GridY =24
     Width =7560
     DatasheetFontHeight =11
-    ItemSuffix =5
-    Left =4815
-    Top =5115
-    Right =12630
-    Bottom =10755
+    ItemSuffix =10
+    Left =1380
+    Top =1380
+    Right =9195
+    Bottom =11220
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -63,6 +61,30 @@ Begin Form
             BorderTint =50.0
             ForeThemeColorIndex =0
             ForeTint =50.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Rectangle
+            SpecialEffect =3
+            BackStyle =0
+            BorderLineStyle =0
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Image
+            BackStyle =0
+            OldBorderStyle =0
+            BorderLineStyle =0
+            SizeMode =3
+            PictureAlignment =2
+            BorderColor =16777215
+            GridlineColor =16777215
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
             GridlineThemeColorIndex =1
             GridlineShade =65.0
         End
@@ -484,7 +506,7 @@ Begin Form
             End
         End
         Begin Section
-            Height =420
+            Height =840
             Name ="Detail"
             OnMouseMove ="[Event Procedure]"
             AlternateBackColor =15921906
@@ -774,6 +796,115 @@ Begin Form
                     ForeTint =100.0
                     ForeShade =95.0
                 End
+                Begin TextBox
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =6240
+                    Top =420
+                    Width =720
+                    Height =360
+                    TabIndex =8
+                    BackColor =15918812
+                    BorderColor =14136213
+                    ForeColor =4210752
+                    Name ="tbxRunCheck"
+                    StatusBarText ="View check results"
+                    OnClick ="[Event Procedure]"
+                    ControlTipText ="View check results"
+                    ConditionalFormat = Begin
+                        0x0100000086000000010000000100000000000000000000001200000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b007400620078004e0075006d005200650063006f007200640073005d003d00 ,
+                        0x300000000000
+                    End
+                    GridlineColor =10921638
+
+                    LayoutCachedLeft =6240
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =6960
+                    LayoutCachedHeight =780
+                    BackThemeColorIndex =4
+                    BackTint =20.0
+                    BorderThemeColorIndex =4
+                    BorderTint =60.0
+                    BorderShade =100.0
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff00110000005b00 ,
+                        0x7400620078004e0075006d005200650063006f007200640073005d003d003000 ,
+                        0x000000000000000000000000000000000000000000
+                    End
+                End
+                Begin Image
+                    Left =4620
+                    Top =480
+                    Width =720
+                    Height =360
+                    BorderColor =10921638
+                    Name ="ibtnRunCheck"
+                    PictureData = Begin
+                        0x0e00000000000000010000006c00000000000000000000004300000023000000 ,
+                        0x00000000000000004f050000cb02000020454d46000001001c06000012000000 ,
+                        0x0100000000000000000000000000000080070000380400007e010000d7000000 ,
+                        0x00000000000000000000000030d40500d847030046000000980200008a020000 ,
+                        0x4744494301000080000300009b677a0a00000000720200000100090000033901 ,
+                        0x00000000090100000000050000000c0214002600040000000301080005000000 ,
+                        0x0b0200000000050000000c0214002600030000001e0005000000070104000000 ,
+                        0x0500000007010400000009010000410b2000cc00140026000000000014002600 ,
+                        0x0000000028000000260000001400000001000400000000000000000000000000 ,
+                        0x00000000000000000000000000000000ffffff00ffdbd600ffb09900ffa88500 ,
+                        0xffa68200ffdad100ffc39b00ffdead00ffd0a200ffbfbf00ffb48c00ffefef00 ,
+                        0xffb6900000000000000000001111111aaaaaaaaaaaaaaaaaaaaaaaac1111110a ,
+                        0x11123d5888888888888888888888888543211100116788888888888888888888 ,
+                        0x8888888888761108127888888888888888888888888888888887210513888888 ,
+                        0x8888888888888888888888888888310814888888888888888888888888888888 ,
+                        0x88884100158888888888888888888888888888888888bc081588888888888888 ,
+                        0x888888888888888888888a421588888888888888888888888888888888888a08 ,
+                        0x1588888888888888888888888888888888888a3f158888888888888888888888 ,
+                        0x8888888888888a081588888888888888888888888888888888888a3f15888888 ,
+                        0x88888888888888888888888888889a0815888888888888888888888888888888 ,
+                        0x8888513f14888888888888888888888888888888888841081388888888888888 ,
+                        0x8888888888888888888831001278888888888888888888888888888888872108 ,
+                        0x1167888888888888888888888888888888761100111234555555555555555555 ,
+                        0x5555555543211108111111111111111111111111111111111111110004000000 ,
+                        0x2701ffff0300000000000000110000000c000000080000000b00000010000000 ,
+                        0x4400000024000000090000001000000044000000240000000900000010000000 ,
+                        0x26000000140000000a0000001000000000000000000000000900000010000000 ,
+                        0x26000000140000002100000008000000150000000c0000000400000015000000 ,
+                        0x0c00000004000000510000004802000000000000000000004300000023000000 ,
+                        0x0000000000000000000000000000000026000000140000005000000068000000 ,
+                        0xb800000090010000000000002000cc0026000000140000002800000026000000 ,
+                        0x1400000001000400000000000000000000000000000000000000000000000000 ,
+                        0x00000000ffffff00ffdbd600ffb09900ffa88500ffa68200ffdad100ffc39b00 ,
+                        0xffdead00ffd0a200ffbfbf00ffb48c00ffefef00ffb690000000000000000000 ,
+                        0x1111111aaaaaaaaaaaaaaaaaaaaaaaac1111110a11123d588888888888888888 ,
+                        0x8888888543211100116788888888888888888888888888888876110812788888 ,
+                        0x8888888888888888888888888887210513888888888888888888888888888888 ,
+                        0x8888310814888888888888888888888888888888888841001588888888888888 ,
+                        0x88888888888888888888bc081588888888888888888888888888888888888a42 ,
+                        0x1588888888888888888888888888888888888a08158888888888888888888888 ,
+                        0x8888888888888a3f1588888888888888888888888888888888888a0815888888 ,
+                        0x88888888888888888888888888888a3f15888888888888888888888888888888 ,
+                        0x88889a08158888888888888888888888888888888888513f1488888888888888 ,
+                        0x8888888888888888888841081388888888888888888888888888888888883100 ,
+                        0x1278888888888888888888888888888888872108116788888888888888888888 ,
+                        0x8888888888761100111234555555555555555555555555554321110811111111 ,
+                        0x11111111111111111111111111111100220000000c000000ffffffff25000000 ,
+                        0x0c00000007000080250000000c00000000000080300000000c0000000f000080 ,
+                        0x4b0000001000000000000000050000000e000000140000000000000010000000 ,
+                        0x14000000
+                    End
+                    Picture ="btn_blu.png"
+                    GridlineColor =10921638
+
+                    LayoutCachedLeft =4620
+                    LayoutCachedTop =480
+                    LayoutCachedWidth =5340
+                    LayoutCachedHeight =840
+                    TabIndex =9
+                End
             End
         End
         Begin FormFooter
@@ -1049,6 +1180,11 @@ End Sub
 ' ---------------------------------
 Private Sub Form_Current()
 On Error GoTo Err_Handler
+
+    If Me.tbxNumRecords = 0 Then
+        Me.btnRunCheck.Enabled = False
+    Else: Me.btnRunCheck.Enabled = True
+    End If
        
 Exit_Handler:
     Exit Sub
@@ -1068,7 +1204,9 @@ End Sub
 ' Parameters:   -
 ' Returns:      -
 ' Throws:       none
-' References:   -
+' References:
+'   Steve Schapel, September 15, 2008
+'   https://www.pcreview.co.uk/threads/switch-focus-to-query-through-vba.3622059/
 ' Source/date:  Bonnie Campbell, March 24, 2017 - for NCPN tools
 ' Adapted:      -
 ' Revisions:
@@ -1077,6 +1215,7 @@ End Sub
 '   BLC - 3/30/2017 - revise to use g_AppTemplates
 '   BLC - 3/31/2017 - code cleanup
 '   BLC - 4/3/2017  - resolve issue w/ date SQL (ending # not in correct place) code cleanup
+'   BLC - 8/7/2017  - revise to run query in QueryView datasheet form to avoid modality
 ' ---------------------------------
 Private Sub btnRunCheck_Click()
 On Error GoTo Err_Handler
@@ -1140,18 +1279,134 @@ On Error GoTo Err_Handler
                 'display results
                 'DoCmd.OpenForm "PlotCheckResults", acNormal
                                 
-                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
-                                 
+'                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
+                 DoCmd.OpenForm "QueryView", acFormDS, , , acFormReadOnly, acWindowNormal
             End With
                             
             'refresh form
 '            Me.Requery
             
             'minimize plotcheck so user can see query result
-            ToggleForm "PlotCheck", -1
+'            ToggleForm "PlotCheck", -1
             
             'focus on the query (avoid PlotCheck appearing modal)
-            DoCmd.SelectObject acQuery, "usys_temp_display", False
+'            DoCmd.SelectObject acQuery, "usys_temp_display", False
+            
+        End With
+                
+    End With
+
+    
+Exit_Handler:
+    'cleanup
+    Set rs = Nothing
+    db.Close
+    qdf.Close
+    qdf2.Close
+    
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case 3048
+'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+'            "Error encountered (#" & Err.Number & " - btnRunCheck_Click[PlotCheck form])"
+        Resume Next
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnRunCheck_Click[PlotCheck form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          tbxRunCheck_Click
+' Description:  Run check button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:
+'   Steve Schapel, September 15, 2008
+'   https://www.pcreview.co.uk/threads/switch-focus-to-query-through-vba.3622059/
+' Source/date:  Bonnie Campbell, August 9, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 8/9/2017 - initial version
+' ---------------------------------
+Private Sub tbxRunCheck_Click()
+On Error GoTo Err_Handler
+    
+    Dim db As DAO.Database
+    Dim qdf As DAO.QueryDef, qdf2 As DAO.QueryDef
+    Dim rs As DAO.Recordset
+    Dim PlotID As Integer
+    Dim ParkCode As String, fltr As String
+    
+    Set db = CurrentDb
+    
+    With db
+        Set qdf = .QueryDefs("usys_temp_qdf")
+        
+        With qdf
+
+            Dim strSQL As String
+            Dim IsParameterized As Boolean
+            
+            'default
+            IsParameterized = False
+
+            'set values
+'            ParkCode = TempVars("ParkCode")
+            PlotID = Me.lblPlotID.Caption
+'            SampleDate = Me.lblSampleDate.Caption
+            
+            .SQL = Me.tbxSQL
+            strSQL = .SQL
+            
+            'open query window
+            With db
+                
+                If QueryExists("usys_temp_display") Then
+                    'ensure temp query is closed & removed
+                    DoCmd.Close acQuery, "usys_temp_display", acSaveNo
+                    
+                    'remove usys_temp_display if it already exists
+                    If Not db.QueryDefs("usys_temp_display") Is Nothing Then _
+                        DoCmd.DeleteObject acQuery, "usys_temp_display"
+                End If
+                 
+                'limit query by park & plot
+                If Len(strSQL) > Len(Replace(strSQL, "PARAMETERS", "")) Then
+
+                    'replace park code & plotID parameters
+                    strSQL = Replace( _
+                             Replace( _
+                             Replace(strSQL, "[pkcode]", "'" & TempVars("ParkCode") & "'"), _
+                                "[pid]", PlotID), _
+                                "[vdate]", "#" & TempVars("SampleDate") & "#")
+
+                    'remove parameter clause (values already replaced)
+                    strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
+                                    
+                    Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
+
+                End If
+                                                                
+                'display results
+                'DoCmd.OpenForm "PlotCheckResults", acNormal
+                                
+'                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
+                 DoCmd.OpenForm "QueryView", acFormDS, , , acFormReadOnly, acWindowNormal
+            End With
+                            
+            'refresh form
+'            Me.Requery
+            
+            'minimize plotcheck so user can see query result
+'            ToggleForm "PlotCheck", -1
+            
+            'focus on the query (avoid PlotCheck appearing modal)
+'            DoCmd.SelectObject acQuery, "usys_temp_display", False
             
         End With
                 
@@ -1170,10 +1425,11 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - btnRunCheck_Click[PlotCheck form])"
+            "Error encountered (#" & Err.Number & " - tbxRunCheck_Click[PlotCheck form])"
     End Select
     Resume Exit_Handler
 End Sub
+
 
 ' ---------------------------------
 ' Sub:          lblID_Click

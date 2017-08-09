@@ -24,10 +24,10 @@ Begin Form
     Width =9900
     DatasheetFontHeight =10
     ItemSuffix =74
-    Left =810
-    Top =1320
-    Right =10710
-    Bottom =10005
+    Left =2985
+    Top =930
+    Right =12885
+    Bottom =9615
     DatasheetGridlinesColor =12632256
     PictureData = Begin
         0x28000000a0020000f8010000010018000000000000810f00c30e0000c30e0000 ,
@@ -33580,7 +33580,7 @@ Option Compare Database
 Option Explicit
 
 ' =================================
-' FORM NAME:       frm_Switchboard
+' FORM NAME:    frm_Switchboard
 ' Version:      1.03
 ' Description:  Standard module - main screen of the user interface, viewed at startup
 ' Data source:  tsys_App_Defaults
@@ -34509,7 +34509,7 @@ On Error GoTo Err_Handler
         With Me.tglDevMode
             .Caption = "DEV MODE ON"
             .BackColor = lngLtLime
-            .fontBold = True
+            .FontBold = True
             .ForeColor = lngBlue
         End With
     Else
@@ -34519,7 +34519,7 @@ On Error GoTo Err_Handler
         With Me.tglDevMode
             .Caption = "DEV MODE OFF"
             .BackColor = lngLtrYellow
-            .fontBold = False
+            .FontBold = False
             .ForeColor = lngRed
         End With
     End If

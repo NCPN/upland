@@ -2,6 +2,7 @@
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -13,10 +14,10 @@ Begin Form
     Width =10440
     DatasheetFontHeight =9
     ItemSuffix =57
-    Left =1515
-    Top =2430
-    Right =9210
-    Bottom =6195
+    Left =4050
+    Top =1710
+    Right =12000
+    Bottom =5955
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340

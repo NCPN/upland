@@ -613,7 +613,7 @@ End Function
 Public Function FiscalYear(datDate As Date) As Integer
 Dim intYear As Integer
 
-intYear = year(datDate)
+intYear = Year(datDate)
 If Month(datDate) >= 10 Then
     intYear = intYear + 1
 End If

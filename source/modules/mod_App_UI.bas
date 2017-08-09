@@ -146,7 +146,7 @@ On Error GoTo Err_Handler
                 !Plot_ID = intPlotID
                 !Master_Family = strFamily
                 !Utah_Species = strUtah_Species
-                !SpeciesYears = IIf(Len(strSpeciesYears) > 0, strSpeciesYears, rs!year)
+                !SpeciesYears = IIf(Len(strSpeciesYears) > 0, strSpeciesYears, rs!Year)
                 !PlotParkSpecies = strParkPlotSpecies
                 !ParkPlot = strParkPlot
                 'update when rs!ParkPlotSpecies <> strParkPlotSpecies

@@ -492,7 +492,7 @@ End Function
 Public Sub ResetHeaders(frm As Form, _
                         allCtrls As Boolean, _
                         ctrlTag As String, _
-                        Optional fontBold As Boolean = True, _
+                        Optional FontBold As Boolean = True, _
                         Optional backstyle As Integer = 1, _
                         Optional ForeColor As Long, _
                         Optional BackColor As Long, _
@@ -515,7 +515,7 @@ Dim ctrl As Control
              
                 'check tag
                 If ctrl.tag = ctrlTag Then
-                    If varType(fontBold) = vbBoolean Then ctrl.fontBold = fontBold
+                    If varType(FontBold) = vbBoolean Then ctrl.FontBold = FontBold
                     If varType(backstyle) = vbInteger Then ctrl.backstyle = backstyle
                     If varType(BackColor) = vbLong Then ctrl.BackColor = BackColor
                     If varType(ForeColor) = vbLong Then ctrl.ForeColor = ForeColor
@@ -537,7 +537,7 @@ Dim ctrl As Control
                 oCtrl.ControlType = acLabel _
             Then
           
-                If varType(fontBold) = vbBoolean Then oCtrl.fontBold = fontBold
+                If varType(FontBold) = vbBoolean Then oCtrl.FontBold = FontBold
                 If varType(backstyle) = vbInteger Then oCtrl.backstyle = backstyle
                 If varType(BackColor) = vbLong Then oCtrl.BackColor = BackColor
                 If varType(ForeColor) = vbLong Then oCtrl.ForeColor = ForeColor

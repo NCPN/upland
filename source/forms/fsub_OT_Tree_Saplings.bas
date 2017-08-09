@@ -3,6 +3,7 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -14,9 +15,10 @@ Begin Form
     Width =11340
     DatasheetFontHeight =9
     ItemSuffix =31
-    Top =330
-    Right =11130
-    Bottom =3795
+    Left =-555
+    Top =-465
+    Right =11100
+    Bottom =3000
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x384b3f359387e340
@@ -247,7 +249,7 @@ Begin Form
                     Top =120
                     Width =1545
                     Height =300
-                    Name ="ButtonMaster"
+                    Name ="btnMaster"
                     Caption ="Master Lookup"
                     OnClick ="[Event Procedure]"
 
@@ -267,7 +269,7 @@ Begin Form
                     Width =1545
                     Height =300
                     TabIndex =1
-                    Name ="ButtonUnknown"
+                    Name ="btnUnknown"
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
@@ -586,7 +588,7 @@ Begin Form
                     Height =300
                     TabIndex =7
                     ForeColor =255
-                    Name ="ButtonDelete"
+                    Name ="btnDelete"
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
@@ -608,7 +610,7 @@ Begin Form
                     Top =60
                     Width =606
                     Height =288
-                    Name ="ButtonA1"
+                    Name ="btnA1"
                     Caption ="+ 1"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -625,7 +627,7 @@ Begin Form
                     Width =606
                     Height =288
                     TabIndex =1
-                    Name ="ButtonA5"
+                    Name ="btnA5"
                     Caption ="+ 5"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -642,7 +644,7 @@ Begin Form
                     Width =606
                     Height =288
                     TabIndex =2
-                    Name ="ButtonS1"
+                    Name ="btnS1"
                     Caption ="- 1"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -659,7 +661,7 @@ Begin Form
                     Width =606
                     Height =288
                     TabIndex =3
-                    Name ="ButtonS5"
+                    Name ="btnS5"
                     Caption ="- 5"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -676,7 +678,7 @@ Begin Form
                     Width =606
                     Height =288
                     TabIndex =4
-                    Name ="ButtonZero"
+                    Name ="btnZero"
                     Caption ="0"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -701,7 +703,7 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_OT_Tree_Saplings
 ' Level:        Form module
-' Version:      1.04
+' Version:      1.05
 ' Description:  data functions & procedures specific to overstory tree sapling monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/11/2016
@@ -710,6 +712,8 @@ Option Explicit
 '               BLC - 3/8/2016 - 1.02 - added documentation, Species_GotFocus()
 '               BLC - 3/29/2016 - 1.03 - added field highlighting
 '               BLC - 4/13/2016 - 1.04 - added refresh for underlying subforms for conditional formatting
+'               BLC - 8/9/2017  - 1.05 - revised to avoid clearing 0 values entered for diameter class totals,
+'                                        added documentation, error handling & renamed button prefixes to btnXX
 ' =================================
 
 ' ---------------------------------
@@ -795,37 +799,6 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
-' ---------------------------------
-' SUB:          Species_GotFocus
-' Description:  Handles species actions when control has focus
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:  Bonnie Campbell, March 8, 2016 - for NCPN tools
-' Adapted:
-' Revisions:
-'   BLC, 3/8/2016  - initial version
-' ---------------------------------
-Private Sub Species_GotFocus()
-On Error GoTo Err_Handler
-
-    'update the data to ensure new unknowns are added
-    Me.ActiveControl.Requery
-
-Exit_Handler:
-    Exit Sub
-    
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_OT_Tree_Saplings])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
 '==================================
 '   HC25-50-100 Highlighting
 '==================================
@@ -841,14 +814,17 @@ End Sub
 ' Adapted:
 ' Revisions:
 '   BLC, 3/29/2016  - initial version
+'   BLC, 8/9/2017   - revised to remove clearing action where
+'                     user chooses to enter 0 per issue:
+'                     https://github.com/NCPN/upland/issues/103
 ' ---------------------------------
 Private Sub SetHCHighlighting()
 On Error GoTo Err_Handler
 
     'clear HC25-50-100 values to get rid of 0 if not set
-    If Not Me.HC25 <> 0 Then Me.HC25 = Null
-    If Not Me.HC50 <> 0 Then Me.HC50 = Null
-    If Not Me.HC100 <> 0 Then Me.HC100 = Null
+'    If Not Me.HC25 <> 0 Then Me.HC25 = Null
+'    If Not Me.HC50 <> 0 Then Me.HC50 = Null
+'    If Not Me.HC100 <> 0 Then Me.HC100 = Null
 
 Exit_Handler:
     Exit Sub
@@ -858,36 +834,6 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - SetHCHighlighting[Form_fsub_OT_Tree_Saplings])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' SUB:          Species_Change
-' Description:  Handles species actions when control has been changed
-' Assumptions:  -
-' Parameters:   -
-' Returns:      N/A
-' Throws:       none
-' References:   none
-' Source/date:  Bonnie Campbell, March 29, 2016 - for NCPN tools
-' Adapted:
-' Revisions:
-'   BLC, 3/29/2016  - initial version
-' ---------------------------------
-Private Sub Species_Change()
-On Error GoTo Err_Handler
-
-    SetHCHighlighting
-
-Exit_Handler:
-    Exit Sub
-
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Species_Change[Form_fsub_OT_Tree_Saplings])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -982,96 +928,88 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+'==================================
+'   Species Record Methods
+'==================================
+
 ' ---------------------------------
-' SUB:          Alive_BeforeUpdate
-' Description:  Handles alive before update actions
+' SUB:          Species_GotFocus
+' Description:  Handles species actions when control has focus
 ' Assumptions:  -
 ' Parameters:   -
 ' Returns:      N/A
 ' Throws:       none
 ' References:   none
-' Source/date:
-' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Source/date:  Bonnie Campbell, March 8, 2016 - for NCPN tools
+' Adapted:
 ' Revisions:
-'   JRB, 6/x/2006  - initial version
-'   RDB, unknown   - ?
-'   BLC, 2/11/2016  - added documentation
+'   BLC, 3/8/2016  - initial version
 ' ---------------------------------
-Private Sub Alive_BeforeUpdate(Cancel As Integer)
-    If Not IsNull(DLookup("[TS_ID]", "tbl_OT_Tree_Saplings", "[Event_ID] = '" & Me!Event_ID & "' AND [Species] = '" & Me!Species & "' AND [Alive] = " & Me!Alive)) Then
-      MsgBox "This species is already recorded for this transect."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-    End If
+Private Sub Species_GotFocus()
+On Error GoTo Err_Handler
+
+    'update the data to ensure new unknowns are added
+    Me.ActiveControl.Requery
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_GotFocus[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonA1_Click()
+' ---------------------------------
+' SUB:          Species_Change
+' Description:  Handles species actions when control has been changed
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 29, 2016 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 3/29/2016  - initial version
+' ---------------------------------
+Private Sub Species_Change()
+On Error GoTo Err_Handler
 
-  If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 1
-    Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value + 1
-    End If
-  End If
-  Screen.PreviousControl.SetFocus
+    SetHCHighlighting
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_Change[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonA5_Click()
-  If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 5
-    Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value + 5
-    End If
-  End If
-  Screen.PreviousControl.SetFocus
-End Sub
-
-Private Sub ButtonS1_Click()
-  If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 0
-    ElseIf Screen.PreviousControl.value - 1 < 0 Then
-      MsgBox "Total cannot be negative.", , "Belt Shrubs"
-      Exit Sub
-    Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value - 1
-    End If
-  End If
-  Screen.PreviousControl.SetFocus
-End Sub
-
-Private Sub ButtonS5_Click()
-  If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 0
-    ElseIf Screen.PreviousControl.value - 5 < 0 Then
-      MsgBox "Total cannot be negative.", , "Belt Shrubs"
-      Exit Sub
-    Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value - 5
-    End If
-  End If
-  Screen.PreviousControl.SetFocus
-End Sub
-
-Private Sub ButtonUnknown_Click()
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-
-    DoCmd.OpenForm "frm_List_Unknown", , , , , acDialog
-    Me.Refresh
-End Sub
-
-Private Sub ButtonZero_Click()
-  If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-      Screen.PreviousControl.value = 0
-  End If
-  Screen.PreviousControl.SetFocus
-End Sub
-
+' ---------------------------------
+' SUB:          Species_BeforeUpdate
+' Description:  Handles species actions before update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, August 9, 2017 - for NCPN tools
+' Adapted:
+' Revisions:
+'   RDB, unknown   - initial version
+'   BLC, 8/9/2017  - added documentation, error handling
+' ---------------------------------
 Private Sub Species_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+
     Dim Reply As Integer
     Dim TextMsg As String
 
@@ -1097,29 +1035,54 @@ Private Sub Species_BeforeUpdate(Cancel As Integer)
      End If
     End If
 
-
-End Sub
-
-Private Sub ButtonMaster_Click()
-On Error GoTo Err_ButtonMaster_Click
-
-    Dim stDocName As String
-    Dim stLinkCriteria As String
-
-    stDocName = "frm_Master_Species"
-    DoCmd.OpenForm stDocName, , , stLinkCriteria
-
-Exit_ButtonMaster_Click:
+Exit_Handler:
     Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Species_BeforeUpdate[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+' ---------------------------------
+' SUB:          Alive_BeforeUpdate
+' Description:  Handles alive before update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:
+' Adapted:      Bonnie Campbell, February 11, 2016 - for NCPN tools
+' Revisions:
+'   JRB, 6/x/2006  - initial version
+'   RDB, unknown   - ?
+'   BLC, 2/11/2016  - added documentation
+'   BLC, 8/9/0217   - added error handling
+' ---------------------------------
+Private Sub Alive_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
 
-Err_ButtonMaster_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonMaster_Click
+    If Not IsNull(DLookup("[TS_ID]", "tbl_OT_Tree_Saplings", "[Event_ID] = '" & Me!Event_ID & "' AND [Species] = '" & Me!Species & "' AND [Alive] = " & Me!Alive)) Then
+      MsgBox "This species is already recorded for this transect."
+      DoCmd.CancelEvent
+      SendKeys "{ESC}"
+    End If
     
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Alive_BeforeUpdate[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
 ' ---------------------------------
-' SUB:          ButtonDelete_Click
+' SUB:          btnDelete_Click
 ' Description:  Handles delete button actions
 ' Assumptions:  -
 ' Parameters:   -
@@ -1132,8 +1095,9 @@ End Sub
 '   RDB, unknown  - initial version
 '   BLC, 2/11/2016 - added error handling, documentation, refresh checkbox/no data collected
 '   BLC, 4/13/2016 - added requery of related subform to clear/set conditional formatting on change
+'   BLC, 8/9/2017  - renamed button to btnDelete
 ' ---------------------------------
-Private Sub ButtonDelete_Click()
+Private Sub btnDelete_Click()
 On Error GoTo Err_Handler
 
   Dim intReply As Integer
@@ -1169,12 +1133,269 @@ On Error GoTo Err_Handler
 
 Exit_Handler:
     Exit Sub
-    
 Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - ButtonDelete_Click[Form_fsub_LP_Belt_Shrub])"
+            "Error encountered (#" & Err.Number & " - btnDelete_Click[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'==================================
+'   Tally Buttons
+'==================================
+
+' ---------------------------------
+' SUB:          btnA1_Click
+' Description:  Handles A1 button click actions (add 1 to value)
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, August 9, 2017 - for NCPN tools
+' Adapted:
+' Revisions:
+'   RDB, unknown   - initial version
+'   BLC, 8/9/2017  - added documentation, error handling
+' ---------------------------------
+Private Sub btnA1_Click()
+On Error GoTo Err_Handler
+
+  If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
+    If IsNull(Screen.PreviousControl.value) Then
+      Screen.PreviousControl.value = 1
+    Else
+      Screen.PreviousControl.value = Screen.PreviousControl.value + 1
+    End If
+  End If
+  Screen.PreviousControl.SetFocus
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnA1_Click[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnA5_Click
+' Description:  Handles A5 button click actions (add 5 to value)
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, August 9, 2017 - for NCPN tools
+' Adapted:
+' Revisions:
+'   RDB, unknown   - initial version
+'   BLC, 8/9/2017  - added documentation, error handling
+' ---------------------------------
+Private Sub btnA5_Click()
+On Error GoTo Err_Handler
+  If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
+    If IsNull(Screen.PreviousControl.value) Then
+      Screen.PreviousControl.value = 5
+    Else
+      Screen.PreviousControl.value = Screen.PreviousControl.value + 5
+    End If
+  End If
+  Screen.PreviousControl.SetFocus
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnA5_Click[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnS5_Click
+' Description:  Handles S5 button click actions (subtract 5 from value)
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, August 9, 2017 - for NCPN tools
+' Adapted:
+' Revisions:
+'   RDB, unknown   - initial version
+'   BLC, 8/9/2017  - added documentation, error handling
+' ---------------------------------
+Private Sub btnS1_Click()
+On Error GoTo Err_Handler
+
+  If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
+    If IsNull(Screen.PreviousControl.value) Then
+      Screen.PreviousControl.value = 0
+    ElseIf Screen.PreviousControl.value - 1 < 0 Then
+      MsgBox "Total cannot be negative.", , "Belt Shrubs"
+      Exit Sub
+    Else
+      Screen.PreviousControl.value = Screen.PreviousControl.value - 1
+    End If
+  End If
+  Screen.PreviousControl.SetFocus
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnS1_Click[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnS5_Click
+' Description:  Handles A5 button click actions (subtract 5 from value)
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, August 9, 2017 - for NCPN tools
+' Adapted:
+' Revisions:
+'   RDB, unknown   - initial version
+'   BLC, 8/9/2017  - added documentation, error handling
+' ---------------------------------
+Private Sub btnS5_Click()
+On Error GoTo Err_Handler
+
+  If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
+    If IsNull(Screen.PreviousControl.value) Then
+      Screen.PreviousControl.value = 0
+    ElseIf Screen.PreviousControl.value - 5 < 0 Then
+      MsgBox "Total cannot be negative.", , "Belt Shrubs"
+      Exit Sub
+    Else
+      Screen.PreviousControl.value = Screen.PreviousControl.value - 5
+    End If
+  End If
+  Screen.PreviousControl.SetFocus
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnS5_Click[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnZero_Click
+' Description:  Handles Zero button click actions (set value as 0)
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, August 9, 2017 - for NCPN tools
+' Adapted:
+' Revisions:
+'   RDB, unknown   - initial version
+'   BLC, 8/9/2017  - added documentation, error handling
+' ---------------------------------
+Private Sub btnZero_Click()
+On Error GoTo Err_Handler
+
+  If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
+      Screen.PreviousControl.value = 0
+  End If
+  Screen.PreviousControl.SetFocus
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnZero_Click[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnUnknown_Click
+' Description:  Handles Unknown button click actions (opens unknown form)
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, August 9, 2017 - for NCPN tools
+' Adapted:
+' Revisions:
+'   RDB, unknown   - initial version
+'   BLC, 8/9/2017  - added documentation, error handling
+' ---------------------------------
+Private Sub btnUnknown_Click()
+On Error GoTo Err_Handler
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+
+    DoCmd.OpenForm "frm_List_Unknown", , , , , acDialog
+    Me.Refresh
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnUnknown_Click[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnMaster_Click
+' Description:  Handles Master button click actions (opens master plants)
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, August 9, 2017 - for NCPN tools
+' Adapted:
+' Revisions:
+'   RDB, unknown   - initial version
+'   BLC, 8/9/2017  - added documentation, error handling
+' ---------------------------------
+Private Sub btnMaster_Click()
+On Error GoTo Err_Handler
+
+    Dim stDocName As String
+    Dim stLinkCriteria As String
+
+    stDocName = "frm_Master_Species"
+    DoCmd.OpenForm stDocName, , , stLinkCriteria
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnMaster_Click[Form_fsub_OT_Tree_Saplings])"
     End Select
     Resume Exit_Handler
 End Sub

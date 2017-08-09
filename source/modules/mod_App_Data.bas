@@ -491,8 +491,6 @@ On Error GoTo Err_Handler
     If rs.RecordCount > 0 Then
         
         
-        
-        
     Else
         GoTo Exit_Handler
     End If
@@ -811,7 +809,7 @@ On Error GoTo Err_Handler
     
     Params(0) = Template
     Params(1) = ID
-    Params(2) = IIf(InStr(Template, "wentworth") > 0, year(Date), IsActive)
+    Params(2) = IIf(InStr(Template, "wentworth") > 0, Year(Date), IsActive)
         
     SetRecord Template, Params
     

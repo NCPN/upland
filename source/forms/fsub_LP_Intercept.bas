@@ -6,6 +6,7 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     AllowAdditions = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =126
@@ -16,10 +17,10 @@ Begin Form
     Width =13980
     DatasheetFontHeight =9
     ItemSuffix =107
-    Left =108
-    Top =4188
-    Right =13632
-    Bottom =12312
+    Left =-930
+    Top =810
+    Right =12585
+    Bottom =9180
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xb0c0f4149355e340
@@ -164,15 +165,19 @@ Begin Form
                     Top =60
                     Width =1500
                     Height =300
-                    ForeColor =8421376
+                    ForeColor =255
                     Name ="ButtonInitialize"
                     Caption ="Initialize Form"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    LayoutCachedLeft =2220
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =3720
+                    LayoutCachedHeight =360
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -185,10 +190,10 @@ Begin Form
                     Caption ="Master Lookup"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -201,10 +206,10 @@ Begin Form
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -253,10 +258,10 @@ Begin Form
                     Caption ="More LC"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -269,10 +274,10 @@ Begin Form
                     Caption ="More Disturbance"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -446,6 +451,7 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
+                    Enabled = NotDefault
                     RowSourceTypeInt =1
                     OverlapFlags =85
                     IMESentenceMode =3
@@ -465,6 +471,7 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
+                    Enabled = NotDefault
                     RowSourceTypeInt =1
                     OverlapFlags =85
                     IMESentenceMode =3
@@ -506,6 +513,7 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
+                    Enabled = NotDefault
                     RowSourceTypeInt =1
                     OverlapFlags =85
                     IMESentenceMode =3
@@ -548,6 +556,7 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
+                    Enabled = NotDefault
                     RowSourceTypeInt =1
                     OverlapFlags =85
                     IMESentenceMode =3
@@ -590,6 +599,7 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
+                    Enabled = NotDefault
                     RowSourceTypeInt =1
                     OverlapFlags =85
                     IMESentenceMode =3

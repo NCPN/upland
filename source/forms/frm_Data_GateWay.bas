@@ -22,13 +22,13 @@ Begin Form
     Width =10560
     DatasheetFontHeight =10
     ItemSuffix =37
-    Left =2415
-    Top =2010
-    Right =12975
-    Bottom =7860
+    Left =4140
+    Top =1875
+    Right =14700
+    Bottom =7725
     DatasheetGridlinesColor =12632256
-    Filter ="Unit_code = 'ZION' AND Site_Selection = -1"
-    OrderBy ="Plot_ID DESC, Unit_Code"
+    Filter ="Unit_code = 'ARCH' AND Site_Selection = -1"
+    OrderBy ="Plot_ID"
     RecSrcDt = Begin
         0x29b5dcdf75fbe240
     End
@@ -538,8 +538,8 @@ Private Sub Form_Open(Cancel As Integer)
         Me.selPark = Forms!frm_Switchboard.cPark
         Me.Filter = "Unit_code = " & CorrectText(Me.selPark) & " AND Site_Selection = " & -1
         Me.FilterOn = True
-        Me.labPark.fontBold = True
-        Me!labMon.fontBold = True
+        Me.labPark.FontBold = True
+        Me!labMon.FontBold = True
         Me.togFilterByPark = True
     End If
 
@@ -569,13 +569,13 @@ Private Sub selMon_AfterUpdate()
     On Error GoTo Err_Handler
 
       Me.FilterOn = True
-      Me.labPark.fontBold = True
+      Me.labPark.FontBold = True
       Me.Filter = "Unit_code = " & CorrectText(Me.selPark)
       If Me!selMon = "On" Then
         Me.Filter = Me.Filter & " AND Site_Selection = " & -1
-        Me.labMon.fontBold = True
+        Me.labMon.FontBold = True
       Else
-        Me.labMon.fontBold = False
+        Me.labMon.FontBold = False
       End If
  
 Exit_Procedure:
@@ -593,7 +593,7 @@ Private Sub selPark_AfterUpdate()
     If togFilterByPark Then
       Me.Filter = "Unit_code = " & CorrectText(Me.selPark)
       Me.FilterOn = True
-      Me.labPark.fontBold = True
+      Me.labPark.FontBold = True
       If Me!selMon = "On" Then
         If Not IsNull(Me!selPark) Then
           Me.Filter = Me.Filter & " AND Site_Selection = " & -1
@@ -601,9 +601,9 @@ Private Sub selPark_AfterUpdate()
           Me.Filter = "Site_Selection = " & -1
         End If
         Me.FilterOn = True
-        Me.labMon.fontBold = True
+        Me.labMon.FontBold = True
       Else
-        Me!labMon.fontBold = False
+        Me!labMon.FontBold = False
       End If
     End If
 Exit_Procedure:
@@ -622,7 +622,7 @@ Private Sub togFilterByPark_AfterUpdate()
       If Not IsNull(Me!selPark) Then
         Me.Filter = "Unit_code = " & CorrectText(Me.selPark)
         Me.FilterOn = True
-        Me.labPark.fontBold = True
+        Me.labPark.FontBold = True
       End If
       If Me!selMon = "On" Then
         If Not IsNull(Me!selPark) Then
@@ -631,14 +631,14 @@ Private Sub togFilterByPark_AfterUpdate()
           Me.Filter = "Site_Selection = " & vbYes
         End If
         Me.FilterOn = True
-        Me.labMon.fontBold = True
+        Me.labMon.FontBold = True
       Else
-        Me!labMon.fontBold = False
+        Me!labMon.FontBold = False
       End If
     Else
         Me.FilterOn = False
-        Me.labPark.fontBold = False
-        Me!labMon.fontBold = False
+        Me.labPark.FontBold = False
+        Me!labMon.FontBold = False
     End If
 
 Exit_Procedure:
@@ -731,10 +731,10 @@ Private Function fxnSortRecords(ByVal strFieldName As String, _
 
     ' Change the label format to indicate the sorted field
     Me.Controls.Item(strSortFieldLabel).FontItalic = False
-    Me.Controls.Item(strSortFieldLabel).fontBold = False
+    Me.Controls.Item(strSortFieldLabel).FontBold = False
     strSortFieldLabel = "lab" & strFieldName
     Me.Controls.Item(strSortFieldLabel).FontItalic = True
-    Me.Controls.Item(strSortFieldLabel).fontBold = True
+    Me.Controls.Item(strSortFieldLabel).FontBold = True
 
 Exit_Procedure:
     Exit Function

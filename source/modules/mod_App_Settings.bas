@@ -73,8 +73,13 @@ Public gSubReportCount As Integer                  'global counter for subreport
 Public Const VCS_FULL_PATH As String = "Z:\_____LIB\dev\git_projects\libraries\VCS.accdb"   'Version Control System (VCS) db (contains modules for version control)
                                                                 'Tables to save for VCS (e.g. lookups)
 Public Const VCS_SAVE_TABLES As String = "tlu_projects, " & _
-    "tlu_Cover_Code, tlu_Cover_Value, tlu_Disturbance," & _
-    "tlu_NCPN_Plants, tlu_Parks, tlu_Size_Value, tlu_Species"
+    "tlu_Cover_Class, tlu_Crown_Class, tlu_Disturbance, " & _
+    "tlu_Eco_Site, tlu_Effervescence, tlu_Hillslope_Position, " & _
+    "tlu_LP_Disturbance, tlu_LP_Soil_Surface, tlu_Monument_Code, " & _
+    "tlu_NCPN_Plants, tlu_Parks, tlu_Profile_Depth, " & _
+    "tlu_Rock_Frag_Q, tlu_Rock_Frag_Size, tlu_Sand_Modifier, " & _
+    "tlu_Slope_Shape, tlu_Soil_Depth, tlu_Soil_Survey_Area, " & _
+    "tlu_Soil_Texture, tlu_Veg_Type"
 Public Const USER_ACCESS_CONTROL As Boolean = True             'Boolean flag -> db includes user access control or not
 Public Const DB_ADMIN_CONTROL As Boolean = False                'Boolean flag -> db does not include DbAdmin subform & controls
 Public Const FIX_LINKED_DBS As Boolean = False                  'Boolean flag -> db requires tbl_Dbs to be updated via FixLinkedDb (usually when DbAdmin is not fully implemented)

@@ -7,6 +7,7 @@ Begin Form
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     KeyPreview = NotDefault
+    FilterOn = NotDefault
     DefaultView =0
     ScrollBars =0
     ViewsAllowed =1
@@ -19,9 +20,10 @@ Begin Form
     Width =12960
     DatasheetFontHeight =9
     ItemSuffix =140
-    Top =3270
-    Right =9030
-    Bottom =7665
+    Left =-930
+    Top =750
+    Right =12180
+    Bottom =5400
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9ff2d503acd4e340
