@@ -20,10 +20,10 @@ Begin Form
     Width =16296
     DatasheetFontHeight =10
     ItemSuffix =213
-    Left =2310
-    Top =1335
-    Right =18855
-    Bottom =15795
+    Left =1605
+    Top =240
+    Right =18150
+    Bottom =14700
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{E35D7F2C-A99C-41FE-ACEC-A1DAD79E24AC}' AND [Event_ID]='201704101"
         "01034-289562463.760376'"
@@ -1595,6 +1595,9 @@ Option Explicit
 '               BLC - 3/22/2017 - 1.06 - added documentation, error handling, btnPlotQAQC
 '               BLC - 3/24/2017 - 1.07 - added CallingForm property, added TempVar("ParkCode")
 '               BLC - 3/31/2017 - 1.08 - added RemoveTemplateQueries to clear queries on form close
+'               BLC - 8/10/2017 - 1.09 - revised to open PlotCheck w/ WindowMode as
+'                                        acWindowNormal vs. acDialog to prevent form from
+'                                        behaving as a modal dialog
 ' =================================
 '---------------------
 ' Simulated Inheritance
@@ -2703,6 +2706,8 @@ End Sub
 '   JRB, 6/x/2006  - initial version
 '   BLC, 3/22/2017 - added documentation, error handling
 '   BLC, 3/31/2017 - added sample date open arg for PlotCheck
+'   BLC, 8/10/2017 - revised from opening with WindowMode as acDialog to acWindowNormal
+'                    to prevent PlotCheck from opening as a modal dialog box w/o controls
 ' ---------------------------------
 Private Sub btnPlotQAQC_Click()
 On Error GoTo Err_Handler
@@ -2710,10 +2715,15 @@ On Error GoTo Err_Handler
     'minimize calling form
     ToggleForm Me.Name, -1
 
-    'pass along form name, plot ID, sample date
-    DoCmd.OpenForm "PlotCheck", acNormal, , , , acDialog, Me.Name & _
+    'pass along form name, plot ID, sample date (WindowMode acWindowNormal vs. acDialog)
+    DoCmd.OpenForm "PlotCheck", acNormal, , , , acWindowNormal, Me.Name & _
                                                             "|" & Me.Plot_ID & _
                                                             "|" & Me.txtStart_date
+
+'    DoCmd.OpenForm "TestForm", acNormal, , , , acWindowNormal, Me.Name & _
+'                                                            "|" & Me.Plot_ID & _
+'                                                            "|" & Me.txtStart_date
+
 
 Exit_Handler:
     Exit Sub

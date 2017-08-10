@@ -1,23 +1,26 @@
 ﻿Version =20
 VersionRequired =20
 Begin Form
+    PopUp = NotDefault
     RecordSelectors = NotDefault
+    AutoCenter = NotDefault
+    NavigationButtons = NotDefault
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
+    AllowEdits = NotDefault
     ScrollBars =2
-    BorderStyle =1
     PictureAlignment =2
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
     Width =7560
     DatasheetFontHeight =11
-    ItemSuffix =10
-    Left =1380
-    Top =1380
-    Right =9195
-    Bottom =11220
+    ItemSuffix =12
+    Left =5970
+    Top =5040
+    Right =13785
+    Bottom =10680
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -36,14 +39,15 @@ Begin Form
     AllowPivotChartView =0
     AllowPivotChartView =0
     OrderByOnLoad =0
+    SplitFormDatasheet =1
     FilterOnLoad =255
     OrderByOnLoad =0
+    SplitFormDatasheet =1
     ShowPageMargins =0
     DisplayOnSharePointSite =1
     AllowLayoutView =0
     DatasheetAlternateBackColor =15921906
     DatasheetGridlinesColor12 =0
-    FitToScreen =255
     DatasheetBackThemeColorIndex =1
     BorderThemeColorIndex =3
     ThemeFontIndex =1
@@ -503,10 +507,50 @@ Begin Form
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
+                Begin TextBox
+                    Enabled = NotDefault
+                    TabStop = NotDefault
+                    OldBorderStyle =0
+                    OverlapFlags =87
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =420
+                    Top =660
+                    Width =360
+                    Height =315
+                    ColumnOrder =0
+                    FontSize =9
+                    TabIndex =2
+                    BorderColor =10921638
+                    ForeColor =15921906
+                    Name ="tbxCurrentRecord"
+                    ConditionalFormat = Begin
+                        0x0100000082000000010000000100000000000000000000001000000001000000 ,
+                        0xffffff00ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b004400450056005f004d004f00440045005d003d0054007200750065000000 ,
+                        0x0000
+                    End
+                    GridlineColor =10921638
+
+                    LayoutCachedLeft =420
+                    LayoutCachedTop =660
+                    LayoutCachedWidth =780
+                    LayoutCachedHeight =975
+                    ForeThemeColorIndex =1
+                    ForeTint =100.0
+                    ForeShade =95.0
+                    ConditionalFormat14 = Begin
+                        0x010001000000010000000000000001000000ffffff00ffffff000f0000005b00 ,
+                        0x4400450056005f004d004f00440045005d003d00540072007500650000000000 ,
+                        0x0000000000000000000000000000000000
+                    End
+                End
             End
         End
         Begin Section
-            Height =840
+            Height =420
             Name ="Detail"
             OnMouseMove ="[Event Procedure]"
             AlternateBackColor =15921906
@@ -515,16 +559,58 @@ Begin Form
             BackThemeColorIndex =1
             Begin
                 Begin TextBox
+                    Enabled = NotDefault
+                    Locked = NotDefault
+                    TabStop = NotDefault
+                    OldBorderStyle =0
+                    BorderWidth =1
+                    OverlapFlags =93
+                    TextAlign =1
+                    IMESentenceMode =3
+                    Width =7560
+                    Height =420
+                    FontSize =9
+                    TabIndex =8
+                    BorderColor =2366701
+                    ForeColor =4138256
+                    Name ="tbxRecord"
+                    ConditionalFormat = Begin
+                        0x01000000b4000000010000000100000000000000000000002900000001000000 ,
+                        0x00000000f1fa7600000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x28005b00490044005d003d005b00740062007800430075007200720065006e00 ,
+                        0x74005200650063006f00720064005d00290020004f00720020005b004e006500 ,
+                        0x77005200650063006f00720064005d0000000000
+                    End
+                    GridlineColor =10921638
+
+                    LayoutCachedWidth =7560
+                    LayoutCachedHeight =420
+                    BorderThemeColorIndex =-1
+                    BorderShade =100.0
+                    ForeThemeColorIndex =2
+                    ForeTint =100.0
+                    ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000100000000000000f1fa7600280000002800 ,
+                        0x5b00490044005d003d005b00740062007800430075007200720065006e007400 ,
+                        0x5200650063006f00720064005d00290020004f00720020005b004e0065007700 ,
+                        0x5200650063006f00720064005d00000000000000000000000000000000000000 ,
+                        0x000000
+                    End
+                End
+                Begin TextBox
                     Visible = NotDefault
                     TabStop = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =247
                     BackStyle =0
                     IMESentenceMode =3
                     Top =30
                     Width =360
                     Height =315
                     FontSize =9
+                    TabIndex =1
                     BorderColor =8355711
                     ForeColor =690698
                     Name ="tbxIcon"
@@ -543,7 +629,7 @@ Begin Form
                     Locked = NotDefault
                     TabStop = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =93
+                    OverlapFlags =255
                     TextAlign =1
                     BackStyle =0
                     IMESentenceMode =3
@@ -552,19 +638,21 @@ Begin Form
                     Width =4020
                     Height =315
                     FontSize =9
-                    TabIndex =1
+                    TabIndex =2
                     BorderColor =10921638
                     ForeColor =4138256
                     Name ="tbxTemplate"
                     ControlSource ="TemplateName"
+                    OnDblClick ="[Event Procedure]"
                     OnMouseMove ="[Event Procedure]"
                     ConditionalFormat = Begin
-                        0x01000000a8000000020000000100000000000000000000001100000001000000 ,
-                        0xed1c2400ffffff00010000000000000012000000230000000100000022b14c00 ,
-                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
-                        0x5b004600690065006c00640043006800650063006b004f004b005d003d003000 ,
-                        0x000000005b004600690065006c00640043006800650063006b004f004b005d00 ,
-                        0x3d00310000000000
+                        0x01000000e0000000030000000100000000000000000000001b00000001010000 ,
+                        0x00000000ffffff0001000000000000001c0000002d00000001000000ed1c2400 ,
+                        0xffffff0001000000000000002e0000003f0000000100000022b14c00ffffff00 ,
+                        0x5b00740062007800490044005d003d005b007400620078004300750072007200 ,
+                        0x65006e0074005200650063006f00720064005d00000000005b00460069006500 ,
+                        0x6c00640043006800650063006b004f004b005d003d003000000000005b004600 ,
+                        0x690065006c00640043006800650063006b004f004b005d003d00310000000000
                     End
                     GridlineColor =10921638
 
@@ -576,17 +664,22 @@ Begin Form
                     ForeTint =100.0
                     ForeShade =50.0
                     ConditionalFormat14 = Begin
-                        0x010002000000010000000000000001000000ed1c2400ffffff00100000005b00 ,
-                        0x4600690065006c00640043006800650063006b004f004b005d003d0030000000 ,
-                        0x0000000000000000000000000000000000000001000000000000000100000022 ,
-                        0xb14c00ffffff00100000005b004600690065006c00640043006800650063006b ,
-                        0x004f004b005d003d003100000000000000000000000000000000000000000000
+                        0x01000300000001000000000000000101000000000000ffffff001a0000005b00 ,
+                        0x740062007800490044005d003d005b0074006200780043007500720072006500 ,
+                        0x6e0074005200650063006f00720064005d000000000000000000000000000000 ,
+                        0x00000000000000010000000000000001000000ed1c2400ffffff00100000005b ,
+                        0x004600690065006c00640043006800650063006b004f004b005d003d00300000 ,
+                        0x0000000000000000000000000000000000000000010000000000000001000000 ,
+                        0x22b14c00ffffff00100000005b004600690065006c0064004300680065006300 ,
+                        0x6b004f004b005d003d0031000000000000000000000000000000000000000000 ,
+                        0x00
                     End
                 End
                 Begin TextBox
+                    Locked = NotDefault
                     TabStop = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =93
+                    OverlapFlags =255
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
@@ -595,18 +688,19 @@ Begin Form
                     Width =600
                     Height =300
                     FontSize =9
-                    TabIndex =2
+                    TabIndex =3
                     BorderColor =8355711
                     ForeColor =690698
                     Name ="tbxNumRecords"
                     ControlSource ="NumRecords"
                     ConditionalFormat = Begin
-                        0x01000000a8000000020000000100000000000000000000001100000001000000 ,
-                        0xff000000ffffff00010000000000000012000000230000000100000022b14c00 ,
-                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
-                        0x5b004600690065006c00640043006800650063006b004f004b005d003d003000 ,
-                        0x000000005b004600690065006c00640043006800650063006b004f004b005d00 ,
-                        0x3d00310000000000
+                        0x01000000e0000000030000000100000000000000000000001b00000001010000 ,
+                        0x00000000ffffff0001000000000000001c0000002d00000001000000ff000000 ,
+                        0xffffff0001000000000000002e0000003f0000000100000022b14c00ffffff00 ,
+                        0x5b00740062007800490044005d003d005b007400620078004300750072007200 ,
+                        0x65006e0074005200650063006f00720064005d00000000005b00460069006500 ,
+                        0x6c00640043006800650063006b004f004b005d003d003000000000005b004600 ,
+                        0x690065006c00640043006800650063006b004f004b005d003d00310000000000
                     End
                     GridlineColor =10921638
 
@@ -620,18 +714,22 @@ Begin Form
                     ForeThemeColorIndex =-1
                     ForeTint =50.0
                     ConditionalFormat14 = Begin
-                        0x010002000000010000000000000001000000ff000000ffffff00100000005b00 ,
-                        0x4600690065006c00640043006800650063006b004f004b005d003d0030000000 ,
-                        0x0000000000000000000000000000000000000001000000000000000100000022 ,
-                        0xb14c00ffffff00100000005b004600690065006c00640043006800650063006b ,
-                        0x004f004b005d003d003100000000000000000000000000000000000000000000
+                        0x01000300000001000000000000000101000000000000ffffff001a0000005b00 ,
+                        0x740062007800490044005d003d005b0074006200780043007500720072006500 ,
+                        0x6e0074005200650063006f00720064005d000000000000000000000000000000 ,
+                        0x00000000000000010000000000000001000000ff000000ffffff00100000005b ,
+                        0x004600690065006c00640043006800650063006b004f004b005d003d00300000 ,
+                        0x0000000000000000000000000000000000000000010000000000000001000000 ,
+                        0x22b14c00ffffff00100000005b004600690065006c0064004300680065006300 ,
+                        0x6b004f004b005d003d0031000000000000000000000000000000000000000000 ,
+                        0x00
                     End
                 End
                 Begin TextBox
                     Enabled = NotDefault
                     TabStop = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =247
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
@@ -640,18 +738,19 @@ Begin Form
                     Width =360
                     Height =315
                     FontSize =9
-                    TabIndex =3
+                    TabIndex =4
                     BorderColor =10921638
                     ForeColor =15921906
                     Name ="tbxID"
                     ControlSource ="ID"
                     ConditionalFormat = Begin
-                        0x01000000a8000000020000000100000000000000000000001100000001000000 ,
-                        0xff000000ffffff00010000000000000012000000230000000100000022b14c00 ,
-                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
-                        0x5b004600690065006c00640043006800650063006b004f004b005d003d003000 ,
-                        0x000000005b004600690065006c00640043006800650063006b004f004b005d00 ,
-                        0x3d00310000000000
+                        0x01000000e0000000030000000100000000000000000000001b00000001010000 ,
+                        0x00000000ffffff0001000000000000001c0000002d00000001000000ff000000 ,
+                        0xffffff0001000000000000002e0000003f0000000100000022b14c00ffffff00 ,
+                        0x5b00740062007800490044005d003d005b007400620078004300750072007200 ,
+                        0x65006e0074005200650063006f00720064005d00000000005b00460069006500 ,
+                        0x6c00640043006800650063006b004f004b005d003d003000000000005b004600 ,
+                        0x690065006c00640043006800650063006b004f004b005d003d00310000000000
                     End
                     GridlineColor =10921638
 
@@ -663,18 +762,21 @@ Begin Form
                     ForeTint =100.0
                     ForeShade =95.0
                     ConditionalFormat14 = Begin
-                        0x010002000000010000000000000001000000ff000000ffffff00100000005b00 ,
-                        0x4600690065006c00640043006800650063006b004f004b005d003d0030000000 ,
-                        0x0000000000000000000000000000000000000001000000000000000100000022 ,
-                        0xb14c00ffffff00100000005b004600690065006c00640043006800650063006b ,
-                        0x004f004b005d003d003100000000000000000000000000000000000000000000
+                        0x01000300000001000000000000000101000000000000ffffff001a0000005b00 ,
+                        0x740062007800490044005d003d005b0074006200780043007500720072006500 ,
+                        0x6e0074005200650063006f00720064005d000000000000000000000000000000 ,
+                        0x00000000000000010000000000000001000000ff000000ffffff00100000005b ,
+                        0x004600690065006c00640043006800650063006b004f004b005d003d00300000 ,
+                        0x0000000000000000000000000000000000000000010000000000000001000000 ,
+                        0x22b14c00ffffff00100000005b004600690065006c0064004300680065006300 ,
+                        0x6b004f004b005d003d0031000000000000000000000000000000000000000000 ,
+                        0x00
                     End
                 End
                 Begin CommandButton
-                    OverlapFlags =93
+                    OverlapFlags =255
                     Left =6240
                     Width =720
-                    TabIndex =4
                     ForeColor =4210752
                     Name ="btnRunCheck"
                     Caption ="Run"
@@ -713,6 +815,7 @@ Begin Form
                 End
                 Begin TextBox
                     Visible = NotDefault
+                    Enabled = NotDefault
                     Locked = NotDefault
                     TabStop = NotDefault
                     OldBorderStyle =0
@@ -743,7 +846,7 @@ Begin Form
                 Begin TextBox
                     TabStop = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =247
                     BackStyle =0
                     IMESentenceMode =3
                     Left =5640
@@ -772,7 +875,7 @@ Begin Form
                     Enabled = NotDefault
                     TabStop = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =215
+                    OverlapFlags =255
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
@@ -797,113 +900,46 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
-                    OverlapFlags =85
+                    TabStop = NotDefault
+                    OldBorderStyle =0
+                    OverlapFlags =247
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =6240
-                    Top =420
-                    Width =720
-                    Height =360
-                    TabIndex =8
+                    Left =6120
+                    Width =1152
+                    Height =367
+                    TabIndex =9
                     BackColor =15918812
                     BorderColor =14136213
                     ForeColor =4210752
-                    Name ="tbxRunCheck"
-                    StatusBarText ="View check results"
-                    OnClick ="[Event Procedure]"
-                    ControlTipText ="View check results"
+                    Name ="tbxNoRunCheck"
                     ConditionalFormat = Begin
-                        0x0100000086000000010000000100000000000000000000001200000000000000 ,
-                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
-                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x01000000ac000000020000000100000000000000000000001200000001000000 ,
+                        0x00000000ffffff00010000000000000013000000250000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
                         0x5b007400620078004e0075006d005200650063006f007200640073005d003d00 ,
-                        0x300000000000
+                        0x3000000000005b007400620078004e0075006d005200650063006f0072006400 ,
+                        0x73005d003e00300000000000
                     End
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =6240
-                    LayoutCachedTop =420
-                    LayoutCachedWidth =6960
-                    LayoutCachedHeight =780
+                    LayoutCachedLeft =6120
+                    LayoutCachedWidth =7272
+                    LayoutCachedHeight =367
                     BackThemeColorIndex =4
                     BackTint =20.0
                     BorderThemeColorIndex =4
                     BorderTint =60.0
                     BorderShade =100.0
                     ConditionalFormat14 = Begin
-                        0x01000100000001000000000000000000000000000000ffffff00110000005b00 ,
+                        0x01000200000001000000000000000100000000000000ffffff00110000005b00 ,
                         0x7400620078004e0075006d005200650063006f007200640073005d003d003000 ,
-                        0x000000000000000000000000000000000000000000
+                        0x0000000000000000000000000000000000000000000100000000000000010000 ,
+                        0x0000000000ffffff00110000005b007400620078004e0075006d005200650063 ,
+                        0x006f007200640073005d003e0030000000000000000000000000000000000000 ,
+                        0x00000000
                     End
-                End
-                Begin Image
-                    Left =4620
-                    Top =480
-                    Width =720
-                    Height =360
-                    BorderColor =10921638
-                    Name ="ibtnRunCheck"
-                    PictureData = Begin
-                        0x0e00000000000000010000006c00000000000000000000004300000023000000 ,
-                        0x00000000000000004f050000cb02000020454d46000001001c06000012000000 ,
-                        0x0100000000000000000000000000000080070000380400007e010000d7000000 ,
-                        0x00000000000000000000000030d40500d847030046000000980200008a020000 ,
-                        0x4744494301000080000300009b677a0a00000000720200000100090000033901 ,
-                        0x00000000090100000000050000000c0214002600040000000301080005000000 ,
-                        0x0b0200000000050000000c0214002600030000001e0005000000070104000000 ,
-                        0x0500000007010400000009010000410b2000cc00140026000000000014002600 ,
-                        0x0000000028000000260000001400000001000400000000000000000000000000 ,
-                        0x00000000000000000000000000000000ffffff00ffdbd600ffb09900ffa88500 ,
-                        0xffa68200ffdad100ffc39b00ffdead00ffd0a200ffbfbf00ffb48c00ffefef00 ,
-                        0xffb6900000000000000000001111111aaaaaaaaaaaaaaaaaaaaaaaac1111110a ,
-                        0x11123d5888888888888888888888888543211100116788888888888888888888 ,
-                        0x8888888888761108127888888888888888888888888888888887210513888888 ,
-                        0x8888888888888888888888888888310814888888888888888888888888888888 ,
-                        0x88884100158888888888888888888888888888888888bc081588888888888888 ,
-                        0x888888888888888888888a421588888888888888888888888888888888888a08 ,
-                        0x1588888888888888888888888888888888888a3f158888888888888888888888 ,
-                        0x8888888888888a081588888888888888888888888888888888888a3f15888888 ,
-                        0x88888888888888888888888888889a0815888888888888888888888888888888 ,
-                        0x8888513f14888888888888888888888888888888888841081388888888888888 ,
-                        0x8888888888888888888831001278888888888888888888888888888888872108 ,
-                        0x1167888888888888888888888888888888761100111234555555555555555555 ,
-                        0x5555555543211108111111111111111111111111111111111111110004000000 ,
-                        0x2701ffff0300000000000000110000000c000000080000000b00000010000000 ,
-                        0x4400000024000000090000001000000044000000240000000900000010000000 ,
-                        0x26000000140000000a0000001000000000000000000000000900000010000000 ,
-                        0x26000000140000002100000008000000150000000c0000000400000015000000 ,
-                        0x0c00000004000000510000004802000000000000000000004300000023000000 ,
-                        0x0000000000000000000000000000000026000000140000005000000068000000 ,
-                        0xb800000090010000000000002000cc0026000000140000002800000026000000 ,
-                        0x1400000001000400000000000000000000000000000000000000000000000000 ,
-                        0x00000000ffffff00ffdbd600ffb09900ffa88500ffa68200ffdad100ffc39b00 ,
-                        0xffdead00ffd0a200ffbfbf00ffb48c00ffefef00ffb690000000000000000000 ,
-                        0x1111111aaaaaaaaaaaaaaaaaaaaaaaac1111110a11123d588888888888888888 ,
-                        0x8888888543211100116788888888888888888888888888888876110812788888 ,
-                        0x8888888888888888888888888887210513888888888888888888888888888888 ,
-                        0x8888310814888888888888888888888888888888888841001588888888888888 ,
-                        0x88888888888888888888bc081588888888888888888888888888888888888a42 ,
-                        0x1588888888888888888888888888888888888a08158888888888888888888888 ,
-                        0x8888888888888a3f1588888888888888888888888888888888888a0815888888 ,
-                        0x88888888888888888888888888888a3f15888888888888888888888888888888 ,
-                        0x88889a08158888888888888888888888888888888888513f1488888888888888 ,
-                        0x8888888888888888888841081388888888888888888888888888888888883100 ,
-                        0x1278888888888888888888888888888888872108116788888888888888888888 ,
-                        0x8888888888761100111234555555555555555555555555554321110811111111 ,
-                        0x11111111111111111111111111111100220000000c000000ffffffff25000000 ,
-                        0x0c00000007000080250000000c00000000000080300000000c0000000f000080 ,
-                        0x4b0000001000000000000000050000000e000000140000000000000010000000 ,
-                        0x14000000
-                    End
-                    Picture ="btn_blu.png"
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =4620
-                    LayoutCachedTop =480
-                    LayoutCachedWidth =5340
-                    LayoutCachedHeight =840
-                    TabIndex =9
                 End
             End
         End
@@ -927,7 +963,7 @@ Option Explicit
 ' =================================
 ' Form:         PlotCheck
 ' Level:        Application form
-' Version:      1.04
+' Version:      1.06
 ' Basis:        Dropdown form
 '
 ' Description:  Plot field check form object related properties, events, functions & procedures for UI display
@@ -941,7 +977,11 @@ Option Explicit
 '               BLC - 3/30/2017 - 1.03 - added lblID_Click, revised RunCheck(),
 '                                        updated checks
 '               BLC - 3/31/2017 - 1.04 - added CallingSampleDate property
-'               BLC - 4/3/2017 - 1.05 - code cleanup
+'               BLC - 4/3/2017  - 1.05 - code cleanup
+'               BLC - 8/10/2017 - 1.06 - change from CurrentDb to CurrDb property to reduce pointers
+'                                        revise to minimize vs. open query
+'                                        added current record highlighting & tbxTemplate double click
+'                                        to run query
 ' =================================
 
 '---------------------
@@ -1170,20 +1210,35 @@ End Sub
 ' Parameters:   -
 ' Returns:      -
 ' Throws:       none
-' References:   -
+' References:
+'   Michael S. Meyers-Jouan, January 27, 2012
+'   http://database.ittoolbox.com/groups/technical-functional/access-l/highlighted-field-on-open-form-4618567
 ' Source/date:  Bonnie Campbell, June 1, 2016 - for NCPN tools
 ' Adapted:      -
 ' Revisions:
 '   BLC - 6/1/2016 - initial version
 '   BLC - 2/1/2017 - handles giving focus to new template after TemplateAdd
 '   BLC - 3/28/2017 - clear unused code for uplands
+'   BLC - 8/9/2017 - prevent focus & selection of textbox
+'   BLC - 8/10/2017 - added current record highlight (via conditional format & tbxCurrentRecord)
 ' ---------------------------------
 Private Sub Form_Current()
 On Error GoTo Err_Handler
 
+    'set current record
+    Me.tbxCurrentRecord = Me.tbxID
+
+    'prevent focus/select on query name (n.b. cannot focus on btnRunCheck > Error #2110)
+    Me.tbxNumRecords.SetFocus
+    Me.tbxNumRecords.SelStart = 0
+    Me.tbxNumRecords.SelLength = 0
+
     If Me.tbxNumRecords = 0 Then
         Me.btnRunCheck.Enabled = False
-    Else: Me.btnRunCheck.Enabled = True
+        Me.tbxNoRunCheck.Visible = True
+    Else
+        Me.btnRunCheck.Enabled = True
+        Me.tbxNoRunCheck.Visible = False
     End If
        
 Exit_Handler:
@@ -1198,8 +1253,8 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
-' Sub:          btnRunCheck_Click
-' Description:  Run check button click actions
+' Sub:          tbxTemplate_DblClick
+' Description:  template double click actions
 ' Assumptions:  -
 ' Parameters:   -
 ' Returns:      -
@@ -1210,14 +1265,9 @@ End Sub
 ' Source/date:  Bonnie Campbell, March 24, 2017 - for NCPN tools
 ' Adapted:      -
 ' Revisions:
-'   BLC - 3/24/2017 - initial version
-'   BLC - 3/28/2017 - code cleanup
-'   BLC - 3/30/2017 - revise to use g_AppTemplates
-'   BLC - 3/31/2017 - code cleanup
-'   BLC - 4/3/2017  - resolve issue w/ date SQL (ending # not in correct place) code cleanup
-'   BLC - 8/7/2017  - revise to run query in QueryView datasheet form to avoid modality
+'   BLC - 8/10/2017 - initial version
 ' ---------------------------------
-Private Sub btnRunCheck_Click()
+Private Sub tbxTemplate_DblClick(Cancel As Integer)
 On Error GoTo Err_Handler
     
     Dim db As DAO.Database
@@ -1226,7 +1276,7 @@ On Error GoTo Err_Handler
     Dim PlotID As Integer
     Dim ParkCode As String, fltr As String
     
-    Set db = CurrentDb
+    Set db = CurrDb
     
     With db
         Set qdf = .QueryDefs("usys_temp_qdf")
@@ -1277,10 +1327,13 @@ On Error GoTo Err_Handler
                 End If
                                                                 
                 'display results
-                'DoCmd.OpenForm "PlotCheckResults", acNormal
+'                DoCmd.OpenForm "PlotCheckResults", acNormal << empty results
                                 
-'                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
-                 DoCmd.OpenForm "QueryView", acFormDS, , , acFormReadOnly, acWindowNormal
+                'minimize form
+                DoCmd.Minimize
+                                
+                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
+'                 DoCmd.OpenForm "QueryView", acFormDS, , , acFormReadOnly, acWindowNormal << bumps into #3048-too many dbs open (> 2048 IDs)
             End With
                             
             'refresh form
@@ -1300,7 +1353,133 @@ On Error GoTo Err_Handler
 Exit_Handler:
     'cleanup
     Set rs = Nothing
-    db.Close
+    'db.Close
+    qdf.Close
+    qdf2.Close
+    
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case 3048
+'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+'            "Error encountered (#" & Err.Number & " - tbxTemplate_DblClick[PlotCheck form])"
+        Resume Next
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tbxTemplate_Click[PlotCheck form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          btnRunCheck_Click
+' Description:  Run check button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:
+'   Steve Schapel, September 15, 2008
+'   https://www.pcreview.co.uk/threads/switch-focus-to-query-through-vba.3622059/
+' Source/date:  Bonnie Campbell, March 24, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/24/2017 - initial version
+'   BLC - 3/28/2017 - code cleanup
+'   BLC - 3/30/2017 - revise to use g_AppTemplates
+'   BLC - 3/31/2017 - code cleanup
+'   BLC - 4/3/2017  - resolve issue w/ date SQL (ending # not in correct place) code cleanup
+'   BLC - 8/7/2017  - revise to run query in QueryView datasheet form to avoid modality
+'   BLC - 8/10/2017 - change from CurrentDb to CurrDb property to reduce pointers
+'                     revise to minimize then open query (vs. form)
+' ---------------------------------
+Private Sub btnRunCheck_Click()
+On Error GoTo Err_Handler
+    
+    Dim db As DAO.Database
+    Dim qdf As DAO.QueryDef, qdf2 As DAO.QueryDef
+    Dim rs As DAO.Recordset
+    Dim PlotID As Integer
+    Dim ParkCode As String, fltr As String
+    
+    Set db = CurrDb
+    
+    With db
+        Set qdf = .QueryDefs("usys_temp_qdf")
+        
+        With qdf
+
+            Dim strSQL As String
+            Dim IsParameterized As Boolean
+            
+            'default
+            IsParameterized = False
+
+            'set values
+'            ParkCode = TempVars("ParkCode")
+            PlotID = Me.lblPlotID.Caption
+'            SampleDate = Me.lblSampleDate.Caption
+            
+            .SQL = Me.tbxSQL
+            strSQL = .SQL
+            
+            'open query window
+            With db
+                
+                If QueryExists("usys_temp_display") Then
+                    'ensure temp query is closed & removed
+                    DoCmd.Close acQuery, "usys_temp_display", acSaveNo
+                    
+                    'remove usys_temp_display if it already exists
+                    If Not db.QueryDefs("usys_temp_display") Is Nothing Then _
+                        DoCmd.DeleteObject acQuery, "usys_temp_display"
+                End If
+                 
+                'limit query by park & plot
+                If Len(strSQL) > Len(Replace(strSQL, "PARAMETERS", "")) Then
+
+                    'replace park code & plotID parameters
+                    strSQL = Replace( _
+                             Replace( _
+                             Replace(strSQL, "[pkcode]", "'" & TempVars("ParkCode") & "'"), _
+                                "[pid]", PlotID), _
+                                "[vdate]", "#" & TempVars("SampleDate") & "#")
+
+                    'remove parameter clause (values already replaced)
+                    strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
+                                    
+                    Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
+
+                End If
+                                                                
+                'display results
+'                DoCmd.OpenForm "PlotCheckResults", acNormal << empty results
+                                
+                'minimize form
+                DoCmd.Minimize
+                                
+                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
+'                 DoCmd.OpenForm "QueryView", acFormDS, , , acFormReadOnly, acWindowNormal << bumps into #3048-too many dbs open (> 2048 IDs)
+            End With
+                            
+            'refresh form
+'            Me.Requery
+            
+            'minimize plotcheck so user can see query result
+'            ToggleForm "PlotCheck", -1
+            
+            'focus on the query (avoid PlotCheck appearing modal)
+'            DoCmd.SelectObject acQuery, "usys_temp_display", False
+            
+        End With
+                
+    End With
+
+    
+Exit_Handler:
+    'cleanup
+    Set rs = Nothing
+    'db.Close
     qdf.Close
     qdf2.Close
     
@@ -1332,6 +1511,7 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 8/9/2017 - initial version
+'   BLC - 8/10/2017 - change from CurrentDb to CurrDb property to reduce pointers
 ' ---------------------------------
 Private Sub tbxRunCheck_Click()
 On Error GoTo Err_Handler
@@ -1342,7 +1522,7 @@ On Error GoTo Err_Handler
     Dim PlotID As Integer
     Dim ParkCode As String, fltr As String
     
-    Set db = CurrentDb
+    Set db = CurrDb
     
     With db
         Set qdf = .QueryDefs("usys_temp_qdf")
@@ -1429,7 +1609,6 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
-
 
 ' ---------------------------------
 ' Sub:          lblID_Click

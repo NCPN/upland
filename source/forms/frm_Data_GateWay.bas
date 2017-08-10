@@ -22,9 +22,9 @@ Begin Form
     Width =10560
     DatasheetFontHeight =10
     ItemSuffix =37
-    Left =4140
+    Left =2490
     Top =1875
-    Right =14700
+    Right =13050
     Bottom =7725
     DatasheetGridlinesColor =12632256
     Filter ="Unit_code = 'ARCH' AND Site_Selection = -1"
@@ -43,7 +43,7 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
-    FilterOnLoad =0
+    FilterOnLoad =255
     AllowLayoutView =0
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -141,7 +141,7 @@ Begin Form
                     Top =1020
                     Width =1680
                     Height =228
-                    Name ="labUpdated_Date"
+                    Name ="lblUpdated_Date"
                     Caption ="Entered/updated*"
                     FontName ="Arial"
                     OnDblClick ="[Event Procedure]"
@@ -154,7 +154,7 @@ Begin Form
                     Top =1020
                     Width =795
                     Height =225
-                    Name ="labUnit_code"
+                    Name ="lblUnit_Code"
                     Caption ="Unit*"
                     FontName ="Arial"
                     OnDblClick ="[Event Procedure]"
@@ -169,7 +169,7 @@ Begin Form
                     FontSize =9
                     FontWeight =700
                     TabIndex =3
-                    Name ="cmdClose"
+                    Name ="btnClose"
                     Caption ="Close"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -204,7 +204,7 @@ Begin Form
                     ColumnOrder =1
                     TabIndex =1
                     ColumnInfo ="\"\";\"\";\"10\";\"8\""
-                    Name ="selPark"
+                    Name ="cbxPark"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT DISTINCT tbl_Locations.Unit_Code FROM tbl_Locations ORDER BY tbl_Location"
                         "s.Unit_Code; "
@@ -220,7 +220,8 @@ Begin Form
                             Top =660
                             Width =1320
                             Height =228
-                            Name ="labPark"
+                            FontWeight =700
+                            Name ="lblPark"
                             Caption ="Filter by:  Park"
                             FontName ="Arial"
                         End
@@ -234,8 +235,7 @@ Begin Form
                     Width =480
                     Height =300
                     ColumnOrder =0
-                    Name ="togFilterByPark"
-                    AfterUpdate ="[Event Procedure]"
+                    Name ="tglFilterByPark"
                     Caption ="Filter on"
                     PictureData = Begin
                         0x2800000010000000100000000100040000000000800000000000000000000000 ,
@@ -256,6 +256,7 @@ Begin Form
                         0x0000000000000000
                     End
                     FontName ="Arial"
+                    OnClick ="[Event Procedure]"
                     ObjectPalette = Begin
                         0x000301000000000000000000
                     End
@@ -267,13 +268,15 @@ Begin Form
                     WebImagePaddingBottom =1
                 End
                 Begin Label
+                    FontItalic = NotDefault
                     OverlapFlags =85
                     TextAlign =2
                     Left =1260
                     Top =1020
                     Width =660
                     Height =224
-                    Name ="labPlot_ID"
+                    FontWeight =700
+                    Name ="lblPlot_ID"
                     Caption ="Plot ID*"
                     FontName ="Arial"
                     OnDblClick ="[Event Procedure]"
@@ -286,7 +289,7 @@ Begin Form
                     FontSize =9
                     FontWeight =700
                     TabIndex =4
-                    Name ="ButtonNewSite"
+                    Name ="btnNewSite"
                     Caption ="Add a new site"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -303,7 +306,7 @@ Begin Form
                     Top =1020
                     Width =1800
                     Height =225
-                    Name ="Label29"
+                    Name ="lblSelForMonitoring"
                     Caption ="Selected for Monitoring"
                     FontName ="Arial"
                     Tag ="DetachedLabel"
@@ -316,7 +319,7 @@ Begin Form
                     FontSize =9
                     FontWeight =700
                     TabIndex =2
-                    Name ="buttonRefresh"
+                    Name ="btnRefresh"
                     Caption ="Refresh"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -337,7 +340,7 @@ Begin Form
                     Width =720
                     ColumnOrder =2
                     TabIndex =5
-                    Name ="selMon"
+                    Name ="cbxMonitor"
                     RowSourceType ="Value List"
                     RowSource ="\"On\";\"Off\""
                     ColumnWidths ="390"
@@ -352,7 +355,8 @@ Begin Form
                     Top =660
                     Width =2040
                     Height =239
-                    Name ="labMon"
+                    FontWeight =700
+                    Name ="lblMonitor"
                     Caption ="Selected for Monitoring"
                     FontName ="Arial"
                     Tag ="DetachedLabel"
@@ -375,7 +379,7 @@ Begin Form
                     Width =1920
                     ColumnWidth =1710
                     TabIndex =1
-                    Name ="txtUpdated"
+                    Name ="tbxUpdated"
                     ControlSource ="Updated_Date"
                     Format ="yyyy mmm dd hh:nn"
                     StatusBarText ="Date on which data entry occurred"
@@ -392,7 +396,7 @@ Begin Form
                     Top =60
                     Width =780
                     ColumnWidth =2310
-                    Name ="txtUnit_code"
+                    Name ="tbxUnit_Code"
                     ControlSource ="Unit_Code"
                     StatusBarText ="Unit code"
                     FontName ="Arial"
@@ -409,7 +413,7 @@ Begin Form
                     Top =60
                     Width =420
                     TabIndex =2
-                    Name ="txtLocation_ID"
+                    Name ="tbxLocation_ID"
                     ControlSource ="Location_ID"
                     StatusBarText ="Name of the location"
                     FontName ="Arial"
@@ -424,7 +428,7 @@ Begin Form
                     Top =60
                     Width =600
                     TabIndex =3
-                    Name ="txtPlot_ID"
+                    Name ="tbxPlot_ID"
                     ControlSource ="Plot_ID"
                     StatusBarText ="Plot identifier"
 
@@ -436,7 +440,7 @@ Begin Form
                     Width =1320
                     Height =300
                     TabIndex =4
-                    Name ="ButtonVisitList"
+                    Name ="btnVisitList"
                     Caption ="View Visits"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -465,7 +469,7 @@ Begin Form
                     Width =1319
                     Height =299
                     TabIndex =6
-                    Name ="ButtonNewVisit"
+                    Name ="btnNewVisit"
                     Caption ="Add New Visit"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -482,7 +486,7 @@ Begin Form
                     Width =1650
                     Height =300
                     TabIndex =7
-                    Name ="ButtonSiteChar"
+                    Name ="btnSiteChar"
                     Caption ="Site Characterization"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -510,196 +514,247 @@ Option Compare Database
 Option Explicit
 
 ' =================================
-' FORM NAME:    frm_Data_Gateway
-' Description:
+' Form:         frm_Data_Gateway
+' Level:        Application form
+' Version:      1.03
+' Basis:        Dropdown form
+'
+' Description:  Plot field check form object related properties, events, functions & procedures for UI display
+'
 ' Data source:  qfrm_Data_Gateway
 ' Data access:  view and delete records (delete by cmdDeleteRec)
 ' Pages:        none
-' Functions:    fxnSortRecords
-' References:   none
+' Functions:    SortRecords
 ' Source/date:  John R. Boetsch, June 7, 2006
-' Revisions:    Simon Kingston, Sept. 2006 - added CorrectText calls where strings were being used in criteria
-'                                          - updated cmdDeleteRec_Click() event to use appropriate criteria depending on primary key
+' References:   -
+' Revisions:    JRB - 6/7/2006 - 1.00 - initial version
+'               Simon Kingston, 9/x/2006 - 1.01 added CorrectText calls where strings were being used in criteria
+'                                               updated cmdDeleteRec_Click() event to use appropriate criteria depending on primary key
+'               BLC - 3/24/2017 - 1.02 - added CallingForm, CallingRecordID properties
+'               BLC - 8/9/2017  - 1.03 - added documentation, error handling
 ' =================================
+
+'---------------------
+' Simulated Inheritance
+'---------------------
+
+'---------------------
+' Declarations
+'---------------------
 Dim strSortField As String    ' Keeps track of current sort settings
 Dim strSortOrder As String
 Dim strSortFieldLabel As String
 
+Private m_CallingForm As String
+
+'---------------------
+' Event Declarations
+'---------------------
+Public Event InvalidCallingForm(value As String)
+
+'---------------------
+' Properties
+'---------------------
+Public Property Let CallingForm(value As String)
+        m_CallingForm = value
+End Property
+
+Public Property Get CallingForm() As String
+    CallingForm = m_CallingForm
+End Property
+
+'---------------------
+' Methods
+'---------------------
+
+' ---------------------------------
+' Sub:          Form_Open
+' Description:  form opening actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
     On Error GoTo Err_Handler
 
     Dim varReturn As Variant
 
     ' On opening the form, set the initial sort order
-    strSortFieldLabel = "labPlot_ID"
-    varReturn = fxnSortRecords("Unit_Code", "Plot_ID")
+    strSortFieldLabel = "lblPlot_ID"
+    varReturn = SortRecords("Unit_Code", "Plot_ID")
     ' Set the filter
     If fxnSwitchboardIsOpen Then
-        Me.selPark = Forms!frm_Switchboard.cPark
-        Me.Filter = "Unit_code = " & CorrectText(Me.selPark) & " AND Site_Selection = " & -1
+        Me.cbxPark = Forms!frm_Switchboard.cPark
+        Me.Filter = "Unit_code = " & CorrectText(Me.cbxPark) & " AND Site_Selection = " & -1
         Me.FilterOn = True
-        Me.labPark.FontBold = True
-        Me!labMon.FontBold = True
-        Me.togFilterByPark = True
+        Me.lblPark.FontBold = True
+        Me!lblMonitor.FontBold = True
+        Me.tglFilterByPark = True
     End If
 
-Exit_Procedure:
+Exit_Handler:
     Exit Sub
-
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Open[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub labPlot_ID_DblClick(Cancel As Integer)
+' ---------------------------------
+'   Form Filtering
+' ---------------------------------
+
+' ---------------------------------
+' Sub:          cbxPark_AfterUpdate
+' Description:  park selection dropdown after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub cbxPark_AfterUpdate()
     On Error GoTo Err_Handler
 
-    fxnSortRecords ("Plot_ID")
-
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-End Sub
-
-Private Sub selMon_AfterUpdate()
-    On Error GoTo Err_Handler
-
+    Me.Filter = "Unit_code = " & CorrectText(Me.cbxPark)
+    If tglFilterByPark Then
+      Me.Filter = "Unit_code = " & CorrectText(Me.cbxPark)
       Me.FilterOn = True
-      Me.labPark.FontBold = True
-      Me.Filter = "Unit_code = " & CorrectText(Me.selPark)
-      If Me!selMon = "On" Then
-        Me.Filter = Me.Filter & " AND Site_Selection = " & -1
-        Me.labMon.FontBold = True
-      Else
-        Me.labMon.FontBold = False
-      End If
- 
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-End Sub
-
-Private Sub selPark_AfterUpdate()
-    On Error GoTo Err_Handler
-
-    Me.Filter = "Unit_code = " & CorrectText(Me.selPark)
-    If togFilterByPark Then
-      Me.Filter = "Unit_code = " & CorrectText(Me.selPark)
-      Me.FilterOn = True
-      Me.labPark.FontBold = True
-      If Me!selMon = "On" Then
-        If Not IsNull(Me!selPark) Then
+      Me.lblPark.FontBold = True
+      If Me!cbxMonitor = "On" Then
+        If Not IsNull(Me!cbxPark) Then
           Me.Filter = Me.Filter & " AND Site_Selection = " & -1
         Else
           Me.Filter = "Site_Selection = " & -1
         End If
         Me.FilterOn = True
-        Me.labMon.FontBold = True
+        Me.lblMonitor.FontBold = True
       Else
-        Me!labMon.FontBold = False
+        Me!lblMonitor.FontBold = False
       End If
     End If
-Exit_Procedure:
+
+Exit_Handler:
     Exit Sub
-
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxPark_AfterUpdate[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub togFilterByPark_AfterUpdate()
+' ---------------------------------
+' Sub:          cbxMonitor_AfterUpdate
+' Description:  selected for monitoring dropdown after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub cbxMonitor_AfterUpdate()
+    On Error GoTo Err_Handler
+
+      Me.FilterOn = True
+      Me.lblPark.FontBold = True
+      Me.Filter = "Unit_code = " & CorrectText(Me.cbxPark)
+      If Me!cbxMonitor = "On" Then
+        Me.Filter = Me.Filter & " AND Site_Selection = " & -1
+        Me.lblMonitor.FontBold = True
+      Else
+        Me.lblMonitor.FontBold = False
+      End If
+ 
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxMonitor_AfterUpdate[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          tglFilterByPark_AfterUpdate
+' Description:  filter by park dropdown after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub tglFilterByPark_AfterUpdate()
     On Error GoTo Err_Handler
 
     If Me.ActiveControl Then
-      If Not IsNull(Me!selPark) Then
-        Me.Filter = "Unit_code = " & CorrectText(Me.selPark)
+      If Not IsNull(Me!cbxPark) Then
+        Me.Filter = "Unit_code = " & CorrectText(Me.cbxPark)
         Me.FilterOn = True
-        Me.labPark.FontBold = True
+        Me.lblPark.FontBold = True
       End If
       If Me!selMon = "On" Then
-        If Not IsNull(Me!selPark) Then
+        If Not IsNull(Me!cbxPark) Then
           Me.Filter = Me.Filter & " AND Site_Selection = " & -1
         Else
           Me.Filter = "Site_Selection = " & vbYes
         End If
         Me.FilterOn = True
-        Me.labMon.FontBold = True
+        Me.lblMonitor.FontBold = True
       Else
-        Me!labMon.FontBold = False
+        Me!lblMonitor.FontBold = False
       End If
     Else
         Me.FilterOn = False
-        Me.labPark.FontBold = False
-        Me!labMon.FontBold = False
+        Me.lblPark.FontBold = False
+        Me!lblMonitor.FontBold = False
     End If
 
-Exit_Procedure:
+Exit_Handler:
     Exit Sub
-
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglFilterByPark_AfterUpdate[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+'  Sorting Methods
+' ---------------------------------
 
-
-Private Sub cmdClose_Click()
-    On Error GoTo Err_Handler
-
-    DoCmd.Close , , acSaveNo
-
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
-End Sub
-
-' =================================
-' The next several procedures re-sort the records if the user
-'   double-clicks on a field label
-' =================================
-Private Sub labUnit_code_DblClick(Cancel As Integer)
-    On Error GoTo Err_Handler
-
-    fxnSortRecords ("Unit_code")
-
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
-End Sub
-
-Private Sub labUpdated_Date_DblClick(Cancel As Integer)
-    On Error GoTo Err_Handler
-
-    fxnSortRecords ("Updated_Date")
-
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
-End Sub
-
-' =================================
-' FUNCTION:     fxnSortRecords
+' ---------------------------------
+' FUNCTION:     SortRecords
 ' Description:  Sorts the records by the indicated field
 ' Parameters:   strFieldName
 ' Returns:      none
@@ -708,8 +763,11 @@ End Sub
 '               (form-level variables)
 ' Source/date:  John R. Boetsch, May 5, 2006
 ' Revisions:    <name, date, desc - add lines as you go>
-' =================================
-Private Function fxnSortRecords(ByVal strFieldName As String, _
+'               JRB, 5/5/2006 - initial version
+'               BLC, 8/9/2017 - added error handling, documentation
+'                               renamed from fxnSortRecords
+' ---------------------------------
+Private Function SortRecords(ByVal strFieldName As String, _
     Optional ByVal strField2Name As String)
     On Error GoTo Err_Handler
 
@@ -732,102 +790,314 @@ Private Function fxnSortRecords(ByVal strFieldName As String, _
     ' Change the label format to indicate the sorted field
     Me.Controls.Item(strSortFieldLabel).FontItalic = False
     Me.Controls.Item(strSortFieldLabel).FontBold = False
-    strSortFieldLabel = "lab" & strFieldName
+    strSortFieldLabel = "lbl" & strFieldName
     Me.Controls.Item(strSortFieldLabel).FontItalic = True
     Me.Controls.Item(strSortFieldLabel).FontBold = True
 
-Exit_Procedure:
+Exit_Handler:
     Exit Function
-
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-        "Error encountered (fxnSortRecords)"
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SortRecords[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Function
 
-Private Sub ButtonNewSite_Click()
-On Error GoTo Err_ButtonNewSite_Click
+' ---------------------------------
+' Sub:          lblUnit_Code_DblClick
+' Description:  unit code (park) label double click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub lblUnit_Code_DblClick(Cancel As Integer)
+    On Error GoTo Err_Handler
 
-    DoCmd.OpenForm "frm_Locations", , , , acFormAdd, , "New record"
+    SortRecords ("Unit_Code")
 
-Exit_ButtonNewSite_Click:
+Exit_Handler:
     Exit Sub
-
-Err_ButtonNewSite_Click:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_ButtonNewSite_Click
-    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - lblUnit_Code_DblClick[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonVisitList_Click()
-On Error GoTo Err_ButtonVisitList_Click
+' ---------------------------------
+' Sub:          lblPlot_ID_DblClick
+' Description:  form opening actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub lblPlot_ID_DblClick(Cancel As Integer)
+    On Error GoTo Err_Handler
+
+    SortRecords ("Plot_ID")
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - lblPlot_ID_DblClick[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          lblUpdated_DblClick
+' Description:  entered/updated label double click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub lblUpdated_Date_DblClick(Cancel As Integer)
+    On Error GoTo Err_Handler
+
+    SortRecords ("Updated_Date")
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - lblUpdated_Date_DblClick[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+'   Record Level Methods
+' ---------------------------------
+
+' ---------------------------------
+' Sub:          btnVisitList_Click
+' Description:  visit list button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnVisitList_Click()
+On Error GoTo Err_Handler
 
     Dim stDocName As String
     Dim stLinkCriteria As String
 
     stDocName = "frm_Visit_Date"
     
-    stLinkCriteria = "[Location_ID]=" & "'" & Me![txtLocation_ID] & "'"
+    stLinkCriteria = "[Location_ID]=" & "'" & Me![tbxLocation_ID] & "'"
     DoCmd.OpenForm stDocName, , , stLinkCriteria
 
-Exit_ButtonVisitList_Click:
+Exit_Handler:
     Exit Sub
-
-Err_ButtonVisitList_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonVisitList_Click
-    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnVisitList_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
-Private Sub ButtonRefresh_Click()
-On Error GoTo Err_ButtonRefresh_Click
 
-    Me.Requery
-
-Exit_ButtonRefresh_Click:
-    Exit Sub
-
-Err_ButtonRefresh_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonRefresh_Click
-    
-End Sub
-Private Sub ButtonNewVisit_Click()
-On Error GoTo Err_ButtonNewVisit_Click
+' ---------------------------------
+' Sub:          btnNewVisit_Click
+' Description:  new visit click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnNewVisit_Click()
+On Error GoTo Err_Handler
 
     Dim stDocName As String
     Dim stLinkCriteria As String
 
     stDocName = "frm_Plot_Revisit"
     
-    stLinkCriteria = "[Location_ID]=" & "'" & Me![txtLocation_ID] & "'"
+    stLinkCriteria = "[Location_ID]=" & "'" & Me![tbxLocation_ID] & "'"
     DoCmd.OpenForm stDocName, , , stLinkCriteria
 '    DoCmd.Close acForm, "frm_Data_Gateway"
 
-Exit_ButtonNewVisit_Click:
+Exit_Handler:
     Exit Sub
-
-Err_ButtonNewVisit_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonNewVisit_Click
-    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnNewVisit_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
-Private Sub ButtonSiteChar_Click()
-On Error GoTo Err_ButtonSiteChar_Click
+
+' ---------------------------------
+' Sub:          btnSiteChar_Click
+' Description:  site characterization button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnSiteChar_Click()
+On Error GoTo Err_Handler
 
     Dim stDocName As String
     Dim stLinkCriteria As String
 
     stDocName = "frm_Locations"
     
-    stLinkCriteria = "[Location_ID]=" & "'" & Me![txtLocation_ID] & "'"
+    stLinkCriteria = "[Location_ID]=" & "'" & Me![tbxLocation_ID] & "'"
     DoCmd.OpenForm stDocName, , , stLinkCriteria
 
-Exit_ButtonSiteChar_Click:
+Exit_Handler:
     Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnSiteChar_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
-Err_ButtonSiteChar_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonSiteChar_Click
-    
+' ---------------------------------
+'  Overall Methods
+' ---------------------------------
+
+' ---------------------------------
+' Sub:          btnNewSite_Click
+' Description:  new site click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnNewSite_Click()
+On Error GoTo Err_Handler
+
+    DoCmd.OpenForm "frm_Locations", , , , acFormAdd, , "New record"
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnNewSite_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          btnRefresh_Click
+' Description:  refresh button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnRefresh_Click()
+On Error GoTo Err_Handler
+
+    Me.Requery
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnRefresh_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          btnClose_Click
+' Description:  close button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/9/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnClose_Click()
+    On Error GoTo Err_Handler
+
+    DoCmd.Close , , acSaveNo
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnClose_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub

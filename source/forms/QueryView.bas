@@ -15,10 +15,9 @@ Begin Form
     DatasheetFontHeight =11
     Left =585
     Top =1320
-    Right =2370
-    Bottom =3375
+    Right =9240
+    Bottom =3660
     DatasheetGridlinesColor =14806254
-    Filter ="[FieldCheck]=1"
     RecSrcDt = Begin
         0x96574bf84ef9e440
     End
@@ -35,8 +34,8 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    FilterOnLoad =0
     OrderByOnLoad =0
-    FilterOnLoad =255
     OrderByOnLoad =0
     ShowPageMargins =0
     DisplayOnSharePointSite =1
@@ -207,8 +206,8 @@ On Error GoTo Err_Handler
 
     'defaults
     Me.Filter = "[FieldCheck]=" & 1
-    Me.FilterOnLoad = True
-    Me.AllowEdits = True
+    'Me.FilterOnLoad = True
+    'Me.AllowEdits = True
     Me.AllowFilters = True
     
     'clear num records & run queries
