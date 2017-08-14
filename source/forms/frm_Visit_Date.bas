@@ -19,9 +19,9 @@ Begin Form
     Width =4680
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =6780
+    Left =6975
     Top =5700
-    Right =11715
+    Right =11910
     Bottom =8985
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='20081016093629-468700110.912323'"
@@ -30,6 +30,7 @@ Begin Form
     End
     RecordSource ="qfrm_Visit_Date"
     Caption ="Select a Visit"
+    OnOpen ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
         0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
@@ -165,10 +166,11 @@ Begin Form
                     Top =780
                     Width =1020
                     Height =300
-                    Name ="ButtonClose"
+                    Name ="btnClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
 
+                    CursorOnHover =1
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
@@ -221,7 +223,7 @@ Begin Form
                     Height =360
                     FontSize =12
                     FontWeight =700
-                    Name ="Label12"
+                    Name ="lblTitle"
                     Caption ="Select a Visit to Edit"
                 End
             End
@@ -292,10 +294,11 @@ Begin Form
                     Width =1020
                     Height =300
                     TabIndex =3
-                    Name ="ButtonEdit"
+                    Name ="btnEdit"
                     Caption ="Edit Visit"
                     OnClick ="[Event Procedure]"
 
+                    CursorOnHover =1
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
@@ -316,36 +319,153 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
 
-Private Sub ButtonClose_Click()
-On Error GoTo Err_ButtonClose_Click
+' =================================
+' Form:         frm_Visit_Date
+' Level:        Application form
+' Version:      1.01
+' Basis:        -
+'
+' Description:  Visit viewing form object related properties, events, functions & procedures for UI display
+'
+' Data source:  qfrm_Data_Gateway
+' Data access:  view and delete records (delete by cmdDeleteRec)
+' Pages:        none
+' Functions:    SortRecords
+' Source/date:  John R. Boetsch, June 7, 2006
+' References:   -
+' Revisions:    JRB - 6/7/2006  - 1.00 - initial version
+'               BLC - 8/10/2017 - 1.01 - added CallingForm, CallingRecordID properties
+'                                        added documentation, error handling
+' =================================
 
-    DoCmd.Close
+'---------------------
+' Simulated Inheritance
+'---------------------
 
-Exit_ButtonClose_Click:
-    Exit Sub
+'---------------------
+' Declarations
+'---------------------
+Private m_CallingForm As String
 
-Err_ButtonClose_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonClose_Click
-    
-End Sub
-Private Sub ButtonEdit_Click()
+'---------------------
+' Event Declarations
+'---------------------
+Public Event InvalidCallingForm(value As String)
+
+'---------------------
+' Properties
+'---------------------
+Public Property Let CallingForm(value As String)
+        m_CallingForm = value
+End Property
+
+Public Property Get CallingForm() As String
+    CallingForm = m_CallingForm
+End Property
+
+'---------------------
+' Methods
+'---------------------
+
+' ---------------------------------
+' Sub:          Form_Open
+' Description:  form opening actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 8/10/2017 - initial version
+' ---------------------------------
+Private Sub Form_Open(Cancel As Integer)
     On Error GoTo Err_Handler
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Open[frm_Visit_Date form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          btnEdit_Click
+' Description:  edit button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/10/2017 - added documentation, error handling
+'   BLC - 8/11/2017 - set TempVars for reopening Data Entry w/ PlotCheck
+' ---------------------------------
+Private Sub btnEdit_Click()
+On Error GoTo Err_Handler
 
     Dim strCriteriaLoc As String
     Dim strCriteriaEvent As String
 
         strCriteriaLoc = GetCriteriaString("[Location_ID]=", "tbl_Locations", "Location_ID", Me.Name, "Location_ID")
         strCriteriaEvent = GetCriteriaString("[Event_ID]=", "tbl_Events", "Event_ID", Me.Name, "Event_ID")
+        
+        'set TempVars for re-opening from PlotCheck
+        SetTempVar "CriteriaLoc", strCriteriaLoc
+        SetTempVar "CriteriaEvent", strCriteriaEvent
+        
         ' Filter by location and event
         DoCmd.OpenForm "frm_Data_Entry", , , strCriteriaLoc & " AND " & strCriteriaEvent, , , strCriteriaEvent
         DoCmd.Close acForm, "frm_Visit_Date"
         DoCmd.SelectObject acForm, "frm_Data_Entry"
-Exit_Procedure:
-    Exit Sub
 
+Exit_Handler:
+    Exit Sub
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnEdit_Click[frm_Visit_Date form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          btnClose_Click
+' Description:  close button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:   John R. Boetsch, June 7, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006 - initial version
+'   BLC - 8/10/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnClose_Click()
+On Error GoTo Err_Handler
+
+    DoCmd.Close
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnClose_Click[frm_Visit_Date form])"
+    End Select
+    Resume Exit_Handler
 End Sub

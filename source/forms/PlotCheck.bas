@@ -16,10 +16,10 @@ Begin Form
     GridY =24
     Width =7560
     DatasheetFontHeight =11
-    ItemSuffix =12
-    Left =5970
+    ItemSuffix =13
+    Left =9195
     Top =5040
-    Right =13785
+    Right =17010
     Bottom =10680
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
@@ -157,25 +157,25 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =223
-                    Left =120
-                    Top =120
-                    Width =7260
+                    OverlapFlags =93
+                    Left =780
+                    Top =450
+                    Width =5760
                     Height =540
                     BorderColor =8355711
                     ForeColor =16777164
                     Name ="lblDirections"
                     Caption ="directions"
                     GridlineColor =10921638
-                    LayoutCachedLeft =120
-                    LayoutCachedTop =120
-                    LayoutCachedWidth =7380
-                    LayoutCachedHeight =660
+                    LayoutCachedLeft =780
+                    LayoutCachedTop =450
+                    LayoutCachedWidth =6540
+                    LayoutCachedHeight =990
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =93
+                    OverlapFlags =85
                     Left =1080
                     Top =1080
                     Width =3960
@@ -196,8 +196,8 @@ Begin Form
                 End
                 Begin Label
                     OverlapFlags =223
-                    Left =6480
-                    Top =120
+                    Left =1260
+                    Top =60
                     Width =720
                     Height =315
                     FontWeight =500
@@ -206,16 +206,16 @@ Begin Form
                     Name ="lblPlot"
                     Caption ="Plot #"
                     GridlineColor =10921638
-                    LayoutCachedLeft =6480
-                    LayoutCachedTop =120
-                    LayoutCachedWidth =7200
-                    LayoutCachedHeight =435
+                    LayoutCachedLeft =1260
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =1980
+                    LayoutCachedHeight =375
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
                 Begin CommandButton
                     Visible = NotDefault
-                    OverlapFlags =93
+                    OverlapFlags =223
                     Left =6360
                     Top =840
                     Width =720
@@ -280,7 +280,7 @@ Begin Form
                 Begin CommandButton
                     Visible = NotDefault
                     TabStop = NotDefault
-                    OverlapFlags =93
+                    OverlapFlags =215
                     Left =5640
                     Top =840
                     Width =504
@@ -345,8 +345,8 @@ Begin Form
                 End
                 Begin Label
                     OverlapFlags =223
-                    Left =5280
-                    Top =120
+                    Left =60
+                    Top =60
                     Width =720
                     Height =315
                     FontWeight =500
@@ -355,18 +355,18 @@ Begin Form
                     Name ="lblPark"
                     Caption ="Park"
                     GridlineColor =10921638
-                    LayoutCachedLeft =5280
-                    LayoutCachedTop =120
-                    LayoutCachedWidth =6000
-                    LayoutCachedHeight =435
+                    LayoutCachedLeft =60
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =780
+                    LayoutCachedHeight =375
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
                 Begin Label
                     OverlapFlags =215
                     TextAlign =2
-                    Left =7080
-                    Top =150
+                    Left =1860
+                    Top =90
                     Width =480
                     Height =315
                     FontSize =9
@@ -374,10 +374,10 @@ Begin Form
                     ForeColor =6750207
                     Name ="lblPlotID"
                     GridlineColor =10921638
-                    LayoutCachedLeft =7080
-                    LayoutCachedTop =150
-                    LayoutCachedWidth =7560
-                    LayoutCachedHeight =465
+                    LayoutCachedLeft =1860
+                    LayoutCachedTop =90
+                    LayoutCachedWidth =2340
+                    LayoutCachedHeight =405
                     BorderThemeColorIndex =1
                     BorderTint =100.0
                     BorderShade =65.0
@@ -387,8 +387,8 @@ Begin Form
                 Begin Label
                     OverlapFlags =215
                     TextAlign =2
-                    Left =5760
-                    Top =150
+                    Left =540
+                    Top =90
                     Width =660
                     Height =315
                     FontSize =9
@@ -396,10 +396,10 @@ Begin Form
                     ForeColor =6750207
                     Name ="lblParkCode"
                     GridlineColor =10921638
-                    LayoutCachedLeft =5760
-                    LayoutCachedTop =150
-                    LayoutCachedWidth =6420
-                    LayoutCachedHeight =465
+                    LayoutCachedLeft =540
+                    LayoutCachedTop =90
+                    LayoutCachedWidth =1200
+                    LayoutCachedHeight =405
                     BorderThemeColorIndex =1
                     BorderTint =100.0
                     BorderShade =65.0
@@ -407,46 +407,27 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =223
+                    OverlapFlags =215
                     TextAlign =2
-                    Left =4860
-                    Top =900
-                    Width =780
-                    Height =525
+                    Left =6240
+                    Top =1080
+                    Width =960
+                    Height =345
                     FontWeight =500
                     BorderColor =8355711
                     ForeColor =16777215
                     Name ="lblRecordsReturned"
                     Caption ="# Records"
                     GridlineColor =10921638
-                    LayoutCachedLeft =4860
-                    LayoutCachedTop =900
-                    LayoutCachedWidth =5640
+                    LayoutCachedLeft =6240
+                    LayoutCachedTop =1080
+                    LayoutCachedWidth =7200
                     LayoutCachedHeight =1425
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =215
-                    Left =6000
-                    Top =1065
-                    Width =1275
-                    Height =315
-                    FontWeight =500
-                    BorderColor =8355711
-                    ForeColor =16777215
-                    Name ="lblViewResults"
-                    Caption ="View Results"
-                    GridlineColor =10921638
-                    LayoutCachedLeft =6000
-                    LayoutCachedTop =1065
-                    LayoutCachedWidth =7275
-                    LayoutCachedHeight =1380
-                    ForeThemeColorIndex =-1
-                    ForeTint =100.0
-                End
-                Begin Label
-                    OverlapFlags =85
+                    OverlapFlags =93
                     TextAlign =2
                     Left =420
                     Top =1080
@@ -467,9 +448,9 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =223
-                    Left =5280
-                    Top =585
+                    OverlapFlags =93
+                    Left =5580
+                    Top =60
                     Width =1080
                     Height =315
                     FontWeight =500
@@ -478,18 +459,18 @@ Begin Form
                     Name ="lblVIsitDate"
                     Caption ="Visit Date"
                     GridlineColor =10921638
-                    LayoutCachedLeft =5280
-                    LayoutCachedTop =585
-                    LayoutCachedWidth =6360
-                    LayoutCachedHeight =900
+                    LayoutCachedLeft =5580
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =6660
+                    LayoutCachedHeight =375
                     ForeThemeColorIndex =-1
                     ForeTint =100.0
                 End
                 Begin Label
-                    OverlapFlags =215
+                    OverlapFlags =87
                     TextAlign =2
-                    Left =6360
-                    Top =600
+                    Left =6660
+                    Top =90
                     Width =840
                     Height =315
                     FontSize =9
@@ -497,10 +478,10 @@ Begin Form
                     ForeColor =6750207
                     Name ="lblSampleDate"
                     GridlineColor =10921638
-                    LayoutCachedLeft =6360
-                    LayoutCachedTop =600
-                    LayoutCachedWidth =7200
-                    LayoutCachedHeight =915
+                    LayoutCachedLeft =6660
+                    LayoutCachedTop =90
+                    LayoutCachedWidth =7500
+                    LayoutCachedHeight =405
                     BorderThemeColorIndex =1
                     BorderTint =100.0
                     BorderShade =65.0
@@ -508,44 +489,90 @@ Begin Form
                     ForeTint =100.0
                 End
                 Begin TextBox
-                    Enabled = NotDefault
+                    TabStop = NotDefault
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =3840
+                    Top =60
+                    Width =900
+                    Height =255
+                    ColumnOrder =1
+                    FontSize =8
+                    TabIndex =2
+                    BackColor =-2147483643
+                    ForeColor =12566463
+                    Name ="tbxDevMode"
+                    FontName ="MS Sans Serif"
+                    ConditionalFormat = Begin
+                        0x010000006e000000010000000000000002000000000000000600000001000000 ,
+                        0x3f3f3f00ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x460061006c007300650000000000
+                    End
+
+                    LayoutCachedLeft =3840
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =4740
+                    LayoutCachedHeight =315
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    BorderShade =100.0
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    ForeTint =100.0
+                    ConditionalFormat14 = Begin
+                        0x0100010000000000000002000000010000003f3f3f00ffffff00050000004600 ,
+                        0x61006c0073006500000000000000000000000000000000000000000000
+                    End
+                    GridlineThemeColorIndex =-1
+                    GridlineShade =100.0
+                End
+                Begin TextBox
                     TabStop = NotDefault
                     OldBorderStyle =0
                     OverlapFlags =87
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =420
-                    Top =660
+                    Left =60
+                    Top =1065
                     Width =360
-                    Height =315
+                    Height =288
                     ColumnOrder =0
-                    FontSize =9
-                    TabIndex =2
-                    BorderColor =10921638
-                    ForeColor =15921906
+                    FontWeight =500
+                    TabIndex =3
+                    BackColor =-2147483643
+                    ForeColor =14277081
                     Name ="tbxCurrentRecord"
                     ConditionalFormat = Begin
-                        0x0100000082000000010000000100000000000000000000001000000001000000 ,
-                        0xffffff00ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0100000094000000010000000100000000000000000000001900000001000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
                         0x0000000000000000000000000000000000000000000000000000000000000000 ,
-                        0x5b004400450056005f004d004f00440045005d003d0054007200750065000000 ,
-                        0x0000
+                        0x5b00740062007800430075007200720065006e0074005200650063006f007200 ,
+                        0x64005d003d00460061006c007300650000000000
                     End
-                    GridlineColor =10921638
 
-                    LayoutCachedLeft =420
-                    LayoutCachedTop =660
-                    LayoutCachedWidth =780
-                    LayoutCachedHeight =975
+                    LayoutCachedLeft =60
+                    LayoutCachedTop =1065
+                    LayoutCachedWidth =420
+                    LayoutCachedHeight =1353
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    BorderShade =100.0
                     ForeThemeColorIndex =1
                     ForeTint =100.0
-                    ForeShade =95.0
+                    ForeShade =85.0
                     ConditionalFormat14 = Begin
-                        0x010001000000010000000000000001000000ffffff00ffffff000f0000005b00 ,
-                        0x4400450056005f004d004f00440045005d003d00540072007500650000000000 ,
-                        0x0000000000000000000000000000000000
+                        0x01000100000001000000000000000100000000000000ffffff00180000005b00 ,
+                        0x740062007800430075007200720065006e0074005200650063006f0072006400 ,
+                        0x5d003d00460061006c0073006500000000000000000000000000000000000000 ,
+                        0x000000
                     End
+                    GridlineThemeColorIndex =-1
+                    GridlineShade =100.0
                 End
             End
         End
@@ -570,7 +597,7 @@ Begin Form
                     Width =7560
                     Height =420
                     FontSize =9
-                    TabIndex =8
+                    TabIndex =7
                     BorderColor =2366701
                     ForeColor =4138256
                     Name ="tbxRecord"
@@ -602,6 +629,7 @@ Begin Form
                 Begin TextBox
                     Visible = NotDefault
                     TabStop = NotDefault
+                    AllowAutoCorrect = NotDefault
                     OldBorderStyle =0
                     OverlapFlags =247
                     BackStyle =0
@@ -610,7 +638,6 @@ Begin Form
                     Width =360
                     Height =315
                     FontSize =9
-                    TabIndex =1
                     BorderColor =8355711
                     ForeColor =690698
                     Name ="tbxIcon"
@@ -628,17 +655,18 @@ Begin Form
                 Begin TextBox
                     Locked = NotDefault
                     TabStop = NotDefault
+                    AllowAutoCorrect = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =255
+                    OverlapFlags =247
                     TextAlign =1
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =825
+                    Left =1140
                     Top =30
                     Width =4020
                     Height =315
                     FontSize =9
-                    TabIndex =2
+                    TabIndex =1
                     BorderColor =10921638
                     ForeColor =4138256
                     Name ="tbxTemplate"
@@ -656,9 +684,9 @@ Begin Form
                     End
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =825
+                    LayoutCachedLeft =1140
                     LayoutCachedTop =30
-                    LayoutCachedWidth =4845
+                    LayoutCachedWidth =5160
                     LayoutCachedHeight =345
                     ForeThemeColorIndex =2
                     ForeTint =100.0
@@ -678,17 +706,18 @@ Begin Form
                 Begin TextBox
                     Locked = NotDefault
                     TabStop = NotDefault
+                    AllowAutoCorrect = NotDefault
                     OldBorderStyle =0
                     OverlapFlags =255
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =4980
+                    Left =6360
                     Top =45
                     Width =600
                     Height =300
                     FontSize =9
-                    TabIndex =3
+                    TabIndex =2
                     BorderColor =8355711
                     ForeColor =690698
                     Name ="tbxNumRecords"
@@ -704,9 +733,9 @@ Begin Form
                     End
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =4980
+                    LayoutCachedLeft =6360
                     LayoutCachedTop =45
-                    LayoutCachedWidth =5580
+                    LayoutCachedWidth =6960
                     LayoutCachedHeight =345
                     BorderThemeColorIndex =0
                     BorderTint =50.0
@@ -728,6 +757,7 @@ Begin Form
                 Begin TextBox
                     Enabled = NotDefault
                     TabStop = NotDefault
+                    AllowAutoCorrect = NotDefault
                     OldBorderStyle =0
                     OverlapFlags =247
                     TextAlign =2
@@ -738,7 +768,7 @@ Begin Form
                     Width =360
                     Height =315
                     FontSize =9
-                    TabIndex =4
+                    TabIndex =3
                     BorderColor =10921638
                     ForeColor =15921906
                     Name ="tbxID"
@@ -773,71 +803,32 @@ Begin Form
                         0x00
                     End
                 End
-                Begin CommandButton
-                    OverlapFlags =255
-                    Left =6240
-                    Width =720
-                    ForeColor =4210752
-                    Name ="btnRunCheck"
-                    Caption ="Run"
-                    StatusBarText ="View check results"
-                    OnClick ="[Event Procedure]"
-                    PictureData = Begin
-                        0x2800000010000000100000000100040000000000800000000000000000000000 ,
-                        0x0000000000000000000000000000800000800000008080008000000080008000 ,
-                        0x8080000080808000c0c0c0000000ff00c0c0c00000ffff00ff000000c0c0c000 ,
-                        0xffff0000ffffff00ddddddddddddddddddd0000000000ddddd0ffffffffff0dd ,
-                        0xdd0fff88fffff0dddd0ff8188ffff0dddd0f811188fff0dddd0f11f118fff0dd ,
-                        0xdd0fffff178ff0dddd0ffffff188f0dddd0fffffff18f0dddd0ffffffff1f0dd ,
-                        0xdd0ffffffffff0dddd0ff000000ff0ddddd000f888000ddddddddd0000dddddd ,
-                        0xdddddddddddddddd
-                    End
-                    ObjectPalette = Begin
-                        0x000301000000000000000000
-                    End
-                    ControlTipText ="View check results"
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =6240
-                    LayoutCachedWidth =6960
-                    LayoutCachedHeight =360
-                    BackColor =14136213
-                    BorderColor =14136213
-                    HoverColor =15060409
-                    PressedColor =9592887
-                    HoverForeColor =4210752
-                    PressedForeColor =4210752
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
-                    Overlaps =1
-                End
                 Begin TextBox
                     Visible = NotDefault
                     Enabled = NotDefault
                     Locked = NotDefault
                     TabStop = NotDefault
+                    AllowAutoCorrect = NotDefault
                     OldBorderStyle =0
                     OverlapFlags =247
                     TextAlign =1
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =3960
+                    Left =5340
                     Top =15
                     Width =1080
                     Height =315
                     FontSize =9
-                    TabIndex =5
+                    TabIndex =4
                     BorderColor =10921638
                     ForeColor =4138256
                     Name ="tbxSQL"
                     ControlSource ="Template"
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =3960
+                    LayoutCachedLeft =5340
                     LayoutCachedTop =15
-                    LayoutCachedWidth =5040
+                    LayoutCachedWidth =6420
                     LayoutCachedHeight =330
                     ForeThemeColorIndex =2
                     ForeTint =100.0
@@ -845,24 +836,25 @@ Begin Form
                 End
                 Begin TextBox
                     TabStop = NotDefault
+                    AllowAutoCorrect = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =247
+                    OverlapFlags =255
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =5640
+                    Left =7020
                     Top =45
                     Width =360
                     Height =300
                     FontSize =9
-                    TabIndex =6
+                    TabIndex =5
                     BorderColor =8355711
                     ForeColor =690698
                     Name ="tbxCheckOK"
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =5640
+                    LayoutCachedLeft =7020
                     LayoutCachedTop =45
-                    LayoutCachedWidth =6000
+                    LayoutCachedWidth =7380
                     LayoutCachedHeight =345
                     BorderThemeColorIndex =0
                     BorderTint =50.0
@@ -874,8 +866,9 @@ Begin Form
                     Visible = NotDefault
                     Enabled = NotDefault
                     TabStop = NotDefault
+                    AllowAutoCorrect = NotDefault
                     OldBorderStyle =0
-                    OverlapFlags =255
+                    OverlapFlags =247
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
@@ -884,7 +877,7 @@ Begin Form
                     Width =360
                     Height =315
                     FontSize =9
-                    TabIndex =7
+                    TabIndex =6
                     BorderColor =10921638
                     ForeColor =15921906
                     Name ="tbxFieldCheckOK"
@@ -898,48 +891,6 @@ Begin Form
                     ForeThemeColorIndex =1
                     ForeTint =100.0
                     ForeShade =95.0
-                End
-                Begin TextBox
-                    TabStop = NotDefault
-                    OldBorderStyle =0
-                    OverlapFlags =247
-                    TextAlign =2
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Left =6120
-                    Width =1152
-                    Height =367
-                    TabIndex =9
-                    BackColor =15918812
-                    BorderColor =14136213
-                    ForeColor =4210752
-                    Name ="tbxNoRunCheck"
-                    ConditionalFormat = Begin
-                        0x01000000ac000000020000000100000000000000000000001200000001000000 ,
-                        0x00000000ffffff00010000000000000013000000250000000100000000000000 ,
-                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
-                        0x5b007400620078004e0075006d005200650063006f007200640073005d003d00 ,
-                        0x3000000000005b007400620078004e0075006d005200650063006f0072006400 ,
-                        0x73005d003e00300000000000
-                    End
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =6120
-                    LayoutCachedWidth =7272
-                    LayoutCachedHeight =367
-                    BackThemeColorIndex =4
-                    BackTint =20.0
-                    BorderThemeColorIndex =4
-                    BorderTint =60.0
-                    BorderShade =100.0
-                    ConditionalFormat14 = Begin
-                        0x01000200000001000000000000000100000000000000ffffff00110000005b00 ,
-                        0x7400620078004e0075006d005200650063006f007200640073005d003d003000 ,
-                        0x0000000000000000000000000000000000000000000100000000000000010000 ,
-                        0x0000000000ffffff00110000005b007400620078004e0075006d005200650063 ,
-                        0x006f007200640073005d003e0030000000000000000000000000000000000000 ,
-                        0x00000000
-                    End
                 End
             End
         End
@@ -963,7 +914,7 @@ Option Explicit
 ' =================================
 ' Form:         PlotCheck
 ' Level:        Application form
-' Version:      1.06
+' Version:      1.08
 ' Basis:        Dropdown form
 '
 ' Description:  Plot field check form object related properties, events, functions & procedures for UI display
@@ -982,6 +933,9 @@ Option Explicit
 '                                        revise to minimize vs. open query
 '                                        added current record highlighting & tbxTemplate double click
 '                                        to run query
+'               BLC - 8/11/2017 - 1.07 - removed btnRunCheck & revised directions to use
+'                                        double click on check name
+'               BLC - 8/14/2017 - 1.08 - redo error handling for Check double click to address error 3048
 ' =================================
 
 '---------------------
@@ -1086,6 +1040,8 @@ End Property
 '   BLC - 3/27/2017 - added tbxCheckOK
 '   BLC - 3/30/2017 - hid unfiltered query num records
 '   BLC - 3/31/2017 - added CallingSampleDate property
+'   BLC - 8/11/2017 - removed btnRunCheck & revised directions to use
+'                     double click on check name
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -1122,7 +1078,7 @@ On Error GoTo Err_Handler
     Me.Caption = "Plot Check"
     lblTitle.Caption = ""
     Me.Directions = "The following plot checks have been run." _
-        & vbCrLf & "To re-run & view results click the Run button."
+        & vbCrLf & "To re-run && view results double click the check name."
     lblDirections.Caption = Me.Directions
     
     tbxIcon.value = StringFromCodepoint(uLocked)
@@ -1130,7 +1086,7 @@ On Error GoTo Err_Handler
     lblDirections.ForeColor = lngLtBlue
     
     'set hover
-    btnRunCheck.HoverColor = lngGreen
+    'btnRunCheck.HoverColor = lngGreen
 
     'enable textbox to ensure scrollbar is available for longer text
     tbxTemplate.Enabled = True
@@ -1149,6 +1105,12 @@ On Error GoTo Err_Handler
     Me.AllowEdits = True
     Me.AllowFilters = True
     
+'    'hide dev mode so it doesn't flash w/ @ transect
+'    If Not DEV_MODE Then Me.tbxDevMode.Visible = False
+    
+    'set dev mode
+    Me.tbxDevMode = DEV_MODE
+    
     'clear num records & run queries
     RunPlotCheck
     
@@ -1157,7 +1119,7 @@ On Error GoTo Err_Handler
     
     Me.tbxCheckOK = IIf(Me.tbxNumRecords > 0, chk, "")
     
-'    'hide initial unfiltered query record #s
+    'hide initial unfiltered query record #s
     Me.tbxNumRecords.Visible = True 'False
     
     Me.Requery
@@ -1233,13 +1195,13 @@ On Error GoTo Err_Handler
     Me.tbxNumRecords.SelStart = 0
     Me.tbxNumRecords.SelLength = 0
 
-    If Me.tbxNumRecords = 0 Then
-        Me.btnRunCheck.Enabled = False
-        Me.tbxNoRunCheck.Visible = True
-    Else
-        Me.btnRunCheck.Enabled = True
-        Me.tbxNoRunCheck.Visible = False
-    End If
+'    If Me.tbxNumRecords = 0 Then
+'        Me.btnRunCheck.Enabled = False
+'        Me.tbxNoRunCheck.Visible = True
+'    Else
+'        Me.btnRunCheck.Enabled = True
+'        Me.tbxNoRunCheck.Visible = False
+'    End If
        
 Exit_Handler:
     Exit Sub
@@ -1266,6 +1228,7 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 8/10/2017 - initial version
+'   BLC - 8/14/2017 - redo error handling to address error 3048, add status messaging
 ' ---------------------------------
 Private Sub tbxTemplate_DblClick(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -1275,6 +1238,9 @@ On Error GoTo Err_Handler
     Dim rs As DAO.Recordset
     Dim PlotID As Integer
     Dim ParkCode As String, fltr As String
+    
+    'clear status messages
+    Application.SysCmd acSysCmdClearStatus
     
     Set db = CurrDb
     
@@ -1356,13 +1322,31 @@ Exit_Handler:
     'db.Close
     qdf.Close
     qdf2.Close
-    
     Exit Sub
+
 Err_Handler:
     Select Case Err.Number
       Case 3048
+        Debug.Print "Error #" & Err.Number & " " & Err.Description & " " & Err.source
+        'need to save the data first, so close the forms & re-open
+'        DoCmd.Close acForm, Me.Name, acSaveNo
+'        DoCmd.Close acForm, "frm_Data_Entry", acSaveYes
+'        're-open forms
+'        DoCmd.OpenForm "frm_Data_Entry", acNormal
+
 '        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
 '            "Error encountered (#" & Err.Number & " - tbxTemplate_DblClick[PlotCheck form])"
+'        DoCmd.SelectObject acForm, "PlotCheck"
+'        DoCmd.Restore
+        Application.SysCmd acSysCmdSetStatus, "Missing species check info, please close plot check & data entry forms & re-check..."
+        Resume Next
+      Case 3270
+        'Error 3270 Property not found < caused by attempting to run query &
+        '                                getting Error 3048
+        Debug.Print "Error #" & Err.Number & " " & Err.Description & " " & Err.source
+        Err.Raise 3048
+'        DoCmd.SelectObject acForm, "PlotCheck"
+'        DoCmd.Restore
         Resume Next
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _

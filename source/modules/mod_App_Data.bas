@@ -5,7 +5,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.27
+' Version:      1.28
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -44,6 +44,8 @@ Option Explicit
 '               BLC, 3/29/2017  - 1.25 - added FieldCheck, FieldOK, Dependencies for templates
 '               BLC, 3/30/2017  - 1.26 - added non-parameterized query option for GetRecords()
 '               BLC, 4/3/2017   - 1.27 - added qc_species_by_plot_visit
+'               BLC, 8/14/2017  - 1.28 - add error handling to address error 3048 on SetPlotCheckResult(),
+'                                        GetRecords()
 ' =================================
 
 '' ---------------------------------
@@ -905,6 +907,7 @@ End Sub
 '   BLC - 3/28/2017 - added upland templates, removed big rivers templates
 '   BLC - 3/30/2017 - added option for non-parameterized queries (Else)
 '   BLC - 4/3/2017 - added qc_species_by_plot_visit
+'   BLC - 8/14/2017 - redo error handling to address error 3048
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -970,9 +973,21 @@ Exit_Handler:
 Err_Handler:
     Select Case Err.Number
       Case 3048 'Cannot open any more databases
-        MsgBox "Sorry, I'm overtaxed right now..." & vbCrLf & vbCrLf & _
-                "...I can't seem to get the " & Template & _
-                " query to run.", vbOKOnly, "Oops!"
+        Debug.Print "Error 3048: " & Err.Description & " " & Err.source
+        'close & re-open forms (frm_Data_Entry & PlotCheck)
+'         DoCmd.Close acForm, "PlotCheck", acSaveNo
+'         DoCmd.SelectObject acForm, "frm_Data_Entry"
+'         DoCmd.Close acForm, "frm_Data_Entry", acSaveYes
+'         DoCmd.OpenForm "frm_Data_Entry", , , TempVars("CriteriaLoc") & " AND " & TempVars("CriteriaEvent"), , , TempVars("CriteriaEvent")
+'         DoCmd.Minimize
+'         DoCmd.OpenForm "PlotCheck", acNormal, , , , acWindowNormal
+'        DoCmd.SelectObject acForm, "PlotCheck"
+'        DoCmd.Close acForm, "frm_Visit_Date"
+'        DoCmd.SelectObject acForm, "frm_Data_Entry"
+      
+'        MsgBox "Sorry, I'm overtaxed right now..." & vbCrLf & vbCrLf & _
+'                "...I can't seem to get the " & Template & _
+'                " query to run.", vbOKOnly, "Oops!"
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - GetRecords[mod_App_Data])"
@@ -1667,6 +1682,7 @@ End Function
 '   BLC - 3/29/2017 - adjusted to accommodate FieldOK (pass/fail/unknown) values
 '   BLC - 3/30/2017 - handle dependencies (queries dependent on queries)
 '                     only queries used for field checks are checked
+'   BLC - 8/14/2017 - add error handling to address error 3048
 ' ---------------------------------
 Public Function SetPlotCheckResult(strTemplate As String, action As String)
 On Error GoTo Err_Handler
@@ -1699,6 +1715,9 @@ On Error GoTo Err_Handler
     
     'run query & retrieve record #s
     Set rs = GetRecords(strTemplate)
+        
+    'catch missing recordsets due to Error 3048: Cannot open any more databases.
+    If rs Is Nothing Then GoTo Exit_Handler
         
     'identify proper count
     If Not (rs.EOF And rs.BOF) Then

@@ -20,10 +20,10 @@ Begin Form
     Width =16296
     DatasheetFontHeight =10
     ItemSuffix =213
-    Left =1605
-    Top =240
-    Right =18150
-    Bottom =14700
+    Left =855
+    Top =3180
+    Right =16185
+    Bottom =14220
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{E35D7F2C-A99C-41FE-ACEC-A1DAD79E24AC}' AND [Event_ID]='201704101"
         "01034-289562463.760376'"
@@ -1525,6 +1525,7 @@ Begin Form
                     BottomPadding =120
                     GridlineColor =10921638
 
+                    CursorOnHover =1
                     LayoutCachedLeft =13860
                     LayoutCachedTop =180
                     LayoutCachedWidth =14820
@@ -2714,16 +2715,25 @@ On Error GoTo Err_Handler
     
     'minimize calling form
     ToggleForm Me.Name, -1
+    
+    'commit form changes first
+    DoCmd.RunCommand acCmdSaveRecord
+    Me.Requery
+    Me.Refresh
+    
+'    'commit form changes first
+'    DoCmd.RunCommand acCmdSaveRecord
+'
+'    'close form & re-open
+'    DoCmd.Close acForm, "frm_Data_Entry", acSaveYes
+'    DoCmd.OpenForm "frm_Data_Entry", , , TempVars("CriteriaLoc") & " AND " & TempVars("CriteriaEvent"), , , TempVars("CriteriaEvent")
+'    DoCmd.SelectObject acForm, "frm_Data_Entry"
+'    DoCmd.Minimize
 
     'pass along form name, plot ID, sample date (WindowMode acWindowNormal vs. acDialog)
     DoCmd.OpenForm "PlotCheck", acNormal, , , , acWindowNormal, Me.Name & _
                                                             "|" & Me.Plot_ID & _
                                                             "|" & Me.txtStart_date
-
-'    DoCmd.OpenForm "TestForm", acNormal, , , , acWindowNormal, Me.Name & _
-'                                                            "|" & Me.Plot_ID & _
-'                                                            "|" & Me.txtStart_date
-
 
 Exit_Handler:
     Exit Sub
