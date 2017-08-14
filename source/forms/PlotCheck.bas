@@ -17,10 +17,10 @@ Begin Form
     Width =7560
     DatasheetFontHeight =11
     ItemSuffix =13
-    Left =9195
-    Top =5040
-    Right =17010
-    Bottom =10680
+    Left =10125
+    Top =4755
+    Right =17940
+    Bottom =10395
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -936,6 +936,7 @@ Option Explicit
 '               BLC - 8/11/2017 - 1.07 - removed btnRunCheck & revised directions to use
 '                                        double click on check name
 '               BLC - 8/14/2017 - 1.08 - redo error handling for Check double click to address error 3048
+'                                        remove btnRunCheck, tbxRunCheck methods
 ' =================================
 
 '---------------------
@@ -1183,6 +1184,7 @@ End Sub
 '   BLC - 3/28/2017 - clear unused code for uplands
 '   BLC - 8/9/2017 - prevent focus & selection of textbox
 '   BLC - 8/10/2017 - added current record highlight (via conditional format & tbxCurrentRecord)
+'   BLC - 8/14/2017 - removed btnRunCheck, tbxNoRunCheck
 ' ---------------------------------
 Private Sub Form_Current()
 On Error GoTo Err_Handler
@@ -1195,14 +1197,6 @@ On Error GoTo Err_Handler
     Me.tbxNumRecords.SelStart = 0
     Me.tbxNumRecords.SelLength = 0
 
-'    If Me.tbxNumRecords = 0 Then
-'        Me.btnRunCheck.Enabled = False
-'        Me.tbxNoRunCheck.Visible = True
-'    Else
-'        Me.btnRunCheck.Enabled = True
-'        Me.tbxNoRunCheck.Visible = False
-'    End If
-       
 Exit_Handler:
     Exit Sub
 Err_Handler:
@@ -1301,16 +1295,7 @@ On Error GoTo Err_Handler
                 DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
 '                 DoCmd.OpenForm "QueryView", acFormDS, , , acFormReadOnly, acWindowNormal << bumps into #3048-too many dbs open (> 2048 IDs)
             End With
-                            
-            'refresh form
-'            Me.Requery
-            
-            'minimize plotcheck so user can see query result
-'            ToggleForm "PlotCheck", -1
-            
-            'focus on the query (avoid PlotCheck appearing modal)
-'            DoCmd.SelectObject acQuery, "usys_temp_display", False
-            
+
         End With
                 
     End With
@@ -1344,252 +1329,14 @@ Err_Handler:
         'Error 3270 Property not found < caused by attempting to run query &
         '                                getting Error 3048
         Debug.Print "Error #" & Err.Number & " " & Err.Description & " " & Err.source
-        Err.Raise 3048
+        'Err.Raise 3048
+        Application.SysCmd acSysCmdSetStatus, "Missing species check info, please close plot check & data entry forms & re-check..."
 '        DoCmd.SelectObject acForm, "PlotCheck"
 '        DoCmd.Restore
         Resume Next
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - tbxTemplate_Click[PlotCheck form])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' Sub:          btnRunCheck_Click
-' Description:  Run check button click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      -
-' Throws:       none
-' References:
-'   Steve Schapel, September 15, 2008
-'   https://www.pcreview.co.uk/threads/switch-focus-to-query-through-vba.3622059/
-' Source/date:  Bonnie Campbell, March 24, 2017 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 3/24/2017 - initial version
-'   BLC - 3/28/2017 - code cleanup
-'   BLC - 3/30/2017 - revise to use g_AppTemplates
-'   BLC - 3/31/2017 - code cleanup
-'   BLC - 4/3/2017  - resolve issue w/ date SQL (ending # not in correct place) code cleanup
-'   BLC - 8/7/2017  - revise to run query in QueryView datasheet form to avoid modality
-'   BLC - 8/10/2017 - change from CurrentDb to CurrDb property to reduce pointers
-'                     revise to minimize then open query (vs. form)
-' ---------------------------------
-Private Sub btnRunCheck_Click()
-On Error GoTo Err_Handler
-    
-    Dim db As DAO.Database
-    Dim qdf As DAO.QueryDef, qdf2 As DAO.QueryDef
-    Dim rs As DAO.Recordset
-    Dim PlotID As Integer
-    Dim ParkCode As String, fltr As String
-    
-    Set db = CurrDb
-    
-    With db
-        Set qdf = .QueryDefs("usys_temp_qdf")
-        
-        With qdf
-
-            Dim strSQL As String
-            Dim IsParameterized As Boolean
-            
-            'default
-            IsParameterized = False
-
-            'set values
-'            ParkCode = TempVars("ParkCode")
-            PlotID = Me.lblPlotID.Caption
-'            SampleDate = Me.lblSampleDate.Caption
-            
-            .SQL = Me.tbxSQL
-            strSQL = .SQL
-            
-            'open query window
-            With db
-                
-                If QueryExists("usys_temp_display") Then
-                    'ensure temp query is closed & removed
-                    DoCmd.Close acQuery, "usys_temp_display", acSaveNo
-                    
-                    'remove usys_temp_display if it already exists
-                    If Not db.QueryDefs("usys_temp_display") Is Nothing Then _
-                        DoCmd.DeleteObject acQuery, "usys_temp_display"
-                End If
-                 
-                'limit query by park & plot
-                If Len(strSQL) > Len(Replace(strSQL, "PARAMETERS", "")) Then
-
-                    'replace park code & plotID parameters
-                    strSQL = Replace( _
-                             Replace( _
-                             Replace(strSQL, "[pkcode]", "'" & TempVars("ParkCode") & "'"), _
-                                "[pid]", PlotID), _
-                                "[vdate]", "#" & TempVars("SampleDate") & "#")
-
-                    'remove parameter clause (values already replaced)
-                    strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
-                                    
-                    Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
-
-                End If
-                                                                
-                'display results
-'                DoCmd.OpenForm "PlotCheckResults", acNormal << empty results
-                                
-                'minimize form
-                DoCmd.Minimize
-                                
-                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
-'                 DoCmd.OpenForm "QueryView", acFormDS, , , acFormReadOnly, acWindowNormal << bumps into #3048-too many dbs open (> 2048 IDs)
-            End With
-                            
-            'refresh form
-'            Me.Requery
-            
-            'minimize plotcheck so user can see query result
-'            ToggleForm "PlotCheck", -1
-            
-            'focus on the query (avoid PlotCheck appearing modal)
-'            DoCmd.SelectObject acQuery, "usys_temp_display", False
-            
-        End With
-                
-    End With
-
-    
-Exit_Handler:
-    'cleanup
-    Set rs = Nothing
-    'db.Close
-    qdf.Close
-    qdf2.Close
-    
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case 3048
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - btnRunCheck_Click[PlotCheck form])"
-        Resume Next
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - btnRunCheck_Click[PlotCheck form])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' Sub:          tbxRunCheck_Click
-' Description:  Run check button click actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      -
-' Throws:       none
-' References:
-'   Steve Schapel, September 15, 2008
-'   https://www.pcreview.co.uk/threads/switch-focus-to-query-through-vba.3622059/
-' Source/date:  Bonnie Campbell, August 9, 2017 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 8/9/2017 - initial version
-'   BLC - 8/10/2017 - change from CurrentDb to CurrDb property to reduce pointers
-' ---------------------------------
-Private Sub tbxRunCheck_Click()
-On Error GoTo Err_Handler
-    
-    Dim db As DAO.Database
-    Dim qdf As DAO.QueryDef, qdf2 As DAO.QueryDef
-    Dim rs As DAO.Recordset
-    Dim PlotID As Integer
-    Dim ParkCode As String, fltr As String
-    
-    Set db = CurrDb
-    
-    With db
-        Set qdf = .QueryDefs("usys_temp_qdf")
-        
-        With qdf
-
-            Dim strSQL As String
-            Dim IsParameterized As Boolean
-            
-            'default
-            IsParameterized = False
-
-            'set values
-'            ParkCode = TempVars("ParkCode")
-            PlotID = Me.lblPlotID.Caption
-'            SampleDate = Me.lblSampleDate.Caption
-            
-            .SQL = Me.tbxSQL
-            strSQL = .SQL
-            
-            'open query window
-            With db
-                
-                If QueryExists("usys_temp_display") Then
-                    'ensure temp query is closed & removed
-                    DoCmd.Close acQuery, "usys_temp_display", acSaveNo
-                    
-                    'remove usys_temp_display if it already exists
-                    If Not db.QueryDefs("usys_temp_display") Is Nothing Then _
-                        DoCmd.DeleteObject acQuery, "usys_temp_display"
-                End If
-                 
-                'limit query by park & plot
-                If Len(strSQL) > Len(Replace(strSQL, "PARAMETERS", "")) Then
-
-                    'replace park code & plotID parameters
-                    strSQL = Replace( _
-                             Replace( _
-                             Replace(strSQL, "[pkcode]", "'" & TempVars("ParkCode") & "'"), _
-                                "[pid]", PlotID), _
-                                "[vdate]", "#" & TempVars("SampleDate") & "#")
-
-                    'remove parameter clause (values already replaced)
-                    strSQL = Right(strSQL, Len(strSQL) - InStr(strSQL, ";"))
-                                    
-                    Set qdf2 = .CreateQueryDef("usys_temp_display", strSQL)
-
-                End If
-                                                                
-                'display results
-                'DoCmd.OpenForm "PlotCheckResults", acNormal
-                                
-'                DoCmd.OpenQuery "usys_temp_display", acViewNormal, acReadOnly
-                 DoCmd.OpenForm "QueryView", acFormDS, , , acFormReadOnly, acWindowNormal
-            End With
-                            
-            'refresh form
-'            Me.Requery
-            
-            'minimize plotcheck so user can see query result
-'            ToggleForm "PlotCheck", -1
-            
-            'focus on the query (avoid PlotCheck appearing modal)
-'            DoCmd.SelectObject acQuery, "usys_temp_display", False
-            
-        End With
-                
-    End With
-
-    
-Exit_Handler:
-    'cleanup
-    Set rs = Nothing
-    db.Close
-    qdf.Close
-    qdf2.Close
-    
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - tbxRunCheck_Click[PlotCheck form])"
     End Select
     Resume Exit_Handler
 End Sub
