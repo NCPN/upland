@@ -6,7 +6,6 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =126
@@ -17,10 +16,8 @@ Begin Form
     Width =13980
     DatasheetFontHeight =9
     ItemSuffix =107
-    Left =-930
-    Top =810
-    Right =12585
-    Bottom =9180
+    Right =11880
+    Bottom =8370
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xb0c0f4149355e340
@@ -165,7 +162,7 @@ Begin Form
                     Top =60
                     Width =1500
                     Height =300
-                    ForeColor =255
+                    ForeColor =2012742
                     Name ="ButtonInitialize"
                     Caption ="Initialize Form"
                     OnClick ="[Event Procedure]"
@@ -659,12 +656,14 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_LP_Intercept
 ' Level:        Form module
-' Version:      1.01
+' Version:      1.02
 ' Description:  data functions & procedures specific to LP intercept monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/09/2016
 ' Revisions:    RDB - unknown  - 1.00 - initial version
 '               BLC - 2/9/2016 - 1.01 - added documentation, checkbox for no species found
+'               BLC - 8/17/2017 - 1.02 - switched from long to constant colors for readability
+'                                        Son initialize fore color
 ' =================================
 
 ' ---------------------------------
@@ -695,7 +694,7 @@ On Error GoTo Err_Handler
         
     On Error GoTo Err_Handler
     If IsNull(Me!Transect_ID) Then
-      Me!ButtonInitialize.ForeColor = 8421376
+      Me!ButtonInitialize.ForeColor = lngDkBrtGrn '8421376
       GoTo Exit_Handler
     End If
     CurrentPointID = Me!Transect_ID
@@ -705,9 +704,9 @@ On Error GoTo Err_Handler
     Set Points = db.OpenRecordset(strSQL)
     
     If Points.EOF Or IsNull(Points!Point) Then
-      Me!ButtonInitialize.ForeColor = 8421376
+      Me!ButtonInitialize.ForeColor = lngDkBrtGrn '8421376
     Else
-      Me!ButtonInitialize.ForeColor = 255
+      Me!ButtonInitialize.ForeColor = lngRed '255
       If IsNull(Me!Top) Then
         Me!Alive.Enabled = False
       Else

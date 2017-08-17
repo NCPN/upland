@@ -20,9 +20,9 @@ Begin Form
     Width =16296
     DatasheetFontHeight =10
     ItemSuffix =213
-    Left =855
+    Left =7260
     Top =3180
-    Right =16185
+    Right =22590
     Bottom =14220
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{E35D7F2C-A99C-41FE-ACEC-A1DAD79E24AC}' AND [Event_ID]='201704101"
@@ -797,7 +797,6 @@ Begin Form
                                     LayoutCachedHeight =2100
                                 End
                                 Begin CheckBox
-                                    Enabled = NotDefault
                                     OverlapFlags =215
                                     Left =11340
                                     Top =1770

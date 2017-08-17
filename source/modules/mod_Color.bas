@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_Color
 ' Level:        Framework module
-' Version:      1.08
+' Version:      1.09
 ' Description:  color functions & procedures
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -17,6 +17,7 @@ Option Explicit
 '               BLC, 2/22/2017 - 1.06 - added RandomColor()
 '               BLC, 3/8/2017 - 1.07 - imported into invasives
 '               BLC, 7/28/2017 - 1.08 - added lngLtrYellow
+'               BLC, 8/17/2017 - 1.09 - added Initialize button green lngDkGrn
 ' =================================
 
 ' ---------------------------------
@@ -59,6 +60,7 @@ Public Const lngLtBlue As Long = 16777164   '?RGB(204,255,255) #CCFFFF
 Public Const lngRed As Long = 255           '?RGB(255,0,0) #FF0000
 Public Const lngGreen As Long = 65280       '?RGB(0,255,0) #00FF00
 Public Const lngDkGreen As Long = 690698    '?RGB(10,138,10) #0A8A0A
+Public Const lngDkBrtGrn As Long = 8421376  '?RGB(0,128,128.5) #008080
 Public Const lngRobinEgg As Long = 16772541 '?RGB(189,237,255) #BDEDFF robin's egg blue
 Public Const lngLtCyan As Long = 16777184   '?RGB(224,255,255) #E0FFFF
 Public Const lngGrnApple As Long = 1557580  '?RGB(76,196,23) #4CC417
