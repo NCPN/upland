@@ -5,7 +5,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.28
+' Version:      1.29
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -46,6 +46,8 @@ Option Explicit
 '               BLC, 4/3/2017   - 1.27 - added qc_species_by_plot_visit
 '               BLC, 8/14/2017  - 1.28 - add error handling to address error 3048 on SetPlotCheckResult(),
 '                                        GetRecords()
+'               BLC, 1/26/2018  - 1.29 - add new qc templates (exotic freq, missing sapling, shrub,
+'                                        spherical densiometer)
 ' =================================
 
 '' ---------------------------------
@@ -908,6 +910,8 @@ End Sub
 '   BLC - 3/30/2017 - added option for non-parameterized queries (Else)
 '   BLC - 4/3/2017 - added qc_species_by_plot_visit
 '   BLC - 8/14/2017 - redo error handling to address error 3048
+'   BLC - 1/26/2018 - add new qc templates (exotic freq, missing sapling, shrub,
+'                     spherical densiometer)
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -947,7 +951,11 @@ On Error GoTo Err_Handler
 
                 Case "qc_ndc_notrecorded_all_methods_by_plot_visit", _
                     "qc_photos_missing_by_plot_visit", _
-                    "qc_species_by_plot_visit"
+                    "qc_species_by_plot_visit", _
+                    "qc_exotic_freq_with_no_species", _
+                    "qc_missing_sapling_totals", _
+                    "qc_missing_shrub_totals", _
+                    "qc_missing_spherical_densiometer"
                     '-- required parameters --
                     .Parameters("pkcode") = TempVars("ParkCode")
                     .Parameters("pid") = TempVars("plotID")

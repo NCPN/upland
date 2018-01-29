@@ -12,10 +12,10 @@ Begin Form
     Width =11880
     DatasheetFontHeight =9
     ItemSuffix =43
-    Left =1188
-    Top =1416
-    Right =13620
-    Bottom =4956
+    Left =-705
+    Top =945
+    Right =11415
+    Bottom =4485
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9aa5143d6c56e340
@@ -504,7 +504,6 @@ Begin Form
                 Begin TextBox
                     OverlapFlags =85
                     TextAlign =2
-                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =3360
                     Top =60
@@ -530,19 +529,22 @@ Begin Form
                     LayoutCachedWidth =3900
                     LayoutCachedHeight =315
                     ConditionalFormat14 = Begin
-                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000400000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
                         0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
                         0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
                         0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
-                        0x6500000000000000000000000000000000000000000000
+                        0x6500000000000000000000000000000000000000000000010000000000000001 ,
+                        0x00000000000000ffff66002d0000005b0048004300310030005d002b005b0048 ,
+                        0x004300320035005d002b005b0048004300350030005d002b005b004800430031 ,
+                        0x00300030005d002b005b004800430032006d005d002b005b0048004300470054 ,
+                        0x0032005d003d003000000000000000000000000000000000000000000000
                     End
                 End
                 Begin TextBox
                     OverlapFlags =215
                     TextAlign =2
-                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =4380
                     Top =60
@@ -564,19 +566,22 @@ Begin Form
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000400000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
                         0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
                         0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
                         0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
-                        0x6500000000000000000000000000000000000000000000
+                        0x6500000000000000000000000000000000000000000000010000000000000001 ,
+                        0x00000000000000ffff66002d0000005b0048004300310030005d002b005b0048 ,
+                        0x004300320035005d002b005b0048004300350030005d002b005b004800430031 ,
+                        0x00300030005d002b005b004800430032006d005d002b005b0048004300470054 ,
+                        0x0032005d003d003000000000000000000000000000000000000000000000
                     End
                 End
                 Begin TextBox
                     OverlapFlags =85
                     TextAlign =2
-                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =5520
                     Top =60
@@ -598,19 +603,22 @@ Begin Form
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000400000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
                         0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
                         0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
                         0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
-                        0x6500000000000000000000000000000000000000000000
+                        0x6500000000000000000000000000000000000000000000010000000000000001 ,
+                        0x00000000000000ffff66002d0000005b0048004300310030005d002b005b0048 ,
+                        0x004300320035005d002b005b0048004300350030005d002b005b004800430031 ,
+                        0x00300030005d002b005b004800430032006d005d002b005b0048004300470054 ,
+                        0x0032005d003d003000000000000000000000000000000000000000000000
                     End
                 End
                 Begin TextBox
                     OverlapFlags =215
                     TextAlign =2
-                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =6540
                     Top =60
@@ -632,19 +640,22 @@ Begin Form
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000400000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
                         0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
                         0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
                         0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
-                        0x6500000000000000000000000000000000000000000000
+                        0x6500000000000000000000000000000000000000000000010000000000000001 ,
+                        0x00000000000000ffff66002d0000005b0048004300310030005d002b005b0048 ,
+                        0x004300320035005d002b005b0048004300350030005d002b005b004800430031 ,
+                        0x00300030005d002b005b004800430032006d005d002b005b0048004300470054 ,
+                        0x0032005d003d003000000000000000000000000000000000000000000000
                     End
                 End
                 Begin TextBox
                     OverlapFlags =85
                     TextAlign =2
-                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =7680
                     Top =60
@@ -666,19 +677,22 @@ Begin Form
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000400000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
                         0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
                         0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
                         0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
-                        0x6500000000000000000000000000000000000000000000
+                        0x6500000000000000000000000000000000000000000000010000000000000001 ,
+                        0x00000000000000ffff66002d0000005b0048004300310030005d002b005b0048 ,
+                        0x004300320035005d002b005b0048004300350030005d002b005b004800430031 ,
+                        0x00300030005d002b005b004800430032006d005d002b005b0048004300470054 ,
+                        0x0032005d003d003000000000000000000000000000000000000000000000
                     End
                 End
                 Begin TextBox
                     OverlapFlags =215
                     TextAlign =2
-                    TextFontFamily =0
                     IMESentenceMode =3
                     Left =8760
                     Top =60
@@ -700,13 +714,17 @@ Begin Form
                     End
 
                     ConditionalFormat14 = Begin
-                        0x01000300000000000000060000000100000000000000ffffff00010000003000 ,
+                        0x01000400000000000000060000000100000000000000ffffff00010000003000 ,
                         0x0000000000000000000000000000000000000000000000000005000000010000 ,
                         0x0000000000ffff00000100000030000000000000000000000000000000000000 ,
                         0x0000000001000000000000000100000000000000ffffff00230000005b005000 ,
                         0x6100720065006e0074005d002e005b006300620078004e006f00530068007200 ,
                         0x7500620073005d002e005b00560061006c00750065005d003d00540072007500 ,
-                        0x6500000000000000000000000000000000000000000000
+                        0x6500000000000000000000000000000000000000000000010000000000000001 ,
+                        0x00000000000000ffff66002d0000005b0048004300310030005d002b005b0048 ,
+                        0x004300320035005d002b005b0048004300350030005d002b005b004800430031 ,
+                        0x00300030005d002b005b004800430032006d005d002b005b0048004300470054 ,
+                        0x0032005d003d003000000000000000000000000000000000000000000000
                     End
                 End
                 Begin ComboBox
@@ -799,10 +817,10 @@ Begin Form
                     Caption ="Delete Record"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -822,10 +840,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -839,10 +857,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -856,10 +874,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -873,10 +891,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -890,10 +908,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
