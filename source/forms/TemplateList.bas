@@ -923,23 +923,23 @@ Private m_CallingRecordID As Integer
 '---------------------
 ' Event Declarations
 '---------------------
-Public Event InvalidTitle(value As String)
-Public Event InvalidDirections(value As String)
-Public Event InvalidCallingForm(value As String)
-Public Event InvalidCallingRecordID(value As Integer)
+Public Event InvalidTitle(Value As String)
+Public Event InvalidDirections(Value As String)
+Public Event InvalidCallingForm(Value As String)
+Public Event InvalidCallingRecordID(Value As Integer)
 
 '---------------------
 ' Properties
 '---------------------
-Public Property Let Title(value As String)
-    If Len(value) > 0 Then
-        m_Title = value
+Public Property Let Title(Value As String)
+    If Len(Value) > 0 Then
+        m_Title = Value
 
         'set the form title & caption
         Me.lblTitle.Caption = m_Title
         Me.Caption = m_Title
     Else
-        RaiseEvent InvalidTitle(value)
+        RaiseEvent InvalidTitle(Value)
     End If
 End Property
 
@@ -947,14 +947,14 @@ Public Property Get Title() As String
     Title = m_Title
 End Property
 
-Public Property Let Directions(value As String)
-    If Len(value) > 0 Then
-        m_Directions = value
+Public Property Let Directions(Value As String)
+    If Len(Value) > 0 Then
+        m_Directions = Value
 
         'set the form directions
         Me.lblDirections.Caption = m_Directions
     Else
-        RaiseEvent InvalidDirections(value)
+        RaiseEvent InvalidDirections(Value)
     End If
 End Property
 
@@ -962,16 +962,16 @@ Public Property Get Directions() As String
     Directions = m_Directions
 End Property
 
-Public Property Let CallingForm(value As String)
-        m_CallingForm = value
+Public Property Let CallingForm(Value As String)
+        m_CallingForm = Value
 End Property
 
 Public Property Get CallingForm() As String
     CallingForm = m_CallingForm
 End Property
 
-Public Property Let CallingRecordID(value As Integer)
-        m_CallingRecordID = value
+Public Property Let CallingRecordID(Value As Integer)
+        m_CallingRecordID = Value
 End Property
 
 Public Property Get CallingRecordID() As Integer
@@ -1023,7 +1023,7 @@ On Error GoTo Err_Handler
     lblTitle.Caption = ""
     lblDirections.Caption = "Sort records by clicking the header." _
                             & vbCrLf & "Effective date color reflects if template is retired or not."
-    tbxIcon.value = StringFromCodepoint(uLocked)
+    tbxIcon.Value = StringFromCodepoint(uLocked)
     tbxIcon.ForeColor = lngDkGreen
     lblDirections.ForeColor = lngLtBlue
     
@@ -1241,12 +1241,12 @@ On Error GoTo Err_Handler
     Dim strOA As String
     
     'prepare open args
-    strOA = Me.ID.value & "|" _
-            & Me.Version.value & "|" _
-            & Me.TemplateName.value & "|" _
-            & Me.Template.value & "|" _
-            & Me.EffectiveDate.value & "|" _
-            & Me.Syntax.value
+    strOA = Me.ID.Value & "|" _
+            & Me.Version.Value & "|" _
+            & Me.TemplateName.Value & "|" _
+            & Me.Template.Value & "|" _
+            & Me.EffectiveDate.Value & "|" _
+            & Me.Syntax.Value
     
     DoCmd.OpenForm "TemplateSQL", acNormal, , , , , strOA
 

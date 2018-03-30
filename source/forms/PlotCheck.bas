@@ -17,10 +17,10 @@ Begin Form
     Width =7560
     DatasheetFontHeight =11
     ItemSuffix =13
-    Left =10125
-    Top =4755
-    Right =17940
-    Bottom =10395
+    Left =5370
+    Top =4740
+    Right =13185
+    Bottom =10380
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -914,7 +914,7 @@ Option Explicit
 ' =================================
 ' Form:         PlotCheck
 ' Level:        Application form
-' Version:      1.08
+' Version:      1.09
 ' Basis:        Dropdown form
 '
 ' Description:  Plot field check form object related properties, events, functions & procedures for UI display
@@ -937,6 +937,7 @@ Option Explicit
 '                                        double click on check name
 '               BLC - 8/14/2017 - 1.08 - redo error handling for Check double click to address error 3048
 '                                        remove btnRunCheck, tbxRunCheck methods
+'               BLC - 2/1/2018  - 1.09 - revised to display only selected checks from PlotCheckSelect
 ' =================================
 
 '---------------------
@@ -952,27 +953,29 @@ Private m_CallingForm As String
 Private m_CallingRecordID As Integer
 Private m_CallingSampleDate As Date
 
+Private m_SelectedChecks As Collection
+
 '---------------------
 ' Event Declarations
 '---------------------
-Public Event InvalidTitle(value As String)
-Public Event InvalidDirections(value As String)
-Public Event InvalidCallingForm(value As String)
-Public Event InvalidCallingRecordID(value As Integer)
-Public Event InvalidCallingSampleDate(value As Date)
+Public Event InvalidTitle(Value As String)
+Public Event InvalidDirections(Value As String)
+Public Event InvalidCallingForm(Value As String)
+Public Event InvalidCallingRecordID(Value As Integer)
+Public Event InvalidCallingSampleDate(Value As Date)
 
 '---------------------
 ' Properties
 '---------------------
-Public Property Let Title(value As String)
-    If Len(value) > 0 Then
-        m_Title = value
+Public Property Let Title(Value As String)
+    If Len(Value) > 0 Then
+        m_Title = Value
 
         'set the form title & caption
         Me.lblTitle.Caption = m_Title
         Me.Caption = m_Title
     Else
-        RaiseEvent InvalidTitle(value)
+        RaiseEvent InvalidTitle(Value)
     End If
 End Property
 
@@ -980,14 +983,14 @@ Public Property Get Title() As String
     Title = m_Title
 End Property
 
-Public Property Let Directions(value As String)
-    If Len(value) > 0 Then
-        m_Directions = value
+Public Property Let Directions(Value As String)
+    If Len(Value) > 0 Then
+        m_Directions = Value
 
         'set the form directions
         Me.lblDirections.Caption = m_Directions
     Else
-        RaiseEvent InvalidDirections(value)
+        RaiseEvent InvalidDirections(Value)
     End If
 End Property
 
@@ -995,28 +998,36 @@ Public Property Get Directions() As String
     Directions = m_Directions
 End Property
 
-Public Property Let CallingForm(value As String)
-        m_CallingForm = value
+Public Property Let CallingForm(Value As String)
+        m_CallingForm = Value
 End Property
 
 Public Property Get CallingForm() As String
     CallingForm = m_CallingForm
 End Property
 
-Public Property Let CallingRecordID(value As Integer)
-        m_CallingRecordID = value
+Public Property Let CallingRecordID(Value As Integer)
+        m_CallingRecordID = Value
 End Property
 
 Public Property Get CallingRecordID() As Integer
     CallingRecordID = m_CallingRecordID
 End Property
 
-Public Property Let CallingSampleDate(value As Date)
-        m_CallingSampleDate = value
+Public Property Let CallingSampleDate(Value As Date)
+        m_CallingSampleDate = Value
 End Property
 
 Public Property Get CallingSampleDate() As Date
     CallingSampleDate = m_CallingSampleDate
+End Property
+
+Public Property Let SelectedChecks(Value As Collection)
+        Set m_SelectedChecks = Value
+End Property
+
+Public Property Get SelectedChecks() As Collection
+    Set SelectedChecks = m_SelectedChecks
 End Property
 
 '---------------------
@@ -1048,7 +1059,7 @@ Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
 
     'default
-    Me.CallingForm = "frm_Data_Entry"
+    Me.CallingForm = "PlotCheckSelect" '"frm_Data_Entry"
     Me.CallingRecordID = -1
     Me.CallingSampleDate = Date
         
@@ -1065,7 +1076,14 @@ On Error GoTo Err_Handler
             Me.CallingForm = ary(0)
             Me.CallingRecordID = ary(1)
             Me.CallingSampleDate = ary(2)
+            
+            Dim ptr As Long
+            ptr = ary(3)
+            
+            Me.SelectedChecks = GetObject(ptr)
         End If
+    Else
+        GoTo Exit_Handler
     End If
 
     'set park & record
@@ -1082,7 +1100,7 @@ On Error GoTo Err_Handler
         & vbCrLf & "To re-run && view results double click the check name."
     lblDirections.Caption = Me.Directions
     
-    tbxIcon.value = StringFromCodepoint(uLocked)
+    tbxIcon.Value = StringFromCodepoint(uLocked)
     tbxIcon.ForeColor = lngDkGreen
     lblDirections.ForeColor = lngLtBlue
     
@@ -1100,8 +1118,20 @@ On Error GoTo Err_Handler
     Me.InsideHeight = Me.FormHeader.Height + Me.FormFooter.Height + _
                         (Me.Detail.Height * 10)
     
+    'prepare checks for filter
+    Dim schk As Variant
+    Dim chks As String
+    
+    chks = ""
+    
+    For Each schk In Me.SelectedChecks
+        chks = chks & IIf(Len(chks) > 0, "," & schk, schk)
+    Next
+    
     'defaults
-    Me.Filter = "[FieldCheck]=" & 1
+'    Me.Filter = "[FieldCheck]=" & 1
+    Me.Filter = "[FieldCheck]=" & 1 & " AND [ID] IN (" & chks & ")"
+    Me.FilterOn = True
     Me.FilterOnLoad = True
     Me.AllowEdits = True
     Me.AllowFilters = True
@@ -1113,7 +1143,7 @@ On Error GoTo Err_Handler
     Me.tbxDevMode = DEV_MODE
     
     'clear num records & run queries
-    RunPlotCheck
+    RunPlotCheck Me.SelectedChecks
     
     Dim chk As String
     chk = StringFromCodepoint(uCheck)
@@ -1312,7 +1342,7 @@ Exit_Handler:
 Err_Handler:
     Select Case Err.Number
       Case 3048
-        Debug.Print "Error #" & Err.Number & " " & Err.Description & " " & Err.source
+        Debug.Print "Error #" & Err.Number & " " & Err.Description & " " & Err.Source
         'need to save the data first, so close the forms & re-open
 '        DoCmd.Close acForm, Me.Name, acSaveNo
 '        DoCmd.Close acForm, "frm_Data_Entry", acSaveYes
@@ -1328,7 +1358,7 @@ Err_Handler:
       Case 3270
         'Error 3270 Property not found < caused by attempting to run query &
         '                                getting Error 3048
-        Debug.Print "Error #" & Err.Number & " " & Err.Description & " " & Err.source
+        Debug.Print "Error #" & Err.Number & " " & Err.Description & " " & Err.Source
         'Err.Raise 3048
         Application.SysCmd acSysCmdSetStatus, "Missing species check info, please close plot check & data entry forms & re-check..."
 '        DoCmd.SelectObject acForm, "PlotCheck"

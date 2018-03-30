@@ -209,7 +209,7 @@ On Error GoTo Err_Handler
 
     Dim db As DAO.Database
     Dim rst As DAO.Recordset
-    Dim strSQL As String, strSQLWhere As String, key As String, value As String
+    Dim strSQL As String, strSQLWhere As String, key As String, Value As String
     
     'handle default
     strSQLWhere = " WHERE Is_Supported > 0"
@@ -249,12 +249,12 @@ On Error GoTo Err_Handler
         For i = 1 To UBound(ary)
             key = ary(i)
             If (ary(i) = "SQLstring") Then
-                value = rst!Template
+                Value = rst!Template
             Else
-                value = rst.Fields(ary(i))
+                Value = rst.Fields(ary(i))
             End If
             If Not dict.Exists(key) Then
-                dict.Add key, value
+                dict.Add key, Value
             End If
         Next
         rst.MoveNext
@@ -432,7 +432,7 @@ On Error GoTo Err_Handler
     Do While Not rs.EOF
         If bIsMultiValue Then
             'For multi-valued field, loop through the values
-            Set rsMV = rs(0).value
+            Set rsMV = rs(0).Value
             Do While Not rsMV.EOF
                 If Not IsNull(rsMV(0)) Then
                     strOut = strOut & rsMV(0) & strSeparator

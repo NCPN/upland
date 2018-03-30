@@ -730,7 +730,7 @@ Rem
 Rem//////////////////////////////////////////////////////////////////////////
 Rem
 
-Public Type State
+Public Type state
   bit_buffer_64                As Long
   bit_buffer_64_part_2         As Long
   bit_buffer_32                As Long

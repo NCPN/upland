@@ -20,10 +20,10 @@ Begin Form
     Width =12960
     DatasheetFontHeight =9
     ItemSuffix =140
-    Left =-930
-    Top =750
-    Right =12180
-    Bottom =5400
+    Left =-2640
+    Top =390
+    Right =10470
+    Bottom =5040
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9ff2d503acd4e340
@@ -5311,10 +5311,10 @@ End Sub
 '======================
 Private Sub ButtonA1_Click()
   If InStr(1, Screen.PreviousControl.Name, "HR") > 0 Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 1
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 1
     Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value + 1
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value + 1
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -5322,10 +5322,10 @@ End Sub
 
 Private Sub ButtonA5_Click()
   If InStr(1, Screen.PreviousControl.Name, "HR") > 0 Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 5
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 5
     Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value + 5
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value + 5
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -5333,13 +5333,13 @@ End Sub
 
 Private Sub ButtonS1_Click()
   If InStr(1, Screen.PreviousControl.Name, "HR") > 0 Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 0
-    ElseIf Screen.PreviousControl.value - 1 < 0 Then
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 0
+    ElseIf Screen.PreviousControl.Value - 1 < 0 Then
       MsgBox "Total cannot be negative.", , "Fuels Intercepts"
       Exit Sub
     Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value - 1
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 1
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -5347,13 +5347,13 @@ End Sub
 
 Private Sub ButtonS5_Click()
   If InStr(1, Screen.PreviousControl.Name, "HR") > 0 Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 0
-    ElseIf Screen.PreviousControl.value - 5 < 0 Then
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 0
+    ElseIf Screen.PreviousControl.Value - 5 < 0 Then
       MsgBox "Total cannot be negative.", , "Fuels Intercepts"
       Exit Sub
     Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value - 5
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 5
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -5361,7 +5361,7 @@ End Sub
 
 Private Sub ButtonZero_Click()
   If InStr(1, Screen.PreviousControl.Name, "HR") > 0 Then
-    Screen.PreviousControl.value = 0
+    Screen.PreviousControl.Value = 0
   End If
   Screen.PreviousControl.SetFocus
 End Sub

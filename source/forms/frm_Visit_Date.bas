@@ -8,6 +8,7 @@ Begin Form
     AllowDeletions = NotDefault
     AllowAdditions = NotDefault
     FilterOn = NotDefault
+    OrderByOn = NotDefault
     AllowEdits = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
@@ -19,12 +20,13 @@ Begin Form
     Width =4680
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =6975
-    Top =5700
-    Right =11910
-    Bottom =8985
+    Left =-32386
+    Top =4185
+    Right =-27706
+    Bottom =7470
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20081016093629-468700110.912323'"
+    Filter ="[Location_ID]='20081016093629-53504526.6151428'"
+    OrderBy ="[Start_Date]"
     RecSrcDt = Begin
         0x5bd611c7ad13e340
     End
@@ -189,6 +191,7 @@ Begin Form
                     Width =600
                     Height =255
                     ColumnWidth =540
+                    ColumnOrder =0
                     TabIndex =1
                     Name ="Unit_Code"
                     ControlSource ="Unit_Code"
@@ -209,6 +212,7 @@ Begin Form
                     Width =600
                     Height =255
                     ColumnWidth =600
+                    ColumnOrder =1
                     TabIndex =2
                     Name ="Plot_ID"
                     ControlSource ="Plot_ID"
@@ -324,7 +328,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Visit_Date
 ' Level:        Application form
-' Version:      1.01
+' Version:      1.03
 ' Basis:        -
 '
 ' Description:  Visit viewing form object related properties, events, functions & procedures for UI display
@@ -338,6 +342,8 @@ Option Explicit
 ' Revisions:    JRB - 6/7/2006  - 1.00 - initial version
 '               BLC - 8/10/2017 - 1.01 - added CallingForm, CallingRecordID properties
 '                                        added documentation, error handling
+'               BLC - 2/1/2018  - 1.02 - filter by date (yr, mo, day)
+'               BLC - 3/29/2018 - 1.03 - revise order by ([Start_Date] vs yr, mo, day)
 ' =================================
 
 '---------------------
@@ -352,13 +358,13 @@ Private m_CallingForm As String
 '---------------------
 ' Event Declarations
 '---------------------
-Public Event InvalidCallingForm(value As String)
+Public Event InvalidCallingForm(Value As String)
 
 '---------------------
 ' Properties
 '---------------------
-Public Property Let CallingForm(value As String)
-        m_CallingForm = value
+Public Property Let CallingForm(Value As String)
+        m_CallingForm = Value
 End Property
 
 Public Property Get CallingForm() As String
@@ -381,9 +387,15 @@ End Property
 ' Adapted:      -
 ' Revisions:
 '   BLC - 8/10/2017 - initial version
+'   BLC - 2/1/2018  - filter by date (yr, mo, day)
+'   BLC - 3/29/2018 - revise order by
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
     On Error GoTo Err_Handler
+
+    Me.OrderBy = "[Start_Date]" '"Year([Start_Date]) AND Month([Start_Date]) AND Day([Start_Date])"
+    Me.OrderByOn = True
+    Me.OrderByOnLoad = True
 
 Exit_Handler:
     Exit Sub

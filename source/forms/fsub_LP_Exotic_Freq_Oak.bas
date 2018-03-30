@@ -14,10 +14,10 @@ Begin Form
     Width =10440
     DatasheetFontHeight =9
     ItemSuffix =57
-    Left =4050
-    Top =1710
-    Right =12000
-    Bottom =5955
+    Left =2340
+    Top =1350
+    Right =10290
+    Bottom =5595
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x69259af5aed1e340
@@ -657,7 +657,7 @@ Option Explicit
 Private Sub Form_Load()
 On Error GoTo Err_Handler
     
-    tbxRecordCount.value = Me.RecordsetClone.RecordCount
+    tbxRecordCount.Value = Me.RecordsetClone.RecordCount
 
 Exit_Handler:
     Exit Sub

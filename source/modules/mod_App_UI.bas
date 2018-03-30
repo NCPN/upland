@@ -661,13 +661,13 @@ Public Sub AddTallyValue(ctrl As TextBox, tallyAmount As Integer)
 On Error GoTo Err_Handler
   
   'handle when the user keeps cursor in field & tallyAmount would drive the value to < 0 (negative)
-  If (ctrl.value + tallyAmount < 0) Or (IsNull(ctrl.value) And tallyAmount < 0) Then GoTo Exit_Handler
+  If (ctrl.Value + tallyAmount < 0) Or (IsNull(ctrl.Value) And tallyAmount < 0) Then GoTo Exit_Handler
   
-  If tallyAmount = 0 Then ctrl.value = 0
+  If tallyAmount = 0 Then ctrl.Value = 0
   
   Select Case ctrl.Name
     Case "SeedTotal"
-        ctrl.value = Nz(ctrl.value, 0) + tallyAmount
+        ctrl.Value = Nz(ctrl.Value, 0) + tallyAmount
   End Select
   
   'return focus

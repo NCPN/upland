@@ -20,13 +20,13 @@ Begin Form
     Width =16296
     DatasheetFontHeight =10
     ItemSuffix =213
-    Left =7260
-    Top =3180
-    Right =22590
-    Bottom =14220
+    Left =3855
+    Top =2460
+    Right =17160
+    Bottom =13965
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='{E35D7F2C-A99C-41FE-ACEC-A1DAD79E24AC}' AND [Event_ID]='201704101"
-        "01034-289562463.760376'"
+    Filter ="[Location_ID]='{E35D7F2C-A99C-41FE-ACEC-A1DAD79E24AC}' AND [Event_ID]='201708171"
+        "65907-938545167.446136'"
     RecSrcDt = Begin
         0x171e359b4cb5e440
     End
@@ -34,7 +34,8 @@ Begin Form
     Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event - Filter "
         "by sampling event - Filter by sampling event - Filter by sampling event - Filter"
         " by sampling event - Filter by sampling event - Filter by sampling event - Filte"
-        "r by sampling event"
+        "r by sampling event - Filter by sampling event - Filter by sampling event - Filt"
+        "er by sampling event"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
@@ -497,6 +498,10 @@ Begin Form
                                     LinkChildFields ="Event_ID"
                                     LinkMasterFields ="Event_ID"
 
+                                    LayoutCachedLeft =1440
+                                    LayoutCachedTop =1800
+                                    LayoutCachedWidth =12990
+                                    LayoutCachedHeight =10455
                                 End
                             End
                         End
@@ -797,6 +802,7 @@ Begin Form
                                     LayoutCachedHeight =2100
                                 End
                                 Begin CheckBox
+                                    Enabled = NotDefault
                                     OverlapFlags =215
                                     Left =11340
                                     Top =1770
@@ -1566,7 +1572,7 @@ Option Explicit
 ' =================================
 ' MODULE:       frm_Data_Entry
 ' Level:        Form module
-' Version:      1.08
+' Version:      1.10
 ' Description:  data functions & procedures specific to field data entry
 '
 ' Data source:  tbl_Locations
@@ -1598,6 +1604,7 @@ Option Explicit
 '               BLC - 8/10/2017 - 1.09 - revised to open PlotCheck w/ WindowMode as
 '                                        acWindowNormal vs. acDialog to prevent form from
 '                                        behaving as a modal dialog
+'               BLC - 2/1/2018  - 1.10 - revised to run PlotCheckSelect vs PlotCheck form
 ' =================================
 '---------------------
 ' Simulated Inheritance
@@ -1708,17 +1715,17 @@ On Error GoTo Err_Handler
     Set dNoDataEvent = GetNoDataCollected(Me.Event_ID, "E")
     
     With dNoDataEvent
-        Me.cbxNoSaplings.value = .Item("OverstoryTree-Sapling")
-        Me.cbxNoCensus.value = .Item("OverstoryTree-Census")
+        Me.cbxNoSaplings.Value = .Item("OverstoryTree-Sapling")
+        Me.cbxNoCensus.Value = .Item("OverstoryTree-Census")
     
-        Me.cbxNo1000hr.value = .Item("Fuel-1000hr")
-        Me.cbxNo1000hrA.value = .Item("Fuel-1000hr-A")
-        Me.cbxNo1000hrB.value = .Item("Fuel-1000hr-B")
-        Me.cbxNo1000hrC.value = .Item("Fuel-1000hr-C")
-        Me.cbxNo1000hrD.value = .Item("Fuel-1000hr-D")
+        Me.cbxNo1000hr.Value = .Item("Fuel-1000hr")
+        Me.cbxNo1000hrA.Value = .Item("Fuel-1000hr-A")
+        Me.cbxNo1000hrB.Value = .Item("Fuel-1000hr-B")
+        Me.cbxNo1000hrC.Value = .Item("Fuel-1000hr-C")
+        Me.cbxNo1000hrD.Value = .Item("Fuel-1000hr-D")
         
-        Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").value = .Item("SiteImpact-Disturbance")
-        Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").value = .Item("SiteImpact-Exotic")
+        Me.frm_Site_Impact.Form.Controls("cbxNoDisturbance").Value = .Item("SiteImpact-Disturbance")
+        Me.frm_Site_Impact.Form.Controls("cbxNoSpecies").Value = .Item("SiteImpact-Exotic")
     End With
     
     'transect level values -> see LP_Belt_Transect
@@ -2008,7 +2015,7 @@ Private Sub cbxNoSaplings_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Sapling", Abs(Me.cbxNoSaplings.value)
+    SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Sapling", Abs(Me.cbxNoSaplings.Value)
     
     'refresh the subform to clear conditional formatting
     Me.fsub_OT_Tree_Saplings.Requery
@@ -2044,7 +2051,7 @@ Private Sub cbxNoCensus_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Census", Abs(Me.cbxNoCensus.value)
+    SetNoDataCollected Me.Event_ID, "E", "OverstoryTree-Census", Abs(Me.cbxNoCensus.Value)
 
     'refresh the subform to clear conditional formatting
     Me.fsub_OT_Census.Requery
@@ -2079,14 +2086,14 @@ Private Sub cbxNo1000hr_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr", Abs(Me.cbxNo1000hr.value)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr", Abs(Me.cbxNo1000hr.Value)
 
     'set A-D if checked
     If Abs(Me.cbxNo1000hr) = 1 Then
-        Me.cbxNo1000hrA.value = 1
-        Me.cbxNo1000hrB.value = 1
-        Me.cbxNo1000hrC.value = 1
-        Me.cbxNo1000hrD.value = 1
+        Me.cbxNo1000hrA.Value = 1
+        Me.cbxNo1000hrB.Value = 1
+        Me.cbxNo1000hrC.Value = 1
+        Me.cbxNo1000hrD.Value = 1
         SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-A", 1
         SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-B", 1
         SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-C", 1
@@ -2122,7 +2129,7 @@ Private Sub cbxNo1000hrA_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-A", Abs(Me.cbxNo1000hrA.value)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-A", Abs(Me.cbxNo1000hrA.Value)
 
 Exit_Handler:
     Exit Sub
@@ -2153,7 +2160,7 @@ Private Sub cbxNo1000hrB_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-B", Abs(Me.cbxNo1000hrB.value)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-B", Abs(Me.cbxNo1000hrB.Value)
 
 Exit_Handler:
     Exit Sub
@@ -2184,7 +2191,7 @@ Private Sub cbxNo1000hrC_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-C", Abs(Me.cbxNo1000hrC.value)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-C", Abs(Me.cbxNo1000hrC.Value)
 
 Exit_Handler:
     Exit Sub
@@ -2215,7 +2222,7 @@ Private Sub cbxNo1000hrD_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-D", Abs(Me.cbxNo1000hrD.value)
+    SetNoDataCollected Me.Event_ID, "E", "Fuel-1000hr-D", Abs(Me.cbxNo1000hrD.Value)
 
 Exit_Handler:
     Exit Sub
@@ -2515,7 +2522,7 @@ On Error GoTo Err_Handler
 
   Dim TransectNumber As Integer
 
-  Select Case Me.pgTabs.value  'RDB: Display a silly message so the field crews know where they are
+  Select Case Me.pgTabs.Value  'RDB: Display a silly message so the field crews know where they are
     Case 0 'Tab: Photos
     Case 1 'Tab: Point Intercept
       If IsNull(Me!frm_LP_Transect.Form!Transect) Then
@@ -2708,6 +2715,7 @@ End Sub
 '   BLC, 3/31/2017 - added sample date open arg for PlotCheck
 '   BLC, 8/10/2017 - revised from opening with WindowMode as acDialog to acWindowNormal
 '                    to prevent PlotCheck from opening as a modal dialog box w/o controls
+'   BLC, 2/1/2018  - revised to run PlotCheckSelect vs PlotCheck form
 ' ---------------------------------
 Private Sub btnPlotQAQC_Click()
 On Error GoTo Err_Handler
@@ -2730,7 +2738,7 @@ On Error GoTo Err_Handler
 '    DoCmd.Minimize
 
     'pass along form name, plot ID, sample date (WindowMode acWindowNormal vs. acDialog)
-    DoCmd.OpenForm "PlotCheck", acNormal, , , , acWindowNormal, Me.Name & _
+    DoCmd.OpenForm "PlotCheckSelect", acNormal, , , , acWindowNormal, Me.Name & _
                                                             "|" & Me.Plot_ID & _
                                                             "|" & Me.txtStart_date
 
