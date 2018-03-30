@@ -18,13 +18,11 @@ Begin Form
     Width =13680
     DatasheetFontHeight =9
     ItemSuffix =70
-    Left =855
-    Top =2805
-    Right =16110
-    Bottom =12030
+    Right =12615
+    Bottom =7455
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
-        0x2518a6c77056e340
+        0xdcd1b066a916e540
     End
     RecordSource ="qry_LP_Belt_Transect"
     Caption ="frm_LP_Belt_Transect"
@@ -489,7 +487,6 @@ Begin Form
                                     LayoutCachedHeight =8637
                                 End
                                 Begin Rectangle
-                                    Visible = NotDefault
                                     SpecialEffect =0
                                     BackStyle =1
                                     OldBorderStyle =0
@@ -513,6 +510,7 @@ Begin Form
                                     Width =300
                                     TabIndex =3
                                     Name ="cbxNoShrubs"
+                                    DefaultValue ="0"
                                     OnClick ="[Event Procedure]"
                                     ControlTipText ="No live shrubs rooted in the 1m belt transect were found"
 
@@ -563,6 +561,7 @@ Begin Form
                                     Width =300
                                     TabIndex =4
                                     Name ="cbxNoSeedlings"
+                                    DefaultValue ="0"
                                     OnClick ="[Event Procedure]"
                                     ControlTipText ="No tree seedlings found"
 
@@ -615,6 +614,7 @@ Begin Form
                                     Width =300
                                     TabIndex =5
                                     Name ="cbxNoExoticPerennials"
+                                    DefaultValue ="0"
                                     OnClick ="[Event Procedure]"
                                     ControlTipText ="No exotic perennials found"
 
@@ -827,7 +827,6 @@ Begin Form
                                     End
                                 End
                                 Begin Rectangle
-                                    Visible = NotDefault
                                     SpecialEffect =0
                                     BackStyle =1
                                     OldBorderStyle =0
@@ -1039,6 +1038,8 @@ On Error GoTo Err_Handler
 '------------------------
   SetCheckboxes
 
+Debug.Print "TransectID: " & Transect_ID
+
 Exit_Handler:
     Exit Sub
     
@@ -1097,7 +1098,7 @@ Private Sub cbxNoShrubs_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Shrub", Abs(Me.cbxNoShrubs.value)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Shrub", Abs(Me.cbxNoShrubs.Value)
 
     'refresh the subform to clear conditional formatting
     Me.fsub_LP_Belt_Shrub.Requery
@@ -1132,7 +1133,7 @@ Private Sub cbxNoSeedlings_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-TreeSeedling", Abs(Me.cbxNoSeedlings.value)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-TreeSeedling", Abs(Me.cbxNoSeedlings.Value)
 
     'refresh the subform to clear conditional formatting
     Me.fsub_LP_Seedling.Requery
@@ -1166,7 +1167,7 @@ Private Sub cbxNoExoticPerennials_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-ExoticPerennials", Abs(Me.cbxNoExoticPerennials.value)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-ExoticPerennials", Abs(Me.cbxNoExoticPerennials.Value)
 
 Exit_Handler:
     Exit Sub
@@ -1198,7 +1199,7 @@ Private Sub cbxNoExotics_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Exotics", Abs(Me.cbxNoExotics.value)
+    SetNoDataCollected Me.Transect_ID, "T", "1mBelt-Exotics", Abs(Me.cbxNoExotics.Value)
 
     'refresh the subform to clear conditional formatting
     Me.fsub_LP_Exotic_Freq_Oak.Requery
@@ -1589,9 +1590,9 @@ On Error GoTo Err_Handler
         Set dNoDataTransect = GetNoDataCollected(Me.Transect_ID, "T")
         
         With dNoDataTransect
-            Me.cbxNoShrubs.value = .Item("1mBelt-Shrub")
-            Me.cbxNoSeedlings.value = .Item("1mBelt-TreeSeedling")
-            Me.cbxNoExotics.value = .Item("1mBelt-Exotics")
+            Me.cbxNoShrubs.Value = .Item("1mBelt-Shrub")
+            Me.cbxNoSeedlings.Value = .Item("1mBelt-TreeSeedling")
+            Me.cbxNoExotics.Value = .Item("1mBelt-Exotics")
         End With
     End If
     

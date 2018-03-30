@@ -5,7 +5,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.29
+' Version:      1.31
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -48,6 +48,8 @@ Option Explicit
 '                                        GetRecords()
 '               BLC, 1/26/2018  - 1.29 - add new qc templates (exotic freq, missing sapling, shrub,
 '                                        spherical densiometer)
+'               BLC, 2/1/2018   - 1.30 - add optional parameter to specify which checks to run
+'               BLC, 3/30/2018  - 1.31 - add new template for lp densiometer
 ' =================================
 
 '' ---------------------------------
@@ -332,7 +334,7 @@ On Error GoTo Err_Handler
     
     Dim db As DAO.Database
     Dim rs As DAO.Recordset
-    Dim State As String, strSQL As String
+    Dim state As String, strSQL As String
    
     'handle only appropriate park codes
     If Len(ParkCode) <> 4 Then
@@ -348,11 +350,11 @@ On Error GoTo Err_Handler
     
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
-        State = rs.Fields("ParkState").value
+        state = rs.Fields("ParkState").Value
     End If
    
     'return value
-    GetParkState = State
+    GetParkState = state
     
 Exit_Handler:
     Exit Function
@@ -912,6 +914,7 @@ End Sub
 '   BLC - 8/14/2017 - redo error handling to address error 3048
 '   BLC - 1/26/2018 - add new qc templates (exotic freq, missing sapling, shrub,
 '                     spherical densiometer)
+'   BLC - 3/30/2018 - add new template for lp densiometer
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -964,6 +967,19 @@ On Error GoTo Err_Handler
                 Case "s_tsys_datasheet_defaults"
                     '-- required parameters --
                 
+                Case "s_lp_transect"
+                    '-- required parameters --
+                    .Parameters("tid") = TempVars("TransectID")
+                    .Parameters("eid") = TempVars("EventID")
+                    .Parameters("tnum") = TempVars("TransectNumber")
+                    .Parameters("vdate") = TempVars("VisitDate")
+                    
+                Case "s_lp_belt_transect"
+                    '-- required parameters --
+                    .Parameters("tid") = TempVars("TransectID")
+                    .Parameters("eid") = TempVars("EventID")
+                    .Parameters("tnum") = TempVars("TransectNumber")
+                    .Parameters("vdate") = TempVars("VisitDate")
                 Case Else
                     'handle other non-parameterized queries
             End Select
@@ -981,7 +997,7 @@ Exit_Handler:
 Err_Handler:
     Select Case Err.Number
       Case 3048 'Cannot open any more databases
-        Debug.Print "Error 3048: " & Err.Description & " " & Err.source
+        Debug.Print "Error 3048: " & Err.Description & " " & Err.Source
         'close & re-open forms (frm_Data_Entry & PlotCheck)
 '         DoCmd.Close acForm, "PlotCheck", acSaveNo
 '         DoCmd.SelectObject acForm, "frm_Data_Entry"
@@ -1279,7 +1295,7 @@ On Error GoTo Err_Handler
         End Select
                 
         'set insert/update based on whether its an edit or new entry
-        DoAction = IIf(frm!tbxID.value > 0, "u", "i")
+        DoAction = IIf(frm!tbxID.Value > 0, "u", "i")
         
         If NoList Then
                     
@@ -1306,7 +1322,7 @@ On Error GoTo Err_Handler
                 'record already exists & ID > 0
                 
                 'retrieve ID
-                If frm!tbxID.value = rs("ID") Then 'rs("Contact.ID") Then
+                If frm!tbxID.Value = rs("ID") Then 'rs("Contact.ID") Then
                     'IDs are equivalent, just change the data
                     frm!lblMsg.ForeColor = lngLime
                     frm!lblMsgIcon.ForeColor = lngLime
@@ -1620,7 +1636,7 @@ End Function
 ' Sub:          RunPlotCheck
 ' Description:  Run plot check queries
 ' Assumptions:  -
-' Parameters:   -
+' Parameters:   chks - which checks should be run (collection)
 ' Returns:      -
 ' Throws:       none
 ' References:   -
@@ -1630,13 +1646,15 @@ End Function
 '   BLC - 3/27/2017 - initial version
 '   BLC - 3/29/2017 - adjusted to accommodate FieldOK (pass/fail/unknown) values
 '   BLC - 3/30/2017 - handle dependencies (queries dependent on queries)
+'   BLC - 2/1/2018  - add optional parameter to specify which checks to run
 ' ---------------------------------
-Public Function RunPlotCheck()
+Public Function RunPlotCheck(Optional chks As Collection)
 On Error GoTo Err_Handler
 
     Dim strTemplate As String
     Dim x As Variant
-
+    Dim PassChecks As Boolean
+    
     'clear num records
     ClearTable "NumRecords"
     
@@ -1648,17 +1666,41 @@ On Error GoTo Err_Handler
  '   For i = 0 To g_AppTemplates.Count - 2
     For Each x In g_AppTemplates
     
+        'default
+        PassChecks = False
+    
+        'set PassCheck True if no checks are passed in (all checks are run)
+        If chks Is Nothing Then PassChecks = True
+    
         With g_AppTemplates.Item(x) 'g_AppTemplates.Items()(i)
             strTemplate = .Item("TemplateName")
             
             Debug.Print strTemplate
+'            Debug.Print .Item("ID")
             
-            If Len(.Item("FieldOK")) > 0 And .Item("FieldCheck") Then _
+            'handle selected checks
+            'If PassChecks = False Then
+            If Not chks Is Nothing Then
+            
+                Dim chk As Variant
+            
+                For Each chk In chks
+                    'run the chk
+                    If .Item("ID") = chk Then
+                        PassChecks = True
+                        Exit For
+                    End If
+                Next
+            End If
+            
+            If Len(.Item("FieldOK")) > 0 And .Item("FieldCheck") _
+                And PassChecks = True Then _
                 SetPlotCheckResult strTemplate, "insert"
 '            iTemplate = .Item("ID")
 '            strDeps = .Item("Dependencies")
 '            strFieldOK = .Item("FieldOK")
 '            blnFieldCheck = .Item("FieldCheck")
+            
         End With
         
     Next

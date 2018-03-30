@@ -33796,7 +33796,7 @@ End Sub
 Private Sub Form_Activate()
 
     'set toggle based on current value
-    Me.tglDevMode.value = DEV_MODE
+    Me.tglDevMode.Value = DEV_MODE
     
     ToggleDevMode
 

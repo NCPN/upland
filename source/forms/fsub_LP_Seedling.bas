@@ -13,10 +13,10 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =28
-    Left =-690
-    Top =6030
-    Right =5640
-    Bottom =8595
+    Left =-2400
+    Top =5670
+    Right =3930
+    Bottom =8235
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x73776174d27ce340
@@ -671,7 +671,7 @@ On Error GoTo Err_Handler
   DisableTallyButtons Me, "Tally"
   
   'disable tallies that drive seed total < 0
-  Select Case Nz(SeedTotal.value, "Null")
+  Select Case Nz(SeedTotal.Value, "Null")
     Case "Null"
         TallyA0.Enabled = True
         TallyA1.Enabled = True
@@ -725,7 +725,7 @@ On Error GoTo Err_Handler
   DisableTallyButtons Me, "Tally"
   
   'disable tallies that drive seed total < 0
-  Select Case Nz(SeedTotal.value, "Null")
+  Select Case Nz(SeedTotal.Value, "Null")
     Case "Null"
         TallyA0.Enabled = True
         TallyA1.Enabled = True

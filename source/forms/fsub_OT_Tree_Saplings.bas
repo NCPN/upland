@@ -14,8 +14,9 @@ Begin Form
     Width =11340
     DatasheetFontHeight =9
     ItemSuffix =31
-    Right =11100
-    Bottom =3465
+    Top =270
+    Right =9330
+    Bottom =3735
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x384b3f359387e340
@@ -28,6 +29,7 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    OnDeactivate ="[Event Procedure]"
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
     AllowPivotTableView =0
@@ -249,6 +251,7 @@ Begin Form
                     Name ="btnMaster"
                     Caption ="Master Lookup"
                     OnClick ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                     LayoutCachedLeft =7500
                     LayoutCachedTop =120
@@ -269,6 +272,7 @@ Begin Form
                     Name ="btnUnknown"
                     Caption ="Unknown Species"
                     OnClick ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                     LayoutCachedLeft =7500
                     LayoutCachedTop =540
@@ -352,6 +356,7 @@ Begin Form
                 End
                 Begin TextBox
                     Visible = NotDefault
+                    TabStop = NotDefault
                     OverlapFlags =93
                     IMESentenceMode =3
                     Left =60
@@ -359,6 +364,7 @@ Begin Form
                     Width =360
                     Height =255
                     ColumnWidth =2310
+                    TabIndex =6
                     Name ="Shrub_ID"
                     ControlSource ="TS_ID"
                     StatusBarText ="Unique record identifier - primary key"
@@ -366,6 +372,7 @@ Begin Form
                 End
                 Begin TextBox
                     Visible = NotDefault
+                    TabStop = NotDefault
                     OverlapFlags =93
                     IMESentenceMode =3
                     Left =660
@@ -373,7 +380,7 @@ Begin Form
                     Width =300
                     Height =255
                     ColumnWidth =2310
-                    TabIndex =1
+                    TabIndex =7
                     Name ="Transect_ID"
                     ControlSource ="Event_ID"
                     StatusBarText ="Foreign key to tbl_Canopy_Transect"
@@ -388,12 +395,14 @@ Begin Form
                     Width =540
                     Height =255
                     ColumnWidth =600
-                    TabIndex =4
+                    TabIndex =2
                     BackColor =65535
                     Name ="HC25"
                     ControlSource ="D25"
                     StatusBarText ="10.1-25cm height class total"
                     DefaultValue ="Null"
+                    OnGotFocus ="[Event Procedure]"
+                    OnLostFocus ="[Event Procedure]"
                     OnChange ="[Event Procedure]"
                     ConditionalFormat = Begin
                         0x0100000012010000030000000100000000000000000000001800000001000000 ,
@@ -432,12 +441,14 @@ Begin Form
                     Width =540
                     Height =255
                     ColumnWidth =600
-                    TabIndex =5
+                    TabIndex =3
                     BackColor =65535
                     Name ="HC50"
                     ControlSource ="D51"
                     StatusBarText ="25.1-50cm height class total"
                     DefaultValue ="Null"
+                    OnGotFocus ="[Event Procedure]"
+                    OnLostFocus ="[Event Procedure]"
                     OnChange ="[Event Procedure]"
                     ConditionalFormat = Begin
                         0x0100000012010000030000000100000000000000000000001800000001000000 ,
@@ -476,12 +487,14 @@ Begin Form
                     Width =540
                     Height =255
                     ColumnWidth =600
-                    TabIndex =6
+                    TabIndex =4
                     BackColor =65535
                     Name ="HC100"
                     ControlSource ="D101"
                     StatusBarText ="50.1-100cm height class total"
                     DefaultValue ="Null"
+                    OnGotFocus ="[Event Procedure]"
+                    OnLostFocus ="[Event Procedure]"
                     OnChange ="[Event Procedure]"
                     ConditionalFormat = Begin
                         0x0100000016010000030000000100000000000000000000001900000001000000 ,
@@ -521,7 +534,7 @@ Begin Form
                     Left =2580
                     Top =60
                     Width =780
-                    TabIndex =3
+                    TabIndex =1
                     Name ="Alive"
                     ControlSource ="Alive"
                     RowSourceType ="Value List"
@@ -529,6 +542,7 @@ Begin Form
                     ColumnWidths ="0;375"
                     BeforeUpdate ="[Event Procedure]"
                     DefaultValue ="-1"
+                    OnGotFocus ="[Event Procedure]"
 
                 End
                 Begin ComboBox
@@ -540,7 +554,6 @@ Begin Form
                     Left =60
                     Top =60
                     Width =2304
-                    TabIndex =2
                     BackColor =65535
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"510\""
                     ConditionalFormat = Begin
@@ -589,11 +602,12 @@ Begin Form
                     Top =60
                     Width =705
                     Height =300
-                    TabIndex =7
+                    TabIndex =5
                     ForeColor =255
                     Name ="btnDelete"
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
+                    OnGotFocus ="[Event Procedure]"
 
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
@@ -706,7 +720,7 @@ Option Explicit
 ' =================================
 ' MODULE:       Form_fsub_OT_Tree_Saplings
 ' Level:        Form module
-' Version:      1.05
+' Version:      1.06
 ' Description:  data functions & procedures specific to overstory tree sapling monitoring
 '
 ' Source/date:  Bonnie Campbell, 2/11/2016
@@ -717,6 +731,9 @@ Option Explicit
 '               BLC - 4/13/2016 - 1.04 - added refresh for underlying subforms for conditional formatting
 '               BLC - 8/9/2017  - 1.05 - revised to avoid clearing 0 values entered for diameter class totals,
 '                                        added documentation, error handling & renamed button prefixes to btnXX
+'               BLC - 2/2/2018 - 1.06 - added ToggleTallyButtons, SetTallyButtons, and HC25, HC50, HC100 got
+'                                       focus events to avoid error #438 object doesn't support this
+'                                       property/method & control when tally buttons are available
 ' =================================
 
 ' ---------------------------------
@@ -730,9 +747,17 @@ Option Explicit
 ' Source/date:  Bonnie Campbell, March 29, 2016 - for NCPN tools
 ' Revisions:
 '       BLC, 3/29/2016 - initial version
+'       BLC, 2/2/2018 - disable tally buttons unless diameter class field has focus
 ' ---------------------------------
 Private Sub Form_Load()
 On Error GoTo Err_Handler
+
+    'default
+    btnA1.Enabled = False
+    btnA5.Enabled = False
+    btnS1.Enabled = False
+    btnS5.Enabled = False
+    btnZero.Enabled = False
 
 Exit_Handler:
     Exit Sub
@@ -798,6 +823,193 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Form_BeforeInsert[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'==================================
+'   HC25-50-100 Tally Toggling
+'==================================
+
+' ---------------------------------
+' SUB:          HC25_GotFocus
+' Description:  Handles actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub HC25_GotFocus()
+On Error GoTo Err_Handler
+
+'    Debug.Print "HC25_GotFocus"
+
+    SetTallyButtons HC25
+    
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC25_GotFocus[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          HC50_GotFocus
+' Description:  Handles actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub HC50_GotFocus()
+On Error GoTo Err_Handler
+
+'    Debug.Print "HC50_GotFocus"
+
+    SetTallyButtons HC50
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC50_GotFocus[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          HC100_GotFocus
+' Description:  Handles actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub HC100_GotFocus()
+On Error GoTo Err_Handler
+  
+'    Debug.Print "HC100_GotFocus"
+
+    SetTallyButtons HC100
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC100_GotFocus[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          HC25_LostFocus
+' Description:  Handles actions when control lost focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub HC25_LostFocus()
+On Error GoTo Err_Handler
+
+    
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC25_LostFocus[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          HC50_LostFocus
+' Description:  Handles actions when control lost focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub HC50_LostFocus()
+On Error GoTo Err_Handler
+
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC50_LostFocus[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          HC100_LostFocus
+' Description:  Handles actions when control lost focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub HC100_LostFocus()
+On Error GoTo Err_Handler
+  
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - HC100_LostFocus[Form_fsub_OT_Tree_Saplings])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -932,6 +1144,167 @@ Err_Handler:
 End Sub
 
 '==================================
+'   Disable Tallies for Non-HC Control Foci
+'==================================
+
+' ---------------------------------
+' SUB:          Alive_GotFocus
+' Description:  Handles actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub Alive_GotFocus()
+On Error GoTo Err_Handler
+
+    'disable all by passing non-diameter class control
+    SetTallyButtons Me.Alive
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Alive_GotFocus[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnDelete_GotFocus
+' Description:  Handles actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub btnDelete_GotFocus()
+On Error GoTo Err_Handler
+
+    'disable all by passing non-diameter class control
+    SetTallyButtons Me.btnDelete
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnDelete_GotFocus[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnMaster_GotFocus
+' Description:  Handles actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub btnMaster_GotFocus()
+On Error GoTo Err_Handler
+
+    'disable all by passing non-diameter class control
+    SetTallyButtons Me.btnMaster
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnMaster_GotFocus[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          btnUnknown_GotFocus
+' Description:  Handles actions when control has focus
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub btnUnknown_GotFocus()
+On Error GoTo Err_Handler
+
+    'disable all by passing non-diameter class control
+    SetTallyButtons Me.btnUnknown
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnUnknown_GotFocus[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          Form_Deactivate
+' Description:  Handles actions when form deactivates
+'               Deactivate vs. LostFocus event is used because the latter does not
+'               fire when moving to the main form or another subform
+' Assumptions:  -
+' Parameters:   -
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub Form_Deactivate()
+On Error GoTo Err_Handler
+
+    'disable all by passing non-diameter class control
+    SetTallyButtons Me.Species
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Deactivate[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'==================================
 '   Species Record Methods
 '==================================
 
@@ -947,12 +1320,16 @@ End Sub
 ' Adapted:
 ' Revisions:
 '   BLC, 3/8/2016  - initial version
+'   BLC, 2/2/2018  - disable tally buttons
 ' ---------------------------------
 Private Sub Species_GotFocus()
 On Error GoTo Err_Handler
 
     'update the data to ensure new unknowns are added
     Me.ActiveControl.Requery
+
+    'disable all by passing non-diameter class control
+    SetTallyButtons Me.Species
 
 Exit_Handler:
     Exit Sub
@@ -1048,6 +1425,7 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
+
 ' ---------------------------------
 ' SUB:          Alive_BeforeUpdate
 ' Description:  Handles alive before update actions
@@ -1167,10 +1545,10 @@ Private Sub btnA1_Click()
 On Error GoTo Err_Handler
 
   If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 1
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 1
     Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value + 1
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value + 1
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -1203,10 +1581,10 @@ End Sub
 Private Sub btnA5_Click()
 On Error GoTo Err_Handler
   If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 5
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 5
     Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value + 5
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value + 5
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -1240,13 +1618,13 @@ Private Sub btnS1_Click()
 On Error GoTo Err_Handler
 
   If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 0
-    ElseIf Screen.PreviousControl.value - 1 < 0 Then
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 0
+    ElseIf Screen.PreviousControl.Value - 1 < 0 Then
       MsgBox "Total cannot be negative.", , "Belt Shrubs"
       Exit Sub
     Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value - 1
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 1
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -1280,13 +1658,13 @@ Private Sub btnS5_Click()
 On Error GoTo Err_Handler
 
   If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-    If IsNull(Screen.PreviousControl.value) Then
-      Screen.PreviousControl.value = 0
-    ElseIf Screen.PreviousControl.value - 5 < 0 Then
+    If IsNull(Screen.PreviousControl.Value) Then
+      Screen.PreviousControl.Value = 0
+    ElseIf Screen.PreviousControl.Value - 5 < 0 Then
       MsgBox "Total cannot be negative.", , "Belt Shrubs"
       Exit Sub
     Else
-      Screen.PreviousControl.value = Screen.PreviousControl.value - 5
+      Screen.PreviousControl.Value = Screen.PreviousControl.Value - 5
     End If
   End If
   Screen.PreviousControl.SetFocus
@@ -1320,7 +1698,7 @@ Private Sub btnZero_Click()
 On Error GoTo Err_Handler
 
   If Screen.PreviousControl.Name <> "Species" And Not IsNull(Me!Species) Then
-      Screen.PreviousControl.value = 0
+      Screen.PreviousControl.Value = 0
   End If
   Screen.PreviousControl.SetFocus
   
@@ -1399,6 +1777,116 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - btnMaster_Click[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' SUB:          ToggleTallyButtons
+' Description:  Enables or disables tally buttons based on current state
+' Assumptions:  -
+' Parameters:   btn - tally button to set (command button object, optional)
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub ToggleTallyButtons(Optional btn As CommandButton)
+On Error GoTo Err_Handler
+
+    'toggle single tally button
+    If Not btn Is Nothing Then
+        btn.Enabled = Not btn.Enabled
+        GoTo Exit_Handler
+    End If
+    
+    'toggle all tally buttons
+    btnA1.Enabled = Not btnA1.Enabled
+    btnA5.Enabled = Not btnA5.Enabled
+    btnS1.Enabled = Not btnS1.Enabled
+    btnA5.Enabled = Not btnS5.Enabled
+    btnZero.Enabled = Not btnZero.Enabled
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ToggleTallyButtons[Form_fsub_OT_Tree_Saplings])"
+    End Select
+    Resume Exit_Handler
+End Sub
+    
+' ---------------------------------
+' SUB:          SetTallyButtons
+' Description:  Enables or disables tally buttons based on textbox value
+' Assumptions:  1) If run from controls other than HC25, HC50, HC100 all tally
+'                  buttons should be disabled
+'               2) No other controls on the form begin with "HC"
+'               3) Lost focus events for HC25/HC50/HC100 trigger this subroutine
+'                  to disable tally buttons when the focus is NOT HC25, HC50, HC100
+' Parameters:   tbx - control to evaluate (Textbox object)
+' Returns:      N/A
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, February 2, 2018 - for NCPN tools
+' Adapted:
+' Revisions:
+'   BLC, 2/2/2018  - initial version
+' ---------------------------------
+Private Sub SetTallyButtons(ctrl As Control)
+On Error GoTo Err_Handler
+
+    'ensure the control is HC25, HC50, HC100
+    If ctrl.ControlType <> acTextBox Or _
+       (ctrl.ControlType = acTextBox And _
+        Left(ctrl.Name, 2) <> "HC") Then
+        
+        'no buttons are viable (+5, +1, 0, -1, -5 disabled)
+        If btnA1.Enabled = True Then ToggleTallyButtons btnA1
+        If btnA5.Enabled = True Then ToggleTallyButtons btnA5
+        If btnZero.Enabled = True Then ToggleTallyButtons btnZero
+        If btnS1.Enabled = True Then ToggleTallyButtons btnS1
+        If btnS5.Enabled = True Then ToggleTallyButtons btnS5
+        
+        GoTo Exit_Handler
+    End If
+
+    Select Case ctrl 'HC25, HC50, HC100
+        Case Is > 5, Is = 5
+            'all buttons are viable (+5, +1, 0, -1, -5)
+            If btnA1.Enabled = False Then ToggleTallyButtons btnA1
+            If btnA5.Enabled = False Then ToggleTallyButtons btnA5
+            If btnZero.Enabled = False Then ToggleTallyButtons btnZero
+            If btnS1.Enabled = False Then ToggleTallyButtons btnS1
+            If btnS5.Enabled = False Then ToggleTallyButtons btnS5
+        Case Is > 1, Is = 1
+            'all buttons except -5 are viable (+5, +1, 0, -1)
+            If btnA1.Enabled = False Then ToggleTallyButtons btnA1
+            If btnA5.Enabled = False Then ToggleTallyButtons btnA5
+            If btnZero.Enabled = False Then ToggleTallyButtons btnZero
+            If btnS1.Enabled = False Then ToggleTallyButtons btnS1
+            If btnS5.Enabled = True Then ToggleTallyButtons btnS5
+        Case Else 'includes Is = 0, Is < 0
+            'only add/zero buttons are viable (+5, +1, 0)
+            If btnA1.Enabled = False Then ToggleTallyButtons btnA1
+            If btnA5.Enabled = False Then ToggleTallyButtons btnA5
+            If btnZero.Enabled = False Then ToggleTallyButtons btnZero
+            If btnS1.Enabled = True Then ToggleTallyButtons btnS1
+            If btnS5.Enabled = True Then ToggleTallyButtons btnS5
+    End Select
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetTallyButtons[Form_fsub_OT_Tree_Saplings])"
     End Select
     Resume Exit_Handler
 End Sub

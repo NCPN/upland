@@ -1244,7 +1244,7 @@ Public Sub PrepareCrumbs(frm As SubForm, aryCrumbs As Variant, Optional separato
                 .Caption = aryCrumbs(i)
             Else
                 'hyperlink control (displaytext vs caption)
-                .value = aryCrumbs(i)
+                .Value = aryCrumbs(i)
             End If
             
             'set control position

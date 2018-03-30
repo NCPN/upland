@@ -45,7 +45,7 @@ Private Declare Function SetClipboardData Lib "user32" (ByVal wFormat _
 As Long, ByVal hMem As Long) As Long
 
 Private Declare Sub apiCopyMemory Lib "kernel32" Alias "RtlMoveMemory" _
- (Destination As Any, source As Any, ByVal Length As Long)
+ (Destination As Any, Source As Any, ByVal Length As Long)
  
 ' CONSTANTS
 Private Const WM_HSCROLL = &H114
@@ -258,7 +258,7 @@ Exit Function
 
 Err_PtoC:
 FPictureDataToClipBoard = False
-MsgBox Err.Description, vbOKOnly, Err.source & ":" & Err.Number
+MsgBox Err.Description, vbOKOnly, Err.Source & ":" & Err.Number
 Resume Exit_PtoC
 
 End Function
@@ -383,7 +383,7 @@ Exit Function
 
 Err_fLoadPicture:
 fLoadPicture = False
-MsgBox Err.Description, vbOKOnly, Err.source & ":" & Err.Number
+MsgBox Err.Description, vbOKOnly, Err.Source & ":" & Err.Number
 Resume Exit_LoadPic
 
 End Function

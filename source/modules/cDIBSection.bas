@@ -129,7 +129,7 @@ Private Declare Function LoadImage Lib "user32" Alias "LoadImageA" (ByVal hInsta
 Private Declare Function apiGetObject Lib "gdi32" Alias "GetObjectA" _
 (ByVal hObject As Long, ByVal nCount As Long, lpObject As Any) As Long
 Private Declare Sub apiCopyMemory Lib "kernel32" Alias "RtlMoveMemory" _
-(Destination As Any, source As Any, ByVal Length As Long)
+(Destination As Any, Source As Any, ByVal Length As Long)
 
 Private Declare Function DeleteDC Lib "gdi32" (ByVal hdc As Long) As Long
 
@@ -721,7 +721,7 @@ Exit Function
 Err_fFileDialog:
 FileDialog = ""
 m_CurrentJpegFileName = ""
-MsgBox Err.Description, vbOKOnly, Err.source & ":" & Err.Number
+MsgBox Err.Description, vbOKOnly, Err.Source & ":" & Err.Number
 Resume Exit_fFileDialog
 
 End Function

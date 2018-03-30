@@ -5,6 +5,7 @@ Begin Form
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =0
@@ -17,10 +18,10 @@ Begin Form
     Width =12600
     DatasheetFontHeight =9
     ItemSuffix =62
-    Left =675
-    Top =2805
-    Right =13020
-    Bottom =12360
+    Left =-2820
+    Top =-90
+    Right =9780
+    Bottom =9720
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xd4e1e7326d12e340
@@ -347,7 +348,6 @@ Begin Form
                     LayoutCachedHeight =9120
                 End
                 Begin Rectangle
-                    Visible = NotDefault
                     SpecialEffect =0
                     BackStyle =1
                     OldBorderStyle =0
@@ -398,7 +398,6 @@ Begin Form
                     End
                 End
                 Begin Rectangle
-                    Visible = NotDefault
                     SpecialEffect =0
                     BackStyle =1
                     OldBorderStyle =0
@@ -500,8 +499,8 @@ On Error GoTo Err_Handler
     Set dNoData = GetNoDataCollected(Me.Event_ID, "E")
     
     With dNoData
-        Me.cbxNoDisturbance.value = dNoData.Item("SiteImpact-Disturbance")
-        Me.cbxNoSpecies.value = dNoData.Item("SiteImpact-Exotic")
+        Me.cbxNoDisturbance.Value = dNoData.Item("SiteImpact-Disturbance")
+        Me.cbxNoSpecies.Value = dNoData.Item("SiteImpact-Exotic")
     End With
     
     'set the yellow rectangles visible if no records
@@ -537,7 +536,7 @@ Private Sub cbxNoSpecies_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "SiteImpact-Exotic", Abs(Me.cbxNoSpecies.value)
+    SetNoDataCollected Me.Event_ID, "E", "SiteImpact-Exotic", Abs(Me.cbxNoSpecies.Value)
 
 Exit_Handler:
     Exit Sub
@@ -568,7 +567,7 @@ Private Sub cbxNoDisturbance_Click()
 On Error GoTo Err_Handler
 
     'set dictionary & db value (abs is used to drive 1 = true, 0 = false since -1 is true in access/vba)
-    SetNoDataCollected Me.Event_ID, "E", "SiteImpact-Disturbance", Abs(Me.cbxNoDisturbance.value)
+    SetNoDataCollected Me.Event_ID, "E", "SiteImpact-Disturbance", Abs(Me.cbxNoDisturbance.Value)
 
 Exit_Handler:
     Exit Sub
