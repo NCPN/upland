@@ -1,7 +1,4 @@
-﻿dbMemo "SQL" ="PARAMETERS tid Text ( 50 ), eid Text ( 50 ), tnum Byte, vdate DateTime;\015\012S"
-    "ELECT *\015\012FROM tbl_LP_Belt_Transect\015\012WHERE Transect_ID = [tid]\015\012"
-    "AND\015\012Event_ID = [eid]\015\012AND\015\012Transect = [tnum]\015\012AND\015\012"
-    "Visit_Date = [vdate];\015\012"
+﻿dbMemo "SQL" ="SELECT Remarks\015\012FROM tsys_Db_Templates\015\012WHERE ID = 78;\015\012"
 dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"

@@ -20,7 +20,7 @@ Begin Form
     Left =5370
     Top =3840
     Right =13185
-    Bottom =12180
+    Bottom =8100
     DatasheetGridlinesColor =14806254
     RecSrcDt = Begin
         0x786bd5b5d4e8e440
@@ -35,9 +35,6 @@ Begin Form
     End
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     OrderByOnLoad =0
     SplitFormDatasheet =1
     FilterOnLoad =255
@@ -687,335 +684,12 @@ Begin Form
             End
         End
         Begin Section
-            Height =420
+            Height =0
             Name ="Detail"
             AlternateBackColor =15921906
             AlternateBackThemeColorIndex =1
             AlternateBackShade =95.0
             BackThemeColorIndex =1
-            Begin
-                Begin TextBox
-                    Enabled = NotDefault
-                    Locked = NotDefault
-                    TabStop = NotDefault
-                    OldBorderStyle =0
-                    BorderWidth =1
-                    OverlapFlags =93
-                    TextAlign =1
-                    IMESentenceMode =3
-                    Width =7560
-                    Height =420
-                    FontSize =9
-                    TabIndex =7
-                    BorderColor =2366701
-                    ForeColor =4138256
-                    Name ="tbxRecord"
-                    ConditionalFormat = Begin
-                        0x01000000b4000000010000000100000000000000000000002900000001000000 ,
-                        0x00000000f1fa7600000000000000000000000000000000000000000000000000 ,
-                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
-                        0x28005b00490044005d003d005b00740062007800430075007200720065006e00 ,
-                        0x74005200650063006f00720064005d00290020004f00720020005b004e006500 ,
-                        0x77005200650063006f00720064005d0000000000
-                    End
-                    GridlineColor =10921638
-
-                    LayoutCachedWidth =7560
-                    LayoutCachedHeight =420
-                    BorderThemeColorIndex =-1
-                    BorderShade =100.0
-                    ForeThemeColorIndex =2
-                    ForeTint =100.0
-                    ForeShade =50.0
-                    ConditionalFormat14 = Begin
-                        0x01000100000001000000000000000100000000000000f1fa7600280000002800 ,
-                        0x5b00490044005d003d005b00740062007800430075007200720065006e007400 ,
-                        0x5200650063006f00720064005d00290020004f00720020005b004e0065007700 ,
-                        0x5200650063006f00720064005d00000000000000000000000000000000000000 ,
-                        0x000000
-                    End
-                End
-                Begin TextBox
-                    Visible = NotDefault
-                    TabStop = NotDefault
-                    AllowAutoCorrect = NotDefault
-                    OldBorderStyle =0
-                    OverlapFlags =247
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Top =30
-                    Width =360
-                    Height =315
-                    FontSize =9
-                    BorderColor =8355711
-                    ForeColor =690698
-                    Name ="tbxIcon"
-                    GridlineColor =10921638
-
-                    LayoutCachedTop =30
-                    LayoutCachedWidth =360
-                    LayoutCachedHeight =345
-                    BorderThemeColorIndex =0
-                    BorderTint =50.0
-                    BorderShade =100.0
-                    ForeThemeColorIndex =-1
-                    ForeTint =50.0
-                End
-                Begin TextBox
-                    Locked = NotDefault
-                    TabStop = NotDefault
-                    AllowAutoCorrect = NotDefault
-                    OldBorderStyle =0
-                    OverlapFlags =247
-                    TextAlign =1
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Left =1140
-                    Top =30
-                    Width =4020
-                    Height =315
-                    FontSize =9
-                    TabIndex =1
-                    BorderColor =10921638
-                    ForeColor =4138256
-                    Name ="tbxTemplate"
-                    ControlSource ="TemplateName"
-                    ConditionalFormat = Begin
-                        0x01000000e0000000030000000100000000000000000000001b00000001010000 ,
-                        0x00000000ffffff0001000000000000001c0000002d00000001000000ed1c2400 ,
-                        0xffffff0001000000000000002e0000003f0000000100000022b14c00ffffff00 ,
-                        0x5b00740062007800490044005d003d005b007400620078004300750072007200 ,
-                        0x65006e0074005200650063006f00720064005d00000000005b00460069006500 ,
-                        0x6c00640043006800650063006b004f004b005d003d003000000000005b004600 ,
-                        0x690065006c00640043006800650063006b004f004b005d003d00310000000000
-                    End
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =1140
-                    LayoutCachedTop =30
-                    LayoutCachedWidth =5160
-                    LayoutCachedHeight =345
-                    ForeThemeColorIndex =2
-                    ForeTint =100.0
-                    ForeShade =50.0
-                    ConditionalFormat14 = Begin
-                        0x01000300000001000000000000000101000000000000ffffff001a0000005b00 ,
-                        0x740062007800490044005d003d005b0074006200780043007500720072006500 ,
-                        0x6e0074005200650063006f00720064005d000000000000000000000000000000 ,
-                        0x00000000000000010000000000000001000000ed1c2400ffffff00100000005b ,
-                        0x004600690065006c00640043006800650063006b004f004b005d003d00300000 ,
-                        0x0000000000000000000000000000000000000000010000000000000001000000 ,
-                        0x22b14c00ffffff00100000005b004600690065006c0064004300680065006300 ,
-                        0x6b004f004b005d003d0031000000000000000000000000000000000000000000 ,
-                        0x00
-                    End
-                End
-                Begin TextBox
-                    Locked = NotDefault
-                    TabStop = NotDefault
-                    AllowAutoCorrect = NotDefault
-                    OldBorderStyle =0
-                    OverlapFlags =255
-                    TextAlign =2
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Left =6360
-                    Top =45
-                    Width =600
-                    Height =300
-                    FontSize =9
-                    TabIndex =2
-                    BorderColor =8355711
-                    ForeColor =690698
-                    Name ="tbxNumRecords"
-                    ControlSource ="NumRecords"
-                    ConditionalFormat = Begin
-                        0x01000000e0000000030000000100000000000000000000001b00000001010000 ,
-                        0x00000000ffffff0001000000000000001c0000002d00000001000000ff000000 ,
-                        0xffffff0001000000000000002e0000003f0000000100000022b14c00ffffff00 ,
-                        0x5b00740062007800490044005d003d005b007400620078004300750072007200 ,
-                        0x65006e0074005200650063006f00720064005d00000000005b00460069006500 ,
-                        0x6c00640043006800650063006b004f004b005d003d003000000000005b004600 ,
-                        0x690065006c00640043006800650063006b004f004b005d003d00310000000000
-                    End
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =6360
-                    LayoutCachedTop =45
-                    LayoutCachedWidth =6960
-                    LayoutCachedHeight =345
-                    BorderThemeColorIndex =0
-                    BorderTint =50.0
-                    BorderShade =100.0
-                    ForeThemeColorIndex =-1
-                    ForeTint =50.0
-                    ConditionalFormat14 = Begin
-                        0x01000300000001000000000000000101000000000000ffffff001a0000005b00 ,
-                        0x740062007800490044005d003d005b0074006200780043007500720072006500 ,
-                        0x6e0074005200650063006f00720064005d000000000000000000000000000000 ,
-                        0x00000000000000010000000000000001000000ff000000ffffff00100000005b ,
-                        0x004600690065006c00640043006800650063006b004f004b005d003d00300000 ,
-                        0x0000000000000000000000000000000000000000010000000000000001000000 ,
-                        0x22b14c00ffffff00100000005b004600690065006c0064004300680065006300 ,
-                        0x6b004f004b005d003d0031000000000000000000000000000000000000000000 ,
-                        0x00
-                    End
-                End
-                Begin TextBox
-                    Enabled = NotDefault
-                    TabStop = NotDefault
-                    AllowAutoCorrect = NotDefault
-                    OldBorderStyle =0
-                    OverlapFlags =247
-                    TextAlign =2
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Left =420
-                    Top =30
-                    Width =360
-                    Height =315
-                    FontSize =9
-                    TabIndex =3
-                    BorderColor =10921638
-                    ForeColor =15921906
-                    Name ="tbxID"
-                    ControlSource ="ID"
-                    ConditionalFormat = Begin
-                        0x01000000e0000000030000000100000000000000000000001b00000001010000 ,
-                        0x00000000ffffff0001000000000000001c0000002d00000001000000ff000000 ,
-                        0xffffff0001000000000000002e0000003f0000000100000022b14c00ffffff00 ,
-                        0x5b00740062007800490044005d003d005b007400620078004300750072007200 ,
-                        0x65006e0074005200650063006f00720064005d00000000005b00460069006500 ,
-                        0x6c00640043006800650063006b004f004b005d003d003000000000005b004600 ,
-                        0x690065006c00640043006800650063006b004f004b005d003d00310000000000
-                    End
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =420
-                    LayoutCachedTop =30
-                    LayoutCachedWidth =780
-                    LayoutCachedHeight =345
-                    ForeThemeColorIndex =1
-                    ForeTint =100.0
-                    ForeShade =95.0
-                    ConditionalFormat14 = Begin
-                        0x01000300000001000000000000000101000000000000ffffff001a0000005b00 ,
-                        0x740062007800490044005d003d005b0074006200780043007500720072006500 ,
-                        0x6e0074005200650063006f00720064005d000000000000000000000000000000 ,
-                        0x00000000000000010000000000000001000000ff000000ffffff00100000005b ,
-                        0x004600690065006c00640043006800650063006b004f004b005d003d00300000 ,
-                        0x0000000000000000000000000000000000000000010000000000000001000000 ,
-                        0x22b14c00ffffff00100000005b004600690065006c0064004300680065006300 ,
-                        0x6b004f004b005d003d0031000000000000000000000000000000000000000000 ,
-                        0x00
-                    End
-                End
-                Begin TextBox
-                    Visible = NotDefault
-                    Enabled = NotDefault
-                    Locked = NotDefault
-                    TabStop = NotDefault
-                    AllowAutoCorrect = NotDefault
-                    OldBorderStyle =0
-                    OverlapFlags =247
-                    TextAlign =1
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Left =5340
-                    Top =15
-                    Width =1080
-                    Height =315
-                    FontSize =9
-                    TabIndex =4
-                    BorderColor =10921638
-                    ForeColor =4138256
-                    Name ="tbxSQL"
-                    ControlSource ="Template"
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =5340
-                    LayoutCachedTop =15
-                    LayoutCachedWidth =6420
-                    LayoutCachedHeight =330
-                    ForeThemeColorIndex =2
-                    ForeTint =100.0
-                    ForeShade =50.0
-                End
-                Begin TextBox
-                    TabStop = NotDefault
-                    AllowAutoCorrect = NotDefault
-                    OldBorderStyle =0
-                    OverlapFlags =255
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Left =7020
-                    Top =45
-                    Width =360
-                    Height =300
-                    FontSize =9
-                    TabIndex =5
-                    BorderColor =8355711
-                    ForeColor =690698
-                    Name ="tbxCheckOK"
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =7020
-                    LayoutCachedTop =45
-                    LayoutCachedWidth =7380
-                    LayoutCachedHeight =345
-                    BorderThemeColorIndex =0
-                    BorderTint =50.0
-                    BorderShade =100.0
-                    ForeThemeColorIndex =-1
-                    ForeTint =50.0
-                End
-                Begin TextBox
-                    Visible = NotDefault
-                    Enabled = NotDefault
-                    TabStop = NotDefault
-                    AllowAutoCorrect = NotDefault
-                    OldBorderStyle =0
-                    OverlapFlags =247
-                    TextAlign =2
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Left =6840
-                    Top =15
-                    Width =360
-                    Height =315
-                    FontSize =9
-                    TabIndex =6
-                    BorderColor =10921638
-                    ForeColor =15921906
-                    Name ="tbxFieldCheckOK"
-                    ControlSource ="FieldCheckOK"
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =6840
-                    LayoutCachedTop =15
-                    LayoutCachedWidth =7200
-                    LayoutCachedHeight =330
-                    ForeThemeColorIndex =1
-                    ForeTint =100.0
-                    ForeShade =95.0
-                End
-                Begin CheckBox
-                    OverlapFlags =247
-                    Left =840
-                    Top =60
-                    Width =240
-                    Height =300
-                    TabIndex =8
-                    BorderColor =10921638
-                    Name ="chkTemplate"
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =840
-                    LayoutCachedTop =60
-                    LayoutCachedWidth =1080
-                    LayoutCachedHeight =360
-                End
-            End
         End
         Begin FormFooter
             Height =0
@@ -1037,7 +711,7 @@ Option Explicit
 ' =================================
 ' Form:         PlotCheckSelect
 ' Level:        Application form
-' Version:      1.00
+' Version:      1.01
 ' Basis:        Dropdown form
 '
 ' Description:  Plot field check selection form object related properties, events, functions & procedures for UI display
@@ -1045,6 +719,7 @@ Option Explicit
 ' Source/date:  Bonnie Campbell, January 30, 2018
 ' References:   -
 ' Revisions:    BLC - 1/30/2018 - 1.00 - initial version
+'               BLC - 3/30/2018 - 1.01 - remove form detail references
 ' =================================
 
 '---------------------
@@ -1194,6 +869,7 @@ End Property
 '   BLC - 3/31/2017 - added CallingSampleDate property
 '   BLC - 8/11/2017 - removed btnRunCheck & revised directions to use
 '                     double click on check name
+'   BLC - 3/30/2018 - remove form detail references
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -1233,8 +909,8 @@ On Error GoTo Err_Handler
         & vbCrLf & "Use SHFT or CTRL to select more than one."
     lblDirections.Caption = Me.Directions
     
-    tbxIcon.Value = StringFromCodepoint(uLocked)
-    tbxIcon.ForeColor = lngDkGreen
+    'tbxIcon.Value = StringFromCodepoint(uLocked)
+    'tbxIcon.ForeColor = lngDkGreen
     lblDirections.ForeColor = lngLtBlue
     
     'set hover
@@ -1244,7 +920,7 @@ On Error GoTo Err_Handler
     btnRunPlotChecks.Enabled = False
 
     'enable textbox to ensure scrollbar is available for longer text
-    tbxTemplate.Enabled = True
+    'tbxTemplate.Enabled = True
         
     'set underlying data
     Set Me.Recordset = GetRecords("s_template_num_records")
@@ -1287,10 +963,10 @@ On Error GoTo Err_Handler
     Dim chk As String
     chk = StringFromCodepoint(uCheck)
     
-    Me.tbxCheckOK = IIf(Me.tbxNumRecords > 0, chk, "")
+    'Me.tbxCheckOK = IIf(Me.tbxNumRecords > 0, chk, "")
     
     'hide initial unfiltered query record #s
-    Me.tbxNumRecords.Visible = True 'False
+    'Me.tbxNumRecords.Visible = True 'False
     
     Me.Requery
 
@@ -1356,17 +1032,18 @@ End Sub
 '   BLC - 8/9/2017 - prevent focus & selection of textbox
 '   BLC - 8/10/2017 - added current record highlight (via conditional format & tbxCurrentRecord)
 '   BLC - 8/14/2017 - removed btnRunCheck, tbxNoRunCheck
+'   BLC - 3/30/2018 - remove form detail references
 ' ---------------------------------
 Private Sub Form_Current()
 On Error GoTo Err_Handler
 
     'set current record
-    Me.tbxCurrentRecord = Me.tbxID
+    'Me.tbxCurrentRecord = Me.tbxID
 
     'prevent focus/select on query name (n.b. cannot focus on btnRunCheck > Error #2110)
-    Me.tbxNumRecords.SetFocus
-    Me.tbxNumRecords.SelStart = 0
-    Me.tbxNumRecords.SelLength = 0
+    'Me.tbxNumRecords.SetFocus
+    'Me.tbxNumRecords.SelStart = 0
+    'Me.tbxNumRecords.SelLength = 0
 
 Exit_Handler:
     Exit Sub
