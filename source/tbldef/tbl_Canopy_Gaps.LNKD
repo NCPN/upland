@@ -1,4 +1,4 @@
 ﻿tbl_Canopy_Gaps
-;DATABASE=C:\Projects\NCPN\TEST_DATA\Upland_be_20170628_master_TEST.accdb
+;DATABASE=C:\Users\helenthomas\Desktop\Temp\Upland\Upland_be_Master.accdb
 tbl_Canopy_Gaps
 Transect_ID;+Gap_ID
