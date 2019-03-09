@@ -5,7 +5,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.32
+' Version:      1.33
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -51,6 +51,9 @@ Option Explicit
 '               BLC, 2/1/2018   - 1.30 - add optional parameter to specify which checks to run
 '               BLC, 3/30/2018  - 1.31 - add new template for lp densiometer
 '               HMT, 5/2/2018   - 1.32 - updated template for exotic frequency
+'               HMT, 7/15/2018  - 1.33 - added templates for canopy gaps (s_canopy_gaps_non_null_start_end,
+'                                        qc_canopy_gap_checks) and basal gaps (s_basal_gaps_non_null_start_end,
+'                                        qc_basal_gap_checks)
 ' =================================
 
 '' ---------------------------------
@@ -916,7 +919,10 @@ End Sub
 '   BLC - 1/26/2018 - add new qc templates (exotic freq, missing sapling, shrub,
 '                     spherical densiometer)
 '   BLC - 3/30/2018 - add new template for lp densiometer
-'   HMT - 5/2/2018 - updated template for exotic frequency
+'   HMT - 5/2/2018  - updated template for exotic frequency
+'   HMT - 7/15/2018 - added templates for canopy gaps (s_canopy_gaps_non_null_start_end,
+'                     qc_canopy_gap_checks) and basal gaps (s_basal_gaps_non_null_start_end,
+'                     qc_basal_gap_checks)
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -982,6 +988,14 @@ On Error GoTo Err_Handler
                     .Parameters("eid") = TempVars("EventID")
                     .Parameters("tnum") = TempVars("TransectNumber")
                     .Parameters("vdate") = TempVars("VisitDate")
+                                
+                Case "s_canopy_gaps_non_null_start_end", _
+                     "qc_canopy_gap_checks", _
+                     "s_basal_gaps_non_null_start_end", _
+                     "qc_basal_gap_checks"
+                    '-- required parameters --
+                    .Parameters("tid") = TempVars("TransectID")
+                                
                 Case Else
                     'handle other non-parameterized queries
             End Select

@@ -2536,7 +2536,7 @@ End If
         Dim qdf As DAO.QueryDef
         Dim rs As DAO.Recordset
         Dim strTemplate As String, deps2 As String, strSQL As String
-        Dim tID As Integer, iTemplate
+        Dim tid As Integer, iTemplate
         
         Set db = CurrentDb
         
@@ -2548,9 +2548,9 @@ End If
         'iterate through queries
         For i = LBound(ary) To UBound(ary)
                     
-            tID = CInt(ary(i))
+            tid = CInt(ary(i))
             
-            iTemplate = ids(tID)
+            iTemplate = ids(tid)
             
             strTemplate = g_AppTemplates(iTemplate).Item("TemplateName")
             
@@ -2582,7 +2582,7 @@ End If
                         db.QueryDefs.Refresh
                         
                         'add query to open queries list (later to be closed)
-                        g_OpenQueries = g_OpenQueries & "," & tID
+                        g_OpenQueries = g_OpenQueries & "," & tid
                         
                     End If
                     
@@ -2595,7 +2595,7 @@ End If
                         DoCmd.DeleteObject acQuery, strTemplate 'qdf.Name
                         
                         'remove from open query list
-                        g_OpenQueries = Replace(Replace(g_OpenQueries, tID, ""), ",,", ",")
+                        g_OpenQueries = Replace(Replace(g_OpenQueries, tid, ""), ",,", ",")
                     End If
                     
             End Select

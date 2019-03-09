@@ -23,7 +23,7 @@ Begin Form
     Left =3855
     Top =2460
     Right =17160
-    Bottom =13965
+    Bottom =9555
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{E35D7F2C-A99C-41FE-ACEC-A1DAD79E24AC}' AND [Event_ID]='201708171"
         "65907-938545167.446136'"
@@ -31,11 +31,7 @@ Begin Form
         0x171e359b4cb5e440
     End
     RecordSource ="qfrm_DataEntry"
-    Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event - Filter "
-        "by sampling event - Filter by sampling event - Filter by sampling event - Filter"
-        " by sampling event - Filter by sampling event - Filter by sampling event - Filte"
-        "r by sampling event - Filter by sampling event - Filter by sampling event - Filt"
-        "er by sampling event"
+    Caption =" Data Entry Form"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"

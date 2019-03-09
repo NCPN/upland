@@ -15,17 +15,20 @@ Begin Form
     GridY =24
     Width =12900
     DatasheetFontHeight =9
-    ItemSuffix =412
-    Left =720
+    ItemSuffix =413
     Top =360
-    Right =13620
-    Bottom =8235
+    Right =9060
+    Bottom =7380
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xd019031e7010e340
     End
     OnCurrent ="[Event Procedure]"
     DatasheetFontName ="Arial"
+    PrtMip = Begin
+        0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
+        0x010000006801000000000000a10700000100000001000000
+    End
     OnLoad ="[Event Procedure]"
     FilterOnLoad =0
     DatasheetGridlinesColor12 =12632256
@@ -2211,7 +2214,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2238,7 +2241,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2251,7 +2254,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2264,7 +2267,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2277,7 +2280,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2290,7 +2293,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2303,7 +2306,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2316,7 +2319,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2329,7 +2332,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2342,7 +2345,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2355,7 +2358,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2368,7 +2371,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2381,7 +2384,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2394,7 +2397,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2407,7 +2410,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2420,7 +2423,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2433,7 +2436,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2446,7 +2449,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2459,7 +2462,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2472,7 +2475,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2485,7 +2488,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2498,7 +2501,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2511,7 +2514,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2524,7 +2527,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2537,7 +2540,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2550,7 +2553,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2563,7 +2566,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2576,7 +2579,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2589,7 +2592,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2602,7 +2605,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2615,7 +2618,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2628,7 +2631,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2641,7 +2644,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2654,7 +2657,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -2667,7 +2670,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2680,7 +2683,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2693,7 +2696,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2706,7 +2709,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2719,7 +2722,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2732,7 +2735,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2745,7 +2748,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2758,7 +2761,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2771,7 +2774,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2784,7 +2787,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2797,7 +2800,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2810,7 +2813,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2823,7 +2826,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2836,7 +2839,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2849,7 +2852,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2862,7 +2865,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2875,7 +2878,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2888,7 +2891,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2901,7 +2904,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2914,7 +2917,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2927,7 +2930,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2940,7 +2943,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2953,7 +2956,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2966,7 +2969,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2979,7 +2982,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -2992,7 +2995,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3005,7 +3008,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3018,7 +3021,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3031,7 +3034,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3044,7 +3047,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3057,7 +3060,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3070,7 +3073,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -3083,7 +3086,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -3096,7 +3099,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =780
@@ -3122,7 +3125,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3148,7 +3151,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3161,7 +3164,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3174,7 +3177,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3187,7 +3190,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3200,7 +3203,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3120
@@ -3213,7 +3216,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3226,7 +3229,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3239,7 +3242,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3252,7 +3255,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3265,7 +3268,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3278,7 +3281,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3291,7 +3294,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3304,7 +3307,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3317,7 +3320,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3330,7 +3333,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3343,7 +3346,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3356,7 +3359,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3369,7 +3372,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3382,7 +3385,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3395,7 +3398,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3408,7 +3411,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3421,7 +3424,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3434,7 +3437,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3447,7 +3450,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3460,7 +3463,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3473,7 +3476,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3486,7 +3489,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3499,7 +3502,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3512,7 +3515,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3525,7 +3528,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3538,7 +3541,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3551,7 +3554,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3564,7 +3567,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3577,7 +3580,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3590,7 +3593,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3603,7 +3606,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3616,7 +3619,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3629,7 +3632,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3642,7 +3645,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3655,7 +3658,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3668,7 +3671,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3681,7 +3684,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3694,7 +3697,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3707,7 +3710,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3720,7 +3723,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3733,7 +3736,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3746,7 +3749,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3759,7 +3762,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3772,7 +3775,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3785,7 +3788,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3798,7 +3801,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3811,7 +3814,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3824,7 +3827,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3837,7 +3840,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3850,7 +3853,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3863,7 +3866,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3876,7 +3879,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3889,7 +3892,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -3902,7 +3905,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3915,7 +3918,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3928,7 +3931,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3941,7 +3944,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3954,7 +3957,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3967,7 +3970,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3980,7 +3983,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -3993,7 +3996,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -4006,7 +4009,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5460
@@ -4032,7 +4035,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4058,7 +4061,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4071,7 +4074,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4084,7 +4087,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4097,7 +4100,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4110,7 +4113,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4123,7 +4126,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4136,7 +4139,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4149,7 +4152,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4162,7 +4165,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4175,7 +4178,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4188,7 +4191,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =7800
@@ -4201,7 +4204,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4214,7 +4217,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4227,7 +4230,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4240,7 +4243,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4253,7 +4256,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4266,7 +4269,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4279,7 +4282,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4292,7 +4295,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4305,7 +4308,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4318,7 +4321,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4331,7 +4334,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4344,7 +4347,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4357,7 +4360,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4370,7 +4373,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4383,7 +4386,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4396,7 +4399,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4409,7 +4412,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4422,7 +4425,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4435,7 +4438,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4448,7 +4451,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4461,7 +4464,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4474,7 +4477,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4667,7 +4670,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4680,7 +4683,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4693,7 +4696,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4706,7 +4709,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4719,7 +4722,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4732,7 +4735,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4745,7 +4748,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4758,7 +4761,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4771,7 +4774,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4784,7 +4787,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4797,7 +4800,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4810,7 +4813,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4823,7 +4826,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4836,7 +4839,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4849,7 +4852,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =87
+                    OverlapFlags =215
                     TextAlign =2
                     IMESentenceMode =3
                     Left =10140
@@ -4876,6 +4879,26 @@ Begin Form
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
                 End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =11880
+                    Top =840
+                    Width =810
+                    Height =720
+                    TabIndex =375
+                    Name ="btnRunBasalGapChecks"
+                    Caption ="Check Basal Gaps"
+                    OnClick ="[Event Procedure]"
+
+                    LayoutCachedLeft =11880
+                    LayoutCachedTop =840
+                    LayoutCachedWidth =12690
+                    LayoutCachedHeight =1560
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
+                End
             End
         End
     End
@@ -4886,6 +4909,140 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+
+' -------------------------------------------------------------------------------------------------
+' Sub:          btnRunBasalGapChecks_Click
+' Description:  Run basal gap checks button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:   -
+' Source/date:  Helen Thomas, 7/14/2018
+' Adapted:      -
+' Revisions:
+' -------------------------------------------------------------------------------------------------
+Private Sub btnRunBasalGapChecks_Click()
+On Error GoTo Err_Handler
+
+Dim strSQL As String
+Dim db As DAO.Database
+Dim rs As DAO.Recordset, rsNext As DAO.Recordset, rsResult As DAO.Recordset
+Dim tid As Variant
+
+  DoCmd.Hourglass True
+  DoCmd.SetWarnings False
+  
+  ' Run queries to clear result tables
+  strSQL = GetTemplate("d_gap_data_overlap_check_result")
+  If IsNull(strSQL) Or Len(strSQL) = 0 Then GoTo Exit_Handler
+  DoCmd.RunSQL strSQL
+  strSQL = GetTemplate("d_gap_data_qaqc_result")
+  If IsNull(strSQL) Or Len(strSQL) = 0 Then GoTo Exit_Handler
+  DoCmd.RunSQL strSQL
+
+  Set db = CurrentDb
+  ' Set parameter
+  tid = CVar(Me!Transect_ID)
+  SetTempVar "TransectID", tid
+  ' Retrieve basal gap records with non-null start and end to check for overlapping gaps
+  Set rs = GetRecords("s_basal_gaps_non_null_start_end")
+
+  ' Exit if there are not enough records
+  If rs.BOF And rs.EOF Then
+    MsgBox "No basal gap records found."
+    GoTo Exit_Handler
+  End If
+  rs.MoveLast
+  rs.MoveFirst
+  If rs.RecordCount <= 1 Then
+    MsgBox "More than one basal gap record is required to run overlapping basal gap check."
+    GoTo Exit_Handler
+  End If
+
+  Set rsNext = rs.OpenRecordset()
+  ' Go to next record to get next start
+  rsNext.MoveNext
+  Set rsResult = db.OpenRecordset("GapDataOverlapCheckResult")
+  
+  Do Until rs.EOF Or rsNext.EOF
+    ' If gap end less than or equal to next gap start, write to result file
+    If rs!Gap_End <= rsNext!Gap_Start Then
+        rsResult.AddNew
+        rsResult!UnitCode = rs!Unit_Code
+        rsResult!PlotID = rs!Plot_ID
+        rsResult!VisitDate = rs!Start_Date
+        rsResult!Transect = rs!Transect
+        rsResult!TransectID = rs!Transect_ID
+        rsResult!GapID = rs!Gap_ID
+        rsResult!GapStart = rs!Gap_Start
+        rsResult!GapEnd = rs!Gap_End
+        rsResult.Update
+    End If
+    rs.MoveNext
+    rsNext.MoveNext
+  Loop
+
+  rsNext.Close
+  Set rsNext = Nothing
+  rsResult.Close
+  Set rsResult = Nothing
+  
+  ' Set parameter
+  SetTempVar "TransectID", tid
+  ' Retrieve results of query that combines all basal gap QC check results
+  ' FINISH QUERY BELOW
+  Set rs = GetRecords("qc_basal_gap_checks")
+  
+  If rs.BOF And rs.EOF Then
+    MsgBox "No basal gap issues found!"
+  Else
+    ' Write to result file
+    Set rsResult = db.OpenRecordset("GapDataQAQCResult")
+    rs.MoveFirst
+    Do Until rs.EOF
+        rsResult.AddNew
+        rsResult!UnitCode = rs!UnitCode
+        rsResult!PlotID = rs!PlotID
+        rsResult!VisitDate = rs!VisitDate
+        rsResult!Transect = rs!Transect
+        rsResult!TransectID = rs!TransectID
+        rsResult!GapID = rs!GapID
+        rsResult!GapStart = rs!GapStart
+        rsResult!GapEnd = rs!GapEnd
+        rsResult!Issue = rs!Issue
+        rsResult.Update
+        rs.MoveNext
+    Loop
+    ' Minimize frm_Data_Entry
+    ToggleForm "frm_Data_Entry", -1
+    ' Open result table if not already open; requery otherwise
+    If SysCmd(acSysCmdGetObjectState, acTable, "GapDataQAQCResult") = 0 Then
+        DoCmd.OpenTable "GapDataQAQCResult", acViewNormal, acEdit
+    Else
+        DoCmd.SelectObject acTable, "GapDataQAQCResult"
+        DoCmd.Requery
+    End If
+    rsResult.Close
+    Set rsResult = Nothing
+  End If
+      
+Exit_Handler:
+  rs.Close
+  Set rs = Nothing
+  Set db = Nothing
+  DoCmd.SetWarnings True
+  DoCmd.Hourglass False
+  Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnRunBasalGapChecks_Click[fsub_Basal_Gap])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
 Private Sub F1_AfterUpdate()
     If IsNull(Me.Parent!Visit_Date) Then
