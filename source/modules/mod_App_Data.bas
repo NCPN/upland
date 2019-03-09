@@ -5,7 +5,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.31
+' Version:      1.32
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -50,6 +50,7 @@ Option Explicit
 '                                        spherical densiometer)
 '               BLC, 2/1/2018   - 1.30 - add optional parameter to specify which checks to run
 '               BLC, 3/30/2018  - 1.31 - add new template for lp densiometer
+'               HMT, 5/2/2018   - 1.32 - updated template for exotic frequency
 ' =================================
 
 '' ---------------------------------
@@ -915,6 +916,7 @@ End Sub
 '   BLC - 1/26/2018 - add new qc templates (exotic freq, missing sapling, shrub,
 '                     spherical densiometer)
 '   BLC - 3/30/2018 - add new template for lp densiometer
+'   HMT - 5/2/2018 - updated template for exotic frequency
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -955,7 +957,7 @@ On Error GoTo Err_Handler
                 Case "qc_ndc_notrecorded_all_methods_by_plot_visit", _
                     "qc_photos_missing_by_plot_visit", _
                     "qc_species_by_plot_visit", _
-                    "qc_exotic_freq_with_no_species", _
+                    "qc_exotic_frequency_missing_values", _
                     "qc_missing_sapling_totals", _
                     "qc_missing_shrub_totals", _
                     "qc_missing_spherical_densiometer"
