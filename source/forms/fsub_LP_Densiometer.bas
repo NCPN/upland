@@ -11,10 +11,10 @@ Begin Form
     Width =5760
     DatasheetFontHeight =9
     ItemSuffix =16
-    Left =405
-    Top =930
-    Right =6450
-    Bottom =3495
+    Left =420
+    Top =1290
+    Right =6465
+    Bottom =3855
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xf4627643ab16e540
@@ -718,6 +718,8 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 3/29/2018 - initial version
+'   HMT - 8/5/2018  - Removed code that inserted records into parent table since it was not needed
+'                     and was creating duplicate records.
 ' ---------------------------------
 Private Sub btnAddLocations_Click()
 On Error GoTo Err_Handler
@@ -743,50 +745,10 @@ Debug.Print rs.RecordCount
     'add only if records don't exist
     If rs.RecordCount = 0 Then
         
-        'create record in tbl_LP_Transect (required)
-        Dim rs2 As DAO.Recordset
-        Dim CanopyTransectID As String
-        
-        'set params
-        With Me.Parent
-            SetTempVar "TransectID", Eval(.Form!Transect_ID)
-            SetTempVar "EventID", Eval(.Form!Event_ID)
-            SetTempVar "TransectNumber", CInt(.Form!Transect)
-            SetTempVar "VisitDate", CDate(.Form!Visit_Date)
-        End With
-        
-        Set rs2 = GetRecords("s_lp_belt_transect")
-        
-        If Not (rs2.BOF And rs2.EOF) Then rs2.MoveLast
-        
-        Debug.Print Me.Parent.Form.Name & " count = " & rs2.RecordCount
-        Debug.Print Me.Parent.Form!Event_ID
-        Debug.Print Me.Parent.Form!Observer
-        Debug.Print Me.Parent.Form!Recorder
-        Debug.Print Me.Parent.Form!Transect
-        
-        If rs2.RecordCount = 0 Then
-            rs2.AddNew
-            
-            With Me.Parent
-                rs2("Event_ID") = .Form!Event_ID
-                rs2("Observer") = .Form!Observer
-                rs2("Recorder") = .Form!Recorder
-                rs2("Transect") = .Form!Transect
-                rs2("Visit_Date") = .Form!Visit_Date
-            End With
-            
-            rs2.Update
-            
-            rs2.Move 0, rs2.LastModified
-            CanopyTransectID = rs2!Transect_ID
-            Debug.Print rs2.RecordCount
-        End If
-        
 Debug.Print "rs = 0"
         For Each loc In locs
             rs.AddNew
-            rs("Transect_ID") = CanopyTransectID 'Me.Parent.Form.Controls("Transect_ID")
+            rs("Transect_ID") = Me.Parent.Form.Controls("Transect_ID")
             rs("Point") = CStr(loc) & "m"
             'rs("Total1") = 0
             'rs("Total2") = 0
@@ -802,11 +764,6 @@ Debug.Print "rs = 0"
     End If
 
 Exit_Handler:
-    'cleanup
-    TempVars.Remove "TransectID"
-    TempVars.Remove "TransectNumber"
-    TempVars.Remove "EventID"
-    TempVars.Remove "VisitDate"
     Exit Sub
 Err_Handler:
     Select Case Err.Number
