@@ -11,15 +11,15 @@ Begin Report
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
-    Width =10080
+    Width =10800
     DatasheetFontHeight =9
-    ItemSuffix =40
-    Left =936
-    Top =516
-    Right =10200
-    Bottom =9036
+    ItemSuffix =44
+    Left =195
+    Top =360
+    Right =9465
+    Bottom =7260
     DatasheetGridlinesColor =12632256
-    Filter ="([Unit_Code] = 'ARCH' AND [Plot_Id] = 1AND [Visit_Year] = '2011')"
+    Filter ="[Unit_Code] = 'BLCA' AND [Plot_Id] = 203AND [Visit_Year] = '2018'"
     RecSrcDt = Begin
         0x04ae7a726ca8e340
     End
@@ -27,7 +27,7 @@ Begin Report
     Caption ="rpt_OT_Census"
     DatasheetFontName ="Arial"
     PrtMip = Begin
-        0x40020000d002000040020000d002000000000000602700006801000001000000 ,
+        0x40020000d002000040020000d002000000000000602700002805000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
     FilterOnLoad =0
@@ -101,27 +101,33 @@ Begin Report
         End
         Begin FormHeader
             KeepTogether = NotDefault
-            Height =912
+            Height =480
             Name ="ReportHeader"
             Begin
                 Begin Label
                     BackStyle =1
                     TextAlign =2
-                    Left =1440
-                    Top =180
+                    Left =1740
                     Width =7380
-                    Height =600
-                    FontSize =24
+                    Height =420
+                    FontSize =18
                     FontWeight =400
                     Name ="Label20"
                     Caption ="Overstory Census Revisit"
+                    LayoutCachedLeft =1740
+                    LayoutCachedWidth =9120
+                    LayoutCachedHeight =420
                 End
                 Begin Line
                     BorderWidth =2
                     Left =120
-                    Top =900
-                    Width =9792
+                    Top =420
+                    Width =10512
                     Name ="Line34"
+                    LayoutCachedLeft =120
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =10632
+                    LayoutCachedHeight =420
                 End
             End
         End
@@ -131,28 +137,34 @@ Begin Report
         End
         Begin BreakHeader
             KeepTogether = NotDefault
-            Height =405
+            Height =360
             Name ="GroupHeader0"
             Begin
                 Begin TextBox
                     DecimalPlaces =0
                     IMESentenceMode =3
                     Left =1620
-                    Height =405
-                    FontSize =14
+                    Height =360
+                    FontSize =12
                     FontWeight =700
                     Name ="Unit_Code"
                     ControlSource ="Unit_Code"
                     StatusBarText ="Park Code."
 
+                    LayoutCachedLeft =1620
+                    LayoutCachedWidth =3060
+                    LayoutCachedHeight =360
                     Begin
                         Begin Label
                             Left =60
                             Width =1500
-                            Height =405
-                            FontSize =14
+                            Height =360
+                            FontSize =12
                             Name ="Unit_Code_Label"
                             Caption ="Park Code"
+                            LayoutCachedLeft =60
+                            LayoutCachedWidth =1560
+                            LayoutCachedHeight =360
                         End
                     End
                 End
@@ -160,7 +172,7 @@ Begin Report
         End
         Begin BreakHeader
             KeepTogether = NotDefault
-            Height =420
+            Height =360
             BreakLevel =1
             Name ="GroupHeader1"
             Begin
@@ -168,21 +180,27 @@ Begin Report
                     DecimalPlaces =0
                     IMESentenceMode =3
                     Left =1620
-                    Height =390
-                    FontSize =14
+                    Height =360
+                    FontSize =12
                     Name ="Plot_ID"
                     ControlSource ="Plot_ID"
                     StatusBarText ="Plot identifier"
 
+                    LayoutCachedLeft =1620
+                    LayoutCachedWidth =3060
+                    LayoutCachedHeight =360
                     Begin
                         Begin Label
                             Left =60
                             Width =1500
-                            Height =390
-                            FontSize =14
+                            Height =360
+                            FontSize =12
                             FontWeight =400
                             Name ="Plot_ID_Label"
                             Caption ="Plot"
+                            LayoutCachedLeft =60
+                            LayoutCachedWidth =1560
+                            LayoutCachedHeight =360
                         End
                     End
                 End
@@ -233,16 +251,20 @@ Begin Report
                     TextAlign =2
                     Left =660
                     Top =420
-                    Width =2220
+                    Width =1620
                     Height =270
                     FontSize =10
                     Name ="Species_Label"
                     Caption ="Species"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =660
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =2280
+                    LayoutCachedHeight =690
                 End
                 Begin Label
                     TextAlign =2
-                    Left =2940
+                    Left =2340
                     Top =420
                     Width =1005
                     Height =270
@@ -250,10 +272,14 @@ Begin Report
                     Name ="DBH_Label"
                     Caption ="DBH/DRC"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =2340
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =3345
+                    LayoutCachedHeight =690
                 End
                 Begin Label
                     TextAlign =2
-                    Left =4020
+                    Left =3420
                     Top =420
                     Width =1155
                     Height =270
@@ -261,10 +287,14 @@ Begin Report
                     Name ="Crown_Class_Label"
                     Caption ="Crown Class"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =3420
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =4575
+                    LayoutCachedHeight =690
                 End
                 Begin Label
                     TextAlign =2
-                    Left =5220
+                    Left =4620
                     Top =420
                     Width =1320
                     Height =270
@@ -272,31 +302,25 @@ Begin Report
                     Name ="Class_Description_Label"
                     Caption ="Crown Health"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =4620
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =5940
+                    LayoutCachedHeight =690
                 End
                 Begin Label
                     TextAlign =2
-                    Left =6600
+                    Left =6000
                     Top =420
-                    Width =3360
+                    Width =4800
                     Height =270
                     FontSize =10
                     Name ="Notes_Label"
                     Caption ="Notes"
                     Tag ="DetachedLabel"
-                End
-                Begin Line
-                    BorderWidth =1
-                    Left =60
-                    Top =360
-                    Width =9900
-                    Name ="Line35"
-                End
-                Begin Line
-                    BorderWidth =1
-                    Left =60
-                    Top =60
-                    Width =9900
-                    Name ="Line36"
+                    LayoutCachedLeft =6000
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =10800
+                    LayoutCachedHeight =690
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -319,11 +343,33 @@ Begin Report
                     LayoutCachedWidth =1620
                     LayoutCachedHeight =360
                 End
+                Begin Line
+                    BorderWidth =1
+                    Left =60
+                    Top =60
+                    Width =10620
+                    Name ="Line40"
+                    LayoutCachedLeft =60
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =10680
+                    LayoutCachedHeight =60
+                End
+                Begin Line
+                    BorderWidth =1
+                    Left =60
+                    Top =360
+                    Width =10620
+                    Name ="Line41"
+                    LayoutCachedLeft =60
+                    LayoutCachedTop =360
+                    LayoutCachedWidth =10680
+                    LayoutCachedHeight =360
+                End
             End
         End
         Begin Section
             KeepTogether = NotDefault
-            Height =360
+            Height =840
             Name ="Detail"
             Begin
                 Begin TextBox
@@ -339,134 +385,147 @@ Begin Report
 
                 End
                 Begin TextBox
-                    TextAlign =2
-                    IMESentenceMode =3
-                    Left =660
-                    Top =60
-                    Width =540
-                    Height =270
-                    TabIndex =1
-                    Name ="Species"
-                    ControlSource ="Species"
-                    StatusBarText ="Species code"
-
-                End
-                Begin TextBox
                     TextAlign =1
                     IMESentenceMode =3
-                    Left =1260
+                    Left =660
                     Top =60
                     Width =1620
                     Height =270
                     ColumnWidth =3345
-                    TabIndex =2
+                    TabIndex =1
                     Name ="Utah_Species"
                     ControlSource ="Utah_Species"
                     StatusBarText ="Utah Species (Welsh et al 2003)"
 
+                    LayoutCachedLeft =660
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =2280
+                    LayoutCachedHeight =330
                 End
                 Begin TextBox
                     DecimalPlaces =1
                     TextAlign =2
                     IMESentenceMode =3
-                    Left =2940
+                    Left =2340
                     Top =60
                     Width =480
                     Height =270
-                    TabIndex =3
+                    TabIndex =2
                     Name ="DBH"
                     ControlSource ="DBH"
                     StatusBarText ="Diameter at breast height in centimeters"
 
+                    LayoutCachedLeft =2340
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =2820
+                    LayoutCachedHeight =330
                 End
                 Begin TextBox
                     TextAlign =2
                     IMESentenceMode =3
-                    Left =4020
+                    Left =3420
                     Top =60
                     Width =1140
                     Height =270
-                    TabIndex =4
+                    TabIndex =3
                     Name ="Crown_Class"
                     ControlSource ="Crown_Class"
                     StatusBarText ="Crown class"
 
+                    LayoutCachedLeft =3420
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =4560
+                    LayoutCachedHeight =330
                 End
                 Begin TextBox
                     IMESentenceMode =3
-                    Left =5220
+                    Left =4620
                     Top =60
                     Width =1320
                     Height =270
                     ColumnWidth =1845
-                    TabIndex =5
+                    TabIndex =4
                     Name ="Class_Description"
                     ControlSource ="Class_Description"
                     StatusBarText ="Health class description"
 
+                    LayoutCachedLeft =4620
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =5940
+                    LayoutCachedHeight =330
                 End
                 Begin TextBox
                     IMESentenceMode =3
-                    Left =6600
+                    Left =6000
                     Top =60
-                    Width =3360
-                    Height =270
-                    TabIndex =6
+                    Width =4800
+                    Height =780
+                    TabIndex =5
                     Name ="Notes"
                     ControlSource ="Notes"
                     StatusBarText ="Notes about any significant damage to a living tree"
 
+                    LayoutCachedLeft =6000
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =10800
+                    LayoutCachedHeight =840
                 End
                 Begin TextBox
                     IMESentenceMode =3
-                    Left =3480
+                    Left =2880
                     Top =60
                     Width =480
                     Height =270
-                    TabIndex =7
+                    TabIndex =6
                     Name ="DType"
                     ControlSource ="DType"
                     StatusBarText ="Diameter type indicator - dbh or DRC"
 
+                    LayoutCachedLeft =2880
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =3360
+                    LayoutCachedHeight =330
                 End
             End
         End
         Begin PageFooter
-            Height =510
+            Height =270
             Name ="PageFooterSection"
             Begin
                 Begin TextBox
                     TextAlign =1
                     IMESentenceMode =3
                     Left =60
-                    Top =240
                     Width =4560
                     Height =270
                     Name ="Text21"
                     ControlSource ="=Now()"
                     Format ="Long Date"
 
+                    LayoutCachedLeft =60
+                    LayoutCachedWidth =4620
+                    LayoutCachedHeight =270
                 End
                 Begin TextBox
                     TextAlign =3
                     IMESentenceMode =3
                     Left =4740
-                    Top =240
-                    Width =4560
+                    Width =5820
                     Height =270
                     TabIndex =1
                     Name ="Text22"
                     ControlSource ="=\"Page \" & [Page] & \" of \" & [Pages]"
 
+                    LayoutCachedLeft =4740
+                    LayoutCachedWidth =10560
+                    LayoutCachedHeight =270
                 End
                 Begin Line
-                    Width =9360
-                    Name ="Line32"
-                End
-                Begin Line
-                    Top =30
-                    Width =9360
-                    Name ="Line33"
+                    Left =60
+                    Width =10620
+                    Name ="Line42"
+                    LayoutCachedLeft =60
+                    LayoutCachedWidth =10680
                 End
             End
         End

@@ -1,4 +1,4 @@
 ﻿tbl_Basal_Gaps
-;DATABASE=C:\Users\helenthomas\Desktop\Temp\Upland\Upland_be_Master.accdb
+;DATABASE=C:\Users\helenthomas\Desktop\Temp\Upland\Upland_be_Test.accdb
 tbl_Basal_Gaps
 Transect_ID;+Gap_ID

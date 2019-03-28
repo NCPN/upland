@@ -5,7 +5,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.33
+' Version:      1.34
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -54,6 +54,7 @@ Option Explicit
 '               HMT, 7/15/2018  - 1.33 - added templates for canopy gaps (s_canopy_gaps_non_null_start_end,
 '                                        qc_canopy_gap_checks) and basal gaps (s_basal_gaps_non_null_start_end,
 '                                        qc_basal_gap_checks)
+'               HMT, 3/8/2019   - 1.34 - added template for missing observer/recorder/date
 ' =================================
 
 '' ---------------------------------
@@ -923,6 +924,7 @@ End Sub
 '   HMT - 7/15/2018 - added templates for canopy gaps (s_canopy_gaps_non_null_start_end,
 '                     qc_canopy_gap_checks) and basal gaps (s_basal_gaps_non_null_start_end,
 '                     qc_basal_gap_checks)
+'   HMT - 3/8/2019  - added template for missing observer/recorder/date
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -966,7 +968,8 @@ On Error GoTo Err_Handler
                     "qc_exotic_frequency_missing_values", _
                     "qc_missing_sapling_totals", _
                     "qc_missing_shrub_totals", _
-                    "qc_missing_spherical_densiometer"
+                    "qc_missing_spherical_densiometer", _
+                    "qc_missing_observer_recorder_date"
                     '-- required parameters --
                     .Parameters("pkcode") = TempVars("ParkCode")
                     .Parameters("pid") = TempVars("plotID")
