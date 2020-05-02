@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -26,8 +26,8 @@ Begin Form
     ItemSuffix =74
     Left =2940
     Top =930
-    Right =12840
-    Bottom =9615
+    Right =15450
+    Bottom =11790
     DatasheetGridlinesColor =12632256
     PictureData = Begin
         0x28000000a0020000f8010000010018000000000000810f00c30e0000c30e0000 ,
@@ -31800,9 +31800,6 @@ Begin Form
     OnActivate ="[Event Procedure]"
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     FilterOnLoad =0
     AllowLayoutView =0
     PictureSizeMode =3
@@ -33532,9 +33529,9 @@ Begin Form
                     CanShrink = NotDefault
                     OverlapFlags =247
                     Left =3060
-                    Top =7740
+                    Top =8220
                     Width =6825
-                    Height =234
+                    Height =480
                     TabIndex =2
                     Name ="tbxLinkPath"
                     ControlSource ="Link_file_path"
@@ -33542,17 +33539,25 @@ Begin Form
                     OnDblClick ="[Event Procedure]"
                     FontName ="Arial"
 
+                    LayoutCachedLeft =3060
+                    LayoutCachedTop =8220
+                    LayoutCachedWidth =9885
+                    LayoutCachedHeight =8700
                     Begin
                         Begin Label
                             OverlapFlags =247
                             Left =3120
-                            Top =7440
+                            Top =7620
                             Width =1560
                             Height =240
                             ForeColor =16777215
                             Name ="lblLinkPath"
                             Caption ="Current back-end file:"
                             FontName ="Arial"
+                            LayoutCachedLeft =3120
+                            LayoutCachedTop =7620
+                            LayoutCachedWidth =4680
+                            LayoutCachedHeight =7860
                         End
                     End
                 End

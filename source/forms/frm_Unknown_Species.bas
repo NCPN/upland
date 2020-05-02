@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -20,10 +20,10 @@ Begin Form
     Width =11520
     DatasheetFontHeight =9
     ItemSuffix =46
-    Left =4368
-    Top =2808
-    Right =14640
-    Bottom =11100
+    Left =11115
+    Top =5190
+    Right =21390
+    Bottom =12975
     DatasheetGridlinesColor =12632256
     Filter ="[Unknown_ID]='20110415113257-756092607.975006'"
     RecSrcDt = Begin
@@ -465,10 +465,10 @@ Begin Form
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                     Overlaps =1
                 End
                 Begin TextBox
@@ -496,7 +496,7 @@ Begin Form
                     End
                 End
                 Begin ComboBox
-                    OverlapFlags =87
+                    OverlapFlags =85
                     IMESentenceMode =3
                     ColumnCount =2
                     ListWidth =3600
@@ -516,7 +516,7 @@ Begin Form
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =93
+                            OverlapFlags =85
                             Left =180
                             Top =6420
                             Width =1545
@@ -748,8 +748,8 @@ Begin Form
                     ControlSource ="Method"
                     RowSourceType ="Value List"
                     RowSource ="\"Point Intercept\";\"Exotic Frequency\";\"1-m Belt Shrubs\";\"1-m Belt Seedling"
-                        "s\";\"1-m Belt Species Richness\";\"5-m Belt Saplings\";\"Overstory Census\";\"S"
-                        "ite Impact Exotic Species\""
+                        "s\";\"1-m Belt Species Richness\";\"Vegetation Height\";\"5-m Belt Saplings\";\""
+                        "Overstory Census\";\"Site Impact Exotic Species\""
                     ColumnWidths ="2055"
 
                     LayoutCachedLeft =5640

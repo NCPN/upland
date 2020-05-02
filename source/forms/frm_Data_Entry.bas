@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -19,11 +19,11 @@ Begin Form
     GridY =24
     Width =16296
     DatasheetFontHeight =10
-    ItemSuffix =213
-    Left =3855
-    Top =2460
-    Right =17160
-    Bottom =9555
+    ItemSuffix =216
+    Left =4470
+    Top =2880
+    Right =21015
+    Bottom =14430
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{E35D7F2C-A99C-41FE-ACEC-A1DAD79E24AC}' AND [Event_ID]='201708171"
         "65907-938545167.446136'"
@@ -44,9 +44,6 @@ Begin Form
     End
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     FilterOnLoad =255
     AllowLayoutView =0
     DatasheetGridlinesColor12 =12632256
@@ -331,6 +328,10 @@ Begin Form
                                     LinkChildFields ="Event_ID"
                                     LinkMasterFields ="Event_ID"
 
+                                    LayoutCachedLeft =360
+                                    LayoutCachedTop =1680
+                                    LayoutCachedWidth =14040
+                                    LayoutCachedHeight =8640
                                 End
                             End
                         End
@@ -363,6 +364,10 @@ Begin Form
                                     LinkChildFields ="Event_ID"
                                     LinkMasterFields ="Event_ID"
 
+                                    LayoutCachedLeft =180
+                                    LayoutCachedTop =1800
+                                    LayoutCachedWidth =14280
+                                    LayoutCachedHeight =11715
                                 End
                             End
                         End
@@ -407,6 +412,41 @@ Begin Form
                             Top =1620
                             Width =15765
                             Height =12720
+                            Name ="pgVegHeight"
+                            Caption ="Vegetation Height"
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =1620
+                            LayoutCachedWidth =15900
+                            LayoutCachedHeight =14340
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
+                            Begin
+                                Begin Subform
+                                    OverlapFlags =247
+                                    Left =300
+                                    Top =1740
+                                    Width =14250
+                                    Height =9915
+                                    Name ="frm_VH_Transect"
+                                    SourceObject ="Form.frm_VH_Transect"
+                                    LinkChildFields ="Event_ID"
+                                    LinkMasterFields ="Event_ID"
+
+                                    LayoutCachedLeft =300
+                                    LayoutCachedTop =1740
+                                    LayoutCachedWidth =14550
+                                    LayoutCachedHeight =11655
+                                End
+                            End
+                        End
+                        Begin Page
+                            OverlapFlags =215
+                            Left =135
+                            Top =1620
+                            Width =15765
+                            Height =12720
                             Name ="pgGaps"
                             Caption ="Gap Intercepts"
                             LayoutCachedLeft =135
@@ -431,6 +471,10 @@ Begin Form
                                     LinkChildFields ="Event_ID"
                                     LinkMasterFields ="Event_ID"
 
+                                    LayoutCachedLeft =180
+                                    LayoutCachedTop =1680
+                                    LayoutCachedWidth =13950
+                                    LayoutCachedHeight =12255
                                 End
                             End
                         End
@@ -462,6 +506,10 @@ Begin Form
                                     LinkChildFields ="Event_ID"
                                     LinkMasterFields ="Event_ID"
 
+                                    LayoutCachedLeft =180
+                                    LayoutCachedTop =1740
+                                    LayoutCachedWidth =14040
+                                    LayoutCachedHeight =8955
                                 End
                             End
                         End
@@ -564,6 +612,10 @@ Begin Form
                                     FontName ="Tahoma"
                                     InputMask ="99/99/0000;0;_"
 
+                                    LayoutCachedLeft =3780
+                                    LayoutCachedTop =1680
+                                    LayoutCachedWidth =4800
+                                    LayoutCachedHeight =1920
                                     Begin
                                         Begin Label
                                             OverlapFlags =223
@@ -575,6 +627,10 @@ Begin Form
                                             Name ="Label176"
                                             Caption ="Date"
                                             FontName ="Tahoma"
+                                            LayoutCachedLeft =3240
+                                            LayoutCachedTop =1680
+                                            LayoutCachedWidth =3780
+                                            LayoutCachedHeight =1920
                                         End
                                     End
                                 End
@@ -595,6 +651,10 @@ Begin Form
                                     ColumnWidths ="0;1440;1440"
                                     FontName ="Tahoma"
 
+                                    LayoutCachedLeft =6000
+                                    LayoutCachedTop =1680
+                                    LayoutCachedWidth =7440
+                                    LayoutCachedHeight =1920
                                     Begin
                                         Begin Label
                                             OverlapFlags =215
@@ -606,6 +666,10 @@ Begin Form
                                             Name ="Label178"
                                             Caption ="Observer"
                                             FontName ="Tahoma"
+                                            LayoutCachedLeft =5100
+                                            LayoutCachedTop =1680
+                                            LayoutCachedWidth =5940
+                                            LayoutCachedHeight =1925
                                         End
                                     End
                                 End
@@ -626,6 +690,10 @@ Begin Form
                                     ColumnWidths ="0;990;990"
                                     FontName ="Tahoma"
 
+                                    LayoutCachedLeft =8640
+                                    LayoutCachedTop =1680
+                                    LayoutCachedWidth =10080
+                                    LayoutCachedHeight =1920
                                     Begin
                                         Begin Label
                                             OverlapFlags =215
@@ -637,6 +705,10 @@ Begin Form
                                             Name ="Label182"
                                             Caption ="Recorder"
                                             FontName ="Tahoma"
+                                            LayoutCachedLeft =7740
+                                            LayoutCachedTop =1680
+                                            LayoutCachedWidth =8580
+                                            LayoutCachedHeight =1925
                                         End
                                     End
                                 End
@@ -653,6 +725,10 @@ Begin Form
                                     FontName ="Tahoma"
                                     InputMask ="99/99/0000;0;_"
 
+                                    LayoutCachedLeft =3900
+                                    LayoutCachedTop =5940
+                                    LayoutCachedWidth =4919
+                                    LayoutCachedHeight =6180
                                     Begin
                                         Begin Label
                                             OverlapFlags =223
@@ -664,6 +740,10 @@ Begin Form
                                             Name ="Label190"
                                             Caption ="Date"
                                             FontName ="Tahoma"
+                                            LayoutCachedLeft =3360
+                                            LayoutCachedTop =5940
+                                            LayoutCachedWidth =3900
+                                            LayoutCachedHeight =6180
                                         End
                                     End
                                 End
@@ -684,6 +764,10 @@ Begin Form
                                     ColumnWidths ="0;1440;1440"
                                     FontName ="Tahoma"
 
+                                    LayoutCachedLeft =6180
+                                    LayoutCachedTop =5940
+                                    LayoutCachedWidth =7620
+                                    LayoutCachedHeight =6180
                                     Begin
                                         Begin Label
                                             OverlapFlags =215
@@ -695,6 +779,10 @@ Begin Form
                                             Name ="Label192"
                                             Caption ="Observer"
                                             FontName ="Tahoma"
+                                            LayoutCachedLeft =5220
+                                            LayoutCachedTop =5940
+                                            LayoutCachedWidth =6105
+                                            LayoutCachedHeight =6185
                                         End
                                     End
                                 End
@@ -715,6 +803,10 @@ Begin Form
                                     ColumnWidths ="0;1440;1440"
                                     FontName ="Tahoma"
 
+                                    LayoutCachedLeft =8820
+                                    LayoutCachedTop =5940
+                                    LayoutCachedWidth =10260
+                                    LayoutCachedHeight =6180
                                     Begin
                                         Begin Label
                                             OverlapFlags =215
@@ -726,6 +818,10 @@ Begin Form
                                             Name ="Label194"
                                             Caption ="Recorder"
                                             FontName ="Tahoma"
+                                            LayoutCachedLeft =7920
+                                            LayoutCachedTop =5940
+                                            LayoutCachedWidth =8759
+                                            LayoutCachedHeight =6185
                                         End
                                     End
                                 End
@@ -863,6 +959,10 @@ Begin Form
                                     FontName ="Tahoma"
                                     InputMask ="99/99/0000;0;_"
 
+                                    LayoutCachedLeft =4320
+                                    LayoutCachedTop =1740
+                                    LayoutCachedWidth =5280
+                                    LayoutCachedHeight =1980
                                     Begin
                                         Begin Label
                                             OverlapFlags =255
@@ -874,6 +974,10 @@ Begin Form
                                             Name ="Label123"
                                             Caption ="Observation Date"
                                             FontName ="Tahoma"
+                                            LayoutCachedLeft =2700
+                                            LayoutCachedTop =1740
+                                            LayoutCachedWidth =4320
+                                            LayoutCachedHeight =1980
                                         End
                                     End
                                 End
@@ -895,6 +999,10 @@ Begin Form
                                     ColumnWidths ="0;990;990"
                                     FontName ="Tahoma"
 
+                                    LayoutCachedLeft =6420
+                                    LayoutCachedTop =1740
+                                    LayoutCachedWidth =7800
+                                    LayoutCachedHeight =1980
                                     Begin
                                         Begin Label
                                             OverlapFlags =255
@@ -906,6 +1014,10 @@ Begin Form
                                             Name ="Label125"
                                             Caption ="Observer"
                                             FontName ="Tahoma"
+                                            LayoutCachedLeft =5580
+                                            LayoutCachedTop =1740
+                                            LayoutCachedWidth =6420
+                                            LayoutCachedHeight =1985
                                         End
                                     End
                                 End
@@ -927,6 +1039,10 @@ Begin Form
                                     ColumnWidths ="0;990;990"
                                     FontName ="Tahoma"
 
+                                    LayoutCachedLeft =8940
+                                    LayoutCachedTop =1740
+                                    LayoutCachedWidth =10320
+                                    LayoutCachedHeight =1980
                                     Begin
                                         Begin Label
                                             OverlapFlags =255
@@ -938,6 +1054,10 @@ Begin Form
                                             Name ="Recorder_Label"
                                             Caption ="Recorder"
                                             FontName ="Tahoma"
+                                            LayoutCachedLeft =8100
+                                            LayoutCachedTop =1740
+                                            LayoutCachedWidth =8940
+                                            LayoutCachedHeight =1985
                                         End
                                     End
                                 End
@@ -953,6 +1073,10 @@ Begin Form
                                     LinkChildFields ="Event_ID"
                                     LinkMasterFields ="Event_ID"
 
+                                    LayoutCachedLeft =360
+                                    LayoutCachedTop =2160
+                                    LayoutCachedWidth =13500
+                                    LayoutCachedHeight =6840
                                 End
                                 Begin Subform
                                     OverlapFlags =247
@@ -966,6 +1090,10 @@ Begin Form
                                     LinkChildFields ="Event_ID"
                                     LinkMasterFields ="Event_ID"
 
+                                    LayoutCachedLeft =4020
+                                    LayoutCachedTop =7260
+                                    LayoutCachedWidth =9960
+                                    LayoutCachedHeight =11220
                                 End
                                 Begin Rectangle
                                     SpecialEffect =0
@@ -1790,6 +1918,7 @@ On Error GoTo Err_Handler
     Me!pgCoords_and_loc_details.Visible = False
     'normal tabs
     Me!pgGaps.Visible = False
+    Me!pgVegHeight.Visible = False
     
     '-- expose --
     Me!pgPhotos.Visible = True
@@ -1817,9 +1946,10 @@ On Error GoTo Err_Handler
             Case "grassland/shrubland"  'hide fuels, expose SS & Gaps
                 'hide fuels
                 Me!pgFuels.Visible = False
-                
+                            
                 'expose SS (above) & Gaps
                 Me!pgGaps.Visible = True
+                Me!pgVegHeight.Visible = True
                             
             Case "oak scrub"    'oak plots   hide Gaps, SS & fuels,  expose
                 'hide fuels, SS & Gaps (above)
@@ -2232,6 +2362,8 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+
+
 ' ---------------------------------
 ' SUB:          rctNoSaplings_Click
 ' Description:  Handles No Saplings rectangle actions
@@ -2532,22 +2664,29 @@ On Error GoTo Err_Handler
       Else
         TransectNumber = Me!frm_LP_Belt_Transect.Form!Transect
       End If
-    Case 3 'Tab: Gap Intercepts
+     
+     Case 3 'Vegetation Height
+      If IsNull(Me!frm_VH_Transect.Form!Transect) Then
+        TransectNumber = 1
+      Else
+        TransectNumber = Me!frm_VH_Transect.Form!Transect
+      End If
+    Case 4 'Tab: Gap Intercepts
       If IsNull(Me!frm_Canopy_Transect.Form!Transect) Then
         TransectNumber = 1
       Else
         TransectNumber = Me!frm_Canopy_Transect.Form!Transect
       End If
-    Case 4 'Tab: Soil Stability
-    Case 5 'Tab:
+    Case 5 'Tab: Soil Stability
+    Case 6 'Tab:
       If IsNull(Me!frm_SL_Transect.Form!Transect) Then
         TransectNumber = 1
       Else
         TransectNumber = Me!frm_SL_Transect.Form!Transect
       End If
-    Case 6 'Tab:
-    Case 7 'Tab: Overstory Trees
-    Case 8 'Tab: Site Impact
+    Case 7 'Tab:
+    Case 8 'Tab: Overstory Trees
+    Case 9 'Tab: Site Impact
   End Select
   
     '---------------------------

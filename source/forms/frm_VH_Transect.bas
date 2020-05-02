@@ -18,16 +18,16 @@ Begin Form
     Width =14220
     DatasheetFontHeight =9
     ItemSuffix =40
-    Left =1275
-    Top =3360
-    Right =15090
-    Bottom =12990
+    Left =705
+    Top =2865
+    Right =14670
+    Bottom =12495
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
-        0x8e9d18c9b254e340
+        0x9d83a2137171e540
     End
-    RecordSource ="qry_LP_Transect"
-    Caption ="frm_Canopy_Transect"
+    RecordSource ="qry_VH_Transect"
+    Caption ="frm_VH_Transect"
     BeforeInsert ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -262,6 +262,7 @@ Begin Form
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
+                    Overlaps =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -301,6 +302,7 @@ Begin Form
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
+                    Overlaps =1
                 End
                 Begin ComboBox
                     OverlapFlags =87
@@ -371,15 +373,17 @@ Begin Form
                     Width =13800
                     Height =8400
                     TabIndex =8
-                    Name ="fsub_LP_Intercept"
-                    SourceObject ="Form.fsub_LP_Intercept"
+                    Name ="fsub_VH_Intercept"
+                    SourceObject ="Form.fsub_VH_Intercept"
                     LinkChildFields ="Transect_ID"
                     LinkMasterFields ="Transect_ID"
+                    OnEnter ="[Event Procedure]"
 
                 End
                 Begin CommandButton
+                    Visible = NotDefault
                     OverlapFlags =85
-                    Left =10260
+                    Left =9780
                     Top =60
                     Width =1860
                     Height =300
@@ -387,13 +391,49 @@ Begin Form
                     TabIndex =9
                     Name ="ButtonVerify"
                     Caption ="Verify Soil Surface"
-                    OnClick ="[Event Procedure]"
-                    OnKeyDown ="[Event Procedure]"
 
+                    LayoutCachedLeft =9780
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =11640
+                    LayoutCachedHeight =360
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
+                    Overlaps =1
+                End
+                Begin TextBox
+                    Visible = NotDefault
+                    OverlapFlags =85
+                    TextAlign =3
+                    IMESentenceMode =3
+                    Left =13380
+                    Top =60
+                    Width =480
+                    TabIndex =10
+                    Name ="txtStep_Val1"
+                    DefaultValue ="5"
+
+                    LayoutCachedLeft =13380
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =13860
+                    LayoutCachedHeight =300
+                    Begin
+                        Begin Label
+                            Visible = NotDefault
+                            OverlapFlags =85
+                            Left =12360
+                            Top =60
+                            Width =900
+                            Height =240
+                            Name ="Label440"
+                            Caption ="Step Value:"
+                            LayoutCachedLeft =12360
+                            LayoutCachedTop =60
+                            LayoutCachedWidth =13260
+                            LayoutCachedHeight =300
+                        End
+                    End
                 End
             End
         End
@@ -454,7 +494,7 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
     End If
     ' Create the GUID primary key value if necessary
     If IsNull(Me!Transect_ID) Then
-        If GetDataType("tbl_LP_Transect", "Transect_ID") = dbText Then
+        If GetDataType("tbl_VH_Transect", "Transect_ID") = dbText Then
             Me.Transect_ID = fxnGUIDGen
         End If
     End If
@@ -466,7 +506,7 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Form_Open[Form_frm_LP_Transect])"
+            "Error encountered (#" & Err.Number & " - Form_Open[Form_frm_VH_Transect])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -507,11 +547,11 @@ On Error GoTo Err_Handler
     Me!Transect = intTransect - 1
     ' Set SQL
     Set db = CurrentDb
-    strSQL = "SELECT [Point] FROM [tbl_LP_Intercept] WHERE [Transect_ID] = '" & Me![Transect] & "'"
+    strSQL = "SELECT [Point] FROM [tbl_VH_Intercept] WHERE [Transect_ID] = '" & Me![Transect] & "'"
     Set Points = db.OpenRecordset(strSQL)
     If Points.EOF Or IsNull(Points!Point) Then
-      Me!fsub_LP_Intercept.Form!ButtonInitialize.ForeColor = 8421376
-      Me!fsub_LP_Intercept.Requery
+      Me!fsub_VH_Intercept.Form!ButtonInitialize.ForeColor = 8421376
+      Me!fsub_VH_Intercept.Requery
     End If
     
     '---------------------------
@@ -523,6 +563,8 @@ On Error GoTo Err_Handler
     
   End If
   
+Refresh
+  
 Exit_Handler:
     Exit Sub
     
@@ -530,7 +572,7 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - ButtonPrevious_Click[Form_frm_LP_Transect])"
+            "Error encountered (#" & Err.Number & " - ButtonPrevious_Click[Form_frm_VH_Transect])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -585,16 +627,18 @@ On Error GoTo Err_Handler
   
     ' Set SQL to figure out what color button is needed
     Set db = CurrentDb
-    strSQL = "SELECT [Point] FROM [tbl_LP_Intercept] WHERE [Transect_ID] = '" & Me![Transect_ID] & "'"
+    strSQL = "SELECT [Point] FROM [tbl_VH_Intercept] WHERE [Transect_ID] = '" & Me![Transect_ID] & "'"
     Set Points = db.OpenRecordset(strSQL)
     
     If Points.EOF Then
-      Me!fsub_LP_Intercept.Form!ButtonInitialize.ForeColor = 8421376
+      Me!fsub_VH_Intercept.Form!ButtonInitialize.ForeColor = 8421376
     Else
-      Me!fsub_LP_Intercept.Form!ButtonInitialize.ForeColor = 255
-      Me!fsub_LP_Intercept.Form.Requery
+      Me!fsub_VH_Intercept.Form!ButtonInitialize.ForeColor = 255
+      Me!fsub_VH_Intercept.Form.Requery
     End If
     Points.Close
+
+Refresh
 
 Exit_Handler:
     Exit Sub
@@ -603,35 +647,35 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - ButtonNext_Click[Form_frm_LP_Transect])"
+            "Error encountered (#" & Err.Number & " - ButtonNext_Click[Form_frm_VH_Transect])"
     End Select
     Resume Exit_Handler
 End Sub
 
-Private Sub ButtonVerify_Click()
-On Error GoTo Err_ButtonVerify_Click
-
-  Dim db As DAO.Database
-  Dim Surface As DAO.Recordset
-  Dim strSQL As String
-  
-  strSQL = "SELECT Point from tbl_LP_Intercept WHERE Transect_ID = '" & Me!Transect_ID & "' AND Surface IS NULL"
-  Set db = CurrentDb
-  Set Surface = db.OpenRecordset(strSQL)
-  If Not Surface.EOF Then
-    MsgBox "Transect contains at least one empty surface code."
-  Else
-    MsgBox "OK!"
-  End If
-
-Exit_ButtonVerify_Click:
-    Exit Sub
-
-Err_ButtonVerify_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonVerify_Click
-    
-End Sub
+'Private Sub ButtonVerify_Click()
+'On Error GoTo Err_ButtonVerify_Click
+'
+'  Dim db As DAO.Database
+'  Dim Surface As DAO.Recordset
+'  Dim strSQL As String
+'
+'  strSQL = "SELECT Point from tbl_LP_Intercept WHERE Transect_ID = '" & Me!Transect_ID & "' AND Surface IS NULL"
+'  Set db = CurrentDb
+'  Set Surface = db.OpenRecordset(strSQL)
+'  If Not Surface.EOF Then
+'    MsgBox "Transect contains at least one empty surface code."
+'  Else
+'    MsgBox "OK!"
+'  End If
+'
+'Exit_ButtonVerify_Click:
+'    Exit Sub
+'
+'Err_ButtonVerify_Click:
+'    MsgBox Err.Description
+'    Resume Exit_ButtonVerify_Click
+'
+'End Sub
 
 Private Sub ButtonNext_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records
@@ -649,13 +693,36 @@ Private Sub ButtonPrevious_KeyDown(KeyCode As Integer, Shift As Integer)
     End Select
 End Sub
 
-Private Sub ButtonVerify_KeyDown(KeyCode As Integer, Shift As Integer)
-  ' Ignore Page Down and Page Up keys for they will cycle through records
-  Select Case KeyCode
-    Case 33, 34
-      KeyCode = 0
-    End Select
+
+
+Private Sub fsub_VH_Intercept_Enter()
+' set default values
+Dim ctl As Control
+Dim varFldName
+
+On Error Resume Next
+Set ctl = Me.fsub_VH_Intercept
+varFldName = "Point"
+
+With ctl.Form
+    If .NewRecord = True Then
+        .Controls(varFldName).DefaultValue = 5
+    Else
+        .RecordsetClone.MoveLast
+        .Bookmark = .RecordsetClone.Bookmark
+        .Controls(varFldName).DefaultValue = .Controls(varFldName) + Me.txtStep_Val1
+
+    End If
+End With
 End Sub
+
+'Private Sub ButtonVerify_KeyDown(KeyCode As Integer, Shift As Integer)
+'  ' Ignore Page Down and Page Up keys for they will cycle through records
+'  Select Case KeyCode
+'    Case 33, 34
+'      KeyCode = 0
+'    End Select
+'End Sub
 
 Private Sub Observer_KeyDown(KeyCode As Integer, Shift As Integer)
   ' Ignore Page Down and Page Up keys for they will cycle through records
@@ -671,6 +738,28 @@ Private Sub Recorder_KeyDown(KeyCode As Integer, Shift As Integer)
     Case 33, 34
       KeyCode = 0
     End Select
+End Sub
+
+Private Sub sub_VH_Intercept_Enter()
+' set default values
+Dim ctl As Control
+Dim varFldName
+
+On Error Resume Next
+Set ctl = Me.fsub_VH_Intercept
+varFldName = "Point"
+
+With ctl.Form
+    If .NewRecord = True Then
+        .Controls(varFldName).DefaultValue = 5
+    Else
+        .RecordsetClone.MoveLast
+        .Bookmark = .RecordsetClone.Bookmark
+        .Controls(varFldName).DefaultValue = .Controls(varFldName) + Me.txtStep_Val1
+
+    End If
+End With
+
 End Sub
 
 Private Sub Visit_Date_KeyDown(KeyCode As Integer, Shift As Integer)
