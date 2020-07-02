@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
@@ -14,10 +14,10 @@ Begin Form
     Width =10080
     DatasheetFontHeight =9
     ItemSuffix =24
-    Left =3810
-    Top =225
-    Right =14175
-    Bottom =6510
+    Left =3816
+    Top =228
+    Right =12732
+    Bottom =6516
     DatasheetGridlinesColor =12632256
     Filter ="IsNull(confirmed_code)"
     RecSrcDt = Begin
@@ -31,9 +31,9 @@ Begin Form
         0x010000006801000000000000a10700000100000001000000
     End
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -43,54 +43,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -100,9 +111,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =1680
@@ -154,6 +167,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin Label
                     OverlapFlags =85
@@ -195,6 +213,7 @@ Begin Form
                     RowSource ="SELECT qry_lu_NCPN_Plants.Master_PLANT_Code, qry_lu_NCPN_Plants.Utah_PLANT_Code,"
                         " qry_lu_NCPN_Plants.Utah_Species FROM qry_lu_NCPN_Plants; "
                     ColumnWidths ="0;645;3450"
+
                 End
                 Begin Label
                     OverlapFlags =85
@@ -219,6 +238,11 @@ Begin Form
                     Name ="ButtonDetails"
                     Caption ="Replace"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -235,6 +259,7 @@ Begin Form
                     RowSource ="\"Not Confirmed\";\"Confirmed\";\"All\""
                     ColumnWidths ="1215"
                     AfterUpdate ="[Event Procedure]"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -259,6 +284,11 @@ Begin Form
                     Name ="ButtonMaster"
                     Caption ="Master Species"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -279,6 +309,7 @@ Begin Form
                     Name ="Unknown_ID"
                     ControlSource ="Unknown_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -295,6 +326,7 @@ Begin Form
                     Name ="Unknown_Code"
                     ControlSource ="Unknown_Code"
                     StatusBarText ="Temporary code for unknown species - Line point form"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -313,6 +345,7 @@ Begin Form
                     Name ="Plant_Description"
                     ControlSource ="Plant_Description"
                     StatusBarText ="General description"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -327,6 +360,7 @@ Begin Form
                     Name ="Plant_Type"
                     ControlSource ="Plant_Type"
                     StatusBarText ="Plant type:  herb, shrub, tree, grass, sedge, other"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -341,6 +375,7 @@ Begin Form
                     Name ="Confirmed_Code"
                     ControlSource ="Confirmed_Code"
                     StatusBarText ="Confirmed species code"
+
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -352,6 +387,11 @@ Begin Form
                     Name ="ButtonEdit"
                     Caption ="Details"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
@@ -655,6 +695,34 @@ Private Sub ButtonDetails_Click()
   InputTable.Close
   Set InputTable = Nothing
   
+  ' Vegetation height - woody species
+  Set InputTable = db.OpenRecordset("tbl_VH_Intercept")
+    Do Until InputTable.EOF
+      If InputTable!Wood = Me!Unknown_Code Then
+          InputTable.Edit
+            InputTable!Wood = Me!Replace_By
+          InputTable.Update
+          intRecordCount = intRecordCount + 1
+      End If
+    InputTable.MoveNext
+    Loop
+  InputTable.Close
+  Set InputTable = Nothing
+ 
+  ' Vegetation height - herbaceous species
+  Set InputTable = db.OpenRecordset("tbl_VH_Intercept")
+    Do Until InputTable.EOF
+      If InputTable!Herb = Me!Unknown_Code Then
+          InputTable.Edit
+            InputTable!Herb = Me!Replace_By
+          InputTable.Update
+          intRecordCount = intRecordCount + 1
+      End If
+    InputTable.MoveNext
+    Loop
+  InputTable.Close
+  Set InputTable = Nothing
+ 
 '    Me!Confirmed_Code = Me!Replace_By   ' Set confirmed code in unknowns table - deactivated 4/1/09  RD
     DoCmd.Hourglass False
     MsgBox intRecordCount & " record(s) changed."

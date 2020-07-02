@@ -146,7 +146,7 @@
     ", \"Missing recorder\" AS Issue\015\012FROM (tbl_Locations AS L INNER JOIN tbl_E"
     "vents AS E ON L.Location_ID = E.Location_ID) INNER JOIN tbl_Site_Impact SI ON E."
     "Event_ID = SI.Event_ID\015\012WHERE SI.Recorder Is Null)  AS [%$##@_Alias]\015\012"
-    "WHERE Park = 'CANY'\015\012AND Plot = 3\015\012AND VisitDate = #5/2/2020#;\015\012"
+    "WHERE Park = 'ARCH'\015\012AND Plot = 1\015\012AND VisitDate = #6/27/2020#;\015\012"
 dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"

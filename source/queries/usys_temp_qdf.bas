@@ -1,5 +1,4 @@
-﻿dbMemo "SQL" ="PARAMETERS rid Long, num Long, fok Long;\015\012INSERT INTO NumRecords ( ID, Num"
-    "Records, FieldCheckOK )\015\012VALUES ([rid], [num], [fok]);\015\012"
+﻿dbMemo "SQL" ="SELECT Remarks\015\012FROM tsys_Db_Templates\015\012WHERE ID = 95;\015\012"
 dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"

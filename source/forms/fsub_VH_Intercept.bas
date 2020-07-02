@@ -16,9 +16,9 @@ Begin Form
     DatasheetFontHeight =9
     ItemSuffix =112
     Left =1920
-    Top =4605
-    Right =15435
-    Bottom =12720
+    Top =4608
+    Right =12732
+    Bottom =7332
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xe5c8ddb21374e540
@@ -185,10 +185,10 @@ Begin Form
                     LayoutCachedTop =120
                     LayoutCachedWidth =10080
                     LayoutCachedHeight =420
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                     Overlaps =1
                 End
                 Begin CommandButton
@@ -206,10 +206,10 @@ Begin Form
                     LayoutCachedTop =60
                     LayoutCachedWidth =1680
                     LayoutCachedHeight =360
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                     Overlaps =1
                 End
                 Begin CommandButton
@@ -227,10 +227,10 @@ Begin Form
                     LayoutCachedTop =60
                     LayoutCachedWidth =3540
                     LayoutCachedHeight =360
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                     Overlaps =1
                 End
                 Begin Label
@@ -404,13 +404,17 @@ Begin Form
                     Name ="Herb"
                     ControlSource ="Herb"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT Query.Master_PLANT_Code, Query.LU_Code, Query.Utah_Species FROM (SELECT q"
-                        "ryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Canopy.Utah_"
-                        "Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is Not Null)"
-                        ")  UNION All  SELECT DISTINCT tlu_NCPN_Plants.ARCH AS Master_PLANT_Code, tlu_NCP"
-                        "N_Plants.BLCA AS LU_Code, \"No Plant\" AS Utah_Species FROM tlu_NCPN_Plants WHER"
-                        "E (((tlu_NCPN_Plants.ARCH)=\"NP\") AND ((tlu_NCPN_Plants.BLCA)=\"NP\"))  )  AS Q"
-                        "uery ORDER BY Query.Master_PLANT_Code;"
+                    RowSource ="SELECT Q.Master_PLANT_Code, Q.LU_Code, Q.Utah_Species, Q.Lifeform FROM (SELECT D"
+                        "ISTINCT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Can"
+                        "opy.Utah_Species, qryU_Top_Canopy.Lifeform  FROM qryU_Top_Canopy WHERE (qryU_Top"
+                        "_Canopy.Utah_Species Is Not Null) AND qryU_Top_Canopy.Lifeform IN ('Forb', 'Gram"
+                        "inoid') UNION  SELECT DISTINCT tbl_Unknown_Species.Unknown_Code AS Master_PLANT_"
+                        "Code, tbl_Unknown_Species.Unknown_Code AS LU_Code, tbl_Unknown_Species.Plant_Typ"
+                        "e + \" - \" + tbl_Unknown_Species.Plant_Description AS Utah_Species, tbl_Unknown"
+                        "_Species.Plant_Type AS Lifeform  FROM tbl_Unknown_Species  WHERE tbl_Unknown_Spe"
+                        "cies.Plant_Type IN ('Grass', 'Other') OR tbl_Unknown_Species.Plant_Type IS NULL "
+                        "UNION SELECT TOP 1 'NP' AS Master_PLANT_Code, 'NP' AS LU_Code, 'No Plant' AS Uta"
+                        "h_Species, NULL AS Lifeform FROM tlu_NCPN_Plants) AS Q ORDER BY Q.LU_Code ;"
                     ColumnWidths ="0;2160;4320"
                     AfterUpdate ="[Event Procedure]"
                     OnGotFocus ="[Event Procedure]"
@@ -448,13 +452,18 @@ Begin Form
                     Name ="Wood"
                     ControlSource ="Wood"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT Query.Master_PLANT_Code, Query.LU_Code, Query.Utah_Species FROM (SELECT q"
-                        "ryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Canopy.Utah_"
-                        "Species FROM qryU_Top_Canopy WHERE (((qryU_Top_Canopy.Utah_Species) Is Not Null)"
-                        ")  UNION All  SELECT DISTINCT tlu_NCPN_Plants.ARCH AS Master_PLANT_Code, tlu_NCP"
-                        "N_Plants.BLCA AS LU_Code, \"No Plant\" AS Utah_Species FROM tlu_NCPN_Plants WHER"
-                        "E (((tlu_NCPN_Plants.ARCH)=\"NP\") AND ((tlu_NCPN_Plants.BLCA)=\"NP\"))  )  AS Q"
-                        "uery ORDER BY Query.Master_PLANT_Code;"
+                    RowSource ="SELECT Q.Master_PLANT_Code, Q.LU_Code, Q.Utah_Species, Q.Lifeform FROM (SELECT D"
+                        "ISTINCT qryU_Top_Canopy.Master_PLANT_Code, qryU_Top_Canopy.LU_Code, qryU_Top_Can"
+                        "opy.Utah_Species, qryU_Top_Canopy.Lifeform  FROM qryU_Top_Canopy WHERE (qryU_Top"
+                        "_Canopy.Utah_Species Is Not Null) AND qryU_Top_Canopy.Lifeform IN ('DwarfShrub',"
+                        " 'Shrub', 'Tree') UNION  SELECT DISTINCT tbl_Unknown_Species.Unknown_Code AS Mas"
+                        "ter_PLANT_Code, tbl_Unknown_Species.Unknown_Code AS LU_Code, tbl_Unknown_Species"
+                        ".Plant_Type + \" - \" + tbl_Unknown_Species.Plant_Description AS Utah_Species, t"
+                        "bl_Unknown_Species.Plant_Type AS Lifeform  FROM tbl_Unknown_Species  WHERE tbl_U"
+                        "nknown_Species.Plant_Type IN ('Shrub', 'Tree', 'Other') OR tbl_Unknown_Species.P"
+                        "lant_Type IS NULL UNION SELECT Top 1 'NP' AS Master_PLANT_Code, 'NP' AS LU_Code,"
+                        " 'No Plant' AS Utah_Species, NULL AS Lifeform FROM tlu_NCPN_Plants) AS Q ORDER B"
+                        "Y Q.LU_Code ;"
                     ColumnWidths ="0;2160;4320"
                     AfterUpdate ="[Event Procedure]"
                     LayoutCachedLeft =960
