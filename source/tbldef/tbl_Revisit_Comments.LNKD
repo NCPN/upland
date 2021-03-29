@@ -1,4 +1,4 @@
 ﻿tbl_Revisit_Comments
-;DATABASE=C:\Users\helenthomas\Desktop\Temp\NCPN\Uplands\Uplands_DB_2020\Upland_FE\Upland_DB_20200627\Upland_be_Test.accdb
+;DATABASE=C:\Users\helenthomas\Documents\Temp\NCPN\Uplands\Uplands_2021\Upland_be_2021_Test.accdb
 tbl_Revisit_Comments
 Unit_Code;+Plot_ID;+VisitDate

@@ -23,7 +23,7 @@ Begin Form
     Left =4470
     Top =2880
     Right =21015
-    Bottom =14430
+    Bottom =13905
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='{E35D7F2C-A99C-41FE-ACEC-A1DAD79E24AC}' AND [Event_ID]='201708171"
         "65907-938545167.446136'"
