@@ -18,8 +18,8 @@ Begin Form
     ItemSuffix =112
     Left =300
     Top =2730
-    Right =13815
-    Bottom =9585
+    Right =13470
+    Bottom =7680
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xe5c8ddb21374e540
@@ -339,6 +339,8 @@ Begin Form
                     LayoutCachedHeight =315
                 End
                 Begin TextBox
+                    Enabled = NotDefault
+                    Locked = NotDefault
                     DecimalPlaces =1
                     SpecialEffect =0
                     OverlapFlags =247
