@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     AllowFilters = NotDefault
@@ -37,9 +37,6 @@ Begin Form
         0x010000006801000000000000a10700000100000001000000
     End
     OnLoad ="[Event Procedure]"
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     FilterOnLoad =0
     OrderByOnLoad =0
     OrderByOnLoad =0

@@ -294,7 +294,7 @@ End Sub
 
 Private Sub Form_Close()
 Dim strSQL As String
-Dim rst As DAO.Recordset
+Dim rst As dao.Recordset
 Dim strMessage As String
 
 On Error GoTo Err_Handler

@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -7,7 +7,6 @@ Begin Form
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     KeyPreview = NotDefault
-    FilterOn = NotDefault
     DefaultView =0
     ScrollBars =0
     ViewsAllowed =1
@@ -39,9 +38,6 @@ Begin Form
     OnKeyDown ="[Event Procedure]"
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     FilterOnLoad =0
     AllowLayoutView =0
     DatasheetGridlinesColor12 =12632256
@@ -2943,8 +2939,8 @@ Option Explicit
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
-    Dim db As DAO.Database
-    Dim Locations As DAO.Recordset
+    Dim db As dao.Database
+    Dim Locations As dao.Recordset
     Dim strSQL As String
     
     ' Set up necessary fields
@@ -5459,8 +5455,8 @@ On Error GoTo Err_ButtonTransect_Click
 
     Dim stDocName As String
     Dim stLinkCriteria As String
-    Dim db As DAO.Database
-    Dim Locations As DAO.Recordset
+    Dim db As dao.Database
+    Dim Locations As dao.Recordset
     Dim strSQL As String
 
     stDocName = "frm_Edit_Fuel_Transect"

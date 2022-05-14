@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -15,10 +15,10 @@ Begin Form
     Width =5040
     DatasheetFontHeight =9
     ItemSuffix =11
-    Left =5655
-    Top =6615
-    Right =10695
-    Bottom =10200
+    Left =3795
+    Top =-12315
+    Right =9300
+    Bottom =-8085
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x9d2210c6b41ee340
@@ -61,14 +61,17 @@ Begin Form
                     OverlapFlags =85
                     IMESentenceMode =3
                     ColumnCount =2
+                    ListRows =10
                     ListWidth =3600
                     Left =2280
                     Top =1080
                     Width =840
-                    ColumnInfo ="\"\";\"\";\"\";\"\";\"10\";\"10\""
+                    ColumnInfo ="\"\";\"\";\"\";\"\";\"10\";\"8\""
                     Name ="cbxPark"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT tlu_Parks.ParkCode, tlu_Parks.ParkName FROM tlu_Parks; "
+                    RowSource ="SELECT DISTINCT tbl_Locations.Unit_Code, tlu_Parks.ParkName FROM tlu_Parks INNER"
+                        " JOIN tbl_Locations ON tlu_Parks.ParkCode = tbl_Locations.Unit_Code ORDER BY tbl"
+                        "_Locations.Unit_Code;"
                     ColumnWidths ="720;2880"
                     AfterUpdate ="[Event Procedure]"
 
@@ -402,8 +405,9 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   RDB, unknown  - initial version
-'   BLC, 3/8/2016 - added documentation
-'   BLC, 2/2/2018 - revised control name cbxPark vs. Park_Code, enable plot ID when park is set
+'   BLC, 3/08/2016 - added documentation
+'   BLC, 2/02/2018 - revised control name cbxPark vs. Park_Code, enable plot ID when park is set
+'   AZ,  3/23/2022 - changed query for plot drop down, but it needs to be in the On Change event
 ' ---------------------------------
 Private Sub cbxPark_AfterUpdate()
 On Error GoTo Err_Handler
@@ -411,8 +415,8 @@ On Error GoTo Err_Handler
     Me!cbxPlotID = Null
     If Not IsNull(Me!cbxPark) Then
       
-      Me!cbxPlotID.RowSource = "SELECT Plot_ID FROM tbl_locations " _
-            & "WHERE [Unit_Code] = '" & Me!cbxPark & "' ORDER BY Plot_ID"
+      Me!cbxPlotID.RowSource = "SELECT Plot FROM tbl_Revisit_List " _
+            & "WHERE [PARK] = '" & Me!cbxPark & "' ORDER BY Plot"
       Me!cbxPlotID.Requery
       
     Else

@@ -86,7 +86,7 @@ Function adhCommonFileOpenSave( _
     Optional ByVal Filter As Variant, _
     Optional ByVal FilterIndex As Variant, _
     Optional ByVal DefaultExt As Variant, _
-    Optional ByVal fileName As Variant, _
+    Optional ByVal filename As Variant, _
     Optional ByVal DialogTitle As Variant, _
     Optional ByVal OpenFile As Variant) As Variant
 
@@ -102,12 +102,12 @@ Function adhCommonFileOpenSave( _
     If IsMissing(FilterIndex) Then FilterIndex = 1
     If IsMissing(flags) Then flags = 0&
     If IsMissing(DefaultExt) Then DefaultExt = ""
-    If IsMissing(fileName) Then fileName = ""
+    If IsMissing(filename) Then filename = ""
     If IsMissing(DialogTitle) Then DialogTitle = ""
     If IsMissing(OpenFile) Then OpenFile = True
 
     ' Allocate string space for the returned string.
-    strFilename = Left(fileName & String(256, 0), 256)
+    strFilename = Left(filename & String(256, 0), 256)
     strFileTitle = String(256, 0)
 
     ' Set up the data structure before you call the function

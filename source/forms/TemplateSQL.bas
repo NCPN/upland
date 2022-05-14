@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -42,9 +42,6 @@ Begin Form
     End
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     FilterOnLoad =0
     ShowPageMargins =0
     DisplayOnSharePointSite =1
@@ -715,9 +712,9 @@ On Error GoTo Err_Handler
         
         Case "s", "q"   'SELECT or QA/QC
             
-            Dim db As DAO.Database
-            Dim qdf As DAO.QueryDef
-            Dim rs As DAO.Recordset
+            Dim db As dao.Database
+            Dim qdf As dao.QueryDef
+            Dim rs As dao.Recordset
             
             Set db = CurrentDb
             

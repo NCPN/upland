@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -25,6 +25,9 @@ Begin Form
     RecordSource ="qry_List_Versions"
     Caption ="frm_Version_List"
     DatasheetFontName ="Arial"
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -34,54 +37,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -91,9 +105,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =1140
@@ -168,6 +184,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -188,6 +209,7 @@ Begin Form
                     Name ="project_ID"
                     ControlSource ="project_ID"
                     StatusBarText ="Project ID number to ensure uniqueness across all projects"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -203,6 +225,7 @@ Begin Form
                     Name ="version_key_number"
                     ControlSource ="version_key_number"
                     StatusBarText ="Protocol version key number (maintained in SOP #10)"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -217,6 +240,7 @@ Begin Form
                     ControlSource ="version_key_date"
                     Format ="Short Date"
                     StatusBarText ="Date of protocol version key number"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -234,6 +258,7 @@ Begin Form
                     ControlSource ="narrative_version"
                     Format ="Fixed"
                     StatusBarText ="Version of protocol narrative"
+
                 End
                 Begin TextBox
                     EnterKeyBehavior = NotDefault
@@ -249,6 +274,7 @@ Begin Form
                     Name ="version_comments"
                     ControlSource ="version_comments"
                     StatusBarText ="Comments regarding version, if any"
+
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -260,9 +286,14 @@ Begin Form
                     Name ="ButtonDetail"
                     Caption ="View SOP Detail"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
-                    OverlapFlags =215
+                    OverlapFlags =87
                     Left =7620
                     Top =60
                     Width =306
@@ -282,12 +313,16 @@ Begin Form
                         0x6666000066666666
                     End
                     ObjectPalette = Begin
-                        0x0003100000000000800000000080000080800000000080008000800000808000 ,
-                        0xc0c0c00080808000ff00000000ff0000ffff00000000ff00ff00ff0000ffff00 ,
-                        0xffffff0000000000
+                        0x000301000000000000000000
                     End
                     ControlTipText ="Close Form"
-                    Picture ="C:\\arcgis\\arcexe9x\\odetools\\Bitmaps\\zoomin.bmp"
+                    Picture ="zoomin.bmp"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
+                    Overlaps =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -299,6 +334,11 @@ Begin Form
                     Name ="ButtonPrint"
                     Caption ="Print Listing"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

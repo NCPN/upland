@@ -1,8 +1,7 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -32,9 +31,6 @@ Begin Form
     End
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -698,10 +694,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     ' update the NoDataCollected info
     '-----------------------------------
-    Dim NoData As Scripting.Dictionary
+    Dim noData As Scripting.Dictionary
     
     'remove the no data collected record
-    Set NoData = SetNoDataCollected(Me.Parent!Transect_ID, "T", "1mBelt-Exotics", 0)
+    Set noData = SetNoDataCollected(Me.Parent!Transect_ID, "T", "1mBelt-Exotics", 0)
         
     'update checkbox/rectangle
     Me.Parent.Form.Controls("cbxNoExotics") = 0
@@ -887,10 +883,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     If Me.RecordsetClone.RecordCount = 0 Then
     
-        Dim NoData As Scripting.Dictionary
+        Dim noData As Scripting.Dictionary
         
         'remove the no data collected record
-        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Exotics", 1)
+        Set noData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Exotics", 1)
     
         'update checkbox/rectangle
         Me.Parent.Form.Controls("cbxNoExotics") = 1

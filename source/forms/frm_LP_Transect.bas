@@ -490,8 +490,8 @@ Private Sub ButtonPrevious_Click()
 On Error GoTo Err_Handler
 
     Dim intTransect As Byte
-    Dim db As DAO.Database
-    Dim Points As DAO.Recordset
+    Dim db As dao.Database
+    Dim Points As dao.Recordset
     Dim strSQL As String
         
 '  If IsNull(Me!Recorder) And IsNull(Me!Observer) Then
@@ -553,8 +553,8 @@ End Sub
 Private Sub ButtonNext_Click()
 On Error GoTo Err_Handler
 
-    Dim db As DAO.Database
-    Dim Points As DAO.Recordset
+    Dim db As dao.Database
+    Dim Points As dao.Recordset
     Dim strSQL As String
     
 On Error GoTo Err_Handler
@@ -611,8 +611,8 @@ End Sub
 Private Sub ButtonVerify_Click()
 On Error GoTo Err_ButtonVerify_Click
 
-  Dim db As DAO.Database
-  Dim Surface As DAO.Recordset
+  Dim db As dao.Database
+  Dim Surface As dao.Recordset
   Dim strSQL As String
   
   strSQL = "SELECT Point from tbl_LP_Intercept WHERE Transect_ID = '" & Me!Transect_ID & "' AND Surface IS NULL"

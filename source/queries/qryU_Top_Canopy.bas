@@ -43,9 +43,33 @@ Begin
     Begin
         dbText "Name" ="Lifeform"
         dbLong "AggregateType" ="-1"
+        dbBinary "GUID" = Begin
+            0x97146031993d1f4383bc1df2c3d6ef80
+        End
     End
     Begin
         dbText "Name" ="Nativity"
         dbLong "AggregateType" ="-1"
+        dbBinary "GUID" = Begin
+            0x011c90156cc8804d801fee424851ed99
+        End
+    End
+    Begin
+        dbText "Name" ="Master_PLANT_Code"
+        dbBinary "GUID" = Begin
+            0xde50ad42518b3a4e94936bb974a260bd
+        End
+    End
+    Begin
+        dbText "Name" ="LU_Code"
+        dbBinary "GUID" = Begin
+            0xc93655d15a49d14b81c034e3066ebd51
+        End
+    End
+    Begin
+        dbText "Name" ="Utah_Species"
+        dbBinary "GUID" = Begin
+            0x30567f4faa91334ca82f381ecade6fb7
+        End
     End
 End

@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -39,9 +39,6 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     FilterOnLoad =0
     AllowLayoutView =0
     DatasheetGridlinesColor12 =12632256
@@ -171,7 +168,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
-                    OverlapFlags =87
+                    OverlapFlags =85
                     IMESentenceMode =3
                     Left =6840
                     Top =840
@@ -189,7 +186,7 @@ Begin Form
 
                     Begin
                         Begin Label
-                            OverlapFlags =93
+                            OverlapFlags =85
                             Left =5640
                             Top =840
                             Width =1185
@@ -414,7 +411,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
-                    OverlapFlags =87
+                    OverlapFlags =85
                     IMESentenceMode =3
                     Left =4980
                     Top =1920
@@ -428,7 +425,7 @@ Begin Form
 
                     Begin
                         Begin Label
-                            OverlapFlags =93
+                            OverlapFlags =85
                             Left =3420
                             Top =1920
                             Width =1545

@@ -59,6 +59,9 @@ dbByte "DefaultView" ="2"
 dbBoolean "FilterOnLoad" ="0"
 dbBoolean "OrderByOnLoad" ="-1"
 dbBoolean "TotalsRow" ="0"
+dbBinary "GUID" = Begin
+    0xc132b5d23690914d844f29c7725e9856
+End
 Begin
     Begin
         dbText "Name" ="tbl_Locations.Unit_Code"

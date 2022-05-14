@@ -559,7 +559,7 @@ Dim blRet As Boolean
 Dim lPtr As Long
 Dim lSize As Long
 Dim iFile As Integer
-Dim sFile As String
+Dim sfile As String
 'Dim bArray() As Byte
     
    ' Copy the current Jpeg file data directly to the buffer
@@ -679,10 +679,10 @@ Set clsDialog = New clsCommonDialog
 ' Fill in our structure
 ' I'll leave in how to select Jpeg to
 ' show you how to build the Filter
-clsDialog.Filter = "JPEG (*.JPG)" & chr$(0) & "*.JPG" & chr$(0)
-clsDialog.Filter = clsDialog.Filter & "Jpe (*.JPE)" & chr$(0) & "*.JPE" & chr$(0)
-clsDialog.Filter = clsDialog.Filter & "Jpeg (*.JPEG)" & chr$(0) & "*.JPEG" & chr$(0)
-clsDialog.Filter = clsDialog.Filter & "ALL (*.*)" & chr$(0) & "*.*" & chr$(0)
+clsDialog.Filter = "JPEG (*.JPG)" & Chr$(0) & "*.JPG" & Chr$(0)
+clsDialog.Filter = clsDialog.Filter & "Jpe (*.JPE)" & Chr$(0) & "*.JPE" & Chr$(0)
+clsDialog.Filter = clsDialog.Filter & "Jpeg (*.JPEG)" & Chr$(0) & "*.JPEG" & Chr$(0)
+clsDialog.Filter = clsDialog.Filter & "ALL (*.*)" & Chr$(0) & "*.*" & Chr$(0)
 
 'clsDialog.Filter = clsDialog.Filter & "Gif (*.GIF)" & Chr$(0) & "*.GIF" & Chr$(0)
 
@@ -698,7 +698,7 @@ End If
 
 ' See if user clicked Cancel or even selected
 ' the very same file already selected
-strfName = clsDialog.fileName
+strfName = clsDialog.filename
 If Len(strfName & vbNullString) = 0 Then
 Set clsDialog = Nothing
 Exit Function

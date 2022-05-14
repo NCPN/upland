@@ -1,0 +1,7 @@
+CREATE TABLE [tbl_Revisit_List] (
+  [ID] AUTOINCREMENT CONSTRAINT [ID] PRIMARY KEY  UNIQUE  NOT NULL ,
+  [PARK] VARCHAR (255),
+  [EcositeType] VARCHAR (255),
+  [Plot] SHORT ,
+  [ParkPlot] VARCHAR (255)
+)

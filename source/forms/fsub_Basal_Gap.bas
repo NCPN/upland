@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -4926,8 +4926,8 @@ Private Sub btnRunBasalGapChecks_Click()
 On Error GoTo Err_Handler
 
 Dim strSQL As String
-Dim db As DAO.Database
-Dim rs As DAO.Recordset, rsNext As DAO.Recordset, rsResult As DAO.Recordset
+Dim db As dao.Database
+Dim rs As dao.Recordset, rsNext As dao.Recordset, rsResult As dao.Recordset
 Dim tid As Variant
 
   DoCmd.Hourglass True

@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -25,6 +25,9 @@ Begin Form
     End
     Caption ="Select for Not in Park Report"
     DatasheetFontName ="Arial"
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -35,9 +38,11 @@ Begin Form
             FontWeight =400
             ForeColor =-2147483630
             FontName ="Tahoma"
+            BorderLineStyle =0
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             FontName ="Tahoma"
         End
         Begin Section
@@ -59,6 +64,7 @@ Begin Form
                     RowSource ="SELECT tlu_Parks.ParkCode, tlu_Parks.ParkName FROM tlu_Parks; "
                     ColumnWidths ="720;2880"
                     AfterUpdate ="[Event Procedure]"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -96,6 +102,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

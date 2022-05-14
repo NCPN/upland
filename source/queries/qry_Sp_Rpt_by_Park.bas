@@ -68,8 +68,8 @@ Begin
     Bottom =809
     Left =-1
     Top =-1
-    Right =829
-    Bottom =123
+    Right =1287
+    Bottom =106
     Left =0
     Top =0
     ColumnsShown =539

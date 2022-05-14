@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
@@ -26,9 +26,10 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
+    DatasheetForeColor12 =33554432
     Begin
         Begin Label
             BackStyle =0
@@ -38,54 +39,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -95,9 +107,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =312
@@ -136,7 +150,6 @@ Begin Form
                     OverlapFlags =85
                     IMESentenceMode =3
                     ColumnCount =2
-                    ListRows =16
                     Left =60
                     Top =60
                     Width =1923
@@ -164,6 +177,7 @@ Begin Form
                     Name ="txtObserver_notes"
                     ControlSource ="Contact_Role"
                     StatusBarText ="Comments about the observer specific to this sampling event"
+
                 End
             End
         End
@@ -194,7 +208,7 @@ Option Explicit
 ' Revisions:    <name, date, desc - add lines as you go>
 ' =================================
 
-Private Sub cmbContact_ID_NotInList(NewData As String, Response As Integer)
+Private Sub cmbContact_ID_NotInList(NewData As String, response As Integer)
     On Error GoTo Err_Handler
 
     Dim ctl As Control
@@ -202,12 +216,12 @@ Private Sub cmbContact_ID_NotInList(NewData As String, Response As Integer)
     Set ctl = Me!cmbContact_ID
     ' Prompt user to verify they wish to add new value
     If MsgBox("The contact is not in list. Would you like to add this name?", vbYesNo) = vbYes Then
-        Response = acDataErrContinue
+        response = acDataErrContinue
         ctl.Undo
         DoCmd.OpenForm "frm_Contacts", , , , , , "new"
     Else
     ' Suppress error message and undo changes
-        Response = acDataErrContinue
+        response = acDataErrContinue
         ctl.Undo
     End If
 

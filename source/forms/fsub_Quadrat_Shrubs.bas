@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -618,8 +618,8 @@ End Sub
 
 Private Sub Form_BeforeUpdate(Cancel As Integer)
     
-        Dim db As DAO.Database
-        Dim Species As DAO.Recordset
+        Dim db As dao.Database
+        Dim Species As dao.Recordset
         Dim strSQL As String
         
     On Error GoTo Err_Handler

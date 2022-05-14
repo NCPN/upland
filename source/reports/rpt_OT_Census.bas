@@ -1,9 +1,10 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Report
     LayoutForPrint = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
+    PageHeader =1
     TabularFamily =126
     DateGrouping =1
     GrpKeepTogether =1
@@ -13,13 +14,12 @@ Begin Report
     GridY =24
     Width =10800
     DatasheetFontHeight =9
-    ItemSuffix =44
-    Left =195
-    Top =360
-    Right =9465
-    Bottom =7260
+    ItemSuffix =57
+    Left =2085
+    Top =975
+    Right =13425
+    Bottom =9345
     DatasheetGridlinesColor =12632256
-    Filter ="[Unit_Code] = 'BLCA' AND [Plot_Id] = 203AND [Visit_Year] = '2018'"
     RecSrcDt = Begin
         0x04ae7a726ca8e340
     End
@@ -27,10 +27,10 @@ Begin Report
     Caption ="rpt_OT_Census"
     DatasheetFontName ="Arial"
     PrtMip = Begin
-        0x40020000d002000040020000d002000000000000602700002805000001000000 ,
+        0x40020000d002000040020000d002000000000000302a00004803000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
-    FilterOnLoad =0
+    FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
@@ -132,8 +132,94 @@ Begin Report
             End
         End
         Begin PageHeader
-            Height =0
+            Height =315
             Name ="PageHeaderSection"
+            Begin
+                Begin Label
+                    TextAlign =2
+                    Width =540
+                    Height =270
+                    FontSize =10
+                    Name ="Label48"
+                    Caption ="Tag #"
+                    Tag ="DetachedLabel"
+                    LayoutCachedWidth =540
+                    LayoutCachedHeight =270
+                End
+                Begin Label
+                    TextAlign =2
+                    Left =600
+                    Width =1620
+                    Height =270
+                    FontSize =10
+                    Name ="Label49"
+                    Caption ="Species"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =600
+                    LayoutCachedWidth =2220
+                    LayoutCachedHeight =270
+                End
+                Begin Label
+                    TextAlign =2
+                    Left =2280
+                    Width =1005
+                    Height =270
+                    FontSize =10
+                    Name ="Label50"
+                    Caption ="DBH/DRC"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =2280
+                    LayoutCachedWidth =3285
+                    LayoutCachedHeight =270
+                End
+                Begin Label
+                    TextAlign =2
+                    Left =3360
+                    Width =1155
+                    Height =270
+                    FontSize =10
+                    Name ="Label51"
+                    Caption ="Crown Class"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =3360
+                    LayoutCachedWidth =4515
+                    LayoutCachedHeight =270
+                End
+                Begin Label
+                    TextAlign =2
+                    Left =4560
+                    Width =1320
+                    Height =270
+                    FontSize =10
+                    Name ="Label52"
+                    Caption ="Crown Health"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =4560
+                    LayoutCachedWidth =5880
+                    LayoutCachedHeight =270
+                End
+                Begin Label
+                    TextAlign =2
+                    Left =5940
+                    Width =4800
+                    Height =270
+                    FontSize =10
+                    Name ="Label53"
+                    Caption ="Notes"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =5940
+                    LayoutCachedWidth =10740
+                    LayoutCachedHeight =270
+                End
+                Begin Line
+                    Top =300
+                    Width =10740
+                    Name ="Line56"
+                    LayoutCachedTop =300
+                    LayoutCachedWidth =10740
+                    LayoutCachedHeight =300
+                End
+            End
         End
         Begin BreakHeader
             KeepTogether = NotDefault
@@ -147,6 +233,7 @@ Begin Report
                     Height =360
                     FontSize =12
                     FontWeight =700
+                    ForeColor =3422101
                     Name ="Unit_Code"
                     ControlSource ="Unit_Code"
                     StatusBarText ="Park Code."
@@ -160,10 +247,42 @@ Begin Report
                             Width =1500
                             Height =360
                             FontSize =12
+                            ForeColor =3422101
                             Name ="Unit_Code_Label"
-                            Caption ="Park Code"
+                            Caption ="Park Code:"
                             LayoutCachedLeft =60
                             LayoutCachedWidth =1560
+                            LayoutCachedHeight =360
+                        End
+                    End
+                End
+                Begin TextBox
+                    DecimalPlaces =0
+                    IMESentenceMode =3
+                    Left =7140
+                    Height =360
+                    FontSize =12
+                    FontWeight =700
+                    TabIndex =1
+                    ForeColor =3422101
+                    Name ="Text46"
+                    ControlSource ="Visit_Year"
+                    StatusBarText ="Park Code."
+
+                    LayoutCachedLeft =7140
+                    LayoutCachedWidth =8580
+                    LayoutCachedHeight =360
+                    Begin
+                        Begin Label
+                            Left =5760
+                            Width =1260
+                            Height =360
+                            FontSize =12
+                            ForeColor =3422101
+                            Name ="Label47"
+                            Caption ="Visit Year:"
+                            LayoutCachedLeft =5760
+                            LayoutCachedWidth =7020
                             LayoutCachedHeight =360
                         End
                     End
@@ -178,28 +297,31 @@ Begin Report
             Begin
                 Begin TextBox
                     DecimalPlaces =0
+                    TextAlign =1
                     IMESentenceMode =3
-                    Left =1620
+                    Left =960
                     Height =360
                     FontSize =12
+                    FontWeight =700
+                    ForeColor =3422101
                     Name ="Plot_ID"
                     ControlSource ="Plot_ID"
                     StatusBarText ="Plot identifier"
 
-                    LayoutCachedLeft =1620
-                    LayoutCachedWidth =3060
+                    LayoutCachedLeft =960
+                    LayoutCachedWidth =2400
                     LayoutCachedHeight =360
                     Begin
                         Begin Label
                             Left =60
-                            Width =1500
+                            Width =840
                             Height =360
                             FontSize =12
-                            FontWeight =400
+                            ForeColor =3422101
                             Name ="Plot_ID_Label"
-                            Caption ="Plot"
+                            Caption ="Plot:"
                             LayoutCachedLeft =60
-                            LayoutCachedWidth =1560
+                            LayoutCachedWidth =900
                             LayoutCachedHeight =360
                         End
                     End

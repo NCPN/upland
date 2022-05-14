@@ -2087,8 +2087,8 @@ End Sub
 Private Sub Form_BeforeInsert(Cancel As Integer)
 On Error GoTo Err_Handler
 
-        Dim db As DAO.Database
-        Dim Versions As DAO.Recordset
+        Dim db As dao.Database
+        Dim Versions As dao.Recordset
         Dim strSQL As String
         
     On Error GoTo Err_Handler
@@ -2595,8 +2595,8 @@ End Sub
 '   BLC, 3/22/2017 - added documentation, error handling
 ' ---------------------------------
 Private Sub txtStart_Date_AfterUpdate()
-        Dim db As DAO.Database
-        Dim Events As DAO.Recordset
+        Dim db As dao.Database
+        Dim Events As dao.Recordset
         Dim strSQL As String
         
     On Error GoTo Err_Handler
@@ -2799,8 +2799,8 @@ On Error GoTo Err_Handler
 
     Dim stDocName As String
     Dim stLinkCriteria As String
-    Dim RevisitComments As DAO.Recordset
-    Dim db As DAO.Database
+    Dim RevisitComments As dao.Recordset
+    Dim db As dao.Database
     Dim strSQL As String
     
     If IsNull(Me!SiteDisplay) Or IsNull(Me!txtUnit_Code) Or IsNull(Me!txtStart_date) Or IsNull(Me!txtStart_date) Then  ' Got to have key fields

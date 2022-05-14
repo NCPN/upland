@@ -1,8 +1,7 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -486,10 +485,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     ' update the NoDataCollected info
     '-----------------------------------
-    Dim NoData As Scripting.Dictionary
+    Dim noData As Scripting.Dictionary
     
     'remove the no data collected record
-    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-TreeSeedling", 0)
+    Set noData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-TreeSeedling", 0)
         
     'update checkbox/rectangle
     Me.Parent.Form.Controls("cbxNoSeedlings") = 0
@@ -990,10 +989,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     If Me.RecordsetClone.RecordCount = 0 Then
     
-        Dim NoData As Scripting.Dictionary
+        Dim noData As Scripting.Dictionary
         
         'remove the no data collected record
-        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-TreeSeedling", 1)
+        Set noData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-TreeSeedling", 1)
     
         'update checkbox/rectangle
         Me.Parent.Form.Controls("cbxNoSeedlings") = 1

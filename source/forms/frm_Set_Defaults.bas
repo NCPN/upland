@@ -376,7 +376,7 @@ End Sub
 '   JRB, 5/16/2006 - initial version
 '   BLC, 3/7/2016  - added documentation
 ' ---------------------------------
-Private Sub cbxUser_NotInList(NewData As String, Response As Integer)
+Private Sub cbxUser_NotInList(NewData As String, response As Integer)
 On Error GoTo Err_Handler
 
     Me.ActiveControl.Undo

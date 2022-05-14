@@ -852,7 +852,7 @@ Private Sub cboAddress_AfterUpdate()
 ' Source/date:  Simon Kingston, Sept. 2006
 ' Revisions:
 Dim strSQL As String
-Dim rst As DAO.Recordset
+Dim rst As dao.Recordset
 
 strSQL = "SELECT Address, Address2, City, State_Code, Zip_Code, country FROM tlu_Contacts "
 strSQL = strSQL & "WHERE Address=" & CorrectText(Me.cboAddress) & ";"
@@ -1012,7 +1012,7 @@ Err_Handler:
 
 End Sub
 
-Private Sub cboContact_NotInList(NewData As String, Response As Integer)
+Private Sub cboContact_NotInList(NewData As String, response As Integer)
     On Error GoTo Err_Handler
 
     Me.ActiveControl.Undo

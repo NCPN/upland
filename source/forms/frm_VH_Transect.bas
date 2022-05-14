@@ -530,8 +530,8 @@ Private Sub ButtonPrevious_Click()
 On Error GoTo Err_Handler
 
     Dim intTransect As Byte
-    Dim db As DAO.Database
-    Dim Points As DAO.Recordset
+    Dim db As dao.Database
+    Dim Points As dao.Recordset
     Dim strSQL As String
         
 '  If IsNull(Me!Recorder) And IsNull(Me!Observer) Then
@@ -595,8 +595,8 @@ End Sub
 Private Sub ButtonNext_Click()
 On Error GoTo Err_Handler
 
-    Dim db As DAO.Database
-    Dim Points As DAO.Recordset
+    Dim db As dao.Database
+    Dim Points As dao.Recordset
     Dim strSQL As String
     
 On Error GoTo Err_Handler

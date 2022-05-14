@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -36,6 +36,8 @@ Begin Form
     RecordSource ="tbl_LP_Intercept"
     Caption ="frm_More_LC"
     DatasheetFontName ="Arial"
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -45,54 +47,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -102,9 +115,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =0
@@ -126,6 +141,7 @@ Begin Form
                     Name ="Intercept_ID"
                     ControlSource ="Intercept_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -146,6 +162,7 @@ Begin Form
                     ControlSource ="Point"
                     Format ="General Number"
                     StatusBarText ="Intercept point - increments of .5m up to 50.0"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -183,6 +200,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -243,6 +265,7 @@ Begin Form
                     ColumnWidths ="495;2250"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -263,6 +286,7 @@ Begin Form
                     ColumnWidths ="495;2250"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -283,6 +307,7 @@ Begin Form
                     ColumnWidths ="495;2250"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
+
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -302,6 +327,7 @@ Begin Form
                         "Disturbance; "
                     ColumnWidths ="495;2250"
                     BeforeUpdate ="[Event Procedure]"
+
                 End
             End
         End

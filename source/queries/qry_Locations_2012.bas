@@ -109,15 +109,15 @@ Begin
     End
 End
 Begin
-    State =2
-    Left =-4
-    Top =-30
-    Right =1065
-    Bottom =762
+    State =0
+    Left =0
+    Top =40
+    Right =1564
+    Bottom =853
     Left =-1
     Top =-1
-    Right =1041
-    Bottom =313
+    Right =1540
+    Bottom =296
     Left =0
     Top =0
     ColumnsShown =539

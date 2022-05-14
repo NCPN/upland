@@ -1,10 +1,9 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AllowDeletions = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     AllowEdits = NotDefault
     TabularFamily =124
     PictureAlignment =2
@@ -25,6 +24,9 @@ Begin Form
     RecordSource ="tbl_SOP_version"
     Caption ="Show All Versions Subform"
     DatasheetFontName ="Arial"
+    FilterOnLoad =255
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -34,54 +36,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -91,9 +104,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =360
@@ -153,6 +168,7 @@ Begin Form
                     Name ="SOP_number"
                     ControlSource ="SOP_number"
                     StatusBarText ="SOP number"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -167,6 +183,7 @@ Begin Form
                     ControlSource ="SOP_version_number"
                     Format ="Fixed"
                     StatusBarText ="SOP version number"
+
                 End
                 Begin CheckBox
                     OverlapFlags =85
@@ -176,6 +193,7 @@ Begin Form
                     Name ="active_flag"
                     ControlSource ="active_flag"
                     StatusBarText ="Yes indicates SOP is active"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -189,6 +207,7 @@ Begin Form
                     Name ="version_key_number"
                     ControlSource ="version_key_number"
                     StatusBarText ="Protocol version key number (maintained in SOP #10)"
+
                 End
             End
         End

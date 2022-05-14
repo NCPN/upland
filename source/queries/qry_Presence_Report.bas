@@ -32,21 +32,33 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0x5099d573f5c38f4fa56edd21717207dc
 End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
     Begin
         dbText "Name" ="qry_present_by_year.Master_Family"
         dbInteger "ColumnWidth" ="1380"
         dbBoolean "ColumnHidden" ="0"
+        dbLong "AggregateType" ="-1"
     End
     Begin
         dbText "Name" ="Present in 2006"
         dbInteger "ColumnWidth" ="1485"
         dbBoolean "ColumnHidden" ="0"
+        dbLong "AggregateType" ="-1"
+        dbBinary "GUID" = Begin
+            0xdb5ea07a9eea6843a5199b580864218b
+        End
     End
     Begin
         dbText "Name" ="Present in 2007"
         dbInteger "ColumnWidth" ="1485"
         dbBoolean "ColumnHidden" ="0"
+        dbLong "AggregateType" ="-1"
+        dbBinary "GUID" = Begin
+            0x0e26a4e1e52e45479f524ac885f42177
+        End
     End
 End
 Begin
@@ -57,8 +69,8 @@ Begin
     Bottom =327
     Left =-1
     Top =-1
-    Right =973
-    Bottom =144
+    Right =960
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =543
@@ -67,7 +79,7 @@ Begin
         Top =6
         Right =134
         Bottom =120
-        Top =2
+        Top =0
         Name ="qry_present_by_year"
         Name =""
     End

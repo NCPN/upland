@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -12,11 +12,11 @@ Begin Form
     GridX =24
     GridY =24
     DatasheetFontHeight =9
-    ItemSuffix =13
-    Left =1092
-    Top =300
-    Right =8292
-    Bottom =6048
+    ItemSuffix =15
+    Left =1320
+    Top =1500
+    Right =8520
+    Bottom =6525
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x1385341e7574e340
@@ -52,7 +52,9 @@ Begin Form
             FontName ="Tahoma"
         End
         Begin Section
-            Height =5760
+            CanGrow = NotDefault
+            CanShrink = NotDefault
+            Height =5040
             BackColor =-2147483633
             Name ="Detail"
             Begin
@@ -96,10 +98,11 @@ Begin Form
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
+                    Overlaps =1
                 End
                 Begin ComboBox
                     OverlapFlags =85
@@ -152,23 +155,25 @@ Begin Form
                     Caption ="Report by Park"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
+                    Overlaps =1
                 End
                 Begin ComboBox
-                    Enabled = NotDefault
+                    LimitToList = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
                     Left =4155
                     Top =1800
                     Width =720
                     TabIndex =2
-                    ColumnInfo ="\"\";\"\";\"3\";\"2\""
+                    ColumnInfo ="\"\";\"\";\"4\";\"4\""
                     Name ="Plot"
                     RowSourceType ="Table/Query"
-                    RowSource ="SELECT Plot_ID FROM tbl_Locations WHERE Unit_Code = 'CARE' ORDER BY Plot_ID"
+                    RowSource ="SELECT tbl_Revisit_List.Plot FROM tbl_Revisit_List WHERE (((tbl_Revisit_List.Par"
+                        "k) = 'TICA' )) ORDER BY tbl_Revisit_List.Plot;"
                     ColumnWidths ="420"
                     OnGotFocus ="[Event Procedure]"
 
@@ -200,6 +205,22 @@ Begin Form
                     LayoutCachedWidth =6780
                     LayoutCachedHeight =2220
                 End
+                Begin Label
+                    OverlapFlags =85
+                    TextAlign =2
+                    Left =1140
+                    Top =3660
+                    Width =4920
+                    Height =690
+                    FontSize =9
+                    Name ="lblUpdate"
+                    Caption ="Did not change much on this, except the dropdown and the reports are now limited"
+                        " to the current year's plots and a new page is started for each plot."
+                    LayoutCachedLeft =1140
+                    LayoutCachedTop =3660
+                    LayoutCachedWidth =6060
+                    LayoutCachedHeight =4350
+                End
             End
         End
     End
@@ -224,7 +245,7 @@ Option Explicit
 '               BLC - 3/7/2016 - 1.02 - fixed strSQL replacement issue in Button_rpt_by_Park_Click
 '               BLC - 3/8/2016 - 1.03 - fixed old data refresh issue (Button_rpt_by_Park_Click),
 '                                       added documentation & error handling to other subroutines
-'               BLC - 3/9/2016 - 1.04 - added primary key & index to improve report performance (Button_rpt_by_Park_Click)
+'               BLC - 3/09/2016 - 1.04 - added primary key & index to improve report performance (Button_rpt_by_Park_Click)
 '               BLC - 3/16/2016 - 1.05 - added enabling plot dropdown when park is chosen (Park_Code_AfterUpdate, Park_Code_Change)
 ' =================================
 
@@ -276,16 +297,25 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 3/16/2016 - initial version
+'   AZ  - 3/23/2022 - changed query for plot drop down to include only plots in tbl_Revisit_List
 ' ---------------------------------
 Private Sub Park_Code_Change()
 On Error GoTo Err_Handler
 
+
+Dim thePark As String
+Dim strSQL As String
+thePark = Me!Park_Code
+strSQL = "SELECT tbl_Revisit_List.Plot FROM tbl_Revisit_List " & _
+        "WHERE (((tbl_Revisit_List.Park) = '" & thePark & "' )) ORDER BY tbl_Revisit_List.Plot;"
+        
   'plot dropdown should be disabled (default)
   Me!Plot.Enabled = False
   Me.Refresh
   
   If Not IsNull(Me!Park_Code) Then
-    Me!Plot.RowSource = "SELECT Plot_ID FROM tbl_Locations WHERE Unit_Code = '" & Me!Park_Code & "' ORDER BY Plot_ID"
+'   Me!Plot.RowSource = "SELECT Plot_ID FROM tbl_Locations WHERE Unit_Code = '" & Me!Park_Code & "' ORDER BY Plot_ID"
+    Me!Plot.RowSource = strSQL
     Me!Plot.Requery
     'enable plot dropdown
     Me!Plot.Enabled = True
@@ -315,14 +345,23 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   RD - ?          - initial version
-'   BLC - 3/8/2016  - added documentation & error handling
+'   BLC - 3/08/2016  - added documentation & error handling
 '   BLC - 3/16/2016 - enabled plot dropdown when park code is selected (otherwise it's disabled)
+'   AZ  - 3/23/2022 - changed query for plot drop down to include only plots in tbl_Revisit_List
 ' ---------------------------------
 Private Sub Park_Code_AfterUpdate()
 On Error GoTo Err_Handler
 
+Dim strSQL As String
+Dim thePark As String
+
+thePark = Me!Park_Code
+strSQL = "SELECT tbl_Revisit_List.Plot FROM tbl_Revisit_List " & _
+        "WHERE (((tbl_Revisit_List.Park) = '" & thePark & "' )) ORDER BY tbl_Revisit_List.Plot;"
+
   If Not IsNull(Me!Park_Code) Then
-    Me!Plot.RowSource = "SELECT Plot_ID FROM tbl_Locations WHERE Unit_Code = '" & Me!Park_Code & "' ORDER BY Plot_ID"
+    'Me!Plot.RowSource = "SELECT Plot_ID FROM tbl_Locations WHERE Unit_Code = '" & Me!Park_Code & "' ORDER BY Plot_ID"
+    Me!Plot.RowSource = strSQL
     Me!Plot.Requery
     'enable plot dropdown
     Me!Plot.Enabled = True
@@ -376,9 +415,21 @@ End Sub
 '                     WHERE Len(SpeciesYears) > Len(Replace(SpeciesYears, CStr(2014), ''))
 '                     remove it and leave existing ORDER BY clause
 '                     added report filter display via OpenArgs
+'   AZ - 3/23/2022  - Generating 'temp_Sp_Rpt_by_Park_Complete' takes most of the time. It doesn't make much difference
+'                     if you do all the plots for a given park, or just one-- it takes about the same amount of time.
+'                     Modified report to start a new page for every plot and
+'                     modified AfterUpdate & OnChange events of Park_Code drop down to limit list to tbl_Revisit_List.
+'                     Replaced qry_Sp_Rpt_All with qry_Sp_Rpt_All_Revisits, which limits query to current year plots.
 ' ---------------------------------
 Private Sub Button_rpt_by_Park_Click()
 On Error GoTo Err_Handler
+
+
+Dim StartTimeTotal As Double
+Dim StartTimeQuery As Double
+Dim SecondsElapsedTotal As Double
+Dim SecondsElapsedQuery As Double
+StartTimeTotal = Timer
 
     'set statusbar notice
     SysCmd acSysCmdSetStatus, "Running report ..."
@@ -404,6 +455,8 @@ On Error GoTo Err_Handler
       If Not IsNull(Me!Park_Code) Then
         strParkWhere = "Unit_Code = '" & Me!Park_Code & "'"
         strFilter = Me!Park_Code
+      Else
+        
       End If
       
       'plot --> NOTE: assumes UI will not allow plot selection w/o park
@@ -416,9 +469,9 @@ On Error GoTo Err_Handler
       If Not IsNull(Me!Visit_Date) Then
 '        strYrWhere = "Len(SpeciesYear) > Len(Replace(SpeciesYear, CStr(" & Me!Visit_Date & "), ''))"
         '(qry_Sp_Rpt_All.Utah_Species+"-"+CStr(qry_Sp_Rpt_All.Year)) AS SpeciesYear
-        strSpeciesYear = "(qry_Sp_Rpt_All.Utah_Species+' - '+CStr(qry_Sp_Rpt_All.Year))"
+        strSpeciesYear = "(qry_Sp_Rpt_All_Revisits.Utah_Species+' - '+CStr(qry_Sp_Rpt_All_Revisits.Year))"
         strYrWhere = "Len(" & strSpeciesYear & ") > Len(Replace(" & strSpeciesYear & ", CStr(" & Me!Visit_Date & "), ''))"
-        
+
         'set filter display
         Select Case Len(strFilter)
             Case 0 'year only
@@ -462,6 +515,7 @@ On Error GoTo Err_Handler
     Dim qdf As QueryDef
     Dim strSQL As String
     
+    'replace qry_Sp_Rpt_All to qry_Sp_Rpt_All_Revisits (az)
     Set qdf = CurrentDb.QueryDefs("qry_Sp_Rpt_by_Park_Complete_Create_Table")
     strSQL = qdf.SQL
 
@@ -487,12 +541,18 @@ On Error GoTo Err_Handler
         'replace ORDER with WHERE clause + ORDER
         strSQLNew = Replace(strSQL, "ORDER", " WHERE " & strWhere & " ORDER")
         qdf.SQL = strSQLNew 'was strSQL
+        Debug.Print strSQLNew
     End If
     
+StartTimeQuery = Timer
+
     'update underlying table (temp_Sp_Rpt_by_Park_Complete is used in report's underlying table temp_Sp_Rpt_by_Park_Rollup)
     DoCmd.SetWarnings False
     DoCmd.OpenQuery "qry_Sp_Rpt_by_Park_Complete_Create_Table", acViewNormal
     
+SecondsElapsedQuery = Round(Timer - StartTimeQuery, 2)
+
+
     'update status bar
     SysCmd acSysCmdSetStatus, "Generating complete results..."
     'DoEvents
@@ -534,12 +594,62 @@ On Error GoTo Err_Handler
     
     'translate SQL Where for rollup --> SpeciesYear = SpeciesYears, ,qry_Sp_Rpt_All.Year = SpeciesYears, qry_Sp_Rpt_All.Utah_species = "Utah.species"
     Dim aryText() As String
-    aryText = Split("SpeciesYear|SpeciesYears||qry_Sp_Rpt_All.Year|SpeciesYears||qry_Sp_Rpt_All.Utah_species|Utah_species", "||")
+    aryText = Split("SpeciesYear|SpeciesYears||qry_Sp_Rpt_All_Revisits.Year|SpeciesYears||qry_Sp_Rpt_All_Revisits.Utah_species|Utah_species", "||")
     strWhere = ReplaceMulti(strWhere, aryText)
     'strWhere = Replace(strWhere, Replace(strSpeciesYear, "SpeciesYear", "SpeciesYears"), "SpeciesYears")
     
     'open report --> strWhere = WHERE clause filter, strFilter = display for filter if present
     DoCmd.OpenReport stDocName, acViewPreview, , strWhere, acWindowNormal, strFilter
+   Debug.Print "zero"
+'-------------------------------------------------------------------------------------------------
+'part 2
+    
+    'Make directory if it doesn't already exist
+    Dim spath As String
+    Dim FolderExists As Boolean
+
+    spath = Application.CurrentProject.Path & "\RevisitReports\" & Me!Park_Code & "\Species"
+    FolderExists = (Len(Dir$(spath, vbDirectory)) > 0&)
+    If Not FolderExists Then
+        Call MkMyDir(spath)
+    End If
+    
+    Dim sprpt As Access.Report
+    Dim sprs As dao.Recordset
+    Dim spSQL As String
+    Dim thePlot As Integer
+    Dim filename As String
+        
+    'loop through plots and save as pdf's
+    Set sprpt = Reports("rpt_Species_by_Park").Report
+    Debug.Print "zero-one"
+    spSQL = "SELECT tbl_Revisit_List.Plot FROM tbl_Revisit_List " & _
+        "WHERE (((tbl_Revisit_List.Park) = '" & Me!Park_Code & "' ))ORDER BY tbl_Revisit_List.Plot;"
+    Debug.Print "zero-two"
+    Set sprs = CurrentDb.OpenRecordset(spSQL)
+    Debug.Print "zero-three"
+    If Not sprs.BOF And Not sprs.EOF Then
+      Debug.Print "one"
+        sprs.MoveFirst
+        While (Not sprs.EOF)
+            
+            thePlot = sprs.Fields("Plot")
+            filename = spath & "\SpeciesByPark_" & Me!Park_Code & thePlot & ".pdf"
+            sprpt.Filter = "Plot_ID = " & thePlot
+            sprpt.FilterOn = True
+            DoEvents
+            Debug.Print "two"
+            DoCmd.OutputTo acOutputReport, "rpt_Species_by_Park", acFormatPDF, filename
+    
+            sprs.MoveNext
+        Wend
+    End If
+    
+    sprs.Close
+    DoCmd.Close acReport, stDocName
+    
+    Set sprs = Nothing
+    
     
     SysCmd acSysCmdSetStatus, "Report complete."
     
@@ -547,6 +657,13 @@ On Error GoTo Err_Handler
     'clear status bar
     SysCmd acSysCmdSetStatus, " "
     
+    
+SecondsElapsedTotal = Round(Timer - StartTimeTotal, 2)
+MsgBox "That was " & SecondsElapsedTotal & " seconds of waiting for this code to run." & vbNewLine & _
+        "Creating the table --temp_Sp_Rpt_by_Park_Complete- took " & SecondsElapsedQuery & " seconds, " & vbNewLine & _
+        "which is " & Round(SecondsElapsedQuery / SecondsElapsedTotal * 100, 0) & "% of the total time.", vbInformation
+
+  
 Exit_Handler:
     Set qdf = Nothing
     Exit Sub
@@ -589,4 +706,13 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - Button_Close_Click[Form_frm_Species_Report_Select])"
     End Select
     Resume Exit_Handler
+End Sub
+
+
+
+Private Sub somesub()
+    Dim sumnum As Integer
+    Button_rpt_by_Park_Click sumnum
+    Debug.Print sumnum
+    
 End Sub

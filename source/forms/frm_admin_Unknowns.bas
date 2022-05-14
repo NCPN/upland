@@ -168,10 +168,10 @@ Begin Form
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -239,10 +239,10 @@ Begin Form
                     Caption ="Replace"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -285,10 +285,10 @@ Begin Form
                     Caption ="Master Species"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -388,10 +388,10 @@ Begin Form
                     Caption ="Details"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -411,8 +411,8 @@ Option Compare Database
 
 Private Sub ButtonDetails_Click()
 
-  Dim db As DAO.Database
-  Dim InputTable As DAO.Recordset
+  Dim db As dao.Database
+  Dim InputTable As dao.Recordset
   Dim strSQL As String
   Dim strPrompt As String
   Dim intFieldIndex As Integer

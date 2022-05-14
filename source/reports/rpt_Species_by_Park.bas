@@ -1,8 +1,7 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Report
     LayoutForPrint = NotDefault
-    FilterOn = NotDefault
     OrderByOn = NotDefault
     DefaultView =0
     TabularFamily =0
@@ -14,14 +13,13 @@ Begin Report
     GridY =24
     Width =9300
     DatasheetFontHeight =9
-    ItemSuffix =23
-    Left =1425
-    Top =3270
-    Right =11625
-    Bottom =10755
+    ItemSuffix =44
+    Left =1950
+    Top =60
+    Right =14310
+    Bottom =9720
     DatasheetGridlinesColor =12632256
-    Filter ="Unit_Code = 'CEBR' AND Plot_ID = 102 AND Len((Utah_species+' - '+CStr(SpeciesYea"
-        "rs))) > Len(Replace((Utah_species+' - '+CStr(SpeciesYears)), CStr(2014), ''))"
+    Filter ="Unit_Code = 'DINO' AND Plot_ID = 116"
     OrderBy ="[temp_Sp_Rpt_by_Park_Rollup].[ParkPlotSpecies]"
     RecSrcDt = Begin
         0xfe3370dd0da1e440
@@ -89,11 +87,7 @@ Begin Report
             BorderLineStyle =0
         End
         Begin BreakLevel
-            GroupHeader = NotDefault
             KeepTogether =2
-            ControlSource ="Unit_Code"
-        End
-        Begin BreakLevel
             ControlSource ="Unit_Code"
         End
         Begin BreakLevel
@@ -114,68 +108,84 @@ Begin Report
             KeepTogether = NotDefault
             CanGrow = NotDefault
             CanShrink = NotDefault
-            Height =600
+            Height =495
+            BackColor =11525325
             Name ="ReportHeader"
             Begin
                 Begin Label
                     BackStyle =1
                     TextAlign =2
                     TextFontFamily =34
-                    Width =9300
-                    Height =600
-                    FontSize =20
+                    Left =1080
+                    Width =2685
+                    Height =480
+                    FontSize =18
                     FontWeight =400
+                    BackColor =11525325
                     Name ="Label10"
-                    Caption ="Species by Park"
+                    Caption ="Species by Park:"
                     FontName ="Calibri"
-                    LayoutCachedWidth =9300
-                    LayoutCachedHeight =600
+                    LayoutCachedLeft =1080
+                    LayoutCachedWidth =3765
+                    LayoutCachedHeight =480
                     ThemeFontIndex =1
+                End
+                Begin TextBox
+                    TextAlign =2
+                    TextFontFamily =34
+                    IMESentenceMode =3
+                    Left =5640
+                    Height =480
+                    FontSize =18
+                    Name ="Text27"
+                    ControlSource ="Unit_Code"
+                    FontName ="Calibri"
+
+                    LayoutCachedLeft =5640
+                    LayoutCachedWidth =7080
+                    LayoutCachedHeight =480
+                End
+                Begin TextBox
+                    TextFontFamily =34
+                    IMESentenceMode =3
+                    Left =7080
+                    Width =840
+                    Height =480
+                    FontSize =18
+                    TabIndex =1
+                    Name ="Text29"
+                    ControlSource ="Plot_ID"
+                    FontName ="Calibri"
+
+                    LayoutCachedLeft =7080
+                    LayoutCachedWidth =7920
+                    LayoutCachedHeight =480
+                End
+                Begin Line
+                    BorderWidth =2
+                    Top =480
+                    Width =9300
+                    Name ="Line_Report_Banner_Bottom"
+                    LayoutCachedTop =480
+                    LayoutCachedWidth =9300
+                    LayoutCachedHeight =480
+                End
+                Begin Line
+                    BorderWidth =2
+                    Width =9300
+                    Name ="Line_Report_Banner_Top"
+                    LayoutCachedWidth =9300
                 End
             End
         End
         Begin PageHeader
-            Height =1140
+            Height =915
             Name ="PageHeaderSection"
             Begin
                 Begin Label
                     TextFontFamily =34
-                    Left =60
-                    Top =300
-                    Width =1080
-                    Height =270
-                    FontSize =10
-                    Name ="Unit_Code_Label"
-                    Caption ="Park Code"
-                    FontName ="Calibri"
-                    Tag ="DetachedLabel"
-                    LayoutCachedLeft =60
-                    LayoutCachedTop =300
-                    LayoutCachedWidth =1140
-                    LayoutCachedHeight =570
-                    ThemeFontIndex =1
-                End
-                Begin Label
-                    TextAlign =2
-                    TextFontFamily =34
-                    Left =240
-                    Top =540
-                    Width =735
-                    Height =270
-                    FontSize =10
-                    Name ="Plot_ID_Label"
-                    Caption ="Plot"
-                    FontName ="Calibri"
-                    Tag ="DetachedLabel"
-                    LayoutCachedLeft =240
-                    LayoutCachedTop =540
-                    LayoutCachedWidth =975
-                    LayoutCachedHeight =810
-                End
-                Begin Label
-                    TextFontFamily =34
                     Left =3480
-                    Top =780
+                    Top =600
                     Width =960
                     Height =270
                     FontSize =10
@@ -184,15 +194,15 @@ Begin Report
                     FontName ="Calibri"
                     Tag ="DetachedLabel"
                     LayoutCachedLeft =3480
-                    LayoutCachedTop =780
+                    LayoutCachedTop =600
                     LayoutCachedWidth =4440
-                    LayoutCachedHeight =1050
+                    LayoutCachedHeight =870
                 End
                 Begin Label
                     TextAlign =2
                     TextFontFamily =34
                     Left =7500
-                    Top =780
+                    Top =600
                     Width =600
                     Height =270
                     FontSize =10
@@ -201,14 +211,14 @@ Begin Report
                     FontName ="Calibri"
                     Tag ="DetachedLabel"
                     LayoutCachedLeft =7500
-                    LayoutCachedTop =780
+                    LayoutCachedTop =600
                     LayoutCachedWidth =8100
-                    LayoutCachedHeight =1050
+                    LayoutCachedHeight =870
                 End
                 Begin Label
                     TextFontFamily =34
                     Left =660
-                    Top =780
+                    Top =600
                     Width =840
                     Height =270
                     FontSize =10
@@ -217,49 +227,51 @@ Begin Report
                     FontName ="Calibri"
                     Tag ="DetachedLabel"
                     LayoutCachedLeft =660
-                    LayoutCachedTop =780
+                    LayoutCachedTop =600
                     LayoutCachedWidth =1500
-                    LayoutCachedHeight =1050
+                    LayoutCachedHeight =870
                 End
                 Begin TextBox
                     CanGrow = NotDefault
                     CanShrink = NotDefault
                     TextAlign =2
                     TextFontFamily =34
+                    BackStyle =1
                     IMESentenceMode =3
-                    Width =9300
-                    Height =270
-                    FontSize =12
+                    Width =5220
+                    Height =360
+                    FontSize =14
                     FontWeight =500
-                    ForeColor =8355711
+                    BackColor =11525325
+                    ForeColor =4210752
                     Name ="tbxPageHeader"
                     ControlSource ="=IIf([Page]>1,\"Species by Park\",\"\")"
                     FontName ="Calibri"
 
-                    LayoutCachedWidth =9300
-                    LayoutCachedHeight =270
+                    LayoutCachedWidth =5220
+                    LayoutCachedHeight =360
                     ThemeFontIndex =1
                     ForeThemeColorIndex =0
-                    ForeTint =50.0
+                    ForeTint =75.0
                 End
                 Begin Line
-                    BorderWidth =2
+                    BorderWidth =1
                     Left =60
-                    Top =1080
+                    Top =900
                     Width =9240
-                    Name ="Line13"
+                    Name ="Line_Below_Column_Headers"
                     LayoutCachedLeft =60
-                    LayoutCachedTop =1080
+                    LayoutCachedTop =900
                     LayoutCachedWidth =9300
-                    LayoutCachedHeight =1080
+                    LayoutCachedHeight =900
                 End
                 Begin TextBox
                     FontItalic = NotDefault
                     TextAlign =3
                     TextFontFamily =34
                     IMESentenceMode =3
-                    Left =7080
-                    Top =300
+                    Left =4980
+                    Top =600
                     Width =2160
                     Height =270
                     FontSize =9
@@ -269,46 +281,120 @@ Begin Report
                     ControlSource ="=IIf(Len([OpenArgs])>0,\"Filter:  \" & [OpenArgs],\"\")"
                     FontName ="Calibri"
 
-                    LayoutCachedLeft =7080
-                    LayoutCachedTop =300
-                    LayoutCachedWidth =9240
-                    LayoutCachedHeight =570
+                    LayoutCachedLeft =4980
+                    LayoutCachedTop =600
+                    LayoutCachedWidth =7140
+                    LayoutCachedHeight =870
                     ThemeFontIndex =1
                 End
-            End
-        End
-        Begin BreakHeader
-            KeepTogether = NotDefault
-            CanGrow = NotDefault
-            CanShrink = NotDefault
-            RepeatSection = NotDefault
-            Height =432
-            BackColor =14211288
-            Name ="GroupHeader0"
-            AlternateBackColor =14211288
-            Begin
                 Begin TextBox
                     HideDuplicates = NotDefault
                     CanGrow = NotDefault
                     CanShrink = NotDefault
                     TextAlign =1
                     TextFontFamily =34
+                    BackStyle =1
                     IMESentenceMode =3
-                    Left =60
-                    Width =1380
-                    Height =432
-                    FontSize =16
+                    Left =5220
+                    Width =1620
+                    Height =360
+                    FontSize =14
+                    TabIndex =2
+                    BackColor =11525325
                     ForeColor =4210752
-                    Name ="Unit_Code"
-                    ControlSource ="Unit_Code"
+                    Name ="Text25"
+                    ControlSource ="=IIf([Page]>1,[Unit_Code],\"\")"
                     FontName ="Calibri"
 
-                    LayoutCachedLeft =60
-                    LayoutCachedWidth =1440
-                    LayoutCachedHeight =432
+                    LayoutCachedLeft =5220
+                    LayoutCachedWidth =6840
+                    LayoutCachedHeight =360
                     ThemeFontIndex =1
                     ForeThemeColorIndex =0
                     ForeTint =75.0
+                End
+                Begin TextBox
+                    CanGrow = NotDefault
+                    CanShrink = NotDefault
+                    TextAlign =1
+                    TextFontFamily =34
+                    BackStyle =1
+                    IMESentenceMode =3
+                    Left =6840
+                    Width =1620
+                    Height =360
+                    FontSize =14
+                    TabIndex =3
+                    BackColor =11525325
+                    ForeColor =4210752
+                    Name ="Text26"
+                    ControlSource ="=IIf([Page]>1,[Plot_ID],\"\")"
+                    FontName ="Calibri"
+
+                    LayoutCachedLeft =6840
+                    LayoutCachedWidth =8460
+                    LayoutCachedHeight =360
+                    ThemeFontIndex =1
+                    ForeThemeColorIndex =0
+                    ForeTint =75.0
+                End
+                Begin TextBox
+                    CanShrink = NotDefault
+                    BackStyle =1
+                    IMESentenceMode =3
+                    Left =8460
+                    Width =840
+                    Height =120
+                    FontSize =9
+                    TabIndex =4
+                    BackColor =11525325
+                    ForeColor =11525325
+                    Name ="Text37"
+                    ControlSource ="=IIf([Page]>1,[Pages],\"\")"
+
+                    LayoutCachedLeft =8460
+                    LayoutCachedWidth =9300
+                    LayoutCachedHeight =120
+                End
+                Begin TextBox
+                    CanGrow = NotDefault
+                    CanShrink = NotDefault
+                    TextAlign =2
+                    TextFontFamily =34
+                    BackStyle =1
+                    IMESentenceMode =3
+                    Left =8460
+                    Top =120
+                    Width =840
+                    FontSize =9
+                    TabIndex =5
+                    BackColor =11525325
+                    ForeColor =4210752
+                    Name ="Text36"
+                    ControlSource ="=IIf([Page]>1,[Page] & \" of \" & [Pages],\"\")"
+                    FontName ="Calibri"
+
+                    LayoutCachedLeft =8460
+                    LayoutCachedTop =120
+                    LayoutCachedWidth =9300
+                    LayoutCachedHeight =360
+                    ForeThemeColorIndex =0
+                    ForeTint =75.0
+                End
+                Begin Line
+                    BorderWidth =1
+                    Top =360
+                    Width =9300
+                    Name ="Line40"
+                    LayoutCachedTop =360
+                    LayoutCachedWidth =9300
+                    LayoutCachedHeight =360
+                End
+                Begin Line
+                    BorderWidth =1
+                    Width =9300
+                    Name ="Line_Page_Banner_Top"
+                    LayoutCachedWidth =9300
                 End
             End
         End
@@ -317,31 +403,15 @@ Begin Report
             CanGrow = NotDefault
             CanShrink = NotDefault
             RepeatSection = NotDefault
-            Height =270
-            BreakLevel =2
+            Height =300
+            BreakLevel =1
             BackColor =11525325
             Name ="GroupHeader1"
             AlternateBackColor =8965045
             Begin
                 Begin TextBox
-                    TextAlign =2
-                    TextFontFamily =34
-                    IMESentenceMode =3
-                    Left =240
-                    Width =600
-                    Height =270
-                    FontSize =9
-                    FontWeight =500
-                    Name ="Plot_ID"
-                    ControlSource ="Plot_ID"
-                    FontName ="Calibri"
-
-                    LayoutCachedLeft =240
-                    LayoutCachedWidth =840
-                    LayoutCachedHeight =270
-                    ThemeFontIndex =1
-                End
-                Begin TextBox
+                    CanGrow = NotDefault
+                    CanShrink = NotDefault
                     TextAlign =2
                     TextFontFamily =34
                     IMESentenceMode =3
@@ -350,7 +420,6 @@ Begin Report
                     Height =270
                     FontSize =10
                     FontWeight =500
-                    TabIndex =1
                     Name ="tbxNoData"
                     ControlSource ="=IIf(IsNull([SpeciesYears]) Or IsNull([Plot_ID]),\"- No Data Found -\",\"\")"
                     FontName ="Calibri"
@@ -359,6 +428,22 @@ Begin Report
                     LayoutCachedWidth =6480
                     LayoutCachedHeight =270
                     ThemeFontIndex =1
+                End
+                Begin TextBox
+                    CanGrow = NotDefault
+                    CanShrink = NotDefault
+                    BackStyle =1
+                    IMESentenceMode =3
+                    Left =1020
+                    TabIndex =1
+                    BackColor =11525325
+                    ForeColor =11525325
+                    Name ="Plot_ID"
+                    ControlSource ="Plot_ID"
+
+                    LayoutCachedLeft =1020
+                    LayoutCachedWidth =2460
+                    LayoutCachedHeight =240
                 End
             End
         End
@@ -466,7 +551,7 @@ Begin Report
                     Left =60
                     Top =120
                     Width =9240
-                    Name ="Line14"
+                    Name ="Line_Bottom_of_Page"
                     LayoutCachedLeft =60
                     LayoutCachedTop =120
                     LayoutCachedWidth =9300

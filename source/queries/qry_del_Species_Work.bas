@@ -11,6 +11,9 @@ dbInteger "ODBCTimeout" ="60"
 dbBoolean "UseTransaction" ="-1"
 dbBoolean "FailOnError" ="0"
 dbByte "Orientation" ="0"
+dbBinary "GUID" = Begin
+    0x91e72220603e3d4b9740d5ea7062350c
+End
 Begin
 End
 Begin
@@ -21,8 +24,8 @@ Begin
     Bottom =353
     Left =-1
     Top =-1
-    Right =977
-    Bottom =144
+    Right =960
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =771

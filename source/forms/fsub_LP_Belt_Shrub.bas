@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
@@ -975,11 +975,11 @@ Option Explicit
 Private Sub Form_Load()
 On Error GoTo Err_Handler
 
-    Dim NoData As Scripting.Dictionary
+    Dim noData As Scripting.Dictionary
     
     If Not IsNull(Me.Transect_ID) Then
         'set no data checkboxes/rectangles
-        Set NoData = GetNoDataCollected(Me.Transect_ID, "T")
+        Set noData = GetNoDataCollected(Me.Transect_ID, "T")
     End If
     
     'default
@@ -1035,10 +1035,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     ' update the NoDataCollected info
     '-----------------------------------
-    Dim NoData As Scripting.Dictionary
+    Dim noData As Scripting.Dictionary
     
     'remove the no data collected record
-    Set NoData = SetNoDataCollected(Me.Parent!Transect_ID, "T", "1mBelt-Shrub", 0)
+    Set noData = SetNoDataCollected(Me.Parent!Transect_ID, "T", "1mBelt-Shrub", 0)
         
     'update checkbox/rectangle
     Me.Parent.Form.Controls("cbxNoShrubs") = 0
@@ -1675,10 +1675,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     If Me.RecordsetClone.RecordCount = 0 Then
     
-        Dim NoData As Scripting.Dictionary
+        Dim noData As Scripting.Dictionary
         
         'remove the no data collected record
-        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Shrub", 1)
+        Set noData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Shrub", 1)
     
         'update checkbox/rectangle
         Me.Parent.Form.Controls("cbxNoShrubs") = 1

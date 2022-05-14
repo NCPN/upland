@@ -337,8 +337,8 @@ Public Function GetParkState(ParkCode As String) As String
 
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
-    Dim rs As DAO.Recordset
+    Dim db As dao.Database
+    Dim rs As dao.Recordset
     Dim state As String, strSQL As String
    
     'handle only appropriate park codes
@@ -435,8 +435,8 @@ Public Function IsUsedTargetArea(TgtAreaID As Integer) As Boolean
 
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
-    Dim rs As DAO.Recordset
+    Dim db As dao.Database
+    Dim rs As dao.Recordset
     Dim strSQL As String
     
     'default
@@ -484,8 +484,8 @@ Public Sub PopulateTree(TreeType As String)
 
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
-    Dim rs As DAO.Recordset
+    Dim db As dao.Database
+    Dim rs As dao.Recordset
     Dim strSQL As String
     
     Select Case TreeType
@@ -537,8 +537,8 @@ Public Sub PopulateCombobox(cbx As ComboBox, BoxType As String)
 
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
-    Dim rs As DAO.Recordset
+    Dim db As dao.Database
+    Dim rs As dao.Recordset
     Dim strSQL As String
     
     Select Case BoxType
@@ -594,8 +594,8 @@ End Sub
 Public Function GetProtocolVersion(Optional blnAllVersions As Boolean = False) As Variant
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
-    Dim rs As DAO.Recordset
+    Dim db As dao.Database
+    Dim rs As dao.Recordset
     Dim strSQL As String, strWhere As String
     Dim Count As Integer
     Dim metadata() As Variant
@@ -664,8 +664,8 @@ End Function
 Public Function GetSOPMetadata(area As String) As Variant
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
-    Dim rs As DAO.Recordset
+    Dim db As dao.Database
+    Dim rs As dao.Recordset
     Dim strSQL As String
         
     'generate SQL
@@ -718,8 +718,8 @@ End Function
 Public Function GetParkID(ParkCode As String) As Long
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
-    Dim rs As DAO.Recordset
+    Dim db As dao.Database
+    Dim rs As dao.Recordset
     Dim strSQL As String
     Dim ID As Long
    
@@ -926,12 +926,12 @@ End Sub
 '                     qc_basal_gap_checks)
 '   HMT - 3/8/2019  - added template for missing observer/recorder/date
 ' ---------------------------------
-Public Function GetRecords(Template As String) As DAO.Recordset
+Public Function GetRecords(Template As String) As dao.Recordset
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
-    Dim qdf As DAO.QueryDef
-    Dim rs As DAO.Recordset
+    Dim db As dao.Database
+    Dim qdf As dao.QueryDef
+    Dim rs As dao.Recordset
     
     Set db = CurrentDb
     
@@ -1062,8 +1062,8 @@ End Function
 Public Function SetRecord(Template As String, Params As Variant) As Long
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
-    Dim qdf As DAO.QueryDef
+    Dim db As dao.Database
+    Dim qdf As dao.QueryDef
     Dim SkipRecordAction As Boolean
     Dim ID As Long
     
@@ -1325,7 +1325,7 @@ On Error GoTo Err_Handler
         
             'check if the record already exists by checking event list form records
             'event list form pulls active records for park, river segment
-            Dim rs As DAO.Recordset
+            Dim rs As dao.Recordset
             
             Set rs = frm!list.Form.RecordsetClone
             rs.FindFirst strCriteria
@@ -1532,7 +1532,7 @@ End Sub
 ' Revisions:
 '   BLC - 9/13/2016 - initial version
 ' ---------------------------------
-Public Function FetchAddlData(tbl As String, Fields As String, ID As Long) As DAO.Recordset
+Public Function FetchAddlData(tbl As String, Fields As String, ID As Long) As dao.Recordset
 On Error GoTo Err_Handler
     
     'values are required --> exit if not
@@ -1542,8 +1542,8 @@ On Error GoTo Err_Handler
     Dim field As String
     Dim strFields As String
     Dim strSQL As String
-    Dim db As DAO.Database
-    Dim qdf As DAO.QueryDef
+    Dim db As dao.Database
+    Dim qdf As dao.QueryDef
     
     Set db = CurrentDb
     
@@ -1577,7 +1577,7 @@ On Error GoTo Err_Handler
             'update the query SQL
             .SQL = strSQL
             
-            Dim rs As DAO.Recordset
+            Dim rs As dao.Recordset
 
             Set rs = .OpenRecordset
                         
@@ -1756,7 +1756,7 @@ End Function
 Public Function SetPlotCheckResult(strTemplate As String, action As String)
 On Error GoTo Err_Handler
 
-    Dim rs As DAO.Recordset, rs2 As DAO.Recordset
+    Dim rs As dao.Recordset, rs2 As dao.Recordset
     Dim strDeps As String, strFieldOK As String, _
         strOperator As String, strField As String, CompareTo As String
     Dim iTemplate As Long

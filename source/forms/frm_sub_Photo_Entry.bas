@@ -1,9 +1,8 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     ViewsAllowed =1
@@ -33,9 +32,6 @@ Begin Form
     End
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin

@@ -601,8 +601,8 @@ Public CurrentPointID As String
 
 Private Sub ButtonInitialize_Click()
 
-    Dim db As DAO.Database
-    Dim Points As DAO.Recordset
+    Dim db As dao.Database
+    Dim Points As dao.Recordset
     Dim PointCount As Single
     Dim PointIncrement As Single
     Dim PointLimit As Integer
@@ -708,8 +708,8 @@ End Sub
 Private Sub Form_Current()
 
 
-Dim db As DAO.Database
-    Dim Points As DAO.Recordset
+Dim db As dao.Database
+    Dim Points As dao.Recordset
     Dim strSQL As String
         
     On Error GoTo Err_Handler

@@ -253,12 +253,12 @@ Public Sub ShowSave()
     ShowFileDialog (2)  'Action property - ShowSave
 End Sub
 
-Public Property Get fileName() As String
+Public Property Get filename() As String
     'return object's FileName property
-    fileName = sFileName
+    filename = sFileName
 End Property
 
-Public Property Let fileName(vNewValue As String)
+Public Property Let filename(vNewValue As String)
     'assign object's FileName property
     sFileName = vNewValue
 End Property
@@ -276,7 +276,7 @@ Private Function sLeftOfNull(ByVal sIn As String)
     sLeftOfNull = sIn
     
     'get position of first Chr$(0) in sIn
-    lNullPos = InStr(sIn, chr$(0))
+    lNullPos = InStr(sIn, Chr$(0))
     
     'return part of sIn to left of first Chr$(0) if found
     If lNullPos > 0 Then
@@ -301,14 +301,14 @@ Private Function sAPIFilter(sIn)
     For lChrNdx = 1 To Len(sIn)
         sOneChr = Mid$(sIn, lChrNdx, 1)
         If sOneChr = "|" Then
-            sOutStr = sOutStr & chr$(0)
+            sOutStr = sOutStr & Chr$(0)
         Else
             sOutStr = sOutStr & sOneChr
         End If
     Next
     
     'add a null to the end
-    sOutStr = sOutStr & chr$(0)
+    sOutStr = sOutStr & Chr$(0)
     
     'return sOutStr
     sAPIFilter = sOutStr
@@ -474,7 +474,7 @@ Private Function sByteArrayToString(abBytes() As Byte) As String
             sByteArrayToString = sOut
             Exit Function
         Else
-            sOut = sOut & chr$(lByteVal)
+            sOut = sOut & Chr$(lByteVal)
         End If
         
         lBytePoint = lBytePoint + 1
@@ -536,7 +536,7 @@ Private Sub ShowFileDialog(ByVal iAction As Integer)
         'trim to length of lMaxFileSize - 1
        sFileNameBuff = Mid$(sFileNameBuff, 1, lMaxFileSize - 1)
         'null terminate
-        sFileNameBuff = sFileNameBuff & chr$(0)
+        sFileNameBuff = sFileNameBuff & Chr$(0)
     tOpenFile.lpstrFile = sFileNameBuff
     
     'nMaxFile As Long - init from MaxFileSize property
@@ -554,7 +554,7 @@ Private Sub ShowFileDialog(ByVal iAction As Integer)
         'trim to length of lMaxFileSize - 1
         sFileTitleBuff = Mid$(sFileTitleBuff, 1, lMaxFileSize - 1)
         'null terminate
-        sFileTitleBuff = sFileTitleBuff & chr$(0)
+        sFileTitleBuff = sFileTitleBuff & Chr$(0)
     tOpenFile.lpstrFileTitle = sFileTitleBuff
         
     'tOpenFile.lpstrInitialDir As String - init from InitDir property

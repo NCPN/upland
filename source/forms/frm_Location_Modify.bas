@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -1314,12 +1314,12 @@ On Error GoTo Err_Handler
 
     Dim strMsg As String
     Dim db As Database
-    Dim History As DAO.Recordset
-    Dim OldLocation As DAO.Recordset
+    Dim History As dao.Recordset
+    Dim OldLocation As dao.Recordset
     Dim strSQL As String
     
     strMsg = "Are you sure you want to update location coordinates?"
-    strMsg = strMsg & chr(13) & chr(10) & "Click Yes to Save or No to Discard changes."
+    strMsg = strMsg & Chr(13) & Chr(10) & "Click Yes to Save or No to Discard changes."
     
     If MsgBox(strMsg, vbQuestion + vbYesNo, "Update Location?") = vbNo Then
     '---------------- Cancel Location Update -----------

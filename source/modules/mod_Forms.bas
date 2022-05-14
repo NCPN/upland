@@ -104,7 +104,7 @@ Private Const WS_EX_LAYERED As Long = &H80000
 Public Const CTRL_DEFAULT_BACKCOLOR  As Long = 65535  'RGB(255, 255, 0) highlight yellow
 
 ' -- Values --
-Public NoData As Scripting.Dictionary
+Public noData As Scripting.Dictionary
 
 ' -- Functions --
 Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" _

@@ -23,6 +23,9 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0x30ee24e1bb3b9c4db2510dcdbc3c5659
 End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
 End
 Begin
@@ -33,8 +36,8 @@ Begin
     Bottom =353
     Left =-1
     Top =-1
-    Right =973
-    Bottom =144
+    Right =960
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =539

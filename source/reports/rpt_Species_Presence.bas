@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Report
     LayoutForPrint = NotDefault
@@ -30,6 +30,8 @@ Begin Report
         0xd0020000d0020000d0020000d002000000000000602700006801000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    FilterOnLoad =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -41,12 +43,18 @@ Begin Report
         End
         Begin Rectangle
             BackStyle =0
+            BorderLineStyle =0
+        End
+        Begin Line
+            BorderLineStyle =0
         End
         Begin Image
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CheckBox
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
@@ -54,6 +62,7 @@ Begin Report
             FELineBreak = NotDefault
             OldBorderStyle =0
             TextFontFamily =18
+            BorderLineStyle =0
             BackStyle =0
             FontName ="Times New Roman"
             AsianLineBreak =255
@@ -61,16 +70,19 @@ Begin Report
         Begin ListBox
             TextFontFamily =18
             OldBorderStyle =0
+            BorderLineStyle =0
             FontName ="Times New Roman"
         End
         Begin ComboBox
             OldBorderStyle =0
             TextFontFamily =18
+            BorderLineStyle =0
             BackStyle =0
             FontName ="Times New Roman"
         End
         Begin Subform
             OldBorderStyle =0
+            BorderLineStyle =0
         End
         Begin BreakLevel
             GroupHeader = NotDefault
@@ -115,6 +127,7 @@ Begin Report
                     Name ="ParkName"
                     ControlSource ="ParkName"
                     StatusBarText ="Full name of park where data were collected"
+
                 End
             End
         End
@@ -139,6 +152,7 @@ Begin Report
                     Name ="Plot_ID"
                     ControlSource ="Plot_ID"
                     StatusBarText ="Plot_ID"
+
                     Begin
                         Begin Label
                             Left =60
@@ -292,6 +306,7 @@ Begin Report
                     Name ="Master_Family"
                     ControlSource ="Master_Family"
                     StatusBarText ="Master_Family"
+
                 End
                 Begin TextBox
                     IMESentenceMode =3
@@ -304,6 +319,7 @@ Begin Report
                     Name ="Utah_Species"
                     ControlSource ="Utah_Species"
                     StatusBarText ="Utah Species (Welsh et al 2003)"
+
                 End
                 Begin CheckBox
                     Left =4080
@@ -312,6 +328,7 @@ Begin Report
                     Name ="P1"
                     ControlSource ="P1"
                     StatusBarText ="10 yes/no columns will last 10 years"
+
                 End
                 Begin CheckBox
                     Left =4680
@@ -319,6 +336,7 @@ Begin Report
                     TabIndex =3
                     Name ="P2"
                     ControlSource ="P2"
+
                 End
                 Begin CheckBox
                     Left =5280
@@ -326,6 +344,7 @@ Begin Report
                     TabIndex =4
                     Name ="P3"
                     ControlSource ="P3"
+
                 End
                 Begin CheckBox
                     Left =5880
@@ -333,6 +352,7 @@ Begin Report
                     TabIndex =5
                     Name ="P4"
                     ControlSource ="P4"
+
                 End
                 Begin CheckBox
                     Left =6480
@@ -340,6 +360,7 @@ Begin Report
                     TabIndex =6
                     Name ="P5"
                     ControlSource ="P5"
+
                 End
                 Begin CheckBox
                     Left =7080
@@ -347,6 +368,7 @@ Begin Report
                     TabIndex =7
                     Name ="P6"
                     ControlSource ="P6"
+
                 End
                 Begin CheckBox
                     Left =7680
@@ -354,6 +376,7 @@ Begin Report
                     TabIndex =8
                     Name ="P7"
                     ControlSource ="P7"
+
                 End
                 Begin CheckBox
                     Left =8280
@@ -361,6 +384,7 @@ Begin Report
                     TabIndex =9
                     Name ="P8"
                     ControlSource ="P8"
+
                 End
                 Begin CheckBox
                     Left =8880
@@ -368,6 +392,7 @@ Begin Report
                     TabIndex =10
                     Name ="P9"
                     ControlSource ="P9"
+
                 End
                 Begin CheckBox
                     Left =9480
@@ -375,6 +400,7 @@ Begin Report
                     TabIndex =11
                     Name ="P10"
                     ControlSource ="P10"
+
                 End
                 Begin Line
                     Left =60
@@ -398,6 +424,7 @@ Begin Report
                     Name ="Text29"
                     ControlSource ="=Now()"
                     Format ="Long Date"
+
                 End
                 Begin TextBox
                     TextAlign =3
@@ -409,6 +436,7 @@ Begin Report
                     TabIndex =1
                     Name ="Text30"
                     ControlSource ="=\"Page \" & [Page] & \" of \" & [Pages]"
+
                 End
                 Begin Line
                     Width =10020

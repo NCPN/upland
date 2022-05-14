@@ -227,7 +227,7 @@ End Sub
 Public Function GetRibbonXML(strRibbon As String) As String
 On Error GoTo Err_Handler
     
-    Dim rs As DAO.Recordset
+    Dim rs As dao.Recordset
     Dim strSQL As String, strXML As String
     
     strSQL = "SELECT RibbonXML FROM USysRibbons WHERE RibbonName = '" & strRibbon & "';"
@@ -1409,7 +1409,7 @@ On Error GoTo Err_Handler
     sngStart = -0.00000001                    ' Start of pie slice.
 
     sngEnd = -2 * PI / 3                         ' End of pie slice.
-    ctrl.Parent.fillColor = RGB(51, 51, 51)            ' Color pie slice red.
+    ctrl.Parent.FillColor = RGB(51, 51, 51)            ' Color pie slice red.
     ctrl.Parent.FillStyle = 0                          ' Fill pie slice.
     
     'add the circle to the parent

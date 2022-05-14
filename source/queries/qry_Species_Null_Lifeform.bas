@@ -29,6 +29,9 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0x709c469139023d4f88212016cab8b9a8
 End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
 End
 Begin
@@ -39,8 +42,8 @@ Begin
     Bottom =356
     Left =-1
     Top =-1
-    Right =1215
-    Bottom =144
+    Right =1198
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =539
@@ -49,7 +52,7 @@ Begin
         Top =6
         Right =203
         Bottom =120
-        Top =36
+        Top =0
         Name ="tlu_NCPN_Plants"
         Name =""
     End

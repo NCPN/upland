@@ -33,6 +33,9 @@ Begin
     Begin
         dbText "Name" ="Year"
         dbLong "AggregateType" ="-1"
+        dbBinary "GUID" = Begin
+            0xb15460e311978f48a8f0f68570bd33ff
+        End
     End
     Begin
         dbText "Name" ="tbl_Locations.Unit_Code"

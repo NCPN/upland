@@ -1,5 +1,6 @@
 Option Compare Database
 Option Explicit
+Public dBtitle As String
 
 Function GetSummaryInfo(strPropName As String, Optional varFileName As Variant) As String
   ' Comments: Get "Summary" properties of Database.  Taken

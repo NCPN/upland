@@ -28,6 +28,9 @@ Begin
         dbLong "AggregateType" ="-1"
         dbInteger "ColumnWidth" ="3924"
         dbBoolean "ColumnHidden" ="0"
+        dbBinary "GUID" = Begin
+            0xd7749f0bd0d9ad4a9dfeecf5e32f1f7c
+        End
     End
     Begin
         dbText "Name" ="temp_Sp_Rpt_by_Park_Complete.Unit_Code"

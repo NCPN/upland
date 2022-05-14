@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
@@ -533,7 +533,7 @@ On Error GoTo Err_Handler
     'generate 5 records @ 5, 15, 25, 35, and 45 meter fixed locations IF no records exist
     'determine record count
     
-    Dim rs As DAO.Recordset
+    Dim rs As dao.Recordset
     Dim locs() As Variant
     Dim loc As Variant
     
@@ -591,7 +591,7 @@ Private Sub Form_Current()
 On Error GoTo Err_Handler
 
     'determine record count
-    Dim rs As DAO.Recordset
+    Dim rs As dao.Recordset
     Set rs = Me.RecordsetClone
     'rs.MoveFirst
     If Not (rs.BOF And rs.EOF) Then rs.MoveLast
@@ -635,8 +635,8 @@ End Sub
 Private Sub Form_BeforeInsert(Cancel As Integer)
 On Error GoTo Err_Handler
 
-    Dim db As DAO.Database
-    Dim Points As DAO.Recordset
+    Dim db As dao.Database
+    Dim Points As dao.Recordset
     Dim strSQL As String
     On Error GoTo Err_Handler
 
@@ -729,7 +729,7 @@ On Error GoTo Err_Handler
 
 Debug.Print Me.Parent.Form.Controls("Transect_ID")
     
-    Dim rs As DAO.Recordset
+    Dim rs As dao.Recordset
     Dim locs() As Variant
     Dim loc As Variant
     

@@ -25,6 +25,10 @@ Begin OutputColumns
     Expression ="tbl_VH_Intercept.HHeight"
 End
 Begin Joins
+    LeftTable ="tbl_VH_Transect"
+    RightTable ="tbl_VH_Intercept"
+    Expression ="tbl_VH_Transect.Transect_ID = tbl_VH_Intercept.Transect_ID"
+    Flag =1
     LeftTable ="tbl_Events"
     RightTable ="tbl_VH_Transect"
     Expression ="tbl_Events.Event_ID = tbl_VH_Transect.Event_ID"
@@ -32,10 +36,6 @@ Begin Joins
     LeftTable ="tbl_Locations"
     RightTable ="tbl_Events"
     Expression ="tbl_Locations.Location_ID = tbl_Events.Location_ID"
-    Flag =1
-    LeftTable ="tbl_VH_Transect"
-    RightTable ="tbl_VH_Intercept"
-    Expression ="tbl_VH_Transect.Transect_ID = tbl_VH_Intercept.Transect_ID"
     Flag =1
 End
 Begin OrderBy
@@ -137,7 +137,7 @@ Begin
     Left =-1
     Top =-1
     Right =930
-    Bottom =196
+    Bottom =179
     Left =0
     Top =0
     ColumnsShown =539

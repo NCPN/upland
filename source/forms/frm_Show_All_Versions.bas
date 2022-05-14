@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -33,6 +33,9 @@ Begin Form
         0x010000006801000000000000a10700000100000001000000
     End
     OnLoad ="[Event Procedure]"
+    FilterOnLoad =255
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -42,54 +45,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -99,9 +113,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =0
@@ -127,6 +143,7 @@ Begin Form
                     Name ="version_key_number"
                     ControlSource ="version_key_number"
                     StatusBarText ="Protocol version key number (maintained in SOP #10)"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -153,6 +170,7 @@ Begin Form
                     ControlSource ="version_key_date"
                     Format ="Short Date"
                     StatusBarText ="Date of protocol version key number"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -180,6 +198,7 @@ Begin Form
                     ControlSource ="narrative_version"
                     Format ="Fixed"
                     StatusBarText ="Version of protocol narrative"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -207,6 +226,7 @@ Begin Form
                     Name ="version_comments"
                     ControlSource ="version_comments"
                     StatusBarText ="Comments regarding version, if any"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -242,6 +262,7 @@ Begin Form
                     SourceObject ="Form.frm_sub_Show_All_Versions"
                     LinkChildFields ="version_key_number"
                     LinkMasterFields ="version_key_number"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -293,6 +314,11 @@ Begin Form
                     Name ="ButtonPrint"
                     Caption ="Print Listing"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -304,6 +330,11 @@ Begin Form
                     Name ="ButtonAdd"
                     Caption ="Add New Version"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -315,6 +346,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -344,19 +380,19 @@ Private Sub Form_Load()
  On Error GoTo Err_Form_Load
 
         Dim intFID As Integer
-        Dim db As DAO.Database
-        Dim NewMaster As DAO.Recordset
-        Dim NewSOP As DAO.Recordset
+        Dim db As dao.Database
+        Dim NewMaster As dao.Recordset
+        Dim NewSOP As dao.Recordset
         Dim strSQL As String
-        Dim Response As Integer
+        Dim response As Integer
         Dim varInput As Variant
         Dim intIndex As Integer
         Dim intCount As Integer
         
     ' Check for no records
     If Me.RecordsetClone.RecordCount = 0 Then
-       Response = MsgBox("There are no existing versions, do you want to initialize?", 4, "Add new version")
-       If Response = 7 Then
+       response = MsgBox("There are no existing versions, do you want to initialize?", 4, "Add new version")
+       If response = 7 Then
          Cancel = True
          GoTo Exit_Form_Load
          Else
@@ -428,13 +464,13 @@ Private Sub ButtonAdd_Click()
 On Error GoTo Err_ButtonAdd_Click
 
         Dim intFID As Integer
-        Dim db As DAO.Database
-        Dim Versions As DAO.Recordset
-        Dim VersionsByDate As DAO.Recordset
-        Dim CurrentSOP As DAO.Recordset
-        Dim NewSOP As DAO.Recordset
+        Dim db As dao.Database
+        Dim Versions As dao.Recordset
+        Dim VersionsByDate As dao.Recordset
+        Dim CurrentSOP As dao.Recordset
+        Dim NewSOP As dao.Recordset
         Dim strSQL As String
-        Dim Response As Integer
+        Dim response As Integer
         
         DoCmd.GoToRecord , , acNewRec   ' Add new parent record for new version
         Set db = CurrentDb
@@ -442,8 +478,8 @@ On Error GoTo Err_ButtonAdd_Click
         Set VersionsByDate = db.OpenRecordset(strSQL)
         VersionsByDate.MoveLast ' Check if version exists for current date
         If Format(VersionsByDate![version_key_date], "short date") = Format(Date, "short date") Then
-          Response = MsgBox("There already exists a version with today's date.  Do you want to continue?", 4, "Version Add")
-          If Response = 7 Then
+          response = MsgBox("There already exists a version with today's date.  Do you want to continue?", 4, "Version Add")
+          If response = 7 Then
             GoTo Exit_ButtonAdd_Click
           End If
         End If

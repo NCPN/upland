@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -6,7 +6,6 @@ Begin Form
     AutoCenter = NotDefault
     AllowDeletions = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     ScrollBars =2
     ViewsAllowed =1
     TabularFamily =127
@@ -34,9 +33,6 @@ Begin Form
     End
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     FilterOnLoad =255
     AllowLayoutView =0
     DatasheetGridlinesColor12 =12632256

@@ -16,29 +16,38 @@ dbInteger "ODBCTimeout" ="60"
 dbBoolean "OrderByOn" ="0"
 dbByte "Orientation" ="0"
 dbByte "DefaultView" ="2"
+dbBinary "GUID" = Begin
+    0x254b7aab86f00243b1c3af4e9aadabcc
+End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
 Begin
     Begin
         dbText "Name" ="Utah_Species"
         dbInteger "ColumnWidth" ="2325"
         dbBoolean "ColumnHidden" ="0"
+        dbLong "AggregateType" ="-1"
         dbBinary "GUID" = Begin
             0x9e0b6af8c83bb240ae123d6b5ede9676
         End
     End
     Begin
         dbText "Name" ="Master_Plant_Code"
+        dbLong "AggregateType" ="-1"
         dbBinary "GUID" = Begin
             0x24012dfa53733a408f214b9b6f21abeb
         End
     End
     Begin
         dbText "Name" ="Utah_Plant_Code"
+        dbLong "AggregateType" ="-1"
         dbBinary "GUID" = Begin
             0x73cccd4ffd2bf9468fb29c044258f606
         End
     End
     Begin
         dbText "Name" ="Sort_Seq"
+        dbLong "AggregateType" ="-1"
         dbBinary "GUID" = Begin
             0x53b39c1e9006aa42a97ece4dcb0268f3
         End

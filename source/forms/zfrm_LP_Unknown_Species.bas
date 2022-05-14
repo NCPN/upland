@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -38,9 +38,8 @@ Begin Form
         0x010000006801000000000000a10700000100000001000000
     End
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -50,54 +49,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -107,9 +117,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =0
@@ -132,6 +144,7 @@ Begin Form
                     Name ="Unknown_ID"
                     ControlSource ="Unknown_ID"
                     StatusBarText ="Unique record identifier - primary key"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -145,6 +158,7 @@ Begin Form
                     Name ="Species_ID"
                     ControlSource ="Species_ID"
                     StatusBarText ="Foreign key to tbl_Quadrat_Species"
+
                 End
                 Begin TextBox
                     OverlapFlags =87
@@ -156,6 +170,7 @@ Begin Form
                     Name ="Plant_Description"
                     ControlSource ="Plant_Description"
                     StatusBarText ="General description"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -179,6 +194,7 @@ Begin Form
                     Name ="Salient_Feature"
                     ControlSource ="Salient_Feature"
                     StatusBarText ="Most salient feature"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -203,6 +219,7 @@ Begin Form
                     Name ="Leaf_Type"
                     ControlSource ="Leaf_Type"
                     StatusBarText ="Leaf type: compound/simple, arrangement"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -227,6 +244,7 @@ Begin Form
                     Name ="Margin"
                     ControlSource ="Margin"
                     StatusBarText ="Leaf margin"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -250,6 +268,7 @@ Begin Form
                     Name ="Other_Characteristics"
                     ControlSource ="Other_Characteristics"
                     StatusBarText ="Other leaf characteristics:  pubescence, sap, stipules"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -273,6 +292,7 @@ Begin Form
                     Name ="Stem_Characteristics"
                     ControlSource ="Stem_Characteristics"
                     StatusBarText ="Stem characteristics: shape, pubescence, bud"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -296,6 +316,7 @@ Begin Form
                     Name ="Flower_Characteristics"
                     ControlSource ="Flower_Characteristics"
                     StatusBarText ="Flower characteristics: color location floral formula"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -319,6 +340,7 @@ Begin Form
                     Name ="General_Characteristics"
                     ControlSource ="General_Characteristics"
                     StatusBarText ="General and microhabitat characteristics"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -342,6 +364,7 @@ Begin Form
                     Name ="Collected"
                     ControlSource ="Collected"
                     StatusBarText ="Was plant collected"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -366,6 +389,7 @@ Begin Form
                     Name ="Best_Guess"
                     ControlSource ="Best_Guess"
                     StatusBarText ="Best guess species name"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -390,6 +414,7 @@ Begin Form
                     Name ="Confirmed"
                     ControlSource ="Confirmed"
                     StatusBarText ="Confirmed species name"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -429,6 +454,7 @@ Begin Form
                     RowSourceType ="Value List"
                     RowSource ="\"tree\";\"shrub\";\"grass\";\"forb\";\"other\""
                     ColumnWidths ="675"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -453,6 +479,12 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
+                    Overlaps =1
                 End
                 Begin TextBox
                     OverlapFlags =215
@@ -464,6 +496,7 @@ Begin Form
                     Name ="Unknown_Code"
                     ControlSource ="Unknown_Code"
                     StatusBarText ="Temporary code for unknown species - Line point form"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -492,6 +525,7 @@ Begin Form
                     RowSourceType ="Value List"
                     RowSource ="\"annual\";\"perennial\""
                     ColumnWidths ="795"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -520,6 +554,7 @@ Begin Form
                     RowSourceType ="Value List"
                     RowSource ="\"bunchgrass\";\"rhizomatous\""
                     ColumnWidths ="1050"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -606,6 +641,7 @@ Begin Form
                     Format ="Short Date"
                     StatusBarText ="Date of identification - Line point form"
                     InputMask ="99/99/0000;0;_"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -627,6 +663,7 @@ Begin Form
                     Name ="Have_Photos"
                     ControlSource ="Have_Photos"
                     StatusBarText ="Are there photos? - Line point form"
+
                     Begin
                         Begin Label
                             OverlapFlags =85

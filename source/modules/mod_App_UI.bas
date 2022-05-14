@@ -46,7 +46,7 @@ Private Const WS_EX_LAYERED As Long = &H80000
 Public Const CTRL_DEFAULT_BACKCOLOR  As Long = 65535  'RGB(255, 255, 0) highlight yellow
 
 ' -- Values --
-Public NoData As Scripting.Dictionary
+Public noData As Scripting.Dictionary
 
 ' -- Functions --
 Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" _
@@ -87,7 +87,7 @@ On Error GoTo Err_Handler
     Dim strParkPlotSpecies As String, strSpeciesYears As String
     Dim strPark As String, strFamily As String, strUtah_Species As String, strParkPlot As String
     Dim intPlotID As Integer, i As Integer, iCount As Integer
-    Dim rs As DAO.Recordset, rsTemp As DAO.Recordset, rsCount As DAO.Recordset
+    Dim rs As dao.Recordset, rsTemp As dao.Recordset, rsCount As dao.Recordset
     'Dim blnAdd As Boolean
     'Dim strSpeciesYr As String
     Dim strSQL As String
@@ -187,7 +187,7 @@ End Sub
 Public Sub CreateRollupTable()
 On Error GoTo Err_Handler
 
-    Dim tdf As DAO.TableDef
+    Dim tdf As dao.TableDef
     
     Set tdf = CurrentDb.CreateTableDef("temp_Sp_Rpt_by_Park_Rollup")
     
@@ -236,12 +236,12 @@ Public Function GetNoDataCollected(levelID As String, level As String) As Script
 On Error GoTo Err_Handler
 
     Dim strSQL As String, strItem As String
-    Dim rs As DAO.Recordset
+    Dim rs As dao.Recordset
     
-    Set NoData = New Scripting.Dictionary 'publicly set
+    Set noData = New Scripting.Dictionary 'publicly set
     
     'prepare default dictionary
-    With NoData
+    With noData
         .Add "1mBelt-Shrub", 0
         .Add "1mBelt-TreeSeedling", 0
 '        .Add "1mBelt-ExoticPerennial", 0
@@ -268,7 +268,7 @@ On Error GoTo Err_Handler
         Do Until rs.EOF
     
             strItem = rs("SampleType") 'cannot use directly in NoData.item(rs("SampleType")) -> adds new item
-            NoData.Item(strItem) = 1
+            noData.Item(strItem) = 1
             
             rs.MoveNext
             
@@ -276,7 +276,7 @@ On Error GoTo Err_Handler
         
     End If
     
-    Set GetNoDataCollected = NoData
+    Set GetNoDataCollected = noData
     
 Exit_Handler:
     Exit Function
@@ -312,12 +312,12 @@ Public Function SetNoDataCollected(levelID As String, level As String, SampleTyp
 On Error GoTo Err_Handler
     
     Dim strSQL As String, strItem As String
-    Dim rs As DAO.Recordset
+    Dim rs As dao.Recordset
     
-    Set NoData = New Scripting.Dictionary 'publicly set
-    Set NoData = GetNoDataCollected(levelID, level)
+    Set noData = New Scripting.Dictionary 'publicly set
+    Set noData = GetNoDataCollected(levelID, level)
     
-    NoData.Item(SampleType) = cbxValue
+    noData.Item(SampleType) = cbxValue
     
     'update the table appropriately
     If cbxValue = 1 Then
@@ -332,7 +332,7 @@ On Error GoTo Err_Handler
     DoCmd.SetWarnings (True)
     
     'return current dictionary object
-    Set SetNoDataCollected = NoData
+    Set SetNoDataCollected = noData
     
 Exit_Handler:
     Exit Function
@@ -527,7 +527,7 @@ On Error GoTo Err_Handler
         End With
     
         'check for A, B, C, D transect 1000hr fuels
-        Dim rs As DAO.Recordset
+        Dim rs As dao.Recordset
         
         Set rs = frm.RecordsetClone
         With rs
@@ -538,7 +538,7 @@ On Error GoTo Err_Handler
                 Case "A"
                     With frm.Parent.Form
                         'remove the no data collected record
-                        Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-A", 0)
+                        Set noData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-A", 0)
                             
                         'update checkbox/rectangle
                         .Controls("cbxNo1000hrA") = 0
@@ -549,7 +549,7 @@ On Error GoTo Err_Handler
                 Case "B"
                     With frm.Parent.Form
                         'remove the no data collected record
-                        Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-B", 0)
+                        Set noData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-B", 0)
                             
                         'update checkbox/rectangle
                         .Controls("cbxNo1000hrB") = 0
@@ -560,7 +560,7 @@ On Error GoTo Err_Handler
                 Case "C"
                     With frm.Parent.Form
                         'remove the no data collected record
-                        Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-C", 0)
+                        Set noData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-C", 0)
                             
                         'update checkbox/rectangle
                         .Controls("cbxNo1000hrC") = 0
@@ -571,7 +571,7 @@ On Error GoTo Err_Handler
                 Case "D"
                     With frm.Parent.Form
                         'remove the no data collected record
-                        Set NoData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-D", 0)
+                        Set noData = SetNoDataCollected(.Controls("Event_ID"), "E", "Fuel-1000hr-D", 0)
                             
                         'update checkbox/rectangle
                         .Controls("cbxNo1000hrD") = 0
@@ -837,7 +837,7 @@ On Error GoTo Err_Handler
         Select Case .Name
             Case "Contact"
                 'requires Contact & Contact_Access data
-                Dim qdf As DAO.QueryDef
+                Dim qdf As dao.QueryDef
                 CurrentDb.QueryDefs("usys_temp_qdf").SQL = GetTemplate("s_contact_access")
                 
                 strTable = "usys_temp_qdf"

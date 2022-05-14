@@ -11,9 +11,15 @@ dbInteger "ODBCTimeout" ="60"
 dbBoolean "OrderByOn" ="0"
 dbByte "Orientation" ="0"
 dbByte "DefaultView" ="2"
+dbBinary "GUID" = Begin
+    0x9dc3cc067d85b040aeb1f323706cb427
+End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
 Begin
     Begin
         dbText "Name" ="Sort_Seq"
+        dbLong "AggregateType" ="-1"
         dbBinary "GUID" = Begin
             0x67120e199fb13942a940862d8a20e80b
         End

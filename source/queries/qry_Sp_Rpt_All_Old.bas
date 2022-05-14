@@ -21,5 +21,7 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0xeaf09dc089ad0a45b968f9c39ee172d7
 End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
 Begin
 End

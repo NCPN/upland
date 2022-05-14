@@ -13,21 +13,21 @@ Begin OutputColumns
     Expression ="tbl_Quadrat_Species.Plant_Code"
 End
 Begin Joins
-    LeftTable ="tbl_Locations"
-    RightTable ="tbl_Events"
-    Expression ="tbl_Locations.Location_ID=tbl_Events.Location_ID"
-    Flag =1
     LeftTable ="tbl_Events"
     RightTable ="tbl_Quadrat_Transect"
-    Expression ="tbl_Events.Event_ID=tbl_Quadrat_Transect.Event_ID"
+    Expression ="tbl_Events.Event_ID = tbl_Quadrat_Transect.Event_ID"
     Flag =2
+    LeftTable ="tbl_Locations"
+    RightTable ="tbl_Events"
+    Expression ="tbl_Locations.Location_ID = tbl_Events.Location_ID"
+    Flag =1
     LeftTable ="tbl_Quadrat_Transect"
     RightTable ="tbl_Quadrat"
-    Expression ="tbl_Quadrat_Transect.Transect_ID=tbl_Quadrat.Transect_ID"
+    Expression ="tbl_Quadrat_Transect.Transect_ID = tbl_Quadrat.Transect_ID"
     Flag =2
     LeftTable ="tbl_Quadrat"
     RightTable ="tbl_Quadrat_Species"
-    Expression ="tbl_Quadrat.Quadrat_ID=tbl_Quadrat_Species.Quadrat_ID"
+    Expression ="tbl_Quadrat.Quadrat_ID = tbl_Quadrat_Species.Quadrat_ID"
     Flag =2
 End
 Begin Groups
@@ -46,10 +46,14 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0x4f543e05aa77e34989b668a9584836dd
 End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
     Begin
         dbText "Name" ="tbl_Quadrat_Species.Plant_Code"
         dbText "Description" ="Query all species by park"
+        dbLong "AggregateType" ="-1"
     End
 End
 Begin
@@ -60,8 +64,8 @@ Begin
     Bottom =327
     Left =-1
     Top =-1
-    Right =973
-    Bottom =144
+    Right =960
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =543
@@ -70,7 +74,7 @@ Begin
         Top =6
         Right =134
         Bottom =120
-        Top =1
+        Top =0
         Name ="tbl_Locations"
         Name =""
     End

@@ -1,11 +1,10 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
     NavigationButtons = NotDefault
     DividingLines = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =0
@@ -295,8 +294,8 @@ Option Compare Database
 
 Private Sub Form_BeforeInsert(Cancel As Integer)
 
-        Dim db As DAO.Database
-        Dim Versions As DAO.Recordset
+        Dim db As dao.Database
+        Dim Versions As dao.Recordset
         Dim strSQL As String
         
     On Error GoTo Err_Handler

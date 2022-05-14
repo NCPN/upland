@@ -56,7 +56,19 @@ dbByte "RecordsetType" ="0"
 dbBoolean "OrderByOn" ="0"
 dbByte "Orientation" ="0"
 dbByte "DefaultView" ="2"
+dbBinary "GUID" = Begin
+    0xaa337786da5b2a49aa7e2ec9d3696a72
+End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
+    Begin
+        dbText "Name" ="Year"
+        dbBinary "GUID" = Begin
+            0xbe3b2b2c16a8ef4994e181921ca7c327
+        End
+    End
 End
 Begin
     State =0
@@ -66,8 +78,8 @@ Begin
     Bottom =356
     Left =-1
     Top =-1
-    Right =1213
-    Bottom =144
+    Right =1196
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =539
@@ -76,7 +88,7 @@ Begin
         Top =6
         Right =842
         Bottom =120
-        Top =5
+        Top =0
         Name ="tlu_NCPN_Plants"
         Name =""
     End
@@ -85,7 +97,7 @@ Begin
         Top =6
         Right =134
         Bottom =120
-        Top =1
+        Top =0
         Name ="tbl_Locations"
         Name =""
     End
@@ -94,7 +106,7 @@ Begin
         Top =6
         Right =268
         Bottom =120
-        Top =1
+        Top =0
         Name ="tbl_Events"
         Name =""
     End

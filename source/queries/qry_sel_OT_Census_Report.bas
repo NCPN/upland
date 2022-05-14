@@ -24,10 +24,6 @@ Begin OutputColumns
     Expression ="tbl_OT_Census.DType"
 End
 Begin Joins
-    LeftTable ="tbl_Events"
-    RightTable ="tbl_OT_Census"
-    Expression ="tbl_Events.Event_ID = tbl_OT_Census.Event_ID"
-    Flag =2
     LeftTable ="tbl_OT_Census"
     RightTable ="tlu_Crown_Health_Class"
     Expression ="tbl_OT_Census.Crown_Health = tlu_Crown_Health_Class.Crown_Health_Class"
@@ -35,6 +31,10 @@ Begin Joins
     LeftTable ="tbl_OT_Census"
     RightTable ="tlu_NCPN_Plants"
     Expression ="tbl_OT_Census.Species = tlu_NCPN_Plants.Master_PLANT_Code"
+    Flag =2
+    LeftTable ="tbl_Events"
+    RightTable ="tbl_OT_Census"
+    Expression ="tbl_Events.Event_ID = tbl_OT_Census.Event_ID"
     Flag =2
     LeftTable ="tbl_Locations"
     RightTable ="tbl_Events"
@@ -55,12 +55,12 @@ dbByte "RecordsetType" ="0"
 dbBoolean "OrderByOn" ="0"
 dbByte "Orientation" ="0"
 dbByte "DefaultView" ="2"
-dbBinary "GUID" = Begin
-    0x7f8a0ac0aa327740af95947fd5e482e8
-End
 dbBoolean "FilterOnLoad" ="0"
 dbBoolean "OrderByOnLoad" ="-1"
 dbBoolean "TotalsRow" ="0"
+dbBinary "GUID" = Begin
+    0xfa6ecb45f5530c4395395a77cecb6dab
+End
 Begin
     Begin
         dbText "Name" ="Visit_Year"
@@ -122,8 +122,8 @@ Begin
     Bottom =670
     Left =-1
     Top =-1
-    Right =1229
-    Bottom =110
+    Right =821
+    Bottom =93
     Left =0
     Top =0
     ColumnsShown =539

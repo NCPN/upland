@@ -31,7 +31,7 @@ Option Explicit
 Public Function fxnVerifyLinks() As Boolean
     On Error GoTo Err_Handler
 
-    Dim rst As DAO.Recordset
+    Dim rst As dao.Recordset
     Dim intNumTables As Integer
     Dim intI As Integer
     Dim varReturn As Variant
@@ -234,10 +234,10 @@ End Function
 Public Function fxnRefreshLinks(strSQL As String, varFileName As Variant) As Boolean
     On Error GoTo Err_Handler
 
-    Dim dbGet As DAO.Database
-    Dim db As DAO.Database
-    Dim rst As DAO.Recordset
-    Dim tdf As DAO.TableDef
+    Dim dbGet As dao.Database
+    Dim db As dao.Database
+    Dim rst As dao.Recordset
+    Dim tdf As dao.TableDef
     Dim intNumTables As Integer
     Dim varReturn As Variant
     Dim intI As Integer

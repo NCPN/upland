@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     AutoResize = NotDefault
@@ -29,6 +29,9 @@ Begin Form
     OnCurrent ="[Event Procedure]"
     DatasheetFontName ="Arial"
     OnLoad ="[Event Procedure]"
+    FilterOnLoad =255
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -36,6 +39,7 @@ Begin Form
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
@@ -43,27 +47,33 @@ Begin Form
             FontWeight =400
             ForeColor =-2147483630
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin TextBox
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
         End
         Begin ToggleButton
             FontSize =8
             FontWeight =400
             ForeColor =-2147483630
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =660
@@ -78,6 +88,11 @@ Begin Form
                     Name ="CmdLoad"
                     Caption ="Load Jpeg from disk"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -88,6 +103,11 @@ Begin Form
                     Name ="cmdSaveBlob"
                     Caption ="Save this map in site record"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -98,6 +118,11 @@ Begin Form
                     Name ="cmdLoadBlob"
                     Caption ="Load site map from this record"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -108,6 +133,7 @@ Begin Form
                     Height =300
                     TabIndex =3
                     Name ="txtDisplay"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -129,10 +155,16 @@ Begin Form
                     Name ="cmd1-8"
                     Caption ="Size"
                     EventProcPrefix ="cmd1_8"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
+                    Overlaps =1
                 End
                 Begin BoundObjectFrame
                     Visible = NotDefault
-                    OverlapFlags =87
+                    OverlapFlags =85
                     Left =13320
                     Top =300
                     Width =900
@@ -141,9 +173,10 @@ Begin Form
                     TabIndex =5
                     Name ="Site_Sketch"
                     ControlSource ="Site_Sketch"
+
                     Begin
                         Begin Label
-                            OverlapFlags =93
+                            OverlapFlags =85
                             Left =13260
                             Top =60
                             Width =960
@@ -162,6 +195,11 @@ Begin Form
                     Name ="cmdSaveJpeg"
                     Caption ="Save this image as Jpeg disk file"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -174,6 +212,12 @@ Begin Form
                     Name ="cmdLoadImageCtl"
                     Caption ="Load supported Picture types into Image control"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
+                    Overlaps =1
                 End
                 Begin OptionGroup
                     OverlapFlags =215
@@ -185,6 +229,7 @@ Begin Form
                     Name ="FrameSize"
                     AfterUpdate ="[Event Procedure]"
                     DefaultValue ="1"
+
                     Begin
                         Begin Label
                             BackStyle =1
@@ -202,6 +247,7 @@ Begin Form
                             Top =298
                             OptionValue =1
                             Name ="Option18"
+
                             Begin
                                 Begin Label
                                     OverlapFlags =247
@@ -220,6 +266,7 @@ Begin Form
                             Top =304
                             OptionValue =2
                             Name ="Option20"
+
                             Begin
                                 Begin Label
                                     OverlapFlags =247
@@ -238,6 +285,7 @@ Begin Form
                             Top =304
                             OptionValue =4
                             Name ="Option22"
+
                             Begin
                                 Begin Label
                                     OverlapFlags =247
@@ -256,6 +304,7 @@ Begin Form
                             Top =304
                             OptionValue =8
                             Name ="Option24"
+
                             Begin
                                 Begin Label
                                     OverlapFlags =247
@@ -279,6 +328,12 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
+                    Overlaps =1
                 End
             End
         End
@@ -296,40 +351,9 @@ Begin Form
                     Height =28800
                     Name ="Image0"
                     ObjectPalette = Begin
-                        0x000300010000000020000000400000006000000080000000a0000000c0000000 ,
-                        0xe00000000020000020200000402000006020000080200000a0200000c0200000 ,
-                        0xe02000000040000020400000404000006040000080400000a0400000c0400000 ,
-                        0xe04000000060000020600000406000006060000080600000a0600000c0600000 ,
-                        0xe06000000080000020800000408000006080000080800000a0800000c0800000 ,
-                        0xe080000000a0000020a0000040a0000060a0000080a00000a0a00000c0a00000 ,
-                        0xe0a0000000c0000020c0000040c0000060c0000080c00000a0c00000c0c00000 ,
-                        0xe0c0000000e0000020e0000040e0000060e0000080e00000a0e00000c0e00000 ,
-                        0xe0e000000000400020004000400040006000400080004000a0004000c0004000 ,
-                        0xe00040000020400020204000402040006020400080204000a0204000c0204000 ,
-                        0xe02040000040400020404000404040006040400080404000a0404000c0404000 ,
-                        0xe04040000060400020604000406040006060400080604000a0604000c0604000 ,
-                        0xe06040000080400020804000408040006080400080804000a0804000c0804000 ,
-                        0xe080400000a0400020a0400040a0400060a0400080a04000a0a04000c0a04000 ,
-                        0xe0a0400000c0400020c0400040c0400060c0400080c04000a0c04000c0c04000 ,
-                        0xe0c0400000e0400020e0400040e0400060e0400080e04000a0e04000c0e04000 ,
-                        0xe0e040000000800020008000400080006000800080008000a0008000c0008000 ,
-                        0xe00080000020800020208000402080006020800080208000a0208000c0208000 ,
-                        0xe02080000040800020408000404080006040800080408000a0408000c0408000 ,
-                        0xe04080000060800020608000406080006060800080608000a0608000c0608000 ,
-                        0xe06080000080800020808000408080006080800080808000a0808000c0808000 ,
-                        0xe080800000a0800020a0800040a0800060a0800080a08000a0a08000c0a08000 ,
-                        0xe0a0800000c0800020c0800040c0800060c0800080c08000a0c08000c0c08000 ,
-                        0xe0c0800000e0800020e0800040e0800060e0800080e08000a0e08000c0e08000 ,
-                        0xe0e080000000c0002000c0004000c0006000c0008000c000a000c000c000c000 ,
-                        0xe000c0000020c0002020c0004020c0006020c0008020c000a020c000c020c000 ,
-                        0xe020c0000040c0002040c0004040c0006040c0008040c000a040c000c040c000 ,
-                        0xe040c0000060c0002060c0004060c0006060c0008060c000a060c000c060c000 ,
-                        0xe060c0000080c0002080c0004080c0006080c0008080c000a080c000c080c000 ,
-                        0xe080c00000a0c00020a0c00040a0c00060a0c00080a0c000a0a0c000c0a0c000 ,
-                        0xe0a0c00000c0c00020c0c00040c0c00060c0c00080c0c000a0c0c000c0c0c000 ,
-                        0xe0c0c00000e0c00020e0c00040e0c00060e0c00080e0c000a0e0c000c0e0c000 ,
-                        0xe0e0c00000000000
+                        0x000301000000000000000000
                     End
+
                 End
             End
         End
@@ -530,7 +554,7 @@ Dim strfName As String
 Set clsDialog = New clsCommonDialog
 
 ' Fill in our structure
-clsDialog.Filter = clsDialog.Filter & "ALL (*.*)" & chr$(0) & "*.*" & chr$(0)
+clsDialog.Filter = clsDialog.Filter & "ALL (*.*)" & Chr$(0) & "*.*" & Chr$(0)
 
 ' Display the Open File Dialog
 clsDialog.DialogTitle = "Please Select an Image File to Load"
@@ -538,7 +562,7 @@ clsDialog.ShowOpen
 
 ' See if user clicked Cancel or even selected
 ' the very same file already selected
-strfName = clsDialog.fileName
+strfName = clsDialog.filename
 If Len(strfName & vbNullString) = 0 Then
 Set clsDialog = Nothing
 Exit Sub

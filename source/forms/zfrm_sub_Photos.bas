@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -25,6 +25,8 @@ Begin Form
     RecordSource ="tbl_Photos"
     Caption ="Transect Photos"
     DatasheetFontName ="Arial"
+    FilterOnLoad =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -34,54 +36,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -91,9 +104,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =0
@@ -115,6 +130,7 @@ Begin Form
                     Name ="Photo_ID"
                     ControlSource ="Photo_ID"
                     StatusBarText ="Unique record identifer"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -127,6 +143,7 @@ Begin Form
                     Name ="PhotoRoll"
                     ControlSource ="Roll"
                     StatusBarText ="Reference number for film roll of photo."
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -151,6 +168,7 @@ Begin Form
                     Name ="PhotoFrame"
                     ControlSource ="Frame"
                     StatusBarText ="Frame number of photo within roll."
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -174,6 +192,7 @@ Begin Form
                     ControlSource ="Other_Identifier"
                     StatusBarText ="Other unique identifier or reference number for digital photo or name of movie f"
                         "ile."
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -199,6 +218,7 @@ Begin Form
                     Name ="PhotoComments"
                     ControlSource ="Comments"
                     StatusBarText ="Brief description of photo."
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -222,6 +242,7 @@ Begin Form
                     Name ="Digital_File_Name"
                     ControlSource ="Digital_File"
                     StatusBarText ="File name of digital photograph."
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -265,11 +286,14 @@ Begin Form
                         0x0000000000000000
                     End
                     ObjectPalette = Begin
-                        0x0003100000000000800000000080000080800000000080008000800000808000 ,
-                        0x80808000c0c0c000ff000000c0c0c000ffff00000000ff00c0c0c00000ffff00 ,
-                        0xffffff0000000000
+                        0x000301000000000000000000
                     End
                     ControlTipText ="Previous Record"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -301,11 +325,14 @@ Begin Form
                         0x0000000000000000
                     End
                     ObjectPalette = Begin
-                        0x0003100000000000800000000080000080800000000080008000800000808000 ,
-                        0x80808000c0c0c000ff000000c0c0c000ffff00000000ff00c0c0c00000ffff00 ,
-                        0xffffff0000000000
+                        0x000301000000000000000000
                     End
                     ControlTipText ="Next Record"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -319,11 +346,14 @@ Begin Form
                     Caption ="Add Photograph"
                     OnClick ="[Event Procedure]"
                     ObjectPalette = Begin
-                        0x0003100000000000800000000080000080800000000080008000800000808000 ,
-                        0x80808000c0c0c000ff000000c0c0c000ffff00000000ff00c0c0c00000ffff00 ,
-                        0xffffff0000000000
+                        0x000301000000000000000000
                     End
                     ControlTipText ="Add Record"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     Visible = NotDefault
@@ -347,6 +377,7 @@ Begin Form
                     Name ="Event_ID"
                     ControlSource ="Event_ID"
                     StatusBarText ="Foreign key to tbl_Events"
+
                 End
                 Begin TextBox
                     OverlapFlags =85
@@ -360,6 +391,7 @@ Begin Form
                     Format ="Short Date"
                     StatusBarText ="Date photograph taken."
                     InputMask ="99/99/0000;0;_"
+
                     Begin
                         Begin Label
                             OverlapFlags =247
@@ -387,6 +419,7 @@ Begin Form
                     RowSourceType ="Value List"
                     RowSource ="1;2;3;1stQuadT1;3rdQuadT2;5thQuadT3;CR1stQuadT1;CR3rdQuadT2;CR5thQuadT3"
                     ColumnWidths ="1080"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -411,6 +444,7 @@ Begin Form
                     Name ="Direction"
                     ControlSource ="Direction"
                     StatusBarText ="Direction of photograph"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -463,6 +497,7 @@ Begin Form
                     Name ="Location"
                     ControlSource ="Location"
                     StatusBarText ="Location of photo point along transect in meters"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -490,6 +525,7 @@ Begin Form
                     RowSourceType ="Value List"
                     RowSource ="\"film\";\"digital\";\"movie\";\"other\""
                     ColumnWidths ="600"
+
                     Begin
                         Begin Label
                             OverlapFlags =85

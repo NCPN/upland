@@ -484,7 +484,7 @@ End Sub
 Private Sub cmdUpdateLinks_Click()
     On Error GoTo Err_Handler
 
-    Dim rst As DAO.Recordset
+    Dim rst As dao.Recordset
     Dim strSysTable As String       ' Name of the system table listing linked tables
     Dim strLinkName As String
     Dim strFilePath As String       ' Path of the new database

@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -40,9 +40,6 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     FilterOnLoad =255
     AllowLayoutView =0
     DatasheetGridlinesColor12 =12632256
@@ -349,7 +346,7 @@ Begin Form
 
                 End
                 Begin Label
-                    OverlapFlags =215
+                    OverlapFlags =87
                     TextAlign =2
                     Left =2640
                     Top =660

@@ -12,7 +12,7 @@ End
 Begin Joins
     LeftTable ="qry_Park_Species"
     RightTable ="tlu_NCPN_Plants"
-    Expression ="qry_Park_Species.Plant_Code=tlu_NCPN_Plants.Master_PLANT_Code"
+    Expression ="qry_Park_Species.Plant_Code = tlu_NCPN_Plants.Master_PLANT_Code"
     Flag =2
 End
 dbBoolean "ReturnsRecords" ="-1"
@@ -24,6 +24,9 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0x9091131fff3da64cb9fc70144fbb36e2
 End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
 End
 Begin
@@ -34,8 +37,8 @@ Begin
     Bottom =327
     Left =-1
     Top =-1
-    Right =977
-    Bottom =144
+    Right =960
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =539

@@ -1,9 +1,8 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -342,7 +341,7 @@ Begin Form
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =223
+                            OverlapFlags =95
                             Left =4200
                             Top =1200
                             Width =3480
@@ -459,10 +458,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     ' update the NoDataCollected info
     '-----------------------------------
-    Dim NoData As Scripting.Dictionary
+    Dim noData As Scripting.Dictionary
     
     'remove the no data collected record
-    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Disturbance", 0)
+    Set noData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Disturbance", 0)
         
     'update checkbox/rectangle
     Me.Parent.Form.Controls("cbxNoDisturbance") = 0

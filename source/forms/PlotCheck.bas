@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -35,9 +35,6 @@ Begin Form
     End
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
     OrderByOnLoad =0
     SplitFormDatasheet =1
     FilterOnLoad =255
@@ -1257,9 +1254,9 @@ End Sub
 Private Sub tbxTemplate_DblClick(Cancel As Integer)
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
-    Dim qdf As DAO.QueryDef, qdf2 As DAO.QueryDef
-    Dim rs As DAO.Recordset
+    Dim db As dao.Database
+    Dim qdf As dao.QueryDef, qdf2 As dao.QueryDef
+    Dim rs As dao.Recordset
     Dim PlotID As Integer
     Dim ParkCode As String, fltr As String
     

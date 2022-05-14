@@ -35,8 +35,8 @@ Option Explicit
 Public Function fxnOpenDbChecks()
     On Error GoTo Err_Handler
 
-    Dim db As DAO.Database
-    Dim rst As DAO.Recordset
+    Dim db As dao.Database
+    Dim rst As dao.Recordset
     Dim strSysTable As String
     Dim strDataFileName As String
     Dim strMissingFile As String
@@ -236,8 +236,8 @@ Public Function fxnMakeBackup()
         GoTo Exit_Procedure
     Else
 
-    Dim db As DAO.Database
-    Dim rst As DAO.Recordset
+    Dim db As dao.Database
+    Dim rst As dao.Recordset
     Dim fs As Variant
     Dim strSysTable As String
     Dim strLinkType As String
@@ -369,7 +369,7 @@ Public Function fxnSaveFile(strFilename As String, strFileType As String, _
         Filter:=strFilter, _
         flags:=lngFlags, _
         DialogTitle:="Save As", _
-        fileName:=strFilename)
+        filename:=strFilename)
 
 Exit_Procedure:
     Exit Function

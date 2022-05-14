@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
@@ -399,10 +399,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     ' update the NoDataCollected info
     '-----------------------------------
-    Dim NoData As Scripting.Dictionary
+    Dim noData As Scripting.Dictionary
     
     'remove the no data collected record
-    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Exotic", 0)
+    Set noData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Exotic", 0)
         
     'update checkbox/rectangle
     Me.Parent.Form.Controls("cbxNoSpecies") = 0
@@ -474,10 +474,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     ' update the NoDataCollected info
     '-----------------------------------
-    Dim NoData As Scripting.Dictionary
+    Dim noData As Scripting.Dictionary
     
     'remove the no data collected record
-    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Exotic", 0)
+    Set noData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Exotic", 0)
         
     'update checkbox/rectangle
     Me.Parent.Form.Controls("cbxNoSpecies") = 0
@@ -590,10 +590,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     If Me.RecordsetClone.RecordCount = 0 Then
     
-        Dim NoData As Scripting.Dictionary
+        Dim noData As Scripting.Dictionary
         
         'remove the no data collected record
-        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Exotic", 1)
+        Set noData = SetNoDataCollected(Me.Parent.Form.Controls("Event_ID"), "E", "SiteImpact-Exotic", 1)
     
         'update checkbox/rectangle
         Me.Parent.Form.Controls("cbxNoSpecies") = 1

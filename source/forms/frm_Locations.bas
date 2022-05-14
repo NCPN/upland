@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -557,7 +557,7 @@ Begin Form
 
                     Begin
                         Begin Label
-                            OverlapFlags =215
+                            OverlapFlags =119
                             Left =180
                             Top =5520
                             Width =4260
@@ -1359,7 +1359,7 @@ Begin Form
 
                     Begin
                         Begin Label
-                            OverlapFlags =215
+                            OverlapFlags =119
                             Left =5640
                             Top =5940
                             Width =720

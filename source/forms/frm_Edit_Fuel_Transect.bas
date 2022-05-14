@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -173,7 +173,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =127
+                    OverlapFlags =95
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3645
@@ -255,7 +255,7 @@ Begin Form
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =95
+                            OverlapFlags =93
                             TextAlign =2
                             Left =720
                             Top =2160
@@ -271,7 +271,7 @@ Begin Form
                 Begin TextBox
                     DecimalPlaces =1
                     OldBorderStyle =1
-                    OverlapFlags =255
+                    OverlapFlags =247
                     TextAlign =2
                     IMESentenceMode =3
                     Left =2820
@@ -288,7 +288,7 @@ Begin Form
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =119
+                            OverlapFlags =87
                             TextAlign =2
                             Left =720
                             Top =2460
@@ -304,7 +304,7 @@ Begin Form
                 Begin TextBox
                     DecimalPlaces =1
                     OldBorderStyle =1
-                    OverlapFlags =119
+                    OverlapFlags =87
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3645
@@ -362,10 +362,10 @@ Begin Form
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -443,8 +443,8 @@ Private Sub Form_BeforeUpdate(Cancel As Integer)
     On Error GoTo Err_Handler
 
     Dim db As Database
-    Dim History As DAO.Recordset
-    Dim OldLocation As DAO.Recordset
+    Dim History As dao.Recordset
+    Dim OldLocation As dao.Recordset
     Dim strSQL As String
     
     If IsNull(Me!Recorder) Then

@@ -281,12 +281,12 @@ If Len(strfName & vbNullString) = 0 Then
  Set clsDialog = New clsCommonDialog
 
  ' Fill in our structure
- clsDialog.Filter = "All Files (*.*)" & chr$(0) & "*.*" & chr$(0)
- clsDialog.Filter = clsDialog.Filter & "JPEG (*.JPG)" & chr$(0) & "*.JPG" & chr$(0)
- clsDialog.Filter = clsDialog.Filter & "Bmp (*.BMP)" & chr$(0) & "*.BMP" & chr$(0)
- clsDialog.Filter = clsDialog.Filter & "Gif (*.GIF)" & chr$(0) & "*.GIF" & chr$(0)
- clsDialog.Filter = clsDialog.Filter & "EMF (*.EMF)" & chr$(0) & "*.EMF" & chr$(0)
- clsDialog.Filter = clsDialog.Filter & "WMF (*.WMF)" & chr$(0) & "*.WMF" & chr$(0)
+ clsDialog.Filter = "All Files (*.*)" & Chr$(0) & "*.*" & Chr$(0)
+ clsDialog.Filter = clsDialog.Filter & "JPEG (*.JPG)" & Chr$(0) & "*.JPG" & Chr$(0)
+ clsDialog.Filter = clsDialog.Filter & "Bmp (*.BMP)" & Chr$(0) & "*.BMP" & Chr$(0)
+ clsDialog.Filter = clsDialog.Filter & "Gif (*.GIF)" & Chr$(0) & "*.GIF" & Chr$(0)
+ clsDialog.Filter = clsDialog.Filter & "EMF (*.EMF)" & Chr$(0) & "*.EMF" & Chr$(0)
+ clsDialog.Filter = clsDialog.Filter & "WMF (*.WMF)" & Chr$(0) & "*.WMF" & Chr$(0)
  
  clsDialog.hdc = 0
  clsDialog.MaxFileSize = 256
@@ -301,7 +301,7 @@ If Len(strfName & vbNullString) = 0 Then
  
  ' See if user clicked Cancel or even selected
  ' the very same file already selected
- strfName = clsDialog.fileName
+ strfName = clsDialog.filename
  If Len(strfName & vbNullString) = 0 Then
  ' Raise the exception
    Err.Raise vbObjectError + 513, "CreateBitmapFromImageCtl.modStdPic", _

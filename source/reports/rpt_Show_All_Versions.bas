@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Report
     LayoutForPrint = NotDefault
@@ -29,6 +29,8 @@ Begin Report
         0xa0050000a0050000a0050000a005000000000000902400006801000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    FilterOnLoad =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -41,15 +43,19 @@ Begin Report
         Begin Rectangle
             BackStyle =0
             BorderWidth =1
+            BorderLineStyle =0
         End
         Begin Line
+            BorderLineStyle =0
             BorderColor =128
         End
         Begin Image
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CheckBox
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
@@ -57,6 +63,7 @@ Begin Report
             FELineBreak = NotDefault
             OldBorderStyle =0
             TextFontFamily =18
+            BorderLineStyle =0
             BackStyle =0
             FontSize =9
             FontName ="Times New Roman"
@@ -65,18 +72,21 @@ Begin Report
         Begin ListBox
             TextFontFamily =18
             OldBorderStyle =0
+            BorderLineStyle =0
             FontSize =9
             FontName ="Times New Roman"
         End
         Begin ComboBox
             OldBorderStyle =0
             TextFontFamily =18
+            BorderLineStyle =0
             BackStyle =0
             FontSize =9
             FontName ="Times New Roman"
         End
         Begin Subform
             OldBorderStyle =0
+            BorderLineStyle =0
         End
         Begin BreakLevel
             GroupHeader = NotDefault
@@ -91,7 +101,7 @@ Begin Report
         End
         Begin FormHeader
             KeepTogether = NotDefault
-            Height =960
+            Height =975
             Name ="ReportHeader"
             Begin
                 Begin Label
@@ -161,6 +171,7 @@ Begin Report
                     ControlSource ="version_key_number"
                     StatusBarText ="Protocol version key number (maintained in SOP #10)"
                     FontName ="Arial"
+
                     Begin
                         Begin Label
                             Left =60
@@ -201,6 +212,7 @@ Begin Report
                     ControlSource ="version_key_date"
                     Format ="Short Date"
                     StatusBarText ="Date of protocol version key number"
+
                     Begin
                         Begin Label
                             Left =60
@@ -225,6 +237,7 @@ Begin Report
                     ControlSource ="narrative_version"
                     Format ="Fixed"
                     StatusBarText ="Version of protocol narrative"
+
                     Begin
                         Begin Label
                             Left =60
@@ -249,6 +262,7 @@ Begin Report
                     Name ="version_comments"
                     ControlSource ="version_comments"
                     StatusBarText ="Comments regarding version, if any"
+
                     Begin
                         Begin Label
                             Left =60
@@ -337,6 +351,7 @@ Begin Report
                     Name ="SOP_number"
                     ControlSource ="SOP_number"
                     StatusBarText ="SOP number"
+
                 End
                 Begin TextBox
                     DecimalPlaces =2
@@ -352,6 +367,7 @@ Begin Report
                     ControlSource ="SOP_version_number"
                     Format ="Fixed"
                     StatusBarText ="SOP version number"
+
                 End
                 Begin CheckBox
                     Left =5040
@@ -360,6 +376,7 @@ Begin Report
                     Name ="active_flag"
                     ControlSource ="active_flag"
                     StatusBarText ="Yes indicates SOP is active"
+
                 End
             End
         End
@@ -379,6 +396,7 @@ Begin Report
                     Name ="Text15"
                     ControlSource ="=Now()"
                     Format ="Long Date"
+
                 End
                 Begin TextBox
                     TextAlign =3
@@ -392,6 +410,7 @@ Begin Report
                     TabIndex =1
                     Name ="Text16"
                     ControlSource ="=\"Page \" & [Page] & \" of \" & [Pages]"
+
                 End
                 Begin Line
                     BorderWidth =3

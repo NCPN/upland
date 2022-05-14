@@ -27,6 +27,9 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0xddf88769dfbbf04599a1ff398eaf4b89
 End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
 End
 Begin
@@ -37,8 +40,8 @@ Begin
     Bottom =561
     Left =-1
     Top =-1
-    Right =892
-    Bottom =144
+    Right =879
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =539
@@ -47,7 +50,7 @@ Begin
         Top =6
         Right =251
         Bottom =120
-        Top =1
+        Top =0
         Name ="qry_Sp_Rpt_All"
         Name =""
     End

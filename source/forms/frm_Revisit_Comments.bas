@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     Modal = NotDefault
@@ -33,9 +33,9 @@ Begin Form
     DatasheetFontName ="Arial"
     OnLoad ="[Event Procedure]"
     AllowDatasheetView =0
-    AllowPivotTableView =0
-    AllowPivotChartView =0
-    AllowPivotChartView =0
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -45,54 +45,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -102,9 +113,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =780
@@ -132,6 +145,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     Visible = NotDefault
@@ -146,6 +164,11 @@ Begin Form
                     Name ="ButtonAdd"
                     Caption ="Add New Comment Record"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -171,6 +194,7 @@ Begin Form
                     Name ="Unit_Code"
                     ControlSource ="Unit_Code"
                     StatusBarText ="Park Code."
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -202,6 +226,7 @@ Begin Form
                     Name ="Plot_ID"
                     ControlSource ="Plot_ID"
                     StatusBarText ="Plot identifier"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -234,6 +259,7 @@ Begin Form
                     ControlSource ="VisitDate"
                     Format ="Short Date"
                     StatusBarText ="Date of visit corresponding to comment."
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -260,6 +286,7 @@ Begin Form
                     ControlSource ="Revisit_Comments"
                     StatusBarText ="Comments for next revisit"
                     AfterUpdate ="[Event Procedure]"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -310,8 +337,8 @@ Private Sub Form_Close()
 End Sub
 
 Private Sub Form_Load()
-  Dim RevisitComments As DAO.Recordset
-  Dim db As DAO.Database
+  Dim RevisitComments As dao.Recordset
+  Dim db As dao.Database
   Dim strSQL As String
     
   If Not IsNull(Me.OpenArgs) Then

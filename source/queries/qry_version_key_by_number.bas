@@ -17,7 +17,7 @@ End
 Begin Joins
     LeftTable ="tbl_master_version"
     RightTable ="tbl_SOP_version"
-    Expression ="tbl_master_version.version_key_number=tbl_SOP_version.version_key_number"
+    Expression ="tbl_master_version.version_key_number = tbl_SOP_version.version_key_number"
     Flag =2
 End
 Begin OrderBy
@@ -35,6 +35,9 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0x5ed789168423114484a7e2d5f4b8b83a
 End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
 End
 Begin
@@ -45,8 +48,8 @@ Begin
     Bottom =353
     Left =-1
     Top =-1
-    Right =798
-    Bottom =144
+    Right =781
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =539
@@ -55,7 +58,7 @@ Begin
         Top =6
         Right =187
         Bottom =120
-        Top =1
+        Top =0
         Name ="tbl_master_version"
         Name =""
     End

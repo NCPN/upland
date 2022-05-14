@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -276,7 +276,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =93
+                    OverlapFlags =85
                     Left =8700
                     Top =120
                     TabIndex =10
@@ -485,7 +485,7 @@ Begin Form
                     End
                 End
                 Begin CommandButton
-                    OverlapFlags =215
+                    OverlapFlags =87
                     Left =1440
                     Top =60
                     Width =1335
@@ -584,7 +584,7 @@ Err_Handler:
     Resume Exit_Procedure
 End Sub
 
-Private Sub Plant_Code_NotInList(NewData As String, Response As Integer)
+Private Sub Plant_Code_NotInList(NewData As String, response As Integer)
   Dim IReply As Integer
   
   IReply = MsgBox("Species Does Not Exist.  Add(Yes/No)?", vbYesNo + vbQuestion)
@@ -592,10 +592,10 @@ Private Sub Plant_Code_NotInList(NewData As String, Response As Integer)
   ' Add observer form must be opened with acDialog option to make VB wait for
   ' add observer form to close before continuing on to next instruction.
     DoCmd.OpenForm "frm_add_Species", , , , , acDialog, NewData
-    Response = acDataErrAdded
+    response = acDataErrAdded
 
   Else
-    Response = acDataErrContinue
+    response = acDataErrContinue
   End If
 
 End Sub
@@ -656,8 +656,8 @@ End Sub
 
 Private Sub Form_BeforeUpdate(Cancel As Integer)
     
-        Dim db As DAO.Database
-        Dim Species As DAO.Recordset
+        Dim db As dao.Database
+        Dim Species As dao.Recordset
         Dim strSQL As String
         
     On Error GoTo Err_Handler

@@ -35,5 +35,8 @@ Begin
     Begin
         dbText "Name" ="Year"
         dbLong "AggregateType" ="-1"
+        dbBinary "GUID" = Begin
+            0x7efa7ed31320b74aa61a0aefa6051a46
+        End
     End
 End

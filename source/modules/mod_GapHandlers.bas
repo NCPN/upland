@@ -83,7 +83,7 @@ Function FillBasalGaps(strTransectID As String) As Integer
     
     Dim stDocName As String
     Dim db As Database
-    Dim Gaps As DAO.Recordset
+    Dim Gaps As dao.Recordset
     Dim strSQL As String
     Dim intRecordCount As Integer
     Dim strFieldName As String
@@ -152,8 +152,8 @@ Function UpdateBasalGaps(strTransectID As String, strField As String) As Integer
     
     Dim stDocName As String
     Dim db As Database
-    Dim Gaps As DAO.Recordset
-    Dim NewGap As DAO.Recordset
+    Dim Gaps As dao.Recordset
+    Dim NewGap As dao.Recordset
     Dim strSQL As String
     Dim strFieldName1 As String
     Dim strFieldName2 As String
@@ -283,7 +283,7 @@ Function FillCanopyGaps(strTransectID As String) As Integer
     
     Dim stDocName As String
     Dim db As Database
-    Dim Gaps As DAO.Recordset
+    Dim Gaps As dao.Recordset
     Dim strSQL As String
     Dim intRecordCount As Integer
     Dim strFieldName As String
@@ -352,8 +352,8 @@ Function UpdateCanopyGaps(strTransectID As String, strField As String) As Intege
     
     Dim stDocName As String
     Dim db As Database
-    Dim Gaps As DAO.Recordset
-    Dim NewGap As DAO.Recordset
+    Dim Gaps As dao.Recordset
+    Dim NewGap As dao.Recordset
     Dim strSQL As String
     Dim strFieldName1 As String
     Dim strFieldName2 As String

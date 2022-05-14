@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -28,6 +28,9 @@ Begin Form
     Caption ="frm_Not_Present"
     DatasheetFontName ="Arial"
     OnLoad ="[Event Procedure]"
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -39,54 +42,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -96,9 +110,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =1260
@@ -198,6 +214,7 @@ Begin Form
                     Top =180
                     Width =660
                     Name ="Unit_Code"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -222,6 +239,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -243,6 +265,7 @@ Begin Form
                     Name ="Plant_Code"
                     ControlSource ="Plant_Code"
                     StatusBarText ="Query all species by park"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -258,6 +281,7 @@ Begin Form
                     Name ="Master_Family"
                     ControlSource ="Master_Family"
                     StatusBarText ="Master_Family"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -274,6 +298,7 @@ Begin Form
                     Name ="Master_Species"
                     ControlSource ="Master_Species"
                     StatusBarText ="Master Species (ITIS)"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -290,6 +315,7 @@ Begin Form
                     Name ="Utah_PLANT_Code"
                     ControlSource ="Utah_PLANT_Code"
                     StatusBarText ="Utah Species PLANTS Code"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -306,6 +332,7 @@ Begin Form
                     Name ="Utah_Species"
                     ControlSource ="Utah_Species"
                     StatusBarText ="Utah Species (Welsh et al 2003)"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -322,6 +349,7 @@ Begin Form
                     Name ="Co_PLANT_Code"
                     ControlSource ="Co_PLANT_Code"
                     StatusBarText ="Colorado Species PLANTS Code"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -338,6 +366,7 @@ Begin Form
                     Name ="Co_Species"
                     ControlSource ="Co_Species"
                     StatusBarText ="Colorado Species (Weber & Wittmann 2001)"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -354,6 +383,7 @@ Begin Form
                     Name ="Wy_PLANT_code"
                     ControlSource ="Wy_PLANT_code"
                     StatusBarText ="Wyoming species PLANTS code"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -370,6 +400,7 @@ Begin Form
                     Name ="Wy_Species"
                     ControlSource ="Wy_Species"
                     StatusBarText ="Wyoming Species (Dorn 2001)"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -387,6 +418,7 @@ Begin Form
                     Name ="Add_Synonyms"
                     ControlSource ="Add_Synonyms"
                     StatusBarText ="Additional Synonyms"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -404,6 +436,7 @@ Begin Form
                     Name ="Taxonomic_Notes"
                     ControlSource ="Taxonomic_Notes"
                     StatusBarText ="Taxonomic Notes"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -419,6 +452,7 @@ Begin Form
                     Name ="Master_Common_Name"
                     ControlSource ="Master_Common_Name"
                     StatusBarText ="Master Common Name"
+
                 End
             End
         End

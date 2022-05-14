@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     AutoCenter = NotDefault
@@ -240,10 +240,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -263,10 +263,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -280,10 +280,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -297,10 +297,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -314,10 +314,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -331,10 +331,10 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -389,10 +389,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     ' update the NoDataCollected info
     '-----------------------------------
-    Dim NoData As Scripting.Dictionary
+    Dim noData As Scripting.Dictionary
     
     'remove the no data collected record
-    Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-ExoticPerennial", 0)
+    Set noData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-ExoticPerennial", 0)
         
     'update checkbox/rectangle
     Me.Parent.Form.Controls("cbxNoExotics") = 0
@@ -618,10 +618,10 @@ On Error GoTo Err_Handler
     '-----------------------------------
     If Me.RecordsetClone.RecordCount = 0 Then
     
-        Dim NoData As Scripting.Dictionary
+        Dim noData As Scripting.Dictionary
         
         'remove the no data collected record
-        Set NoData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Exotics", 1)
+        Set noData = SetNoDataCollected(Me.Parent.Form.Controls("Transect_ID"), "T", "1mBelt-Exotics", 1)
     
         'update checkbox/rectangle
         Me.Parent.Form.Controls("cbxNoExotics") = 1

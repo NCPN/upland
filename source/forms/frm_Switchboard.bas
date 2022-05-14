@@ -24,10 +24,10 @@ Begin Form
     Width =9900
     DatasheetFontHeight =10
     ItemSuffix =74
-    Left =2940
-    Top =930
-    Right =15450
-    Bottom =11790
+    Left =5820
+    Top =660
+    Right =15720
+    Bottom =9345
     DatasheetGridlinesColor =12632256
     PictureData = Begin
         0x28000000a0020000f8010000010018000000000000810f00c30e0000c30e0000 ,
@@ -33691,7 +33691,7 @@ On Error GoTo Err_Handler
 
     Dim strLinkPath As String
     Dim strSQL As String
-    Dim rstReleaseInfo As DAO.Recordset
+    Dim rstReleaseInfo As dao.Recordset
     Dim varVersion As Variant
     Dim varAuthor As Variant
     Dim varAuthorOrg As Variant
@@ -34161,12 +34161,15 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   JRB - 5/24/2006 - initial version
-'   BLC - 8/1/2017 - added documentation, error handling
+'   BLC - 8/01/2017 - added documentation, error handling
+'   AZ  - 3/23/2022 - opens different form for generating reports
 ' ---------------------------------
 Private Sub btnQA_Click()
 On Error GoTo Err_Handler
-
-    DoCmd.OpenForm "frm_Report_Menu", , , , , , 3
+    
+    '3=modal and popup properties are set to yes (acDialog)
+    '3=very annoyingly cannot resize the reports when they came up
+    DoCmd.OpenForm "frm_rev_Render_Revisit_Reports", , , , , acWindowNormal, "NCPN Upland Monitoring Database"
 
 Exit_Handler:
     Exit Sub

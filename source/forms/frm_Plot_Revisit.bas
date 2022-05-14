@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     PopUp = NotDefault
@@ -918,10 +918,10 @@ Begin Form
                     Caption ="Cancel New Visit"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -959,10 +959,10 @@ Begin Form
                     Caption ="Continue"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -976,10 +976,10 @@ Begin Form
                     Caption ="Modify Location Coordinates"
                     OnClick ="[Event Procedure]"
 
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Subform
                     OverlapFlags =87
@@ -1251,7 +1251,7 @@ Begin Form
                 End
                 Begin TextBox
                     OldBorderStyle =1
-                    OverlapFlags =127
+                    OverlapFlags =95
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5925
@@ -1333,7 +1333,7 @@ Begin Form
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =95
+                            OverlapFlags =93
                             TextAlign =2
                             Left =3000
                             Top =8040
@@ -1349,7 +1349,7 @@ Begin Form
                 Begin TextBox
                     DecimalPlaces =1
                     OldBorderStyle =1
-                    OverlapFlags =255
+                    OverlapFlags =247
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5100
@@ -1366,7 +1366,7 @@ Begin Form
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =119
+                            OverlapFlags =87
                             TextAlign =2
                             Left =3000
                             Top =8340
@@ -1382,7 +1382,7 @@ Begin Form
                 Begin TextBox
                     DecimalPlaces =1
                     OldBorderStyle =1
-                    OverlapFlags =119
+                    OverlapFlags =87
                     TextAlign =2
                     IMESentenceMode =3
                     Left =5925
@@ -1446,7 +1446,7 @@ On Error GoTo Err_ButtonClose_Click
 
     Dim stDocName As String
     Dim db As Database
-    Dim Events As DAO.Recordset
+    Dim Events As dao.Recordset
     Dim strSQL As String
   If Not IsNull(Me!fsub_Revisit.Form!Event_ID) Then
     strSQL = "Select * FROM tbl_events WHERE event_ID = '" & Me!fsub_Revisit.Form!Event_ID & "'"
@@ -1500,8 +1500,8 @@ End Sub
 Private Sub Form_BeforeUpdate(Cancel As Integer)
     On Error GoTo Err_Handler
     Dim db As Database
-    Dim History As DAO.Recordset
-    Dim OldLocation As DAO.Recordset
+    Dim History As dao.Recordset
+    Dim OldLocation As dao.Recordset
     Dim strSQL As String
     
     If IsNull(Me!fsub_Revisit.Form!Observer) Then

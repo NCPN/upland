@@ -117,9 +117,9 @@ Dim varItem As Variant
 Dim strTableName As String
 Dim strFilename As String
 Dim strLinkType As String
-Dim tdf As DAO.TableDef
-Dim dbExternal As DAO.Database
-Dim tdfExternal As DAO.TableDef
+Dim tdf As dao.TableDef
+Dim dbExternal As dao.Database
+Dim tdfExternal As dao.TableDef
 Dim strDescription As String
 Dim strSQL As String
 Dim strValues As String

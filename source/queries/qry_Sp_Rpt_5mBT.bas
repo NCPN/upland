@@ -62,6 +62,9 @@ Begin
     Begin
         dbText "Name" ="Year"
         dbLong "AggregateType" ="-1"
+        dbBinary "GUID" = Begin
+            0x11e8e5f238a4944ba884ad2f9c04ca14
+        End
     End
 End
 Begin
@@ -72,8 +75,8 @@ Begin
     Bottom =356
     Left =-1
     Top =-1
-    Right =1222
-    Bottom =127
+    Right =1230
+    Bottom =110
     Left =0
     Top =0
     ColumnsShown =539

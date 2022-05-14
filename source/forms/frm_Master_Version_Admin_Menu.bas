@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -26,6 +26,9 @@ Begin Form
         0xa0050000a0050000a0050000a005000000000000201c0000e010000001000000 ,
         0x010000006801000000000000a10700000100000001000000
     End
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -36,6 +39,7 @@ Begin Form
             FontWeight =400
             ForeColor =-2147483630
             FontName ="Tahoma"
+            BorderLineStyle =0
         End
         Begin Section
             Height =2865
@@ -52,6 +56,11 @@ Begin Form
                     Name ="ButtonClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -75,6 +84,11 @@ Begin Form
                     Name ="ButtonShowAll"
                     Caption ="Show All Master Version Keys"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -86,6 +100,11 @@ Begin Form
                     Name ="ButtonInitialize"
                     Caption ="Initialize Protocol"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End

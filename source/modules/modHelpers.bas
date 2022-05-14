@@ -191,7 +191,7 @@ Public Function ConvertFromRGBA(ByVal rgba As Long)
 End Function
 
 
-Public Function LoadJPG(ByRef cDib As cDIBSection, ByVal sFile As String, ByVal jpg_scale As Long) As Boolean
+Public Function LoadJPG(ByRef cDib As cDIBSection, ByVal sfile As String, ByVal jpg_scale As Long) As Boolean
   Dim jerr As Long 'IJLERR
   Dim jcprops As JPEG_CORE_PROPERTIES
   Dim aFile As String
@@ -207,7 +207,7 @@ Public Function LoadJPG(ByRef cDib As cDIBSection, ByVal sFile As String, ByVal 
   If jerr = IJL_OK Then
       
     ' Write the filename to the jcprops.JPGFile member:
-    aFile = StrConv(sFile, vbFromUnicode)
+    aFile = StrConv(sfile, vbFromUnicode)
       
     jcprops.JPGFile = StrPtr(aFile)
       
@@ -289,7 +289,7 @@ Public Function LoadJPG(ByRef cDib As cDIBSection, ByVal sFile As String, ByVal 
           LoadJPG = True
         Else
           ' Throw error:
-          Call ShowErrorMsg("FAILED TO READ IMAGE DATA " & "(" & sFile & ")", jerr)
+          Call ShowErrorMsg("FAILED TO READ IMAGE DATA " & "(" & sfile & ")", jerr)
         End If
       Else
         ' failed to create the DIB...
@@ -307,7 +307,7 @@ Public Function LoadJPG(ByRef cDib As cDIBSection, ByVal sFile As String, ByVal 
 End Function
 
 
-Public Function SaveJPG(ByRef cDib As cDIBSection, ByVal sFile As String) As Boolean
+Public Function SaveJPG(ByRef cDib As cDIBSection, ByVal sfile As String) As Boolean
   Dim jerr As Long 'IJLERR
   Dim jcprops As JPEG_CORE_PROPERTIES
   Dim aFile As String
@@ -342,7 +342,7 @@ Public Function SaveJPG(ByRef cDib As cDIBSection, ByVal sFile As String) As Boo
 
    ' Set up the JPEG information:
       
-    aFile = StrConv(sFile, vbFromUnicode)
+    aFile = StrConv(sfile, vbFromUnicode)
       
    ' JPEG filename
     jcprops.JPGFile = StrPtr(aFile)

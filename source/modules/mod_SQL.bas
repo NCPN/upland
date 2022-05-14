@@ -30,8 +30,8 @@ Option Explicit
 ' Adapted:      Bonnie Campbell, July, 2014 for NCPN Riparian tools
 ' Revisions:    BLC, 7/23/2014 - initial version
 ' ---------------------------------
-Private m_db As DAO.Database
-Public Property Get dbCurrent() As DAO.Database
+Private m_db As dao.Database
+Public Property Get dbCurrent() As dao.Database
 
     If (m_db Is Nothing) Then
         Set m_db = CurrentDb
@@ -171,7 +171,7 @@ End Function
 '   BLC, 6/30/2015 - combined with GetDbQuerySQL (similar functions)
 ' ---------------------------------
 Private Function GetQuerySQL(strQueryName As String) As String
-Dim qdf As DAO.QueryDef
+Dim qdf As dao.QueryDef
  
     'fetch query
     Set qdf = CurrentDb.QueryDefs(strQueryName)
@@ -207,8 +207,8 @@ End Function
 Public Sub GetSQLTemplates(Optional strVersion As String = "")
 On Error GoTo Err_Handler
 
-    Dim db As DAO.Database
-    Dim rst As DAO.Recordset
+    Dim db As dao.Database
+    Dim rst As dao.Recordset
     Dim strSQL As String, strSQLWhere As String, key As String, Value As String
     
     'handle default
@@ -406,8 +406,8 @@ Public Function ConcatRelated(strField As String, _
     Optional strOrderBy As String, _
     Optional strSeparator = ", ") As Variant
 On Error GoTo Err_Handler
-    Dim rs As DAO.Recordset         'Related records
-    Dim rsMV As DAO.Recordset       'Multi-valued field recordset
+    Dim rs As dao.Recordset         'Related records
+    Dim rsMV As dao.Recordset       'Multi-valued field recordset
     Dim strSQL As String            'SQL statement
     Dim strOut As String            'Output string to concatenate to.
     Dim lngLen As Long              'Length of string.
@@ -493,7 +493,7 @@ Function Coalsce(strSQL As String, strDelim, ParamArray NameList() As Variant)
 On Error GoTo Err_Handler
 
 Dim db As Database
-Dim rs As DAO.Recordset
+Dim rs As dao.Recordset
 Dim strList As String
 
     Set db = CurrentDb

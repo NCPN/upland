@@ -25,9 +25,13 @@ dbByte "DefaultView" ="2"
 dbBinary "GUID" = Begin
     0xd5746b0243d61441a8211892132686cb
 End
+dbBoolean "FilterOnLoad" ="0"
+dbBoolean "OrderByOnLoad" ="-1"
+dbBoolean "TotalsRow" ="0"
 Begin
     Begin
         dbText "Name" ="Visit_Year"
+        dbLong "AggregateType" ="-1"
         dbBinary "GUID" = Begin
             0x4d60f41c39be6d439323eff626e4f539
         End
@@ -41,8 +45,8 @@ Begin
     Bottom =353
     Left =-1
     Top =-1
-    Right =956
-    Bottom =144
+    Right =943
+    Bottom =127
     Left =0
     Top =0
     ColumnsShown =543
@@ -51,7 +55,7 @@ Begin
         Top =6
         Right =134
         Bottom =120
-        Top =2
+        Top =0
         Name ="tbl_Events"
         Name =""
     End

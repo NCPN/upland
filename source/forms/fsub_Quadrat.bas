@@ -1,4 +1,4 @@
-﻿Version =20
+﻿Version =21
 VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
@@ -766,7 +766,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =223
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3430
@@ -997,7 +997,7 @@ Begin Form
                     Caption ="Presence:"
                 End
                 Begin CheckBox
-                    OverlapFlags =255
+                    OverlapFlags =247
                     Left =2110
                     Top =3600
                     TabIndex =13
@@ -1022,7 +1022,7 @@ Begin Form
                     End
                 End
                 Begin CheckBox
-                    OverlapFlags =255
+                    OverlapFlags =247
                     Left =2470
                     Top =3600
                     TabIndex =14
@@ -1033,7 +1033,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =255
+                    OverlapFlags =247
                     Left =2830
                     Top =3600
                     TabIndex =15
@@ -1057,7 +1057,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =255
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3430
@@ -1551,7 +1551,7 @@ Begin Form
                     Name ="Box134"
                 End
                 Begin CheckBox
-                    OverlapFlags =255
+                    OverlapFlags =247
                     Left =2125
                     Top =3840
                     TabIndex =18
@@ -1576,7 +1576,7 @@ Begin Form
                     End
                 End
                 Begin CheckBox
-                    OverlapFlags =255
+                    OverlapFlags =247
                     Left =2470
                     Top =3840
                     TabIndex =19
@@ -1587,7 +1587,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =255
+                    OverlapFlags =247
                     Left =2830
                     Top =3840
                     TabIndex =20
@@ -1611,7 +1611,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =255
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3430
@@ -1769,7 +1769,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =255
+                    OverlapFlags =247
                     Left =3180
                     Top =4080
                     TabIndex =26
@@ -1782,7 +1782,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =255
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =3435
@@ -1796,7 +1796,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =2195
                     Top =4740
                     TabIndex =28
@@ -1821,7 +1821,7 @@ Begin Form
                     End
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =2455
                     Top =4740
                     TabIndex =29
@@ -1832,7 +1832,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =2815
                     Top =4740
                     TabIndex =30
@@ -1843,7 +1843,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =3175
                     Top =4740
                     TabIndex =31
@@ -1870,7 +1870,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =2195
                     Top =4980
                     TabIndex =33
@@ -1917,7 +1917,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =3175
                     Top =4980
                     TabIndex =36
@@ -1944,7 +1944,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =6960
                     Top =3360
                     TabIndex =38
@@ -1969,7 +1969,7 @@ Begin Form
                     End
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7320
                     Top =3360
                     TabIndex =39
@@ -1980,7 +1980,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7680
                     Top =3360
                     TabIndex =40
@@ -2004,7 +2004,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =223
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =8280
@@ -2018,7 +2018,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =6960
                     Top =3600
                     TabIndex =43
@@ -2043,7 +2043,7 @@ Begin Form
                     End
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7320
                     Top =3600
                     TabIndex =44
@@ -2054,7 +2054,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7680
                     Top =3600
                     TabIndex =45
@@ -2078,7 +2078,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =223
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =8280
@@ -2092,7 +2092,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =6960
                     Top =3840
                     TabIndex =48
@@ -2117,7 +2117,7 @@ Begin Form
                     End
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7320
                     Top =3840
                     TabIndex =49
@@ -2128,7 +2128,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7680
                     Top =3840
                     TabIndex =50
@@ -2152,7 +2152,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =223
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =8280
@@ -2166,7 +2166,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =6960
                     Top =4080
                     TabIndex =53
@@ -2191,7 +2191,7 @@ Begin Form
                     End
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7320
                     Top =4080
                     TabIndex =54
@@ -2202,7 +2202,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7680
                     Top =4080
                     TabIndex =55
@@ -2226,7 +2226,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =223
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =8280
@@ -2240,7 +2240,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =6960
                     Top =4320
                     TabIndex =58
@@ -2265,7 +2265,7 @@ Begin Form
                     End
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7320
                     Top =4320
                     TabIndex =59
@@ -2276,7 +2276,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7680
                     Top =4320
                     TabIndex =60
@@ -2300,7 +2300,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =223
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =8280
@@ -2314,7 +2314,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =6960
                     Top =4560
                     TabIndex =63
@@ -2339,7 +2339,7 @@ Begin Form
                     End
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7320
                     Top =4560
                     TabIndex =64
@@ -2350,7 +2350,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7680
                     Top =4560
                     TabIndex =65
@@ -2374,7 +2374,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =223
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =8280
@@ -2388,7 +2388,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =6960
                     Top =4800
                     TabIndex =68
@@ -2413,7 +2413,7 @@ Begin Form
                     End
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7320
                     Top =4800
                     TabIndex =69
@@ -2424,7 +2424,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7680
                     Top =4800
                     TabIndex =70
@@ -2448,7 +2448,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =223
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =8280
@@ -2462,7 +2462,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =6960
                     Top =5040
                     TabIndex =73
@@ -2487,7 +2487,7 @@ Begin Form
                     End
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7320
                     Top =5040
                     TabIndex =74
@@ -2498,7 +2498,7 @@ Begin Form
 
                 End
                 Begin CheckBox
-                    OverlapFlags =223
+                    OverlapFlags =215
                     Left =7680
                     Top =5040
                     TabIndex =75
@@ -2522,7 +2522,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =223
+                    OverlapFlags =127
                     TextAlign =2
                     IMESentenceMode =3
                     Left =8280
@@ -2596,7 +2596,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     BorderWidth =1
-                    OverlapFlags =215
+                    OverlapFlags =119
                     TextAlign =2
                     IMESentenceMode =3
                     Left =8280
